@@ -1,0 +1,116 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProceduralTexture Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxProceduralTexture Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Materials and Textures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxproceduraltexture.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Contains the information to generate a texture procedurally.
+
+   Data information for the texture generation is contained in a blob property.
+
+   See also:
+          FbxTexture
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayTexture.cxx, and ProceduralTexture/main.cxx.
+
+   Definition at line 27 of file fbxproceduraltexture.h.
+   Inheritance diagram for FbxProceduralTexture:
+   [USEMAP:class_fbx_procedural_texture.png]
+
+   List of all members.
+
+Procedural Texture Properties
+
+   FbxPropertyT< FbxBlob >  BlobProp
+                            This property handles the raw data for generating procedural texture.
+                      void  Reset ()
+                            Resets the default procedural texture values.
+
+Property Access Methods
+
+                      void  SetBlob (FbxBlob &pBlob)
+                            Sets the blob.
+                   FbxBlob  GetBlob () const
+                            Get the blob.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Resets the default procedural texture values.
+
+   Reimplemented from FbxTexture.
+   void SetBlob ( FbxBlob &  pBlob )
+   Search for all occurrences
+
+   Sets the blob.
+
+   Parameters:
+
+          pBlob Blob containing information for the procedural texture
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   FbxBlob GetBlob ( ) const
+   Search for all occurrences
+
+   Get the blob.
+
+   Returns:
+          Blob containing information for the procedural texture
+
+   Examples:
+          ProceduralTexture/main.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBlob> BlobProp
+   Search for all occurrences
+
+   This property handles the raw data for generating procedural texture.
+
+   Definition at line 39 of file fbxproceduraltexture.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxproceduraltexture.h
+
+   Please send us your comment about this page

@@ -1,0 +1,234 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxWriterFbx6 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions
+   FbxWriterFbx6 Class Reference
+   Search for all occurrences
+
+   #include <fbxwriterfbx6.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 26 of file fbxwriterfbx6.h.
+   Inheritance diagram for FbxWriterFbx6:
+   [USEMAP:class_fbx_writer_fbx6.png]
+
+   List of all members.
+
+Classes
+
+        struct   ModifiedPropertyInfo
+        struct   SurfaceMaterialAnimatedChannels
+        struct   TextureAnimatedChannels
+
+Public Types
+
+          enum   EExportMode { eASCII, eBINARY, eENCRYPTED }
+
+Public Member Functions
+
+                 FbxWriterFbx6 (FbxManager &pManager, FbxExporter &pExporter, int pID, FbxStatus &pStatus)
+        virtual  ~FbxWriterFbx6 ()
+   virtual bool  FileCreate (char *pFileName)
+                 Creates a new file.
+   virtual bool  FileCreate (FbxStream *pStream, void *pStreamData)
+                 Creates a new file via a stream.
+   virtual bool  FileClose ()
+                 Closes the file.
+   virtual bool  IsFileOpen ()
+                 Test if the file is open.
+           void  SetExportMode (EExportMode pMode)
+   virtual void  GetWriteOptions ()
+                 Setup write options.
+   virtual bool  Write (FbxDocument *pDocument)
+                 Writes content to the specified file with given stream options.
+   virtual bool  PreprocessScene (FbxScene &pScene)
+                 Pre-processes the scene.
+   virtual bool  PostprocessScene (FbxScene &pScene)
+                 Post-processes the scene.
+   virtual void  PluginWriteParameters (FbxObject &pParams)
+                 Writes extension plug-ins name, version and parameters, so that we can remember if a plug-in was used during export.
+   virtual bool  Write (FbxDocument *pDocument, FbxIO *pFbx)
+   virtual void  SetProgressHandler (FbxProgress *pProgress)
+                 Pass a progress handler to the writer.
+   virtual bool  SupportsStreams () const
+                 Returns true if this writer supports FbxStream I/O.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EExportMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eASCII
+
+   Search for all occurrences
+          eBINARY
+
+   Search for all occurrences
+          eENCRYPTED
+
+   Search for all occurrences
+
+   Definition at line 37 of file fbxwriterfbx6.h.
+{eASCII, eBINARY, eENCRYPTED} EExportMode;
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxWriterFbx6 ( FbxManager &   pManager,
+                   FbxExporter &  pExporter,
+                   int            pID,
+                   FbxStatus &    pStatus
+                 )
+   virtual ~FbxWriterFbx6 ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool FileCreate ( char *  pFileName ) [virtual]
+   Search for all occurrences
+
+   Creates a new file.
+
+   Parameters:
+
+          pFileName The name of the newly created file.
+
+   Implements FbxWriter.
+   virtual bool FileCreate ( FbxStream *  pStream,
+                             void *       pStreamData
+                           )              [virtual]
+   Search for all occurrences
+
+   Creates a new file via a stream.
+
+   Parameters:
+
+          pStream     The stream to write to.
+          pStreamData the user-defined stream data to be written.
+
+   Reimplemented from FbxWriter.
+   virtual bool FileClose ( ) [virtual]
+   Search for all occurrences
+
+   Closes the file.
+
+   Implements FbxWriter.
+   virtual bool IsFileOpen ( ) [virtual]
+   Search for all occurrences
+
+   Test if the file is open.
+
+   Implements FbxWriter.
+   void SetExportMode ( EExportMode  pMode )
+   Search for all occurrences
+   virtual void GetWriteOptions ( ) [virtual]
+   Search for all occurrences
+
+   Setup write options.
+
+   Implements FbxWriter.
+   virtual bool Write ( FbxDocument *  pDocument ) [virtual]
+   Search for all occurrences
+
+   Writes content to the specified file with given stream options.
+
+   Parameters:
+
+          pDocument FbxDocument to write file data to.
+
+   Implements FbxWriter.
+   virtual bool PreprocessScene ( FbxScene &  pScene ) [virtual]
+   Search for all occurrences
+
+   Pre-processes the scene.
+
+   Parameters:
+
+          pScene The scene needs to be pre-processed.
+
+   Implements FbxWriter.
+   virtual bool PostprocessScene ( FbxScene &  pScene ) [virtual]
+   Search for all occurrences
+
+   Post-processes the scene.
+
+   Parameters:
+
+          pScene The scene needs to be post-processed.
+
+   Implements FbxWriter.
+   virtual void PluginWriteParameters ( FbxObject &  pParams ) [virtual]
+   Search for all occurrences
+
+   Writes extension plug-ins name, version and parameters, so that we can remember if a plug-in was used during export.
+
+   This is especially useful for extension plug-ins that modify the scene and also to warn users during import if an extension plug-in was used that could be missing.
+
+   Parameters:
+
+          pParams The parameters of the extension plug-in. The properties of the objects are used as the parameters of the extension plug-in.
+
+   Remarks:
+          This function has no implementation in this class. Only sub-class should implement it as needed. For example, FBX 6 and FBX 7 does implement it.
+
+   Reimplemented from FbxWriter.
+   virtual bool Write ( FbxDocument *  pDocument,
+                        FbxIO *        pFbx
+                      )                [virtual]
+   Search for all occurrences
+   virtual void SetProgressHandler ( FbxProgress *  pProgress ) [virtual]
+   Search for all occurrences
+
+   Pass a progress handler to the writer.
+
+   Parameters:
+
+          pProgress FbxProgress to store the progress information.
+
+   Reimplemented from FbxWriter.
+   virtual bool SupportsStreams ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Returns true if this writer supports FbxStream I/O.
+
+   Default value is false.
+
+   Reimplemented from FbxWriter.
+
+   Definition at line 49 of file fbxwriterfbx6.h.
+{ return true; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxwriterfbx6.h
+
+   Please send us your comment about this page

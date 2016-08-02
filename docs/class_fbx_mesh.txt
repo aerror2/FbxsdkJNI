@@ -1,0 +1,1564 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMesh Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   FbxMesh Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, Geometry, Meshes, Materials and Textures, Supported Scene Elements, Customizing the FBX SDK, Feature-Oriented Programs, Nodes and the Scene Graph, Meshes, Using Python FBX with Eclipse, Instancing - Sharing a Mesh, FBX Objects, Materials, Differences between FBX SDK and Python FBX, Merging Two Scenes, Layered Textures, List of Python Fbx classes, FBX Node Attributes, Connections, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxmesh.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A mesh is a geometry made of polygons.
+
+   The class can define a geometry with as many n-sided polygons as needed. Users can freely mix triangles, quadrilaterals, and other polygons. Since the mesh-related terminology of the FBX SDK differs a little from the known standards, here are our definitions:
+     * A control point is an XYZ coordinate, it is synonym of vertex.
+     * A polygon vertex is an index to a control point (the same control point can be referenced by multiple polygon vertices).
+     * A polygon is a group of polygon vertices. The minimum valid number of polygon vertices to define a polygon is 3.
+
+   Methods to initialize, set and access control points are provided in the FbxGeometryBase class.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, ExportScene03/MyKFbxMesh.h, ImportScene/DisplayCache.cxx, ImportScene/DisplayMesh.cxx, Instances/main.cxx, Layers/main.cxx, Normals/main.cxx, ProceduralTexture/main.cxx, SwitchBinding/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/CubeCreator/SDK_Utility.h, UserProperties/main.cxx, UVSample/main.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, ViewScene/SceneCache.h, and
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 32 of file fbxmesh.h.
+   Inheritance diagram for FbxMesh:
+   [USEMAP:class_fbx_mesh.png]
+
+   List of all members.
+
+Classes
+
+                               class   DuplicateVertex
+                                       Internal structure used to keep the duplicate vertex information. More...
+                               class   VertexNormalInfo
+                                       Internal structure used to compute the normals on a mesh. More...
+
+Public Member Functions
+
+      virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                       Return the type of node attribute.
+                                 void  ReservePolygonCount (int pCount)
+                                       Reserve memory in the polygon array to hold the specified number of polygons.
+                                 void  ReservePolygonVertexCount (int pCount)
+                                       Reserve memory in the polygon vertex array to hold the specified number of polygon vertices.
+                                 bool  GetTextureUV (FbxLayerElementArrayTemplate< FbxVector2 > **pLockableArray, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse) const
+                                 bool  GetMaterialIndices (FbxLayerElementArrayTemplate< int > **pLockableArray) const
+                                 bool  GetTextureIndices (FbxLayerElementArrayTemplate< int > **pLockableArray, FbxLayerElement::EType pTextureType) const
+
+Polygon Management
+
+                                 void  BeginPolygon (int pMaterial=-1, int pTexture=-1, int pGroup=-1, bool pLegacy=true)
+                                       Begins the process of adding a polygon to the mesh.
+                                 void  BeginPolygonExt (int pMaterial, int *pTextures)
+                                       Begin writing a polygon.
+                                 void  AddPolygon (int pIndex, int pTextureUVIndex=-1)
+                                       Add a polygon vertex to the current polygon.
+                                 void  EndPolygon ()
+                                       End writing a polygon, it should be called after adding one polygon.
+                                  int  GetPolygonCount () const
+                                       Get the polygon count of this mesh.
+                                  int  GetPolygonSize (int pPolygonIndex) const
+                                       Get the number of polygon vertices in a polygon.
+                                  int  GetPolygonGroup (int pPolygonIndex) const
+                                       Get the current group ID of the specified polygon.
+                                 void  SetPolygonGroup (int pPolygonIndex, int pGroup) const
+                                       Assign the specified polygon a group ID.
+                                  int  GetPolygonVertex (int pPolygonIndex, int pPositionInPolygon) const
+                                       Get a polygon vertex (i.e: an index to a control point).
+                                 bool  GetPolygonVertexNormal (int pPolyIndex, int pVertexIndex, FbxVector4 &pNormal) const
+                                       Get the normal associated with the specified polygon vertex.
+                                 bool  GetPolygonVertexNormals (FbxArray< FbxVector4 > &pNormals) const
+                                       Get the normals associated with the mesh for every polygon vertex.
+                                 bool  GetPolygonVertexUV (int pPolyIndex, int pVertexIndex, const char *pUVSetName, FbxVector2 &pUV, bool &pUnmapped) const
+                                       Get the UV associated with the specified polygon vertex.
+                                 bool  GetPolygonVertexUVs (const char *pUVSetName, FbxArray< FbxVector2 > &pUVs, FbxArray< int > *pUnmappedUVId=NULL) const
+                                       Get the UVs associated with the mesh for every polygon vertex.
+                                int *  GetPolygonVertices () const
+                                       Get the array of polygon vertices (i.e: indices to the control points).
+                                  int  GetPolygonVertexCount () const
+                                       Gets the number of polygon vertices in the mesh.
+                                  int  GetPolygonVertexIndex (int pPolygonIndex) const
+                                       Gets the start index into the array returned by GetPolygonVertices() for the given polygon.
+                                  int  RemovePolygon (int pPolygonIndex)
+                                       Remove the specified polygon from the mesh.
+                                  int  RemoveDuplicatedEdges (FbxArray< int > &pEdgeIndexList)
+                                       Remove the duplicated edges from the mesh.
+
+Texture UV Utility Functions.
+
+   The methods found in this section are utility functions used to handle UV coordinates quickly.
+
+   Internally, they refer to FbxLayer and FbxLayerElementUV methods to do the job. Except for the GetAllChannelUV(int pLayer), all the methods are implicitly working on Layer 0. Use the FbxLayer methods to have access to the other layers.
+                                 void  InitTextureUV (int pCount, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Init texture UV coordinates.
+                                 void  AddTextureUV (FbxVector2 pUV, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Add texture UV coordinates.
+                                  int  GetTextureUVCount (FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Get the number of texture UV coordinates.
+                                  int  GetUVLayerCount () const
+                                       Get the number of layer containing at least one channel UVMap.
+   FbxArray< FbxLayerElement::EType >  GetAllChannelUV (int pLayer)
+                                       Fills an array describing, for the given layer, which texture channel have UVs associated to it.
+
+Material, Texture and UV Indices Utility Functions.
+
+   The methods found in this section are utility functions used to handle Material, Texture and UV indices quickly.
+
+   Internally, they refer to FbxLayer and FbxLayerElementUV methods to do the job. These functions are only working on Layer 0. Use the FbxLayer methods directly to access other layers.
+                                 void  InitMaterialIndices (FbxLayerElement::EMappingMode pMappingMode)
+                                       Initialize material indices.
+                                 void  InitTextureIndices (FbxLayerElement::EMappingMode pMappingMode, FbxLayerElement::EType pTextureType)
+                                       Initialize texture indices.
+                                 void  InitTextureUVIndices (FbxLayerElement::EMappingMode pMappingMode, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Initialize texture UV indices.
+                                  int  GetTextureUVIndex (int pPolygonIndex, int pPositionInPolygon, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Get a texture UV index associated with a polygon vertex (i.e: an index to a control point).
+                                 void  SetTextureUVIndex (int pPolygonIndex, int pPositionInPolygon, int pIndex, FbxLayerElement::EType pTypeIdentifier)
+                                       Set a texture UV index associated with a polygon vertex (i.e: an index to a control point).
+
+Utility functions
+
+                                 void  Reset ()
+                                       Reset the mesh to default values.
+                                 bool  GenerateNormals (bool pOverwrite=false, bool pByCtrlPoint=false, bool pCW=false)
+                                       Generate vertex normals on the mesh.
+                  FBX_DEPRECATED void  ComputeVertexNormals (bool pCW=false)
+                                       Compute the vertex normals on the mesh.
+                                 bool  CheckIfVertexNormalsCCW ()
+                                       Compares the normals calculated by doing cross-products between the polygon vertex and by the ones stored in the normal array.
+                                 bool  CheckSamePointTwice () const
+                                       Verify if the mesh has polygons that are defined on the same point more than once.
+                                  int  RemoveBadPolygons ()
+                                       Remove bad polygons from a mesh.
+
+Point Splitting/Merging utility functions
+
+                                 bool  SplitPoints (FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                       Split points.
+                                 bool  BuildMergeList (FbxArray< int > &pMergeList, bool pExport=false)
+                                       Insert the new indexes of the object that have to be merged.
+                                 void  MergePointsForPolygonVerteNormals (FbxArray< int > &pMergeList)
+                                       Merge the points specified in the list.
+
+Edge management functions
+
+                                 void  BuildMeshEdgeArray ()
+                                       Automatically generate edge data for the mesh.
+                                  int  GetMeshEdgeCount () const
+                                       Query the number of edges defined on this mesh.
+                                  int  GetMeshEdgeIndex (int pStartVertexIndex, int pEndVertexIndex, bool &pReversed, int pExistedEdgeCount=-1)
+                                       Get the index for the edge between the given vertices.
+                                 void  BeginGetMeshEdgeIndexForPolygon ()
+                                       Use this method before calling GetMeshEdgeIndexForPolygon if making several calls to that method.
+                                 void  EndGetMeshEdgeIndexForPolygon ()
+                                       Use this method after calling GetMeshEdgeIndexForPolygon if making several calls to that method.
+                                  int  GetMeshEdgeIndexForPolygon (int pPolygon, int pPositionInPolygon)
+                                       Get the index for the specific edge of pPolygon.
+                                 void  GetMeshEdgeVertices (int pEdgeIndex, int &pStartVertexIndex, int &pEndVertexIndex) const
+                                       Get the vertices for the given edge.
+                                 void  BeginGetMeshEdgeVertices ()
+                                       Use this method before calling GetMeshEdgeVertices if making several calls to that method.
+                                 void  EndGetMeshEdgeVertices ()
+                                       Use this method after calling GetMeshEdgeVertices if making several calls to that method.
+                                 void  SetMeshEdgeCount (int pEdgeCount)
+                                       Presets the number edge data elements.
+                                 void  SetMeshEdge (int pEdgeIndex, int pValue)
+                                       Sets element in edge array to specific value.
+                                  int  AddMeshEdgeIndex (int pStartVertexIndex, int pEndVertexIndex, bool pCheckForDuplicates)
+                                       Add an edge with the given start/end points.
+                                  int  SetMeshEdgeIndex (int pEdgeIndex, int pStartVertexIndex, int pEndVertexIndex, bool pCheckForDuplicates, int pExistedEdgeCount=-1)
+                                       Set the index for the edge with the given start/end points.
+                                 void  BeginAddMeshEdgeIndex ()
+                                       Call this before calling AddMeshEdgeIndex or SetMeshEdgeIndex to increase performance.
+                                 void  EndAddMeshEdgeIndex ()
+                                       After calling AddMeshEdgeIndex or SetMeshEdgeIndex, EndAddMeshEdgeIndex should be called.
+                                  int  AddMeshEdgeIndexForPolygon (int pPolygonIndex, int pPositionInPolygon)
+                                       Adds an edge for the specified polygon, and edge number within the polygon.
+                                 bool  SetMeshEdgeIndex (int pEdgeIndex, int pPolygonIndex, int pPositionInPolygon)
+                                       Sets the specified edge to the specified polygon's edge.
+                                 bool  IsTriangleMesh () const
+                                       Determines if the mesh is composed entirely of triangles.
+
+Crease utility functions
+
+                               double  GetEdgeCreaseInfo (int pEdgeIndex)
+                                       Get crease weight by edge index.
+                                 bool  GetEdgeCreaseInfoArray (FbxLayerElementArrayTemplate< double > **pCreaseArray)
+                                       Get crease edge array.
+                               double  GetVertexCreaseInfo (int pVertexIndex)
+                                       Get crease weight by vertex index.
+                                 bool  GetVertexCreaseInfoArray (FbxLayerElementArrayTemplate< double > **pCreaseArray)
+                                       Get vertex crease array.
+                                 bool  SetEdgeCreaseInfo (int pEdgeIndex, double pWeight)
+                                       Set crease weight by edge index.
+                                 bool  SetEdgeCreaseInfoArray (FbxArray< double > *pWeightArray)
+                                       Set crease weight data array.
+                                 bool  SetVertexCreaseInfo (int pVertexIndex, double pWeight)
+                                       Set crease weight by vertex index.
+                                 bool  SetVertexCreaseInfoArray (FbxArray< double > *pWeightArray)
+                                       Set crease weight data array.
+
+Smooth mesh preview utility functions
+
+                                enum   ESmoothness { eHull, eRough, eMedium, eFine }
+                                       Display Smoothness. More...
+                                enum   EBoundaryRule { eLegacy, eCreaseAll, eCreaseEdge }
+                                       the boundary rule. More...
+                 FbxMesh::ESmoothness  GetMeshSmoothness () const
+                                       Get display smoothness from mesh.
+                                 void  SetMeshSmoothness (FbxMesh::ESmoothness pSmoothness)
+                                       Set the mesh display smoothness mode.
+                                  int  GetMeshPreviewDivisionLevels () const
+                                       Get preview subdivision levels from mesh.
+                                 void  SetMeshPreviewDivisionLevels (int pPreviewDivisionLevels)
+                                       Set mesh preview subdivision levels.
+                                  int  GetMeshRenderDivisionLevels () const
+                                       Get render subdivision levels from mesh.
+                                 void  SetMeshRenderDivisionLevels (int pRenderDivisionLevels)
+                                       Set mesh render subdivision levels.
+                                 bool  GetDisplaySubdivisions () const
+                                       Query whether to display subdivisions isolines on mesh.
+                                 void  SetDisplaySubdivisions (bool pDisplySubdivisions)
+                                       Set the DisplySubdivisions state.
+                        EBoundaryRule  GetBoundaryRule () const
+                                       Get BoundaryRule from mesh.
+                                 void  SetBoundaryRule (EBoundaryRule pBoundaryRule)
+                                       Set BoundaryRule for this mesh.
+                                 bool  GetPreserveBorders () const
+                                       Query whether to preserve borders when preview smooth mesh is enabled.
+                                 void  SetPreserveBorders (bool pPreserveBorders)
+                                       Set the state of the PreserveBorders flag.
+                                 bool  GetPreserveHardEdges () const
+                                       Query whether to preserve hard edges when preview smooth mesh.
+                                 void  SetPreserveHardEdges (bool pPreserveHardEdges)
+                                       Set the state of the PreserveHardEdges flag.
+                                 bool  GetPropagateEdgeHardness () const
+                                       Query whether to PropagateEdgeHardness when preview smooth mesh.
+                                 void  SetPropagateEdgeHardness (bool pPropagateEdgeHardness)
+                                       Set state of the PropagateEdgeHardness flag.
+
+Geometry hole management utility functions
+
+                                 bool  GetPolyHoleInfo (int pFaceIndex)
+                                       Get hole flag by face index (an index to a polygon).
+                                 bool  GetPolyHoleInfoArray (FbxLayerElementArrayTemplate< bool > **pHoleArray)
+                                       Get hole flags Array.
+                                 bool  SetPolyHoleInfo (int pFaceIndex, bool pIsHole)
+                                       Sets the flag indicating whether the face represents a hole or not.
+                                 bool  SetPolyHoleInfoArray (FbxArray< bool > *pHoleArray)
+                                       Set hole flags array.
+
+Tangents data management utility functions
+
+                                 bool  GenerateTangentsData (const char *pUVSetName=NULL, bool pOverwrite=false)
+                                       Generate tangents data for UVSet with specific name.
+                                 bool  GenerateTangentsData (int pUVSetLayerIndex, bool pOverwrite=false)
+                                       Generate tangents data for UVSet in specific layer.
+                                 bool  GenerateTangentsDataForAllUVSets (bool pOverwrite=false)
+                                       Generate tangents data for all UVSets in all layers.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESmoothness
+   Search for all occurrences
+
+   Display Smoothness.
+
+   It represents smooth mesh preview mode. This concept is not used in the FBX SDK but simply carried over so applications can access it and perform the appropriate tasks.
+
+   Enumerator:
+
+          eHull
+
+   Default value, not active "smooth mesh preview".
+   Search for all occurrences
+          eRough
+
+   Not active "smooth mesh preview".
+   Search for all occurrences
+          eMedium
+
+   Both display cage and smooth mesh.
+   Search for all occurrences
+          eFine
+
+   Display smooth mesh.
+   Search for all occurrences
+
+   Definition at line 567 of file fbxmesh.h.
+                {
+                        eHull,
+                        eRough,
+                        eMedium,
+                        eFine
+                };
+
+   enum EBoundaryRule
+   Search for all occurrences
+
+   the boundary rule.
+
+   Enumerator:
+
+          eLegacy
+
+   Default value.
+   Search for all occurrences
+          eCreaseAll
+
+   Used for hard corner.
+   Search for all occurrences
+          eCreaseEdge
+
+   Used for round corner.
+   Search for all occurrences
+
+   Definition at line 576 of file fbxmesh.h.
+                {
+                        eLegacy,
+                        eCreaseAll,
+                        eCreaseEdge
+                };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute.
+
+   Returns:
+          Return the type of this node attribute which is EType::eMesh.
+
+   Reimplemented from FbxGeometry.
+   void BeginPolygon ( int   pMaterial = -1,
+                       int   pTexture = -1,
+                       int   pGroup = -1,
+                       bool  pLegacy = true
+                     )
+   Search for all occurrences
+
+   Begins the process of adding a polygon to the mesh.
+
+   Add vertexes to the polygon using AddPolygon. When the polygon is complete call EndPolygon to complete the creation of the polygon.
+
+   Parameters:
+
+          pMaterial Index of material to assign to this polygon if material mapping type is eByPolygon. Otherwise it must be -1.
+          pTexture  Index of texture to assign to this polygon if texture mapping type is eByPolygon. Otherwise it must be -1.
+          pGroup    Group index assigned to polygon.
+          pLegacy   When set to true, automatically create a LayerElement of type Texture; This was the default behavior of earlier versions of the FBX SDK. Since version 2010, the textures are connected to the material object.
+
+   Remarks:
+          This function must be called before AddPolygon().
+          If used, the pTexture index will reference textures assigned to the DIFFUSE channel (FbxLayerElement::eTextureDiffuse).
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   void BeginPolygonExt ( int    pMaterial,
+                          int *  pTextures
+                        )
+   Search for all occurrences
+
+   Begin writing a polygon.
+
+   Add vertexes to the polygon using AddPolygon. When the polygon is complete call EndPolygon to complete the creation of the polygon.
+
+   Parameters:
+
+          pMaterial Index of material to assign to this polygon if material mapping type is eByPolygon. Otherwise it must be -1.
+          pTextures Array of index of texture (by texture type) to assign to this polygon if texture mapping type is eByPolygon. Otherwise it must be an array of -1. This array is expected to be of size: FbxLayerElement::sTypeTextureCount. If one texture type is not used, the corresponding entry must be left at -1.
+
+   void AddPolygon ( int  pIndex,
+                     int  pTextureUVIndex = -1
+                   )
+   Search for all occurrences
+
+   Add a polygon vertex to the current polygon.
+
+   Parameters:
+
+          pIndex          Index in the table of the control points.
+          pTextureUVIndex Index of texture UV coordinates to assign to this polygon if texture UV mapping type is eByPolygonVertex. Otherwise it must be -1.
+
+   Remarks:
+          After adding all the polygons of the mesh, call function "BuildMeshEdgeArray" to generate edge data for the mesh.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   void EndPolygon ( )
+   Search for all occurrences
+
+   End writing a polygon, it should be called after adding one polygon.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   int GetPolygonCount ( ) const [inline]
+   Search for all occurrences
+
+   Get the polygon count of this mesh.
+
+   Returns:
+          Return the number of polygons in the mesh.
+
+   Examples:
+          ExportDocument/main.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayMesh.cxx, Normals/main.cxx, UVSample/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 73 of file fbxmesh.h.
+{ return mPolygons.GetCount(); }
+
+   int GetPolygonSize ( int  pPolygonIndex ) const [inline]
+   Search for all occurrences
+
+   Get the number of polygon vertices in a polygon.
+
+   Parameters:
+
+          pPolygonIndex Index of the polygon.
+
+   Returns:
+          The number of polygon vertices in the indexed polygon. If the polygon index is out of bounds, return -1.
+
+   Examples:
+          ImportScene/DisplayCache.cxx, ImportScene/DisplayMesh.cxx, Normals/main.cxx, UVSample/main.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 78 of file fbxmesh.h.
+                {
+                        return ( pPolygonIndex >= 0 && pPolygonIndex < mPolygons.GetCount() ) ? mPolygons[pPolygonIndex].mSize : -1;
+                }
+
+   int GetPolygonGroup ( int  pPolygonIndex ) const
+   Search for all occurrences
+
+   Get the current group ID of the specified polygon.
+
+   A polygon group can be useful to identify a number of polygons that share the same properties. The FBX SDK does not use this information internally but guarantee its persistence in the FBX files and in memory.
+
+   Parameters:
+
+          pPolygonIndex Index of the polygon.
+
+   Returns:
+          Group index assigned to the polygon. If the polygon index is out of bounds, return -1.
+
+   void SetPolygonGroup ( int  pPolygonIndex,
+                          int  pGroup
+                        )      const [inline]
+   Search for all occurrences
+
+   Assign the specified polygon a group ID.
+
+   A polygon can only be assigned to one group at the time.
+
+   Parameters:
+
+          pPolygonIndex Index of the polygon.
+          pGroup        Group index assigned to the polygon.
+
+   Returns:
+          Group index assigned to the polygon. If the polygon index is out of bounds, do nothing.
+
+   Definition at line 95 of file fbxmesh.h.
+                {
+                        if( pPolygonIndex >= 0 && pPolygonIndex<mPolygons.GetCount() ) mPolygons[pPolygonIndex].mGroup = pGroup;
+                }
+
+   int GetPolygonVertex ( int  pPolygonIndex,
+                          int  pPositionInPolygon
+                        )      const [inline]
+   Search for all occurrences
+
+   Get a polygon vertex (i.e: an index to a control point).
+
+   Parameters:
+
+          pPolygonIndex      Index of queried polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonCount().
+          pPositionInPolygon Position of polygon vertex in indexed polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonSize(pPolygonIndex).
+
+   Returns:
+          Return the polygon vertex indexed or -1 if the requested vertex does not exists or the indices arguments have an invalid range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, UVSample/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 104 of file fbxmesh.h.
+                {
+                        return ( pPolygonIndex >= 0 && pPolygonIndex < mPolygons.GetCount() && pPositionInPolygon >= 0 && pPositionInPolygon < mPolygons[pPolygonIndex].mSize ) ?
+                                mPolygonVertices[mPolygons[pPolygonIndex].mIndex + pPositionInPolygon] : -1;
+                }
+
+   bool GetPolygonVertexNormal ( int           pPolyIndex,
+                                 int           pVertexIndex,
+                                 FbxVector4 &  pNormal
+                               )               const
+   Search for all occurrences
+
+   Get the normal associated with the specified polygon vertex.
+
+   Parameters:
+
+          pPolyIndex   Index of the polygon.
+          pVertexIndex Index of the vertex in the polygon.
+          pNormal      The returned normal.
+
+   Returns:
+          True on success, false on failure.
+
+   Remarks:
+          pNormal remain unchanged if the requested vertex does not exists.
+
+   Examples:
+          ViewScene/SceneCache.cxx.
+
+   bool GetPolygonVertexNormals ( FbxArray< FbxVector4 > &  pNormals ) const
+   Search for all occurrences
+
+   Get the normals associated with the mesh for every polygon vertex.
+
+   Parameters:
+
+          pNormals The returned normals.
+
+   Returns:
+          True on success, false on failure.
+
+   bool GetPolygonVertexUV ( int           pPolyIndex,
+                             int           pVertexIndex,
+                             const char *  pUVSetName,
+                             FbxVector2 &  pUV,
+                             bool &        pUnmapped
+                           )               const
+   Search for all occurrences
+
+   Get the UV associated with the specified polygon vertex.
+
+   Parameters:
+
+          pPolyIndex   Index of the polygon.
+          pVertexIndex Index of the vertex in the polygon.
+          pUVSetName   The name of the UV set that contains the UV.
+          pUV          The returned UV.
+          pUnmapped    State flag that indicates if the polygon vertex does not have an associated UV.
+
+   Returns:
+          True on success, false on failure.
+
+   Remarks:
+          pUV remain unchanged if the requested vertex does not exists.
+          This function return true if the specified polygon vertex does not have an associated UV. In this case, pUnampped is set to true and the content of pUV is undefined.
+
+   Examples:
+          ViewScene/SceneCache.cxx.
+
+   bool GetPolygonVertexUVs ( const char *              pUVSetName,
+                              FbxArray< FbxVector2 > &  pUVs,
+                              FbxArray< int > *         pUnmappedUVId = NULL
+                            )                           const
+   Search for all occurrences
+
+   Get the UVs associated with the mesh for every polygon vertex.
+
+   Parameters:
+
+   pUVSetName The name of the UV set that contains the UVs.
+   pUVs The returned UVs.
+   pUnmappedUVId If specified, this array will be filled with the indices of the UVs that are not associated to a polygon vertex and thus, have an undefined value. If the array as a size of 0, then all the polygon vertices have an associated UV coordinate and the pUVs array can be used as is. Otherwise, the calling application may be required to process the invalid UV coordinates to avoid inconsistent results. It is strongly suggested to use the FbxLayerElementUV's Direct and Indexed arrays directly
+   (specially if the calling application supports indirection of the UVs).
+
+   Remarks:
+          unmapped UV coordinates are set to (0,0)
+
+   Returns:
+          True on success, false on failure.
+
+   int* GetPolygonVertices ( ) const
+   Search for all occurrences
+
+   Get the array of polygon vertices (i.e: indices to the control points).
+
+   This array is a concatenation of the list of polygon vertices of all the polygons. Example: a mesh made of 2 triangles with vertices [1,2,3] and vertices [2,3,4] results in [1,2,3,2,3,4]. The first polygon starts at position 0 and the second at position 3.
+
+   Returns:
+          The array of polygon vertices.
+
+   int GetPolygonVertexCount ( ) const [inline]
+   Search for all occurrences
+
+   Gets the number of polygon vertices in the mesh.
+
+   Returns:
+          The overall size of the array of polygon vertices in the mesh.
+
+   Remarks:
+          This value can be smaller than the value returned by GetControlPointsCount() (meaning that not all of the control points stored in the object are used to define the mesh). However, typically it will be much bigger since any given control point can be used to define a vertex on multiple polygons.
+
+   Definition at line 159 of file fbxmesh.h.
+{ return mPolygonVertices.Size(); }
+
+   int GetPolygonVertexIndex ( int  pPolygonIndex ) const
+   Search for all occurrences
+
+   Gets the start index into the array returned by GetPolygonVertices() for the given polygon.
+
+   This method can be used for a faster access to the polygon vertices indices. If, for example, we want to access the indices for polygon 3, the following code would do the trick
+ int lStartIndex = mesh.GetPolygonVertexIndex(3);
+ if( lStartIndex == -1 ) return;
+ int* lVertices = mesh.GetPolygonVertices()[lStartIndex];
+ int lCount = mesh.GetPolygonSize(3);
+ for( int i = 0; i < lCount; ++i )
+ {
+     int vertexID = lVertices[i];
+     ...
+ }
+
+   Parameters:
+
+          pPolygonIndex The polygon of interest.
+
+   Returns:
+          The index into the GetPolygonVertices() array.
+
+   Remarks:
+          If the polygon index is out of bounds, return -1.
+
+   int RemovePolygon ( int  pPolygonIndex )
+   Search for all occurrences
+
+   Remove the specified polygon from the mesh.
+
+   This method will automatically update the layers accordingly.
+
+   Parameters:
+
+          pPolygonIndex Index of the polygon.
+
+   Returns:
+          Polygon index.
+
+   Remarks:
+          If the polygon index is out of bounds, return -1.
+
+   int RemoveDuplicatedEdges ( FbxArray< int > &  pEdgeIndexList )
+   Search for all occurrences
+
+   Remove the duplicated edges from the mesh.
+
+   This method will remove duplicated edges. It will not change any vertex and not change the mesh topology.
+
+   Parameters:
+
+          pEdgeIndexList Index list of edges.
+
+   Returns:
+          the count of removed edges.
+
+   Remarks:
+          the edge index list must be ordered. The last one is the max. If the edge index is out of bounds, return -1.
+
+   void InitTextureUV ( int                     pCount,
+                        FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+                      )
+   Search for all occurrences
+
+   Init texture UV coordinates.
+
+   Parameters:
+
+          pCount          Number of texture UV elements.
+          pTypeIdentifier Specifies which texture channel this UV refers to.
+
+   Remarks:
+          pCount must equal the number of control points of the Mesh if the UV mapping mode is FbxLayerElement::eByControlPoint.
+
+   void AddTextureUV ( FbxVector2              pUV,
+                       FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+                     )
+   Search for all occurrences
+
+   Add texture UV coordinates.
+
+   Appends a new element at the end of the array of texture UV coordinates.
+
+   Parameters:
+
+          pUV             Texture UV coordinates, ranging between 0 and 1.
+          pTypeIdentifier Specifies which texture channel this UV refers to.
+
+   Remarks:
+          The final number of texture UV elements must equal the number of control points if the UV mapping mode is FbxLayerElement::eByControlPoint.
+
+   int GetTextureUVCount ( FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse )
+   Search for all occurrences
+
+   Get the number of texture UV coordinates.
+
+   Parameters:
+
+          pTypeIdentifier The texture channel the UV refers to.
+
+   int GetUVLayerCount ( ) const
+   Search for all occurrences
+
+   Get the number of layer containing at least one channel UVMap.
+
+   return 0 if no UV maps have been defined.
+   FbxArray<FbxLayerElement::EType> GetAllChannelUV ( int  pLayer )
+   Search for all occurrences
+
+   Fills an array describing, for the given layer, which texture channel have UVs associated to it.
+
+   Parameters:
+
+          pLayer Index of the layer.
+
+   Returns:
+          Array with the channel descriptor.
+
+   Remarks:
+          Only the channels that have UVs associated are reported in the array. For example, let's assume that we have defined UVs for the Diffuse, Ambient and Bump channels on layer 0. The resulting array will have the following three entries:
+
+          + FbxLayerElement::eDIFFUSE_TEXTURE
+          + FbxLayerElement::eAMBIENT_TEXTURE
+          + FbxLayerElement::eBUMP_TEXTURE
+
+   void InitMaterialIndices ( FbxLayerElement::EMappingMode  pMappingMode )
+   Search for all occurrences
+
+   Initialize material indices.
+
+   Parameters:
+
+          pMappingMode The mapping mode. This method must be called after FbxGeometryBase::InitControlPoints(). The material indices refer to the position of a material in the FbxLayerElementMaterial's direct array. See FbxLayerElementMaterial for more details. Supported mapping types are eByControlPoint, eByPolygon and eALL_SAME.
+          + If mapping mode is eByControlPoint, there will be as many indices in the material index array as there are control points.
+          + If mapping mode is eByPolygon, there will be as many indices in the material index array as there are polygons in the mesh.
+          + If mapping mode is eALL_SAME, there will be only one index in the material index array.
+
+   Remarks:
+          This function will set the Reference mode of the FbxLayerElementMaterial on layer 0 to eIndexToDirect.
+
+   void InitTextureIndices ( FbxLayerElement::EMappingMode  pMappingMode,
+                             FbxLayerElement::EType         pTextureType
+                           )
+   Search for all occurrences
+
+   Initialize texture indices.
+
+   Parameters:
+
+          pMappingMode The mapping mode. The texture indices refer to the texture connection to the material. In older versions of the FBX SDK, the indices were referring to the entries in the direct array of the FbxLayerElementTexture. See FbxLayerElementTexture for more details. Supported mapping modes are eByPolygon and eALL_SAME.
+          + If mapping mode is eByPolygon, there will be as many indices in the texture index array as there are polygons in the mesh.
+          + If mapping mode is eALL_SAME, there will be only one index in the texture index array.
+
+          pTextureType The texture channel identifier.
+
+   Remarks:
+          This function will set the Reference mode of the FbxLayerElementTexture on layer 0 to eIndexToDirect.
+
+   void InitTextureUVIndices ( FbxLayerElement::EMappingMode  pMappingMode,
+                               FbxLayerElement::EType         pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+                             )
+   Search for all occurrences
+
+   Initialize texture UV indices.
+
+   Parameters:
+
+          pMappingMode The mapping mode. The texture UV indices refer to the index of an element in the FbxLayerElementUV's direct array. See FbxLayerElementUV for more details. Supported mapping types are eByControlPoint , eByPolygonVertex and eALL_SAME.
+          + If mapping mode is eByControlPoint, there will be as many indices in the UV index array as there are control points. This will also set the Reference mode of the FbxLayerElementUV on layer 0 to eDirect.
+          + If mapping mode is eByPolygonVertex, there will be an index in the UV index array for each vertex, for each polygon it is part of. This will also set the Reference mode of the FbxLayerElementUV on layer 0 to eIndexToDirect.
+          + If mapping mode is eALL_SAME, there will be no index in the UV index array. This will also set the Reference mode of the FbxLayerElementUV on layer 0 to eDirect.
+
+          pTypeIdentifier The texture channel the UVIndices refers to.
+
+   int GetTextureUVIndex ( int                     pPolygonIndex,
+                           int                     pPositionInPolygon,
+                           FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+                         )
+   Search for all occurrences
+
+   Get a texture UV index associated with a polygon vertex (i.e: an index to a control point).
+
+   Parameters:
+
+          pPolygonIndex      Index of polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonCount().
+          pPositionInPolygon Position of polygon vertex in indexed polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonSize(pPolygonIndex).
+          pTypeIdentifier    The texture channel the UVIndex refers to.
+
+   Returns:
+          Return a texture UV index.
+
+   Remarks:
+          This function only works if the texture UV mapping mode is set to eByPolygonVertex, otherwise it returns -1.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   void SetTextureUVIndex ( int                     pPolygonIndex,
+                            int                     pPositionInPolygon,
+                            int                     pIndex,
+                            FbxLayerElement::EType  pTypeIdentifier
+                          )
+   Search for all occurrences
+
+   Set a texture UV index associated with a polygon vertex (i.e: an index to a control point).
+
+   Parameters:
+
+          pPolygonIndex      Index of polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonCount().
+          pPositionInPolygon Position of polygon vertex in indexed polygon. The valid range for this parameter is 0 to FbxMesh::GetPolygonSize(pPolygonIndex).
+          pIndex             The index of the texture UV we want to assign to the polygon vertex.
+          pTypeIdentifier    The texture channel the UVIndex refers to.
+
+   Remarks:
+          This function only works if the texture UV mapping type is set to eByPolygonVertex.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the mesh to default values.
+
+   Frees and set to NULL all layers and clear the polygon and the control point array.
+   bool GenerateNormals ( bool  pOverwrite = false,
+                          bool  pByCtrlPoint = false,
+                          bool  pCW = false
+                        )
+   Search for all occurrences
+
+   Generate vertex normals on the mesh.
+
+   The normal computation takes into consideration, as much as possible, the smoothing groups.
+
+   Parameters:
+
+          pOverwrite   If true, re-generate normals data regardless of availability, otherwise left untouched if exist.
+          pByCtrlPoint If true, the recomputed normals will be defined by control points instead of by polygon vertex.
+          pCW          True if the normals are calculated clockwise, false otherwise (counter-clockwise).
+
+   Returns:
+          true if successfully generated normals data, or if already available and pOverwrite is false.
+
+   FBX_DEPRECATED void ComputeVertexNormals ( bool  pCW = false )
+   Search for all occurrences
+
+   Compute the vertex normals on the mesh.
+
+   The normals are per vertex and are the average of all the polygon normals associated with each vertex.
+
+   Parameters:
+
+          pCW True if the normals are calculated clockwise, false otherwise (counter-clockwise).
+
+   Remarks:
+          This function is deprecated. Please use GenerateNormals(true, true, pCW)
+
+   bool CheckIfVertexNormalsCCW ( )
+   Search for all occurrences
+
+   Compares the normals calculated by doing cross-products between the polygon vertex and by the ones stored in the normal array.
+
+   Returns:
+          false if ALL of them are Clockwise. Returns true otherwise.
+
+   bool CheckSamePointTwice ( ) const
+   Search for all occurrences
+
+   Verify if the mesh has polygons that are defined on the same point more than once.
+
+   Returns:
+          true if the mesh has that kind of polygon, false otherwise.
+
+   int RemoveBadPolygons ( )
+   Search for all occurrences
+
+   Remove bad polygons from a mesh.
+
+   Degenerate polygons use a vertex more than once. Remove them from the mesh and from the layer element indices as needed.
+
+   Returns:
+          Number of polygons removed from the mesh, -1 if an error occurred.
+
+   bool SplitPoints ( FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse )
+   Search for all occurrences
+
+   Split points.
+
+   Parameters:
+
+          pTypeIdentifier Specify which UVs are processed.
+
+   Returns:
+          true if a split occurred, false otherwise.
+
+   Remarks:
+          This method replaces the BuildSplitList and SplitPointsForHardEdge.
+
+   bool BuildMergeList ( FbxArray< int > &  pMergeList,
+                         bool               pExport = false
+                       )
+   Search for all occurrences
+
+   Insert the new indexes of the object that have to be merged.
+
+   Parameters:
+
+          pMergeList The list that will contain the indexes of the objects to merge.
+          pExport    If set to true, include the duplicate indexes in the merge list.
+
+   void MergePointsForPolygonVerteNormals ( FbxArray< int > &  pMergeList )
+   Search for all occurrences
+
+   Merge the points specified in the list.
+
+   Parameters:
+
+          pMergeList List containing the information on the points that will be merged.
+
+   void BuildMeshEdgeArray ( )
+   Search for all occurrences
+
+   Automatically generate edge data for the mesh.
+
+   Clears all previously stored edge information
+   int GetMeshEdgeCount ( ) const
+   Search for all occurrences
+
+   Query the number of edges defined on this mesh.
+
+   Returns:
+          The number of edges defined for this mesh
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and Normals/main.cxx.
+
+   int GetMeshEdgeIndex ( int     pStartVertexIndex,
+                          int     pEndVertexIndex,
+                          bool &  pReversed,
+                          int     pExistedEdgeCount = -1
+                        )
+   Search for all occurrences
+
+   Get the index for the edge between the given vertices.
+
+   Note that the result of this method is the same if pStartVertexIndex and pEndVertexIndex are swapped.
+
+   Parameters:
+
+          pStartVertexIndex The starting point of the edge.
+          pEndVertexIndex   The ending point of the edge.
+          pReversed         flag will be set to true if the reverse edge is found, false otherwise.
+          pExistedEdgeCount legal edge count in mEdgeArray
+
+   Returns:
+          -1 if no edge exists for the given pair of vertices.
+
+   void BeginGetMeshEdgeIndexForPolygon ( )
+   Search for all occurrences
+
+   Use this method before calling GetMeshEdgeIndexForPolygon if making several calls to that method.
+
+   Once done calling GetMeshEdgeIndexForPolygon, call EndGetMeshEdgeIndex. This will optimize access time. Do not modify the mesh between calls to BeginGetMeshEdgeIndex and EndGetMeshEdgeIndex.
+   void EndGetMeshEdgeIndexForPolygon ( )
+   Search for all occurrences
+
+   Use this method after calling GetMeshEdgeIndexForPolygon if making several calls to that method.
+
+   This will optimize access time. Do not modify the mesh between calls to BeginGetMeshEdgeIndex and EndGetMeshEdgeIndex.
+   int GetMeshEdgeIndexForPolygon ( int  pPolygon,
+                                    int  pPositionInPolygon
+                                  )
+   Search for all occurrences
+
+   Get the index for the specific edge of pPolygon.
+
+   Parameters:
+
+          pPolygon           The polygon of interest.
+          pPositionInPolygon The specific edge number in the polygon.
+
+   Returns:
+          -1 if the specific edge does not exist.
+
+   Remarks:
+          To optimize access time when making several calls to this method, enclose these calls between the BeginGetMeshEdgeIndexForPolygon() and EndGetMeshEdgeIndexForPolygon() calls.
+
+   void GetMeshEdgeVertices ( int    pEdgeIndex,
+                              int &  pStartVertexIndex,
+                              int &  pEndVertexIndex
+                            )        const
+   Search for all occurrences
+
+   Get the vertices for the given edge.
+
+   Note that the values returned are indices into the control point array.
+
+   Parameters:
+
+          pEdgeIndex        The edge to query.
+          pStartVertexIndex The edge's starting point will be stored here.
+          pEndVertexIndex   The edge's starting point will be stored here.
+
+   void BeginGetMeshEdgeVertices ( )
+   Search for all occurrences
+
+   Use this method before calling GetMeshEdgeVertices if making several calls to that method.
+
+   Once done calling GetMeshEdgeVertices, call EndGetMeshEdgeVertices. This will optimize access time. Do not modify the mesh between calls to BeginGetMeshEdgeVertices and EndGetMeshEdgeVertices.
+   void EndGetMeshEdgeVertices ( )
+   Search for all occurrences
+
+   Use this method after calling GetMeshEdgeVertices if making several calls to that method.
+
+   This will optimize access time. Do not modify the mesh between calls to BeginGetMeshEdgeVertices and EndGetMeshEdgeVertices.
+   void SetMeshEdgeCount ( int  pEdgeCount )
+   Search for all occurrences
+
+   Presets the number edge data elements.
+
+   Parameters:
+
+          pEdgeCount The number of edges to allocate.
+
+   void SetMeshEdge ( int  pEdgeIndex,
+                      int  pValue
+                    )      [inline]
+   Search for all occurrences
+
+   Sets element in edge array to specific value.
+
+   Parameters:
+
+          pEdgeIndex The edge index
+          pValue     The edge data
+
+   Definition at line 452 of file fbxmesh.h.
+{ if( pEdgeIndex >= 0 && pEdgeIndex < mEdgeArray.GetCount() ) mEdgeArray[pEdgeIndex] = pValue; }
+
+   int AddMeshEdgeIndex ( int   pStartVertexIndex,
+                          int   pEndVertexIndex,
+                          bool  pCheckForDuplicates
+                        )
+   Search for all occurrences
+
+   Add an edge with the given start/end points.
+
+   Note that the inserted edge may start at the given end point, and end at the given start point.
+
+   Parameters:
+
+          pStartVertexIndex   The starting point of the edge.
+          pEndVertexIndex     The ending point of the edge.
+          pCheckForDuplicates Set to true to check if the mesh already contains an edge with these two points. Can be set to false to speed up this method, when the incoming edges are known to be consistent.
+
+   Returns:
+          Edge index of the new edge, or -1 on failure (edge/reverse edge already exists, no face using these 2 points consecutively )
+
+   int SetMeshEdgeIndex ( int   pEdgeIndex,
+                          int   pStartVertexIndex,
+                          int   pEndVertexIndex,
+                          bool  pCheckForDuplicates,
+                          int   pExistedEdgeCount = -1
+                        )
+   Search for all occurrences
+
+   Set the index for the edge with the given start/end points.
+
+   Note that the edge may start at the given end point, and end at the given start point.
+
+   Parameters:
+
+          pEdgeIndex          The edge index of the edge.
+          pStartVertexIndex   The starting point of the edge.
+          pEndVertexIndex     The ending point of the edge.
+          pCheckForDuplicates Set to true to check if the mesh already contains an edge with these two points. Can be set to false to speed up this method, when the incoming edges are known to be consistent.
+          pExistedEdgeCount   the valid edge count that we have created in edge array. This parameter only works when pCheckForDuplicates is true. The default value is -1 which meaning current edge array has been fully filled with valid edges, i.e., we will search the full edge array for the duplicated edge.
+
+   Returns:
+          Edge index of the edge, or -1 on failure (no face using these 2 points consecutively ), or -2 if edge/reverse edge already exists
+
+   void BeginAddMeshEdgeIndex ( )
+   Search for all occurrences
+
+   Call this before calling AddMeshEdgeIndex or SetMeshEdgeIndex to increase performance.
+
+   Once finished adding/setting edges EndAddMeshEdgeIndex should be called.
+   void EndAddMeshEdgeIndex ( )
+   Search for all occurrences
+
+   After calling AddMeshEdgeIndex or SetMeshEdgeIndex, EndAddMeshEdgeIndex should be called.
+   int AddMeshEdgeIndexForPolygon ( int  pPolygonIndex,
+                                    int  pPositionInPolygon
+                                  )
+   Search for all occurrences
+
+   Adds an edge for the specified polygon, and edge number within the polygon.
+
+   See SetMeshEdgeIndex for notes the the parameters.
+
+   Parameters:
+
+          pPolygonIndex      The polygon of interest.
+          pPositionInPolygon The edge within the polygon
+
+   Returns:
+          edge index or -1 if failed.
+
+   bool SetMeshEdgeIndex ( int  pEdgeIndex,
+                           int  pPolygonIndex,
+                           int  pPositionInPolygon
+                         )
+   Search for all occurrences
+
+   Sets the specified edge to the specified polygon's edge.
+
+   Note that the position in the polygon ranges from 0 to GetPolygonSize(pPolygonindex) - 1 and represents the edge from GetPolygonVertex(pPolygonIndex, pPositionInPolygon) to GetPolygonVertex( pPolygonIndex, pPositionInPolygon + 1 ) or from pPositionInPolygon to 0 if pPositionInPolygon == GetPolygonSize(pPolygonindex) - 1
+
+   Parameters:
+
+          pEdgeIndex         The edge.
+          pPolygonIndex      The polygon.
+          pPositionInPolygon The specific edge number in the polygon.
+
+   Returns:
+          true on success, false on failure. ( edge for the poly and position already exists )
+
+   bool IsTriangleMesh ( ) const
+   Search for all occurrences
+
+   Determines if the mesh is composed entirely of triangles.
+
+   Returns:
+          true if all polygons are triangles, false otherwise
+
+   void ReservePolygonCount ( int  pCount ) [inline]
+   Search for all occurrences
+
+   Reserve memory in the polygon array to hold the specified number of polygons.
+
+   Parameters:
+
+          pCount The number of polygons this mesh will hold
+
+   Definition at line 507 of file fbxmesh.h.
+{ mPolygons.Reserve(pCount); }
+
+   void ReservePolygonVertexCount ( int  pCount ) [inline]
+   Search for all occurrences
+
+   Reserve memory in the polygon vertex array to hold the specified number of polygon vertices.
+
+   Parameters:
+
+          pCount The number of polygon vertices
+
+   Definition at line 511 of file fbxmesh.h.
+{ mPolygonVertices.Reserve(pCount); }
+
+   bool GetTextureUV ( FbxLayerElementArrayTemplate< FbxVector2 > **  pLockableArray,
+                       FbxLayerElement::EType                         pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+                     )                                                const
+   Search for all occurrences
+   bool GetMaterialIndices ( FbxLayerElementArrayTemplate< int > **  pLockableArray ) const
+   Search for all occurrences
+   bool GetTextureIndices ( FbxLayerElementArrayTemplate< int > **  pLockableArray,
+                            FbxLayerElement::EType                  pTextureType
+                          )                                         const
+   Search for all occurrences
+   double GetEdgeCreaseInfo ( int  pEdgeIndex )
+   Search for all occurrences
+
+   Get crease weight by edge index.
+
+   Parameters:
+
+          pEdgeIndex Edge index.
+
+   Returns:
+          Crease weight value in the range [0.0 - 1.0].
+
+   bool GetEdgeCreaseInfoArray ( FbxLayerElementArrayTemplate< double > **  pCreaseArray )
+   Search for all occurrences
+
+   Get crease edge array.
+
+   Parameters:
+
+          pCreaseArray Edge crease data array.
+
+   Returns:
+          true if the pCreaseArray is filled successfully.
+
+   double GetVertexCreaseInfo ( int  pVertexIndex )
+   Search for all occurrences
+
+   Get crease weight by vertex index.
+
+   Parameters:
+
+          pVertexIndex Vertex index.
+
+   Returns:
+          Crease weight value in the range [0.0 - 1.0].
+
+   bool GetVertexCreaseInfoArray ( FbxLayerElementArrayTemplate< double > **  pCreaseArray )
+   Search for all occurrences
+
+   Get vertex crease array.
+
+   Parameters:
+
+          pCreaseArray Edge vertex data array.
+
+   Returns:
+          true if the pCreaseArray is filled successfully.
+
+   bool SetEdgeCreaseInfo ( int     pEdgeIndex,
+                            double  pWeight
+                          )
+   Search for all occurrences
+
+   Set crease weight by edge index.
+
+   Parameters:
+
+          pEdgeIndex Edge index.
+          pWeight    Crease weight value in the range [0.0 - 1.0].
+
+   Returns:
+          true if successfully set the crease weight.
+
+   bool SetEdgeCreaseInfoArray ( FbxArray< double > *  pWeightArray )
+   Search for all occurrences
+
+   Set crease weight data array.
+
+   Parameters:
+
+          pWeightArray Edge crease data.
+
+   Returns:
+          true if successfully set the crease weight.
+
+   bool SetVertexCreaseInfo ( int     pVertexIndex,
+                              double  pWeight
+                            )
+   Search for all occurrences
+
+   Set crease weight by vertex index.
+
+   Parameters:
+
+          pVertexIndex Vertex index.
+          pWeight      Crease weight value in the range [0.0 - 1.0].
+
+   Returns:
+          true if successfully set the crease weight.
+
+   bool SetVertexCreaseInfoArray ( FbxArray< double > *  pWeightArray )
+   Search for all occurrences
+
+   Set crease weight data array.
+
+   Parameters:
+
+          pWeightArray Vertex crease data.
+
+   Returns:
+          true if successfully set the crease weight.
+
+   FbxMesh::ESmoothness GetMeshSmoothness ( ) const
+   Search for all occurrences
+
+   Get display smoothness from mesh.
+
+   Returns:
+          Mesh smoothness.
+
+   Remarks:
+          It represents smooth mesh preview mode.
+
+   void SetMeshSmoothness ( FbxMesh::ESmoothness  pSmoothness )
+   Search for all occurrences
+
+   Set the mesh display smoothness mode.
+
+   Parameters:
+
+          pSmoothness New smoothness factor.
+
+   Remarks:
+          It represents smooth mesh preview mode.
+
+   int GetMeshPreviewDivisionLevels ( ) const
+   Search for all occurrences
+
+   Get preview subdivision levels from mesh.
+
+   Returns:
+          Mesh preview subdivision levels.
+
+   void SetMeshPreviewDivisionLevels ( int  pPreviewDivisionLevels )
+   Search for all occurrences
+
+   Set mesh preview subdivision levels.
+
+   Parameters:
+
+          pPreviewDivisionLevels Number of subdivisions levels.
+
+   int GetMeshRenderDivisionLevels ( ) const
+   Search for all occurrences
+
+   Get render subdivision levels from mesh.
+
+   Returns:
+          Mesh render subdivision levels
+
+   Remarks:
+          Sometimes, render division level can be the same as preview level.
+
+   void SetMeshRenderDivisionLevels ( int  pRenderDivisionLevels )
+   Search for all occurrences
+
+   Set mesh render subdivision levels.
+
+   Parameters:
+
+          pRenderDivisionLevels Number of subdivision levels.
+
+   bool GetDisplaySubdivisions ( ) const
+   Search for all occurrences
+
+   Query whether to display subdivisions isolines on mesh.
+
+   Returns:
+          The current state of the internal flag.
+
+   void SetDisplaySubdivisions ( bool  pDisplySubdivisions )
+   Search for all occurrences
+
+   Set the DisplySubdivisions state.
+
+   Parameters:
+
+          pDisplySubdivisions New value for this flag.
+
+   EBoundaryRule GetBoundaryRule ( ) const
+   Search for all occurrences
+
+   Get BoundaryRule from mesh.
+
+   Returns:
+          Current value of the internal state.
+
+   void SetBoundaryRule ( EBoundaryRule  pBoundaryRule )
+   Search for all occurrences
+
+   Set BoundaryRule for this mesh.
+
+   Parameters:
+
+          pBoundaryRule New value for the internal state of this mesh.
+
+   Remarks:
+          BoundaryRule will affect the corners of smooth mesh.
+
+   bool GetPreserveBorders ( ) const
+   Search for all occurrences
+
+   Query whether to preserve borders when preview smooth mesh is enabled.
+
+   Returns:
+          The current state of the flag.
+
+   void SetPreserveBorders ( bool  pPreserveBorders )
+   Search for all occurrences
+
+   Set the state of the PreserveBorders flag.
+
+   Parameters:
+
+          pPreserveBorders New value for this flag.
+
+   Remarks:
+          This flag value will affect smooth mesh preview results.
+
+   bool GetPreserveHardEdges ( ) const
+   Search for all occurrences
+
+   Query whether to preserve hard edges when preview smooth mesh.
+
+   Returns:
+          The current state of the flag.
+
+   void SetPreserveHardEdges ( bool  pPreserveHardEdges )
+   Search for all occurrences
+
+   Set the state of the PreserveHardEdges flag.
+
+   Parameters:
+
+          pPreserveHardEdges New value for this flag.
+
+   Remarks:
+          This flag value will affect smooth mesh preview results.
+
+   bool GetPropagateEdgeHardness ( ) const
+   Search for all occurrences
+
+   Query whether to PropagateEdgeHardness when preview smooth mesh.
+
+   Returns:
+          The current state of the flag.
+
+   void SetPropagateEdgeHardness ( bool  pPropagateEdgeHardness )
+   Search for all occurrences
+
+   Set state of the PropagateEdgeHardness flag.
+
+   Parameters:
+
+          pPropagateEdgeHardness New value for this flag.
+
+   Remarks:
+          This flag will affect smooth mesh preview results.
+
+   bool GetPolyHoleInfo ( int  pFaceIndex )
+   Search for all occurrences
+
+   Get hole flag by face index (an index to a polygon).
+
+   Parameters:
+
+          pFaceIndex Index of the queried polygon.
+
+   Returns:
+          The hole flag for the given face.
+
+   bool GetPolyHoleInfoArray ( FbxLayerElementArrayTemplate< bool > **  pHoleArray )
+   Search for all occurrences
+
+   Get hole flags Array.
+
+   Parameters:
+
+          pHoleArray Hole flags array.
+
+   Returns:
+          true if the pHoleArray is filled successfully.
+
+   bool SetPolyHoleInfo ( int   pFaceIndex,
+                          bool  pIsHole
+                        )
+   Search for all occurrences
+
+   Sets the flag indicating whether the face represents a hole or not.
+
+   Parameters:
+
+          pFaceIndex Index of the processed polygon.
+          pIsHole    If true, this face represent a hole.
+
+   Returns:
+          true if successfully set the hole info.
+
+   bool SetPolyHoleInfoArray ( FbxArray< bool > *  pHoleArray )
+   Search for all occurrences
+
+   Set hole flags array.
+
+   Parameters:
+
+          pHoleArray Hole flag array.
+
+   Returns:
+          true if successfully set the hole flags.
+
+   bool GenerateTangentsData ( const char *  pUVSetName = NULL,
+                               bool          pOverwrite = false
+                             )
+   Search for all occurrences
+
+   Generate tangents data for UVSet with specific name.
+
+   Note that the UV winding order is stored in the W component of the tangent. W = 1.0 (right-handed) W = -1.0 (left-handed) In the case of a left-handed tangent, this function automatically flips the resulting binormal to correct for mirrored geometry.
+
+   Parameters:
+
+          pUVSetName The UVSet name to generate tangents data with. The UVSet on the first layer is the the default UVSet to generate.
+          pOverwrite If true, re-generate tangents data regardless of availability, otherwise left untouched if exist.
+
+   Returns:
+          true if successfully generated tangents data, or if already available and pOverwrite is false.
+
+   bool GenerateTangentsData ( int   pUVSetLayerIndex,
+                               bool  pOverwrite = false
+                             )
+   Search for all occurrences
+
+   Generate tangents data for UVSet in specific layer.
+
+   Note that the UV winding order is stored in the W component of the tangent. W = 1.0 (right-handed) W = -1.0 (left-handed) In the case of a left-handed tangent, this function automatically flips the resulting binormal to correct for mirrored geometry.
+
+   Parameters:
+
+          pUVSetLayerIndex The layer to generate tangents data with.
+          pOverwrite       If true, re-generate tangents data regardless of availability, otherwise left untouched if exist.
+
+   Returns:
+          true if successfully generated tangents data, or if already available and pOverwrite is false.
+
+   bool GenerateTangentsDataForAllUVSets ( bool  pOverwrite = false )
+   Search for all occurrences
+
+   Generate tangents data for all UVSets in all layers.
+
+   Note that the UV winding order is stored in the W component of the tangent: W = 1.0 (right-handed) W = -1.0 (left-handed) In the case of a left-handed tangent, this function automatically flips the resulting binormal to correct for mirrored geometry.
+
+   Parameters:
+
+          pOverwrite If true, re-generate tangents data regardless of availability, otherwise left untouched if exist.
+
+   Returns:
+          true if successfully generated tangents data, or if already available and pOverwrite is false.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxmesh.h
+
+   Please send us your comment about this page

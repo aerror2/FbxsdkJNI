@@ -1,0 +1,347 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Member Functions
+   FbxPropertyInfo Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertypage.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 41 of file fbxpropertypage.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EValueIndex {
+     eValueMin, eValueSoftMin, eValueMax, eValueSoftMax,
+     eValueCount
+   }
+
+Public Member Functions
+
+     FBXSDK_FRIEND_NEW ()
+   void  Destroy ()
+   FbxPropertyInfo *  Clone (FbxPropertyPage *pPage)
+   void  IncRef ()
+   void  DecRef ()
+   int  GetRef ()
+   FbxStringSymbol  GetName () const
+   EFbxType  GetType () const
+   FbxPropertyPage *  GetTypeInfo () const
+   void  SetLabel (const char *pLabel)
+   const char *  GetLabel () const
+   void  SetUserTag (int pUserTag)
+   int  GetUserTag () const
+   void  SetUserData (const void *pUserData)
+   void *  GetUserData () const
+   int  AddEnumValue (const char *pStringValue)
+   void  InsertEnumValue (int pIndex, const char *pStringValue)
+   int  GetEnumCount ()
+   void  SetEnumValue (int pIndex, const char *pStringValue)
+   void  RemoveEnumValue (int pIndex)
+   char *  GetEnumValue (int pIndex)
+   bool  HasMinMax (EValueIndex pId) const
+   bool  GetMinMax (EValueIndex pId, void *pValue, EFbxType pValueType) const
+   bool  SetMinMax (EValueIndex pId, const void *pValue, EFbxType pValueType)
+
+Static Public Member Functions
+
+   static FbxPropertyInfo *  Create (const char *pName, FbxPropertyPage *pTypeInfo)
+   static FbxPropertyInfo *  Create (const char *pName, EFbxType pType=eFbxUndefined)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EValueIndex
+   Search for all occurrences
+
+   Enumerator:
+
+          eValueMin
+
+   Search for all occurrences
+          eValueSoftMin
+
+   Search for all occurrences
+          eValueMax
+
+   Search for all occurrences
+          eValueSoftMax
+
+   Search for all occurrences
+          eValueCount
+
+   Search for all occurrences
+
+   Definition at line 144 of file fbxpropertypage.h.
+{eValueMin, eValueSoftMin, eValueMax, eValueSoftMax, eValueCount};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   static FbxPropertyInfo* Create ( const char *       pName,
+                                    FbxPropertyPage *  pTypeInfo
+                                  )                    [inline, static]
+   Search for all occurrences
+
+   Definition at line 45 of file fbxpropertypage.h.
+{ return FbxNew< FbxPropertyInfo >(pName,pTypeInfo); }
+
+   static FbxPropertyInfo* Create ( const char *  pName,
+                                    EFbxType      pType = eFbxUndefined
+                                  )               [inline, static]
+   Search for all occurrences
+
+   Definition at line 46 of file fbxpropertypage.h.
+{ return FbxNew< FbxPropertyInfo >(pName,pType); }
+
+   void Destroy ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 47 of file fbxpropertypage.h.
+{ FbxDelete(this); }
+
+   FbxPropertyInfo* Clone ( FbxPropertyPage *  pPage ) [inline]
+   Search for all occurrences
+
+   Definition at line 48 of file fbxpropertypage.h.
+    {
+        // @@@@@ Filter is missing
+        // @@@@@ Clone is incomplete
+        if (mTypeInfo)
+                {
+            return FbxNew< FbxPropertyInfo >(mName,mTypeInfo);
+        }
+                else
+                {
+            return FbxNew< FbxPropertyInfo >(mName,mType);
+        }
+    }
+
+   void IncRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 62 of file fbxpropertypage.h.
+{ mRef++; }
+
+   void DecRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 63 of file fbxpropertypage.h.
+{ mRef--; if (mRef==0) FbxDelete(this); }
+
+   int GetRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 64 of file fbxpropertypage.h.
+{ return mRef; }
+
+   FbxStringSymbol GetName ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 68 of file fbxpropertypage.h.
+{ return mName; }
+
+   EFbxType GetType ( ) const
+   Search for all occurrences
+   FbxPropertyPage* GetTypeInfo ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 70 of file fbxpropertypage.h.
+{ return mTypeInfo; }
+
+   void SetLabel ( const char *  pLabel ) [inline]
+   Search for all occurrences
+
+   Definition at line 72 of file fbxpropertypage.h.
+{ mLabel=pLabel;          }
+
+   const char* GetLabel ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 73 of file fbxpropertypage.h.
+{ return mLabel.IsEmpty() ? "" : ((const char*)mLabel); }
+
+   void SetUserTag ( int  pUserTag ) [inline]
+   Search for all occurrences
+
+   Definition at line 75 of file fbxpropertypage.h.
+{ mUserTag=pUserTag;      }
+
+   int GetUserTag ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 76 of file fbxpropertypage.h.
+{ return mUserTag;        }
+
+   void SetUserData ( const void *  pUserData ) [inline]
+   Search for all occurrences
+
+   Definition at line 78 of file fbxpropertypage.h.
+{ mUserData=(void*)pUserData;    }
+
+   void* GetUserData ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 79 of file fbxpropertypage.h.
+{ return mUserData;       }
+
+   int AddEnumValue ( const char *  pStringValue ) [inline]
+   Search for all occurrences
+
+   Definition at line 82 of file fbxpropertypage.h.
+    {
+        if (GetType() == eFbxEnum)
+        {
+            if (!mEnumList)
+                mEnumList.Reset(FbxNew< FbxStringList >());
+
+            if( mEnumList->FindIndex( pStringValue ) == -1 )
+                return mEnumList->Add((char*)pStringValue);
+        }
+        return -1;
+    }
+
+   void InsertEnumValue ( int           pIndex,
+                          const char *  pStringValue
+                        )               [inline]
+   Search for all occurrences
+
+   Definition at line 95 of file fbxpropertypage.h.
+    {
+        if (GetType() == eFbxEnum)
+        {
+            if (!mEnumList)
+                mEnumList.Reset(FbxNew< FbxStringList >());
+
+            mEnumList->InsertAt(pIndex,(char*)pStringValue);
+        }
+    }
+
+   int GetEnumCount ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 106 of file fbxpropertypage.h.
+    {
+        return mEnumList ? mEnumList->GetCount() : 0;
+    }
+
+   void SetEnumValue ( int           pIndex,
+                       const char *  pStringValue
+                     )               [inline]
+   Search for all occurrences
+
+   Definition at line 111 of file fbxpropertypage.h.
+    {
+        if (GetType() == eFbxEnum)
+        {
+            if (!mEnumList)
+                mEnumList.Reset(FbxNew< FbxStringList >());
+
+            mEnumList->SetStringAt(pIndex,(char*)pStringValue);
+        }
+    }
+
+   void RemoveEnumValue ( int  pIndex ) [inline]
+   Search for all occurrences
+
+   Definition at line 122 of file fbxpropertypage.h.
+    {
+        if (GetType() == eFbxEnum)
+        {
+            if (!mEnumList)
+                mEnumList.Reset(FbxNew< FbxStringList >());
+
+            mEnumList->RemoveAt(pIndex);
+        }
+    }
+
+   char* GetEnumValue ( int  pIndex ) [inline]
+   Search for all occurrences
+
+   Definition at line 133 of file fbxpropertypage.h.
+    {
+      char* lValue = NULL;
+        if (GetType() == eFbxEnum) {
+            lValue = mEnumList ? mEnumList->GetStringAt(pIndex) : 0;
+        }
+        return lValue;
+    }
+
+   bool HasMinMax ( EValueIndex  pId ) const [inline]
+   Search for all occurrences
+
+   Definition at line 146 of file fbxpropertypage.h.
+        {
+                return mMinMaxValue[pId] != NULL;
+        }
+
+   bool GetMinMax ( EValueIndex  pId,
+                    void *       pValue,
+                    EFbxType     pValueType
+                  )              const [inline]
+   Search for all occurrences
+
+   Definition at line 151 of file fbxpropertypage.h.
+        {
+                if (mMinMaxValue[pId]) {
+                        return FbxTypeCopy(pValue, pValueType, mMinMaxValue[pId], GetType());
+                }
+                return false;
+        }
+
+   bool SetMinMax ( EValueIndex   pId,
+                    const void *  pValue,
+                    EFbxType      pValueType
+                  )               [inline]
+   Search for all occurrences
+
+   Definition at line 159 of file fbxpropertypage.h.
+        {
+                if (!mMinMaxValue[pId]) {
+                  size_t lSize = FbxTypeSizeOf(GetType());
+                        if (lSize) {
+                                mMinMaxValue[pId] = FbxMalloc(lSize);
+                        }
+                }
+                if (mMinMaxValue[pId]) {
+                        return FbxTypeCopy(mMinMaxValue[pId], GetType(), pValue, pValueType);
+                }
+                return false;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertypage.h
+
+   Please send us your comment about this page

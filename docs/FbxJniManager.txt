@@ -1,0 +1,23 @@
+
+     * Main Page
+
+   FbxJnimgr Class Reference
+
+                FbxJnimgr()
+                ~FbxJnimgr()
+      FbxScene*   GetScene () const
+      FbxManager* GetFbxManager()
+    int           SaveScene (FbxScene* lpScene, const char * lpSzFileName ) 
+     FbxAMatrix*  msmMultiplyFbxAMatrix(FbxAMatrix *lpA, FbxAMatrix *lpB)           
+     FbxAMatrix* msmCreateFbxAMatrix(double * lpDoubleArray)
+      void    msmFillFbxAMatrix(FbxAMatrix *lpA ,  double * lpDoubleArray)
+
+Friends
+
+               class  FbxUserNotification
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EClass
+

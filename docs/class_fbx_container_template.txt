@@ -1,0 +1,169 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxContainerTemplate Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxContainerTemplate Class Reference
+   Search for all occurrences
+
+   #include <fbxcontainertemplate.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for Container Template files.
+
+   Definition at line 32 of file fbxcontainertemplate.h.
+   Inheritance diagram for FbxContainerTemplate:
+   [USEMAP:class_fbx_container_template.png]
+
+   List of all members.
+
+Public Member Functions
+
+                        void  ParseTemplateFile (const char *pTemplateFilePath, FbxArray< FbxString * > &pExtendTemplateNames)
+                              Parse template file to get extend templates.
+                        void  AddExtendTemplatePath (const char *pExtendTemplatePath)
+                              Add extend template path.
+                      char *  GetExtendTemplatePathAt (FbxUInt pIndex) const
+                              Get the (pIndex)th extend template path.
+                     FbxUInt  GetExtendTemplateCount () const
+                              Get the count of extend template path.
+                        void  ClearExtendTemplatePath ()
+                              Clear the extend template path.
+
+Public Attributes
+
+   FbxPropertyT< FbxString >  ContainerTemplateName
+                              This property contains the template name.
+   FbxPropertyT< FbxString >  ContainerTemplatePath
+                              This property contains the template path.
+   FbxPropertyT< FbxString >  ContainerTemplatePackageName
+                              This property contains the template package name.
+   FbxPropertyT< FbxString >  ContainerTemplateVersion
+                              This property contains the template version information of the container.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void ParseTemplateFile ( const char *               pTemplateFilePath,
+                            FbxArray< FbxString * > &  pExtendTemplateNames
+                          )
+   Search for all occurrences
+
+   Parse template file to get extend templates.
+
+   Parameters:
+
+          pTemplateFilePath    The template file to be parsed.
+          pExtendTemplateNames Fill extend templates' names to this array.
+
+   Remarks:
+          Call this function to get extend templates' names.
+
+   void AddExtendTemplatePath ( const char *  pExtendTemplatePath )
+   Search for all occurrences
+
+   Add extend template path.
+
+   Parameters:
+
+          pExtendTemplatePath The template file path to be added.
+
+   char* GetExtendTemplatePathAt ( FbxUInt  pIndex ) const
+   Search for all occurrences
+
+   Get the (pIndex)th extend template path.
+
+   Parameters:
+
+          pIndex Index of the queried item.
+
+   Returns:
+          The (pIndex)th extend template path.
+
+   FbxUInt GetExtendTemplateCount ( ) const
+   Search for all occurrences
+
+   Get the count of extend template path.
+
+   Returns:
+          The count of extend template path.
+
+   void ClearExtendTemplatePath ( )
+   Search for all occurrences
+
+   Clear the extend template path.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> ContainerTemplateName
+   Search for all occurrences
+
+   This property contains the template name.
+
+   To access this property do: TemplateName.Get(). To set this property do: TemplateName.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 71 of file fbxcontainertemplate.h.
+   FbxPropertyT<FbxString> ContainerTemplatePath
+   Search for all occurrences
+
+   This property contains the template path.
+
+   To access this property do: TemplatePath.Get(). To set this property do: TemplatePath.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 80 of file fbxcontainertemplate.h.
+   FbxPropertyT<FbxString> ContainerTemplatePackageName
+   Search for all occurrences
+
+   This property contains the template package name.
+
+   To access this property do: TemplatePackageName.Get(). To set this property do: TemplatePackageName.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 89 of file fbxcontainertemplate.h.
+   FbxPropertyT<FbxString> ContainerTemplateVersion
+   Search for all occurrences
+
+   This property contains the template version information of the container.
+
+   To access this property do: TemplateVersion.Get(). To set this property do: TemplateVersion.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 98 of file fbxcontainertemplate.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxcontainertemplate.h
+
+   Please send us your comment about this page

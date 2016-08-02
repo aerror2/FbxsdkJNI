@@ -1,0 +1,91 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementUV Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Member Functions
+   FbxLayerElementUV Class Reference
+
+   This reference page is linked to from the following overview topics: Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for mapping UVs to a geometry.
+
+   This class represents a UV set belongs to a geometry. Each UV set in a geometry has a name to identify itself. The string property FbxTexture.UVSet indicates the UV set to use.
+
+   Remarks:
+          if the Mapping mode of this LayerElement is eNone, the stored data should be treated as irrelevant. In some circumstances, you can still send this data to systems that cannot function without UV coordinates, but ensure that you have enough coordinates to do so.
+
+   See also:
+          FbxTexture
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayMesh.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 1443 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementUV:
+   [USEMAP:class_fbx_layer_element_u_v.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FBXSDK_LAYER_ELEMENT_CREATE_DECLARE (LayerElementUV)
+     Allocation method.
+
+Protected Member Functions
+
+     FbxLayerElementUV ()
+     ~FbxLayerElementUV ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLayerElementUV ( ) [protected]
+   ~FbxLayerElementUV ( ) [protected]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_LAYER_ELEMENT_CREATE_DECLARE ( LayerElementUV  )
+   Search for all occurrences
+
+   Allocation method.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

@@ -1,0 +1,88 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyIdGenerator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxPropertyIdGenerator Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertypage.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 410 of file fbxpropertypage.h.
+
+   List of all members.
+
+Public Member Functions
+
+           FbxPropertyIdGenerator ()
+   FbxInt  GetNextId () const
+   FbxInt  GetNextIdAndInc ()
+     void  IncRef ()
+     void  DecRef ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPropertyIdGenerator ( ) [inline]
+
+   Definition at line 413 of file fbxpropertypage.h.
+: mRef(0), mNextId(0) {}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxInt GetNextId ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 415 of file fbxpropertypage.h.
+{ return mNextId; }
+
+   FbxInt GetNextIdAndInc ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 416 of file fbxpropertypage.h.
+{ return mNextId++; }
+
+   void IncRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 418 of file fbxpropertypage.h.
+{ mRef++; }
+
+   void DecRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 419 of file fbxpropertypage.h.
+{ mRef--; if( mRef == 0 ) FbxDelete(this); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertypage.h
+
+   Please send us your comment about this page

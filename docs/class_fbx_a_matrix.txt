@@ -1,0 +1,612 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAMatrix Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAMatrix Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, Transformation Data.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxaffinematrix.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK affine matrix class.
+
+   Matrices are defined using the Column Major scheme. When a FbxAMatrix represents a transformation (translation, rotation and scale), the last row of the matrix represents the translation part of the transformation.
+
+   Remarks:
+          It is important to realize that an affine matrix must respect a certain structure. To be sure the structure is respected, use SetT, SetR, SetS, SetQ, SetTRS or SetTQS. If by mistake bad data is entered in this affine matrix, some functions such as Inverse() will yield wrong results. If a matrix is needed to hold values that aren't associate with an affine matrix, please use FbxMatrix instead.
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene05/main.cxx, ImportScene/DisplayLink.cxx, ImportScene/DisplayPose.cxx, Pivot/main.cxx, StereoCamera/main.cxx, SwitchBinding/main.cxx, Transformations/main.cxx, ViewScene/DrawScene.cxx, ViewScene/DrawScene.h, ViewScene/GetPosition.cxx, ViewScene/GetPosition.h, ViewScene/GlFunctions.cxx, ViewScene/GlFunctions.h, ViewScene/SceneContext.cxx, ViewScene/SceneContext.h, and ViewScene/SetCamera.cxx.
+
+   Definition at line 31 of file fbxaffinematrix.h.
+   Inheritance diagram for FbxAMatrix:
+   [USEMAP:class_fbx_a_matrix.png]
+
+   List of all members.
+
+Public Member Functions
+
+            bool  IsIdentity (const double pThreshold=FBXSDK_TOLERANCE)
+                  Find out if the matrix is equal to identity matrix.
+
+Constructors and Destructor
+
+                  FbxAMatrix ()
+                  Constructor.
+                  FbxAMatrix (const FbxAMatrix &pOther)
+                  Copy constructor.
+                  FbxAMatrix (const FbxVector4 &pT, const FbxVector4 &pR, const FbxVector4 &pS)
+                  Constructor.
+                  ~FbxAMatrix ()
+                  Destructor.
+
+Access
+
+          double  Get (int pY, int pX) const
+                  Retrieve matrix element.
+      FbxVector4  GetT () const
+                  Extract translation vector.
+      FbxVector4  GetR () const
+                  Extract rotation vector.
+   FbxQuaternion  GetQ () const
+                  Extract quaternion vector.
+      FbxVector4  GetS () const
+                  Extract scale vector.
+      FbxVector4  GetRow (int pY) const
+                  Extract a row vector.
+      FbxVector4  GetColumn (int pX) const
+                  Extract a column vector.
+            void  SetIdentity ()
+                  Set matrix to identity.
+            void  SetT (const FbxVector4 &pT)
+                  Set matrix's translation.
+            void  SetR (const FbxVector4 &pR)
+                  Set matrix's Euler rotation.
+            void  SetQ (const FbxQuaternion &pQ)
+                  Set matrix's quaternion.
+            void  SetS (const FbxVector4 &pS)
+                  Set matrix's scale.
+            void  SetTRS (const FbxVector4 &pT, const FbxVector4 &pR, const FbxVector4 &pS)
+                  Set matrix.
+            void  SetTQS (const FbxVector4 &pT, const FbxQuaternion &pQ, const FbxVector4 &pS)
+                  Set matrix.
+    FbxAMatrix &  operator= (const FbxAMatrix &pM)
+                  Assignment operator.
+
+Scalar Operations
+
+      FbxAMatrix  operator* (double pValue) const
+                  Multiply matrix by a scalar value.
+      FbxAMatrix  operator/ (double pValue) const
+                  Divide matrix by a scalar value.
+    FbxAMatrix &  operator*= (double pValue)
+                  Multiply matrix by a scalar value.
+    FbxAMatrix &  operator/= (double pValue)
+                  Divide matrix by a scalar value.
+
+Vector Operations
+
+      FbxVector4  MultT (const FbxVector4 &pVector4) const
+                  Multiply matrix by a translation vector.
+      FbxVector4  MultR (const FbxVector4 &pVector4) const
+                  Multiply matrix by an Euler rotation vector.
+   FbxQuaternion  MultQ (const FbxQuaternion &pQuaternion) const
+                  Multiply matrix by a quaternion.
+      FbxVector4  MultS (const FbxVector4 &pVector4) const
+                  Multiply matrix by a scale vector.
+
+Matrix Operations
+
+      FbxAMatrix  operator- () const
+                  Unary minus operator.
+      FbxAMatrix  operator* (const FbxAMatrix &pOther) const
+                  Multiply two matrices together.
+    FbxAMatrix &  operator*= (const FbxAMatrix &pOther)
+                  Multiply two matrices together.
+      FbxAMatrix  Inverse () const
+                  Calculate the matrix inverse.
+      FbxAMatrix  Transpose () const
+                  Calculate the matrix transpose.
+
+Boolean Operations
+
+            bool  operator== (const FbxAMatrix &pOther) const
+                  Equivalence operator.
+            bool  operator!= (const FbxAMatrix &pOther) const
+                  Non-equivalence operator.
+
+Casting
+
+   typedef const  double (kDouble44)[4][4]
+                  Define 4*4 array as a new type.
+                  operator double * ()
+                  Cast the matrix in a double pointer.
+                  operator const double * () const
+                  Cast the matrix in a const double pointer.
+     kDouble44 &  Double44 () const
+                  Cast the matrix in a reference to a 4*4 array.
+
+
+
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef const double(kDouble44)[4][4]
+   Search for all occurrences
+
+   Define 4*4 array as a new type.
+
+   Definition at line 297 of file fbxaffinematrix.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAMatrix ( )
+
+   Constructor.
+   FbxAMatrix ( const FbxAMatrix &  pOther )
+
+   Copy constructor.
+
+   Parameters:
+
+          pOther FbxAMatrix copied to this one.
+
+   FbxAMatrix ( const FbxVector4 &  pT,
+                const FbxVector4 &  pR,
+                const FbxVector4 &  pS
+              )
+
+   Constructor.
+
+   Parameters:
+
+          pT Translation vector.
+          pR Euler rotation vector.
+          pS Scale vector.
+
+   ~FbxAMatrix ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   double Get ( int  pY,
+                int  pX
+              )      const
+   Search for all occurrences
+
+   Retrieve matrix element.
+
+   Parameters:
+
+          pY Row index.
+          pX Column index.
+
+   Returns:
+          Cell [ pX, pY ] value.
+
+   FbxVector4 GetT ( ) const
+   Search for all occurrences
+
+   Extract translation vector.
+
+   Returns:
+          Translation vector.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, StereoCamera/main.cxx, Transformations/main.cxx, ViewScene/DrawScene.cxx, ViewScene/GlFunctions.cxx, and ViewScene/SetCamera.cxx.
+
+   FbxVector4 GetR ( ) const
+   Search for all occurrences
+
+   Extract rotation vector.
+
+   Returns:
+          Rotation vector.
+
+   Remarks:
+          The returned rotation vector is in Euler angle and the rotation order is XYZ.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, StereoCamera/main.cxx, and Transformations/main.cxx.
+
+   FbxQuaternion GetQ ( ) const
+   Search for all occurrences
+
+   Extract quaternion vector.
+
+   Returns:
+          Quaternion vector.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   FbxVector4 GetS ( ) const
+   Search for all occurrences
+
+   Extract scale vector.
+
+   Returns:
+          Scale vector.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and StereoCamera/main.cxx.
+
+   FbxVector4 GetRow ( int  pY ) const
+   Search for all occurrences
+
+   Extract a row vector.
+
+   Parameters:
+
+          pY Row index.
+
+   Returns:
+          The row vector.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and Transformations/main.cxx.
+
+   FbxVector4 GetColumn ( int  pX ) const
+   Search for all occurrences
+
+   Extract a column vector.
+
+   Parameters:
+
+          pX Column index.
+
+   Returns:
+          The column vector.
+
+   void SetIdentity ( )
+   Search for all occurrences
+
+   Set matrix to identity.
+
+   Examples:
+          Transformations/main.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetT ( const FbxVector4 &  pT )
+   Search for all occurrences
+
+   Set matrix's translation.
+
+   Parameters:
+
+          pT Translation vector.
+
+   Examples:
+          ExportScene05/main.cxx, Transformations/main.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetR ( const FbxVector4 &  pR )
+   Search for all occurrences
+
+   Set matrix's Euler rotation.
+
+   Parameters:
+
+          pR X, Y and Z rotation values expressed as a vector.
+
+   Remarks:
+          The rotation transform is constructed in rotation order XYZ.
+
+   Examples:
+          ExportScene05/main.cxx, Transformations/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetQ ( const FbxQuaternion &  pQ )
+   Search for all occurrences
+
+   Set matrix's quaternion.
+
+   Parameters:
+
+          pQ The new quaternion.
+
+   void SetS ( const FbxVector4 &  pS )
+   Search for all occurrences
+
+   Set matrix's scale.
+
+   Parameters:
+
+          pS X, Y and Z scaling factors expressed as a vector.
+
+   Examples:
+          ExportScene05/main.cxx, and Transformations/main.cxx.
+
+   void SetTRS ( const FbxVector4 &  pT,
+                 const FbxVector4 &  pR,
+                 const FbxVector4 &  pS
+               )
+   Search for all occurrences
+
+   Set matrix.
+
+   Parameters:
+
+          pT Translation vector.
+          pR Rotation vector.
+          pS Scale vector.
+
+   void SetTQS ( const FbxVector4 &     pT,
+                 const FbxQuaternion &  pQ,
+                 const FbxVector4 &     pS
+               )
+   Search for all occurrences
+
+   Set matrix.
+
+   Parameters:
+
+          pT Translation vector.
+          pQ Quaternion vector.
+          pS Scale vector.
+
+   FbxAMatrix& operator= ( const FbxAMatrix &  pM )
+
+   Assignment operator.
+
+   Parameters:
+
+          pM FbxAMatrix assigned to this one.
+
+   FbxAMatrix operator* ( double  pValue ) const
+
+   Multiply matrix by a scalar value.
+
+   Parameters:
+
+          pValue Scalar value.
+
+   Returns:
+          The scaled matrix.
+
+   Remarks:
+          The passed value is not checked. This operator operates on the first three rows and columns of the matrix. So only the rotation and scaling are scaled, not the translation part. After operation, the translation vector will be set as (0,0,0,1);
+
+   FbxAMatrix operator/ ( double  pValue ) const
+
+   Divide matrix by a scalar value.
+
+   Parameters:
+
+          pValue Scalar value.
+
+   Returns:
+          The divided matrix.
+
+   Remarks:
+          The passed value is not checked. This operator operates on the first three rows and columns of the matrix. So only the rotation and scaling are scaled, not the translation part. After operation, the translation vector will be set as (0,0,0,1);
+
+   FbxAMatrix& operator*= ( double  pValue )
+
+   Multiply matrix by a scalar value.
+
+   Parameters:
+
+          pValue Scalar value.
+
+   Returns:
+          this updated with the result of the multiplication.
+
+   Remarks:
+          The passed value is not checked. This operator operates on the first three rows and columns of the matrix. So only the rotation and scaling are scaled, not the translation part. After operation, the translation vector will keep original value.
+
+   FbxAMatrix& operator/= ( double  pValue )
+
+   Divide matrix by a scalar value.
+
+   Parameters:
+
+          pValue Scalar value.
+
+   Returns:
+          this updated with the result of the division.
+
+   Remarks:
+          The passed value is not checked. This operator operates on the first three rows and columns of the matrix. So only the rotation and scaling are scaled, not the translation part. After operation, the translation vector will keep original value.
+
+   FbxVector4 MultT ( const FbxVector4 &  pVector4 ) const
+   Search for all occurrences
+
+   Multiply matrix by a translation vector.
+
+   Parameters:
+
+          pVector4 Translation vector.
+
+   Returns:
+          t' = M * t
+
+   Examples:
+          Transformations/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SetCamera.cxx.
+
+   FbxVector4 MultR ( const FbxVector4 &  pVector4 ) const
+   Search for all occurrences
+
+   Multiply matrix by an Euler rotation vector.
+
+   Parameters:
+
+          pVector4 Euler Rotation vector.
+
+   Returns:
+          r' = M * r
+
+   FbxQuaternion MultQ ( const FbxQuaternion &  pQuaternion ) const
+   Search for all occurrences
+
+   Multiply matrix by a quaternion.
+
+   Parameters:
+
+          pQuaternion Rotation value.
+
+   Returns:
+          q' = M * q
+
+   FbxVector4 MultS ( const FbxVector4 &  pVector4 ) const
+   Search for all occurrences
+
+   Multiply matrix by a scale vector.
+
+   Parameters:
+
+          pVector4 Scaling vector.
+
+   Returns:
+          s' = M * s
+
+   FbxAMatrix operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          A matrix where each element is multiplied by -1.
+
+   FbxAMatrix operator* ( const FbxAMatrix &  pOther ) const
+
+   Multiply two matrices together.
+
+   Parameters:
+
+          pOther A Matrix.
+
+   Returns:
+          this * pMatrix.
+
+   Remarks:
+          Transformations are pre-multiplied. That means to scale, then rotate, and then translate a vector V, the transform should be T * R * S * V.
+          Below is an example of code that shows how to construct rotation transform in XYZ rotation order.
+
+  FbxAMatrix lRotateXM, lRotateYM, lRotateZM, lRotateXYZM, lRotateM;
+  // Construct rotation matrix around X, Y and Z axises separately and then combine them.
+  FbxVector4 lRotateX(10, 0, 0);
+  FbxVector4 lRotateY(0, 10, 0);
+  FbxVector4 lRotateZ(0, 0, 10);
+  lRotateXM.SetR(lRotateX);
+  lRotateYM.SetR(lRotateY);
+  lRotateZM.SetR(lRotateZ);
+  lRotateXYZM = lRotateZM * lRotateYM * lRotateXM;
+
+  // Alternatively, we can use SetR() directly.
+  // lRotateXYZM and lRotateM will be the same.
+  FbxVector4 lRotateXYZ (10, 10, 10);
+  lRotateM.SetR(lRotateXYZ);
+
+   Note:
+          Please refer to the FBX SDK programmers guide for more details.
+
+   FbxAMatrix& operator*= ( const FbxAMatrix &  pOther )
+
+   Multiply two matrices together.
+
+   Parameters:
+
+          pOther A Matrix.
+
+   Returns:
+          this updated with the result of the multiplication.
+
+   FbxAMatrix Inverse ( ) const
+   Search for all occurrences
+
+   Calculate the matrix inverse.
+
+   Returns:
+          The inverse matrix of this.
+
+   Examples:
+          ExportScene05/main.cxx, Transformations/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SetCamera.cxx.
+
+   FbxAMatrix Transpose ( ) const
+   Search for all occurrences
+
+   Calculate the matrix transpose.
+
+   Returns:
+          The transposed matrix of this.
+
+   bool operator== ( const FbxAMatrix &  pOther ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pOther The matrix to be compared to this.
+
+   Returns:
+          true if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance) and false otherwise.
+
+   bool operator!= ( const FbxAMatrix &  pOther ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pOther The matrix to be compared to this.
+
+   Returns:
+          false if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance) and true otherwise.
+
+   operator double * ( )
+
+   Cast the matrix in a double pointer.
+   operator const double * ( ) const
+
+   Cast the matrix in a const double pointer.
+   kDouble44& Double44 ( ) const [inline]
+   Search for all occurrences
+
+   Cast the matrix in a reference to a 4*4 array.
+
+   Definition at line 299 of file fbxaffinematrix.h.
+{ return *((kDouble44 *)&mData); }
+
+   bool IsIdentity ( const double  pThreshold = FBXSDK_TOLERANCE )
+   Search for all occurrences
+
+   Find out if the matrix is equal to identity matrix.
+
+   Returns:
+          true if the matrix is equal to identity matrix, false otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxaffinematrix.h
+
+   Please send us your comment about this page

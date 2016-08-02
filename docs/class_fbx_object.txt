@@ -1,0 +1,2786 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObject Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes | Protected Member Functions
+   FbxObject Class Reference
+
+   This reference page is linked to from the following overview topics: FBX Extensions to Maya, Animation Classes and their Interrelationships, Importing a Scene, FBX Extensions to 3ds Max, FBX SDK 2014, FBX Extensions to MotionBuilder, Customizing the FBX SDK, Exporting with the FBX Extensions SDK, Importing with the FBX Extensions SDK, FBX SDK Object Model, FBX Objects, Managing Memory with the FBX SDK Manager, Merging Two Scenes, List of Python Fbx classes, Extracting the Animation Data from a FBX
+   File, FBX Properties, Evaluating the Animation in a Scene, Connections.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxobject.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The base class of most FBX objects.
+
+   Provides the benefits of connectivity, identity, run-time typing, properties, naming, copying, cloning, selection, and automated file IO. Most of the FBX SDK API deals with FbxObject pointers when it comes to manipulate objects in its simplest form.
+
+   The ClassID mechanism replaces the dynamic_cast mechanism for efficient run-time type information.
+
+   The FbxObject provides methods for managing the connections between objects. Using connections, objects can be related to each other to form hierarchies or structures. All of the FBX scene's object relations are expressed as connections between objects. Those connections can be altered as needed to reflect most kind of setups encountered in this world. For example, connections can be used to express parenting between transform nodes. Connections are not strict in the sense that we allow any type of
+   objects to connect to any other type of objects. The meaning of the connection is purely semantic. As of yet, we do not provide the functionality to validate if the connections made by the users are allowed or not.
+
+   FbxObject provide a property (FbxProperty) mechanism to describe characteristics of objects in a scene. Properties may be either static or dynamic. Static properties are defined in the class direction and can be accessed directly by their name on the object exposing them without the need for a search in the property list of the object. Dynamic properties can be added during run-time, while the program is running. Objects can have an unlimited amount of properties. Properties can be listed at
+   run-time, allowing for a flexible support of custom data on objects, since they might be considered by the FBX file readers/writers depending on the flags set.
+
+   Here is an example of a new empty minimal class template for FBX objects:
+ //Declaration
+ class MyClass : public FbxObject
+ {
+     FBXSDK_OBJECT_DECLARE(MyClass, FbxObject); //Be careful! The second parameter to this macro must be the parent class name!
+
+ public:
+     //Declare methods and properties here...
+ };
+
+ //Implementation
+ FBXSDK_OBJECT_IMPLEMENT(MyClass);
+
+   Before the new class can be used, it needs to be registered to the manager with the following method:
+ MyFbxManager->RegisterFbxClass("MyClassName", FBX_TYPE(MyClass), FBX_TYPE(FbxObject)); //Be careful! The 3rd parameter must be the parent class! If the parent class change, it must be updated here too!
+
+   Then to create or delete instances of your new class, the following methods must be used:
+ //Creating a new instance
+ MyClass* MyObject = MyClass::Create(MyFbxManager, "Object Name");
+
+ //Deleting this instance
+ MyObject->Destroy();
+ MyObject = NULL;
+
+   See also:
+          FbxProperty
+
+   Examples:
+          ExportScene03/main.cxx, ExportScene03/MyKFbxMesh.h, ImportScene/DisplayCommon.cxx, ImportScene/DisplayCommon.h, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayUserProperties.cxx, ImportScene/DisplayUserProperties.h, Transformations/DisplayCommon.cxx, and Transformations/DisplayCommon.h.
+
+   Definition at line 159 of file fbxobject.h.
+   Inheritance diagram for FbxObject:
+   [USEMAP:class_fbx_object.png]
+
+   List of all members.
+
+Public Member Functions
+
+   General Object Management
+ //  FBX_DEPRECATED bool  Is (const FbxClassId &pClassId) const
+  //   Test if this class is a hierarchical children of the specified class type.
+ //  template<class T >
+  // FBX_DEPRECATED bool  Is (T *pClassType) const
+     Templated test if this class is a hierarchical children of the specified class type.
+ //  template<class T >
+//   bool  Is () const
+     Templated test if this class is a hierarchical children of the specified class type.
+   FbxManager *  GetFbxManager () const
+     Retrieve the FbxManager this object belongs to.
+   FbxDocument *  GetDocument () const
+     Returns a const pointer to the document that contains this object.
+   FbxDocument *  GetRootDocument () const
+     Returns a const pointer to the root document that contains this object.
+   FbxScene *  GetScene () const
+     Returns a const pointer to the scene that contains this object.
+   void  Destroy (bool pRecursive=false)
+     Unregister and delete this object from memory.
+   void  ResetProperties ()
+     Reset all the properties of this object to their default values.
+   Selection management
+   virtual bool  GetSelected ()
+     Returns if this object is currently in a selected state.
+   virtual void  SetSelected (bool pSelected)
+     Sets whether this object is currently selected.
+   User data
+   void  SetUserDataPtr (const FbxUInt64 &pUserID, void *pUserData)
+     Sets the data pointer for an user data record whose ID is pUserID.
+   void *  GetUserDataPtr (const FbxUInt64 &pUserID) const
+     Returns the data pointer of an user data record whose ID is pUserID.
+   void  SetUserDataPtr (void *pUserData)
+     Sets the data pointer for the user data record whose ID is the object ID.
+   void *  GetUserDataPtr () const
+     Returns the data pointer of the user data record whose ID is the object ID.
+   General Object Connection and Relationship Management
+   bool  ConnectSrcObject (FbxObject *pObject, FbxConnection::EType pType=FbxConnection::eNone)
+     Connects this object to a source object.
+   bool  IsConnectedSrcObject (const FbxObject *pObject) const
+     Judges whether this object connects with the source object.
+   bool  DisconnectSrcObject (FbxObject *pObject)
+     Disconnects this object from a source object.
+   bool  DisconnectAllSrcObject ()
+     Disconnects this object from all source objects.
+   bool  DisconnectAllSrcObject (const FbxCriteria &pCriteria)
+     Disconnects this object from all source objects that satisfy a given criteria.
+   FBX_DEPRECATED bool  DisconnectAllSrcObject (FbxClassId pClassId)
+     Disconnects this object from all source objects of a specific class type.
+   int  GetSrcObjectCount () const
+     Returns the number of source objects with which this object connects.
+   int  GetSrcObjectCount (const FbxCriteria &pCriteria) const
+     Returns the number of source objects that satisfy the given criteria with which this object connects.
+   FBX_DEPRECATED int  GetSrcObjectCount (FbxClassId pClassId) const
+     Returns the number of source objects of the specific class type with which this object connects.
+   FbxObject *  GetSrcObject (int pIndex=0) const
+     Returns the source object with which this object connects at the specified index.
+   FbxObject *  GetSrcObject (const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the source object that satisfies the criteria at the specified index with which this object connects.
+   FBX_DEPRECATED FbxObject *  GetSrcObject (FbxClassId pClassId, int pIndex=0) const
+     Returns the source object of the specified class type at the specified index with which this object connects.
+   FbxObject *  FindSrcObject (const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name, starting at the specified index.
+   FbxObject *  FindSrcObject (const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name which satisfies the given criteria, starting at the specified index.
+   FBX_DEPRECATED FbxObject *  FindSrcObject (FbxClassId pClassId, const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name which is also the specified class type, starting at the specified index.
+   template<class T >
+   FBX_DEPRECATED bool  DisconnectAllSrcObject (const T *pFBX_TYPE)
+     Disconnects this object from all source objects of the specified class type.
+   template<class T >
+   bool  DisconnectAllSrcObject ()
+     Disconnects this object from all source objects of the specified class type.
+   template<class T >
+   FBX_DEPRECATED bool  DisconnectAllSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria)
+     Disconnects this object from all source objects that are of the specified class type and that satisfy the given criteria.
+   template<class T >
+   bool  DisconnectAllSrcObject (const FbxCriteria &pCriteria)
+     Disconnects this object from all source objects that are of the specified class type and that satisfy the given criteria.
+   template<class T >
+   FBX_DEPRECATED int  GetSrcObjectCount (const T *pFBX_TYPE) const
+     Returns the number of source objects of a specific class type with which this object connects.
+   template<class T >
+   int  GetSrcObjectCount () const
+     Returns the number of source objects of a specific class type with which this object connects.
+   template<class T >
+   FBX_DEPRECATED int  GetSrcObjectCount (const T *pFBX_TYPE, const FbxCriteria &pCriteria) const
+     Returns the number of source objects with which this object connects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   int  GetSrcObjectCount (const FbxCriteria &pCriteria) const
+     Returns the number of source objects with which this object connects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   FBX_DEPRECATED T *  GetSrcObject (const T *pFBX_TYPE, int pIndex=0) const
+     Returns the source object of the specified class type at the specified index.
+   template<class T >
+   T *  GetSrcObject (int pIndex=0) const
+     Returns the source object of the specified class type at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  GetSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the source object that is the specified class type and that satisfies the given criteria at the specified index.
+   template<class T >
+   T *  GetSrcObject (const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the source object that is the specified class type and that satisfies the given criteria at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  FindSrcObject (const T *pFBX_TYPE, const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name that is the specified class type, starting at the specified index.
+   template<class T >
+   T *  FindSrcObject (const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name that is the specified class type, starting at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  FindSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+   template<class T >
+   T *  FindSrcObject (const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the source object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+   bool  ConnectDstObject (FbxObject *pObject, FbxConnection::EType pType=FbxConnection::eNone)
+     Connects this object to one destination object.
+   bool  IsConnectedDstObject (const FbxObject *pObject) const
+     Judges whether this object connects with the destination object.
+   bool  DisconnectDstObject (FbxObject *pObject)
+     Disconnects this object from the destination object.
+   bool  DisconnectAllDstObject ()
+     Disconnects this object from all destination objects.
+   bool  DisconnectAllDstObject (const FbxCriteria &pCriteria)
+     Disconnects this object from all destination objects that satisfy given criteria.
+   FBX_DEPRECATED bool  DisconnectAllDstObject (FbxClassId pClassId)
+     Disconnects this object from all destination objects of the specified class type.
+   int  GetDstObjectCount () const
+     Returns the number of destination objects with which this object connects.
+   int  GetDstObjectCount (const FbxCriteria &pCriteria) const
+     Returns the number of destination objects with which this object connects that satisfy the given criteria.
+   FBX_DEPRECATED int  GetDstObjectCount (FbxClassId pClassId) const
+     Returns the number of destination objects of the specified class type with which this object connects.
+   FbxObject *  GetDstObject (int pIndex=0) const
+     Returns the destination object at the specified index with which this object connects.
+   FbxObject *  GetDstObject (const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the destination object with which this object connects that satisfies the given criteria at the specified index.
+   FBX_DEPRECATED FbxObject *  GetDstObject (FbxClassId pClassId, int pIndex=0) const
+     Returns the destination object of the specified class type with which this object connects at the specified index.
+   FbxObject *  FindDstObject (const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name, starting at the specified index.
+   FbxObject *  FindDstObject (const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name which satisfies the given criteria, starting at the specified index.
+   FBX_DEPRECATED FbxObject *  FindDstObject (FbxClassId pClassId, const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name which is the specified class type, starting at the specified index.
+   template<class T >
+   FBX_DEPRECATED bool  DisconnectAllDstObject (const T *pFBX_TYPE)
+     Disconnects this object from all destination objects of the specified class type.
+   template<class T >
+   bool  DisconnectAllDstObject ()
+     Disconnects this object from all destination objects of the specified class type.
+   template<class T >
+   FBX_DEPRECATED bool  DisconnectAllDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria)
+     Disconnects this object from all destination objects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   bool  DisconnectAllDstObject (const FbxCriteria &pCriteria)
+     Disconnects this object from all destination objects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   FBX_DEPRECATED int  GetDstObjectCount (const T *pFBX_TYPE) const
+     Returns the number of destination objects of the specified class type with which this object connects.
+   template<class T >
+   int  GetDstObjectCount () const
+     Returns the number of destination objects of the specified class type with which this object connects.
+   template<class T >
+   FBX_DEPRECATED int  GetDstObjectCount (const T *pFBX_TYPE, const FbxCriteria &pCriteria) const
+     Returns the number of destination objects with which this object connects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   int  GetDstObjectCount (const FbxCriteria &pCriteria) const
+     Returns the number of destination objects with which this object connects that are the specified class type and that satisfy the given criteria.
+   template<class T >
+   FBX_DEPRECATED T *  GetDstObject (const T *pFBX_TYPE, int pIndex=0) const
+     Returns the destination object with which this object connects that is the specified class type at the specified index.
+   template<class T >
+   T *  GetDstObject (int pIndex=0) const
+     Returns the destination object with which this object connects that is the specified class type at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  GetDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the destination object with which this object connects that is the specified class type and that satisfies the given criteria at the specified index.
+   template<class T >
+   T *  GetDstObject (const FbxCriteria &pCriteria, int pIndex=0) const
+     Returns the destination object with which this object connects that is the specified class type and that satisfies the given criteria at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  FindDstObject (const T *pFBX_TYPE, const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name which is of the specified class type, starting at the specified index.
+   template<class T >
+   T *  FindDstObject (const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name which is of the specified class type, starting at the specified index.
+   template<class T >
+   FBX_DEPRECATED T *  FindDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+   template<class T >
+   T *  FindDstObject (const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+     Searches the destination object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+   Property Management
+   FbxProperty  GetFirstProperty () const
+     Returns the first property of this object.
+   FbxProperty  GetNextProperty (const FbxProperty &pProperty) const
+     Returns the next property of this object that follows the specified property.
+   FbxProperty  FindProperty (const char *pName, bool pCaseSensitive=true) const
+     Searches a property by name.
+   FbxProperty  FindProperty (const char *pName, const FbxDataType &pDataType, bool pCaseSensitive=true) const
+     Searches a property by name and data type.
+   FbxProperty  FindPropertyHierarchical (const char *pName, bool pCaseSensitive=true) const
+     Searches a property by full name.
+   FbxProperty  FindPropertyHierarchical (const char *pName, const FbxDataType &pDataType, bool pCaseSensitive=true) const
+     Searches a property by full name and data type.
+   FBX_DEPRECATED FbxProperty &  GetRootProperty ()
+     Returns the root property of this object.
+   FBX_DEPRECATED const FbxProperty &  GetRootProperty () const
+     Returns the root property of this object.
+   FbxProperty  GetClassRootProperty ()
+     Returns the class root property.
+   bool  ConnectSrcProperty (const FbxProperty &pProperty)
+     Connects this object to a source property.
+   bool  IsConnectedSrcProperty (const FbxProperty &pProperty)
+     Determines whether this object connects with the specified source property.
+   bool  DisconnectSrcProperty (const FbxProperty &pProperty)
+     Disconnects this object from the specified source property.
+   int  GetSrcPropertyCount () const
+     Returns the number of source properties with which this object connects.
+   FbxProperty  GetSrcProperty (int pIndex=0) const
+     Returns the source property at the specified index with which this object connects.
+   FbxProperty  FindSrcProperty (const char *pName, int pStartIndex=0) const
+     Searches a source property with which this object connects that has a specific name, starting at the specified index.
+   bool  ConnectDstProperty (const FbxProperty &pProperty)
+     Connects this object to a destination property.
+   bool  IsConnectedDstProperty (const FbxProperty &pProperty)
+     Determines if this object connects with the specified destination property.
+   bool  DisconnectDstProperty (const FbxProperty &pProperty)
+     Disconnects this object from the specified destination property.
+   int  GetDstPropertyCount () const
+     Returns the number of destination properties with which this object connects.
+   FbxProperty  GetDstProperty (int pIndex=0) const
+     Returns the destination property at the specified index with which this object connects.
+   FbxProperty  FindDstProperty (const char *pName, int pStartIndex=0) const
+     Searches a destination property with which this object connects that has a specific name, starting at the specified index.
+   Off-Loading Management
+
+   Remarks:
+          You can modify the unloaded state flag using the SetObjectFlags() method. The ContentIsUnloaded() method below (implemented in this class) is simply a synonym of GetObjectFlags(eCONTENT_UNLOADED_FLAG)
+
+   int  ContentUnload ()
+     Unloads this object's content using the offload peripheral that is currently set in the document then flushes it from memory.
+   int  ContentLoad ()
+     Loads this object's content using the offload peripheral that is currently set in the document.
+   bool  ContentIsLoaded () const
+     Judges if this object's content is loaded.
+   void  ContentDecrementLockCount ()
+     Decreases the content lock count of an object.
+   void  ContentIncrementLockCount ()
+     Increases the content lock count of an object.
+   bool  ContentIsLocked () const
+     Judges if this object's content is locked.
+   virtual bool  ContentWriteTo (FbxStream &pStream) const
+     Writes the content of the object to the given stream.
+   virtual bool  ContentReadFrom (const FbxStream &pStream)
+     Reads the content of the object from the given stream.
+   Logging.
+   void  EmitMessage (FbxMessage *pMessage) const
+     Emits a message in all available message emitters in the document or SDK manager.
+   Localization helper.
+   virtual const char *  Localize (const char *pID, const char *pDefault=NULL) const
+     Localization helper function, it calls the implementation of FBX SDK manager.
+   Application Implementation Management
+   FbxLibrary *  GetParentLibrary () const
+     Returns a handle on the parent library of this object.
+   bool  AddImplementation (FbxImplementation *pImplementation)
+     Adds an implementation.
+   bool  RemoveImplementation (FbxImplementation *pImplementation)
+     Removes an implementation.
+   bool  HasDefaultImplementation (void) const
+     Determines if this shading node has a default implementation.
+   FbxImplementation *  GetDefaultImplementation (void) const
+     Returns the default implementation of this shading node.
+   bool  SetDefaultImplementation (FbxImplementation *pImplementation)
+     Sets the default implementation of this shading node.
+   int  GetImplementationCount (const FbxImplementationFilter *pCriteria=NULL) const
+     Returns the number of implementations that satisfy a given criteria.
+   FbxImplementation *  GetImplementation (int pIndex, const FbxImplementationFilter *pCriteria=NULL) const
+     Returns the implementation at the specified index that satisfies the given criteria.
+   Object Storage && Retrieval
+   virtual FbxString  GetUrl () const
+     Returns the URL of this object.
+   virtual bool  SetUrl (char *pUrl)
+     Sets the URL of this object.
+   Run-time ClassId Management
+   void  SetRuntimeClassId (const FbxClassId &pClassId)
+     Set the run-time ClassId for this class.
+   FbxClassId  GetRuntimeClassId () const
+     Retrieve the run-time ClassId for this object.
+   bool  IsRuntime (const FbxClassId &pClassId) const
+     Test if this class is a hierarchical children of the specified class type.
+   bool  IsRuntimePlug () const
+     Find out if the ClassId was registered during run-time rather than at compile time.
+
+Public Attributes
+
+   FbxProperty  RootProperty
+     The root property that holds all children property for this object.
+
+Protected Member Functions
+
+//  virtual void  Construct (const FbxObject *pFrom)
+//    Optional constructor override, automatically called by default constructor.
+//  virtual void  ConstructProperties (bool pForceSet)
+//    Optional property constructor override, automatically called by default constructor.
+//  virtual void  Destruct (bool pRecursive)
+//    Optional destructor override, automatically called by default destructor.
+//  virtual void  ContentClear ()
+//    Clears this object's content from memory.
+//  virtual FbxPeripheral *  GetPeripheral ()
+//    Retrieves the peripheral of that object.
+
+Object Flags Management
+
+   enum   EObjectFlag {
+     eNone = 0, eInitialized = 1 << 0, eSystem = 1 << 1, eSavable = 1 << 2,
+     eSelected = 1 << 3, eHidden = 1 << 4, eContentLoaded = 1 << 5, eDontLocalize = 1 << 6,
+     eCopyCalledByClone = 1 << 16
+   }
+     Flags available to control objects. More...
+   void  SetObjectFlags (EObjectFlag pFlags, bool pValue)
+     Set the state of object flags.
+   bool  GetObjectFlags (EObjectFlag pFlags) const
+     Get the state of object flags.
+   void  SetAllObjectFlags (FbxUInt pFlags)
+     Override all object flags at once.
+   FbxUInt  GetAllObjectFlags () const
+     Get all object flags at once.
+
+Copying, Cloning and Referencing
+
+   enum   ECloneType { eDeepClone, eReferenceClone }
+     Types of clones that can be created for FbxObject. More...
+   virtual FbxObject &  Copy (const FbxObject &pObject)
+     Copy an object content into this object.
+   virtual FbxObject *  Clone (FbxObject::ECloneType pCloneType=eDeepClone, FbxObject *pContainer=NULL, void *pSet=NULL) const
+     Creates a clone of this object.
+   bool  IsAReferenceTo () const
+     Checks if this object is a reference clone of another object.
+   FbxObject *  GetReferenceTo () const
+     If this object is a reference clone, returns the original object (from which the clone originates).
+   bool  IsReferencedBy () const
+     Checks if any objects are reference cloned from this object.
+   int  GetReferencedByCount () const
+     Returns the number of objects that are reference clones of this object.
+   FbxObject *  GetReferencedBy (int pIndex) const
+     Returns a reference clone of this object at the specified index.
+
+Object Name Management
+
+   void  SetName (const char *pName)
+     Sets the name of this object.
+   const char *  GetName () const
+     Returns the full name of this object.
+   FbxString  GetNameWithoutNameSpacePrefix () const
+     Returns the name of the object without the namespace qualifier.
+   FbxString  GetNameWithNameSpacePrefix () const
+     Returns the name of the object with the namespace qualifier.
+   void  SetInitialName (const char *pName)
+     Sets the initial name of the object.
+   const char *  GetInitialName () const
+     Returns the initial name of the object.
+   FbxString  GetNameSpaceOnly ()
+     Returns the namespace of the object.
+   void  SetNameSpace (FbxString pNameSpace)
+     Sets the namespace of the object.
+   FbxArray< FbxString * >  GetNameSpaceArray (char identifier)
+     Returns an array of all the namespaces for this object.
+   FbxString  GetNameOnly () const
+     Returns only the name (no namespace or prefix) of the object.
+   FbxString  GetNameSpacePrefix () const
+     Returns the namespace qualifier.
+   const FbxUInt64 &  GetUniqueID () const
+     Returns the unique ID of this object.
+   static FbxString  RemovePrefix (char *pName)
+     Removes the prefix of pName.
+   static FbxString  StripPrefix (FbxString &lName)
+     Strips the prefix of pName.
+   static FbxString  StripPrefix (const char *pName)
+     Strips the prefix of pName.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EObjectFlag
+   Search for all occurrences
+
+   Flags available to control objects.
+
+   Enumerator:
+
+          eNone
+
+   No flags.
+   Search for all occurrences
+          eInitialized
+
+   Automatically set when FbxObject::Construct() is completed.
+   Search for all occurrences
+   eSystem
+
+   When set, object is deleted upon FbxManager destroy only.
+   Use carefully!
+   Search for all occurrences
+   eSavable
+
+   If set, object is stored in FBX file upon export.
+   All objects are savable by default.
+   Search for all occurrences
+          eSelected
+
+   Used by the selection mechanic to specify a selected object.
+   Search for all occurrences
+          eHidden
+
+   Used for interface representation; if set, the object should not be visible.
+   Search for all occurrences
+          eContentLoaded
+
+   Used by load-on-demand mechanic to specify if an object has its content loaded.
+   Search for all occurrences
+          eDontLocalize
+
+   Used by asset builder; Do not localize this object.
+   Search for all occurrences
+   eCopyCalledByClone
+
+   Used internally.
+   If set, modify the Copy behavior of the object
+   Search for all occurrences
+
+   Definition at line 211 of file fbxobject.h.
+                {
+
+   enum ECloneType
+   Search for all occurrences
+
+   Types of clones that can be created for FbxObject.
+
+   Enumerator:
+
+   eDeepClone
+
+   A deep copy of the object.
+   Changes to either the original or clone properties do not propagate to each other.
+   Search for all occurrences
+   eReferenceClone
+
+   Changes to original object properties propagate to clone.
+   Changes to clone properties do not propagate to original.
+   Search for all occurrences
+
+   Definition at line 253 of file fbxobject.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBX_DEPRECATED bool Is ( const FbxClassId &  pClassId ) const [inline]
+   Search for all occurrences
+
+   Test if this class is a hierarchical children of the specified class type.
+
+   This is the standard method to differentiate object classes. (Deprecated, please use Is<Type>() instead.)
+
+   Parameters:
+
+          pClassId The class type to test against self.
+
+   Returns:
+          true if the object is a hierarchical children of the type specified.
+
+   Remarks:
+          This function will perform a complete search until it reaches the top level class, but it will stop as soon as one ClassId matches the test.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 170 of file fbxobject.h.
+{ return Is(T::ClassId); }
+
+   FBX_DEPRECATED bool Is ( T *  pClassType ) const [inline]
+   Search for all occurrences
+
+   Templated test if this class is a hierarchical children of the specified class type.
+
+   (Deprecated, please use Is<Type>() instead.)
+
+   Parameters:
+
+          pClassType A direct pointer to the C++ type of the object to test against.
+
+   Returns:
+          true if the object is a hierarchical children of the type specified.
+
+   Remarks:
+          This function will perform a complete search until it reaches the top level class, but it will stop as soon as one ClassId matches the test.
+
+   Definition at line 176 of file fbxobject.h.
+{ return GetClassId().Is(T::ClassId); }
+
+   bool Is ( ) const [inline]
+   Search for all occurrences
+
+   Templated test if this class is a hierarchical children of the specified class type.
+
+   Returns:
+          true if the object is a hierarchical children of the type specified.
+
+   Remarks:
+          This function will perform a complete search until it reaches the top level class, but it will stop as soon as one ClassId matches the test.
+
+   Definition at line 181 of file fbxobject.h.
+{
+
+   FbxManager* GetFbxManager ( ) const
+   Search for all occurrences
+
+   Retrieve the FbxManager this object belongs to.
+
+   Returns:
+          A pointer to the manager that this object belongs to.
+
+   FbxDocument* GetDocument ( ) const
+   Search for all occurrences
+
+   Returns a const pointer to the document that contains this object.
+
+   Returns:
+          A const pointer to the document that contains this object or NULL if the object does not belong to any document.
+
+   FbxDocument* GetRootDocument ( ) const
+   Search for all occurrences
+
+   Returns a const pointer to the root document that contains this object.
+
+   Returns:
+          A const pointer to the root document that contains this object or NULL if the object does not belong to any document.
+
+   Remarks:
+          It returns this pointer if this object is a document object and does not belong to any document. That means this object is the root document.
+
+   FbxScene* GetScene ( ) const
+   Search for all occurrences
+
+   Returns a const pointer to the scene that contains this object.
+
+   Returns:
+          A pointer to the scene that contains this object or NULL if the object does not belong to any scene.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   void Destroy ( bool  pRecursive = false )
+   Search for all occurrences
+
+   Unregister and delete this object from memory.
+
+   This will also breaks all connections as well as removing all the instance of all the properties of this object with the object's class.
+
+   Parameters:
+
+          pRecursive If true, all children (source) objects will also be unregistered and deleted.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   void ResetProperties ( )
+   Search for all occurrences
+
+   Reset all the properties of this object to their default values.
+   void SetObjectFlags ( EObjectFlag  pFlags,
+                         bool         pValue
+                       )
+   Search for all occurrences
+
+   Set the state of object flags.
+
+   Parameters:
+
+          pFlags Bit flags which value is going to be changed.
+          pValue If true, bit flags will be set, otherwise bits will be un-set.
+
+   bool GetObjectFlags ( EObjectFlag  pFlags ) const
+   Search for all occurrences
+
+   Get the state of object flags.
+
+   Parameters:
+
+          pFlags Bit flags to query.
+
+   Returns:
+          true if the specified bit flags are all set.
+
+   void SetAllObjectFlags ( FbxUInt  pFlags )
+   Search for all occurrences
+
+   Override all object flags at once.
+
+   Parameters:
+
+          pFlags The bit flags to set all the object flags to.
+
+   Remarks:
+          This function will override all flags; unspecified bit flags will be un-set.
+
+   FbxUInt GetAllObjectFlags ( ) const
+   Search for all occurrences
+
+   Get all object flags at once.
+
+   Returns:
+          All bit flags at once.
+
+   virtual FbxObject& Copy ( const FbxObject &  pObject ) [virtual]
+   Search for all occurrences
+
+   Copy an object content into this object.
+
+   Parameters:
+
+          pObject The source object to copy data from.
+
+   Returns:
+          Returns the destination object being modified by the source.
+
+   Remarks:
+          This function replace the assignment operator (operator=). It will copy all property values and the name. Connections are NOT copied.
+
+   virtual FbxObject* Clone ( FbxObject::ECloneType  pCloneType = eDeepClone,
+                              FbxObject *            pContainer = NULL,
+                              void *                 pSet = NULL
+                            )                        const [virtual]
+   Search for all occurrences
+
+   Creates a clone of this object.
+
+   By default, the connections are NOT cloned. If the desired effect is to clone the connections as well, you must clone using the FbxCloneManager (refer to this class documentation for further details).
+
+   Parameters:
+
+          pCloneType The type of clone to be created. By default, the clone type is eDeepClone.
+          pContainer An optional parameter to specify which object will "contain" the new object. By contain, we mean the new object will become a source to the container, connection-wise.
+          pSet       See remark section.
+
+   Returns:
+          The new clone, or NULL (if the specified clone type is not supported).
+
+   Remarks:
+          When doing either a "deep" or "reference" clone type, the clone will always get its properties values set from the source object properties values.
+          Since this is a virtual function, some classes might do additional tasks.
+          The pSet argument is not used in the default implementation of this method. Specialized implementations should cast this pointer to FbxCloneManager::CloneSet to have access to the cloned objects so far. Typically, this pointer is set by the clone manager.
+
+   Examples:
+          ExportScene05/main.cxx.
+
+   bool IsAReferenceTo ( ) const
+   Search for all occurrences
+
+   Checks if this object is a reference clone of another object.
+
+   Returns:
+          True if this object is a clone of another object, false otherwise
+
+   FbxObject* GetReferenceTo ( ) const
+   Search for all occurrences
+
+   If this object is a reference clone, returns the original object (from which the clone originates).
+
+   Returns:
+          The original object, or NULL (if this object is not a reference clone).
+
+   bool IsReferencedBy ( ) const
+   Search for all occurrences
+
+   Checks if any objects are reference cloned from this object.
+
+   Returns:
+          True if there are objects reference cloned from this object, false otherwise.
+
+   int GetReferencedByCount ( ) const
+   Search for all occurrences
+
+   Returns the number of objects that are reference clones of this object.
+
+   Returns:
+          The number of objects that are reference clones of this object.
+
+   FbxObject* GetReferencedBy ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns a reference clone of this object at the specified index.
+
+   Parameters:
+
+          pIndex The specified index, valid values are [0, GetReferencedByCount())
+
+   Returns:
+          The reference clone, or NULL (if pIndex is out of range).
+
+   void SetName ( const char *  pName )
+   Search for all occurrences
+
+   Sets the name of this object.
+
+   Parameters:
+
+          pName The object name as a NULL terminated string.
+
+   Examples:
+          ExportDocument/main.cxx, and ExportScene05/main.cxx.
+
+   const char* GetName ( ) const
+   Search for all occurrences
+
+   Returns the full name of this object.
+
+   Returns:
+          The full name as a NULL terminated string.
+
+   Examples:
+          Camera/main.cxx, ExportScene01/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayHierarchy.cxx, ImportScene/DisplayLight.cxx, ImportScene/DisplayLink.cxx, ImportScene/DisplayLodGroup.cxx, ImportScene/DisplayMarker.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayNurb.cxx, ImportScene/DisplayPatch.cxx,
+          ImportScene/DisplayPose.cxx, ImportScene/DisplayShape.cxx, ImportScene/DisplaySkeleton.cxx, ImportScene/DisplayTexture.cxx, ImportScene/main.cxx, MyOwnWriterReader/MyOwnWriter.cxx, Normals/main.cxx, StereoCamera/main.cxx, SwitchBinding/main.cxx, Transformations/DisplayCommon.cxx, Transformations/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   FbxString GetNameWithoutNameSpacePrefix ( ) const
+   Search for all occurrences
+
+   Returns the name of the object without the namespace qualifier.
+
+   Returns:
+          The object name without the namespace qualifier.
+
+   FbxString GetNameWithNameSpacePrefix ( ) const
+   Search for all occurrences
+
+   Returns the name of the object with the namespace qualifier.
+
+   Returns:
+          The object name with the namespace qualifier.
+
+   void SetInitialName ( const char *  pName )
+   Search for all occurrences
+
+   Sets the initial name of the object.
+
+   Parameters:
+
+          pName The object's initial name as a NULL terminated string.
+
+   const char* GetInitialName ( ) const
+   Search for all occurrences
+
+   Returns the initial name of the object.
+
+   Returns:
+          The object's initial name as a NULL terminated string.
+
+   FbxString GetNameSpaceOnly ( )
+   Search for all occurrences
+
+   Returns the namespace of the object.
+
+   Returns:
+          The object's namespace as a NULL terminated string.
+
+   void SetNameSpace ( FbxString  pNameSpace )
+   Search for all occurrences
+
+   Sets the namespace of the object.
+
+   Parameters:
+
+          pNameSpace The object's namespace as a NULL terminated string.
+
+   FbxArray<FbxString*> GetNameSpaceArray ( char  identifier )
+   Search for all occurrences
+
+   Returns an array of all the namespaces for this object.
+
+   Parameters:
+
+          identifier The identifier of the namespaces.
+
+   Returns:
+          The array of all namespaces.
+
+   FbxString GetNameOnly ( ) const
+   Search for all occurrences
+
+   Returns only the name (no namespace or prefix) of the object.
+
+   Returns:
+          The name only as a NULL terminated string.
+
+   FbxString GetNameSpacePrefix ( ) const
+   Search for all occurrences
+
+   Returns the namespace qualifier.
+
+   Returns:
+          The namespace qualifier.
+
+   static FbxString RemovePrefix ( char *  pName ) [static]
+   Search for all occurrences
+
+   Removes the prefix of pName.
+
+   Parameters:
+
+          pName Whose prefix is removed.
+
+   Returns:
+          A temporary string without prefix.
+
+   static FbxString StripPrefix ( FbxString &  lName ) [static]
+   Search for all occurrences
+
+   Strips the prefix of pName.
+
+   Parameters:
+
+          lName Whose prefix is stripped.
+
+   Returns:
+          lName stripped of its prefix.
+
+   static FbxString StripPrefix ( const char *  pName ) [static]
+   Search for all occurrences
+
+   Strips the prefix of pName.
+
+   Parameters:
+
+          pName Whose prefix is stripped.
+
+   Returns:
+          A temporary string stripped of its prefix.
+
+   const FbxUInt64& GetUniqueID ( ) const
+   Search for all occurrences
+
+   Returns the unique ID of this object.
+   virtual bool GetSelected ( ) [virtual]
+   Search for all occurrences
+
+   Returns if this object is currently in a selected state.
+
+   Returns:
+          True if this object is selected, false otherwise.
+
+   virtual void SetSelected ( bool  pSelected ) [virtual]
+   Search for all occurrences
+
+   Sets whether this object is currently selected.
+
+   Parameters:
+
+          pSelected The selection flag.
+
+   void SetUserDataPtr ( const FbxUInt64 &  pUserID,
+                         void *             pUserData
+                       )
+   Search for all occurrences
+
+   Sets the data pointer for an user data record whose ID is pUserID.
+
+   Parameters:
+
+          pUserID   The ID of the user data record.
+          pUserData The data pointer of the user data record.
+
+   Remarks:
+          An user data record is composed of an ID and a data pointer. If the user data record identified by pUserID does not exist, a new user data record is created and its data pointer is set as pUserData.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   void* GetUserDataPtr ( const FbxUInt64 &  pUserID ) const
+   Search for all occurrences
+
+   Returns the data pointer of an user data record whose ID is pUserID.
+
+   Parameters:
+
+          pUserID The ID of the user data record.
+
+   Returns:
+          The data pointer of the user data record, NULL if the user data record is not found.
+
+   Examples:
+          ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, and ViewScene/SceneContext.cxx.
+
+   void SetUserDataPtr ( void *  pUserData ) [inline]
+   Search for all occurrences
+
+   Sets the data pointer for the user data record whose ID is the object ID.
+
+   Parameters:
+
+          pUserData The data pointer of the user data record.
+
+   Remarks:
+          An user data record is composed of an ID and a data pointer. If the user data record identified by pUserID does not exist, a new user data record is created and its data pointer is set as pUserData.
+
+   Definition at line 419 of file fbxobject.h.
+{ return GetUserDataPtr(GetUniqueID()); }
+
+   void* GetUserDataPtr ( ) const [inline]
+   Search for all occurrences
+
+   Returns the data pointer of the user data record whose ID is the object ID.
+
+   Returns:
+          The data pointer of the user data record, NULL if the user data record is not found.
+
+   Definition at line 424 of file fbxobject.h.
+   bool ConnectSrcObject ( FbxObject *           pObject,
+                           FbxConnection::EType  pType = FbxConnection::eNone
+                         )                       [inline]
+   Search for all occurrences
+
+   Connects this object to a source object.
+
+   Parameters:
+
+          pObject The source object to which this object connects.
+          pType   The connection type between this object and the source object.
+
+   Returns:
+          True on success, false otherwise.
+
+   Examples:
+          Camera/main.cxx, ExportScene03/main.cxx, ExportScene05/main.cxx, and Layers/main.cxx.
+
+   Definition at line 436 of file fbxobject.h.
+{ return RootProperty.IsConnectedSrcObject(pObject); }
+
+   bool IsConnectedSrcObject ( const FbxObject *  pObject ) const [inline]
+   Search for all occurrences
+
+   Judges whether this object connects with the source object.
+
+   Parameters:
+
+          pObject The source object.
+
+   Returns:
+          True if this object connects with the source object, false otherwise.
+
+   Definition at line 442 of file fbxobject.h.
+{ return RootProperty.DisconnectSrcObject(pObject); }
+
+   bool DisconnectSrcObject ( FbxObject *  pObject ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from a source object.
+
+   Parameters:
+
+          pObject The source object from which this object will be disconnected.
+
+   Returns:
+          True on success, false otherwise.
+
+   Definition at line 448 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(); }
+
+   bool DisconnectAllSrcObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 453 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(pCriteria); }
+
+   bool DisconnectAllSrcObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects that satisfy a given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all the source objects successfully, false otherwise.
+
+   Definition at line 459 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(FbxCriteria::ObjectType(pClassId)); }
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( FbxClassId  pClassId ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects of a specific class type.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specific class type.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 465 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(); }
+
+   int GetSrcObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects with which this object connects.
+
+   Returns:
+          The number of source objects with which this object connects.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, ProceduralTexture/main.cxx, Transformations/DisplayCommon.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 470 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(pCriteria); }
+
+   int GetSrcObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects that satisfy the given criteria with which this object connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects that satisfy the given criteria with which this object connects.
+
+   Definition at line 476 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(FbxCriteria::ObjectType(pClassId)); }
+
+   FBX_DEPRECATED int GetSrcObjectCount ( FbxClassId  pClassId ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects of the specific class type with which this object connects.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specific class type.
+
+   Returns:
+          The number of source objects of the specific class type with which this object connects.
+
+   Definition at line 482 of file fbxobject.h.
+{ return RootProperty.GetSrcObject(pIndex); }
+
+   FbxObject* GetSrcObject ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the source object with which this object connects at the specified index.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The source object at the specified index, NULL if not found.
+
+   Examples:
+          ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayTexture.cxx, ProceduralTexture/main.cxx, SwitchBinding/main.cxx, Transformations/DisplayCommon.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 488 of file fbxobject.h.
+{ return RootProperty.GetSrcObject(pCriteria,pIndex); }
+
+   FbxObject* GetSrcObject ( const FbxCriteria &  pCriteria,
+                             int                  pIndex = 0
+                           )                      const [inline]
+   Search for all occurrences
+
+   Returns the source object that satisfies the criteria at the specified index with which this object connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 495 of file fbxobject.h.
+{ return RootProperty.GetSrcObject(FbxCriteria::ObjectType(pClassId), pIndex); }
+
+   FBX_DEPRECATED FbxObject* GetSrcObject ( FbxClassId  pClassId,
+                                            int         pIndex = 0
+                                          )             const [inline]
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index with which this object connects.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+          pIndex   The specified index whose default value is 0.
+
+   Returns:
+          The source object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 502 of file fbxobject.h.
+{ return RootProperty.FindSrcObject(pName,pStartIndex); }
+
+   FbxObject* FindSrcObject ( const char *  pName,
+                              int           pStartIndex = 0
+                            )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name, starting at the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 509 of file fbxobject.h.
+{ return RootProperty.FindSrcObject(pCriteria,pName,pStartIndex); }
+
+   FbxObject* FindSrcObject ( const FbxCriteria &  pCriteria,
+                              const char *         pName,
+                              int                  pStartIndex = 0
+                            )                      const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which satisfies the given criteria, starting at the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 517 of file fbxobject.h.
+{ return RootProperty.FindSrcObject(FbxCriteria::ObjectType(pClassId), pName, pStartIndex); }
+
+   FBX_DEPRECATED FbxObject* FindSrcObject ( FbxClassId    pClassId,
+                                             const char *  pName,
+                                             int           pStartIndex = 0
+                                           )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which is also the specified class type, starting at the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId    The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 525 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(pFBX_TYPE); }
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( const T *  pFBX_TYPE ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 531 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(FbxCriteria::ObjectType(T::ClassId)); }
+
+   bool DisconnectAllSrcObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects of the specified class type.
+
+   Returns:
+          true if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 535 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(pFBX_TYPE,pCriteria); }
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( const T *            pFBX_TYPE,
+                                                const FbxCriteria &  pCriteria
+                                              )                      [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects that are of the specified class type and that satisfy the given criteria.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 542 of file fbxobject.h.
+{ return RootProperty.DisconnectAllSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   bool DisconnectAllSrcObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all source objects that are of the specified class type and that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          true if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 547 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(pFBX_TYPE); }
+
+   FBX_DEPRECATED int GetSrcObjectCount ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects of a specific class type with which this object connects.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          The number of source objects of the specified class type with which this object connects.
+
+   Definition at line 552 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(FbxCriteria::ObjectType(T::ClassId)); }
+
+   int GetSrcObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects of a specific class type with which this object connects.
+
+   Returns:
+          The number of source objects of the specified class type with which this object connects.
+
+   Definition at line 556 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(pFBX_TYPE,pCriteria); }
+
+   FBX_DEPRECATED int GetSrcObjectCount ( const T *            pFBX_TYPE,
+                                          const FbxCriteria &  pCriteria
+                                        )                      const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects with which this object connects that are the specified class type and that satisfy the given criteria.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects that are the specified class type and that satisfy the given criteria.
+
+   Definition at line 562 of file fbxobject.h.
+{ return RootProperty.GetSrcObjectCount(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   int GetSrcObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects with which this object connects that are the specified class type and that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects that are the specified class type and that satisfy the given criteria.
+
+   Definition at line 567 of file fbxobject.h.
+{ return RootProperty.GetSrcObject(pFBX_TYPE, pIndex); }
+
+   FBX_DEPRECATED T* GetSrcObject ( const T *  pFBX_TYPE,
+                                    int        pIndex = 0
+                                  )            const [inline]
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object of a specified class type at the specified index, NULL if not found.
+
+   Definition at line 573 of file fbxobject.h.
+{ return (T*)RootProperty.GetSrcObject(FbxCriteria::ObjectType(T::ClassId), pIndex); }
+
+   T* GetSrcObject ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The source object of a specified class type at the specified index, NULL if not found.
+
+   Definition at line 578 of file fbxobject.h.
+{ return RootProperty.GetSrcObject(pFBX_TYPE,pCriteria,pIndex); }
+
+   FBX_DEPRECATED T* GetSrcObject ( const T *            pFBX_TYPE,
+                                    const FbxCriteria &  pCriteria,
+                                    int                  pIndex = 0
+                                  )                      const [inline]
+   Search for all occurrences
+
+   Returns the source object that is the specified class type and that satisfies the given criteria at the specified index.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object that is of the specified class type and that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 585 of file fbxobject.h.
+{ return (T*)RootProperty.GetSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pIndex); }
+
+   T* GetSrcObject ( const FbxCriteria &  pCriteria,
+                     int                  pIndex = 0
+                   )                      const [inline]
+   Search for all occurrences
+
+   Returns the source object that is the specified class type and that satisfies the given criteria at the specified index.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object that is of the specified class type and that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 591 of file fbxobject.h.
+{ return RootProperty.FindSrcObject(pFBX_TYPE,pName,pStartIndex); }
+
+   FBX_DEPRECATED T* FindSrcObject ( const T *     pFBX_TYPE,
+                                     const char *  pName,
+                                     int           pStartIndex = 0
+                                   )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name that is the specified class type, starting at the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 599 of file fbxobject.h.
+{ return (T*)RootProperty.FindSrcObject(FbxCriteria::ObjectType(T::ClassId), pName, pStartIndex); }
+
+   T* FindSrcObject ( const char *  pName,
+                      int           pStartIndex = 0
+                    )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name that is the specified class type, starting at the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 605 of file fbxobject.h.
+{ return RootProperty.FindSrcObject(pFBX_TYPE,pCriteria,pName,pStartIndex); }
+
+   FBX_DEPRECATED T* FindSrcObject ( const T *            pFBX_TYPE,
+                                     const FbxCriteria &  pCriteria,
+                                     const char *         pName,
+                                     int                  pStartIndex = 0
+                                   )                      const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 614 of file fbxobject.h.
+{ return (T*)RootProperty.FindSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pName, pStartIndex); }
+
+   T* FindSrcObject ( const FbxCriteria &  pCriteria,
+                      const char *         pName,
+                      int                  pStartIndex = 0
+                    )                      const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 621 of file fbxobject.h.
+   bool ConnectDstObject ( FbxObject *           pObject,
+                           FbxConnection::EType  pType = FbxConnection::eNone
+                         )                       [inline]
+   Search for all occurrences
+
+   Connects this object to one destination object.
+
+   Parameters:
+
+          pObject The destination object with which this object connects.
+          pType   The connection type between this object and the destination object.
+
+   Returns:
+          True on success, false otherwise.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 628 of file fbxobject.h.
+{ return RootProperty.IsConnectedDstObject(pObject); }
+
+   bool IsConnectedDstObject ( const FbxObject *  pObject ) const [inline]
+   Search for all occurrences
+
+   Judges whether this object connects with the destination object.
+
+   Parameters:
+
+          pObject The destination object.
+
+   Returns:
+          True if this object connects with the destination object, false otherwise.
+
+   Definition at line 634 of file fbxobject.h.
+{ return RootProperty.DisconnectDstObject(pObject); }
+
+   bool DisconnectDstObject ( FbxObject *  pObject ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from the destination object.
+
+   Parameters:
+
+          pObject The destination object from which this object disconnects.
+
+   Returns:
+          True on success, false otherwise.
+
+   Definition at line 640 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(); }
+
+   bool DisconnectAllDstObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects.
+
+   Returns:
+          True if it disconnects all destination objects successfully, false otherwise.
+
+   Definition at line 645 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(pCriteria); }
+
+   bool DisconnectAllDstObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects that satisfy given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all destination objects successfully, false otherwise.
+
+   Definition at line 651 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(FbxCriteria::ObjectType(pClassId)); }
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( FbxClassId  pClassId ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+
+   Returns:
+          True if it disconnects all destination objects of the specified class type successfully, false otherwise.
+
+   Definition at line 657 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(); }
+
+   int GetDstObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects with which this object connects.
+
+   Returns:
+          The number of destination objects with which this object connects.
+
+   Definition at line 662 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(pCriteria); }
+
+   int GetDstObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects with which this object connects that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects with which this object connects that satisfy the given criteria.
+
+   Definition at line 668 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(FbxCriteria::ObjectType(pClassId)); }
+
+   FBX_DEPRECATED int GetDstObjectCount ( FbxClassId  pClassId ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this object connects.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+
+   Returns:
+          The number of destination objects of the specified class type with which this object connects.
+
+   Definition at line 674 of file fbxobject.h.
+{ return RootProperty.GetDstObject(pIndex); }
+
+   FbxObject* GetDstObject ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the destination object at the specified index with which this object connects.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The destination object at the specified index, NULL if not found.
+
+   Definition at line 680 of file fbxobject.h.
+{ return RootProperty.GetDstObject(pCriteria,pIndex); }
+
+   FbxObject* GetDstObject ( const FbxCriteria &  pCriteria,
+                             int                  pIndex = 0
+                           )                      const [inline]
+   Search for all occurrences
+
+   Returns the destination object with which this object connects that satisfies the given criteria at the specified index.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 687 of file fbxobject.h.
+{ return RootProperty.GetDstObject(FbxCriteria::ObjectType(pClassId), pIndex); }
+
+   FBX_DEPRECATED FbxObject* GetDstObject ( FbxClassId  pClassId,
+                                            int         pIndex = 0
+                                          )             const [inline]
+   Search for all occurrences
+
+   Returns the destination object of the specified class type with which this object connects at the specified index.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+          pIndex   The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 694 of file fbxobject.h.
+{ return RootProperty.FindDstObject(pName,pStartIndex); }
+
+   FbxObject* FindDstObject ( const char *  pName,
+                              int           pStartIndex = 0
+                            )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name, starting at the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   Definition at line 701 of file fbxobject.h.
+{ return RootProperty.FindDstObject(pCriteria,pName,pStartIndex); }
+
+   FbxObject* FindDstObject ( const FbxCriteria &  pCriteria,
+                              const char *         pName,
+                              int                  pStartIndex = 0
+                            )                      const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which satisfies the given criteria, starting at the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   Definition at line 709 of file fbxobject.h.
+{ return RootProperty.FindDstObject(FbxCriteria::ObjectType(pClassId), pName, pStartIndex); }
+
+   FBX_DEPRECATED FbxObject* FindDstObject ( FbxClassId    pClassId,
+                                             const char *  pName,
+                                             int           pStartIndex = 0
+                                           )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is the specified class type, starting at the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId    The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   Definition at line 717 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(pFBX_TYPE); }
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( const T *  pFBX_TYPE ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          true if it disconnects all destination objects of the specified class type successfully, false otherwise.
+
+   Definition at line 723 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(FbxCriteria::ObjectType(T::ClassId)); }
+
+   bool DisconnectAllDstObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects of the specified class type.
+
+   Returns:
+          true if it disconnects all destination objects of the specified class type successfully, false otherwise.
+
+   Definition at line 727 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(pFBX_TYPE,pCriteria); }
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( const T *            pFBX_TYPE,
+                                                const FbxCriteria &  pCriteria
+                                              )                      [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects that are the specified class type and that satisfy the given criteria.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          true if it disconnects all destination objects successfully, false otherwise.
+
+   Definition at line 734 of file fbxobject.h.
+{ return RootProperty.DisconnectAllDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   bool DisconnectAllDstObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from all destination objects that are the specified class type and that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          true if it disconnects all destination objects successfully, false otherwise.
+
+   Definition at line 739 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(pFBX_TYPE); }
+
+   FBX_DEPRECATED int GetDstObjectCount ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this object connects.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          The number of destination objects of the specified class type with which this object connects.
+
+   Definition at line 745 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(FbxCriteria::ObjectType(T::ClassId)); }
+
+   int GetDstObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this object connects.
+
+   Returns:
+          The number of destination objects of the specified class type with which this object connects.
+
+   Definition at line 749 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(pFBX_TYPE,pCriteria); }
+
+   FBX_DEPRECATED int GetDstObjectCount ( const T *            pFBX_TYPE,
+                                          const FbxCriteria &  pCriteria
+                                        )                      const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects with which this object connects that are the specified class type and that satisfy the given criteria.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects that are the specified class type and that satisfy the given criteria.
+
+   Definition at line 756 of file fbxobject.h.
+{ return RootProperty.GetDstObjectCount(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   int GetDstObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects with which this object connects that are the specified class type and that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects that are the specified class type and that satisfy the given criteria.
+
+   Definition at line 761 of file fbxobject.h.
+{ return RootProperty.GetDstObject(pFBX_TYPE,pIndex); }
+
+   FBX_DEPRECATED T* GetDstObject ( const T *  pFBX_TYPE,
+                                    int        pIndex = 0
+                                  )            const [inline]
+   Search for all occurrences
+
+   Returns the destination object with which this object connects that is the specified class type at the specified index.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 768 of file fbxobject.h.
+{ return (T*)RootProperty.GetDstObject(FbxCriteria::ObjectType(T::ClassId), pIndex); }
+
+   T* GetDstObject ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the destination object with which this object connects that is the specified class type at the specified index.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 773 of file fbxobject.h.
+{ return RootProperty.GetDstObject(pFBX_TYPE,pCriteria,pIndex); }
+
+   FBX_DEPRECATED T* GetDstObject ( const T *            pFBX_TYPE,
+                                    const FbxCriteria &  pCriteria,
+                                    int                  pIndex = 0
+                                  )                      const [inline]
+   Search for all occurrences
+
+   Returns the destination object with which this object connects that is the specified class type and that satisfies the given criteria at the specified index.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object that is the specified class type and that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 781 of file fbxobject.h.
+{ return (T*)RootProperty.GetDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pIndex); }
+
+   T* GetDstObject ( const FbxCriteria &  pCriteria,
+                     int                  pIndex = 0
+                   )                      const [inline]
+   Search for all occurrences
+
+   Returns the destination object with which this object connects that is the specified class type and that satisfies the given criteria at the specified index.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object that is the specified class type and that satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 787 of file fbxobject.h.
+{ return RootProperty.FindDstObject(pFBX_TYPE,pName,pStartIndex); }
+
+   FBX_DEPRECATED T* FindDstObject ( const T *     pFBX_TYPE,
+                                     const char *  pName,
+                                     int           pStartIndex = 0
+                                   )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type, starting at the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 795 of file fbxobject.h.
+{ return (T*)RootProperty.FindDstObject(FbxCriteria::ObjectType(T::ClassId), pName, pStartIndex); }
+
+   T* FindDstObject ( const char *  pName,
+                      int           pStartIndex = 0
+                    )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type, starting at the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 801 of file fbxobject.h.
+{ return RootProperty.FindDstObject(pFBX_TYPE,pCriteria,pName,pStartIndex); }
+
+   FBX_DEPRECATED T* FindDstObject ( const T *            pFBX_TYPE,
+                                     const FbxCriteria &  pCriteria,
+                                     const char *         pName,
+                                     int                  pStartIndex = 0
+                                   )                      const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 810 of file fbxobject.h.
+{ return (T*)RootProperty.FindDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pName, pStartIndex); }
+
+   T* FindDstObject ( const FbxCriteria &  pCriteria,
+                      const char *         pName,
+                      int                  pStartIndex = 0
+                    )                      const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name that is the specified class type and that satisfies the given criteria, starting at the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 817 of file fbxobject.h.
+{
+
+   FbxProperty GetFirstProperty ( ) const [inline]
+   Search for all occurrences
+
+   Returns the first property of this object.
+
+   Returns:
+          The first property of this object.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayUserProperties.cxx.
+
+   Definition at line 827 of file fbxobject.h.
+                {
+
+   FbxProperty GetNextProperty ( const FbxProperty &  pProperty ) const [inline]
+   Search for all occurrences
+
+   Returns the next property of this object that follows the specified property.
+
+   Parameters:
+
+          pProperty The specified property.
+
+   Returns:
+          The next property of this object that follows pProperty.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayUserProperties.cxx.
+
+   Definition at line 836 of file fbxobject.h.
+                {
+
+   FbxProperty FindProperty ( const char *  pName,
+                              bool          pCaseSensitive = true
+                            )               const [inline]
+   Search for all occurrences
+
+   Searches a property by name.
+
+   Parameters:
+
+          pName          The property name.
+          pCaseSensitive Whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Examples:
+          ExportScene05/main.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, UserProperties/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 846 of file fbxobject.h.
+                {
+
+   FbxProperty FindProperty ( const char *         pName,
+                              const FbxDataType &  pDataType,
+                              bool                 pCaseSensitive = true
+                            )                      const [inline]
+   Search for all occurrences
+
+   Searches a property by name and data type.
+
+   Parameters:
+
+          pName          The property name.
+          pDataType      The data type of the property.
+          pCaseSensitive Whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Definition at line 857 of file fbxobject.h.
+                {
+
+   FbxProperty FindPropertyHierarchical ( const char *  pName,
+                                          bool          pCaseSensitive = true
+                                        )               const [inline]
+   Search for all occurrences
+
+   Searches a property by full name.
+
+   Parameters:
+
+          pName          The full name of the property as a NULL terminated string.
+          pCaseSensitive whether or not the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 868 of file fbxobject.h.
+                {
+
+   FbxProperty FindPropertyHierarchical ( const char *         pName,
+                                          const FbxDataType &  pDataType,
+                                          bool                 pCaseSensitive = true
+                                        )                      const [inline]
+   Search for all occurrences
+
+   Searches a property by full name and data type.
+
+   Parameters:
+
+          pName          The full name of the property as a NULL terminated string.
+          pDataType      The data type of the property.
+          pCaseSensitive whether or not the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Definition at line 880 of file fbxobject.h.
+                                                                     { return RootProperty; }
+
+   FBX_DEPRECATED FbxProperty& GetRootProperty ( ) [inline]
+   Search for all occurrences
+
+   Returns the root property of this object.
+
+   (Deprecated, use RootProperty instead)
+
+   Returns:
+          The root property.
+
+   Definition at line 888 of file fbxobject.h.
+{ return RootProperty; }
+
+   FBX_DEPRECATED const FbxProperty& GetRootProperty ( ) const [inline]
+   Search for all occurrences
+
+   Returns the root property of this object.
+
+   (Deprecated, use RootProperty instead)
+
+   Returns:
+          The root property.
+
+   Definition at line 893 of file fbxobject.h.
+{ return RootProperty.ConnectSrcProperty(pProperty); }
+
+   FbxProperty GetClassRootProperty ( )
+   Search for all occurrences
+
+   Returns the class root property.
+
+   Returns:
+          The class root property if it exists, else an invalid FbxProperty. See FbxProperty::IsValid().
+
+   Remarks:
+          Class FbxObject and its sub-classes all have a class root property. This class root property contains basic information about the class type, such as the class name.
+
+   bool ConnectSrcProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Connects this object to a source property.
+
+   Parameters:
+
+          pProperty The source property with which this object connects.
+
+   Returns:
+          True on success, false otherwise.
+
+   Definition at line 905 of file fbxobject.h.
+{ return RootProperty.IsConnectedSrcProperty(pProperty); }
+
+   bool IsConnectedSrcProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Determines whether this object connects with the specified source property.
+
+   Parameters:
+
+          pProperty The specified source property.
+
+   Returns:
+          True if this object connects with the specified source property, false otherwise.
+
+   Definition at line 911 of file fbxobject.h.
+{ return RootProperty.DisconnectSrcProperty(pProperty); }
+
+   bool DisconnectSrcProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from the specified source property.
+
+   Parameters:
+
+          pProperty The specified source property.
+
+   Returns:
+          True on success, false otherwise.
+
+   Definition at line 917 of file fbxobject.h.
+{ return RootProperty.GetSrcPropertyCount(); }
+
+   int GetSrcPropertyCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source properties with which this object connects.
+
+   Returns:
+          The number of source properties with which this object connects.
+
+   Definition at line 922 of file fbxobject.h.
+{ return RootProperty.GetSrcProperty(pIndex); }
+
+   FbxProperty GetSrcProperty ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the source property at the specified index with which this object connects.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          The source property at the specified index.
+
+   Definition at line 928 of file fbxobject.h.
+{ return RootProperty.FindSrcProperty(pName,pStartIndex); }
+
+   FbxProperty FindSrcProperty ( const char *  pName,
+                                 int           pStartIndex = 0
+                               )               const [inline]
+   Search for all occurrences
+
+   Searches a source property with which this object connects that has a specific name, starting at the specified index.
+
+   Parameters:
+
+          pName       The specified property name.
+          pStartIndex The start index.
+
+   Returns:
+          The source property with the specified name.
+
+   Definition at line 935 of file fbxobject.h.
+{ return RootProperty.ConnectDstProperty(pProperty); }
+
+   bool ConnectDstProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Connects this object to a destination property.
+
+   Parameters:
+
+          pProperty The destination property with which this object connects.
+
+   Returns:
+          True on success, false otherwise.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 941 of file fbxobject.h.
+{ return RootProperty.IsConnectedDstProperty(pProperty); }
+
+   bool IsConnectedDstProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Determines if this object connects with the specified destination property.
+
+   Parameters:
+
+          pProperty The specified destination property.
+
+   Returns:
+          True if this object connects with the specified destination property, false otherwise.
+
+   Definition at line 947 of file fbxobject.h.
+{ return RootProperty.DisconnectDstProperty(pProperty); }
+
+   bool DisconnectDstProperty ( const FbxProperty &  pProperty ) [inline]
+   Search for all occurrences
+
+   Disconnects this object from the specified destination property.
+
+   Parameters:
+
+          pProperty The specified destination property.
+
+   Returns:
+          True on success, false otherwise.
+
+   Definition at line 953 of file fbxobject.h.
+{ return RootProperty.GetDstPropertyCount(); }
+
+   int GetDstPropertyCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination properties with which this object connects.
+
+   Returns:
+          The number of destination properties with which this object connects.
+
+   Definition at line 958 of file fbxobject.h.
+{ return RootProperty.GetDstProperty(pIndex); }
+
+   FbxProperty GetDstProperty ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the destination property at the specified index with which this object connects.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          The destination property at the specified index.
+
+   Definition at line 964 of file fbxobject.h.
+{ return RootProperty.FindDstProperty(pName,pStartIndex); }
+
+   FbxProperty FindDstProperty ( const char *  pName,
+                                 int           pStartIndex = 0
+                               )               const [inline]
+   Search for all occurrences
+
+   Searches a destination property with which this object connects that has a specific name, starting at the specified index.
+
+   Parameters:
+
+          pName       The specified property name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination property with the specified name.
+
+   Definition at line 971 of file fbxobject.h.
+:
+
+   int ContentUnload ( )
+   Search for all occurrences
+
+   Unloads this object's content using the offload peripheral that is currently set in the document then flushes it from memory.
+
+   Returns:
+          2 if the object's content is already unloaded or 1 if this object's content has been successfully unloaded to the current peripheral.
+
+   Remarks:
+          If the content is locked more than once, or the peripheral cannot handle this object's unloading, or if an error occurs, this method returns 0 and does not flush the content.
+
+   int ContentLoad ( )
+   Search for all occurrences
+
+   Loads this object's content using the offload peripheral that is currently set in the document.
+
+   Returns:
+          1 if this object's content has been successfully loaded from the current peripheral, 2 if the content is already loaded, and 0 if an error occurs or the object's content is locked.
+
+   Remarks:
+          On a successful Load attempt, the object content is locked.
+
+   bool ContentIsLoaded ( ) const
+   Search for all occurrences
+
+   Judges if this object's content is loaded.
+
+   Returns:
+          True if this object's content is loaded, false otherwise.
+
+   Remarks:
+          An object that has not been filled yet must be considered unloaded.
+
+   void ContentDecrementLockCount ( )
+   Search for all occurrences
+
+   Decreases the content lock count of an object.
+
+   If the content lock count of an object is greater than 0, the content of the object is considered locked.
+   void ContentIncrementLockCount ( )
+   Search for all occurrences
+
+   Increases the content lock count of an object.
+
+   If the content lock count of an object is greater than 0, the content of the object is considered locked.
+   bool ContentIsLocked ( ) const
+   Search for all occurrences
+
+   Judges if this object's content is locked.
+
+   The content is considered locked if the content lock count is greater than 0
+
+   Returns:
+          True if this object's content is locked, false otherwise.
+
+   Remarks:
+          A locked state prevents the object content from being unloaded from memory but does not block the loading.
+
+   virtual bool ContentWriteTo ( FbxStream &  pStream ) const [virtual]
+   Search for all occurrences
+
+   Writes the content of the object to the given stream.
+
+   Parameters:
+
+          pStream The destination stream.
+
+   Returns:
+          True if the content is successfully processed by the receiving stream, false otherwise.
+
+   Reimplemented in FbxGeometryBase, and FbxPatch.
+   virtual bool ContentReadFrom ( const FbxStream &  pStream ) [virtual]
+   Search for all occurrences
+
+   Reads the content of the object from the given stream.
+
+   Parameters:
+
+          pStream The source stream.
+
+   Returns:
+          True if the object fills itself with the received data from the stream successfully, false otherwise.
+
+   Reimplemented in FbxGeometryBase, and FbxPatch.
+   void EmitMessage ( FbxMessage *  pMessage ) const
+   Search for all occurrences
+
+   Emits a message in all available message emitters in the document or SDK manager.
+
+   Parameters:
+
+          pMessage The message to emit.
+
+   Remarks:
+          The ownership of the message is transferred, don't delete it.
+
+   virtual const char* Localize ( const char *  pID,
+                                  const char *  pDefault = NULL
+                                )               const [virtual]
+   Search for all occurrences
+
+   Localization helper function, it calls the implementation of FBX SDK manager.
+
+   Sub-classes that manage their own localization could over-ride this function.
+
+   Parameters:
+
+          pID      The identifier of the text to be localized.
+          pDefault The default text. Uses pID as the default text if pDefault is NULL.
+
+   Returns:
+          The localized text or the default text if the text can't be localized, .
+
+   Reimplemented in FbxLibrary.
+   FbxLibrary* GetParentLibrary ( ) const
+   Search for all occurrences
+
+   Returns a handle on the parent library of this object.
+
+   Returns:
+          The parent library of this object, or NULL if the parent library doesn't exist.
+
+   Reimplemented in FbxLibrary.
+   bool AddImplementation ( FbxImplementation *  pImplementation )
+   Search for all occurrences
+
+   Adds an implementation.
+
+   Parameters:
+
+          pImplementation The implementation to be added.
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          To succeed this function must be called with an implementation that has not already been added to this node.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   bool RemoveImplementation ( FbxImplementation *  pImplementation )
+   Search for all occurrences
+
+   Removes an implementation.
+
+   Parameters:
+
+          pImplementation The implementation to be removed.
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          To succeed this function must be called with an implementation that has already been added to this node.
+
+   bool HasDefaultImplementation ( void  ) const
+   Search for all occurrences
+
+   Determines if this shading node has a default implementation.
+
+   Returns:
+          True if this shading node has a default implementation, false otherwise.
+
+   FbxImplementation* GetDefaultImplementation ( void  ) const
+   Search for all occurrences
+
+   Returns the default implementation of this shading node.
+
+   Returns:
+          The default implementation of this shading node.
+
+   bool SetDefaultImplementation ( FbxImplementation *  pImplementation )
+   Search for all occurrences
+
+   Sets the default implementation of this shading node.
+
+   Parameters:
+
+          pImplementation The implementation to be set.
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          To succeed this function must be called with an implementation that has already been added to this node. Only the implementation which has already been added can be set as the default implementation.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   int GetImplementationCount ( const FbxImplementationFilter *  pCriteria = NULL ) const
+   Search for all occurrences
+
+   Returns the number of implementations that satisfy a given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of implementations.
+
+   FbxImplementation* GetImplementation ( int                              pIndex,
+                                          const FbxImplementationFilter *  pCriteria = NULL
+                                        )                                  const
+   Search for all occurrences
+
+   Returns the implementation at the specified index that satisfies the given criteria.
+
+   Parameters:
+
+          pIndex    The specified index.
+          pCriteria The given criteria.
+
+   Returns:
+          The implementation at the specified index, NULL if not found.
+
+   virtual FbxString GetUrl ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the URL of this object.
+
+   Returns:
+          The URL of this object.
+
+   Remarks:
+          The URL indicates where the object is stored.
+
+   virtual bool SetUrl ( char *  pUrl ) [virtual]
+   Search for all occurrences
+
+   Sets the URL of this object.
+
+   Parameters:
+
+          pUrl The URL to be set.
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          The URL indicates where the object is stored.
+
+   void SetRuntimeClassId ( const FbxClassId &  pClassId )
+   Search for all occurrences
+
+   Set the run-time ClassId for this class.
+
+   In most contexts, users do not have to change the run-time ClassId, they are automatically generated when registered a new class during run-time.
+
+   Parameters:
+
+          pClassId The ClassId to set as the run-time ClassId for this object.
+
+   FbxClassId GetRuntimeClassId ( ) const
+   Search for all occurrences
+
+   Retrieve the run-time ClassId for this object.
+
+   Returns:
+          The run-time ClassId for this object.
+
+   bool IsRuntime ( const FbxClassId &  pClassId ) const
+   Search for all occurrences
+
+   Test if this class is a hierarchical children of the specified class type.
+
+   This test will be performed on the run-time class registered with the FBX SDK Manager rather than the static ClassId generated at compile time.
+
+   Parameters:
+
+          pClassId The class type to test against self.
+
+   Returns:
+          True if the object is a hierarchical children of the type specified.
+
+   Remarks:
+          This function will perform a complete search until it reaches the top level class, but it will stop as soon as one ClassId matches the test.
+
+   bool IsRuntimePlug ( ) const
+   Search for all occurrences
+
+   Find out if the ClassId was registered during run-time rather than at compile time.
+
+   Returns:
+          True if the run-time ClassId is inequal to the ClassId.
+
+   virtual void Construct ( const FbxObject *  pFrom ) [protected, virtual]
+   Search for all occurrences
+
+   Optional constructor override, automatically called by default constructor.
+
+   Parameters:
+
+          pFrom If not null, the function must take it into account like a copy constructor.
+
+   Remarks:
+          In case it is decided to override this function, do not forget to call ParentClass::Construct(pFrom) at the beginning.
+
+   Reimplemented in FbxControlSetPlug.
+   virtual void ConstructProperties ( bool  pForceSet ) [protected, virtual]
+   Search for all occurrences
+
+   Optional property constructor override, automatically called by default constructor.
+
+   Parameters:
+
+          pForceSet If the property value must be set regardless of default value.
+
+   Remarks:
+          If your object have properties, they must be initialized in this function.
+
+   Reimplemented in FbxControlSetPlug.
+
+   Examples:
+          ExportScene03/MyKFbxMesh.h.
+
+   virtual void Destruct ( bool  pRecursive ) [protected, virtual]
+   Search for all occurrences
+
+   Optional destructor override, automatically called by default destructor.
+
+   Parameters:
+
+          pRecursive If true, children objects should be destroyed as well.
+
+   Remarks:
+          In case it is decided to override this function, do not forget to call ParentClass::Destruct(pResursive) at the end.
+
+   Examples:
+          ExportScene03/MyKFbxMesh.h.
+
+   virtual void ContentClear ( ) [protected, virtual]
+   Search for all occurrences
+
+   Clears this object's content from memory.
+
+   This method must be overridden in the derived classes.
+
+   Remarks:
+          This method is called by ContentUnload() if the object content's unloading is successful.
+
+   virtual FbxPeripheral* GetPeripheral ( ) [protected, virtual]
+   Search for all occurrences
+
+   Retrieves the peripheral of that object.
+
+   Returns:
+          The current peripheral for that object
+
+   Remarks:
+          A peripheral manipulates the content of an object. For instance, a peripheral can load the connections of an object on demand.
+
+   Reimplemented in FbxDocument.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxProperty RootProperty
+   Search for all occurrences
+
+   The root property that holds all children property for this object.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, and ProceduralTexture/main.cxx.
+
+   Definition at line 1159 of file fbxobject.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxobject.h
+
+   Please send us your comment about this page

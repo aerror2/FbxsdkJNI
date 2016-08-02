@@ -1,0 +1,297 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintParent Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxConstraintParent Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraintparent.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The parent constraint creates a parent-to-child relationship between any two objects, from any two hierarchies.
+
+   It creates the same relationship as the parent-to-child relationships found in hierarchies. You can use this constraint to connect objects without changing hierarchies.
+
+   Definition at line 27 of file fbxconstraintparent.h.
+   Inheritance diagram for FbxConstraintParent:
+   [USEMAP:class_fbx_constraint_parent.png]
+
+   List of all members.
+
+Public Member Functions
+
+                           void  SetTranslationOffset (FbxObject *pObject, FbxVector4 pTranslation)
+                                 Set the translation offset of the specified constraint source.
+                     FbxVector4  GetTranslationOffset (const FbxObject *pObject) const
+                                 Retrieve the translation offset of the specified constraint source.
+                   virtual void  SetRotationOffset (const FbxObject *pObject, FbxVector4 pRotation)
+                                 Set the rotation offset of the specified constraint source.
+                     FbxVector4  GetRotationOffset (const FbxObject *pObject) const
+                                 Retrieve the rotation offset of the specified constraint source.
+                           void  AddConstraintSource (FbxObject *pObject, double pWeight=100)
+                                 Add a constraint source to the constraint.
+                            int  GetConstraintSourceCount () const
+                                 Retrieve the constraint source count.
+                    FbxObject *  GetConstraintSource (int pIndex) const
+                                 Retrieve a constraint source object.
+                           void  SetConstrainedObject (FbxObject *pObject)
+                                 Set the constrained object.
+                    FbxObject *  GetConstrainedObject () const
+                                 Retrieve the constrained object.
+
+Properties
+
+        FbxPropertyT< FbxBool >  AffectTranslationX
+                                 This property handles whether to affect the translation of the constrained object along X axis.
+        FbxPropertyT< FbxBool >  AffectTranslationY
+                                 This property handles whether to affect the translation of the constrained object along Y axis.
+        FbxPropertyT< FbxBool >  AffectTranslationZ
+                                 This property handles whether to affect the translation of the constrained object along Z axis.
+        FbxPropertyT< FbxBool >  AffectRotationX
+                                 This property handles whether to affect the rotation of the constrained object around X axis.
+        FbxPropertyT< FbxBool >  AffectRotationY
+                                 This property handles whether to affect the rotation of the constrained object around Y axis.
+        FbxPropertyT< FbxBool >  AffectRotationZ
+                                 This property handles whether to affect the rotation of the constrained object around Z axis.
+        FbxPropertyT< FbxBool >  AffectScalingX
+                                 This property handles whether to affect the scaling of the constrained object along X axis.
+        FbxPropertyT< FbxBool >  AffectScalingY
+                                 This property handles whether to affect the scaling of the constrained object along Y axis.
+        FbxPropertyT< FbxBool >  AffectScalingZ
+                                 This property handles whether to affect the scaling of the constrained object along Z axis.
+   FbxPropertyT< FbxReference >  ConstraintSources
+                                 This property used to access constraint sources.
+   FbxPropertyT< FbxReference >  ConstrainedObject
+                                 This property used to access constrained object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetTranslationOffset ( FbxObject *  pObject,
+                               FbxVector4   pTranslation
+                             )
+   Search for all occurrences
+
+   Set the translation offset of the specified constraint source.
+
+   Parameters:
+
+          pObject      The specified constraint source.
+          pTranslation The new offset vector.
+
+   FbxVector4 GetTranslationOffset ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Retrieve the translation offset of the specified constraint source.
+
+   Parameters:
+
+          pObject The specified constraint source.
+
+   Returns:
+          The current translation offset.
+
+   virtual void SetRotationOffset ( const FbxObject *  pObject,
+                                    FbxVector4         pRotation
+                                  )                    [virtual]
+   Search for all occurrences
+
+   Set the rotation offset of the specified constraint source.
+
+   Parameters:
+
+          pObject   The specified constraint source.
+          pRotation The new offset vector.
+
+   FbxVector4 GetRotationOffset ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Retrieve the rotation offset of the specified constraint source.
+
+   Parameters:
+
+          pObject The specified constraint source.
+
+   Returns:
+          The current translation offset.
+
+   void AddConstraintSource ( FbxObject *  pObject,
+                              double       pWeight = 100
+                            )
+   Search for all occurrences
+
+   Add a constraint source to the constraint.
+
+   Parameters:
+
+          pObject New constraint source.
+          pWeight Weight of the constraint source.
+
+   int GetConstraintSourceCount ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constraint source count.
+
+   Returns:
+          Current constraint source count.
+
+   Reimplemented from FbxConstraint.
+   FbxObject* GetConstraintSource ( int  pIndex ) const [virtual]
+   Search for all occurrences
+
+   Retrieve a constraint source object.
+
+   Parameters:
+
+          pIndex Index of the constraint source.
+
+   Returns:
+          The constraint source at the specified index.
+
+   Reimplemented from FbxConstraint.
+   void SetConstrainedObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the constrained object.
+
+   Parameters:
+
+          pObject The constrained object.
+
+   FbxObject* GetConstrainedObject ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constrained object.
+
+   Returns:
+          Current constrained object.
+
+   Reimplemented from FbxConstraint.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> AffectTranslationX
+   Search for all occurrences
+
+   This property handles whether to affect the translation of the constrained object along X axis.
+
+   Default value is true.
+
+   Definition at line 40 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectTranslationY
+   Search for all occurrences
+
+   This property handles whether to affect the translation of the constrained object along Y axis.
+
+   Default value is true.
+
+   Definition at line 46 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectTranslationZ
+   Search for all occurrences
+
+   This property handles whether to affect the translation of the constrained object along Z axis.
+
+   Default value is true.
+
+   Definition at line 52 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectRotationX
+   Search for all occurrences
+
+   This property handles whether to affect the rotation of the constrained object around X axis.
+
+   Default value is true.
+
+   Definition at line 58 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectRotationY
+   Search for all occurrences
+
+   This property handles whether to affect the rotation of the constrained object around Y axis.
+
+   Default value is true.
+
+   Definition at line 64 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectRotationZ
+   Search for all occurrences
+
+   This property handles whether to affect the rotation of the constrained object around Z axis.
+
+   Default value is true.
+
+   Definition at line 70 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectScalingX
+   Search for all occurrences
+
+   This property handles whether to affect the scaling of the constrained object along X axis.
+
+   Default value is true.
+
+   Definition at line 76 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectScalingY
+   Search for all occurrences
+
+   This property handles whether to affect the scaling of the constrained object along Y axis.
+
+   Default value is true.
+
+   Definition at line 82 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxBool> AffectScalingZ
+   Search for all occurrences
+
+   This property handles whether to affect the scaling of the constrained object along Z axis.
+
+   Default value is true.
+
+   Definition at line 88 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxReference> ConstraintSources
+   Search for all occurrences
+
+   This property used to access constraint sources.
+
+   A constrained object is an object whose position, orientation, and so on is driven by one or more constraint sources.
+
+   Definition at line 93 of file fbxconstraintparent.h.
+   FbxPropertyT<FbxReference> ConstrainedObject
+   Search for all occurrences
+
+   This property used to access constrained object.
+
+   A constrained object is an object whose position, orientation, and so on is driven by one or more constraint sources.
+
+   Definition at line 98 of file fbxconstraintparent.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintparent.h
+
+   Please send us your comment about this page

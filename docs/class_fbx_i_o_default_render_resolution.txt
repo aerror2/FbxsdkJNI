@@ -1,0 +1,125 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIODefaultRenderResolution Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxIODefaultRenderResolution Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxio.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Render and resolution information.
+
+   Definition at line 182 of file fbxio.h.
+
+   List of all members.
+
+Public Attributes
+
+        bool  mIsOK
+              If the resolution data is ready.
+   FbxString  mCameraName
+              camera name.
+   FbxString  mResolutionMode
+              resolution mode.
+      double  mResolutionW
+              resolution width.
+      double  mResolutionH
+              resolution height.
+
+Constructors and Destructor
+
+              FbxIODefaultRenderResolution ()
+              Default constructor.
+
+Member Access
+
+        void  Reset ()
+              Reset values to default.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxIODefaultRenderResolution ( )
+
+   Default constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset values to default.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   bool mIsOK
+   Search for all occurrences
+
+   If the resolution data is ready.
+
+   Definition at line 186 of file fbxio.h.
+   FbxString mCameraName
+   Search for all occurrences
+
+   camera name.
+
+   Definition at line 188 of file fbxio.h.
+   FbxString mResolutionMode
+   Search for all occurrences
+
+   resolution mode.
+
+   ex: "Fixed Resolution","Fixed Ratio","Fixed Width","Fixed Height","Window Size"
+
+   Definition at line 190 of file fbxio.h.
+   double mResolutionW
+   Search for all occurrences
+
+   resolution width.
+
+   Definition at line 192 of file fbxio.h.
+   double mResolutionH
+   Search for all occurrences
+
+   resolution height.
+
+   Definition at line 194 of file fbxio.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxio.h
+
+   Please send us your comment about this page

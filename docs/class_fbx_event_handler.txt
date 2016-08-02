@@ -1,0 +1,140 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEventHandler Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxEventHandler Class Reference
+   Search for all occurrences
+
+   #include <fbxeventhandler.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Event handler class contains a listener and a callback function.
+
+   Event handler is used to bind emitter and listener together. Its callback function can process event data. To generate a valid event handler, you can create an event emitter and event listener first and then call FbxListener::Bind(). It will create an event handler automatically and bind the handler to the listener and the created emitter. After that, the emitter and listener are bound together via event handler.
+
+   Remarks:
+          An object(emitter) can emit a certain type of event, the object(listener) who are listening to that type of event, will receive a signal and take action to process the event data.
+
+   The whole process of event is:
+
+          + 1. Create an emitter and a listener, then bind them together via the same event handler.
+          + 2. Emitter can emit an event at certain conditions. The event could be handled by event handler.
+          + 3. Once an event is emitted, the listener to this event will receive a signal.
+          + 4. And then the listener could process the event data according to the types of event, by calling event handler.
+
+   Note:
+          The event data is process by the callback function of event handler.
+
+   See also:
+          FbxListener FbxEventBase FbxEvent FbxEmitter
+
+   Definition at line 41 of file fbxeventhandler.h.
+
+   List of all members.
+
+Public Types
+
+                   enum   EType { eListener, eEmitter, eCount }
+                          Event handler base type. More...
+
+Public Member Functions
+
+             virtual int  GetHandlerEventType ()=0
+                          Get event type of current handler.
+            virtual void  FunctionCall (const FbxEventBase &pEvent)=0
+                          Call function that process event data.
+   virtual FbxListener *  GetListener ()=0
+                          Get listener of current handler.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Event handler base type.
+
+   Enumerator:
+
+          eListener
+
+   Listener event handler type.
+   Search for all occurrences
+          eEmitter
+
+   Emitter event handler type.
+   Search for all occurrences
+          eCount
+
+   Count of different event handler types.
+   Search for all occurrences
+
+   Definition at line 45 of file fbxeventhandler.h.
+        {
+                eListener,
+                eEmitter,
+                eCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual int GetHandlerEventType ( ) [pure virtual]
+   Search for all occurrences
+
+   Get event type of current handler.
+
+   Returns:
+          The type ID of event.
+
+   virtual void FunctionCall ( const FbxEventBase &  pEvent ) [pure virtual]
+   Search for all occurrences
+
+   Call function that process event data.
+
+   Parameters:
+
+          pEvent specify the event type. pEvent could be a specific class which derived from FbxEventBase.
+
+   See also:
+          FbxEventBase
+
+   virtual FbxListener* GetListener ( ) [pure virtual]
+   Search for all occurrences
+
+   Get listener of current handler.
+
+   Returns:
+          A pointer to the listener object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxeventhandler.h
+
+   Please send us your comment about this page

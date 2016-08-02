@@ -1,0 +1,76 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxScopedLoadingDirectory Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxScopedLoadingDirectory Class Reference
+   Search for all occurrences
+
+   #include <fbxscopedloadingdirectory.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A plug-in loading strategy that loads all DLLs with a specific extension from a specific directory. When this class is destroyed all of the plug-ins are unloaded.
+
+   Definition at line 28 of file fbxscopedloadingdirectory.h.
+   Inheritance diagram for FbxScopedLoadingDirectory:
+   [USEMAP:class_fbx_scoped_loading_directory.png]
+
+   List of all members.
+
+Public Member Functions
+
+            FbxScopedLoadingDirectory (const char *pDirectoryPath, const char *pPluginExtension)
+            Constructor, which also load plug-ins in the folder specified.
+   virtual  ~FbxScopedLoadingDirectory ()
+            Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxScopedLoadingDirectory ( const char *  pDirectoryPath,
+                               const char *  pPluginExtension
+                             )
+
+   Constructor, which also load plug-ins in the folder specified.
+
+   Parameters:
+
+          pDirectoryPath   The directory path.
+          pPluginExtension The plug-in extension.
+
+   virtual ~FbxScopedLoadingDirectory ( ) [virtual]
+
+   Destructor.
+
+   Unload plug-ins.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxscopedloadingdirectory.h
+
+   Please send us your comment about this page

@@ -1,0 +1,472 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPatch Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxPatch Class Reference
+
+   This reference page is linked to from the following overview topics: Geometry, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxpatch.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A patch is a type of node attribute with parametric surface.
+
+   A patch object is useful for creating gently curved surfaces, and provides very detailed control for manipulating complex geometry.
+
+   Examples:
+          ExportScene01/main.cxx, and ImportScene/DisplayPatch.cxx.
+
+   Definition at line 26 of file fbxpatch.h.
+   Inheritance diagram for FbxPatch:
+   [USEMAP:class_fbx_patch.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+     Returns the FbxNodeAttribute::EType::ePatch node attribute type.
+   void  Reset ()
+     Resets the patch to its default values.
+
+Patch Properties
+
+   enum   EType {
+     eBezier, eBezierQuadric, eCardinal, eBSpline,
+     eLinear
+   }
+     Patch types. More...
+   void  SetSurfaceMode (FbxGeometry::ESurfaceMode pMode)
+     Sets the surface mode.
+   FbxGeometry::ESurfaceMode  GetSurfaceMode () const
+     Returns the surface mode.
+   void  InitControlPoints (int pUCount, EType pUType, int pVCount, EType pVType)
+     Allocates memory space for the control points array.
+   int  GetUCount () const
+     Returns the number of control points in the U-dimension.
+   int  GetVCount () const
+     Returns the number of control points in the V-dimension.
+   EType  GetPatchUType () const
+     Returns the U-dimension patch type.
+   EType  GetPatchVType () const
+     Returns the V-dimension patch type.
+   void  SetStep (int pUStep, int pVStep)
+     Sets the patch step.
+   int  GetUStep () const
+     Returns the number of divisions between adjacent control points in the U-dimension.
+   int  GetVStep () const
+     Returns the number of divisions between adjacent control points in the V-dimension.
+   void  SetClosed (bool pU, bool pV)
+     Sets closed flags.
+   bool  GetUClosed () const
+     Returns state of the U closed flag.
+   bool  GetVClosed () const
+     Returns state of the V closed flag.
+   void  SetUCapped (bool pUBottom, bool pUTop)
+     Sets U-capped flags.
+   bool  GetUCappedBottom () const
+     Returns state of the bottom U-capped flag.
+   bool  GetUCappedTop () const
+     Returns state of the top U-capped flag.
+   void  SetVCapped (bool pVBottom, bool pVTop)
+     Sets V-capped flags.
+   bool  GetVCappedBottom () const
+     Returns state of the bottom V-capped flag.
+   bool  GetVCappedTop () const
+     Returns state of the top V-capped flag.
+
+Off-loading Serialization section
+
+   virtual bool  ContentWriteTo (FbxStream &pStream) const
+     Writes the content of the patch to the given stream.
+   virtual bool  ContentReadFrom (const FbxStream &pStream)
+     Reads the content of the patch from the given stream.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Patch types.
+     * eBezier
+     * eBezierQuadric
+     * eCardinal
+     * eBSpline
+     * eLinear
+
+   Enumerator:
+
+          eBezier
+
+   Search for all occurrences
+          eBezierQuadric
+
+   Search for all occurrences
+          eCardinal
+
+   Search for all occurrences
+          eBSpline
+
+   Search for all occurrences
+          eLinear
+
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 59 of file fbxpatch.h.
+        {
+            eBezier,
+            eBezierQuadric,
+            eCardinal,
+            eBSpline,
+            eLinear
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the FbxNodeAttribute::EType::ePatch node attribute type.
+
+   Reimplemented from FbxGeometry.
+   void Reset ( )
+   Search for all occurrences
+
+   Resets the patch to its default values.
+   void SetSurfaceMode ( FbxGeometry::ESurfaceMode  pMode )
+   Search for all occurrences
+
+   Sets the surface mode.
+
+   Parameters:
+
+          pMode Surface mode identifier (see Class FbxGeometry).
+
+   FbxGeometry::ESurfaceMode GetSurfaceMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the surface mode.
+
+   Returns:
+          The current surface mode identifier.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 50 of file fbxpatch.h.
+{return mSurfaceMode;}
+
+   void InitControlPoints ( int    pUCount,
+                            EType  pUType,
+                            int    pVCount,
+                            EType  pVType
+                          )
+   Search for all occurrences
+
+   Allocates memory space for the control points array.
+
+   Parameters:
+
+          pUCount Number of U-dimension control points.
+          pUType  U-dimension patch type.
+          pVCount Number of V-dimension control points.
+          pVType  V-dimension patch type.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   int GetUCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of control points in the U-dimension.
+
+   Returns:
+          The number of control points in the U-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 79 of file fbxpatch.h.
+{return mUCount;}
+
+   int GetVCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of control points in the V-dimension.
+
+   Returns:
+          The number of control points in the V-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 84 of file fbxpatch.h.
+{return mVCount;}
+
+   EType GetPatchUType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the U-dimension patch type.
+
+   Returns:
+          Patch type identifier in the U-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 89 of file fbxpatch.h.
+{return mUType;}
+
+   EType GetPatchVType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the V-dimension patch type.
+
+   Returns:
+          Patch type identifier in the V-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 94 of file fbxpatch.h.
+{return mVType;}
+
+   void SetStep ( int  pUStep,
+                  int  pVStep
+                )
+   Search for all occurrences
+
+   Sets the patch step.
+
+   The step is the number of divisions between adjacent control points.
+
+   Parameters:
+
+          pUStep Steps in U-dimension.
+          pVStep Steps in V-dimension.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   int GetUStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in the U-dimension.
+
+   Returns:
+          Step value in the U-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 106 of file fbxpatch.h.
+{return mUStep;}
+
+   int GetVStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in the V-dimension.
+
+   Returns:
+          Step value in the V-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 111 of file fbxpatch.h.
+{return mVStep;}
+
+   void SetClosed ( bool  pU,
+                    bool  pV
+                  )
+   Search for all occurrences
+
+   Sets closed flags.
+
+   Parameters:
+
+          pU Set to true if the patch is closed in U dimension.
+          pV Set to true if the patch is closed in V dimension.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   bool GetUClosed ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the U closed flag.
+
+   Returns:
+          True if the patch is closed in U dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 122 of file fbxpatch.h.
+{return mUClosed;}
+
+   bool GetVClosed ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the V closed flag.
+
+   Returns:
+          True if the patch is closed in V dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 127 of file fbxpatch.h.
+{return mVClosed;}
+
+   void SetUCapped ( bool  pUBottom,
+                     bool  pUTop
+                   )
+   Search for all occurrences
+
+   Sets U-capped flags.
+
+   Parameters:
+
+          pUBottom Set to true if the patch is capped at the bottom in the U-dimension.
+          pUTop    Set to true if the patch is capped on the top in the U-dimension.
+
+   Remarks:
+          Capping options are saved but not loaded by Motionbuilder because they are computed from the patch topography.
+
+   bool GetUCappedBottom ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the bottom U-capped flag.
+
+   Returns:
+          True if the patch is capped at the bottom in the U-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 140 of file fbxpatch.h.
+{return mUCappedBottom;}
+
+   bool GetUCappedTop ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the top U-capped flag.
+
+   Returns:
+          True if the patch is capped on the top in the U-dimension.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 145 of file fbxpatch.h.
+{return mUCappedTop;}
+
+   void SetVCapped ( bool  pVBottom,
+                     bool  pVTop
+                   )
+   Search for all occurrences
+
+   Sets V-capped flags.
+
+   Parameters:
+
+          pVBottom Sets to true if the patch is capped at the bottom in the V-dimension.
+          pVTop    Sets to true if the patch is capped on the top in the V-dimension.
+
+   Remarks:
+          Capping options are saved but not loaded by Motionbuilder because they are computed from the patch topography.
+
+   bool GetVCappedBottom ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the bottom V-capped flag.
+
+   Returns:
+          True if the patch is capped at the bottom.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 158 of file fbxpatch.h.
+{return mVCappedBottom;}
+
+   bool GetVCappedTop ( ) const [inline]
+   Search for all occurrences
+
+   Returns state of the top V-capped flag.
+
+   Returns:
+          True if the patch is capped on the top.
+
+   Examples:
+          ImportScene/DisplayPatch.cxx.
+
+   Definition at line 163 of file fbxpatch.h.
+{return mVCappedTop;}
+
+   virtual bool ContentWriteTo ( FbxStream &  pStream ) const [virtual]
+   Search for all occurrences
+
+   Writes the content of the patch to the given stream.
+
+   Parameters:
+
+          pStream The destination stream.
+
+   Returns:
+          True if the content is successfully processed by the receiving stream. If it is not successful, returns false.
+
+   Reimplemented from FbxGeometryBase.
+   virtual bool ContentReadFrom ( const FbxStream &  pStream ) [virtual]
+   Search for all occurrences
+
+   Reads the content of the patch from the given stream.
+
+   Parameters:
+
+          pStream The source stream.
+
+   Returns:
+          True if the patch completes with the data received from the stream successfully. If it is not successful, returns false.
+
+   Reimplemented from FbxGeometryBase.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxpatch.h
+
+   Please send us your comment about this page

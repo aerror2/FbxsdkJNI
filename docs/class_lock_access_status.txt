@@ -1,0 +1,119 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   LockAccessStatus Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types
+   LockAccessStatus Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Identifies what error occurs when the data arrays are manipulated.
+
+   Definition at line 280 of file fbxlayer.h.
+
+   List of all members.
+
+Public Types
+
+   enum   ELockAccessStatus {
+     eSuccess, eUnsupportedDTConversion, eCorruptedCopyback, eBadValue,
+     eLockMismatch, eNoWriteLock, eNoReadLock, eNotOwner,
+     eDirectLockExist
+   }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ELockAccessStatus
+   Search for all occurrences
+
+   Identifies what error occurs when the data arrays are manipulated.
+     * eSuccess Operation Successful.
+     * eUnsupportedDTConversion Attempts to convert to an unsupported DataType.
+     * eCorruptedCopyback The Release of a converted buffer fails and corrupts the main data.
+     * eBadValue Invalid value.
+     * eLockMismatch Attempts to change to an incompatible lock.
+     * eNoWriteLock A write operation is attempted but no WriteLock is available.
+     * eNoReadLock A read operation is attempted but the WriteLock is active.
+     * eNotOwner Attempts to release a lock on an invalid data buffer pointer.
+     * eDirectLockExist A direct access lock is still active.
+
+   Enumerator:
+
+          eSuccess
+
+   Search for all occurrences
+          eUnsupportedDTConversion
+
+   Search for all occurrences
+          eCorruptedCopyback
+
+   Search for all occurrences
+          eBadValue
+
+   Search for all occurrences
+          eLockMismatch
+
+   Search for all occurrences
+          eNoWriteLock
+
+   Search for all occurrences
+          eNoReadLock
+
+   Search for all occurrences
+          eNotOwner
+
+   Search for all occurrences
+          eDirectLockExist
+
+   Search for all occurrences
+
+   Definition at line 295 of file fbxlayer.h.
+        {
+                eSuccess,
+                eUnsupportedDTConversion,
+                eCorruptedCopyback,
+                eBadValue,
+                eLockMismatch,
+                eNoWriteLock,
+                eNoReadLock,
+                eNotOwner,
+                eDirectLockExist
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

@@ -1,0 +1,234 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxThumbnail Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxThumbnail Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxthumbnail.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Simple class to hold RGBA values of a thumbnail image.
+
+   Examples:
+          ExportScene01/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 27 of file fbxthumbnail.h.
+   Inheritance diagram for FbxThumbnail:
+   [USEMAP:class_fbx_thumbnail.png]
+
+   List of all members.
+
+Thumbnail properties
+
+                    enum   EDataFormat { eRGB_24, eRGBA_32 }
+                           Data format. More...
+                    enum   EImageSize { eNotSet = 0, e64x64 = 64, e128x128 = 128, eCustomSize = -1 }
+                           Image size. More...
+   FbxPropertyT< FbxInt >  CustomHeight
+                           Pixel height of the thumbnail image.
+   FbxPropertyT< FbxInt >  CustomWidth
+                           Pixel width of the thumbnail image.
+                     void  SetDataFormat (EDataFormat pDataFormat)
+                           Set the data format.
+              EDataFormat  GetDataFormat () const
+                           Get the data format.
+                     void  SetSize (EImageSize pImageSize)
+                           Set the thumbnail dimensions.
+               EImageSize  GetSize () const
+                           Get the thumbnail dimensions.
+            unsigned long  GetSizeInBytes () const
+                           Get the thumbnail dimensions in bytes.
+
+Thumbnail data access
+
+                     bool  SetThumbnailImage (const FbxUChar *pImage)
+                           Fill the thumbnail image.
+               FbxUChar *  GetThumbnailImage () const
+                           Get the thumbnail image.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDataFormat
+   Search for all occurrences
+
+   Data format.
+     * eRGB_24
+     * eRGBA_32
+
+   Enumerator:
+
+          eRGB_24
+
+   Search for all occurrences
+          eRGBA_32
+
+   Search for all occurrences
+
+   Definition at line 47 of file fbxthumbnail.h.
+        {
+                eRGB_24, // 3 components
+                eRGBA_32 // 4 components
+        };
+
+   enum EImageSize
+   Search for all occurrences
+
+   Image size.
+     * eNotSet
+     * e64x64
+     * e128x128
+     * eCustomSize
+
+   Enumerator:
+
+          eNotSet
+
+   Search for all occurrences
+          e64x64
+
+   Search for all occurrences
+          e128x128
+
+   Search for all occurrences
+          eCustomSize
+
+   Search for all occurrences
+
+   Definition at line 70 of file fbxthumbnail.h.
+        {
+                eNotSet = 0,
+                e64x64 = 64,
+                e128x128 = 128,
+                eCustomSize = -1
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetDataFormat ( EDataFormat  pDataFormat )
+   Search for all occurrences
+
+   Set the data format.
+
+   Parameters:
+
+          pDataFormat Data format identifier.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   EDataFormat GetDataFormat ( ) const
+   Search for all occurrences
+
+   Get the data format.
+
+   Returns:
+          Data format identifier for the thumbnail.
+
+   void SetSize ( EImageSize  pImageSize )
+   Search for all occurrences
+
+   Set the thumbnail dimensions.
+
+   Parameters:
+
+          pImageSize Image size identifier.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   EImageSize GetSize ( ) const
+   Search for all occurrences
+
+   Get the thumbnail dimensions.
+
+   Returns:
+          Image size identifier.
+
+   unsigned long GetSizeInBytes ( ) const
+   Search for all occurrences
+
+   Get the thumbnail dimensions in bytes.
+
+   Returns:
+          Thumbnail size in bytes.
+
+   bool SetThumbnailImage ( const FbxUChar *  pImage )
+   Search for all occurrences
+
+   Fill the thumbnail image.
+
+   Parameters:
+
+          pImage Pointer to the image data. A copy of the image data will be made.
+
+   Remarks:
+          This pointer must point to a buffer region that is at least Width * Height * Component count bytes long. This pointer points to the upper left corner of the image.
+          You must set the data format and the dimensions before calling this function. If the image size is set to eCustomSize the CustomHeight and CustomWidth properties must be set before calling this function.
+
+   Returns:
+          true if the thumbnail properties were set before calling this function. false otherwise.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   FbxUChar* GetThumbnailImage ( ) const
+   Search for all occurrences
+
+   Get the thumbnail image.
+
+   Returns:
+          Pointer to the image data, or NULL if the thumbnail is empty.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxInt> CustomHeight
+   Search for all occurrences
+
+   Pixel height of the thumbnail image.
+
+   Definition at line 38 of file fbxthumbnail.h.
+   FbxPropertyT<FbxInt> CustomWidth
+   Search for all occurrences
+
+   Pixel width of the thumbnail image.
+
+   Definition at line 41 of file fbxthumbnail.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxthumbnail.h
+
+   Please send us your comment about this page

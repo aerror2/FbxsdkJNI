@@ -1,0 +1,84 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEmbeddedFilesAccumulator::PropertyUrlIndexCompare Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxEmbeddedFilesAccumulator
+     * PropertyUrlIndexCompare
+
+   Public Member Functions
+   FbxEmbeddedFilesAccumulator::PropertyUrlIndexCompare Struct Reference
+   Search for all occurrences
+
+   #include <fbxembeddedfilesaccumulator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Comparer for PropertyUrlIndexSet, which outputs consistent partial orders for PropertyUrlIndex pairs.
+
+   Definition at line 55 of file fbxembeddedfilesaccumulator.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (const PropertyUrlIndex &pUrl1, const PropertyUrlIndex &pUrl2) const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( const PropertyUrlIndex &  pUrl1,
+                    const PropertyUrlIndex &  pUrl2
+                  )                           const [inline]
+
+   Definition at line 57 of file fbxembeddedfilesaccumulator.h.
+        {
+            if( pUrl1.mPropName < pUrl2.mPropName )
+            {
+                return -1;
+            }
+            if( pUrl2.mPropName < pUrl1.mPropName )
+            {
+                return 1;
+            }
+
+            if(pUrl1.mIndex < pUrl2.mIndex)
+            {
+                return -1;
+            }
+            if(pUrl2.mIndex < pUrl1.mIndex)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxembeddedfilesaccumulator.h
+
+   Please send us your comment about this page

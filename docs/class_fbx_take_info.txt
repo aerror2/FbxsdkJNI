@@ -1,0 +1,276 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxTakeInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxTakeInfo Class Reference
+
+   This reference page is linked to from the following overview topics: Migrating to the New Data Structures for Animation, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtakeinfo.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains take information from an imported file or exported to an output file.
+
+   A "take" is in fact a group of animation data grouped by name, so the FBX file format can support many "animation takes" in an FBX file to mimic how a movie is produced by making many takes of the same scene.
+
+   The most used data is the "take name", other data are rarely used. Example of use: to get the list of all animation take names of FBX file without loading all the scene content. When a FbxImporter is initialized, the take information can be read and can be available before the long Import() step, this way, we can get the take info data very fast since we don't need to load all the animation scene data.
+ // Ex: to get all take names in a FBX file
+ for(int lAnimStackCount=0; lAnimStackCount < lImporter->GetAnimStackCount(); lAnimStackCount++)
+ {
+   FbxTakeInfo* lTakeInfo = lImporter->GetTakeInfo(lAnimStackCount);
+   FbxString lTakeName = lTakeInfo->mName;
+ }
+
+   Examples:
+          Common/Common.cxx, UI_Examples/Common/ImportExport.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 56 of file fbxtakeinfo.h.
+
+   List of all members.
+
+Public Types
+
+                            enum   EImportOffsetType { eAbsolute, eRelative }
+                                   Import offset types. More...
+
+Public Member Functions
+
+                                   FbxTakeInfo ()
+                                   Default constructor.
+                          virtual  ~FbxTakeInfo ()
+                                   Destructor.
+                                   FbxTakeInfo (const FbxTakeInfo &pTakeInfo)
+                                   Copy Constructor.
+                    FbxTakeInfo &  operator= (const FbxTakeInfo &pTakeInfo)
+                                   Assignment operator.
+    FBX_DEPRECATED FbxThumbnail *  GetTakeThumbnail ()
+                                   Deprecated function.
+              FBX_DEPRECATED void  SetTakeThumbnail (FbxThumbnail *pTakeThumbnail)
+                                   Deprecated function.
+                             void  CopyLayers (const FbxTakeInfo &pTakeInfo)
+                                   Copies the layer information from the take information.
+
+Public Attributes
+
+                        FbxString  mName
+                                   Take name.
+                        FbxString  mImportName
+                                   The take name once it is imported in a scene.
+                        FbxString  mDescription
+                                   Take description.
+                             bool  mSelect
+                                   Import/export flag.
+                      FbxTimeSpan  mLocalTimeSpan
+                                   Local time span, set to animation interval if it is left at the default value.
+                      FbxTimeSpan  mReferenceTimeSpan
+                                   Reference time span, set to animation interval if it is left at the default value.
+                          FbxTime  mImportOffset
+                                   Time value for offsetting the animation keys once they are imported in a scene.
+                EImportOffsetType  mImportOffsetType
+                                   Import offset type.
+   FbxArray< FbxTakeLayerInfo * >  mLayerInfoList
+                                   List of each layer's information.
+                              int  mCurrentLayer
+                                   Current Layer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EImportOffsetType
+   Search for all occurrences
+
+   Import offset types.
+     * eAbsolute
+     * eRelative
+
+   Enumerator:
+
+          eAbsolute
+
+   Search for all occurrences
+          eRelative
+
+   Search for all occurrences
+
+   Definition at line 112 of file fbxtakeinfo.h.
+        {
+                eAbsolute,
+                eRelative
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxTakeInfo ( )
+
+   Default constructor.
+   virtual ~FbxTakeInfo ( ) [virtual]
+
+   Destructor.
+   FbxTakeInfo ( const FbxTakeInfo &  pTakeInfo )
+
+   Copy Constructor.
+
+   Parameters:
+
+          pTakeInfo The take information to be copied.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxTakeInfo& operator= ( const FbxTakeInfo &  pTakeInfo )
+
+   Assignment operator.
+
+   Parameters:
+
+          pTakeInfo The take information to be assigned. .
+
+   FBX_DEPRECATED FbxThumbnail* GetTakeThumbnail ( )
+   Search for all occurrences
+
+   Deprecated function.
+
+   Alwyas rreturns NULL. The thumbnail do not exist on a take anymore. There is only one on the FbxSceneInfo object.
+   FBX_DEPRECATED void SetTakeThumbnail ( FbxThumbnail *  pTakeThumbnail )
+   Search for all occurrences
+
+   Deprecated function.
+
+   The thumbnail do not exist on a take anymore. There is only one on the FbxSceneInfo object.
+   void CopyLayers ( const FbxTakeInfo &  pTakeInfo )
+   Search for all occurrences
+
+   Copies the layer information from the take information.
+
+   Parameters:
+
+          pTakeInfo The take information to be copied.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   Take name.
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 79 of file fbxtakeinfo.h.
+   FbxString mImportName
+   Search for all occurrences
+
+   The take name once it is imported in a scene.
+
+   You can modify it if it must be different from the take name in the imported file.
+
+   Remarks:
+          This field is only used when importing a scene.
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 85 of file fbxtakeinfo.h.
+   FbxString mDescription
+   Search for all occurrences
+
+   Take description.
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 88 of file fbxtakeinfo.h.
+   bool mSelect
+   Search for all occurrences
+
+   Import/export flag.
+
+   Set to true by default, set to false if the take must not be imported or exported.
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 93 of file fbxtakeinfo.h.
+   FbxTimeSpan mLocalTimeSpan
+   Search for all occurrences
+
+   Local time span, set to animation interval if it is left at the default value.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 96 of file fbxtakeinfo.h.
+   FbxTimeSpan mReferenceTimeSpan
+   Search for all occurrences
+
+   Reference time span, set to animation interval if it is left at the default value.
+
+   Definition at line 99 of file fbxtakeinfo.h.
+   FbxTime mImportOffset
+   Search for all occurrences
+
+   Time value for offsetting the animation keys once they are imported in a scene.
+
+   You can modify it if you need the animation of a take to be offset. The effect depends on the state of mImportOffsetType.
+
+   Remarks:
+          This field is only used when importing a scene.
+
+   Definition at line 106 of file fbxtakeinfo.h.
+   EImportOffsetType mImportOffsetType
+   Search for all occurrences
+
+   Import offset type.
+
+   If set to eAbsolute, mImportOffset gives the absolute time of the first animation key and the appropriate time shift is applied to all of the other animation keys. If set to eRelative, mImportOffset gives the relative time shift applied to all animation keys.
+
+   Definition at line 125 of file fbxtakeinfo.h.
+   FbxArray<FbxTakeLayerInfo*> mLayerInfoList
+   Search for all occurrences
+
+   List of each layer's information.
+
+   Definition at line 145 of file fbxtakeinfo.h.
+   int mCurrentLayer
+   Search for all occurrences
+
+   Current Layer.
+
+   Definition at line 148 of file fbxtakeinfo.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxtakeinfo.h
+
+   Please send us your comment about this page

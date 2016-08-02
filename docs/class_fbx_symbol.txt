@@ -1,0 +1,114 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSymbol Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxSymbol Class Reference
+   Search for all occurrences
+
+   #include <fbxsymbol.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Defines a symbol string.
+
+   A symbol string is a string that is unique and stored in a global symbol table.
+
+   Definition at line 25 of file fbxsymbol.h.
+
+   List of all members.
+
+Constructors and Destructor
+
+                 FbxSymbol (const char *pName, const char *pRealm)
+                 Constructor.
+                 ~FbxSymbol ()
+                 Destructor.
+
+Access function.
+
+   unsigned int  GetID () const
+                 Get ID in global symbol table.
+
+Symbol comparison
+
+           bool  operator== (FbxSymbol const &pSymbol) const
+                 Equality operator.
+           bool  operator!= (FbxSymbol const &pSymbol) const
+                 Inequality operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSymbol ( const char *  pName,
+               const char *  pRealm
+             )
+
+   Constructor.
+
+   Construct a symbol and add it to global symbol table.
+
+   Parameters:
+
+          pName  Symbol name.
+          pRealm The real value for this symbol.
+
+   ~FbxSymbol ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   unsigned int GetID ( ) const
+   Search for all occurrences
+
+   Get ID in global symbol table.
+
+   Returns:
+          Symbol ID in global symbol table.
+
+   bool operator== ( FbxSymbol const &  pSymbol ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pSymbol The symbol to be compared.
+
+   bool operator!= ( FbxSymbol const &  pSymbol ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pSymbol The symbol to be compared.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxsymbol.h
+
+   Please send us your comment about this page

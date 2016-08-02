@@ -1,0 +1,198 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxReaderCollada Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxReaderCollada Class Reference
+   Search for all occurrences
+
+   #include <fbxreadercollada14.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to read a Collada file and import it to a FBX scene.
+
+   Some terms about COLLADA (from the spec of the COLLADA).
+
+   Element: An XML document consists primarily of elements. An element is a block of information that is bounded by tags at the beginning and end of the block. Elements can be nested, producing a hierarchical data set.
+
+   Tag: Each XML element begins with a start tag and ends with an end tag.
+
+   Attribute: An XML element can have zero or more attributes. Attributes are given within the start tag and follow the tag name. Each attribute is a name-value pair. The value portion of an attribute is always surrounded by quotation marks (" "). Attributes provide semantic information about the element on which they are bound. For example:
+ <tagName attribute="value">
+
+   URI Addressing: Refers to the id attribute of an element. Used in url, source or target attributes. In a url, source or target attribute, the URI fragment identifier is preceded with the pound sign ("#").
+
+   Markup and Content: The characters which make up an XML document are divided into markup and content. Markup and content may be distinguished by the application of simple syntactic rules. All strings which constitute markup either begin with the character "<" and end with a ">", or begin with the character "&" and end with a ";". Strings of characters which are not markup are content.
+
+   Definition at line 53 of file fbxreadercollada14.h.
+   Inheritance diagram for FbxReaderCollada:
+   [USEMAP:class_fbx_reader_collada.png]
+
+   List of all members.
+
+Constructors and Destructor
+
+                                        FbxReaderCollada (FbxManager &pManager, int pID, FbxStatus &pStatus)
+                                        Constructor.
+                               virtual  ~FbxReaderCollada ()
+                                        Destructor.
+
+File Management
+
+                          virtual bool  FileOpen (char *pFileName)
+                                        Open file with the given name.
+                          virtual bool  FileClose ()
+                                        Close file.
+                          virtual bool  IsFileOpen ()
+                                        Check if current file is open.
+
+Read Functions
+
+                          virtual bool  GetReadOptions (bool pParseFileAsNeeded=true)
+                                        Get Collada import options settings.
+                          virtual bool  GetAxisInfo (FbxAxisSystem *pAxisSystem, FbxSystemUnit *pSystemUnits)
+                                        Get axis system information from file.
+   virtual FbxArray< FbxTakeInfo * > *  GetTakeInfo ()
+                                        Returns the list of take infos from the file.
+                          virtual bool  Read (FbxDocument *pDocument)
+                                        Read from Collada file and import it to the FBX document, according to the given options settings.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxReaderCollada ( FbxManager &  pManager,
+                      int           pID,
+                      FbxStatus &   pStatus
+                    )
+
+   Constructor.
+
+   Parameters:
+
+          pManager FBX SDK object Manager.
+          pID      Internal ID.
+          pStatus  The FbxStatus object to hold error codes.
+
+   virtual ~FbxReaderCollada ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool FileOpen ( char *  pFileName ) [virtual]
+   Search for all occurrences
+
+   Open file with the given name.
+
+   Parameters:
+
+          pFileName the name of file.
+
+   Returns:
+          Return true if the specified file is opened.
+
+   Implements FbxReader.
+   virtual bool FileClose ( ) [virtual]
+   Search for all occurrences
+
+   Close file.
+
+   Returns:
+          Return true if file is closed successfully, false otherwise.
+
+   Implements FbxReader.
+   virtual bool IsFileOpen ( ) [virtual]
+   Search for all occurrences
+
+   Check if current file is open.
+
+   Returns:
+          Return true if file is open, false otherwise.
+
+   Implements FbxReader.
+   virtual bool GetReadOptions ( bool  pParseFileAsNeeded = true ) [inline, virtual]
+   Search for all occurrences
+
+   Get Collada import options settings.
+
+   Parameters:
+
+          pParseFileAsNeeded whether parse file as needed, the default value is true.
+
+   Returns:
+          true
+
+   Implements FbxReader.
+
+   Definition at line 105 of file fbxreadercollada14.h.
+{ return true; }
+
+   virtual bool GetAxisInfo ( FbxAxisSystem *  pAxisSystem,
+                              FbxSystemUnit *  pSystemUnits
+                            )                  [virtual]
+   Search for all occurrences
+
+   Get axis system information from file.
+
+   Parameters:
+
+          pAxisSystem  axis system in file
+          pSystemUnits system unit in file
+
+   Returns:
+          if either pAxisSystem or pSystemUnits is NULL return false, otherwise return true.
+
+   Reimplemented from FbxReader.
+   virtual FbxArray<FbxTakeInfo*>* GetTakeInfo ( ) [virtual]
+   Search for all occurrences
+
+   Returns the list of take infos from the file.
+
+   Returns:
+          NULL
+
+   Reimplemented from FbxReader.
+   virtual bool Read ( FbxDocument *  pDocument ) [virtual]
+   Search for all occurrences
+
+   Read from Collada file and import it to the FBX document, according to the given options settings.
+
+   Parameters:
+
+          pDocument FBX Document to import.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implements FbxReader.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/collada/fbxreadercollada14.h
+
+   Please send us your comment about this page

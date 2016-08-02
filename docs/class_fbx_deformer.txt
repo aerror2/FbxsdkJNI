@@ -1,0 +1,143 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDeformer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxDeformer Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxdeformer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for skin deformer (FbxSkin) and vertex cache deformer (FbxVertexCacheDeformer).
+
+   The corresponding deformer types are FbxDeformer::eSkin and FbxDeformer::eVertexCache. A deformer can be binded to a geometry (FbxGeometry) to act on its shape. Typically, some objects under the deformer are animated, and via the deformer, the geometry is animated too.
+
+   A skin deformer contains clusters (FbxCluster). Each cluster acts on a subset of the geometry's control points, with different weights. For example, a mesh of humanoid shape can have a skin attached, that describes the way the humanoid mesh is deformed by bones. When the bones are animated, the clusters act on the geometry to animate it too.
+
+   A vertex cache deformer contains a cache (FbxCache). The cache contains animation information for every control point of the geometry.
+
+   Definition at line 38 of file fbxdeformer.h.
+   Inheritance diagram for FbxDeformer:
+   [USEMAP:class_fbx_deformer.png]
+
+   List of all members.
+
+Multi-Layer Flag
+
+   This flag is available for backward compatibility with older version of FBX files and should not be used anymore.
+
+   All the animation layering system has been moved to the FbxAnimLayer and FbxAnimStack classes.
+                    void  SetMultiLayer (bool pMultiLayer)
+                          Set multi-layer state flag.
+                    bool  GetMultiLayer () const
+                          Get multi-layer state.
+
+Deformer types
+
+                   enum   EDeformerType { eUnknown, eSkin, eBlendShape, eVertexCache }
+                          Deformer types. More...
+   virtual EDeformerType  GetDeformerType () const
+                          Get the deformer type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDeformerType
+   Search for all occurrences
+
+   Deformer types.
+
+   Enumerator:
+
+          eUnknown
+
+   Unknown deformer type.
+   Search for all occurrences
+          eSkin
+
+   Type FbxSkin.
+   Search for all occurrences
+          eBlendShape
+
+   Type FbxBlendShape.
+   Search for all occurrences
+          eVertexCache
+
+   Type FbxVertexCacheDeformer.
+   Search for all occurrences
+
+   Definition at line 67 of file fbxdeformer.h.
+        {
+            eUnknown,
+            eSkin,
+                        eBlendShape,
+            eVertexCache
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetMultiLayer ( bool  pMultiLayer )
+   Search for all occurrences
+
+   Set multi-layer state flag.
+
+   Parameters:
+
+          pMultiLayer Set to true to enable multi-layering.
+
+   bool GetMultiLayer ( ) const
+   Search for all occurrences
+
+   Get multi-layer state.
+
+   Returns:
+          The current state of the multi-layer flag.
+
+   virtual EDeformerType GetDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the deformer type.
+
+   Returns:
+          Deformer type identifier. Default value is eUnknown.
+
+   Reimplemented in FbxBlendShape, FbxSkin, and FbxVertexCacheDeformer.
+
+   Definition at line 78 of file fbxdeformer.h.
+{ return eUnknown; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxdeformer.h
+
+   Please send us your comment about this page

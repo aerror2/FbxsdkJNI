@@ -1,0 +1,2794 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProperty Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions | Static Public Attributes
+   FbxProperty Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, Animation Classes and their Interrelationships, FBX SDK 2014, Migrating to the New Data Structures for Animation, Customizing the FBX SDK, Customizing File Formats with FBX SDK I/O Plug-ins, FBX SDK Object Model, FBX Objects, Managing Memory with the FBX SDK Manager, Merging Two Scenes, List of Python Fbx classes, Extracting the Animation Data from a FBX File, FBX Properties, Connections.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxproperty.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to hold user properties.
+
+   Examples:
+          Animation/main.cxx, ExportScene03/main.cxx, ExportScene03/MyKFbxMesh.cxx, ExportScene03/MyKFbxMesh.h, ExportShader/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, ImportScene/DisplayTexture.h, ImportScene/DisplayUserProperties.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, UserProperties/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 36 of file fbxproperty.h.
+   Inheritance diagram for FbxProperty:
+   [USEMAP:class_fbx_property.png]
+
+   List of all members.
+
+Classes
+
+                          class   FbxPropertyNameCache
+                                  This is an internal class that you can use to build and clear the name map of properties. You can use the name map to speed up searching for property names. More...
+
+Public Member Functions
+
+                            bool  CopyValue (const FbxProperty &pProperty)
+                                  Copies the value of a property.
+
+Static Public Attributes
+
+             static const char *  sHierarchicalSeparator
+                                  Hierarchical separator of properties.
+
+Constructor and Destructor.
+
+              static FbxProperty  Create (const FbxProperty &pCompoundProperty, const FbxDataType &pDataType, const char *pName, const char *pLabel="", bool pCheckForDup=true, bool *pWasFound=NULL)
+                                  Creates a runtime property on the specified property.
+              static FbxProperty  Create (FbxObject *pObject, const FbxDataType &pDataType, const char *pName, const char *pLabel="", bool pCheckForDup=true, bool *pWasFound=NULL)
+                                  Creates a runtime property on the specified object.
+              static FbxProperty  CreateFrom (const FbxProperty &pCompoundProperty, FbxProperty &pFromProperty, bool pCheckForDup=true)
+                                  Creates a dynamic property from another property on the specified property.
+              static FbxProperty  CreateFrom (FbxObject *pObject, FbxProperty &pFromProperty, bool pCheckForDup=true)
+                                  Creates a dynamic property from another property on the specified object.
+                            void  Destroy ()
+                                  Destroys a dynamic property.
+                            void  DestroyRecursively ()
+                                  Destroys a dynamic property and its children.
+                            void  DestroyChildren ()
+                                  Destroys children of a dynamic property.
+                                  FbxProperty ()
+                                  Static property constructor.
+                                  FbxProperty (const FbxProperty &pProperty)
+                                  Copy constructor for properties.
+                                  FbxProperty (const FbxPropertyHandle &pPropertyHandle)
+                                  Copy constructor for properties.
+                                  ~FbxProperty ()
+                                  Static property destructor.
+
+Property Identification.
+
+                     FbxDataType  GetPropertyDataType () const
+                                  Returns the property data type.
+                       FbxString  GetName () const
+                                  Returns the internal name of the property.
+                    const char *  GetNameAsCStr () const
+                                  Returns the internal name of the property.
+                       FbxString  GetHierarchicalName () const
+                                  Returns the hierarchical name of the property.
+                       FbxString  GetLabel (bool pReturnNameIfEmpty=true) const
+                                  Returns the property label.
+                            void  SetLabel (const FbxString &pLabel)
+                                  Sets a label for the property.
+                     FbxObject *  GetFbxObject () const
+                                  Returns the object that contains the property.
+
+User data
+
+                            void  SetUserTag (int pTag)
+                                  Sets the user tag.
+                             int  GetUserTag ()
+                                  Gets the user tag.
+                            void  SetUserDataPtr (void *pUserData)
+                                  Sets the user data pointer.
+                          void *  GetUserDataPtr ()
+                                  Gets the user data pointer.
+
+Property Flags.
+
+                            void  ModifyFlag (FbxPropertyFlags::EFlags pFlag, bool pValue)
+                                  Changes the property attribute.
+                            bool  GetFlag (FbxPropertyFlags::EFlags pFlag) const
+                                  Returns the state of the property attribute.
+         FbxPropertyFlags::EFlags  GetFlags () const
+                                  Returns the state of all of the property attributes.
+   FbxPropertyFlags::EInheritType  GetFlagInheritType (FbxPropertyFlags::EFlags pFlag) const
+                                  Returns the inheritance type of the given flag, similar to GetValueInheritType().
+                            bool  SetFlagInheritType (FbxPropertyFlags::EFlags pFlag, FbxPropertyFlags::EInheritType pType)
+                                  Sets the inheritance type for the specific flag, similar to SetValueInheritType().
+                            bool  ModifiedFlag (FbxPropertyFlags::EFlags pFlag) const
+                                  Checks if the property flag has been modified from its default value.
+
+Assignment and comparison operators
+
+                   FbxProperty &  operator= (const FbxProperty &pProperty)
+                                  Assignment operator.
+                            bool  operator== (const FbxProperty &pProperty) const
+                                  Equivalence operator.
+                            bool  operator!= (const FbxProperty &pProperty) const
+                                  Non-equivalence operator.
+                            bool  operator== (int pValue) const
+                                  Equivalence operator.
+                            bool  operator!= (int pValue) const
+                                  Non-equivalence operator.
+                            bool  CompareValue (const FbxProperty &pProperty) const
+                                  Compares this property's value to another property's value.
+
+Value management.
+
+                     static bool  HasDefaultValue (FbxProperty &pProperty)
+                                  Checks if the specified property's value has changed from its default value.
+   template<class T >
+                               T  Get () const
+                                  Gets the value of the property.
+   template<class T >
+                            bool  Set (const T &pValue)
+                                  Sets the value of the property.
+                            bool  IsValid () const
+                                  Judges the property's validity.
+   FbxPropertyFlags::EInheritType  GetValueInheritType () const
+                                  Queries the inheritance type of the property.
+                            bool  SetValueInheritType (FbxPropertyFlags::EInheritType pType)
+                                  Sets the inheritance type of the property.
+                            bool  Modified () const
+                                  Checks if the property's value has been modified from its default value.
+
+Property Limits.
+
+   Property limits are provided for convenience if some applications desire to bound the range of possible values for a given type property.
+
+   FBX will never apply these limits internally, however it will store and retrieve the limits values from files, and will assure that they are persistent in memory while the property exists.
+
+   Note: These limits are meaningless for the boolean type. It is the responsibility of the calling application to implement the necessary instructions to limit the property of boolean type.
+                            void  SetMinLimit (double pMin)
+                                  Sets a minimum property value limit.
+                            bool  HasMinLimit () const
+                                  Returns whether a minimum limit exists, if it returns false, calling GetMinLimit() produces undefined behavior.
+                          double  GetMinLimit () const
+                                  Returns the minimum property value limit.
+                            bool  HasMaxLimit () const
+                                  Returns whether a maximum limit exists, if it returns false, calling GetMaxLimit() produces undefined behavior.
+                            void  SetMaxLimit (double pMax)
+                                  Sets a maximum property value limit.
+                          double  GetMaxLimit () const
+                                  Returns the maximum property value.
+                            void  SetLimits (double pMin, double pMax)
+                                  Sets the minimum and maximum value limit of the property.
+
+Enum and property list
+
+                             int  AddEnumValue (const char *pStringValue)
+                                  Adds a string value at the end of the enumeration list.
+                            void  InsertEnumValue (int pIndex, const char *pStringValue)
+                                  Inserts a string value at the specific index.
+                             int  GetEnumCount () const
+                                  Returns the number of elements in the enumeration list.
+                            void  SetEnumValue (int pIndex, const char *pStringValue)
+                                  Sets a string value at the specific index.
+                            void  RemoveEnumValue (int pIndex)
+                                  Removes the string value at the specified index.
+                    const char *  GetEnumValue (int pIndex) const
+                                  Returns a string value at the specified index.
+
+Hierarchical properties
+
+                            bool  IsRoot () const
+                                  Judges if this property is the root property.
+                            bool  IsChildOf (const FbxProperty &pParent) const
+                                  Judges whether this property is a child of the specified property.
+                            bool  IsDescendentOf (const FbxProperty &pAncestor) const
+                                  Judges whether this property is a descendant of the specified property.
+                     FbxProperty  GetParent () const
+                                  Returns the parent property of this property.
+                            bool  SetParent (const FbxProperty &pOther)
+                                  Sets the parent for this property (this function has not been implemented, so it always return false).
+                     FbxProperty  GetChild () const
+                                  Returns the first child of this property.
+                     FbxProperty  GetSibling () const
+                                  Returns the sibling of this property.
+                     FbxProperty  GetFirstDescendent () const
+                                  Returns the first property that is a descendant of this property.
+                     FbxProperty  GetNextDescendent (const FbxProperty &pProperty) const
+                                  Returns the property that follows pProperty that is a descendant of this property.
+                     FbxProperty  Find (const char *pName, bool pCaseSensitive=true) const
+                                  Searches a property using its name.
+                     FbxProperty  Find (const char *pName, const FbxDataType &pDataType, bool pCaseSensitive=true) const
+                                  Searches a property using its name and data type.
+                     FbxProperty  FindHierarchical (const char *pName, bool pCaseSensitive=true) const
+                                  Searches a property using its full name.
+                     FbxProperty  FindHierarchical (const char *pName, const FbxDataType &pDataType, bool pCaseSensitive=true) const
+                                  Searches a property using its full name and data type.
+
+Optimizations
+
+                            void  BeginCreateOrFindProperty ()
+                                  Internal function for building a property name map.
+                            void  EndCreateOrFindProperty ()
+                                  Internal function for clearing the property name map.
+
+Array Management
+
+                            bool  SetArraySize (int pSize, bool pVariableArray)
+                                  Sets the array size(not implemented).
+                             int  GetArraySize () const
+                                  Returns the array size(not implemented).
+                     FbxProperty  GetArrayItem (int pIndex) const
+                                  Returns the (pIndex)th array item.
+                     FbxProperty  operator[] (int pIndex) const
+                                  Returns the (pIndex)th array item.
+
+Animation Curve Management
+
+   template<class T >
+                               T  EvaluateValue (const FbxTime &pTime=FBXSDK_TIME_INFINITE, bool pForceEval=false)
+                                  Evaluate the value of a property if it has animation and return the result as the template type.
+              FbxPropertyValue &  EvaluateValue (const FbxTime &pTime=FBXSDK_TIME_INFINITE, bool pForceEval=false)
+                                  Evaluate the value of a property if it has animation and return the result.
+              FbxAnimCurveNode *  CreateCurveNode (FbxAnimLayer *pAnimLayer)
+                                  Creates a FbxAnimCurveNode on the specified layer.
+              FbxAnimCurveNode *  GetCurveNode (bool pCreate=false)
+                                  Get the property's animation curve node on the default animation stack and base layer.
+              FbxAnimCurveNode *  GetCurveNode (FbxAnimStack *pAnimStack, bool pCreate=false)
+                                  Get the property's animation curve node on the specified animation stack, using its base layer.
+              FbxAnimCurveNode *  GetCurveNode (FbxAnimLayer *pAnimLayer, bool pCreate=false)
+                                  Get the property's animation curve node on the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, bool pCreate=false)
+                                  Get the FbxAnimCurve from the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, const char *pChannel, bool pCreate=false)
+                                  Get the FbxAnimCurve from the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, const char *pName, const char *pChannel, bool pCreate)
+                                  Get the FbxAnimCurve of the specified channel from the specified animation layer.
+
+General Object Connection and Relationship Management
+
+                            bool  ConnectSrcObject (FbxObject *pObject, FbxConnection::EType pType=FbxConnection::eNone)
+                                  Connects this property to one source object.
+                            bool  IsConnectedSrcObject (const FbxObject *pObject) const
+                                  Judges whether this property connects with the source object.
+                            bool  DisconnectSrcObject (FbxObject *pObject)
+                                  Disconnects this property from one source object.
+                            bool  DisconnectAllSrcObject ()
+                                  Disconnects this property from all the source objects.
+                            bool  DisconnectAllSrcObject (const FbxCriteria &pCriteria)
+                                  Disconnects this property from all source objects that satisfy a given criteria.
+             FBX_DEPRECATED bool  DisconnectAllSrcObject (const FbxClassId &pClassId)
+                                  Disconnects this property from all the source objects of a specific class type.
+                             int  GetSrcObjectCount () const
+                                  Returns the number of source objects with which this property connects.
+                             int  GetSrcObjectCount (const FbxCriteria &pCriteria) const
+                                  Returns the number of source objects that satisfy the given criteria with which this property connects.
+              FBX_DEPRECATED int  GetSrcObjectCount (const FbxClassId &pClassId) const
+                                  Returns the number of source objects of the specific class type with which this property connects.
+                     FbxObject *  GetSrcObject (const int pIndex=0) const
+                                  Returns the source object at the specified index with which this property connects.
+                     FbxObject *  GetSrcObject (const FbxCriteria &pCriteria, const int pIndex=0) const
+                                  Returns the source object that satisfies the criteria at the specified index with which this property connects.
+      FBX_DEPRECATED FbxObject *  GetSrcObject (const FbxClassId &pClassId, const int pIndex=0) const
+                                  Returns the source object of the specified class type at the specified index with which this property connects.
+                     FbxObject *  FindSrcObject (const char *pName, const int pStartIndex=0) const
+                                  Searches the source object with the specified name, starting with the specified index.
+                     FbxObject *  FindSrcObject (const FbxCriteria &pCriteria, const char *pName, const int pStartIndex=0) const
+                                  Searches the source object with the specified name which satisfies the given criteria, starting with the specified index.
+      FBX_DEPRECATED FbxObject *  FindSrcObject (const FbxClassId &pClassId, const char *pName, const int pStartIndex=0) const
+                                  Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+             FBX_DEPRECATED bool  DisconnectAllSrcObject (const T *pFBX_TYPE)
+                                  Disconnects this property from all source objects of the specified class type.
+   template<class T >
+                            bool  DisconnectAllSrcObject ()
+                                  Disconnects this property from all source objects of the specified class type.
+   template<class T >
+             FBX_DEPRECATED bool  DisconnectAllSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria)
+                                  Disconnects this property from all source objects which are of the specified class type and satisfy the given criteria.
+   template<class T >
+                            bool  DisconnectAllSrcObject (const FbxCriteria &pCriteria)
+                                  Disconnects this property from all source objects which are of the specified class type and satisfy the given criteria.
+   template<class T >
+              FBX_DEPRECATED int  GetSrcObjectCount (const T *pFBX_TYPE) const
+                                  Returns the number of source objects of a specific class type with which this property connects.
+   template<class T >
+                             int  GetSrcObjectCount () const
+                                  Returns the number of source objects of a specific class type with which this property connects.
+   template<class T >
+              FBX_DEPRECATED int  GetSrcObjectCount (const T *pFBX_TYPE, const FbxCriteria &pCriteria) const
+                                  Returns the number of source objects which are of the specified class type and satisfy the given criteria with which this property connects.
+   template<class T >
+                             int  GetSrcObjectCount (const FbxCriteria &pCriteria) const
+                                  Returns the number of source objects which are of the specified class type and satisfy the given criteria with which this property connects.
+   template<class T >
+              FBX_DEPRECATED T *  GetSrcObject (const T *pFBX_TYPE, int pIndex=0) const
+                                  Returns the source object of the specified class type at the specified index.
+   template<class T >
+                             T *  GetSrcObject (const int pIndex=0) const
+                                  Returns the source object of the specified class type at the specified index.
+   template<class T >
+              FBX_DEPRECATED T *  GetSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, int pIndex=0) const
+                                  Returns the source object which is of the specified class type and satisfies the given criteria at the specified index.
+   template<class T >
+                             T *  GetSrcObject (const FbxCriteria &pCriteria, const int pIndex=0) const
+                                  Returns the source object which is of the specified class type and satisfies the given criteria at the specified index.
+   template<class T >
+              FBX_DEPRECATED T *  FindSrcObject (const T *pFBX_TYPE, const char *pName, int pStartIndex=0) const
+                                  Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+                             T *  FindSrcObject (const char *pName, const int pStartIndex=0) const
+                                  Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+              FBX_DEPRECATED T *  FindSrcObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+                                  Searches the source object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+   template<class T >
+                             T *  FindSrcObject (const FbxCriteria &pCriteria, const char *pName, const int pStartIndex=0) const
+                                  Searches the source object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+                            bool  ConnectDstObject (FbxObject *pObject, FbxConnection::EType pType=FbxConnection::eNone)
+                                  Connects this property to one destination object.
+                            bool  IsConnectedDstObject (const FbxObject *pObject) const
+                                  Judges whether this property connects with the destination object.
+                            bool  DisconnectDstObject (FbxObject *pObject)
+                                  Disconnects this property from the destination object.
+                            bool  DisconnectAllDstObject ()
+                                  Disconnects this property from all the destination objects.
+                            bool  DisconnectAllDstObject (const FbxCriteria &pCriteria)
+                                  Disconnects this property from all the destination objects that satisfy given criteria.
+             FBX_DEPRECATED bool  DisconnectAllDstObject (const FbxClassId &pClassId)
+                                  Disconnects this property from all the destination objects of the specified class type.
+                             int  GetDstObjectCount () const
+                                  Returns the number of destination objects with which this property connects.
+                             int  GetDstObjectCount (const FbxCriteria &pCriteria) const
+                                  Returns the number of destination objects that satisfy the given criteria with which this property connects.
+              FBX_DEPRECATED int  GetDstObjectCount (const FbxClassId &pClassId) const
+                                  Returns the number of destination objects of the specified class type with which this property connects.
+                     FbxObject *  GetDstObject (const int pIndex=0) const
+                                  Returns the destination object at the specified index with which this property connects.
+                     FbxObject *  GetDstObject (const FbxCriteria &pCriteria, const int pIndex=0) const
+                                  Returns the destination object that satisfies given criteria at the specified index with which this property connects.
+      FBX_DEPRECATED FbxObject *  GetDstObject (const FbxClassId &pClassId, const int pIndex=0) const
+                                  Returns the destination object of the specified class type at the specified index with which this property connects.
+                     FbxObject *  FindDstObject (const char *pName, const int pStartIndex=0) const
+                                  Searches the destination object with the specified name, starting with the specified index.
+                     FbxObject *  FindDstObject (const FbxCriteria &pCriteria, const char *pName, const int pStartIndex=0) const
+                                  Searches the destination object with the specified name which satisfies the given criteria, starting with the specified index.
+      FBX_DEPRECATED FbxObject *  FindDstObject (const FbxClassId &pClassId, const char *pName, const int pStartIndex=0) const
+                                  Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+             FBX_DEPRECATED bool  DisconnectAllDstObject (const T *pFBX_TYPE)
+                                  Disconnects this property from all the destination objects of the specified class type.
+   template<class T >
+                            bool  DisconnectAllDstObject ()
+                                  Disconnects this property from all the destination objects of the specified class type.
+   template<class T >
+             FBX_DEPRECATED bool  DisconnectAllDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria)
+                                  Disconnects this property from all the destination objects which are of the specified class type and satisfy the given criteria.
+   template<class T >
+                            bool  DisconnectAllDstObject (const FbxCriteria &pCriteria)
+                                  Disconnects this property from all the destination objects which are of the specified class type and satisfy the given criteria.
+   template<class T >
+              FBX_DEPRECATED int  GetDstObjectCount (const T *pFBX_TYPE) const
+                                  Returns the number of destination objects of the specified class type with which this property connects.
+   template<class T >
+                             int  GetDstObjectCount () const
+                                  Returns the number of destination objects of the specified class type with which this property connects.
+   template<class T >
+              FBX_DEPRECATED int  GetDstObjectCount (const T *pFBX_TYPE, const FbxCriteria &pCriteria) const
+                                  Returns the number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+   template<class T >
+                             int  GetDstObjectCount (const FbxCriteria &pCriteria) const
+                                  Returns the number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+   template<class T >
+              FBX_DEPRECATED T *  GetDstObject (const T *pFBX_TYPE, int pIndex=0) const
+                                  Returns the destination object of the specified class type at the specified index with which this property connects.
+   template<class T >
+                             T *  GetDstObject (const int pIndex=0) const
+                                  Returns the destination object of the specified class type at the specified index with which this property connects.
+   template<class T >
+              FBX_DEPRECATED T *  GetDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, int pIndex=0) const
+                                  Returns the destination object which is of the specified class type and satisfies the given criteria at the specified index with which this property connects.
+   template<class T >
+                             T *  GetDstObject (const FbxCriteria &pCriteria, const int pIndex=0) const
+                                  Returns the destination object which is of the specified class type and satisfies the given criteria at the specified index with which this property connects.
+   template<class T >
+              FBX_DEPRECATED T *  FindDstObject (const T *pFBX_TYPE, const char *pName, int pStartIndex=0) const
+                                  Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+                             T *  FindDstObject (const char *pName, const int pStartIndex=0) const
+                                  Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+   template<class T >
+              FBX_DEPRECATED T *  FindDstObject (const T *pFBX_TYPE, const FbxCriteria &pCriteria, const char *pName, int pStartIndex=0) const
+                                  Searches the destination object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+   template<class T >
+                             T *  FindDstObject (const FbxCriteria &pCriteria, const char *pName, const int pStartIndex=0) const
+                                  Searches the destination object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+
+General Property Connection and Relationship Management
+
+                            bool  ConnectSrcProperty (const FbxProperty &pProperty)
+                                  Connects this property to a source property.
+                            bool  IsConnectedSrcProperty (const FbxProperty &pProperty)
+                                  Judges whether this property connects with the specified source property.
+                            bool  DisconnectSrcProperty (const FbxProperty &pProperty)
+                                  Disconnects this property from the specified source property.
+                             int  GetSrcPropertyCount () const
+                                  Returns the number of source properties with which this property connects.
+                            bool  ConnectDstProperty (const FbxProperty &pProperty)
+                                  Connects this property to a destination property.
+                            bool  IsConnectedDstProperty (const FbxProperty &pProperty)
+                                  Judges if this property connects with the specified destination property.
+                            bool  DisconnectDstProperty (const FbxProperty &pProperty)
+                                  Disconnects this property from the specified destination property.
+                             int  GetDstPropertyCount () const
+                                  Returns the number of destination properties with which this property connects.
+                            void  ClearConnectCache ()
+                                  Clears the connection cache of this property, this cache is used to store the connections that satisfy the given criteria.
+                     FbxProperty  GetSrcProperty (const int pIndex=0) const
+                                  Returns the source property at the specified index with which this property connects.
+                     FbxProperty  FindSrcProperty (const char *pName, const int pStartIndex=0) const
+                                  Searches the source property with the specified name, starting with the specified index with which this property connects.
+                     FbxProperty  GetDstProperty (const int pIndex=0) const
+                                  Returns the destination property at the specified index with which this property connects.
+                     FbxProperty  FindDstProperty (const char *pName, const int pStartIndex=0) const
+                                  Searches the destination property with the specified name, starting with the specified index with which this property connects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxProperty ( )
+
+   Static property constructor.
+   FbxProperty ( const FbxProperty &  pProperty )
+
+   Copy constructor for properties.
+
+   Parameters:
+
+          pProperty The property copied to this one.
+
+   FbxProperty ( const FbxPropertyHandle &  pPropertyHandle )
+
+   Copy constructor for properties.
+
+   Parameters:
+
+          pPropertyHandle The property handle copied to this property handle.
+
+   ~FbxProperty ( )
+
+   Static property destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxProperty Create ( const FbxProperty &  pCompoundProperty,
+                               const FbxDataType &  pDataType,
+                               const char *         pName,
+                               const char *         pLabel = "",
+                               bool                 pCheckForDup = true,
+                               bool *               pWasFound = NULL
+                             )                      [static]
+   Search for all occurrences
+
+   Creates a runtime property on the specified property.
+
+   Parameters:
+
+          pCompoundProperty The parent property of this property.
+          pDataType         The data type of this property.
+          pName             The property name.
+          pLabel            The label of this property.
+          pCheckForDup      If true, parent property checks if it has a child property already with pName, if false, the new property is created.
+          pWasFound         If pCheckForDup is true, this flag is set to indicate whether the pCompoundProperty already has a child property with pName.
+
+   Examples:
+          Animation/main.cxx, ExportScene03/MyKFbxMesh.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, ProceduralTexture/main.cxx, and UserProperties/main.cxx.
+
+   static FbxProperty Create ( FbxObject *          pObject,
+                               const FbxDataType &  pDataType,
+                               const char *         pName,
+                               const char *         pLabel = "",
+                               bool                 pCheckForDup = true,
+                               bool *               pWasFound = NULL
+                             )                      [static]
+   Search for all occurrences
+
+   Creates a runtime property on the specified object.
+
+   Parameters:
+
+          pObject      The object on which the property will be created.
+          pDataType    The data type of this property.
+          pName        The property name.
+          pLabel       The label of this property.
+          pCheckForDup If true, pObject checks whether it already has a property with pName, if false, a new property is created.
+          pWasFound    If pCheckForDup is true, this flag is set to indicate whether the pObject already has a child property with pName.
+
+   static FbxProperty CreateFrom ( const FbxProperty &  pCompoundProperty,
+                                   FbxProperty &        pFromProperty,
+                                   bool                 pCheckForDup = true
+                                 )                      [static]
+   Search for all occurrences
+
+   Creates a dynamic property from another property on the specified property.
+
+   Parameters:
+
+          pCompoundProperty The parent property of this property.
+          pFromProperty     The property copied by this property.
+          pCheckForDup      If true, parent property checks if it already has a child property that has the name of pFromProperty, if false, a new property is created.
+
+   Remarks:
+          Only the property name, label, min/max, enums and flags are copied.
+
+   static FbxProperty CreateFrom ( FbxObject *    pObject,
+                                   FbxProperty &  pFromProperty,
+                                   bool           pCheckForDup = true
+                                 )                [static]
+   Search for all occurrences
+
+   Creates a dynamic property from another property on the specified object.
+
+   Parameters:
+
+          pObject       The object that contains this property.
+          pFromProperty The property copied by this property.
+          pCheckForDup  If true, pObject checks if it already has a property that has the name of pFromProperty, if false, a new property is created.
+
+   Remarks:
+          Only the property name, label, min/max, enums and flags are copied.
+
+   void Destroy ( )
+   Search for all occurrences
+
+   Destroys a dynamic property.
+   void DestroyRecursively ( )
+   Search for all occurrences
+
+   Destroys a dynamic property and its children.
+
+   Remarks:
+          Destroy all children of current property, and current property will also be destroyed.
+
+   void DestroyChildren ( )
+   Search for all occurrences
+
+   Destroys children of a dynamic property.
+
+   Remarks:
+          Destroy all children of current property, and current property will not be destroyed.
+
+   FbxDataType GetPropertyDataType ( ) const
+   Search for all occurrences
+
+   Returns the property data type.
+
+   Returns:
+          The property data type.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   FbxString GetName ( ) const
+   Search for all occurrences
+
+   Returns the internal name of the property.
+
+   Returns:
+          Property internal name string.
+
+   Examples:
+          ExportShader/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayMesh.cxx, and ImportScene/DisplayTexture.cxx.
+
+   const char* GetNameAsCStr ( ) const
+   Search for all occurrences
+
+   Returns the internal name of the property.
+
+   Returns:
+          Property internal name string.
+
+   FbxString GetHierarchicalName ( ) const
+   Search for all occurrences
+
+   Returns the hierarchical name of the property.
+
+   Returns:
+          Property hierarchical name string.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   FbxString GetLabel ( bool  pReturnNameIfEmpty = true ) const
+   Search for all occurrences
+
+   Returns the property label.
+
+   Parameters:
+
+          pReturnNameIfEmpty If true, lets this method return the internal name if the label is empty.
+
+   Returns:
+          The property label if set, or the property internal name if the pReturnNameIfEmpty flag is set to true and the label has not been defined.
+
+   Remarks:
+          Some applications may ignore the label field and work uniquely with the internal name. Therefore, it should not be taken for granted that a label exists. Also, remember that the label does not get saved in the FBX file. It only exists while the property object is in memory.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayGenericInfo.cxx.
+
+   void SetLabel ( const FbxString &  pLabel )
+   Search for all occurrences
+
+   Sets a label for the property.
+
+   Parameters:
+
+          pLabel Label string.
+
+   FbxObject* GetFbxObject ( ) const
+   Search for all occurrences
+
+   Returns the object that contains the property.
+
+   Returns:
+          The property object owner (or null if the property is an orphan).
+
+   void SetUserTag ( int  pTag )
+   Search for all occurrences
+
+   Sets the user tag.
+
+   Parameters:
+
+          pTag The user tag to be set.
+
+   int GetUserTag ( )
+   Search for all occurrences
+
+   Gets the user tag.
+   void SetUserDataPtr ( void *  pUserData )
+   Search for all occurrences
+
+   Sets the user data pointer.
+
+   Parameters:
+
+          pUserData The user data pointer.
+
+   void* GetUserDataPtr ( )
+   Search for all occurrences
+
+   Gets the user data pointer.
+
+   Returns:
+          The user data pointer.
+
+   void ModifyFlag ( FbxPropertyFlags::EFlags  pFlag,
+                     bool                     pValue
+                   )
+   Search for all occurrences
+
+   Changes the property attribute.
+
+   Parameters:
+
+          pFlag  Property attribute identifier.
+          pValue New state of pFlag.
+
+   Examples:
+          Animation/main.cxx, ExportScene03/main.cxx, ExportShader/main.cxx, and UserProperties/main.cxx.
+
+   bool GetFlag ( FbxPropertyFlags::EFlags  pFlag ) const
+   Search for all occurrences
+
+   Returns the state of the property attribute.
+
+   Parameters:
+
+          pFlag Property attribute identifier.
+
+   Returns:
+          The state of the property attribute(pFlag).
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayUserProperties.cxx.
+
+   FbxPropertyFlags::EFlags GetFlags ( ) const
+   Search for all occurrences
+
+   Returns the state of all of the property attributes.
+
+   Returns:
+          The state of the property attributes(pFlags).
+
+   FbxPropertyFlags::EInheritType GetFlagInheritType ( FbxPropertyFlags::EFlags  pFlag ) const
+   Search for all occurrences
+
+   Returns the inheritance type of the given flag, similar to GetValueInheritType().
+
+   Parameters:
+
+          pFlag The flag to be queried.
+
+   Returns:
+          The inheritance type of the specific flag.
+
+   bool SetFlagInheritType ( FbxPropertyFlags::EFlags        pFlag,
+                             FbxPropertyFlags::EInheritType  pType
+                           )
+   Search for all occurrences
+
+   Sets the inheritance type for the specific flag, similar to SetValueInheritType().
+
+   Parameters:
+
+          pFlag The flag to be set.
+          pType The inheritance type to be set.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool ModifiedFlag ( FbxPropertyFlags::EFlags  pFlag ) const
+   Search for all occurrences
+
+   Checks if the property flag has been modified from its default value.
+
+   Parameters:
+
+          pFlag The flag to be queried.
+
+   Returns:
+          True if the value of this property has changed, false otherwise
+
+   FbxProperty& operator= ( const FbxProperty &  pProperty )
+
+   Assignment operator.
+
+   Parameters:
+
+          pProperty The property assigned to this property.
+
+   Returns:
+          This property.
+
+   bool operator== ( const FbxProperty &  pProperty ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pProperty The property compared to this property.
+
+   Returns:
+          True if equal, false otherwise.
+
+   bool operator!= ( const FbxProperty &  pProperty ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pProperty The property compared to this property.
+
+   Returns:
+          True if unequal, false otherwise.
+
+   bool operator== ( int  pValue ) const [inline]
+
+   Equivalence operator.
+
+   Parameters:
+
+          pValue The value compared to this property.
+
+   Returns:
+          True if this property is valid and pValue doesn't equal zero, or this property is invalid and pValue equals zero, false otherwise.
+
+   Definition at line 249 of file fbxproperty.h.
+{ return (pValue == 0) ? !IsValid() : IsValid(); }
+
+   bool operator!= ( int  pValue ) const [inline]
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pValue The value compared to this property.
+
+   Returns:
+          True if this property is valid and pValue equals zero, or this property is invalid and pValue doesn't equal zero, false otherwise.
+
+   Definition at line 255 of file fbxproperty.h.
+{ return (pValue != 0) ? !IsValid() : IsValid(); }
+
+   bool CompareValue ( const FbxProperty &  pProperty ) const
+   Search for all occurrences
+
+   Compares this property's value to another property's value.
+
+   Parameters:
+
+          pProperty The property whose value is compared with this property's value.
+
+   Returns:
+          True if equal, false otherwise.
+
+   bool CopyValue ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Copies the value of a property.
+
+   Parameters:
+
+          pProperty The property from which to derive the value.
+
+   Returns:
+          True if value has been copied successfully, false otherwise.
+
+   T Get ( ) const [inline]
+   Search for all occurrences
+
+   Gets the value of the property.
+
+   Template Parameters:
+
+          T The data type of the value.
+
+   Returns:
+          The property value.
+
+   Reimplemented in FbxPropertyT< T >, FbxPropertyT< ELook >, FbxPropertyT< EPostureMode >, FbxPropertyT< FbxInt >, FbxPropertyT< FbxBool >, FbxPropertyT< ESamplingType >, FbxPropertyT< EWrapMode >, FbxPropertyT< EHipsTranslationMode >, FbxPropertyT< FbxDouble3 >, FbxPropertyT< EAntialiasingMethod >, FbxPropertyT< EFootContactType >, FbxPropertyT< EAreaLightShape >, FbxPropertyT< FbxDouble >, FbxPropertyT< EFilmRollOrder >, FbxPropertyT< EAspectRatioMode >, FbxPropertyT< EFrontBackPlaneDisplayMode >,
+   FbxPropertyT< ETextureUse6 >, FbxPropertyT< FbxEnum >, FbxPropertyT< EFloorPivot >, FbxPropertyT< FbxReference >, FbxPropertyT< EFbxRotationOrder >, FbxPropertyT< EApertureFormat >, FbxPropertyT< FbxControlSet::EType >, FbxPropertyT< FbxBlob >, FbxPropertyT< EStereoType >, FbxPropertyT< EBlendMode >, FbxPropertyT< EUnifiedMappingType >, FbxPropertyT< EDecayType >, FbxPropertyT< EType >, FbxPropertyT< FbxString >, FbxPropertyT< EFormat >, FbxPropertyT< EFbxQuatInterpMode >, FbxPropertyT<
+   EProjectionType >, FbxPropertyT< EAutoUser >, FbxPropertyT< EFingerContactMode >, FbxPropertyT< EContactBehaviour >, FbxPropertyT< FbxTransform::EInheritType >, FbxPropertyT< EFrontBackPlaneDistanceMode >, FbxPropertyT< EHandContactType >, FbxPropertyT< ESafeAreaStyle >, FbxPropertyT< ERollExtractionMode >, FbxPropertyT< FbxTime >, FbxPropertyT< EApertureMode >, FbxPropertyT< EOffAutoUser >, FbxPropertyT< EFocusDistanceSource >, FbxPropertyT< EGateFit >, FbxPropertyT< FbxDateTime >, and
+   FbxPropertyT< FbxFloat >.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayMaterial.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 278 of file fbxproperty.h.
+{ T lValue; Get(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   bool Set ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   Sets the value of the property.
+
+   Parameters:
+
+          pValue The new value
+
+   Returns:
+          True if type is compatible and the value is set successfully, false otherwise.
+
+   Reimplemented in FbxPropertyT< T >.
+
+   Examples:
+          Animation/main.cxx, ExportScene03/main.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, ProceduralTexture/main.cxx, and UserProperties/main.cxx.
+
+   Definition at line 284 of file fbxproperty.h.
+{ return Set(&pValue, FbxTypeOf(pValue)); }
+
+   bool IsValid ( ) const
+   Search for all occurrences
+
+   Judges the property's validity.
+
+   Returns:
+          True if this property is valid, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayTexture.cxx, ImportScene/DisplayUserProperties.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, and ViewScene/SceneCache.cxx.
+
+   static bool HasDefaultValue ( FbxProperty &  pProperty ) [static]
+   Search for all occurrences
+
+   Checks if the specified property's value has changed from its default value.
+
+   Parameters:
+
+          pProperty Property that is tested.
+
+   Returns:
+          True if the property value is still the default, false otherwise.
+
+   Remarks:
+          If the inheritance type of pProperty's value is eOverride, pProperty's value should have been modified, so pProperty doesn't have the default value. If the inheritance type of pProperty's value is eInherit, that means pProperty's value inherits the referenced object's property value, so pProperty has the default value.
+
+   FbxPropertyFlags::EInheritType GetValueInheritType ( ) const
+   Search for all occurrences
+
+   Queries the inheritance type of the property.
+
+   Use this method to determine if this property's value is overridden from the default value, or from the referenced object, if this object is a clone.
+
+   Returns:
+          The inheritance type of the property.
+
+   bool SetValueInheritType ( FbxPropertyFlags::EInheritType  pType )
+   Search for all occurrences
+
+   Sets the inheritance type of the property.
+
+   Use the method to explicitly override the default value of the property, or the referenced object's property value, if this object is a clone.
+
+   You can also use this to explicitly inherit the default value of the property, or the referenced object's property value, if this object is a clone.
+
+   Parameters:
+
+          pType The new inheritance type.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool Modified ( ) const
+   Search for all occurrences
+
+   Checks if the property's value has been modified from its default value.
+
+   Returns:
+          True if the value of the property has changed, false otherwise.
+
+   Remarks:
+          If the inheritance type of the property's value is eOverride, the property's value should have been modified, it returns true. If the inheritance type of the property's value is eInherit, that means the property's value inherits the referenced object's property value, so the property's value is not modified and it returns false.
+
+   void SetMinLimit ( double  pMin )
+   Search for all occurrences
+
+   Sets a minimum property value limit.
+
+   Parameters:
+
+          pMin Minimum value allowed.
+
+   bool HasMinLimit ( ) const
+   Search for all occurrences
+
+   Returns whether a minimum limit exists, if it returns false, calling GetMinLimit() produces undefined behavior.
+
+   Returns:
+          True when a minimum limit exists, false otherwise.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx.
+
+   double GetMinLimit ( ) const
+   Search for all occurrences
+
+   Returns the minimum property value limit.
+
+   Returns:
+          The minimum value limit.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx.
+
+   bool HasMaxLimit ( ) const
+   Search for all occurrences
+
+   Returns whether a maximum limit exists, if it returns false, calling GetMaxLimit() produces undefined behavior.
+
+   Returns:
+          True when a maximum limit exists, false otherwise.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx.
+
+   void SetMaxLimit ( double  pMax )
+   Search for all occurrences
+
+   Sets a maximum property value limit.
+
+   Parameters:
+
+          pMax Maximum value allowed.
+
+   double GetMaxLimit ( ) const
+   Search for all occurrences
+
+   Returns the maximum property value.
+
+   Returns:
+          The maximum value limit.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx.
+
+   void SetLimits ( double  pMin,
+                    double  pMax
+                  )
+   Search for all occurrences
+
+   Sets the minimum and maximum value limit of the property.
+
+   Parameters:
+
+          pMin Minimum value allowed.
+          pMax Maximum value allowed.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   int AddEnumValue ( const char *  pStringValue )
+   Search for all occurrences
+
+   Adds a string value at the end of the enumeration list.
+
+   Parameters:
+
+          pStringValue The string value to be added.
+
+   Returns:
+          The index in the list where the string is added.
+
+   Remarks:
+          This function is only valid if the property type is eFbxEnum. Empty strings are not allowed.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   void InsertEnumValue ( int           pIndex,
+                          const char *  pStringValue
+                        )
+   Search for all occurrences
+
+   Inserts a string value at the specific index.
+
+   Parameters:
+
+          pIndex       Zero bound index.
+          pStringValue The string value to be inserted.
+
+   Remarks:
+          This function is only valid if the property type is eFbxEnum. pIndex must be in the range [0, ListValueGetCount()]. Empty strings are not allowed.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   int GetEnumCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the enumeration list.
+
+   Returns:
+          The number of elements in the enumeration list.
+
+   Remarks:
+          This function returns 0 if the property type is not eFbxEnum.
+
+   void SetEnumValue ( int           pIndex,
+                       const char *  pStringValue
+                     )
+   Search for all occurrences
+
+   Sets a string value at the specific index.
+
+   Parameters:
+
+          pIndex       Zero bound index.
+          pStringValue The string value at the specific index.
+
+   Remarks:
+          This function is only valid if the property type is eFbxEnum. The function assigns the string value to the specific index. A string value must exist at the specific index in order to be changed. Empty strings are not allowed.
+
+   void RemoveEnumValue ( int  pIndex )
+   Search for all occurrences
+
+   Removes the string value at the specified index.
+
+   Parameters:
+
+          pIndex Index of the string value to be removed.
+
+   Remarks:
+          This function is only valid if the property type is eFbxEnum.
+
+   const char* GetEnumValue ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns a string value at the specified index.
+
+   Parameters:
+
+          pIndex Zero bound index.
+
+   Remarks:
+          This function is only valid if the property type is eFbxEnum.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   bool IsRoot ( ) const [inline]
+   Search for all occurrences
+
+   Judges if this property is the root property.
+
+   Returns:
+          True when this property is a root property, false otherwise.
+
+   Definition at line 438 of file fbxproperty.h.
+{ return mPropertyHandle.IsRoot(); }
+
+   bool IsChildOf ( const FbxProperty &  pParent ) const [inline]
+   Search for all occurrences
+
+   Judges whether this property is a child of the specified property.
+
+   Parameters:
+
+          pParent The specified property.
+
+   Returns:
+          True when this property is a child of the specified property, false otherwise.
+
+   Definition at line 444 of file fbxproperty.h.
+{ return mPropertyHandle.IsChildOf(pParent.mPropertyHandle); }
+
+   bool IsDescendentOf ( const FbxProperty &  pAncestor ) const [inline]
+   Search for all occurrences
+
+   Judges whether this property is a descendant of the specified property.
+
+   Parameters:
+
+          pAncestor The specified property.
+
+   Returns:
+          True when this property is a descendant of the specified property, false otherwise.
+
+   Definition at line 450 of file fbxproperty.h.
+{ return mPropertyHandle.IsDescendentOf(pAncestor.mPropertyHandle); }
+
+   FbxProperty GetParent ( ) const [inline]
+   Search for all occurrences
+
+   Returns the parent property of this property.
+
+   Returns:
+          The parent of this property.
+
+   Definition at line 455 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.GetParent());  }
+
+   bool SetParent ( const FbxProperty &  pOther )
+   Search for all occurrences
+
+   Sets the parent for this property (this function has not been implemented, so it always return false).
+
+   Parameters:
+
+          pOther The parent to be set.
+
+   Returns:
+          True on success, false otherwise.
+
+   FbxProperty GetChild ( ) const [inline]
+   Search for all occurrences
+
+   Returns the first child of this property.
+
+   Returns:
+          The first child of this property, if there is none, an invalid property is returned.
+
+   Definition at line 466 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.GetChild());   }
+
+   FbxProperty GetSibling ( ) const [inline]
+   Search for all occurrences
+
+   Returns the sibling of this property.
+
+   Returns:
+          The sibling of this property, if there is none, an invalid property is returned.
+
+   Definition at line 471 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.GetSibling()); }
+
+   FbxProperty GetFirstDescendent ( ) const [inline]
+   Search for all occurrences
+
+   Returns the first property that is a descendant of this property.
+
+   Returns:
+          The first descendant of this property, if there is none, an invalid property is returned.
+
+   Definition at line 476 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.GetFirstDescendent());   }
+
+   FbxProperty GetNextDescendent ( const FbxProperty &  pProperty ) const [inline]
+   Search for all occurrences
+
+   Returns the property that follows pProperty that is a descendant of this property.
+
+   Parameters:
+
+          pProperty The last found descendant.
+
+   Returns:
+          The property that follows pProperty, if there is none, an invalid property is returned.
+
+   Definition at line 482 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.GetNextDescendent(pProperty.mPropertyHandle)); }
+
+   FbxProperty Find ( const char *  pName,
+                      bool          pCaseSensitive = true
+                    )               const [inline]
+   Search for all occurrences
+
+   Searches a property using its name.
+
+   Parameters:
+
+          pName          The name of the property as a NULL terminated string.
+          pCaseSensitive Whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   Definition at line 490 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.Find(pName,pCaseSensitive));  }
+
+   FbxProperty Find ( const char *         pName,
+                      const FbxDataType &  pDataType,
+                      bool                 pCaseSensitive = true
+                    )                      const [inline]
+   Search for all occurrences
+
+   Searches a property using its name and data type.
+
+   Parameters:
+
+          pName          The name of the property as a NULL terminated string.
+          pDataType      The data type of the property.
+          pCaseSensitive Whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Definition at line 499 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.Find(pName,pDataType.GetTypeInfoHandle(),pCaseSensitive));  }
+
+   FbxProperty FindHierarchical ( const char *  pName,
+                                  bool          pCaseSensitive = true
+                                )               const [inline]
+   Search for all occurrences
+
+   Searches a property using its full name.
+
+   Parameters:
+
+          pName          The full name of the property as a NULL terminated string.
+          pCaseSensitive whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 507 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.Find(pName,sHierarchicalSeparator,pCaseSensitive));  }
+
+   FbxProperty FindHierarchical ( const char *         pName,
+                                  const FbxDataType &  pDataType,
+                                  bool                 pCaseSensitive = true
+                                )                      const [inline]
+   Search for all occurrences
+
+   Searches a property using its full name and data type.
+
+   Parameters:
+
+          pName          The full name of the property as a NULL terminated string.
+          pDataType      The data type of the property.
+          pCaseSensitive whether the name is case-sensitive.
+
+   Returns:
+          A valid FbxProperty if the property is found, else an invalid FbxProperty. See FbxProperty::IsValid()
+
+   Definition at line 516 of file fbxproperty.h.
+{ return FbxProperty(mPropertyHandle.Find(pName,sHierarchicalSeparator,pDataType.GetTypeInfoHandle(),pCaseSensitive));  }
+
+   void BeginCreateOrFindProperty ( ) [inline]
+   Search for all occurrences
+
+   Internal function for building a property name map.
+
+   Definition at line 524 of file fbxproperty.h.
+{ mPropertyHandle.BeginCreateOrFindProperty(); }
+
+   void EndCreateOrFindProperty ( ) [inline]
+   Search for all occurrences
+
+   Internal function for clearing the property name map.
+
+   Definition at line 527 of file fbxproperty.h.
+{ mPropertyHandle.EndCreateOrFindProperty(); }
+
+   bool SetArraySize ( int   pSize,
+                       bool  pVariableArray
+                     )
+   Search for all occurrences
+
+   Sets the array size(not implemented).
+
+   Parameters:
+
+          pSize
+          pVariableArray
+
+   int GetArraySize ( ) const
+   Search for all occurrences
+
+   Returns the array size(not implemented).
+   FbxProperty GetArrayItem ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the (pIndex)th array item.
+
+   Parameters:
+
+          pIndex The item index.
+
+   Returns:
+          The (pIndex)th array item.
+
+   FbxProperty operator[] ( int  pIndex ) const [inline]
+
+   Returns the (pIndex)th array item.
+
+   Parameters:
+
+          pIndex The item index.
+
+   Returns:
+          The (pIndex)th array item.
+
+   Definition at line 570 of file fbxproperty.h.
+{ return GetArrayItem(pIndex); }
+
+   T EvaluateValue ( const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                     bool             pForceEval = false
+                   )
+   Search for all occurrences
+
+   Evaluate the value of a property if it has animation and return the result as the template type.
+
+   Parameters:
+
+          pTime      The time used for evaluate. If FBXSDK_TIME_INFINITE is used, this returns the default value, without animation curves evaluation.
+          pForceEval Force the evaluator to refresh the evaluation state cache even if its already up-to-date.
+
+   Returns:
+          The property value at the specified time converted to the template type provided, if possible.
+
+   Remarks:
+          If the property type versus the template cannot be converted, the result is unknown.
+
+   Reimplemented in FbxPropertyT< T >, FbxPropertyT< ELook >, FbxPropertyT< EPostureMode >, FbxPropertyT< FbxInt >, FbxPropertyT< FbxBool >, FbxPropertyT< ESamplingType >, FbxPropertyT< EWrapMode >, FbxPropertyT< EHipsTranslationMode >, FbxPropertyT< FbxDouble3 >, FbxPropertyT< EAntialiasingMethod >, FbxPropertyT< EFootContactType >, FbxPropertyT< EAreaLightShape >, FbxPropertyT< FbxDouble >, FbxPropertyT< EFilmRollOrder >, FbxPropertyT< EAspectRatioMode >, FbxPropertyT< EFrontBackPlaneDisplayMode >,
+   FbxPropertyT< ETextureUse6 >, FbxPropertyT< FbxEnum >, FbxPropertyT< EFloorPivot >, FbxPropertyT< FbxReference >, FbxPropertyT< EFbxRotationOrder >, FbxPropertyT< EApertureFormat >, FbxPropertyT< FbxControlSet::EType >, FbxPropertyT< FbxBlob >, FbxPropertyT< EStereoType >, FbxPropertyT< EBlendMode >, FbxPropertyT< EUnifiedMappingType >, FbxPropertyT< EDecayType >, FbxPropertyT< EType >, FbxPropertyT< FbxString >, FbxPropertyT< EFormat >, FbxPropertyT< EFbxQuatInterpMode >, FbxPropertyT<
+   EProjectionType >, FbxPropertyT< EAutoUser >, FbxPropertyT< EFingerContactMode >, FbxPropertyT< EContactBehaviour >, FbxPropertyT< FbxTransform::EInheritType >, FbxPropertyT< EFrontBackPlaneDistanceMode >, FbxPropertyT< EHandContactType >, FbxPropertyT< ESafeAreaStyle >, FbxPropertyT< ERollExtractionMode >, FbxPropertyT< FbxTime >, FbxPropertyT< EApertureMode >, FbxPropertyT< EOffAutoUser >, FbxPropertyT< EFocusDistanceSource >, FbxPropertyT< EGateFit >, FbxPropertyT< FbxDateTime >, and
+   FbxPropertyT< FbxFloat >.
+
+   Examples:
+          Animation/main.cxx.
+
+   FbxPropertyValue& EvaluateValue ( const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                                     bool             pForceEval = false
+                                   )
+   Search for all occurrences
+
+   Evaluate the value of a property if it has animation and return the result.
+
+   Parameters:
+
+          pTime      The time used for evaluate. If FBXSDK_TIME_INFINITE is used, this returns the default value, without animation curves evaluation.
+          pForceEval Force the evaluator to refresh the evaluation state cache even if its already up-to-date.
+
+   Returns:
+          The property value at the specified time.
+
+   Reimplemented in FbxPropertyT< T >, FbxPropertyT< ELook >, FbxPropertyT< EPostureMode >, FbxPropertyT< FbxInt >, FbxPropertyT< FbxBool >, FbxPropertyT< ESamplingType >, FbxPropertyT< EWrapMode >, FbxPropertyT< EHipsTranslationMode >, FbxPropertyT< FbxDouble3 >, FbxPropertyT< EAntialiasingMethod >, FbxPropertyT< EFootContactType >, FbxPropertyT< EAreaLightShape >, FbxPropertyT< FbxDouble >, FbxPropertyT< EFilmRollOrder >, FbxPropertyT< EAspectRatioMode >, FbxPropertyT< EFrontBackPlaneDisplayMode >,
+   FbxPropertyT< ETextureUse6 >, FbxPropertyT< FbxEnum >, FbxPropertyT< EFloorPivot >, FbxPropertyT< FbxReference >, FbxPropertyT< EFbxRotationOrder >, FbxPropertyT< EApertureFormat >, FbxPropertyT< FbxControlSet::EType >, FbxPropertyT< FbxBlob >, FbxPropertyT< EStereoType >, FbxPropertyT< EBlendMode >, FbxPropertyT< EUnifiedMappingType >, FbxPropertyT< EDecayType >, FbxPropertyT< EType >, FbxPropertyT< FbxString >, FbxPropertyT< EFormat >, FbxPropertyT< EFbxQuatInterpMode >, FbxPropertyT<
+   EProjectionType >, FbxPropertyT< EAutoUser >, FbxPropertyT< EFingerContactMode >, FbxPropertyT< EContactBehaviour >, FbxPropertyT< FbxTransform::EInheritType >, FbxPropertyT< EFrontBackPlaneDistanceMode >, FbxPropertyT< EHandContactType >, FbxPropertyT< ESafeAreaStyle >, FbxPropertyT< ERollExtractionMode >, FbxPropertyT< FbxTime >, FbxPropertyT< EApertureMode >, FbxPropertyT< EOffAutoUser >, FbxPropertyT< EFocusDistanceSource >, FbxPropertyT< EGateFit >, FbxPropertyT< FbxDateTime >, and
+   FbxPropertyT< FbxFloat >.
+   FbxAnimCurveNode* CreateCurveNode ( FbxAnimLayer *  pAnimLayer )
+   Search for all occurrences
+
+   Creates a FbxAnimCurveNode on the specified layer.
+
+   Parameters:
+
+          pAnimLayer The animation layer the FbxAnimCurveNode object is attached to.
+
+   Returns:
+          Pointer to the created FbxAnimCurveNode.
+
+   Remarks:
+          This function check the property FbxPropertyFlags::eAnimatable flag and fails to execute if it is not set.
+          If created, the FbxAnimCurveNode is automatically connected to the property and the animation layer.
+          The created FbxAnimCurveNode does not automatically allocate anim curves.
+          On the successful execution of this function, the property eAnimated flag is set to true.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   FbxAnimCurveNode* GetCurveNode ( bool  pCreate = false )
+   Search for all occurrences
+
+   Get the property's animation curve node on the default animation stack and base layer.
+
+   Parameters:
+
+          pCreate If true, create the animation curve node and return it if none were found.
+
+   Returns:
+          The animation curve node of this property, if found or created, otherwise NULL.
+
+   Remarks:
+          If the property flag FbxPropertyFlags::eAnimatable is not set, creating the curve node will fail.
+
+   Examples:
+          Animation/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, Instances/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   FbxAnimCurveNode* GetCurveNode ( FbxAnimStack *  pAnimStack,
+                                    bool            pCreate = false
+                                  )
+   Search for all occurrences
+
+   Get the property's animation curve node on the specified animation stack, using its base layer.
+
+   Parameters:
+
+          pAnimStack The animation stack to use to get or create the property's animation curve node. NULL can be passed to automatically specify the default animation stack.
+          pCreate    If true, create the animation curve node and return it if none were found.
+
+   Returns:
+          The animation curve node of this property, if found or created, otherwise NULL.
+
+   Remarks:
+          If the property flag FbxPropertyFlags::eAnimatable is not set, creating the curve node will fail.
+
+   FbxAnimCurveNode* GetCurveNode ( FbxAnimLayer *  pAnimLayer,
+                                    bool            pCreate = false
+                                  )
+   Search for all occurrences
+
+   Get the property's animation curve node on the specified animation layer.
+
+   Parameters:
+
+          pAnimLayer The animation layer to use to get or create the property's animation curve node. Cannot be NULL.
+          pCreate    If true, create the animation curve node and return it if none were found.
+
+   Returns:
+          The animation curve node of this property, if found or created, otherwise NULL.
+
+   Remarks:
+          If the property flag FbxPropertyFlags::eAnimatable is not set, creating the curve node will fail.
+
+   FbxAnimCurve* GetCurve ( FbxAnimLayer *  pAnimLayer,
+                            bool            pCreate = false
+                          )                 [inline]
+   Search for all occurrences
+
+   Get the FbxAnimCurve from the specified animation layer.
+
+   This function expects to find a FbxAnimCurveNode object with the same name as the property and it attempts to retrieve the FbxAnimCurve from it.
+
+   Parameters:
+
+          pAnimLayer The searched animation layer.
+          pCreate    Create a FbxAnimCurve if not found.
+
+   Returns:
+          Pointer to the FbxAnimCurve. Returns NULL in case of errors or pCreate is false and the curve is not found.
+
+   Remarks:
+          If the FbxAnimCurveNode does not exists but the property has the FbxPropertyFlags::eAnimatable flag set and pCreate is true, then this function will first create the FbxAnimCurveNode object and then the FbxAnimCurve.
+          If more than one FbxAnimCurveNode matching the name criteria are connected, the first one is returned.
+
+   Examples:
+          Animation/main.cxx, ExportScene01/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, Pivot/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UserProperties/main.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 629 of file fbxproperty.h.
+                {
+                        return GetCurve(pAnimLayer, GetName(), NULL, pCreate);
+                }
+
+   FbxAnimCurve* GetCurve ( FbxAnimLayer *  pAnimLayer,
+                            const char *    pChannel,
+                            bool            pCreate = false
+                          )                 [inline]
+   Search for all occurrences
+
+   Get the FbxAnimCurve from the specified animation layer.
+
+   This function expects to find a FbxAnimCurveNode object with the same name as the property and it attempts to retrieve the FbxAnimCurve from it.
+
+   Parameters:
+
+          pAnimLayer The searched animation layer.
+          pChannel   Name of the channel we are looking for the animation curve. If NULL use the first defined channel.
+          pCreate    Create a FbxAnimCurve if not found.
+
+   Returns:
+          Pointer to the FbxAnimCurve. Returns NULL in case of errors or pCreate is false and the curve is not found.
+
+   Remarks:
+          If the FbxAnimCurveNode does not exists but the property has the FbxPropertyFlags::eAnimatable flag set and pCreate is true, then this function will first create the FbxAnimCurveNode object and then the FbxAnimCurve.
+          If more than one FbxAnimCurveNode matching the name criteria are connected, the first one is returned.
+
+   Definition at line 644 of file fbxproperty.h.
+                {
+                        return GetCurve(pAnimLayer, GetName(), pChannel, pCreate);
+                }
+
+   FbxAnimCurve* GetCurve ( FbxAnimLayer *  pAnimLayer,
+                            const char *    pName,
+                            const char *    pChannel,
+                            bool            pCreate
+                          )
+   Search for all occurrences
+
+   Get the FbxAnimCurve of the specified channel from the specified animation layer.
+
+   This function looks for the FbxAnimCurveNode named pName and the channel pChannel. It will retrieves the FbxAnimCurve from it.
+
+   Parameters:
+
+          pAnimLayer The searched animation layer.
+          pName      Name of the curve node. It is an error to leave this field empty.
+          pChannel   Name of the channel we are looking for the animation curve. If NULL use the first defined channel.
+          pCreate    Create a FbxAnimCurve if not found.
+
+   Returns:
+          Pointer to the FbxAnimCurve. Returns NULL in case of errors or pCreate is false and the curve is not found.
+
+   Remarks:
+          If the FbxAnimCurveNode does not exists but the property has the FbxPropertyFlags::eAnimatable flag set and pCreate is true, then this function will first create the FbxAnimCurveNode object and then the FbxAnimCurve.
+          If more than one FbxAnimCurveNode matching the name criteria are connected, the first one is returned.
+          If pChannel is NULL, this function is the equivalent of GetCurve(FbxAnimLayer*, bool).
+
+   bool ConnectSrcObject ( FbxObject *           pObject,
+                           FbxConnection::EType  pType = FbxConnection::eNone
+                         )
+   Search for all occurrences
+
+   Connects this property to one source object.
+
+   Parameters:
+
+          pObject The source object to which this property connects.
+          pType   The connection type between the property and the object.
+
+   Returns:
+          True on success, false otherwise.
+
+   Examples:
+          Animation/main.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool IsConnectedSrcObject ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Judges whether this property connects with the source object.
+
+   Parameters:
+
+          pObject The source object.
+
+   Returns:
+          True if this property connects with the source object, false otherwise.
+
+   bool DisconnectSrcObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Disconnects this property from one source object.
+
+   Parameters:
+
+          pObject The source object from which this property will be disconnected.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool DisconnectAllSrcObject ( )
+   Search for all occurrences
+
+   Disconnects this property from all the source objects.
+
+   Returns:
+          True if it disconnects all the source objects successfully, false otherwise.
+
+   bool DisconnectAllSrcObject ( const FbxCriteria &  pCriteria )
+   Search for all occurrences
+
+   Disconnects this property from all source objects that satisfy a given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all the source objects successfully, false otherwise.
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( const FbxClassId &  pClassId )
+   Search for all occurrences
+
+   Disconnects this property from all the source objects of a specific class type.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specific class type.
+
+   Returns:
+          True if it disconnects all the source objects successfully, false otherwise.
+
+   int GetSrcObjectCount ( ) const
+   Search for all occurrences
+
+   Returns the number of source objects with which this property connects.
+
+   Returns:
+          The number of source objects with which this property connects.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and ViewScene/SceneCache.cxx.
+
+   int GetSrcObjectCount ( const FbxCriteria &  pCriteria ) const
+   Search for all occurrences
+
+   Returns the number of source objects that satisfy the given criteria with which this property connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects that satisfy the given criteria with which this property connects.
+
+   FBX_DEPRECATED int GetSrcObjectCount ( const FbxClassId &  pClassId ) const
+   Search for all occurrences
+
+   Returns the number of source objects of the specific class type with which this property connects.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specific class type.
+
+   Returns:
+          The number of source objects of the specific class type with which this property connects.
+
+   FbxObject* GetSrcObject ( const int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns the source object at the specified index with which this property connects.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The source object at the specified index, NULL if not found.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, and ViewScene/SceneCache.cxx.
+
+   FbxObject* GetSrcObject ( const FbxCriteria &  pCriteria,
+                             const int            pIndex = 0
+                           )                      const
+   Search for all occurrences
+
+   Returns the source object that satisfies the criteria at the specified index with which this property connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object that satisfies the given criteria at the specified index, NULL if not found.
+
+   FBX_DEPRECATED FbxObject* GetSrcObject ( const FbxClassId &  pClassId,
+                                            const int           pIndex = 0
+                                          )                     const
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index with which this property connects.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+          pIndex   The specified index whose default value is 0.
+
+   Returns:
+          The source object of the specified class type at the specified index, NULL if not found.
+
+   FbxObject* FindSrcObject ( const char *  pName,
+                              const int     pStartIndex = 0
+                            )               const
+   Search for all occurrences
+
+   Searches the source object with the specified name, starting with the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   FbxObject* FindSrcObject ( const FbxCriteria &  pCriteria,
+                              const char *         pName,
+                              const int            pStartIndex = 0
+                            )                      const
+   Search for all occurrences
+
+   Searches the source object with the specified name which satisfies the given criteria, starting with the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   FBX_DEPRECATED FbxObject* FindSrcObject ( const FbxClassId &  pClassId,
+                                             const char *        pName,
+                                             const int           pStartIndex = 0
+                                           )                     const
+   Search for all occurrences
+
+   Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId    The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( const T *  pFBX_TYPE ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all source objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 769 of file fbxproperty.h.
+{ return DisconnectAllSrcObject(T::ClassId);}
+
+   bool DisconnectAllSrcObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all source objects of the specified class type.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 775 of file fbxproperty.h.
+{ return DisconnectAllSrcObject(FbxCriteria::ObjectType(T::ClassId)); }
+
+   FBX_DEPRECATED bool DisconnectAllSrcObject ( const T *            pFBX_TYPE,
+                                                const FbxCriteria &  pCriteria
+                                              )                      [inline]
+   Search for all occurrences
+
+   Disconnects this property from all source objects which are of the specified class type and satisfy the given criteria.
+
+   (Deprecated, please use DisconnectAllSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 782 of file fbxproperty.h.
+{ return DisconnectAllSrcObject(T::ClassId,pCriteria);  }
+
+   bool DisconnectAllSrcObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all source objects which are of the specified class type and satisfy the given criteria.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all source objects successfully, false otherwise.
+
+   Definition at line 789 of file fbxproperty.h.
+{ return DisconnectAllSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   FBX_DEPRECATED int GetSrcObjectCount ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects of a specific class type with which this property connects.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          The number of source objects of the specified class type with which this property connects.
+
+   Definition at line 795 of file fbxproperty.h.
+{ return GetSrcObjectCount(T::ClassId); }
+
+   int GetSrcObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects of a specific class type with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Returns:
+          The number of source objects of the specified class type with which this property connects.
+
+   Definition at line 801 of file fbxproperty.h.
+{ return GetSrcObjectCount(FbxCriteria::ObjectType(T::ClassId)); }
+
+   FBX_DEPRECATED int GetSrcObjectCount ( const T *            pFBX_TYPE,
+                                          const FbxCriteria &  pCriteria
+                                        )                      const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   (Deprecated, please use GetSrcObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects which are of the specified class type and satisfy the given criteria.
+
+   Definition at line 808 of file fbxproperty.h.
+{ return GetSrcObjectCount(T::ClassId,pCriteria); }
+
+   int GetSrcObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of source objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of source objects which are of the specified class type and satisfy the given criteria.
+
+   Definition at line 815 of file fbxproperty.h.
+{ return GetSrcObjectCount(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   FBX_DEPRECATED T* GetSrcObject ( const T *  pFBX_TYPE,
+                                    int        pIndex = 0
+                                  )            const [inline]
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object of a specified class type at the specified index, NULL if not found.
+
+   Definition at line 822 of file fbxproperty.h.
+{ return (T*)GetSrcObject(T::ClassId,pIndex); }
+
+   T* GetSrcObject ( const int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the source object of the specified class type at the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The source object of a specified class type at the specified index, NULL if not found.
+
+   Definition at line 829 of file fbxproperty.h.
+{ return (T*)GetSrcObject(FbxCriteria::ObjectType(T::ClassId), pIndex); }
+
+   FBX_DEPRECATED T* GetSrcObject ( const T *            pFBX_TYPE,
+                                    const FbxCriteria &  pCriteria,
+                                    int                  pIndex = 0
+                                  )                      const [inline]
+   Search for all occurrences
+
+   Returns the source object which is of the specified class type and satisfies the given criteria at the specified index.
+
+   (Deprecated, please use GetSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object which is of the specified class type and satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 837 of file fbxproperty.h.
+{ return (T*)GetSrcObject(T::ClassId,pCriteria,pIndex); }
+
+   T* GetSrcObject ( const FbxCriteria &  pCriteria,
+                     const int            pIndex = 0
+                   )                      const [inline]
+   Search for all occurrences
+
+   Returns the source object which is of the specified class type and satisfies the given criteria at the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The source object which is of the specified class type and satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 845 of file fbxproperty.h.
+{ return (T*)GetSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pIndex); }
+
+   FBX_DEPRECATED T* FindSrcObject ( const T *     pFBX_TYPE,
+                                     const char *  pName,
+                                     int           pStartIndex = 0
+                                   )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 853 of file fbxproperty.h.
+{ return (T*)FindSrcObject(T::ClassId,pName,pStartIndex); }
+
+   T* FindSrcObject ( const char *  pName,
+                      const int     pStartIndex = 0
+                    )               const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which is of the specified class type, starting with the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 861 of file fbxproperty.h.
+{ return (T*)FindSrcObject(FbxCriteria::ObjectType(T::ClassId), pName, pStartIndex); }
+
+   FBX_DEPRECATED T* FindSrcObject ( const T *            pFBX_TYPE,
+                                     const FbxCriteria &  pCriteria,
+                                     const char *         pName,
+                                     int                  pStartIndex = 0
+                                   )                      const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+
+   (Deprecated, please use FindSrcObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 870 of file fbxproperty.h.
+{ return (T*)FindSrcObject(T::ClassId,pCriteria,pName,pStartIndex); }
+
+   T* FindSrcObject ( const FbxCriteria &  pCriteria,
+                      const char *         pName,
+                      const int            pStartIndex = 0
+                    )                      const [inline]
+   Search for all occurrences
+
+   Searches the source object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 879 of file fbxproperty.h.
+{ return (T*)FindSrcObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pName, pStartIndex); }
+
+   bool ConnectDstObject ( FbxObject *           pObject,
+                           FbxConnection::EType  pType = FbxConnection::eNone
+                         )
+   Search for all occurrences
+
+   Connects this property to one destination object.
+
+   Parameters:
+
+          pObject The destination object with which this property connects.
+          pType   The connection type between this property and the object.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool IsConnectedDstObject ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Judges whether this property connects with the destination object.
+
+   Parameters:
+
+          pObject The destination object.
+
+   Returns:
+          True if this property connects with the destination object, false otherwise.
+
+   bool DisconnectDstObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Disconnects this property from the destination object.
+
+   Parameters:
+
+          pObject The destination object from which this property disconnects from.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool DisconnectAllDstObject ( )
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   bool DisconnectAllDstObject ( const FbxCriteria &  pCriteria )
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects that satisfy given criteria.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( const FbxClassId &  pClassId )
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   int GetDstObjectCount ( ) const
+   Search for all occurrences
+
+   Returns the number of destination objects with which this property connects.
+
+   Returns:
+          The number of destination objects with which this property connects.
+
+   int GetDstObjectCount ( const FbxCriteria &  pCriteria ) const
+   Search for all occurrences
+
+   Returns the number of destination objects that satisfy the given criteria with which this property connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects that satisfy given criteria with which this property connects.
+
+   FBX_DEPRECATED int GetDstObjectCount ( const FbxClassId &  pClassId ) const
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this property connects.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+
+   Returns:
+          The number of destination objects of the specified class type with which this property connects.
+
+   FbxObject* GetDstObject ( const int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns the destination object at the specified index with which this property connects.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The destination object at the specified index, NULL if not found.
+
+   FbxObject* GetDstObject ( const FbxCriteria &  pCriteria,
+                             const int            pIndex = 0
+                           )                      const
+   Search for all occurrences
+
+   Returns the destination object that satisfies given criteria at the specified index with which this property connects.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object that satisfies given criteria at the specified index, NULL if not found.
+
+   FBX_DEPRECATED FbxObject* GetDstObject ( const FbxClassId &  pClassId,
+                                            const int           pIndex = 0
+                                          )                     const
+   Search for all occurrences
+
+   Returns the destination object of the specified class type at the specified index with which this property connects.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId The specified class type.
+          pIndex   The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   FbxObject* FindDstObject ( const char *  pName,
+                              const int     pStartIndex = 0
+                            )               const
+   Search for all occurrences
+
+   Searches the destination object with the specified name, starting with the specified index.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   FbxObject* FindDstObject ( const FbxCriteria &  pCriteria,
+                              const char *         pName,
+                              const int            pStartIndex = 0
+                            )                      const
+   Search for all occurrences
+
+   Searches the destination object with the specified name which satisfies the given criteria, starting with the specified index.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   FBX_DEPRECATED FbxObject* FindDstObject ( const FbxClassId &  pClassId,
+                                             const char *        pName,
+                                             const int           pStartIndex = 0
+                                           )                     const
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pClassId    The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination object with the name, NULL if not found.
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( const T *  pFBX_TYPE ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects of the specified class type.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   Definition at line 981 of file fbxproperty.h.
+{ return DisconnectAllDstObject(T::ClassId);    }
+
+   bool DisconnectAllDstObject ( ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects of the specified class type.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   Definition at line 987 of file fbxproperty.h.
+{ return DisconnectAllDstObject(FbxCriteria::ObjectType(T::ClassId)); }
+
+   FBX_DEPRECATED bool DisconnectAllDstObject ( const T *            pFBX_TYPE,
+                                                const FbxCriteria &  pCriteria
+                                              )                      [inline]
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects which are of the specified class type and satisfy the given criteria.
+
+   (Deprecated, please use DisconnectAllDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   Definition at line 994 of file fbxproperty.h.
+{ return DisconnectAllDstObject(T::ClassId,pCriteria);  }
+
+   bool DisconnectAllDstObject ( const FbxCriteria &  pCriteria ) [inline]
+   Search for all occurrences
+
+   Disconnects this property from all the destination objects which are of the specified class type and satisfy the given criteria.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          True if it disconnects all the destination objects successfully, false otherwise.
+
+   Definition at line 1001 of file fbxproperty.h.
+{ return DisconnectAllDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   FBX_DEPRECATED int GetDstObjectCount ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this property connects.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+
+   Returns:
+          The number of destination objects of the specified class type with which this property connects.
+
+   Definition at line 1007 of file fbxproperty.h.
+{ return GetDstObjectCount(T::ClassId); }
+
+   int GetDstObjectCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects of the specified class type with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Returns:
+          The number of destination objects of the specified class type with which this property connects.
+
+   Definition at line 1013 of file fbxproperty.h.
+{ return GetDstObjectCount(FbxCriteria::ObjectType(T::ClassId)); }
+
+   FBX_DEPRECATED int GetDstObjectCount ( const T *            pFBX_TYPE,
+                                          const FbxCriteria &  pCriteria
+                                        )                      const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   (Deprecated, please use GetDstObjectCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   Definition at line 1020 of file fbxproperty.h.
+{ return GetDstObjectCount(T::ClassId,pCriteria); }
+
+   int GetDstObjectCount ( const FbxCriteria &  pCriteria ) const [inline]
+   Search for all occurrences
+
+   Returns the number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+
+   Returns:
+          The number of destination objects which are of the specified class type and satisfy the given criteria with which this property connects.
+
+   Definition at line 1027 of file fbxproperty.h.
+{ return GetDstObjectCount(FbxCriteria::ObjectType(T::ClassId) && pCriteria); }
+
+   FBX_DEPRECATED T* GetDstObject ( const T *  pFBX_TYPE,
+                                    int        pIndex = 0
+                                  )            const [inline]
+   Search for all occurrences
+
+   Returns the destination object of the specified class type at the specified index with which this property connects.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 1034 of file fbxproperty.h.
+{ return (T*)GetDstObject(T::ClassId,pIndex); }
+
+   T* GetDstObject ( const int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Returns the destination object of the specified class type at the specified index with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pIndex The specified index whose default value is 0.
+
+   Returns:
+          The destination object of the specified class type at the specified index, NULL if not found.
+
+   Definition at line 1041 of file fbxproperty.h.
+{ return (T*)GetDstObject(FbxCriteria::ObjectType(T::ClassId), pIndex); }
+
+   FBX_DEPRECATED T* GetDstObject ( const T *            pFBX_TYPE,
+                                    const FbxCriteria &  pCriteria,
+                                    int                  pIndex = 0
+                                  )                      const [inline]
+   Search for all occurrences
+
+   Returns the destination object which is of the specified class type and satisfies the given criteria at the specified index with which this property connects.
+
+   (Deprecated, please use GetDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE The specified class type.
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object which is of the specified class type and satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 1049 of file fbxproperty.h.
+{ return (T*)GetDstObject(T::ClassId,pCriteria,pIndex); }
+
+   T* GetDstObject ( const FbxCriteria &  pCriteria,
+                     const int            pIndex = 0
+                   )                      const [inline]
+   Search for all occurrences
+
+   Returns the destination object which is of the specified class type and satisfies the given criteria at the specified index with which this property connects.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria The given criteria.
+          pIndex    The specified index whose default value is 0.
+
+   Returns:
+          The destination object which is of the specified class type and satisfies the given criteria at the specified index, NULL if not found.
+
+   Definition at line 1057 of file fbxproperty.h.
+{ return (T*)GetDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pIndex); }
+
+   FBX_DEPRECATED T* FindDstObject ( const T *     pFBX_TYPE,
+                                     const char *  pName,
+                                     int           pStartIndex = 0
+                                   )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 1065 of file fbxproperty.h.
+{ return (T*)FindDstObject(T::ClassId,pName,pStartIndex); }
+
+   T* FindDstObject ( const char *  pName,
+                      const int     pStartIndex = 0
+                    )               const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type, starting with the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 1073 of file fbxproperty.h.
+{ return (T*)FindDstObject(FbxCriteria::ObjectType(T::ClassId), pName, pStartIndex); }
+
+   FBX_DEPRECATED T* FindDstObject ( const T *            pFBX_TYPE,
+                                     const FbxCriteria &  pCriteria,
+                                     const char *         pName,
+                                     int                  pStartIndex = 0
+                                   )                      const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+
+   (Deprecated, please use FindDstObject<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE   The specified class type.
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 1082 of file fbxproperty.h.
+{ return (T*)FindDstObject(T::ClassId,pCriteria,pName,pStartIndex); }
+
+   T* FindDstObject ( const FbxCriteria &  pCriteria,
+                      const char *         pName,
+                      const int            pStartIndex = 0
+                    )                      const [inline]
+   Search for all occurrences
+
+   Searches the destination object with the specified name which is of the specified class type and satisfies the given criteria, starting with the specified index.
+
+   Template Parameters:
+
+          T The specified class type.
+
+   Parameters:
+
+          pCriteria   The given criteria.
+          pName       The object name.
+          pStartIndex The start index.
+
+   Returns:
+          The source object with the name, NULL if not found.
+
+   Definition at line 1091 of file fbxproperty.h.
+{ return (T*)FindDstObject(FbxCriteria::ObjectType(T::ClassId) && pCriteria, pName, pStartIndex); }
+
+   bool ConnectSrcProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Connects this property to a source property.
+
+   Parameters:
+
+          pProperty The source property with which this property connects.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool IsConnectedSrcProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Judges whether this property connects with the specified source property.
+
+   Parameters:
+
+          pProperty The specified source property.
+
+   Returns:
+          True if this property connects with the specified source property, false otherwise.
+
+   bool DisconnectSrcProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Disconnects this property from the specified source property.
+
+   Parameters:
+
+          pProperty The specified source property.
+
+   Returns:
+          True on success, false otherwise.
+
+   int GetSrcPropertyCount ( ) const
+   Search for all occurrences
+
+   Returns the number of source properties with which this property connects.
+
+   Returns:
+          The number of source properties with which this property connects.
+
+   bool ConnectDstProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Connects this property to a destination property.
+
+   Parameters:
+
+          pProperty The destination property with which this property connects.
+
+   Returns:
+          True on success, false otherwise.
+
+   bool IsConnectedDstProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Judges if this property connects with the specified destination property.
+
+   Parameters:
+
+          pProperty The specified destination property.
+
+   Returns:
+          True if this property connects with the specified destination property, false otherwise.
+
+   bool DisconnectDstProperty ( const FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Disconnects this property from the specified destination property.
+
+   Parameters:
+
+          pProperty The specified destination property.
+
+   Returns:
+          True on success, false otherwise.
+
+   int GetDstPropertyCount ( ) const
+   Search for all occurrences
+
+   Returns the number of destination properties with which this property connects.
+
+   Returns:
+          The number of destination properties with which this property connects.
+
+   void ClearConnectCache ( )
+   Search for all occurrences
+
+   Clears the connection cache of this property, this cache is used to store the connections that satisfy the given criteria.
+   FbxProperty GetSrcProperty ( const int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns the source property at the specified index with which this property connects.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          The source property at the specified index.
+
+   Examples:
+          StereoCamera/main.cxx.
+
+   FbxProperty FindSrcProperty ( const char *  pName,
+                                 const int     pStartIndex = 0
+                               )               const
+   Search for all occurrences
+
+   Searches the source property with the specified name, starting with the specified index with which this property connects.
+
+   Parameters:
+
+          pName       The specified property name.
+          pStartIndex The start index.
+
+   Returns:
+          The source property with the specified name.
+
+   FbxProperty GetDstProperty ( const int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns the destination property at the specified index with which this property connects.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          The destination property at the specified index.
+
+   FbxProperty FindDstProperty ( const char *  pName,
+                                 const int     pStartIndex = 0
+                               )               const
+   Search for all occurrences
+
+   Searches the destination property with the specified name, starting with the specified index with which this property connects.
+
+   Parameters:
+
+          pName       The specified property name.
+          pStartIndex The start index.
+
+   Returns:
+          The destination property with the specified name.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sHierarchicalSeparator [static]
+   Search for all occurrences
+
+   Hierarchical separator of properties.
+
+   Definition at line 1176 of file fbxproperty.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxproperty.h
+
+   Please send us your comment about this page

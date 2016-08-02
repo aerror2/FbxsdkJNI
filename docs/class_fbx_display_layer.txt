@@ -1,0 +1,110 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDisplayLayer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes | Static Public Attributes
+   FbxDisplayLayer Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxdisplaylayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for display layers.
+
+   Display layers are overlapping views of your scene that contain a list of members. The members are exclusive. Members cannot be part of multiple display layers. Display layers enables user to organize elements of scene and affect visibility and manipulation attributes of multiple objects at once.
+
+   Definition at line 28 of file fbxdisplaylayer.h.
+   Inheritance diagram for FbxDisplayLayer:
+   [USEMAP:class_fbx_display_layer.png]
+
+   List of all members.
+
+Public Attributes
+
+   FbxPropertyT< FbxDouble3 >  Color
+                               This property stores the color of this display layer.
+      FbxPropertyT< FbxBool >  Show
+                               This property stores the visibility of this display layer.
+      FbxPropertyT< FbxBool >  Freeze
+                               This property stores the manipulation state of this display layer.
+      FbxPropertyT< FbxBool >  LODBox
+                               This property stores the level of detail mode of this display layer.
+
+Static Public Attributes
+
+      static const FbxDouble3  sColorDefault
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble3> Color
+   Search for all occurrences
+
+   This property stores the color of this display layer.
+
+   Default value is FbxDouble3(0.8,0.8,0.8).
+
+   Definition at line 42 of file fbxdisplaylayer.h.
+   FbxPropertyT<FbxBool> Show
+   Search for all occurrences
+
+   This property stores the visibility of this display layer.
+
+   Default value is true.
+
+   Definition at line 47 of file fbxdisplaylayer.h.
+   FbxPropertyT<FbxBool> Freeze
+   Search for all occurrences
+
+   This property stores the manipulation state of this display layer.
+
+   Default value is false.
+
+   Definition at line 52 of file fbxdisplaylayer.h.
+   FbxPropertyT<FbxBool> LODBox
+   Search for all occurrences
+
+   This property stores the level of detail mode of this display layer.
+
+   Default value is false.
+
+   Definition at line 57 of file fbxdisplaylayer.h.
+   const FbxDouble3 sColorDefault [static]
+   Search for all occurrences
+
+   Definition at line 64 of file fbxdisplaylayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxdisplaylayer.h
+
+   Please send us your comment about this page

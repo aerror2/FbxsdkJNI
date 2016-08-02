@@ -1,0 +1,454 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCluster Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCluster Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcluster.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for clusters (links).
+
+   A cluster, or link, is an entity acting on a geometry (FbxGeometry). More precisely, the cluster acts on a subset of the geometry's control points. For each control point that the cluster acts on, the intensity of the cluster's action is modulated by a weight. The link mode (ELinkMode) specifies how the weights are taken into account.
+
+   The cluster's link node specifies the node (FbxNode) that influences the control points of the cluster. If the node is animated, the control points will move accordingly.
+
+   A cluster is usually part of a skin (
+
+   See also:
+          FbxDeformer, FbxSkin). For example, imagine a mesh representing a humanoid, and imagine a skeleton made of bones. Each bone is represented by a node in FBX. To bind the geometry to the nodes, we create a skin (FbxSkin). The skin has many clusters, each one corresponding to a bone. Each node influences some control points of the mesh. A node has a high influence on some of the points (high weight) and lower influence on some other points (low weight). Some points of the mesh are not affected
+          at all by the bone, so they would not be part of the corresponding cluster.
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayLink.cxx, SwitchBinding/main.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 47 of file fbxcluster.h.
+   Inheritance diagram for FbxCluster:
+   [USEMAP:class_fbx_cluster.png]
+
+   List of all members.
+
+Public Member Functions
+
+              void  SetControlPointIWCount (int pCount)
+                    Set the array size for the three arrays: the array of control point indices, the array of weights and the array of blend weights.
+
+General Functions
+
+             EType  GetSubDeformerType () const
+                    Get the type of the sub deformer.
+              void  Reset ()
+                    Restore the cluster to its initial state.
+
+Link Mode, Link Node, Associate Model
+
+             enum   ELinkMode { eNormalize, eAdditive, eTotalOne }
+                    Link modes. More...
+              void  SetLinkMode (ELinkMode pMode)
+                    Set the link mode.
+         ELinkMode  GetLinkMode () const
+                    Get the link mode.
+              void  SetLink (const FbxNode *pNode)
+                    Set the link node.
+         FbxNode *  GetLink ()
+                    Get the link node.
+   const FbxNode *  GetLink () const
+                    Get the link node (as const).
+              void  SetAssociateModel (FbxNode *pNode)
+                    Set the associate model.
+         FbxNode *  GetAssociateModel () const
+                    Get the associate model.
+
+Control Points
+
+   A link has an array of indices to control points and associated weights.
+
+   The indices refer to the control points in the instance of class FbxGeometry owning the link. The weights are the influence of the link node over the displacement of the indexed control points.
+              void  AddControlPointIndex (int pIndex, double pWeight)
+                    Add an element in both arrays of control point indices and weights.
+               int  GetControlPointIndicesCount () const
+                    Get the length of the arrays of control point indices and weights.
+             int *  GetControlPointIndices () const
+                    Get the array of control point indices.
+          double *  GetControlPointWeights () const
+                    Get the array of control point weights.
+
+Transformation matrices
+
+   A link has three transformation matrices:
+     * Transform refers to the global initial transform of the geometry node that contains the link node.
+     * TransformLink refers to global initial transform of the link node.
+     * TransformAssociateModel refers to the global initial transform of the associate model.
+
+   For example, given a mesh binding with several bones(links), Transform is the global transform of the mesh at the binding moment, TransformLink is the global transform of the bone(link) at the binding moment, TransformAssociateModel is the global transform of the associate model at the binding moment.
+              void  SetTransformMatrix (const FbxAMatrix &pMatrix)
+                    Set matrix associated with the node containing the link.
+      FbxAMatrix &  GetTransformMatrix (FbxAMatrix &pMatrix) const
+                    Get matrix associated with the node containing the link.
+              void  SetTransformLinkMatrix (const FbxAMatrix &pMatrix)
+                    Set matrix associated with the link node.
+      FbxAMatrix &  GetTransformLinkMatrix (FbxAMatrix &pMatrix) const
+                    Get matrix associated with the link node.
+              void  SetTransformAssociateModelMatrix (const FbxAMatrix &pMatrix)
+                    Set matrix associated with the associate model.
+      FbxAMatrix &  GetTransformAssociateModelMatrix (FbxAMatrix &pMatrix) const
+                    Get matrix associated with the associate model.
+              void  SetTransformParentMatrix (const FbxAMatrix &pMatrix)
+                    Set matrix associated with the parent node.
+      FbxAMatrix &  GetTransformParentMatrix (FbxAMatrix &pMatrix) const
+                    Get matrix associated with the parent node.
+              bool  IsTransformParentSet () const
+                    Get the Transform Parent set flag value.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ELinkMode
+   Search for all occurrences
+
+   Link modes.
+
+   The link mode sets how the link influences the position of a control point and the relationship between the weights assigned to a control point. The weights assigned to a control point are distributed among the set of links associated with an instance of class FbxGeometry.
+
+   Enumerator:
+
+   eNormalize
+
+   In mode eNormalize, the sum of the weights assigned to a control point is normalized to 1.0.
+   Setting the associate model in this mode is not relevant. The influence of the link is a function of the displacement of the link node relative to the node containing the control points.
+   Search for all occurrences
+   eAdditive
+
+   In mode eAdditive, the sum of the weights assigned to a control point is kept as is.
+   It is the only mode where setting the associate model is relevant. The influence of the link is a function of the displacement of the link node relative to the node containing the control points or, if set, the associate model. The weight gives the proportional displacement of a control point. For example, if the weight of a link over a control point is set to 2.0, a displacement of the link node of 1 unit in the X direction relative to the node containing the control points or, if set, the
+   associate model, triggers a displacement of the control point of 2 units in the same direction.
+   Search for all occurrences
+          eTotalOne
+
+   Mode eTotalOne is identical to mode eNormalize except that the sum of the weights assigned to a control point is not normalized and must equal 1.0.
+   Search for all occurrences
+
+   Definition at line 80 of file fbxcluster.h.
+    {
+                eNormalize,
+        eAdditive,
+        eTotalOne
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   EType GetSubDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the type of the sub deformer.
+
+   Returns:
+          SubDeformer type identifier: eCluster.
+
+   Reimplemented from FbxSubDeformer.
+
+   Definition at line 59 of file fbxcluster.h.
+{return eCluster; };
+
+   void Reset ( )
+   Search for all occurrences
+
+   Restore the cluster to its initial state.
+
+   Calling this function will clear the following:
+     * Pointer to linked node.
+     * Pointer to associate model.
+     * Control point indices and weights.
+     * Transformation matrices.
+
+   void SetLinkMode ( ELinkMode  pMode )
+   Search for all occurrences
+
+   Set the link mode.
+
+   Parameters:
+
+          pMode The link mode.
+
+   Remarks:
+          All the links associated to an instance of class FbxGeometry must have the same link mode.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   ELinkMode GetLinkMode ( ) const
+   Search for all occurrences
+
+   Get the link mode.
+
+   Returns:
+          The link mode.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetLink ( const FbxNode *  pNode )
+   Search for all occurrences
+
+   Set the link node.
+
+   The link node is the node which influences the displacement of the control points. Typically, the link node is the bone a skin is attached to.
+
+   Parameters:
+
+          pNode The link node.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   FbxNode* GetLink ( )
+   Search for all occurrences
+
+   Get the link node.
+
+   The link node is the node which influences the displacement of the control points. Typically, the link node is the bone a skin is attached to.
+
+   Returns:
+          The link node or NULL if FbxCluster::SetLink() has not been called before.
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   const FbxNode* GetLink ( ) const
+   Search for all occurrences
+
+   Get the link node (as const).
+
+   The link node is the node which influences the displacement of the control points. Typically, the link node is the bone a skin is attached to.
+
+   Returns:
+          The link node or NULL if FbxCluster::SetLink() has not been called before.
+
+   void SetAssociateModel ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Set the associate model.
+
+   The associate model is optional. It is only relevant if the link mode is of type eAdditive. If set, the associate model is the node used as a reference to measure the relative displacement of the link node. Otherwise, the displacement of the link node is measured relative to the node containing the control points. Typically, the associate model node is the parent of the bone a skin is attached to.
+
+   Parameters:
+
+          pNode The associate model node.
+
+   FbxNode* GetAssociateModel ( ) const
+   Search for all occurrences
+
+   Get the associate model.
+
+   The associate model is optional. It is only relevant if the link mode is of type eAdditive. If set, the associate model is the node used as a reference to measure the relative displacement of the link node. Otherwise, the displacement of the link node is measured relative the the node containing the control points. Typically, the associate model node is the parent of the bone a skin is attached to.
+
+   Returns:
+          The associate model node or NULL if FbxCluster::SetAssociateModel() has not been called before.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void AddControlPointIndex ( int     pIndex,
+                               double  pWeight
+                             )
+   Search for all occurrences
+
+   Add an element in both arrays of control point indices and weights.
+
+   Parameters:
+
+          pIndex  The index of the control point.
+          pWeight The link weight for this control point.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   int GetControlPointIndicesCount ( ) const
+   Search for all occurrences
+
+   Get the length of the arrays of control point indices and weights.
+
+   Returns:
+          Length of the arrays of control point indices and weights. Returns 0 if no control point indices have been added or the arrays have been reset.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   int* GetControlPointIndices ( ) const
+   Search for all occurrences
+
+   Get the array of control point indices.
+
+   Returns:
+          Pointer to the array of control point indices. NULL if no control point indices have been added or the array has been reset.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   double* GetControlPointWeights ( ) const
+   Search for all occurrences
+
+   Get the array of control point weights.
+
+   Returns:
+          Pointer to the array of control point weights. NULL if no control point indices have been added or the array has been reset.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetControlPointIWCount ( int  pCount )
+   Search for all occurrences
+
+   Set the array size for the three arrays: the array of control point indices, the array of weights and the array of blend weights.
+
+   Parameters:
+
+          pCount The new count.
+
+   void SetTransformMatrix ( const FbxAMatrix &  pMatrix )
+   Search for all occurrences
+
+   Set matrix associated with the node containing the link.
+
+   Parameters:
+
+          pMatrix Transformation matrix.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   FbxAMatrix& GetTransformMatrix ( FbxAMatrix &  pMatrix ) const
+   Search for all occurrences
+
+   Get matrix associated with the node containing the link.
+
+   Parameters:
+
+          pMatrix Transformation matrix to be filled with appropriate data.
+
+   Returns:
+          Input parameter matrix filled with appropriate data.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetTransformLinkMatrix ( const FbxAMatrix &  pMatrix )
+   Search for all occurrences
+
+   Set matrix associated with the link node.
+
+   Parameters:
+
+          pMatrix Transformation matrix.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   FbxAMatrix& GetTransformLinkMatrix ( FbxAMatrix &  pMatrix ) const
+   Search for all occurrences
+
+   Get matrix associated with the link node.
+
+   Parameters:
+
+          pMatrix Transformation matrix to be filled with appropriate data..
+
+   Returns:
+          Input parameter matrix filled with appropriate data.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetTransformAssociateModelMatrix ( const FbxAMatrix &  pMatrix )
+   Search for all occurrences
+
+   Set matrix associated with the associate model.
+
+   Parameters:
+
+          pMatrix Transformation matrix.
+
+   FbxAMatrix& GetTransformAssociateModelMatrix ( FbxAMatrix &  pMatrix ) const
+   Search for all occurrences
+
+   Get matrix associated with the associate model.
+
+   Parameters:
+
+          pMatrix Transformation matrix to be filled with appropriate data..
+
+   Returns:
+          Input parameter matrix filled with appropriate data.
+
+   Examples:
+          ImportScene/DisplayLink.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetTransformParentMatrix ( const FbxAMatrix &  pMatrix )
+   Search for all occurrences
+
+   Set matrix associated with the parent node.
+
+   Parameters:
+
+          pMatrix Transformation matrix.
+
+   FbxAMatrix& GetTransformParentMatrix ( FbxAMatrix &  pMatrix ) const
+   Search for all occurrences
+
+   Get matrix associated with the parent node.
+
+   Parameters:
+
+          pMatrix Transformation matrix to be filled with appropriate data..
+
+   Returns:
+          Input parameter matrix filled with appropriate data.
+
+   bool IsTransformParentSet ( ) const [inline]
+   Search for all occurrences
+
+   Get the Transform Parent set flag value.
+
+   Returns:
+          true if transform matrix associated with parent node is set.
+
+   Definition at line 253 of file fbxcluster.h.
+{ return mIsTransformParentSet; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxcluster.h
+
+   Please send us your comment about this page

@@ -1,0 +1,116 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   ElementContentAccessor Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   ElementContentAccessor Struct Reference
+   Search for all occurrences
+
+   #include <fbxcolladaelement.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A struct for convenient access to the content of common COLLADA element.
+
+   Definition at line 74 of file fbxcolladaelement.h.
+   Inheritance diagram for ElementContentAccessor:
+   [USEMAP:struct_element_content_accessor.png]
+
+   List of all members.
+
+Public Member Functions
+
+                 ElementContentAccessor ()
+                 ElementContentAccessor (xmlNode *pElement)
+        virtual  ~ElementContentAccessor ()
+   template<typename TYPE >
+           bool  GetNext (TYPE *pData)
+   template<typename TYPE >
+            int  GetArray (TYPE *pArray, int pSourceUnitOffset=0, int pSourceUnitValidCount=1, int pSourceUnitSize=1, int pDestUnitOffset=0, int pDestUnitValidCount=1, int pDestUnitSize=1, TYPE pDefaultValue=TYPE())
+
+Public Attributes
+
+      xmlChar *  mContent
+   const char *  mPointer
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   ElementContentAccessor ( )
+   ElementContentAccessor ( xmlNode *  pElement )
+   virtual ~ElementContentAccessor ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool GetNext ( TYPE *  pData ) [inline]
+   Search for all occurrences
+
+   Definition at line 81 of file fbxcolladaelement.h.
+    {
+        return FromString(pData, mPointer, &mPointer);
+    }
+
+   int GetArray ( TYPE *  pArray,
+                  int     pSourceUnitOffset = 0,
+                  int     pSourceUnitValidCount = 1,
+                  int     pSourceUnitSize = 1,
+                  int     pDestUnitOffset = 0,
+                  int     pDestUnitValidCount = 1,
+                  int     pDestUnitSize = 1,
+                  TYPE    pDefaultValue = TYPE()
+                )         [inline]
+   Search for all occurrences
+
+   Definition at line 87 of file fbxcolladaelement.h.
+    {
+        if (pArray)
+        {
+            return FromStringToArray(mPointer, pArray,
+                pSourceUnitOffset, pSourceUnitValidCount, pSourceUnitSize,
+                pDestUnitOffset, pDestUnitValidCount, pDestUnitSize, pDefaultValue);
+        }
+        return 0;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   xmlChar* mContent
+   Search for all occurrences
+
+   Definition at line 101 of file fbxcolladaelement.h.
+   const char* mPointer
+   Search for all occurrences
+
+   Definition at line 102 of file fbxcolladaelement.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladaelement.h
+
+   Please send us your comment about this page

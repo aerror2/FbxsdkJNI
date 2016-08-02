@@ -1,0 +1,57 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObjectMetaData Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxObjectMetaData Class Reference
+
+   This reference page is linked to from the following overview topics: FBX Properties.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxobjectmetadata.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class is used to hold meta-data information on nodes.
+
+   This class does not offer any new functionality over a regular FbxObject; all meta-data information should be stored in properties.
+
+   Examples:
+          ExportScene05/main.cxx, ImportScene/DisplayCommon.cxx, and Transformations/DisplayCommon.cxx.
+
+   Definition at line 29 of file fbxobjectmetadata.h.
+   Inheritance diagram for FbxObjectMetaData:
+   [USEMAP:class_fbx_object_meta_data.png]
+
+   List of all members.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxobjectmetadata.h
+
+   Please send us your comment about this page

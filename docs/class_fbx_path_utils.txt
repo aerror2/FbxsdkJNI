@@ -1,0 +1,297 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPathUtils Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxPathUtils Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, FBX SDK 2013.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxutils.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 48 of file fbxutils.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static FbxString  Bind (const char *pRootPath, const char *pFilePath, bool pCleanPath=true)
+                     Bind together a root path with a file path.
+   static FbxString  GetFolderName (const char *pFilePath)
+                     Extract the folder name from the given file path.
+   static FbxString  GetFileName (const char *pFilePath, bool pWithExtension=true)
+                     Extract file name from the given file path.
+   static FbxString  GetExtensionName (const char *pFilePath)
+                     Extract the file extension in the given file path.
+   static FbxString  ChangeExtension (const char *pFilePath, const char *pExtension)
+                     Change or append a file extension to the specified file path.
+        static bool  IsRelative (const char *pPath)
+                     Test if the given path is relative path, if it is return true.
+   static FbxString  GetRelativePath (const char *pRootPath, const char *pNewPath)
+                     Get the given new path's relative path to the given root path.
+   static FbxString  GetRelativeFilePath (const char *pRootPath, const char *pNewFilePath)
+                     Get the given new path's relative path to the given root path.
+   static FbxString  Resolve (const char *pRelPath)
+                     Get the full path of given path (if the given path is relative path, it will take current directory as default root path.)
+   static FbxString  Clean (const char *pPath)
+                     Clean the redundant and useless denotations in given path name.
+   static FbxString  GenerateFileName (const char *pFolder, const char *pPrefix)
+                     Generate full safe file path name you can use to create new file.
+        static bool  Exist (const char *pFolderPathUTF8)
+                     Verify if the specified folder path exist.
+        static bool  Create (const char *pFolderPathUTF8)
+                     Create the specified folder path if it doesn't exist.
+        static bool  Delete (const char *pFolderPathUTF8)
+                     Delete the specified folder path and all its content recursively.
+        static bool  IsEmpty (const char *pFolderPath_UTF8)
+                     Verify if the folder contains items or not.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxString Bind ( const char *  pRootPath,
+                           const char *  pFilePath,
+                           bool          pCleanPath = true
+                         )               [static]
+   Search for all occurrences
+
+   Bind together a root path with a file path.
+
+   Parameters:
+
+          pRootPath  The root path that will get binded to the file path.
+          pFilePath  The file path to bind to the root path.
+          pCleanPath If true, the resulting path will be cleaned via FbxPathUtils::Clean().
+
+   Returns:
+          Both paths binded together forming a new file path.
+
+   Remarks:
+          If the file path is already a full valid path, pFilePath is returned.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   static FbxString GetFolderName ( const char *  pFilePath ) [static]
+   Search for all occurrences
+
+   Extract the folder name from the given file path.
+
+   Parameters:
+
+          pFilePath The given file path.
+
+   Returns:
+          The folder name. If there isn't any '\' or '/' in the given file path, it will return pFilePath.
+
+   Examples:
+          ExportScene03/main.cxx, ProceduralTexture/main.cxx, and ViewScene/SceneContext.cxx.
+
+   static FbxString GetFileName ( const char *  pFilePath,
+                                  bool          pWithExtension = true
+                                )               [static]
+   Search for all occurrences
+
+   Extract file name from the given file path.
+
+   Parameters:
+
+          pFilePath      The given file path.
+          pWithExtension Decide the file name with extension or without extension. If it is true, return the file name with extension; if it is false, return the file name without extension.
+
+   Examples:
+          ExportScene03/main.cxx, ProceduralTexture/main.cxx, and ViewScene/SceneContext.cxx.
+
+   static FbxString GetExtensionName ( const char *  pFilePath ) [static]
+   Search for all occurrences
+
+   Extract the file extension in the given file path.
+
+   Parameters:
+
+          pFilePath The file path to extract the extension.
+
+   Returns:
+          The file extension without the '.' character.
+
+   Remarks:
+          Return empty string if the file path doesn't contain a valid extension.
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   static FbxString ChangeExtension ( const char *  pFilePath,
+                                      const char *  pExtension
+                                    )               [static]
+   Search for all occurrences
+
+   Change or append a file extension to the specified file path.
+
+   Parameters:
+
+          pFilePath  The file path to change the file extension
+          pExtension The extension to change or append to the file path.
+
+   Returns:
+          The file path with the file extension changed/added.
+
+   Remarks:
+          If the file path doesn't end with a valid file name, pFilePath is returned.
+
+   static bool IsRelative ( const char *  pPath ) [static]
+   Search for all occurrences
+
+   Test if the given path is relative path, if it is return true.
+   static FbxString GetRelativePath ( const char *  pRootPath,
+                                      const char *  pNewPath
+                                    )               [static]
+   Search for all occurrences
+
+   Get the given new path's relative path to the given root path.
+
+   Parameters:
+
+          pRootPath The given root path
+          pNewPath  The given new path. If it is only file name, the default directory is work directory.
+
+   Returns:
+          The relative path.
+
+   Remarks:
+          If the given two paths have the same drive, the function will turn '\' in the relative path to '/'.
+
+   static FbxString GetRelativeFilePath ( const char *  pRootPath,
+                                          const char *  pNewFilePath
+                                        )               [static]
+   Search for all occurrences
+
+   Get the given new path's relative path to the given root path.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   static FbxString Resolve ( const char *  pRelPath ) [static]
+   Search for all occurrences
+
+   Get the full path of given path (if the given path is relative path, it will take current directory as default root path.)
+
+   Examples:
+          ExportScene03/main.cxx, and ViewScene/SceneContext.cxx.
+
+   static FbxString Clean ( const char *  pPath ) [static]
+   Search for all occurrences
+
+   Clean the redundant and useless denotations in given path name.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   static FbxString GenerateFileName ( const char *  pFolder,
+                                       const char *  pPrefix
+                                     )               [static]
+   Search for all occurrences
+
+   Generate full safe file path name you can use to create new file.
+
+   Parameters:
+
+          pFolder The folder where the file name should be attempted to be created.
+          pPrefix The prefix of generated file name.
+
+   Returns:
+          A valid file path that can safely be used to create a new file.
+
+   static bool Exist ( const char *  pFolderPathUTF8 ) [static]
+   Search for all occurrences
+
+   Verify if the specified folder path exist.
+
+   Parameters:
+
+          pFolderPathUTF8 The folder path to test its existance.
+
+   Returns:
+          True if the folder path exist, false otherwise.
+
+   Remarks:
+          This function work for relative paths. It will search from the current work path.
+
+   static bool Create ( const char *  pFolderPathUTF8 ) [static]
+   Search for all occurrences
+
+   Create the specified folder path if it doesn't exist.
+
+   Parameters:
+
+          pFolderPathUTF8 The folder path to create, in UTF8 encoding.
+
+   Returns:
+          True if folder path already exist, or if it was successfully created, false otherwise.
+
+   Remarks:
+          This function will create multiple folders if needed, and it also work for relative paths.
+
+   Examples:
+          ExportScene03/main.cxx, and ProceduralTexture/main.cxx.
+
+   static bool Delete ( const char *  pFolderPathUTF8 ) [static]
+   Search for all occurrences
+
+   Delete the specified folder path and all its content recursively.
+
+   Parameters:
+
+          pFolderPathUTF8 The folder path to delete, in UTF8 encoding.
+
+   Returns:
+          True if folder path was successfully deleted, false otherwise.
+
+   Remarks:
+          This function work for relative paths. It will search from the current work path.
+
+   static bool IsEmpty ( const char *  pFolderPath_UTF8 ) [static]
+   Search for all occurrences
+
+   Verify if the folder contains items or not.
+
+   Parameters:
+
+          pFolderPath_UTF8 The folder path to test if it contains items.
+
+   Returns:
+          True if the folder contain any kind of entry type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxutils.h
+
+   Please send us your comment about this page

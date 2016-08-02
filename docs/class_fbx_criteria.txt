@@ -1,0 +1,138 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCriteria Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxCriteria Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, FBX Objects, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxquery.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Defines a filtering criteria for a query of objects, connections and properties, so that only those satisfying the criteria are affected by the query.
+
+   Some examples of kinds of criteria are object type, connection type, or property. Criteria can be combined using logical operators such as "and" and "or".
+
+   Note:
+          Objects are basic elements in FBX. Each of them has a hierarchy type and some properties. Objects and properties can be connected through a connection to represent a relationship between them. (e.g. child-parent, container membership, reference, etc.,). In a query, you could select object or properties based on these criteria. Here are some examples:
+
+ FbxObject* lObject = FbxObject::Create(lManager, "Object");
+ int lSrcLightCount = lObject->RootProperty.GetSrcObjectCount(FbxCriteria::ObjectType(FbxLight::ClassId));
+ int lSrcDeformerCount = lObject->RootProperty.GetSrcObjectCount(FbxCriteria::ObjectTypeStrict(FbxDeformer::ClassId));
+ int lSrcPropertyCount = lObject->RootProperty.GetSrcCount(FbxCriteria::IsProperty());
+
+   See also:
+          FbxQuery
+          FbxProperty::GetSrcObjectCount(const FbxCriteria&) const
+          FbxCollection::GetMemberCount(const FbxCriteria&) const
+
+   Definition at line 104 of file fbxquery.h.
+
+   List of all members.
+
+Public Member Functions
+
+          FbxCriteria  operator&& (const FbxCriteria &pCriteria) const
+                       Gets a logical conjunction (and) criteria from this and the specified criteria.
+          FbxCriteria  operator|| (const FbxCriteria &pCriteria) const
+                       Gets a logical disjunction (or) criteria from this and the specified criteria.
+          FbxCriteria  operator! () const
+                       Returns a negated version of the criteria.
+           FbxQuery *  GetQuery () const
+                       Retrieves the query.
+
+Static Public Member Functions
+
+   static FbxCriteria  ObjectType (const FbxClassId &pClassId)
+                       Creates a new query criteria that only selects objects which have a specific class ID or derive from a class with a specific class ID.
+   static FbxCriteria  ObjectTypeStrict (const FbxClassId &pClassId)
+                       Creates a new query criteria that only selects objects which have a specific class ID.
+   static FbxCriteria  IsProperty ()
+                       Creates a new query criteria that only selects properties.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxCriteria ObjectType ( const FbxClassId &  pClassId ) [static]
+   Search for all occurrences
+
+   Creates a new query criteria that only selects objects which have a specific class ID or derive from a class with a specific class ID.
+
+   Parameters:
+
+          pClassId The base type class ID
+
+   static FbxCriteria ObjectTypeStrict ( const FbxClassId &  pClassId ) [static]
+   Search for all occurrences
+
+   Creates a new query criteria that only selects objects which have a specific class ID.
+
+   Parameters:
+
+          pClassId The type class ID
+
+   static FbxCriteria IsProperty ( ) [static]
+   Search for all occurrences
+
+   Creates a new query criteria that only selects properties.
+   FbxCriteria operator&& ( const FbxCriteria &  pCriteria ) const
+
+   Gets a logical conjunction (and) criteria from this and the specified criteria.
+
+   Parameters:
+
+          pCriteria The specified criteria
+
+   FbxCriteria operator|| ( const FbxCriteria &  pCriteria ) const
+
+   Gets a logical disjunction (or) criteria from this and the specified criteria.
+
+   Parameters:
+
+          pCriteria The specified criteria
+
+   FbxCriteria operator! ( ) const
+
+   Returns a negated version of the criteria.
+   FbxQuery* GetQuery ( ) const
+   Search for all occurrences
+
+   Retrieves the query.
+
+   Returns:
+          The query of this criteria
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxquery.h
+
+   Please send us your comment about this page

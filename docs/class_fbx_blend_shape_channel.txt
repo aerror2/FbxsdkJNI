@@ -1,0 +1,258 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBlendShapeChannel Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxBlendShapeChannel Class Reference
+   Search for all occurrences
+
+   #include <fbxblendshapechannel.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for blend shape channels.
+
+   A blend shape channel is a sub-deformer to help blend shape deformer to organize the target shapes. One blend shape deformer can have multiple blend shape channels in parallel, and each of them can control one or multiple target shapes. If there are multiple target shapes connected to one channel, each target shape could have its own full deformation percentage. For example, given a channel that has 3 target shapes, whose full deform percentage are 30, to 80 to 100 separately, then when the percent
+   changes from 0 to 100, the base geometry will deform from the first target shape to the last one. This is called in-between blend shapes or progressive morph. The property DeformPercent of blend shape channel will control the deform level of each target shape or in-between blend shape on it.
+
+   Examples:
+          ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 37 of file fbxblendshapechannel.h.
+   Inheritance diagram for FbxBlendShapeChannel:
+   [USEMAP:class_fbx_blend_shape_channel.png]
+
+   List of all members.
+
+Public Member Functions
+
+                        bool  SetBlendShapeDeformer (FbxBlendShape *pBlendShape)
+                              Set the blend shape deformer that contains this blend shape channel.
+             FbxBlendShape *  GetBlendShapeDeformer ()
+                              Get the blend shape deformer that contains this blend shape channel.
+                        bool  AddTargetShape (FbxShape *pShape, double pFullDeformPercent=100)
+                              Add a target shape.
+                  FbxShape *  RemoveTargetShape (FbxShape *pShape)
+                              Remove the given target shape.
+                         int  GetTargetShapeCount () const
+                              Get the number of target shapes.
+                  FbxShape *  GetTargetShape (int pIndex)
+                              Get the target shape at given index.
+            const FbxShape *  GetTargetShape (int pIndex) const
+                              Get the target shape at given index.
+                         int  GetTargetShapeIndex (FbxShape *pShape)
+                              Get the index of the given target shape.
+                    double *  GetTargetShapeFullWeights ()
+                              Get the full weight values of target shape.
+                        void  SetFullWeightsCount (int pCount)
+                              Set the array size for the fully deform weights.
+
+Public Attributes
+
+   FbxPropertyT< FbxDouble >  DeformPercent
+                              This property stores deform percent of this channel.
+
+General Functions
+
+                       EType  GetSubDeformerType () const
+                              Get the type of the sub deformer.
+                        void  Reset ()
+                              Restore the blend shape channel to the initial state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool SetBlendShapeDeformer ( FbxBlendShape *  pBlendShape )
+   Search for all occurrences
+
+   Set the blend shape deformer that contains this blend shape channel.
+
+   Parameters:
+
+          pBlendShape Pointer to the blend shape deformer to set.
+
+   Returns:
+          true on success, false otherwise.
+
+   FbxBlendShape* GetBlendShapeDeformer ( )
+   Search for all occurrences
+
+   Get the blend shape deformer that contains this blend shape channel.
+
+   Returns:
+          A pointer to the blend shape deformer if set or NULL.
+
+   bool AddTargetShape ( FbxShape *  pShape,
+                         double      pFullDeformPercent = 100
+                       )
+   Search for all occurrences
+
+   Add a target shape.
+
+   Parameters:
+
+          pShape             Pointer to the target shape to add.
+          pFullDeformPercent The full deform percentage for the target shape.
+
+   Returns:
+          true on success, false otherwise.
+
+   Examples:
+          ExportScene02/main.cxx, and ExportScene03/main.cxx.
+
+   FbxShape* RemoveTargetShape ( FbxShape *  pShape )
+   Search for all occurrences
+
+   Remove the given target shape.
+
+   Parameters:
+
+          pShape Pointer to the target shape to remove from this blend shape channel.
+
+   Returns:
+          Pointer to the target shape or NULL if pShape is not owned by this blend shape channel.
+
+   int GetTargetShapeCount ( ) const
+   Search for all occurrences
+
+   Get the number of target shapes.
+
+   Returns:
+          Number of target shapes that have been added to this blend shape channel.
+
+   Examples:
+          ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   FbxShape* GetTargetShape ( int  pIndex )
+   Search for all occurrences
+
+   Get the target shape at given index.
+
+   Parameters:
+
+          pIndex Index of the target shape.
+
+   Returns:
+          Pointer to the target shape or NULL if index is out of range.
+
+   Examples:
+          ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   const FbxShape* GetTargetShape ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the target shape at given index.
+
+   Parameters:
+
+          pIndex Index of the target shape.
+
+   Returns:
+          Pointer to the target shape or NULL if index is out of range.
+
+   int GetTargetShapeIndex ( FbxShape *  pShape )
+   Search for all occurrences
+
+   Get the index of the given target shape.
+
+   Parameters:
+
+          pShape The given target shape to find index.
+
+   Returns:
+          The index of the target shape.
+
+   double* GetTargetShapeFullWeights ( )
+   Search for all occurrences
+
+   Get the full weight values of target shape.
+
+   To access each value iterate in the array up to GetTargetShapeCount().
+
+   Returns:
+          The array of full weight values of target shape.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void SetFullWeightsCount ( int  pCount )
+   Search for all occurrences
+
+   Set the array size for the fully deform weights.
+
+   This functions pre-allocate the array to pCount size.
+
+   Parameters:
+
+          pCount The new array size to set.
+
+   EType GetSubDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the type of the sub deformer.
+
+   Returns:
+          The sub deformer type identifier of blend shape channel.
+
+   Reimplemented from FbxSubDeformer.
+
+   Definition at line 117 of file fbxblendshapechannel.h.
+{return eBlendShapeChannel; };
+
+   void Reset ( )
+   Search for all occurrences
+
+   Restore the blend shape channel to the initial state.
+
+   Calling this function will do the following:
+     * Set the DeformPercent to 0.
+     * Remove all target shapes.
+     * Clear the array for fully deform weights of in-between target shapes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble> DeformPercent
+   Search for all occurrences
+
+   This property stores deform percent of this channel.
+
+   The default value of this property is 0.0.
+
+   Remarks:
+          Although not enforced, it is strongly suggested to limit the value of this property in the range from 0.0 to 100.0 because graphic applications may handle values outside of this interval differently, therefore producing unexpected results.
+
+   Examples:
+          ImportScene/DisplayShape.cxx.
+
+   Definition at line 49 of file fbxblendshapechannel.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxblendshapechannel.h
+
+   Please send us your comment about this page

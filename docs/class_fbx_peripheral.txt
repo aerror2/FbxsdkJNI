@@ -1,0 +1,160 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPeripheral Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxPeripheral Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxperipheral.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxPeripheral is an interface to load/unload content of FbxObject from memory to somewhere you defined, for example, to a temporary file on disk .
+
+   You need to inherited your own peripheral class from this class and overload the functions to control what information of a FbxObject you want to load/unload, and where you are going to load/unload these information to. For example, you can ask an object to dump itself on disk to free some memory and vice-versa when you want to load/unload this object from your scene flexibly.
+
+   Definition at line 31 of file fbxperipheral.h.
+
+   List of all members.
+
+Public Member Functions
+
+   virtual void  Reset ()=0
+                 Reset the peripheral to its initial state.
+   virtual bool  UnloadContentOf (FbxObject *pObject)=0
+                 Unload the content of pObject.
+   virtual bool  LoadContentOf (FbxObject *pObject)=0
+                 Load the content of pObject.
+   virtual bool  CanUnloadContentOf (FbxObject *pObject)=0
+                 Check if this peripheral can unload the given object content.
+   virtual bool  CanLoadContentOf (FbxObject *pObject)=0
+                 Check if this peripheral can load the given object content.
+   virtual void  InitializeConnectionsOf (FbxObject *pObject)=0
+                 Initialize the connections of an object.
+   virtual void  UninitializeConnectionsOf (FbxObject *pObject)=0
+                 Uninitialize the connections of an object.
+
+Constructor and Destructor
+
+                 FbxPeripheral ()
+                 Constructor.
+        virtual  ~FbxPeripheral ()
+                 Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPeripheral ( )
+
+   Constructor.
+   virtual ~FbxPeripheral ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Reset ( ) [pure virtual]
+   Search for all occurrences
+
+   Reset the peripheral to its initial state.
+   virtual bool UnloadContentOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Unload the content of pObject.
+
+   Parameters:
+
+          pObject Object whose content is to be offloaded into the peripheral storage area.
+
+   Returns:
+          true if the object content has been successfully transferred. false otherwise.
+
+   virtual bool LoadContentOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Load the content of pObject.
+
+   Parameters:
+
+          pObject Object whose content is to be loaded from the peripheral storage area.
+
+   Returns:
+          true if the object content has been successfully transferred. false otherwise.
+
+   virtual bool CanUnloadContentOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Check if this peripheral can unload the given object content.
+
+   Parameters:
+
+          pObject Object whose content has to be transferred.
+
+   Returns:
+          true if the peripheral can handle this object content and has enough space in its storage area.false otherwise.
+
+   virtual bool CanLoadContentOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Check if this peripheral can load the given object content.
+
+   Parameters:
+
+          pObject Object whose content has to be transferred.
+
+   Returns:
+          true if the peripheral can handle this object content. false otherwise.
+
+   virtual void InitializeConnectionsOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Initialize the connections of an object.
+
+   Parameters:
+
+          pObject Object on which the request for connection is done.
+
+   virtual void UninitializeConnectionsOf ( FbxObject *  pObject ) [pure virtual]
+   Search for all occurrences
+
+   Uninitialize the connections of an object.
+
+   Parameters:
+
+          pObject Object on which the request for disconnection is done.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxperipheral.h
+
+   Please send us your comment about this page

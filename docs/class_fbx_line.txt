@@ -1,0 +1,260 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLine Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxLine Class Reference
+
+   This reference page is linked to from the following overview topics: Geometry, Meshes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxline.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A line is a geometry made of points.
+
+   To be different from curves(nurbs, etc), line is linear. The class can define a line with as many points as needed. The line can also represent line segments, which means there will be gaps among points. To denote line segments and these gaps, certain points could be marked as end points. That's why we supply an index array(mPointArray) and an end point array(mEndPointArray). To mark a point as end point, we add its index(of mPointArray) to mEndPointArray.
+
+   Methods to initialize, set and access control points are provided in the FbxGeometryBase class. To initialize control point count, please use FbxLine::InitControlPoints(int pCount). To set a control point, please use FbxLine::SetControlPointAt(const FbxVector4 &pCtrlPoint , int pIndex). To get control point count, please use FbxLine::GetControlPointsCount(). To get a control point, please use FbxLine::GetControlPointAt(int pIndex). The pIndex could be returned by GetPointIndexAt(i).
+
+   Definition at line 34 of file fbxline.h.
+   Inheritance diagram for FbxLine:
+   [USEMAP:class_fbx_line.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Return the type of node attribute.
+                              void  Reset ()
+                                    Reset the line to default values.
+                              void  SetIndexArraySize (int pCount)
+                                    Sets the size of index array(mPointArray).
+                               int  GetIndexArraySize () const
+                                    Return the size of index array(mPointArray).
+                 FbxArray< int > *  GetIndexArray ()
+                                    Get the pointer to the index array.
+                              bool  SetPointIndexAt (int pValue, int pIndex, bool pAsEndPoint=false)
+                                    Sets index array(mPointArray) at a specified index.
+                               int  GetPointIndexAt (int pIndex) const
+                                    Gets the point index(i.e: an index to a control point) at the specified index.
+                              bool  AddPointIndex (int pValue, bool pAsEndPoint=false)
+                                    Adds a point to the index array (mPointArray).
+                 FbxArray< int > *  GetEndPointArray ()
+                                    Get the pointer to the end point array.
+                              bool  AddEndPoint (int pPointIndex)
+                                    Adds a point index to the end point array (mEndPointArray).
+                               int  GetEndPointAt (int pEndPointIndex) const
+                                    Gets the point index(an index to the point index array) at the specified index.
+                               int  GetEndPointCount () const
+                                    Query the number of end points.
+
+Public Attributes
+
+           FbxPropertyT< FbxBool >  Renderable
+                                    This property decide whether this line is renderable in 3DSMax.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute.
+
+   Returns:
+          Return the type of this node attribute which is EType::eLine.
+
+   Reimplemented from FbxGeometry.
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the line to default values.
+
+   Frees and set to NULL all layers and clear the control point array, the index array and end points array.
+   void SetIndexArraySize ( int  pCount )
+   Search for all occurrences
+
+   Sets the size of index array(mPointArray).
+
+   Parameters:
+
+          pCount Specify the size of mPointArray.
+
+   int GetIndexArraySize ( ) const
+   Search for all occurrences
+
+   Return the size of index array(mPointArray).
+
+   Returns:
+          The number of points defined for this line.
+
+   FbxArray<int>* GetIndexArray ( ) [inline]
+   Search for all occurrences
+
+   Get the pointer to the index array.
+
+   Returns:
+          the pointer to the index array(mPointArray).
+
+   Definition at line 62 of file fbxline.h.
+{ return &mPointArray;}
+
+   bool SetPointIndexAt ( int   pValue,
+                          int   pIndex,
+                          bool  pAsEndPoint = false
+                        )
+   Search for all occurrences
+
+   Sets index array(mPointArray) at a specified index.
+
+   Parameters:
+
+          pValue      An index to a control point. Its range is from 0 to count of control point.
+          pIndex      The specified index to mPointArray. Its range is from 0 to size of mPointArray.
+          pAsEndPoint Mark current point as end point or not. If pAsEndPoint is true, pIndex will be automatically added to mEndPointArray.
+
+   Returns:
+          True on success, false on failure if pIndex is out of range.
+
+   int GetPointIndexAt ( int  pIndex ) const
+   Search for all occurrences
+
+   Gets the point index(i.e: an index to a control point) at the specified index.
+
+   Parameters:
+
+          pIndex The specified index to the point index array(mPointArray). Its range is from 0 to size of mPointArray.
+
+   Returns:
+          Return the index to the table of the control points. If pIndex is out of range, it will return -1.
+
+   bool AddPointIndex ( int   pValue,
+                        bool  pAsEndPoint = false
+                      )
+   Search for all occurrences
+
+   Adds a point to the index array (mPointArray).
+
+   Parameters:
+
+          pValue      The index to a control point. Its range is from 0 to count of control point.
+          pAsEndPoint Mark current point as end point or not. If pAsEndPoint is true, current point index will be automatically added to mEndPointArray.
+
+   Returns:
+          True on success, false on failure if pValue is out of range.
+
+   FbxArray<int>* GetEndPointArray ( ) [inline]
+   Search for all occurrences
+
+   Get the pointer to the end point array.
+
+   Returns:
+          the pointer to the end points array(mEndPointArray).
+
+   Definition at line 88 of file fbxline.h.
+{ return &mEndPointArray;}
+
+   bool AddEndPoint ( int  pPointIndex )
+   Search for all occurrences
+
+   Adds a point index to the end point array (mEndPointArray).
+
+   To mark it as end point, its index to mPointArray will be added to mEndPointArray.
+
+   Parameters:
+
+          pPointIndex The specified index to the point index array(mPointArray). Its range is from 0 to size of mPointArray.
+
+   Returns:
+          True on success, false on failure if pPointIndex is out of range.
+
+   Remarks:
+          The point index in mEndPointArray should be incremental, otherwise, it will return false. To add pPointIndex, mEndPointArray will be automatically appended and resized. You never have to set count or resize for mEndPointArray. Below is the code sample:
+
+ int lIndexCount = lLine->GetIndexArraySize();
+ for(int i = 0; i < lIndexCount; i++)
+ {
+     if(i%2 == 1)
+     {
+         lLine->AddEndPoint(i);
+     }
+ }
+
+   int GetEndPointAt ( int  pEndPointIndex ) const
+   Search for all occurrences
+
+   Gets the point index(an index to the point index array) at the specified index.
+
+   Parameters:
+
+          pEndPointIndex The specified index to the end points array(mEndPointArray). Its range is from 0 to size of mEndPointArray.
+
+   Returns:
+          Return the index to the point index array(mPointArray). If pEndPointIndex is out of range, it will return -1.
+
+   Remarks:
+          Below is the code sample:
+
+ int lEndPointsCount = lLine->GetEndPointCount();
+ for (int j = 0; j < lEndPointsCount; j++)
+ {
+     //Get the index to the index array.
+     int lEndIndex = lLine->GetEndPointAt(j);
+     // to get the control point index of the end point
+     int lControlPointIndex = lLine->GetPointIndexAt(lEndIndex);
+ }
+
+   int GetEndPointCount ( ) const
+   Search for all occurrences
+
+   Query the number of end points.
+
+   Returns:
+          Return the size of end point array(mEndPointArray).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> Renderable
+   Search for all occurrences
+
+   This property decide whether this line is renderable in 3DSMax.
+
+   Lines from Maya are not renderable by default.
+
+   Definition at line 135 of file fbxline.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxline.h
+
+   Please send us your comment about this page

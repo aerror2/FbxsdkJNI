@@ -1,0 +1,222 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNameHandler Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxNameHandler Class Reference
+   Search for all occurrences
+
+   #include <fbxnamehandler.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A name is a case-sensitive string ID of a property, a node, a node attribute, a texture, etc.
+
+   The characters constituting a name has no specific limitation. An initial name is the original name (from importing a file, for example), which is saved up for reversible renaming. A current name is the name used in FBX. A namespace is a simple grouping of objects under a given name. Namespaces are primarily used to resolve name-clash issues in FBX, where a new object has the same name as an existing object.
+
+   For example, Maya only accepts names with letters, digits, or underscores. And when a user import FBX into Maya, a node whose name contains whitespace will be renamed. But the connections and references to this node in FBX scene graph still use the original name, so users have to use the initial name to retrieve related information.
+
+   Definition at line 34 of file fbxnamehandler.h.
+
+   List of all members.
+
+Public Member Functions
+
+                            FbxNameHandler (const char *pInitialName="")
+                            Constructor.
+                            FbxNameHandler (FbxNameHandler const &pName)
+                            Copy constructor.
+                            ~FbxNameHandler ()
+                      void  SetInitialName (const char *pInitialName)
+                            Set the initial name.
+              const char *  GetInitialName () const
+                            Get the initial name.
+                      void  SetCurrentName (const char *pNewName)
+                            Set the current name.
+              const char *  GetCurrentName () const
+                            Get the current name.
+                      void  SetNameSpace (const char *pNameSpace)
+                            Set the namespace.
+              const char *  GetNameSpace () const
+                            Get the namespace.
+                      bool  IsRenamed () const
+                            Check if the current name and initial name match.
+          FbxNameHandler &  operator= (FbxNameHandler const &pName)
+                            Assignment operator.
+   FbxArray< FbxString * >  GetNameSpaceArray (char identifier)
+                            Get the namespaces in a string pointer array format.
+
+Private use for the renaming strategies classes.
+
+   Some renaming strategies classes need to store the parent name to successfully apply the renaming algorithms.
+
+   The methods in this section allow them to do so.
+
+   Remarks:
+          Because of the very specific use of the mParentName string, callers of the FbxNameHandler class should never assume that mParentName is correctly initialized nor contains a meaningful value outside the scope of the renaming strategy class that used it.
+
+                      void  SetParentName (const char *pParentName)
+                            Set the parent name.
+              const char *  GetParentName () const
+                            Get the parent name.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxNameHandler ( const char *  pInitialName = "" )
+
+   Constructor.
+
+   Parameters:
+
+          pInitialName Name string used to initialize both members (initialName and currentName) of this class.
+
+   FbxNameHandler ( FbxNameHandler const &  pName )
+
+   Copy constructor.
+
+   Parameters:
+
+          pName A FbxNameHandler copied to this one.
+
+   ~FbxNameHandler ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetInitialName ( const char *  pInitialName )
+   Search for all occurrences
+
+   Set the initial name.
+
+   Parameters:
+
+          pInitialName New string for the initial name.
+
+   Remarks:
+          The current name will also be changed to this value.
+
+   const char* GetInitialName ( ) const
+   Search for all occurrences
+
+   Get the initial name.
+
+   Returns:
+          Pointer to the InitialName string buffer.
+
+   void SetCurrentName ( const char *  pNewName )
+   Search for all occurrences
+
+   Set the current name.
+
+   Parameters:
+
+          pNewName New string for the current name.
+
+   Remarks:
+          The initial name is not affected.
+
+   const char* GetCurrentName ( ) const
+   Search for all occurrences
+
+   Get the current name.
+
+   Returns:
+          Pointer to the CurrentName string buffer.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   void SetNameSpace ( const char *  pNameSpace )
+   Search for all occurrences
+
+   Set the namespace.
+
+   Parameters:
+
+          pNameSpace New string for the namespace.
+
+   Remarks:
+          The initial name is not affected.
+
+   const char* GetNameSpace ( ) const
+   Search for all occurrences
+
+   Get the namespace.
+
+   Returns:
+          Pointer to the namespace string buffer.
+
+   bool IsRenamed ( ) const
+   Search for all occurrences
+
+   Check if the current name and initial name match.
+
+   Returns:
+          true if the current name isn't identical to the initial name.
+
+   FbxNameHandler& operator= ( FbxNameHandler const &  pName )
+
+   Assignment operator.
+
+   Parameters:
+
+          pName FbxNameHandler assigned to this one.
+
+   void SetParentName ( const char *  pParentName )
+   Search for all occurrences
+
+   Set the parent name.
+
+   Parameters:
+
+          pParentName New string for the parent name.
+
+   Remarks:
+          The parent name here could combine several hierarchy name. The full name should be "ParentName + CurrentName". A |_B |_C For the above hierarchy, the parent name of C is "AB". The full name of C is "ABC".
+
+   const char* GetParentName ( ) const
+   Search for all occurrences
+
+   Get the parent name.
+
+   Returns:
+          Pointer to the ParentName string buffer.
+
+   FbxArray<FbxString*> GetNameSpaceArray ( char  identifier )
+   Search for all occurrences
+
+   Get the namespaces in a string pointer array format.
+
+   Returns:
+          FbxArray<FbxString*> .
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxnamehandler.h
+
+   Please send us your comment about this page

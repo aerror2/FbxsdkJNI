@@ -1,0 +1,122 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCloneManager::CloneSetElement Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxCloneManager
+     * CloneSetElement
+
+   Public Member Functions | Public Attributes
+   FbxCloneManager::CloneSetElement Struct Reference
+   Search for all occurrences
+
+   #include <fbxclonemanager.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This represents an element in FbxCloneManager::CloneSet to be cloned.
+
+   This class contains the option for specifying how connections are cloned and the cloned object.
+
+   See also:
+          FbxCloneManager
+          FbxCloneManager::CloneSet
+
+   Definition at line 74 of file fbxclonemanager.h.
+
+   List of all members.
+
+Public Member Functions
+
+                          CloneSetElement (int pSrcPolicy=0, int pExternalDstPolicy=0, FbxObject::ECloneType pCloneType=FbxObject::eReferenceClone)
+                          Constructor.
+
+Public Attributes
+
+   FbxObject::ECloneType  mType
+                          the type of cloning to perform
+                     int  mSrcPolicy
+                          Policy on how to handle source connections on the original object.
+                     int  mExternalDstPolicy
+                          policy on how to handle destination connections on the original object to objects NOT in the clone set.
+             FbxObject *  mObjectClone
+                          This is a pointer to the newly created clone.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   CloneSetElement ( int                    pSrcPolicy = 0,
+                     int                    pExternalDstPolicy = 0,
+                     FbxObject::ECloneType  pCloneType = FbxObject::eReferenceClone
+                   )
+
+   Constructor.
+
+   Parameters:
+
+          pSrcPolicy         Specify how to handle source connections. Valid values are 0, sConnectToOriginal, sConnectToClone or sConnectToOriginal|sConnectToClone.
+          pExternalDstPolicy Specify how to handle destination connections to objects NOT in the clone set. Valid values are 0 or sConnectToOriginal.
+          pCloneType         Specify the type of cloning. FbxObject::Clone uses the same parameter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxObject::ECloneType mType
+   Search for all occurrences
+
+   the type of cloning to perform
+
+   Definition at line 89 of file fbxclonemanager.h.
+   int mSrcPolicy
+   Search for all occurrences
+
+   Policy on how to handle source connections on the original object.
+
+   Valid values are 0 or any bitwise OR'd combination of sConnectToOriginal, and sConnectToClone.
+
+   Definition at line 94 of file fbxclonemanager.h.
+   int mExternalDstPolicy
+   Search for all occurrences
+
+   policy on how to handle destination connections on the original object to objects NOT in the clone set.
+
+   (Destination connections to objects in the set are handled by that object's source policy) Valid values are 0 or sConnectToOriginal.
+
+   Definition at line 100 of file fbxclonemanager.h.
+   FbxObject* mObjectClone
+   Search for all occurrences
+
+   This is a pointer to the newly created clone.
+
+   It is set after the call to FbxCloneManager::Clone()
+
+   Definition at line 105 of file fbxclonemanager.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxclonemanager.h
+
+   Please send us your comment about this page

@@ -1,0 +1,117 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGlobalSettings::TimeMarker Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxGlobalSettings
+     * TimeMarker
+
+   Public Member Functions | Public Attributes
+   FbxGlobalSettings::TimeMarker Struct Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxglobalsettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 192 of file fbxglobalsettings.h.
+
+   List of all members.
+
+Public Member Functions
+
+                 TimeMarker ()
+                 Default constructor.
+                 TimeMarker (const TimeMarker &pTimeMarker)
+                 Copy constructor.
+   TimeMarker &  operator= (const TimeMarker &pTimeMarker)
+                 Assignment operator.
+
+Public Attributes
+
+      FbxString  mName
+                 Marker name.
+        FbxTime  mTime
+                 Marker time.
+           bool  mLoop
+                 Loop flag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   TimeMarker ( )
+
+   Default constructor.
+   TimeMarker ( const TimeMarker &  pTimeMarker )
+
+   Copy constructor.
+
+   Parameters:
+
+          pTimeMarker Another time marker copied to this time marker.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   TimeMarker& operator= ( const TimeMarker &  pTimeMarker )
+
+   Assignment operator.
+
+   Parameters:
+
+          pTimeMarker Another time marker assigned to this time marker.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   Marker name.
+
+   Definition at line 208 of file fbxglobalsettings.h.
+   FbxTime mTime
+   Search for all occurrences
+
+   Marker time.
+
+   Definition at line 211 of file fbxglobalsettings.h.
+   bool mLoop
+   Search for all occurrences
+
+   Loop flag.
+
+   Definition at line 214 of file fbxglobalsettings.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/fbxglobalsettings.h
+
+   Please send us your comment about this page

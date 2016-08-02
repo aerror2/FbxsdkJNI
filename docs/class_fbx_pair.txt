@@ -1,0 +1,125 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPair< S, T > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxPair< S, T > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxpair.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename S, typename T>
+class FbxPair< S, T >
+
+   This class template holds a pair of objects.
+
+   Definition at line 23 of file fbxpair.h.
+
+   List of all members.
+
+Public Member Functions
+
+                      FbxPair ()
+                      Constructor.
+                      FbxPair (const S &pFirst, const T &pSecond)
+                      Constructor.
+   FbxPair< S, T > &  operator= (const FbxPair< S, T > &pPair)
+                      Assignment operator.
+
+Public Attributes
+
+                   S  mFirst
+                      The first object in the pair.
+                   T  mSecond
+                      The second object in the pair.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPair ( ) [inline]
+
+   Constructor.
+
+   Definition at line 27 of file fbxpair.h.
+: mFirst(), mSecond() {}
+
+   FbxPair ( const S &  pFirst,
+             const T &  pSecond
+           )            [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pFirst  The first object.
+          pSecond The second object.
+
+   Definition at line 33 of file fbxpair.h.
+: mFirst(pFirst), mSecond(pSecond) {}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxPair<S,T>& operator= ( const FbxPair< S, T > &  pPair ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pPair The pair to be copied.
+
+   Definition at line 38 of file fbxpair.h.
+        {
+                mFirst = pPair.mFirst;
+                mSecond = pPair.mSecond;
+
+                return *this;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   S mFirst
+   Search for all occurrences
+
+   The first object in the pair.
+
+   Definition at line 47 of file fbxpair.h.
+   T mSecond
+   Search for all occurrences
+
+   The second object in the pair.
+
+   Definition at line 49 of file fbxpair.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxpair.h
+
+   Please send us your comment about this page

@@ -1,0 +1,253 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxColor Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxColor Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxpropertytypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to represent colors in RGBA format using doubles.
+
+   Examples:
+          ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayCommon.h, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayLight.cxx, ImportScene/DisplayMarker.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayUserProperties.cxx, Layers/main.cxx, Transformations/DisplayCommon.cxx, Transformations/DisplayCommon.h, UserProperties/main.cxx, ViewScene/SceneCache.cxx, and ViewScene/SceneCache.h.
+
+   Definition at line 60 of file fbxpropertytypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+                   FbxColor ()
+                   Constructor.
+                   FbxColor (const double pRed, const double pGreen, const double pBlue, const double pAlpha=1.0)
+                   Constructor.
+                   FbxColor (const FbxDouble3 &pRGB, const double pAlpha=1.0)
+                   FbxColor (const FbxDouble4 &pRGBA)
+                   ~FbxColor ()
+                   Destructor.
+             void  Set (const double pRed, const double pGreen, const double pBlue, const double pAlpha=1.0)
+                   Re-initialize the color object with their new values.
+             bool  IsValid () const
+                   Indicate if all the members in the color objects are within their valid range.
+         double &  operator[] (int pIndex)
+                   Accessors.
+   const double &  operator[] (int pIndex) const
+                   Accessors.
+
+Operators
+
+       FbxColor &  operator= (const FbxColor &pColor)
+                   Assignment operator.
+       FbxColor &  operator= (const FbxDouble3 &pColor)
+       FbxColor &  operator= (const FbxDouble4 &pColor)
+             bool  operator== (const FbxColor &pColor) const
+                   Equality operator.
+             bool  operator!= (const FbxColor &pColor) const
+                   Inequality operator.
+           double  mRed
+                   name Public Members
+           double  mGreen
+                   Valid range is from 0.0 to 1.0.
+           double  mBlue
+                   Valid range is from 0.0 to 1.0.
+           double  mAlpha
+                   Valid range is from 0.0 to 1.0.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxColor ( )
+
+   Constructor.
+   FbxColor ( const double  pRed,
+              const double  pGreen,
+              const double  pBlue,
+              const double  pAlpha = 1.0
+            )
+
+   Constructor.
+
+   Parameters:
+
+          pRed   The Red component value.
+          pGreen The Green component value.
+          pBlue  The Blue component value.
+          pAlpha The alpha value of the color.
+
+   FbxColor ( const FbxDouble3 &  pRGB,
+              const double        pAlpha = 1.0
+            )
+   FbxColor ( const FbxDouble4 &  pRGBA )
+   ~FbxColor ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Set ( const double  pRed,
+              const double  pGreen,
+              const double  pBlue,
+              const double  pAlpha = 1.0
+            )
+   Search for all occurrences
+
+   Re-initialize the color object with their new values.
+
+   Parameters:
+
+          pRed   The Red component value.
+          pGreen The Green component value.
+          pBlue  The Blue component value.
+          pAlpha The alpha value of the color.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   bool IsValid ( ) const
+   Search for all occurrences
+
+   Indicate if all the members in the color objects are within their valid range.
+
+   Returns:
+          true if all the members are within their valid range.
+
+   double& operator[] ( int  pIndex )
+
+   Accessors.
+
+   Parameters:
+
+          pIndex The index of the component to access.
+
+   Returns:
+          The reference to the indexed component.
+
+   Remarks:
+          The pIndex parameter is not checked for values out of bounds.
+
+   const double& operator[] ( int  pIndex ) const
+
+   Accessors.
+
+   Parameters:
+
+          pIndex The index of the component to access.
+
+   Returns:
+          The reference to the indexed component.
+
+   Remarks:
+          The pIndex parameter is not checked for values out of bounds.
+
+   FbxColor& operator= ( const FbxColor &  pColor )
+
+   Assignment operator.
+
+   Parameters:
+
+          pColor FbxColor to be copied.
+
+   FbxColor& operator= ( const FbxDouble3 &  pColor )
+   FbxColor& operator= ( const FbxDouble4 &  pColor )
+   bool operator== ( const FbxColor &  pColor ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pColor FbxColor compared with this one.
+
+   Returns:
+          true if equal, false if unequal.
+
+   bool operator!= ( const FbxColor &  pColor ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pColor FbxColor compared with this one.
+
+   Returns:
+          true if unequal, false if equal.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   double mRed
+   Search for all occurrences
+
+   name Public Members
+
+   Valid range is from 0.0 to 1.0.
+
+   Examples:
+          ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayUserProperties.cxx, and Transformations/DisplayCommon.cxx.
+
+   Definition at line 135 of file fbxpropertytypes.h.
+   double mGreen
+   Search for all occurrences
+
+   Valid range is from 0.0 to 1.0.
+
+   Examples:
+          ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayUserProperties.cxx, and Transformations/DisplayCommon.cxx.
+
+   Definition at line 138 of file fbxpropertytypes.h.
+   double mBlue
+   Search for all occurrences
+
+   Valid range is from 0.0 to 1.0.
+
+   Examples:
+          ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayUserProperties.cxx, and Transformations/DisplayCommon.cxx.
+
+   Definition at line 141 of file fbxpropertytypes.h.
+   double mAlpha
+   Search for all occurrences
+
+   Valid range is from 0.0 to 1.0.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayUserProperties.cxx.
+
+   Definition at line 144 of file fbxpropertytypes.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertytypes.h
+
+   Please send us your comment about this page

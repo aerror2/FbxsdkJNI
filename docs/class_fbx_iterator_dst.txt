@@ -1,0 +1,185 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIteratorDst< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxIteratorDst< Type > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxobject.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxIteratorDst< Type >
+
+   A utility class for iterating over destination objects that connect to property (FbxProperty) or object (FbxObject).
+
+   The class is a wrapper of FbxIteratorDstBase with template.
+
+   Definition at line 1595 of file fbxobject.h.
+   Inheritance diagram for FbxIteratorDst< Type >:
+   [USEMAP:class_fbx_iterator_dst.png]
+
+   List of all members.
+
+Public Member Functions
+
+           FbxIteratorDst (FbxObject *pObject)
+           Constructor.
+           FbxIteratorDst (FbxProperty &pProperty)
+           Constructor.
+   Type *  GetFirst ()
+           Get the first destination object that connects to the property or object.
+   Type *  GetNext ()
+           Get next destination object that connects to the property or object.
+   Type *  GetSafeNext ()
+           Get next destination object that connects to the property or object.
+   Type *  GetLast ()
+           Get the last destination object that connects to the property or object.
+   Type *  GetPrevious ()
+           Get previous destination object that connects to the property or object.
+   Type *  GetSafePrevious ()
+           Get previous destination object that connects to the property or object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxIteratorDst ( FbxObject *  pObject ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pObject FBX object. The iterator will iterate destination objects that connect to it.
+
+   Definition at line 1602 of file fbxobject.h.
+: FbxIteratorDstBase(pProperty,Type::ClassId) {}
+
+   FbxIteratorDst ( FbxProperty &  pProperty ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pProperty Property object. The iterator will iterate destination objects that connect to it.
+
+   Definition at line 1608 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetFirst(); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   Type* GetFirst ( ) [inline]
+   Search for all occurrences
+
+   Get the first destination object that connects to the property or object.
+
+   Returns:
+          The first destination object.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1614 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetNext(); }
+
+   Type* GetNext ( ) [inline]
+   Search for all occurrences
+
+   Get next destination object that connects to the property or object.
+
+   Returns:
+          The next destination object. If there are no more objects, return NULL.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1620 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetSafeNext(); }
+
+   Type* GetSafeNext ( ) [inline]
+   Search for all occurrences
+
+   Get next destination object that connects to the property or object.
+
+   Returns:
+          The next destination object. If there are no more objects, return NULL.
+
+   Remarks:
+          This method makes sure the iterate index is not out of bounds.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1627 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetLast(); }
+
+   Type* GetLast ( ) [inline]
+   Search for all occurrences
+
+   Get the last destination object that connects to the property or object.
+
+   Returns:
+          The last destination object.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1633 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetPrevious(); }
+
+   Type* GetPrevious ( ) [inline]
+   Search for all occurrences
+
+   Get previous destination object that connects to the property or object.
+
+   Returns:
+          The previous destination object. If there are no more objects, return NULL.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1639 of file fbxobject.h.
+{ return (Type*)FbxIteratorDstBase::GetSafePrevious(); }
+
+   Type* GetSafePrevious ( ) [inline]
+   Search for all occurrences
+
+   Get previous destination object that connects to the property or object.
+
+   Returns:
+          The previous destination object. If there are no more objects, return NULL.
+
+   Remarks:
+          This method makes sure the iterate index is not out of bounds. If the iterate index is out of bounds, the last destination object is returned.
+
+   Reimplemented from FbxIteratorDstBase.
+
+   Definition at line 1647 of file fbxobject.h.
+{
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxobject.h
+
+   Please send us your comment about this page

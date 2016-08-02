@@ -1,0 +1,794 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxLayer Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxLayer class provides a base for the layering mechanism.
+
+   A layer can contain one or more of the following layer elements:
+     * Normals
+     * Binormals
+     * Tangents
+     * Materials
+     * Polygon Groups
+     * UVs
+     * Vertex Colors
+     * Smoothing informations
+     * Vertex Creases
+     * Edge Creases
+     * Custom User Data
+     * Visibilities
+     * Textures (diffuse, ambient, specular, etc.) (deprecated)
+
+   A typical layer for a Mesh contains Normals, UVs and Materials. A typical layer for NURBS contains only Materials. In the case of the NURBS, the NURBS' parameterization is used for the UVs; no UVs should be specified.
+
+   In most cases, you only need a single layer to describe a geometry. Many applications only support what is defined on the first layer. Take this into account when you fill the layer. For example, it is legal to define the Layer 0 with the UVs and then define the model's Normals on layer 1. However if you construct a file this way, it may not be imported correctly in other applications. Store the Normals in Layer 0 to avoid problems.
+
+   Since FBX SDK 2011, Textures are connected to the properties of FbxSurfaceMaterial derived classes. FbxLayerElementTexture is no longer used. See the code example in FbxLayerElementTexture for how to connect a texture.
+
+   Since FBX SDK 2011, texture layering is achieved by FbxLayeredTexture. See the code example in FbxLayeredTexture for how to blend textures.
+
+   Normally, you can access layer from FbxLayerContainer like FbxGeometry. For example,
+ FbxMesh* mesh;
+ FbxLayer* layer0 = mesh->GetLayer(0);
+ FbxLayerElementNormal* normals = layer0->GetNormals();
+
+   See also:
+          FbxLayerElement
+          FbxLayerElementNormal
+          FbxLayerElementBinormal
+          FbxLayerElementTangent
+          FbxLayerElementMaterial
+          FbxLayerElementPolygonGroup
+          FbxLayerElementUV
+          FbxLayerElementVertexColor
+          FbxLayerElementSmoothing
+          FbxLayerElementCrease
+          FbxLayerElementUserData
+          FbxLayerElementHole
+          FbxLayerElementVisibility
+
+   Examples:
+          ExportScene03/main.cxx, and Instances/main.cxx.
+
+   Definition at line 2333 of file fbxlayer.h.
+
+   List of all members.
+
+Public Member Functions
+
+                                                               FBXSDK_FRIEND_NEW ()
+
+Layer Element Management
+
+                                      FbxLayerElementNormal *  GetNormals ()
+                                                               Returns this layer's Normals description .
+                                const FbxLayerElementNormal *  GetNormals () const
+                                                               Returns this layer's Normals description .
+                                     FbxLayerElementTangent *  GetTangents ()
+                                                               Returns this layer's Tangents description.
+                               const FbxLayerElementTangent *  GetTangents () const
+                                                               Returns this layer's Tangents description.
+                                    FbxLayerElementBinormal *  GetBinormals ()
+                                                               Returns this layer's Binormals description.
+                              const FbxLayerElementBinormal *  GetBinormals () const
+                                                               Returns this layer's Binormals description.
+                                    FbxLayerElementMaterial *  GetMaterials ()
+                                                               Returns this layer's Materials description.
+                              const FbxLayerElementMaterial *  GetMaterials () const
+                                                               Returns this layer's Materials description.
+                                FbxLayerElementPolygonGroup *  GetPolygonGroups ()
+                                                               Returns this layer's Polygon Groups description.
+                          const FbxLayerElementPolygonGroup *  GetPolygonGroups () const
+                                                               Returns this layer's Polygon Groups description.
+                                          FbxLayerElementUV *  GetUVs (FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                                               Returns this layer's UV description.
+                                    const FbxLayerElementUV *  GetUVs (FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse) const
+                                                               Returns this layer's UV description.
+                                                          int  GetUVSetCount () const
+                                                               Returns the number of different UV sets in this layer.
+                           FbxArray< FbxLayerElement::EType >  GetUVSetChannels () const
+                                                               Returns an array that describes which UV sets are in this layer.
+   FbxArray< const
+   FbxLayerElementUV * >  GetUVSets () const
+                                                               Returns an array of UV sets in this layer.
+                                 FbxLayerElementVertexColor *  GetVertexColors ()
+                                                               Returns this layer's Vertex Colors description.
+                           const FbxLayerElementVertexColor *  GetVertexColors () const
+                                                               Returns this layer's Vertex Colors description.
+                                   FbxLayerElementSmoothing *  GetSmoothing ()
+                                                               Returns this layer's Smoothing description.
+                             const FbxLayerElementSmoothing *  GetSmoothing () const
+                                                               Returns this layer's Smoothing description.
+                                      FbxLayerElementCrease *  GetVertexCrease ()
+                                                               Returns this layer's vertex crease description.
+                                const FbxLayerElementCrease *  GetVertexCrease () const
+                                                               Returns this layer's vertex crease description.
+                                      FbxLayerElementCrease *  GetEdgeCrease ()
+                                                               Returns this layer's edge crease description.
+                                const FbxLayerElementCrease *  GetEdgeCrease () const
+                                                               Returns this layer's edge crease description.
+                                        FbxLayerElementHole *  GetHole ()
+                                                               Returns this layer's Hole description.
+                                  const FbxLayerElementHole *  GetHole () const
+                                                               Returns this layer's Hole description.
+                                    FbxLayerElementUserData *  GetUserData ()
+                                                               Returns this layer's User Data.
+                              const FbxLayerElementUserData *  GetUserData () const
+                                                               Returns this layer's User Data.
+                                  FbxLayerElementVisibility *  GetVisibility ()
+                                                               Returns this layer's visibility.
+                            const FbxLayerElementVisibility *  GetVisibility () const
+                                                               Returns this layer's visibility.
+                                     FbxLayerElementTexture *  GetTextures (FbxLayerElement::EType pType)
+                                                               Returns this layer's Textures description.
+                               const FbxLayerElementTexture *  GetTextures (FbxLayerElement::EType pType) const
+                                                               Returns this layer's Textures description.
+                                                         void  SetTextures (FbxLayerElement::EType pType, FbxLayerElementTexture *pTextures)
+                                                               Sets this layer's Textures description.
+                                            FbxLayerElement *  GetLayerElementOfType (FbxLayerElement::EType pType, bool pIsUV=false)
+                                                               Returns the specified type of layer element description for this layer.
+                                      const FbxLayerElement *  GetLayerElementOfType (FbxLayerElement::EType pType, bool pIsUV=false) const
+                                                               Returns the specified type of layer element description for this layer.
+                                                         void  SetNormals (FbxLayerElementNormal *pNormals)
+                                                               Sets this layer's Normals description.
+                                                         void  SetBinormals (FbxLayerElementBinormal *pBinormals)
+                                                               Sets this layer's Binormals description.
+                                                         void  SetTangents (FbxLayerElementTangent *pTangents)
+                                                               Sets this layer's Tangents description.
+                                                         void  SetMaterials (FbxLayerElementMaterial *pMaterials)
+                                                               Sets this layer's Materials description.
+                                                         void  SetPolygonGroups (FbxLayerElementPolygonGroup *pPolygonGroups)
+                                                               Sets this layer's Polygon Groups description.
+                                                         void  SetUVs (FbxLayerElementUV *pUVs, FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
+                                                               Sets this layer's UVs description.
+                                                         void  SetVertexColors (FbxLayerElementVertexColor *pVertexColors)
+                                                               Sets this layer's Vertex Colors description.
+                                                         void  SetSmoothing (FbxLayerElementSmoothing *pSmoothing)
+                                                               Sets this layer's Smoothing description.
+                                                         void  SetVertexCrease (FbxLayerElementCrease *pCrease)
+                                                               Sets this layer's Vertex Crease description.
+                                                         void  SetEdgeCrease (FbxLayerElementCrease *pCrease)
+                                                               Sets this layer's Edge Crease description.
+                                                         void  SetHole (FbxLayerElementHole *pHole)
+                                                               Sets this layer's Hole description.
+                                                         void  SetUserData (FbxLayerElementUserData *pUserData)
+                                                               Sets this layer's User Data.
+                                                         void  SetVisibility (FbxLayerElementVisibility *pVisibility)
+                                                               Sets this layer's the visibility.
+                                                         void  SetLayerElementOfType (FbxLayerElement *pLayerElement, FbxLayerElement::EType pType, bool pIsUV=false)
+                                                               Sets the specified type of layer element description for this layer.
+                                            FbxLayerElement *  CreateLayerElementOfType (FbxLayerElement::EType pType, bool pIsUV=false)
+                                                               Creates the specified type of layer element description for this layer.
+                                                         void  Clone (FbxLayer const &pSrcLayer)
+                                                               Clone function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   FbxLayerElementNormal* GetNormals ( )
+   Search for all occurrences
+
+   Returns this layer's Normals description .
+
+   Returns:
+          A pointer to the Normals layer element, or NULL if no Normals layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Normals defined.
+
+   const FbxLayerElementNormal* GetNormals ( ) const
+   Search for all occurrences
+
+   Returns this layer's Normals description .
+
+   Returns:
+          A pointer to the Normals layer element, or NULL if no Normals layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Normals defined.
+
+   FbxLayerElementTangent* GetTangents ( )
+   Search for all occurrences
+
+   Returns this layer's Tangents description.
+
+   Returns:
+          A pointer to the Tangents layer element, or NULL if no Tangents layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Tangents defined.
+
+   const FbxLayerElementTangent* GetTangents ( ) const
+   Search for all occurrences
+
+   Returns this layer's Tangents description.
+
+   Returns:
+          A pointer to the Tangents layer element, or NULL if no Tangents layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Tangents defined.
+
+   FbxLayerElementBinormal* GetBinormals ( )
+   Search for all occurrences
+
+   Returns this layer's Binormals description.
+
+   Returns:
+          A pointer to the Binormals layer element, or NULL if no Binormals layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Binormals defined.
+
+   const FbxLayerElementBinormal* GetBinormals ( ) const
+   Search for all occurrences
+
+   Returns this layer's Binormals description.
+
+   Returns:
+          A pointer to the Binormals layer element, or NULL if no Binormals layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Binormals defined.
+
+   FbxLayerElementMaterial* GetMaterials ( )
+   Search for all occurrences
+
+   Returns this layer's Materials description.
+
+   Returns:
+          A pointer to the Materials layer element, or NULL if no Materials layer element is defined in this layer.
+
+   const FbxLayerElementMaterial* GetMaterials ( ) const
+   Search for all occurrences
+
+   Returns this layer's Materials description.
+
+   Returns:
+          A pointer to the Materials layer element, or NULL if no Materials layer element is defined in this layer.
+
+   FbxLayerElementPolygonGroup* GetPolygonGroups ( )
+   Search for all occurrences
+
+   Returns this layer's Polygon Groups description.
+
+   Returns:
+          A pointer to the Polygon Groups layer element, or NULL if no Polygon Groups layer element is defined in this layer.
+
+   const FbxLayerElementPolygonGroup* GetPolygonGroups ( ) const
+   Search for all occurrences
+
+   Returns this layer's Polygon Groups description.
+
+   Returns:
+          A pointer to the Polygon Groups layer element, or NULL if no Polygon Groups layer element is defined in this layer.
+
+   FbxLayerElementUV* GetUVs ( FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse )
+   Search for all occurrences
+
+   Returns this layer's UV description.
+
+   Parameters:
+
+          pTypeIdentifier Layer element type identifier, should be a texture type identifier.
+
+   Returns:
+          A pointer to the UVs layer element, or NULL if no UV is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have UVs defined. The NURBS/Patch parameterization is used as UV parameters to map a texture.
+
+   const FbxLayerElementUV* GetUVs ( FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse ) const
+   Search for all occurrences
+
+   Returns this layer's UV description.
+
+   Parameters:
+
+          pTypeIdentifier Layer element type identifier, should be a texture type identifier.
+
+   Returns:
+          A pointer to the UVs layer element, or NULL if no UV is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have UVs defined. The NURBS/Patch parameterization is used as UV parameters to map a texture.
+
+   int GetUVSetCount ( ) const
+   Search for all occurrences
+
+   Returns the number of different UV sets in this layer.
+   FbxArray<FbxLayerElement::EType> GetUVSetChannels ( ) const
+   Search for all occurrences
+
+   Returns an array that describes which UV sets are in this layer.
+   FbxArray<const FbxLayerElementUV*> GetUVSets ( ) const
+   Search for all occurrences
+
+   Returns an array of UV sets in this layer.
+   FbxLayerElementVertexColor* GetVertexColors ( )
+   Search for all occurrences
+
+   Returns this layer's Vertex Colors description.
+
+   Returns:
+          A pointer to the Vertex Colors layer element, or NULL if no Vertex Color layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Vertex Colors defined, since no vertex exists.
+
+   const FbxLayerElementVertexColor* GetVertexColors ( ) const
+   Search for all occurrences
+
+   Returns this layer's Vertex Colors description.
+
+   Returns:
+          A pointer to the Vertex Colors layer element, or NULL if no Vertex Color layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Vertex Colors defined, since no vertex exists.
+
+   FbxLayerElementSmoothing* GetSmoothing ( )
+   Search for all occurrences
+
+   Returns this layer's Smoothing description.
+
+   Returns:
+          A pointer to the Smoothing layer element, or NULL if no Smoothing layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Smoothing defined.
+
+   const FbxLayerElementSmoothing* GetSmoothing ( ) const
+   Search for all occurrences
+
+   Returns this layer's Smoothing description.
+
+   Returns:
+          A pointer to the Smoothing layer element, or NULL if no Smoothing layer element is defined in this layer.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Smoothing defined.
+
+   FbxLayerElementCrease* GetVertexCrease ( )
+   Search for all occurrences
+
+   Returns this layer's vertex crease description.
+
+   Returns:
+          A pointer to the Crease layer element, or NULL if no Crease layer element is defined in this layer.
+
+   Remarks:
+          Crease info should only be defined when the geometry is FbxSubDiv.
+
+   const FbxLayerElementCrease* GetVertexCrease ( ) const
+   Search for all occurrences
+
+   Returns this layer's vertex crease description.
+
+   Returns:
+          A pointer to the Crease layer element, or NULL if no Crease layer element is defined in this layer.
+
+   Remarks:
+          Crease info should only be defined when the geometry is FbxSubDiv.
+
+   FbxLayerElementCrease* GetEdgeCrease ( )
+   Search for all occurrences
+
+   Returns this layer's edge crease description.
+
+   Returns:
+          A pointer to the Crease layer element, or NULL if no Crease layer element is defined in this layer.
+
+   Remarks:
+          Crease info should only be defined when the geometry is FbxSubDiv.
+
+   const FbxLayerElementCrease* GetEdgeCrease ( ) const
+   Search for all occurrences
+
+   Returns this layer's edge crease description.
+
+   Returns:
+          A pointer to the Crease layer element, or NULL if no Crease layer element is defined in this layer.
+
+   Remarks:
+          Crease info should only be defined when the geometry is FbxSubDiv.
+
+   FbxLayerElementHole* GetHole ( )
+   Search for all occurrences
+
+   Returns this layer's Hole description.
+
+   Returns:
+          A pointer to the Hole layer element, or NULL if no Hole layer element is defined in this layer.
+
+   Remarks:
+          Hole info should only be defined when the geometry is FbxMesh.
+
+   const FbxLayerElementHole* GetHole ( ) const
+   Search for all occurrences
+
+   Returns this layer's Hole description.
+
+   Returns:
+          A pointer to the Hole layer element, or NULL if no Hole layer element is defined in this layer.
+
+   Remarks:
+          Hole info should only be defined when the geometry is FbxMesh.
+
+   FbxLayerElementUserData* GetUserData ( )
+   Search for all occurrences
+
+   Returns this layer's User Data.
+
+   Returns:
+          A pointer to the User Data layer element, or NULL if no User Data layer element is defined in this layer.
+
+   const FbxLayerElementUserData* GetUserData ( ) const
+   Search for all occurrences
+
+   Returns this layer's User Data.
+
+   Returns:
+          A pointer to the User Data layer element, or NULL if no User Data layer element is defined in this layer.
+
+   FbxLayerElementVisibility* GetVisibility ( )
+   Search for all occurrences
+
+   Returns this layer's visibility.
+
+   Returns:
+          A pointer to the visibility layer element, or NULL if no visibility layer element is defined in this layer.
+
+   const FbxLayerElementVisibility* GetVisibility ( ) const
+   Search for all occurrences
+
+   Returns this layer's visibility.
+
+   Returns:
+          A pointer to the visibility layer element, or NULL if no visibility layer element is defined in this layer.
+
+   FbxLayerElementTexture* GetTextures ( FbxLayerElement::EType  pType )
+   Search for all occurrences
+
+   Returns this layer's Textures description.
+
+   Parameters:
+
+          pType Layer element type, should be a texture type identifier.
+
+   Returns:
+          A pointer to the Textures layer element, or NULL if no Textures layer element is defined in this layer.
+
+   const FbxLayerElementTexture* GetTextures ( FbxLayerElement::EType  pType ) const
+   Search for all occurrences
+
+   Returns this layer's Textures description.
+
+   Parameters:
+
+          pType Layer element type, should be a texture type identifier.
+
+   Returns:
+          A pointer to the Textures layer element, or NULL if no Textures layer element is defined in this layer.
+
+   void SetTextures ( FbxLayerElement::EType    pType,
+                      FbxLayerElementTexture *  pTextures
+                    )
+   Search for all occurrences
+
+   Sets this layer's Textures description.
+
+   Parameters:
+
+          pType     Texture type identifier.
+          pTextures A pointer to the Textures layer element, or NULL to remove the Textures definition.
+
+   FbxLayerElement* GetLayerElementOfType ( FbxLayerElement::EType  pType,
+                                            bool                    pIsUV = false
+                                          )
+   Search for all occurrences
+
+   Returns the specified type of layer element description for this layer.
+
+   Parameters:
+
+          pType The required Layer element type.
+          + Calling with eNormal is the equivalent of calling GetNormals().
+          + Calling with eBiNormal is the equivalent of calling GetBinormals().
+          + Calling with eTangent is the equivalent of calling GetTangents().
+          + Calling with eMaterial is the equivalent of calling GetMaterials().
+          + Calling with ePolygonGroup is the equivalent of calling GetPolygonGroups().
+          + Calling with eUV is the equivalent of calling GetUVs().
+          + Calling with eVertexColor is the equivalent of calling GetVertexColors().
+          + Calling with eSmoothing is the equivalent of calling GetSmoothing().
+          + Calling with eVertexCrease is the equivalent of calling GetVertexCrease().
+          + Calling with eEdgeCrease is the equivalent of calling GetEdgeCrease().
+          + Calling with eUserData is the equivalent of calling GetUserData().
+          + Calling with eVisibility is the equivalent of calling GetVisibility().
+          + Calling with texture type is the equivalent of calling GetTextures(FbxLayerElement::EType pType).
+
+          pIsUV If true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          A pointer to the requested layer element, or NULL if the layer element is not defined in this layer.
+
+   const FbxLayerElement* GetLayerElementOfType ( FbxLayerElement::EType  pType,
+                                                  bool                    pIsUV = false
+                                                )                         const
+   Search for all occurrences
+
+   Returns the specified type of layer element description for this layer.
+
+   Parameters:
+
+          pType The required Layer element type.
+          + Calling with eNormal is the equivalent of calling GetNormals().
+          + Calling with eBiNormal is the equivalent of calling GetBinormals().
+          + Calling with eTangent is the equivalent of calling GetTangents().
+          + Calling with eMaterial is the equivalent of calling GetMaterials().
+          + Calling with ePolygonGroup is the equivalent of calling GetPolygonGroups().
+          + Calling with eUV is the equivalent of calling GetUVs().
+          + Calling with eVertexColor is the equivalent of calling GetVertexColors().
+          + Calling with eSmoothing is the equivalent of calling GetSmoothing().
+          + Calling with eVertexCrease is the equivalent of calling GetVertexCrease().
+          + Calling with eEdgeCrease is the equivalent of calling GetEdgeCrease().
+          + Calling with eUserData is the equivalent of calling GetUserData().
+          + Calling with eVisibility is the equivalent of calling GetVisibility().
+          + Calling with texture type is the equivalent of calling GetTextures(FbxLayerElement::EType pType).
+
+          pIsUV If true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          A pointer to the requested layer element, or NULL if the layer element is not defined in this layer.
+
+   void SetNormals ( FbxLayerElementNormal *  pNormals )
+   Search for all occurrences
+
+   Sets this layer's Normals description.
+
+   Parameters:
+
+          pNormals A pointer to the Normals layer element, or NULL to remove the Normals definition.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Normals defined.
+
+   Examples:
+          Instances/main.cxx.
+
+   void SetBinormals ( FbxLayerElementBinormal *  pBinormals )
+   Search for all occurrences
+
+   Sets this layer's Binormals description.
+
+   Parameters:
+
+          pBinormals A pointer to the Binormals layer element, or NULL to remove the Binormals definition.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Binormals defined.
+
+   void SetTangents ( FbxLayerElementTangent *  pTangents )
+   Search for all occurrences
+
+   Sets this layer's Tangents description.
+
+   Parameters:
+
+          pTangents A pointer to the Tangents layer element, or NULL to remove the Tangents definition.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Tangents defined.
+
+   void SetMaterials ( FbxLayerElementMaterial *  pMaterials )
+   Search for all occurrences
+
+   Sets this layer's Materials description.
+
+   Parameters:
+
+          pMaterials A pointer to the Materials layer element, or NULL to remove the Material definition.
+
+   Examples:
+          ExportScene03/main.cxx, and Instances/main.cxx.
+
+   void SetPolygonGroups ( FbxLayerElementPolygonGroup *  pPolygonGroups )
+   Search for all occurrences
+
+   Sets this layer's Polygon Groups description.
+
+   Parameters:
+
+          pPolygonGroups A pointer to the Polygon Groups layer element, or NULL to remove the Polygon Group definition.
+
+   void SetUVs ( FbxLayerElementUV *     pUVs,
+                 FbxLayerElement::EType  pTypeIdentifier = FbxLayerElement::eTextureDiffuse
+               )
+   Search for all occurrences
+
+   Sets this layer's UVs description.
+
+   Parameters:
+
+          pUVs            A pointer to the UVs layer element, or NULL to remove the UV definition.
+          pTypeIdentifier Layer element type, should be texture type.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have UVs defined. The NURBS/Patch parameterization is used as UV parameters to map a texture.
+
+   Examples:
+          Instances/main.cxx.
+
+   void SetVertexColors ( FbxLayerElementVertexColor *  pVertexColors )
+   Search for all occurrences
+
+   Sets this layer's Vertex Colors description.
+
+   Parameters:
+
+          pVertexColors A pointer to the Vertex Colors layer element, or NULL to remove the Vertex Color definition.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Vertex Colors defined, since no vertex exists.
+
+   void SetSmoothing ( FbxLayerElementSmoothing *  pSmoothing )
+   Search for all occurrences
+
+   Sets this layer's Smoothing description.
+
+   Parameters:
+
+          pSmoothing A pointer to the Smoothing layer element, or NULL to remove the Smoothing definition.
+
+   Remarks:
+          FbxNurbs or FbxPatch geometry should not have Smoothing defined.
+
+   void SetVertexCrease ( FbxLayerElementCrease *  pCrease )
+   Search for all occurrences
+
+   Sets this layer's Vertex Crease description.
+
+   Parameters:
+
+          pCrease A pointer to the Vertex Crease layer element, or NULL to remove the Crease definition.
+
+   Remarks:
+          Crease should only be defined when the geometry is FbxSubDiv.
+
+   void SetEdgeCrease ( FbxLayerElementCrease *  pCrease )
+   Search for all occurrences
+
+   Sets this layer's Edge Crease description.
+
+   Parameters:
+
+          pCrease A pointer to the Edge Crease layer element, or NULL to remove the Crease definition.
+
+   Remarks:
+          Crease should only be defined when the geometry is FbxSubDiv.
+
+   void SetHole ( FbxLayerElementHole *  pHole )
+   Search for all occurrences
+
+   Sets this layer's Hole description.
+
+   Parameters:
+
+          pHole A pointer to the Hole layer element, or NULL to remove the Hole definition.
+
+   Remarks:
+          Hole should only be defined when the geometry is FbxMesh.
+
+   void SetUserData ( FbxLayerElementUserData *  pUserData )
+   Search for all occurrences
+
+   Sets this layer's User Data.
+
+   Parameters:
+
+          pUserData A pointer to the User Data layer element, or NULL to remove the User Data.
+
+   void SetVisibility ( FbxLayerElementVisibility *  pVisibility )
+   Search for all occurrences
+
+   Sets this layer's the visibility.
+
+   Parameters:
+
+          pVisibility A pointer to the visibility layer element, or NULL to remove the visibility.
+
+   void SetLayerElementOfType ( FbxLayerElement *       pLayerElement,
+                                FbxLayerElement::EType  pType,
+                                bool                    pIsUV = false
+                              )
+   Search for all occurrences
+
+   Sets the specified type of layer element description for this layer.
+
+   Parameters:
+
+          pLayerElement A pointer to the layer element, or NULL to remove the layer element.
+          pType The required Layer element type.
+          + Calling with eNormal is the equivalent of calling GetNormals().
+          + Calling with eBiNormal is the equivalent of calling GetBinormals().
+          + Calling with eTangent is the equivalent of calling GetTangents().
+          + Calling with eMaterial is the equivalent of calling GetMaterials().
+          + Calling with ePolygonGroup is the equivalent of calling GetPolygonGroups().
+          + Calling with eUV is the equivalent of calling GetUVs().
+          + Calling with eVertexColor is the equivalent of calling GetVertexColors().
+          + Calling with eSmoothing is the equivalent of calling GetSmoothing().
+          + Calling with eVertexCrease is the equivalent of calling GetVertexCrease().
+          + Calling with eEdgeCrease is the equivalent of calling GetEdgeCrease().
+          + Calling with eUserData is the equivalent of calling GetUserData().
+          + Calling with eVisibility is the equivalent of calling GetVisibility().
+          + Calling with texture type is the equivalent of calling GetTextures(FbxLayerElement::EType pType).
+
+          pIsUV         If true, requests the UV layer element that corresponds with the specified texture type.
+
+   FbxLayerElement* CreateLayerElementOfType ( FbxLayerElement::EType  pType,
+                                               bool                    pIsUV = false
+                                             )
+   Search for all occurrences
+
+   Creates the specified type of layer element description for this layer.
+
+   Parameters:
+
+          pType The required Layer element type.
+          pIsUV When true, requests the UV LayerElement that corresponds with the specified Layer Element type (only applies to TEXTURE type layer elements).
+
+   Returns:
+          A pointer to the newly created layer element, or NULL if the layer element has not been created for this layer.
+
+   void Clone ( FbxLayer const &  pSrcLayer )
+   Search for all occurrences
+
+   Clone function.
+
+   Parameters:
+
+          pSrcLayer The source layer to be cloned.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

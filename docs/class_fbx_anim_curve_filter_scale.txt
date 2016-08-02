@@ -1,0 +1,226 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveFilterScale Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimCurveFilterScale Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvefilters.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Key scale filter.
+
+   Filter to scale the keys of a set of animation curves.
+
+   Definition at line 769 of file fbxanimcurvefilters.h.
+   Inheritance diagram for FbxAnimCurveFilterScale:
+   [USEMAP:class_fbx_anim_curve_filter_scale.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxAnimCurveFilterScale ()
+                         Constructor.
+                virtual  ~FbxAnimCurveFilterScale ()
+                         Destructor.
+   virtual const char *  GetName () const
+                         Get the name of the filter.
+           virtual bool  Apply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Apply filter on all the curves of an animation curve node.
+           virtual bool  Apply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         Apply filter on an animation curve.
+           virtual void  Reset ()
+                         Reset the filter to its default parameters.
+                 double  GetScale () const
+                         Get the scale factor.
+                   void  SetScale (double pScale)
+                         Set the scale factor.
+
+Exposed parent class methods.
+
+           virtual bool  Apply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         Apply filter to all the curves stored in the animation stack.
+           virtual bool  Apply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         Apply filter to all the animated properties of the object.
+           virtual bool  Apply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Apply filter on an array of animation curves.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveFilterScale ( )
+
+   Constructor.
+   virtual ~FbxAnimCurveFilterScale ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 776 of file fbxanimcurvefilters.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetName ( ) const [virtual]
+   Search for all occurrences
+
+   Get the name of the filter.
+
+   Returns:
+          Pointer to name.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   Apply filter to all the curves stored in the animation stack.
+
+   Parameters:
+
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 787 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pAnimStack, pStatus); }
+
+   virtual bool Apply ( FbxObject *     pObj,
+                        FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   Apply filter to all the animated properties of the object.
+
+   Parameters:
+
+          pObj       Object containing the animated properties to which the filter is applied.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 788 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pObj, pAnimStack, pStatus); }
+
+   virtual bool Apply ( FbxAnimCurve **  pCurve,
+                        int              pCount,
+                        FbxStatus *      pStatus = NULL
+                      )                  [inline, virtual]
+   Search for all occurrences
+
+   Apply filter on an array of animation curves.
+
+   Parameters:
+
+          pCurve  Array of curves to which the filter is applied.
+          pCount  Number of curves in the array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 789 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pCurve, pCount, pStatus); }
+
+   virtual bool Apply ( FbxAnimCurveNode &  pCurveNode,
+                        FbxStatus *         pStatus = NULL
+                      )                     [virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of an animation curve node.
+
+   Parameters:
+
+          pCurveNode Curve node to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method collects all the FbxAnimCurve objects connected to the curve node and calls Apply(FbxAnimCurve**, int)
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve &  pCurve,
+                        FbxStatus *     pStatus = NULL
+                      )                 [virtual]
+   Search for all occurrences
+
+   Apply filter on an animation curve.
+
+   Parameters:
+
+          pCurve  Curve to which the filter is applied.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Implements FbxAnimCurveFilter.
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset the filter to its default parameters.
+
+   Reimplemented from FbxAnimCurveFilter.
+   double GetScale ( ) const
+   Search for all occurrences
+
+   Get the scale factor.
+
+   Returns:
+          The current scale factor.
+
+   void SetScale ( double  pScale )
+   Search for all occurrences
+
+   Set the scale factor.
+
+   Parameters:
+
+          pScale The new scale factor to set.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvefilters.h
+
+   Please send us your comment about this page

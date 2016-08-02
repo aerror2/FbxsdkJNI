@@ -1,0 +1,84 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStringListItem Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxStringListItem Class Reference
+   Search for all occurrences
+
+   #include <fbxstringlist.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Wraps a string (FbxString) and a pointer (FbxHandle).
+
+   Definition at line 24 of file fbxstringlist.h.
+
+   List of all members.
+
+Public Member Functions
+
+              FbxStringListItem ()
+              FbxStringListItem (const char *pString, FbxHandle pRef=0)
+
+Public Attributes
+
+   FbxString  mString
+   FbxHandle  mReference
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStringListItem ( ) [inline]
+
+   Definition at line 27 of file fbxstringlist.h.
+{ mReference = 0; }
+
+   FbxStringListItem ( const char *  pString,
+                       FbxHandle     pRef = 0
+                     )               [inline]
+
+   Definition at line 28 of file fbxstringlist.h.
+{ mString = pString; mReference = pRef; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mString
+   Search for all occurrences
+
+   Definition at line 30 of file fbxstringlist.h.
+   FbxHandle mReference
+   Search for all occurrences
+
+   Definition at line 31 of file fbxstringlist.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstringlist.h
+
+   Please send us your comment about this page

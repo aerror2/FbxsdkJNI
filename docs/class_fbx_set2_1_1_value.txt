@@ -1,0 +1,50 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSet2< Type, Compare, Allocator >::Value Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxSet2
+     * Value
+
+   FbxSet2< Type, Compare, Allocator >::Value Class Reference
+   Search for all occurrences
+
+   #include <fbxset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename Type, typename Compare = FbxLessCompare<Type>, typename Allocator = FbxBaseAllocator>
+class FbxSet2< Type, Compare, Allocator >::Value
+
+   This class defines the value type used by the set.
+
+   Definition at line 147 of file fbxset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxset.h
+
+   Please send us your comment about this page

@@ -1,0 +1,171 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNull Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxNull Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxnull.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This node attribute contains the properties of a null node.
+
+   Definition at line 25 of file fbxnull.h.
+   Inheritance diagram for FbxNull:
+   [USEMAP:class_fbx_null.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the EType::eNull node attribute type.
+                              void  Reset ()
+                                    Resets the default values.
+
+Public Attributes
+
+         FbxPropertyT< FbxDouble >  Size
+                                    This property handles the null node size.
+             FbxPropertyT< ELook >  Look
+                                    This property handles the look of the null node.
+
+Null Node Properties
+
+                             enum   ELook { eNone, eCross }
+                                    Null node look types. More...
+                            double  GetSizeDefaultValue () const
+                                    Returns the default size value.
+
+Property Names
+
+               static const char *  sSize
+               static const char *  sLook
+
+Property Default Values
+
+            static const FbxDouble  sDefaultSize
+                static const ELook  sDefaultLook
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ELook
+   Search for all occurrences
+
+   Null node look types.
+     * eNone
+     * eCross
+
+   Enumerator:
+
+          eNone
+
+   No flags.
+   Search for all occurrences
+          eCross
+
+   Search for all occurrences
+
+   Definition at line 45 of file fbxnull.h.
+        {
+        eNone,
+        eCross,
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the EType::eNull node attribute type.
+
+   Reimplemented from FbxNodeAttribute.
+   void Reset ( )
+   Search for all occurrences
+
+   Resets the default values.
+   double GetSizeDefaultValue ( ) const
+   Search for all occurrences
+
+   Returns the default size value.
+
+   Returns:
+          The default size of this object (100).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sSize [static]
+   Search for all occurrences
+
+   Definition at line 62 of file fbxnull.h.
+   const char* sLook [static]
+   Search for all occurrences
+
+   Definition at line 63 of file fbxnull.h.
+   const FbxDouble sDefaultSize [static]
+   Search for all occurrences
+
+   Definition at line 70 of file fbxnull.h.
+   const ELook sDefaultLook [static]
+   Search for all occurrences
+
+   Definition at line 71 of file fbxnull.h.
+   FbxPropertyT<FbxDouble> Size
+   Search for all occurrences
+
+   This property handles the null node size.
+
+   To access this property do: Size.Get(). To set this property do: Size.Set(FbxDouble).
+
+   The default value is 100.
+
+   Definition at line 88 of file fbxnull.h.
+   FbxPropertyT<ELook> Look
+   Search for all occurrences
+
+   This property handles the look of the null node.
+
+   To access this property do: Look.Get(). To set this property do: Look.Set(ELook).
+
+   The default value is true
+
+   Definition at line 97 of file fbxnull.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxnull.h
+
+   Please send us your comment about this page

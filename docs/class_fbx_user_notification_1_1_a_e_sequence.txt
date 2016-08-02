@@ -1,0 +1,91 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxUserNotification::AESequence Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxUserNotification
+     * AESequence
+
+   Public Member Functions
+   FbxUserNotification::AESequence Class Reference
+   Search for all occurrences
+
+   #include <fbxusernotification.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Identify one detail in all accumulator entries by record the entry object and its detail id.
+
+   Definition at line 342 of file fbxusernotification.h.
+
+   List of all members.
+
+Public Member Functions
+
+                          AESequence (FbxAccumulatorEntry *pAE, int pDetailId)
+   FbxAccumulatorEntry *  AE ()
+                          Return the entry object the detail belongs to.
+                     int  DetailId ()
+                          Return the detail id in the entry object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   AESequence ( FbxAccumulatorEntry *  pAE,
+                int                    pDetailId
+              )                        [inline]
+
+   Definition at line 345 of file fbxusernotification.h.
+                                                            :
+            mAE(pAE),
+            mDetailId(pDetailId)
+            {
+            };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxAccumulatorEntry* AE ( ) [inline]
+   Search for all occurrences
+
+   Return the entry object the detail belongs to.
+
+   Definition at line 352 of file fbxusernotification.h.
+{ return mAE; }
+
+   int DetailId ( ) [inline]
+   Search for all occurrences
+
+   Return the detail id in the entry object.
+
+   Definition at line 354 of file fbxusernotification.h.
+{ return mDetailId; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxusernotification.h
+
+   Please send us your comment about this page

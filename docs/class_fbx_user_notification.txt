@@ -1,0 +1,651 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxUserNotification Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions | Static Public Member Functions | Protected Member Functions | Friends
+   FbxUserNotification Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxusernotification.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class accumulates user notifications and sends them to any device opened by the derived classes.
+
+   If this class is not derived, the data can only be sent to a log file. To send data to a log file, it must be opened before attempting to send data, otherwise, the messages will be lost.
+
+   Definition at line 111 of file fbxusernotification.h.
+
+   List of all members.
+
+Classes
+
+   class   AESequence
+     Identify one detail in all accumulator entries by record the entry object and its detail id. More...
+
+Public Types
+
+   enum   EEntryID {
+     eBindPoseInvalidObject, eBindPoseInvalidRoot, eBindPoseNotAllAncestorsNodes, eBindPoseNotAllDeformingNodes,
+     eBindPoseNotAllAncestorsDefinitionNodes, eBindPoseRelativeMatrix, eEmbedMediaNotify, eFileIONotify,
+     eFileIONotifyMaterial, eFileIONotifyDXFNotSupportNurbs, eEntryStartID
+   }
+     IDs for pre-defined message entries. More...
+
+Public Member Functions
+
+     FbxUserNotification (FbxManager *pManager, FbxString const &pLogFileName, FbxString const &pSessionDescription)
+     Instantiate a FbxUserNotification but leave it uninitialized.
+   virtual  ~FbxUserNotification ()
+     Destructor.
+   void  InitAccumulator ()
+     Accumulator is to hold the notification entries.
+   void  ClearAccumulator ()
+     This method must be called when the Accumulator is no longer needed.
+   Accumulator Management
+   int  AddEntry (const int pID, const FbxString &pName, const FbxString &pDescr, FbxAccumulatorEntry::EClass pClass=FbxAccumulatorEntry::eWarning)
+     Adds one entry into the accumulator.
+   int  AddDetail (int pEntryId)
+     Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+   int  AddDetail (int pEntryId, FbxString pString)
+     Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+   int  AddDetail (int pEntryId, FbxNode *pNode)
+     Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+   int  GetNbEntries () const
+     Returns the number of AccumulatorEntries currently stored in this accumulator.
+   const FbxAccumulatorEntry *  GetEntry (int pEntryId) const
+     Get the specified FbxAccumulatorEntry.
+   const FbxAccumulatorEntry *  GetEntryAt (int pEntryIndex) const
+     Get the FbxAccumulatorEntry at the specified index.
+   int  GetNbDetails () const
+     Returns the number of Details recorded so far in this accumulator.
+   int  GetDetail (int pDetailId, const FbxAccumulatorEntry *&pAE) const
+     Get the specified detail.
+   Utilities
+   virtual void  GetLogFilePath (FbxString &pPath)
+     Returns the absolute path to the log file.
+   FbxString  GetLogFileName ()
+     Returns the log file name.
+
+Static Public Member Functions
+
+   static FbxUserNotification *  Create (FbxManager *pManager, const FbxString &pLogFileName, const FbxString &pSessionDescription)
+     Create and initialize user notification object for the SDK manager.
+   static void  Destroy (FbxManager *pManager)
+     Destroy the global user notification object owned by the SDK manager.
+
+Protected Member Functions
+
+   virtual bool  PostTerminate ()
+     Allow a derived class to finalize processing AFTER the log file handle has been deleted.
+   virtual void  AccumulatorInit ()
+     Allow the implementation class to perform accumulator initializations before the Extra devices are opened.
+   virtual void  AccumulatorClear ()
+     Allow the implementation class to perform accumulator clear after the Extra devices are closed.
+   virtual void  OpenExtraDevices ()
+     Allow the implementation class to opens its output devices (called by InitAccumulator).
+   virtual bool  SendToExtraDevices (bool pOutputNow, FbxArray< FbxAccumulatorEntry * > &pEntries)
+     Allow the implementation class to send all the accumulator entries to the devices.
+   virtual bool  SendToExtraDevices (bool pOutputNow, FbxArray< AESequence * > &pAESequence)
+     Allow the implementation class to send all the accumulator entries to the devices.
+   virtual bool  SendToExtraDevices (bool pOutputNow, const FbxAccumulatorEntry *pAccEntry, int pDetailId=-1)
+     Allow the implementation class to send one accumulator entry to the devices.
+   virtual void  CloseExtraDevices ()
+     Allow the implementation class to close it's output devices (called in the ClearAccumulator) By default this method does nothing.
+   void  ResetAccumulator ()
+     Clears the Accumulator list, remove all user notification entries..
+   void  ResetSequence ()
+     Clears the Sequence list.
+   void  SendToLog (EOutputSource pOutSrc, int pId)
+     Send the pIdth element of the accumulator or sequence list to the log file.
+   void  SendToLog (const FbxAccumulatorEntry *pAccEntry, int pDetailId=-1)
+     Send the accumulator entry to the log file.
+
+Friends
+
+   class  FbxUserNotificationFilteredIterator
+
+Accumulator Output
+
+   enum   EOutputSource { eAccumulatorEntry, eSequencedDetails }
+     Specify send what kind of data to output device. More...
+   bool  Output (EOutputSource pOutSrc=eAccumulatorEntry, int pIndex=-1, bool pExtraDevicesOnly=false)
+     Send the accumulator entries to the output devices.
+   bool  OutputById (EEntryID pId, EOutputSource pOutSrc=eAccumulatorEntry, bool pExtraDevicesOnly=false)
+     Send the accumulator entry to the output devices.
+   bool  Output (const FbxString &pName, const FbxString &pDescr, FbxAccumulatorEntry::EClass pClass, bool pExtraDevicesOnly=false)
+     Send an immediate entry to the output devices.
+   bool  Output (FbxUserNotificationFilteredIterator &pAEFIter, bool pExtraDevicesOnly=false)
+     Sends the content of the iterator to the output devices.
+   void  SetLogMessageEmitter (FbxMessageEmitter *pLogMessageEmitter)
+     Set log message emitter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EEntryID
+   Search for all occurrences
+
+   IDs for pre-defined message entries.
+
+   Enumerator:
+
+          eBindPoseInvalidObject
+
+   Search for all occurrences
+          eBindPoseInvalidRoot
+
+   Search for all occurrences
+          eBindPoseNotAllAncestorsNodes
+
+   Search for all occurrences
+          eBindPoseNotAllDeformingNodes
+
+   Search for all occurrences
+          eBindPoseNotAllAncestorsDefinitionNodes
+
+   Search for all occurrences
+          eBindPoseRelativeMatrix
+
+   Search for all occurrences
+          eEmbedMediaNotify
+
+   Search for all occurrences
+          eFileIONotify
+
+   this is generic for reader and writer to log notifications.
+   Search for all occurrences
+          eFileIONotifyMaterial
+
+   Search for all occurrences
+          eFileIONotifyDXFNotSupportNurbs
+
+   Search for all occurrences
+          eEntryStartID
+
+   Starting ID for any Accumulator entry added by derived classes.
+   Search for all occurrences
+
+   Definition at line 171 of file fbxusernotification.h.
+        {
+        eBindPoseInvalidObject,
+        eBindPoseInvalidRoot,
+        eBindPoseNotAllAncestorsNodes,
+        eBindPoseNotAllDeformingNodes,
+        eBindPoseNotAllAncestorsDefinitionNodes,
+        eBindPoseRelativeMatrix,
+        eEmbedMediaNotify,
+        eFileIONotify,
+        eFileIONotifyMaterial,
+        eFileIONotifyDXFNotSupportNurbs,
+        eEntryStartID
+    };
+
+   enum EOutputSource
+   Search for all occurrences
+
+   Specify send what kind of data to output device.
+
+   Enumerator:
+
+          eAccumulatorEntry
+
+   Entry with its details.
+   Search for all occurrences
+          eSequencedDetails
+
+   Details in the recorded order.
+   Search for all occurrences
+
+   Definition at line 270 of file fbxusernotification.h.
+        {
+        eAccumulatorEntry,
+        eSequencedDetails
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxUserNotification ( FbxManager *       pManager,
+                         FbxString const &  pLogFileName,
+                         FbxString const &  pSessionDescription
+                       )
+
+   Instantiate a FbxUserNotification but leave it uninitialized.
+
+   The caller must explicitly call InitAccumulator to initialize it and ClearAccumulator when finished using it.
+
+   Parameters:
+
+          pManager
+          pLogFileName Name of the log file that will be open in the directory defined by the GetLogFilePath method.
+
+   Remarks:
+          If pLogFileName is an empty string the log file does not get created and any output sent to it is lost.
+
+   Parameters:
+
+          pSessionDescription This string is used to separate session logs in the file.
+
+   Remarks:
+          If the specified log file already exists, messages are appended to it. This class never deletes the log file. Derived classes may delete the log file before opening (it must be done in the constructor because the log file is opened in the InitAccumulator) or at the end of the processing in the PostTerminate method.
+
+   virtual ~FbxUserNotification ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxUserNotification* Create ( FbxManager *       pManager,
+                                        const FbxString &  pLogFileName,
+                                        const FbxString &  pSessionDescription
+                                      )                    [static]
+   Search for all occurrences
+
+   Create and initialize user notification object for the SDK manager.
+
+   One SDK manager has one global user notification object. If the SDK manager already has global user notification object, the function will do nothing.
+
+   Parameters:
+
+          pManager
+          pLogFileName        Name of the log file that will be open in the directory defined by the GetLogFilePath method.
+          pSessionDescription This string is used to separate session logs in the file.
+
+   Returns:
+          the global user notification object owned by the SDK manager.
+
+   static void Destroy ( FbxManager *  pManager ) [static]
+   Search for all occurrences
+
+   Destroy the global user notification object owned by the SDK manager.
+   void InitAccumulator ( )
+   Search for all occurrences
+
+   Accumulator is to hold the notification entries.
+
+   User can add entries to it. This method must be called before using the Accumulator. It opens the log file and calls AccumulatorInit followed by OpenExtraDevices. Failing to call this method will prevent other actions except ClearAccumulator, GetLogFileName and GetLogFilePath.
+   void ClearAccumulator ( )
+   Search for all occurrences
+
+   This method must be called when the Accumulator is no longer needed.
+
+   It calls CloseExtraDevices, followed by the AccumulatorClear, and then closes the log file.
+   int AddEntry ( const int                    pID,
+                  const FbxString &            pName,
+                  const FbxString &            pDescr,
+                  FbxAccumulatorEntry::EClass  pClass = FbxAccumulatorEntry::eWarning
+                )
+   Search for all occurrences
+
+   Adds one entry into the accumulator.
+
+   Parameters:
+
+          pID    This entry unique ID.
+          pName  This entry name.
+          pDescr The description of this entry.
+          pClass The category of this entry.
+
+   Returns:
+          The ID of the newly allocated entry. This ID is pEntryId.
+
+   int AddDetail ( int  pEntryId )
+   Search for all occurrences
+
+   Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+
+   Each call to this method is internally recorded, making it possible to output each notification in the order they have been defined. Also, when a detail is added to an entry, it is automatically unmuted so it can be sent to the devices (muted FbxAccumulatorEntry objects are not processed).
+
+   Parameters:
+
+          pEntryId The entry index (as returned by AddEntry).
+
+   Returns:
+          The id of the detail in the recorded sequence of events. This Id should be used when the call to Output has the eSequencedDetails set as a source. If an error occurs, the returned value is -1
+
+   int AddDetail ( int        pEntryId,
+                   FbxString  pString
+                 )
+   Search for all occurrences
+
+   Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+
+   Each call to this method is internally recorded, making it possible to output each notification in the order they have been defined. Also, when a detail is added to an entry, it is automatically unmuted so it can be sent to the devices (muted FbxAccumulatorEntry objects are not processed).
+
+   Parameters:
+
+          pEntryId The entry index (as returned by AddEntry).
+          pString  The detail string to add to the entry.
+
+   Returns:
+          The id of the detail in the recorded sequence of events. This Id should be used when the call to Output has the eSequencedDetails set as a source. If an error occurs, the returned value is -1
+
+   int AddDetail ( int        pEntryId,
+                   FbxNode *  pNode
+                 )
+   Search for all occurrences
+
+   Completes the accumulator entry (there can be more that one detail for each entry) and implicitly defines the sequence of events.
+
+   Each call to this method is internally recorded, making it possible to output each notification in the order they have been defined. Also, when a detail is added to an entry, it is automatically unmuted so it can be sent to the devices (muted FbxAccumulatorEntry objects are not processed).
+
+   Parameters:
+
+          pEntryId The entry index (as returned by AddEntry).
+          pNode    The node to add to the entry.
+
+   Returns:
+          The id of the detail in the recorded sequence of events. This Id should be used when the call to Output has the eSequencedDetails set as a source. If an error occurs, the returned value is -1
+
+   int GetNbEntries ( ) const
+   Search for all occurrences
+
+   Returns the number of AccumulatorEntries currently stored in this accumulator.
+   const FbxAccumulatorEntry* GetEntry ( int  pEntryId ) const
+   Search for all occurrences
+
+   Get the specified FbxAccumulatorEntry.
+
+   Parameters:
+
+          pEntryId ID of the entry to retrieve.
+
+   Returns:
+          Pointer to the specified entry, otherwise NULL if either the id is invalid or the Accumulator is not properly initialized.
+
+   const FbxAccumulatorEntry* GetEntryAt ( int  pEntryIndex ) const
+   Search for all occurrences
+
+   Get the FbxAccumulatorEntry at the specified index.
+
+   Parameters:
+
+          pEntryIndex index of the entry to retrieve.
+
+   Returns:
+          Pointer to the specified entry, otherwise NULL if either the index is invalid or the Accumulator is not properly initialized..
+
+   int GetNbDetails ( ) const
+   Search for all occurrences
+
+   Returns the number of Details recorded so far in this accumulator.
+   int GetDetail ( int                           pDetailId,
+                   const FbxAccumulatorEntry *&  pAE
+                 )                               const
+   Search for all occurrences
+
+   Get the specified detail.
+
+   Parameters:
+
+          pDetailId Index of the detail. This is the id-th detail of type pClass as inserted when the AddDetail
+          pAE       Pointer to the FbxAccumulatorEntry object that contains the requested detail. The returned valued can be NULL if an error occurred.
+
+   Returns:
+          The index of the detail to be used when calling the GetDetail of the FbxAccumulatorEntry.
+
+   Remarks:
+          A value of -1 is acceptable and means that the FbxAccumulatorEntry has no details. However, if pAE is NULL, the return value is meaningless.
+
+   bool Output ( EOutputSource  pOutSrc = eAccumulatorEntry,
+                 int            pIndex = -1,
+                 bool           pExtraDevicesOnly = false
+               )
+   Search for all occurrences
+
+   Send the accumulator entries to the output devices.
+
+   This method needs to be explicitly called by the program that uses this class.
+
+   Parameters:
+
+          pOutSrc           Specify which data has to be sent to the output devices. Set to SEQUENCED_DETAILS to send the Details in the recorded order. Set to ACCUMULATOR_ENTRY to send each entry with its details regardless of the order in which the events occurred.
+          pIndex            If this parameter >= 0, only send the specified entry/detail index to the output devices. Otherwise send all of them.
+          pExtraDevicesOnly If this parameter is True, the output is not sent to the log file.
+
+   Remarks:
+          The pExtraDevicesOnly parameter is ignored if the log file has been disabled.
+
+   bool OutputById ( EEntryID       pId,
+                     EOutputSource  pOutSrc = eAccumulatorEntry,
+                     bool           pExtraDevicesOnly = false
+                   )
+   Search for all occurrences
+
+   Send the accumulator entry to the output devices.
+
+   Parameters:
+
+          pId               Send the entry/detail that matching pIdx to the output devices, otherwise send all of them.
+          pOutSrc           Specify which data has to be sent to the output devices. Set to SEQUENCED_DETAILS to send the Details in the recorded order. Set to ACCUMULATOR_ENTRY to send each entry with its details regardless of the order in which the events occurred..
+          pExtraDevicesOnly If this parameter is True, the output is not sent to the log file.
+
+   bool Output ( const FbxString &            pName,
+                 const FbxString &            pDescr,
+                 FbxAccumulatorEntry::EClass  pClass,
+                 bool                         pExtraDevicesOnly = false
+               )
+   Search for all occurrences
+
+   Send an immediate entry to the output devices.
+
+   This method bypasses the accumulator by sending the entry directly to the output devices and discarding it right after. The internal accumulator lists are left unchanged by this call.
+
+   Parameters:
+
+          pName             This entry name.
+          pDescr            The description of this entry.
+          pClass            The category of this entry.
+          pExtraDevicesOnly If this parameter is True, the output is not sent to the log file.
+
+   Remarks:
+          The pExtraDevicesOnly parameter is ignored if the log file has been disabled.
+
+   bool Output ( FbxUserNotificationFilteredIterator &  pAEFIter,
+                 bool                                   pExtraDevicesOnly = false
+               )
+   Search for all occurrences
+
+   Sends the content of the iterator to the output devices.
+
+   This method bypasses the accumulator by sending each entry in the iterator directly to the output devices. The internal accumulator lists are left unchanged by this call.
+
+   Parameters:
+
+          pAEFIter          The Filtered FbxAccumulatorEntry iterator object.
+          pExtraDevicesOnly If this parameter is True, the output is not sent to the log file.
+
+   Remarks:
+          The pExtraDevicesOnly parameter is ignored if the log file has been disabled.
+
+   void SetLogMessageEmitter ( FbxMessageEmitter *  pLogMessageEmitter )
+   Search for all occurrences
+
+   Set log message emitter.
+
+   Parameters:
+
+          pLogMessageEmitter The new log message emitter.
+
+   virtual void GetLogFilePath ( FbxString &  pPath ) [virtual]
+   Search for all occurrences
+
+   Returns the absolute path to the log file.
+
+   If this method is not overridden in a derived class, it returns the TEMP directory.
+
+   Parameters:
+
+          pPath The returned path.
+
+   FbxString GetLogFileName ( ) [inline]
+   Search for all occurrences
+
+   Returns the log file name.
+
+   Definition at line 335 of file fbxusernotification.h.
+{ return mLogFileName; }
+
+   virtual bool PostTerminate ( ) [protected, virtual]
+   Search for all occurrences
+
+   Allow a derived class to finalize processing AFTER the log file handle has been deleted.
+
+   This may be required if the log file needs to be moved or shown.
+
+   Returns:
+          True if the object is properly cleaned.
+
+   virtual void AccumulatorInit ( ) [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to perform accumulator initializations before the Extra devices are opened.
+
+   By default this method does nothing.
+   virtual void AccumulatorClear ( ) [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to perform accumulator clear after the Extra devices are closed.
+
+   By default this method does nothing.
+   virtual void OpenExtraDevices ( ) [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to opens its output devices (called by InitAccumulator).
+
+   By default this method does nothing.
+   virtual bool SendToExtraDevices ( bool                                 pOutputNow,
+                                     FbxArray< FbxAccumulatorEntry * > &  pEntries
+                                   )                                      [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to send all the accumulator entries to the devices.
+
+   By default this method loop trough all the elements of the received array and call the SendToExtraDevices method with the appropriate FbxAccumulatorEntry element and id.
+
+   Parameters:
+
+          pOutputNow Flag indicates whether to output now.
+          pEntries   Accumulator entries to output.
+
+   Returns:
+          true if successful, false otherwise.
+
+   virtual bool SendToExtraDevices ( bool                        pOutputNow,
+                                     FbxArray< AESequence * > &  pAESequence
+                                   )                             [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to send all the accumulator entries to the devices.
+
+   By default this method loop trough all the elements of the received array and call the SendToExtraDevices method with the appropriate FbxAccumulatorEntry element and id.
+
+   Parameters:
+
+          pOutputNow  Flag indicates whether to output now.
+          pAESequence Accumulator entries to output.
+
+   Returns:
+          true if successful, false otherwise.
+
+   virtual bool SendToExtraDevices ( bool                         pOutputNow,
+                                     const FbxAccumulatorEntry *  pAccEntry,
+                                     int                          pDetailId = -1
+                                   )                              [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to send one accumulator entry to the devices.
+
+   By default this method does nothing.
+
+   Parameters:
+
+          pOutputNow Flag indicates whether to output now.
+          pAccEntry  Accumulator entry to output.
+          pDetailId  Detail id.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          Derived methods should check for the IsMuted() state to decide if the accumulator entry should get through or get discarded. See AddDetail for more details.
+
+   virtual void CloseExtraDevices ( ) [protected, virtual]
+   Search for all occurrences
+
+   Allow the implementation class to close it's output devices (called in the ClearAccumulator) By default this method does nothing.
+   void ResetAccumulator ( ) [protected]
+   Search for all occurrences
+
+   Clears the Accumulator list, remove all user notification entries..
+   void ResetSequence ( ) [protected]
+   Search for all occurrences
+
+   Clears the Sequence list.
+   void SendToLog ( EOutputSource  pOutSrc,
+                    int            pId
+                  )                [protected]
+   Search for all occurrences
+
+   Send the pIdth element of the accumulator or sequence list to the log file.
+
+   Parameters:
+
+          pOutSrc The output source, accumulator or sequence list.
+          pId     Element id.
+
+   void SendToLog ( const FbxAccumulatorEntry *  pAccEntry,
+                    int                          pDetailId = -1
+                  )                              [protected]
+   Search for all occurrences
+
+   Send the accumulator entry to the log file.
+
+   Parameters:
+
+          pAccEntry The accumulator entry.
+          pDetailId Detail id.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxUserNotificationFilteredIterator [friend]
+   Search for all occurrences
+
+   Definition at line 361 of file fbxusernotification.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxusernotification.h
+
+   Please send us your comment about this page

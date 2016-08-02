@@ -1,0 +1,176 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxHungryAllocator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   FbxHungryAllocator Class Reference
+   Search for all occurrences
+
+   #include <fbxcontainerallocators.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This allocator only frees the allocated memory when it is deleted.
+
+   This is a good allocator for building dictionaries, where we only add things to a container, but never remove them.
+
+   Definition at line 82 of file fbxcontainerallocators.h.
+
+   List of all members.
+
+Classes
+
+                 class   MemoryBlock
+
+Public Member Functions
+
+                         FbxHungryAllocator (size_t pRecordSize)
+                         FbxHungryAllocator (const FbxHungryAllocator &pOther)
+                         ~FbxHungryAllocator ()
+                   void  Reserve (const size_t pRecordCount)
+                 void *  AllocateRecords (const size_t pRecordCount=1)
+                   void  FreeMemory (void *pRecord)
+                 size_t  GetRecordSize () const
+   FbxHungryAllocator &  operator= (const FbxHungryAllocator &pOther)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxHungryAllocator ( size_t  pRecordSize ) [inline]
+
+   Definition at line 85 of file fbxcontainerallocators.h.
+                                               :
+                mRecordSize(pRecordSize),
+                mRecordPoolSize(0),
+                mData(NULL)
+        {
+        }
+
+   FbxHungryAllocator ( const FbxHungryAllocator &  pOther ) [inline]
+
+   Definition at line 92 of file fbxcontainerallocators.h.
+                                                             :
+                mRecordSize(pOther.mRecordSize),
+                mRecordPoolSize(pOther.mRecordPoolSize),
+                mData(NULL)
+        {
+        }
+
+   ~FbxHungryAllocator ( ) [inline]
+
+   Definition at line 99 of file fbxcontainerallocators.h.
+        {
+                MemoryBlock* lCurrent = mData;
+                MemoryBlock* lNext = lCurrent ? lCurrent->mNextBlock : 0;
+                while (lCurrent)
+                {
+                        FbxDelete(lCurrent);
+                        lCurrent = lNext;
+                        lNext = lCurrent ? lCurrent->mNextBlock : 0;
+                }
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reserve ( const size_t  pRecordCount ) [inline]
+   Search for all occurrences
+
+   Definition at line 111 of file fbxcontainerallocators.h.
+        {
+                MemoryBlock* lMem = FbxNew< MemoryBlock >(pRecordCount* mRecordSize);
+                lMem->mNextBlock = mData;
+                mData = lMem;
+                mRecordPoolSize += pRecordCount;
+        }
+
+   void* AllocateRecords ( const size_t  pRecordCount = 1 ) [inline]
+   Search for all occurrences
+
+   Definition at line 119 of file fbxcontainerallocators.h.
+        {
+                MemoryBlock* lBlock = mData;
+                void* lRecord = NULL;
+
+                while( (lBlock != NULL) && ((lRecord = lBlock->GetChunk(pRecordCount * mRecordSize)) == NULL) )
+                {
+                        lBlock = lBlock->mNextBlock;
+                }
+
+                if( lRecord == NULL )
+                {
+                        size_t lNumRecordToAllocate = mRecordPoolSize / 8 == 0 ? 2 : mRecordPoolSize / 8;
+                        if( lNumRecordToAllocate < pRecordCount )
+                        {
+                                lNumRecordToAllocate = pRecordCount;
+                        }
+                        Reserve(lNumRecordToAllocate);
+                        lRecord = AllocateRecords(pRecordCount);
+                }
+                return lRecord;
+        }
+
+   void FreeMemory ( void *  pRecord ) [inline]
+   Search for all occurrences
+
+   Definition at line 142 of file fbxcontainerallocators.h.
+        {
+                // "Hungry": release memory only when the allocator is destroyed.
+        }
+
+   size_t GetRecordSize ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 147 of file fbxcontainerallocators.h.
+        {
+                return mRecordSize;
+        }
+
+   FbxHungryAllocator& operator= ( const FbxHungryAllocator &  pOther ) [inline]
+
+   Definition at line 152 of file fbxcontainerallocators.h.
+        {
+                if( this != &pOther )
+                {
+                        // The next call to AllocateRecords() may skip over currently reserved
+                        // records if the size changes drastically, but otherwise GetChunk()
+                        // is size-oblivious.
+                        if( mRecordSize < pOther.mRecordSize )
+                        {
+                                mRecordPoolSize = 0;
+                        }
+
+                        mRecordSize = pOther.mRecordSize;
+                }
+                return(*this);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxcontainerallocators.h
+
+   Please send us your comment about this page

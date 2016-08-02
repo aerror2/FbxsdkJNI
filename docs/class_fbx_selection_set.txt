@@ -1,0 +1,149 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSelectionSet Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxSelectionSet Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxselectionset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK selection set class.
+
+   Represents a set of selected objects (FbxObject) and components. This is a non-exclusive (multiple membership) collection. Objects (FbxObject) can be added to a FbxSelectionSet directly, but to add components (vertexes, edges, or faces) you create a selection node (FbxSelectionNode) to group the object and its components together as a single item to be added.
+
+   See also:
+          FbxSelectionNode
+
+   Definition at line 30 of file fbxselectionset.h.
+   Inheritance diagram for FbxSelectionSet:
+   [USEMAP:class_fbx_selection_set.png]
+
+   List of all members.
+
+Public Attributes
+
+   FbxPropertyT< FbxString >  SelectionSetAnnotation
+                              This property stores annotation of the selection set.
+
+Utility functions
+
+                        void  GetFaceSelection (FbxObject *pObj, FbxArray< int > &pPolygonIndexArray) const
+                              Get the selected faces of a specified object.
+                        void  GetEdgeSelection (FbxObject *pObj, FbxArray< int > &pEdgeIndexArray) const
+                              Get the selected edges of a specified object.
+                        void  GetVertexSelection (FbxObject *pObj, FbxArray< int > &pVertexIndexArray) const
+                              Get the selected vertices of a specified object.
+                        void  GetSelectionNodesAndDirectObjects (FbxArray< FbxSelectionNode * > &pSelectionNodeList, FbxArray< FbxObject * > &pDirectObjectList) const
+                              Get list of two types of member in the selection set: SelectionNodes and Directly contained objects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void GetFaceSelection ( FbxObject *        pObj,
+                           FbxArray< int > &  pPolygonIndexArray
+                         )                    const
+   Search for all occurrences
+
+   Get the selected faces of a specified object.
+
+   Parameters:
+
+          pObj               The specified object.
+          pPolygonIndexArray The array to take the indices of the selected faces.
+
+   Remarks:
+          The indices of selected faces will be put in pPolygonIndexArray.
+
+   void GetEdgeSelection ( FbxObject *        pObj,
+                           FbxArray< int > &  pEdgeIndexArray
+                         )                    const
+   Search for all occurrences
+
+   Get the selected edges of a specified object.
+
+   Parameters:
+
+          pObj            The specified object.
+          pEdgeIndexArray The array to take the indices of the selected edges.
+
+   Remarks:
+          The indices of selected face will be put in pEdgeIndexArray.
+
+   void GetVertexSelection ( FbxObject *        pObj,
+                             FbxArray< int > &  pVertexIndexArray
+                           )                    const
+   Search for all occurrences
+
+   Get the selected vertices of a specified object.
+
+   Parameters:
+
+          pObj              The specified object.
+          pVertexIndexArray The array to take the indices of the selected vertices.
+
+   Remarks:
+          The indices of selected face will be put in pVertexIndexArray.
+
+   void GetSelectionNodesAndDirectObjects ( FbxArray< FbxSelectionNode * > &  pSelectionNodeList,
+                                            FbxArray< FbxObject * > &         pDirectObjectList
+                                          )                                   const
+   Search for all occurrences
+
+   Get list of two types of member in the selection set: SelectionNodes and Directly contained objects.
+
+   Parameters:
+
+          pSelectionNodeList The array to take selection nodes of the selection set.
+          pDirectObjectList  The array to take directly contained objects of the selection set.
+
+   Remarks:
+          There might be two types members for a selection set: selection node and directly contained object. They will be listed in pSelectionNodeList and pDirectObjectList separately.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> SelectionSetAnnotation
+   Search for all occurrences
+
+   This property stores annotation of the selection set.
+
+   Default value is "".
+
+   Definition at line 38 of file fbxselectionset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxselectionset.h
+
+   Please send us your comment about this page

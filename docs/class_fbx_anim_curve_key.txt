@@ -1,0 +1,702 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveKey Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxAnimCurveKey Class Reference
+
+   This reference page is linked to from the following overview topics: Animation Classes and their Interrelationships, List of Python Fbx classes, Animation Data Structures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimcurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is the interface for the FBX animation curve keys.
+
+   A key is defined by a time and a value. It also has tangents that control how the animation curve enters and exits the key.
+
+   Remarks:
+          This class is now the main animation key object of the SDK, Users should always use this class to handle animation curve key. This class has a FbxAnimCurveKey_Impl as its implementation interface, Default constructor does not initialize data members. If an instance has to be initialized, use function FbxAnimCurveKey::Set().
+
+   Examples:
+          Animation/main.cxx, ExportScene03/main.cxx, Pivot/main.cxx, and UserProperties/main.cxx.
+
+   Definition at line 348 of file fbxanimcurve.h.
+   Inheritance diagram for FbxAnimCurveKey:
+   [USEMAP:class_fbx_anim_curve_key.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                        FbxAnimCurveKey ()
+                                        Constructor with no argument.
+                                        FbxAnimCurveKey (FbxTime pTime)
+                                        Constructor with time.
+                                        FbxAnimCurveKey (FbxTime pTime, float pVal)
+                                        Constructor with time and value.
+                                        FbxAnimCurveKey (FbxAnimCurveKey const &pFKey)
+                                        Copy constructor.
+                                        ~FbxAnimCurveKey ()
+                                        Destructor.
+                     FbxAnimCurveKey &  operator= (const FbxAnimCurveKey &pFKey)
+                                        Assignment operator.
+                               FbxTime  GetTime () const
+                                        Get time value.
+                                  void  SetTime (const FbxTime &pTime)
+                                        Set time value.
+                                  void  Set (FbxTime pTime, float pValue)
+                                        Set time and value of key.
+                                  void  SetTCB (FbxTime pTime, float pValue, float pData0=0.0f, float pData1=0.0f, float pData2=0.0f)
+                                        Set a key with cubic interpolation, TCB tangent mode.
+                                 float  GetValue () const
+                                        Get the key value.
+                                  void  SetValue (float pValue)
+                                        Set the key value.
+   FbxAnimCurveDef::EInterpolationType  GetInterpolation ()
+                                        Get key's interpolation type.
+                                  void  SetInterpolation (FbxAnimCurveDef::EInterpolationType pInterpolation)
+                                        Set key's interpolation type.
+         FbxAnimCurveDef::ETangentMode  GetTangentMode (bool pIncludeOverrides=false)
+                                        Get key's tangent mode.
+                                  void  SetTangentMode (FbxAnimCurveDef::ETangentMode pTangentMode)
+                                        Set tangent mode.
+        FbxAnimCurveDef::EWeightedMode  GetTangentWeightMode () const
+                                        Get key's tangent weight mode.
+                                  void  SetTangentWeightMode (FbxAnimCurveDef::EWeightedMode pTangentWeightMode, FbxAnimCurveDef::EWeightedMode pMask=FbxAnimCurveDef::eWeightedAll)
+                                        Set key's tangent weight mode as double value (cubic interpolation, non TCB tangent mode).
+                                  void  SetTangentWeightAndAdjustTangent (FbxAnimCurveDef::EDataIndex pIndex, double pWeight)
+                                        Adjust the actual tangent of the key so that the tangent control point (tangent extremity) stays closer to where it should be.
+        FbxAnimCurveDef::EVelocityMode  GetTangentVelocityMode () const
+                                        Get key's tangent velocity mode.
+                                  void  SetTangentVelocityMode (FbxAnimCurveDef::EVelocityMode pTangentVelocityMode, FbxAnimCurveDef::EVelocityMode pMask=FbxAnimCurveDef::eVelocityAll)
+                                        Set key's tangent velocity mode as double value (cubic interpolation, non TCB tangent mode).
+        FbxAnimCurveDef::EConstantMode  GetConstantMode () const
+                                        Get key constant mode.
+                                  void  SetConstantMode (FbxAnimCurveDef::EConstantMode pMode)
+                                        Set key's constant mode.
+                                 float  GetDataFloat (FbxAnimCurveDef::EDataIndex pIndex) const
+                                        Get the value of specified data of the key.
+                                  void  SetDataFloat (FbxAnimCurveDef::EDataIndex pIndex, float pValue)
+                                        Set the value of specified data of the key.
+                                  void  SetTangentVisibility (FbxAnimCurveDef::ETangentVisibility pVisibility)
+                                        Set tangent visibility mode.
+   FbxAnimCurveDef::ETangentVisibility  GetTangentVisibility () const
+                                        Return tangent visibility mode.
+                                  void  SetBreak (bool pVal)
+                                        Turn on or turn off the tangent break.
+                                  bool  GetBreak () const
+                                        Get if the tangent has a break.
+                FbxAnimCurveKey_Impl *  GetImpl () const
+                                        Get key implementation.
+
+Static Public Member Functions
+
+                           static void  SetAllocatorFct (FbxAnimCurveKey_Impl *(*pAllocatorFct)())
+                                        Set allocator function.
+                           static void  SetCopyAllocatorFct (FbxAnimCurveKey_Impl *(*pCopyAllocatorFct)(FbxAnimCurveKey_Impl *))
+                                        Set copy allocator function.
+                           static void  SetDeallocatorFct (void(*pDeallocatorFct)(FbxAnimCurveKey_Impl *))
+                                        Set deallocator function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveKey ( ) [inline]
+
+   Constructor with no argument.
+
+   Definition at line 353 of file fbxanimcurve.h.
+                          : FbxAnimCurveKeyBase()
+    {
+                FBX_ASSERT(mAllocatorFct != NULL);
+                mImpl = (*mAllocatorFct)();
+    }
+
+   FbxAnimCurveKey ( FbxTime  pTime ) [inline]
+
+   Constructor with time.
+
+   Parameters:
+
+          pTime The time of key.
+
+   Definition at line 362 of file fbxanimcurve.h.
+                                   : FbxAnimCurveKeyBase()
+    {
+                FBX_ASSERT(mAllocatorFct != NULL);
+                mImpl = (*mAllocatorFct)();
+        SetTime(pTime);
+    }
+
+   FbxAnimCurveKey ( FbxTime  pTime,
+                     float    pVal
+                   )          [inline]
+
+   Constructor with time and value.
+
+   Parameters:
+
+          pTime The time of key.
+          pVal  The value of key.
+
+   Definition at line 373 of file fbxanimcurve.h.
+                                               : FbxAnimCurveKeyBase()
+    {
+                FBX_ASSERT(mAllocatorFct != NULL);
+                mImpl = (*mAllocatorFct)();
+        Set(pTime, pVal);
+    }
+
+   FbxAnimCurveKey ( FbxAnimCurveKey const &  pFKey ) [inline]
+
+   Copy constructor.
+
+   Definition at line 382 of file fbxanimcurve.h.
+                                                      : FbxAnimCurveKeyBase()
+    {
+                FBX_ASSERT(mCopyAllocatorFct != NULL);
+                SetTime(pFKey.GetTime());
+                mImpl = mCopyAllocatorFct(pFKey.GetImpl());
+    }
+
+   ~FbxAnimCurveKey ( ) [inline]
+
+   Destructor.
+
+   Definition at line 391 of file fbxanimcurve.h.
+    {
+                FBX_ASSERT(mDeallocatorFct != NULL);
+                (*mDeallocatorFct)(mImpl);
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxAnimCurveKey& operator= ( const FbxAnimCurveKey &  pFKey ) [inline]
+
+   Assignment operator.
+
+   Definition at line 399 of file fbxanimcurve.h.
+        {
+                FBX_ASSERT(mImpl);
+                if (mImpl)
+                {
+                        *mImpl = *(pFKey.GetImpl());
+                }
+                SetTime(pFKey.GetTime());
+                return *this;
+        }
+
+   FbxTime GetTime ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get time value.
+
+   Returns:
+          Time value.
+
+   Reimplemented from FbxAnimCurveKeyBase.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 413 of file fbxanimcurve.h.
+        {
+                return FbxAnimCurveKeyBase::GetTime();
+        }
+
+   void SetTime ( const FbxTime &  pTime ) [inline, virtual]
+   Search for all occurrences
+
+   Set time value.
+
+   Parameters:
+
+          pTime Time value to set.
+
+   Reimplemented from FbxAnimCurveKeyBase.
+
+   Definition at line 421 of file fbxanimcurve.h.
+        {
+                FbxAnimCurveKeyBase::SetTime(pTime);
+        }
+
+   void Set ( FbxTime  pTime,
+              float    pValue
+            )          [inline]
+   Search for all occurrences
+
+   Set time and value of key.
+
+   Parameters:
+
+          pTime  New time of this key.
+          pValue New value of this key.
+
+   Examples:
+          Animation/main.cxx, ExportScene03/main.cxx, and Pivot/main.cxx.
+
+   Definition at line 430 of file fbxanimcurve.h.
+        {
+                FbxAnimCurveKeyBase::SetTime(pTime);
+                mImpl->Set(pTime, pValue);
+        }
+
+   void SetTCB ( FbxTime  pTime,
+                 float    pValue,
+                 float    pData0 = 0.0f,
+                 float    pData1 = 0.0f,
+                 float    pData2 = 0.0f
+               )          [inline]
+   Search for all occurrences
+
+   Set a key with cubic interpolation, TCB tangent mode.
+
+   The key is modified according to the other parameters. The TCB mode controls the tension, continuity, and bias of the curve.
+
+   Parameters:
+
+          pTime  Key time.
+          pValue Key value.
+          pData0 Tension. Controls the amount of curvature in the animation curve. The higher the tension is, the more linear the curve looks. When the tension is low, the curve looks rounder or wider.
+          pData1 Continuity. Controls the smoothness or singularity of the curve on the key.
+          pData2 Bias. Controls if the effect of tension and continuity affect the curve before or after the key.
+
+   Definition at line 447 of file fbxanimcurve.h.
+        {
+                FbxAnimCurveKeyBase::SetTime(pTime);
+                mImpl->SetTCB(pTime, pValue, pData0, pData1, pData2);
+        }
+
+   float GetValue ( ) const [inline]
+   Search for all occurrences
+
+   Get the key value.
+
+   Returns:
+          The value of the key.
+
+   Definition at line 456 of file fbxanimcurve.h.
+        {
+                return mImpl->GetValue();
+        }
+
+   void SetValue ( float  pValue ) [inline]
+   Search for all occurrences
+
+   Set the key value.
+
+   Parameters:
+
+          pValue The value to set.
+
+   Definition at line 464 of file fbxanimcurve.h.
+        {
+                mImpl->SetValue(pValue);
+        }
+
+   FbxAnimCurveDef::EInterpolationType GetInterpolation ( ) [inline]
+   Search for all occurrences
+
+   Get key's interpolation type.
+
+   Returns:
+          Interpolation type of the queried key.
+
+   Definition at line 473 of file fbxanimcurve.h.
+        {
+                return mImpl->GetInterpolation();
+        }
+
+   void SetInterpolation ( FbxAnimCurveDef::EInterpolationType  pInterpolation ) [inline]
+   Search for all occurrences
+
+   Set key's interpolation type.
+
+   Parameters:
+
+          pInterpolation Interpolation type of the key.
+
+   Definition at line 481 of file fbxanimcurve.h.
+        {
+                mImpl->SetInterpolation(pInterpolation);
+        }
+
+   FbxAnimCurveDef::ETangentMode GetTangentMode ( bool  pIncludeOverrides = false ) [inline]
+   Search for all occurrences
+
+   Get key's tangent mode.
+
+   Parameters:
+
+          pIncludeOverrides Include override flags: Break, Clamp, Time-Independent.
+
+   Returns:
+          Tangent mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. Using this method for non cubic interpolated key will return unpredictable value.
+
+   Definition at line 492 of file fbxanimcurve.h.
+        {
+                return mImpl->GetTangentMode(pIncludeOverrides);
+        }
+
+   void SetTangentMode ( FbxAnimCurveDef::ETangentMode  pTangentMode ) [inline]
+   Search for all occurrences
+
+   Set tangent mode.
+
+   Parameters:
+
+          pTangentMode Tangent mode to set.
+
+   Definition at line 500 of file fbxanimcurve.h.
+        {
+                mImpl->SetTangentMode(pTangentMode);
+        }
+
+   FbxAnimCurveDef::EWeightedMode GetTangentWeightMode ( ) const [inline]
+   Search for all occurrences
+
+   Get key's tangent weight mode.
+
+   Returns:
+          Tangent weight mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   Definition at line 509 of file fbxanimcurve.h.
+        {
+                return mImpl->GetTangentWeightMode();
+        }
+
+   void SetTangentWeightMode ( FbxAnimCurveDef::EWeightedMode  pTangentWeightMode,
+                               FbxAnimCurveDef::EWeightedMode  pMask = FbxAnimCurveDef::eWeightedAll
+                             )                                 [inline]
+   Search for all occurrences
+
+   Set key's tangent weight mode as double value (cubic interpolation, non TCB tangent mode).
+
+   Parameters:
+
+          pTangentWeightMode Weight mode.
+          pMask              Used to select the affected tangents.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. The pMask will be used to cancel out the current tangent weight mode first, and then be used to define which tangent to select to affect.
+
+   Sample01:
+   FbxAnimCurveKey* lAnimCurveKey = FbxSdkNew<FbxAnimCurveKey>();
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedNextLeft);
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedRight, FbxAnimCurveDef::eWeightedRight);
+
+   pMask is eWeightedRight, it will first be used to cancel out the current tangent weight mode eWeightedNextLeft, since they are not the same, it fails to cancel it out. Then the mask eWeightedRight will be used to define which tangent should be affected, since it is the same as pTangentWeightMode (eWeightedRight), so the eWeightedRight should be affected. In total, after above calls, both eWeightedNextLeft and eWeightedRight of this key are affected, so lAnimCurveKey->GetTangentWeightMode() will be
+   FbxAnimCurveDef::eWeightedAll.
+
+   Sample02:
+   FbxAnimCurveKey* lAnimCurveKey = FbxSdkNew<FbxAnimCurveKey>();
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedAll);
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedRight, FbxAnimCurveDef::eWeightedNextLeft);
+
+   pMask is eWeightedNextLeft, it will first be used to cancel out the current tangent weight mode eWeightedAll, it will cancel out affect on eWeightedNextLeft, but leave affect on eWeightedRight. Then the mask eWeightedNextLeft will be used to define which tangent should be affected, since it is not the same as pTangentWeightMode (eWeightedRight), so the pMask won't affect anything in this step. In total, after above calls, only eWeightedRight of this key is still affected, so
+   lAnimCurveKey->GetTangentWeightMode() will be FbxAnimCurveDef::eWeightedRight.
+
+   Definition at line 547 of file fbxanimcurve.h.
+        {
+                mImpl->SetTangentWeightMode(pTangentWeightMode, pMask);
+        }
+
+   void SetTangentWeightAndAdjustTangent ( FbxAnimCurveDef::EDataIndex  pIndex,
+                                           double                       pWeight
+                                         )                              [inline]
+   Search for all occurrences
+
+   Adjust the actual tangent of the key so that the tangent control point (tangent extremity) stays closer to where it should be.
+
+   This is required because the weight value gets imprecise when it is small (it is stored as a fixed point value). This method must be called when setting the weight coming from a source where the precision is the same. It must be called after the tangent value has been set.
+
+   Remarks:
+          Do not use this call repetitively (from an interactive editor for example) because this function will create imprecision on the tangent value.
+
+   Parameters:
+
+          pIndex  FbxAnimCurveDef::EDataIndex
+          pWeight New tangent weight value.
+
+   Definition at line 562 of file fbxanimcurve.h.
+    {
+        mImpl->SetTangentWeightAndAdjustTangent(pIndex, pWeight);
+    }
+
+   FbxAnimCurveDef::EVelocityMode GetTangentVelocityMode ( ) const [inline]
+   Search for all occurrences
+
+   Get key's tangent velocity mode.
+
+   Returns:
+          Tangent velocity mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   Definition at line 571 of file fbxanimcurve.h.
+        {
+                return mImpl->GetTangentVelocityMode();
+        }
+
+   void SetTangentVelocityMode ( FbxAnimCurveDef::EVelocityMode  pTangentVelocityMode,
+                                 FbxAnimCurveDef::EVelocityMode  pMask = FbxAnimCurveDef::eVelocityAll
+                               )                                 [inline]
+   Search for all occurrences
+
+   Set key's tangent velocity mode as double value (cubic interpolation, non TCB tangent mode).
+
+   Parameters:
+
+          pTangentVelocityMode Velocity mode.
+          pMask                Used to select the affected tangents
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. The pMask will be used to cancel out the current tangent velocity mode first, and then be used to define which tangent to select to affect.
+
+   See also:
+          The documentation of SetTangentWeightMode for more details and samples about how the pMask works.
+
+   Definition at line 585 of file fbxanimcurve.h.
+        {
+                mImpl->SetTangentVelocityMode(pTangentVelocityMode, pMask);
+        }
+
+   FbxAnimCurveDef::EConstantMode GetConstantMode ( ) const [inline]
+   Search for all occurrences
+
+   Get key constant mode.
+
+   Returns:
+          Key constant mode.
+
+   Remarks:
+          This method is meaningful for constant interpolation only. Using this method for non constant interpolated key will return unpredicted value.
+
+   Definition at line 595 of file fbxanimcurve.h.
+        {
+                return mImpl->GetConstantMode();
+        }
+
+   void SetConstantMode ( FbxAnimCurveDef::EConstantMode  pMode ) [inline]
+   Search for all occurrences
+
+   Set key's constant mode.
+
+   Parameters:
+
+          pMode Constant mode to set.
+
+   Remarks:
+          This method is meaningful for constant interpolation only.
+
+   Definition at line 604 of file fbxanimcurve.h.
+        {
+                mImpl->SetConstantMode(pMode);
+        }
+
+   float GetDataFloat ( FbxAnimCurveDef::EDataIndex  pIndex ) const [inline]
+   Search for all occurrences
+
+   Get the value of specified data of the key.
+
+   Parameters:
+
+          pIndex Data index to specify which data to get value, the index is dependent on the key tangent mode.
+
+   Returns:
+          The value of the specified data.
+
+ FbxAnimCurveKey* lKey; // we suppose this is a valid pointer
+ if(lKey->GetTangentMode() == FbxAnimCurveDef::eTangentTCB)
+ {
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBTension);
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBContinuity);
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBBias);
+ }
+
+   Definition at line 623 of file fbxanimcurve.h.
+        {
+                return mImpl->GetDataFloat(pIndex);
+        }
+
+   void SetDataFloat ( FbxAnimCurveDef::EDataIndex  pIndex,
+                       float                        pValue
+                     )                              [inline]
+   Search for all occurrences
+
+   Set the value of specified data of the key.
+
+   Parameters:
+
+          pIndex Data index to specify which data to get value, the index is dependent on the key tangent mode.
+          pValue The data value to set.
+
+ FbxAnimCurveKey* lKey; // we suppose this is a valid pointer
+ lKey->SetInterpolation(FbxAnimCurveDef::eInterpolationCubic);
+ lKey->SetTangentMode(FbxAnimCurveDef::eTangentAuto);
+ lKey->SetDataFloat(FbxAnimCurveDef::eRightSlope, 0.0);
+
+   Definition at line 639 of file fbxanimcurve.h.
+        {
+                mImpl->SetDataFloat(pIndex, pValue);
+        }
+
+   void SetTangentVisibility ( FbxAnimCurveDef::ETangentVisibility  pVisibility ) [inline]
+   Search for all occurrences
+
+   Set tangent visibility mode.
+
+   This would indicate what part of the tangent is visible in a graphical interface.
+
+   Parameters:
+
+          pVisibility Tangent visibility mode.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   Definition at line 648 of file fbxanimcurve.h.
+        {
+                mImpl->SetTangentVisibility(pVisibility);
+        }
+
+   FbxAnimCurveDef::ETangentVisibility GetTangentVisibility ( ) const [inline]
+   Search for all occurrences
+
+   Return tangent visibility mode.
+
+   Returns:
+          Tangent visibility mode.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   Definition at line 657 of file fbxanimcurve.h.
+        {
+                return mImpl->GetTangentVisibility();
+        }
+
+   void SetBreak ( bool  pVal ) [inline]
+   Search for all occurrences
+
+   Turn on or turn off the tangent break.
+
+   When this flag is on (FbxAnimCurveDef::eTANGEAT_BREAK will be set), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal.
+
+   Parameters:
+
+          pVal Break flag (true or false).
+
+   Remarks:
+          This method is meaningful for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+
+   Definition at line 668 of file fbxanimcurve.h.
+        {
+                mImpl->SetBreak(pVal);
+        }
+
+   bool GetBreak ( ) const [inline]
+   Search for all occurrences
+
+   Get if the tangent has a break.
+
+   When this flag is set (FbxAnimCurveDef::eTANGEAT_BREAK), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal.
+
+   Returns:
+          Break flag (true or false).
+
+   Remarks:
+          This method is meaningful for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+
+   Definition at line 679 of file fbxanimcurve.h.
+        {
+                return mImpl->GetBreak();
+        }
+
+   FbxAnimCurveKey_Impl* GetImpl ( ) const [inline]
+   Search for all occurrences
+
+   Get key implementation.
+
+   Returns:
+          Pointer to implemented instance.
+
+   Definition at line 687 of file fbxanimcurve.h.
+        {
+                return mImpl;
+        }
+
+   static void SetAllocatorFct ( FbxAnimCurveKey_Impl *(*)()  pAllocatorFct ) [static]
+   Search for all occurrences
+
+   Set allocator function.
+
+   Parameters:
+
+          pAllocatorFct Allocator function
+
+   static void SetCopyAllocatorFct ( FbxAnimCurveKey_Impl *(*)(FbxAnimCurveKey_Impl *)  pCopyAllocatorFct ) [static]
+   Search for all occurrences
+
+   Set copy allocator function.
+
+   Parameters:
+
+          pCopyAllocatorFct Copy allocator function
+
+   static void SetDeallocatorFct ( void(*)(FbxAnimCurveKey_Impl *)  pDeallocatorFct ) [static]
+   Search for all occurrences
+
+   Set deallocator function.
+
+   Parameters:
+
+          pDeallocatorFct Deallocator function
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurve.h
+
+   Please send us your comment about this page

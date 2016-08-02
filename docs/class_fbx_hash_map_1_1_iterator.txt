@@ -1,0 +1,233 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator >::Iterator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxHashMap
+     * Iterator
+
+   Public Types | Public Member Functions | Friends
+   FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator >::Iterator Class Reference
+   Search for all occurrences
+
+   #include <fbxhashmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename KEY, typename VALUE, typename HASH, class Destruct = FbxNoOpDestruct<VALUE>, class Comparator = FbxDefaultComparator<KEY>>
+class FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator >::Iterator
+
+   Iterate through every element in a hash map.
+
+   Definition at line 77 of file fbxhashmap.h.
+
+   List of all members.
+
+Public Types
+
+                        typedef ListItem  ListItemType
+   typedef FbxPair< KeyType,
+   ValueType >  KeyValuePair
+
+Public Member Functions
+
+                                          Iterator (const Iterator &pOther)
+                                         Copy constructor.
+                                          ~Iterator ()
+                                         Destructor.
+                            KeyValuePair  operator* () const
+                                         Used to dereference an iterator and give it a behavior more similar to a pointer.
+                                    void  Next ()
+                                         Advances the iterator to the next keyvaluepair in the hashmap.
+                                    bool  operator== (const Iterator &pOther) const
+                                         Check equivalence between two iterators.
+                                    bool  operator!= (const Iterator &pOther) const
+                                         Check inequivalence between 2 iterators.
+                              Iterator &  operator= (const Iterator &pOther)
+                                         Assign the current iterator to the one on the right hand side of the operator.
+
+Friends
+
+                                   class  FbxHashMap
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef ListItem ListItemType
+   Search for all occurrences
+
+   Definition at line 81 of file fbxhashmap.h.
+   typedef FbxPair< KeyType, ValueType > KeyValuePair
+   Search for all occurrences
+
+   Definition at line 82 of file fbxhashmap.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   Iterator ( const Iterator &  pOther ) [inline]
+
+   Copy constructor.
+
+   Definition at line 87 of file fbxhashmap.h.
+                        :
+                        mMap( pOther.mMap ),
+                        mBucketIndex( pOther.mBucketIndex ),
+                        mCurrentItem( pOther.mCurrentItem )
+                {
+
+                }
+
+   ~Iterator ( ) [inline]
+
+   Destructor.
+
+   Definition at line 99 of file fbxhashmap.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   KeyValuePair operator* ( ) const [inline]
+
+   Used to dereference an iterator and give it a behavior more similar to a pointer.
+
+   Returns:
+          The KeyValuePair currently referenced by the iterator
+
+   Definition at line 105 of file fbxhashmap.h.
+                {
+                        KeyValuePair lItem;
+
+                        if( mCurrentItem )
+                        {
+                                lItem.mFirst = mCurrentItem->mKey;
+                                lItem.mSecond = mCurrentItem->mValue;
+                                return lItem;
+                        }
+
+                        FBX_ASSERT_NOW("Accessing out of bounds iterator");
+
+                        return lItem;
+                }
+
+   void Next ( ) [inline]
+   Search for all occurrences
+
+   Advances the iterator to the next keyvaluepair in the hashmap.
+
+   It does not wrap around so advancing after reaching the last element will not point back to the first one.
+
+   Definition at line 125 of file fbxhashmap.h.
+                {
+                        if( !mCurrentItem )
+                                return;
+
+                        if( mCurrentItem->mNext )
+                        {
+                                mCurrentItem = mCurrentItem->mNext;
+                                return;
+                        }
+                        else
+                        {
+                                mBucketIndex++;
+                                for( ; mBucketIndex < mMap->mBuckets.GetCount(); ++mBucketIndex )
+                                {
+                                        if( mMap->mBuckets[ mBucketIndex ] )
+                                        {
+                                                mCurrentItem = mMap->mBuckets[ mBucketIndex ];
+                                                return;
+                                        }
+                                }
+
+                                if( mBucketIndex >= mMap->mBuckets.GetCount() )
+                                {
+                                        *this = mMap->End();
+                                        return;
+                                }
+                        }
+                }
+
+   bool operator== ( const Iterator &  pOther ) const [inline]
+
+   Check equivalence between two iterators.
+
+   There are 3 conditions for equivalence between 2 iterators: 1) Item being referenced by the iterator must be equivalent 2) They must point at the same index 3) They must point on the same map
+
+   Returns:
+          true if both iterators are equal, false otherwise
+
+   Definition at line 162 of file fbxhashmap.h.
+                {
+                        return  mCurrentItem == pOther.mCurrentItem &&
+                                        mBucketIndex == pOther.mBucketIndex &&
+                                        mMap == pOther.mMap;
+                }
+
+   bool operator!= ( const Iterator &  pOther ) const [inline]
+
+   Check inequivalence between 2 iterators.
+
+   Please see operator== for more information.
+
+   Returns:
+          true if both iterators are NOT equal, false if they are
+
+   Definition at line 173 of file fbxhashmap.h.
+                {
+                        return !(*this == pOther);
+                }
+
+   Iterator& operator= ( const Iterator &  pOther ) [inline]
+
+   Assign the current iterator to the one on the right hand side of the operator.
+
+   After assignment they will reference the same object, at the same index, in the same map.
+
+   Returns:
+          The new iterator
+
+   Definition at line 183 of file fbxhashmap.h.
+                {
+                        this->mBucketIndex = pOther.mBucketIndex;
+                        this->mMap = pOther.mMap;
+                        this->mCurrentItem = pOther.mCurrentItem;
+                        return *this;
+                }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxHashMap [friend]
+   Search for all occurrences
+
+   Definition at line 206 of file fbxhashmap.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxhashmap.h
+
+   Please send us your comment about this page

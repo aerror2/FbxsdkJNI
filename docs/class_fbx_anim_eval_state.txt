@@ -1,0 +1,156 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimEvalState Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimEvalState Class Reference
+   Search for all occurrences
+
+   #include <fbxanimevalstate.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class hold results from animation evaluations.
+
+   To clear an evaluation state for re-use, it is possible to invalidate or to reset it. For the same scene with the same objects, invalidating an evaluation state is the quickest way to clear an evaluation state object for re-use because it only zeroes all the entries. A reset will delete all the entries. Unless the scene changes, for performance purposes it is recommended to invalidate evaluation states instead of resetting them.
+
+   See also:
+          FbxAnimEvaluator
+
+   Definition at line 41 of file fbxanimevalstate.h.
+
+   List of all members.
+
+Public Member Functions
+
+                  FbxTime  GetTime () const
+                           Get the time associated with this evaluation state.
+                     void  Reset ()
+                           Reset an evaluation state by deleting the cache it contains.
+                     void  Begin (const FbxTime &pTime)
+                           Start a new evaluation state frame by zeroing the cache it contains, and changing its associated time.
+                     void  Flush (FbxNode *pNode)
+                           Invalidate a node evaluation state to force update on next evaluation.
+                     void  Flush (FbxProperty &pProperty)
+                           Invalidate a property evaluation state to force update on next evaluation.
+       FbxNodeEvalState *  GetNodeEvalState (FbxNode *pNode)
+                           Get node transform evaluation result from the evaluation state.
+   FbxPropertyEvalState *  GetPropertyEvalState (FbxProperty &pProperty)
+                           Get a property evaluation result from the evaluation state.
+       FbxAnimCurveNode *  GetPropertyCurveNode (FbxProperty &pProperty, FbxAnimLayer *pAnimLayer)
+                           Get a property curve node from the evaluation state for quick access.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxTime GetTime ( ) const
+   Search for all occurrences
+
+   Get the time associated with this evaluation state.
+
+   Returns:
+          The time associated with this evaluation state.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset an evaluation state by deleting the cache it contains.
+
+   This will remove all entries in the cache.
+   void Begin ( const FbxTime &  pTime )
+   Search for all occurrences
+
+   Start a new evaluation state frame by zeroing the cache it contains, and changing its associated time.
+
+   All node and property entries will remain in the list, but their evaluation state will not be up-to-date.
+
+   Parameters:
+
+          pTime The time at which the evaluation state should be set after the invalidation.
+
+   void Flush ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Invalidate a node evaluation state to force update on next evaluation.
+
+   Parameters:
+
+          pNode The node that needs to be updated on next evaluation.
+
+   void Flush ( FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Invalidate a property evaluation state to force update on next evaluation.
+
+   Parameters:
+
+          pProperty The property that needs to be updated on next evaluation.
+
+   FbxNodeEvalState* GetNodeEvalState ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Get node transform evaluation result from the evaluation state.
+
+   Parameters:
+
+          pNode The node for which the value was stored.
+
+   Returns:
+          The global or local matrix transform for the specified node.
+
+   FbxPropertyEvalState* GetPropertyEvalState ( FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Get a property evaluation result from the evaluation state.
+
+   Parameters:
+
+          pProperty The property for which the value was stored.
+
+   Returns:
+          The result value that was stored.
+
+   FbxAnimCurveNode* GetPropertyCurveNode ( FbxProperty &   pProperty,
+                                            FbxAnimLayer *  pAnimLayer
+                                          )
+   Search for all occurrences
+
+   Get a property curve node from the evaluation state for quick access.
+
+   Parameters:
+
+          pProperty  The property to search for its animation curve node.
+          pAnimLayer The animation layer on which the animation curve node must be searched.
+
+   Remarks:
+          This function uses a map to store animation curve node search results. If animation curve nodes are replaced, the evaluation state must be reset.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimevalstate.h
+
+   Please send us your comment about this page

@@ -1,0 +1,1199 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurve Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxAnimCurve Class Reference
+
+   This reference page is linked to from the following overview topics: Animating a Node, Animation Classes and their Interrelationships, Supported Scene Elements, Migrating to the New Data Structures for Animation, List of Python Fbx classes, Extracting the Animation Data from a FBX File, Animation Data Structures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimcurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An animation curve, defined by a collection of keys (FbxAnimCurveKey), and indicating how a value changes over time.
+
+   Since an animation curve is a function, on a given animation curve, only one key per time is allowed. The keys are sorted in time order. They can be accessed by their index on the curve, from 0 to FbxAnimCurve::KeyGetCount-1. The time unit in FBX (FbxTime) is 1/46186158000 of one second.
+
+   Each key defines tangents and interpolation that modify the animation curve. Tangents control the way the animation curve enters and exits the keys. Interpolation indicates the animation curve's behavior between keys.
+
+   Interpolation modes are
+     * Constant - Curve value stays the same until next key
+     * Linear - Animation curve is a straight line
+     * Cubic - Animation curve is a Bezier spline
+
+   Tangent modes are
+     * Auto (Spline cardinal)
+     * Spline TCB (Tension, Continuity, Bias)
+     * User (Next slope at the left equal to slope at the right)
+
+   Tangent modes can be overridden by more tangent options:
+     * Break (Independent left and right slopes)
+     * Clamp (Key should be flat if next or previous key has the same value)
+     * Time independent
+
+   Tangent can be modified some more by adding weights and velocity. By default, the weights are 0.333 on either side of the key, and there is no velocity. Velocity settings speed up or slow down animation on either side of a key without changing the trajectory of the animation. Unlike Auto and Weight settings, Velocity changes the animation in time, but not in space.
+
+   Remarks:
+          FbxAnimCurve is now the main animation animation curve object of the SDK. Users should always use this class to handle animation curve.
+
+   Note:
+          When adding keys to an animation curve, use FbxAnimCurve::KeyModifyBegin and FbxAnimCurve::KeyModifyEnd. please refer to the following sample code:
+
+ FbxTime lTime;
+ int lKeyIndex = 0;
+
+ // Create curve
+ FbxAnimCurve* lAnimCurve = FbxAnimCurve::Create(pScene, "Cube Animation");
+
+ // Add keys to the curve
+ lAnimCurve->KeyModifyBegin();
+
+ // First key: time 0, value 0
+ lTime.SetSecondDouble(0.0);
+ lKeyIndex = lAnimCurve->KeyAdd(lTime);
+ lAnimCurve->KeySet(lKeyIndex, lTime, 0.0, FbxAnimCurveDef::eInterpolationLinear);
+
+ // Second key: time 20s, value -3600
+ // Since this curve will describe rotation, each cube will rotate 10 times around itself during 20 seconds.
+ lTime.SetSecondDouble(20.0);
+ lKeyIndex = lAnimCurve->KeyAdd(lTime);
+ lAnimCurve->KeySet(lKeyIndex, lTime, -3600, FbxAnimCurveDef::eInterpolationLinear);
+
+ // Done adding keys.
+ lAnimCurve->KeyModifyEnd();
+
+   Examples:
+          Animation/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, Instances/main.cxx, Pivot/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UserProperties/main.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.h, and ViewScene/SetCamera.cxx.
+
+   Definition at line 779 of file fbxanimcurve.h.
+   Inheritance diagram for FbxAnimCurve:
+   [USEMAP:class_fbx_anim_curve.png]
+
+   List of all members.
+
+Animation curve creation.
+
+   static FbxAnimCurve *  Create (FbxScene *pContainer, const char *pName)
+     Create a FbxAnimCurve.
+
+Key management.
+
+   virtual void  ResizeKeyBuffer (int pKeyCount)=0
+     Resize animation curve buffer to hold a certain number of keys.
+   virtual void  KeyModifyBegin ()=0
+     Call this function prior to adding, removing or editing keys of an animation curve.
+   virtual void  KeyModifyEnd ()=0
+     Call this function after adding, removing or editing keys of an animation curve.
+   virtual void  KeyClear ()=0
+     Remove all the keys of the animation curve and free buffer memory.
+   virtual int  KeyGetCount () const =0
+     Get the number of keys.
+   virtual int  KeyAdd (FbxTime pTime, FbxAnimCurveKeyBase &pKey, int *pLast=NULL)=0
+     Add a given key at given time.
+   virtual int  KeyAdd (FbxTime pTime, int *pLast=NULL)=0
+     Add a key at given time.
+   virtual bool  KeySet (int pIndex, FbxAnimCurveKeyBase &pKey)=0
+     Set (or replace) key at given index with given key.
+   virtual bool  KeyRemove (int pIndex)=0
+     Remove key at given index.
+   virtual bool  KeyRemove (int pStartIndex, int pEndIndex)=0
+     Remove all the keys in the given range.
+   virtual int  KeyInsert (FbxTime pTime, int *pLast=NULL)=0
+     Insert a key at given time.
+   virtual double  KeyFind (FbxTime pTime, int *pLast=NULL)=0
+     Find key index for a given time.
+   virtual bool  KeyScaleValue (float pMultValue)=0
+     Scale value of all keys.
+   virtual bool  KeyScaleValueAndTangent (float pMultValue)=0
+     Scale value and tangent of all keys.
+
+Key Manipulation
+
+   virtual void  KeySet (int pKeyIndex, FbxTime pTime, float pValue, FbxAnimCurveDef::EInterpolationType pInterpolation=FbxAnimCurveDef::eInterpolationCubic, FbxAnimCurveDef::ETangentMode pTangentMode=FbxAnimCurveDef::eTangentAuto, float pData0=0.0, float pData1=0.0, FbxAnimCurveDef::EWeightedMode pTangentWeightMode=FbxAnimCurveDef::eWeightedNone, float pWeight0=FbxAnimCurveDef::sDEFAULT_WEIGHT, float pWeight1=FbxAnimCurveDef::sDEFAULT_WEIGHT, float pVelocity0=FbxAnimCurveDef::sDEFAULT_VELOCITY, float
+   pVelocity1=FbxAnimCurveDef::sDEFAULT_VELOCITY)=0
+     General function to set key properties.
+   virtual void  KeySetTCB (int pKeyIndex, FbxTime pTime, float pValue, float pData0=0.0f, float pData1=0.0f, float pData2=0.0f)=0
+     Set a key with cubic interpolation, TCB tangent mode.
+   virtual
+   FbxAnimCurveDef::EInterpolationType  KeyGetInterpolation (int pKeyIndex) const =0
+     Get key's interpolation type.
+   virtual void  KeySetInterpolation (int pKeyIndex, FbxAnimCurveDef::EInterpolationType pInterpolation)=0
+     Set key's interpolation type.
+   virtual
+   FbxAnimCurveDef::EConstantMode  KeyGetConstantMode (int pKeyIndex) const =0
+     Get key's constant mode.
+   virtual
+   FbxAnimCurveDef::ETangentMode  KeyGetTangentMode (int pKeyIndex, bool pIncludeOverrides=false) const =0
+     Get key's tangent mode.
+   virtual void  KeySetConstantMode (int pKeyIndex, FbxAnimCurveDef::EConstantMode pMode)=0
+     Set key's constant mode.
+   virtual void  KeySetTangentMode (int pKeyIndex, FbxAnimCurveDef::ETangentMode pTangent)=0
+     Set key's tangent mode.
+   virtual FbxAnimCurveKey  KeyGet (int pIndex) const =0
+     Get key at given index.
+   virtual float  KeyGetValue (int pKeyIndex) const =0
+     Get key value.
+   virtual void  KeySetValue (int pKeyIndex, float pValue)=0
+     Set key value.
+   virtual void  KeyIncValue (int pKeyIndex, float pValue)=0
+     Increment key value.
+   virtual void  KeyMultValue (int pKeyIndex, float pValue)=0
+     Multiply key value.
+   virtual void  KeyMultTangent (int pKeyIndex, float pValue)=0
+     Multiply key tangents.
+   virtual FbxTime  KeyGetTime (int pKeyIndex) const =0
+     Get key time.
+   virtual void  KeySetTime (int pKeyIndex, FbxTime pTime)=0
+     Set key time.
+   virtual void  KeySetBreak (int pKeyIndex, bool pVal)=0
+     Set or unset the tangent break.
+   virtual bool  KeyGetBreak (int pKeyIndex) const =0
+     Get if the tangent has a break.
+
+Key Tangent Management
+
+   virtual float  KeyGetLeftDerivative (int pIndex)=0
+     Get the left derivative of a key.
+   virtual void  KeySetLeftDerivative (int pIndex, float pValue)=0
+     Set the left derivative of a key.
+   virtual float  KeyGetLeftAuto (int pIndex, bool pApplyOvershootProtection=false)=0
+     Get the left auto parametric of a key.
+   virtual FbxAnimCurveTangentInfo  KeyGetLeftDerivativeInfo (int pIndex)=0
+     Get the left derivative info (of type FbxAnimCurveTangentInfo) of a key.
+   virtual void  KeySetLeftDerivativeInfo (int pIndex, const FbxAnimCurveTangentInfo &pValue, bool pForceDerivative=false)=0
+     Set the left derivative info (of type FbxAnimCurveTangentInfo) of a key.
+   virtual float  KeyGetRightDerivative (int pIndex)=0
+     Get the right derivative of a key.
+   virtual void  KeySetRightDerivative (int pIndex, float pValue)=0
+     Set the right derivative of a key.
+   virtual float  KeyGetRightAuto (int pIndex, bool pApplyOvershootProtection=false)=0
+     Get the right auto parametric of a key.
+   virtual FbxAnimCurveTangentInfo  KeyGetRightDerivativeInfo (int pIndex)=0
+     Get the right derivative info (of type FbxAnimCurveTangentInfo) of a key.
+   virtual void  KeySetRightDerivativeInfo (int pIndex, const FbxAnimCurveTangentInfo &pValue, bool pForceDerivative=false)=0
+     Set the right derivative info (of type FbxAnimCurveTangentInfo) of a key.
+   virtual bool  KeyIsLeftTangentWeighted (int pIndex) const =0
+     Get the left tangent weight mode of a key.
+   virtual bool  KeyIsRightTangentWeighted (int pIndex) const =0
+     Get the right tangent weight mode of a key.
+   virtual float  KeyGetLeftTangentWeight (int pIndex) const =0
+     Get the weight value component of the left tangent of a key.
+   virtual float  KeyGetRightTangentWeight (int pIndex) const =0
+     Get the weight value component of the right tangent of a key.
+   virtual void  KeySetLeftTangentWeight (int pIndex, float pWeight, bool pAdjustTan=false)=0
+     Set the left tangent weight of a key.
+   virtual void  KeySetRightTangentWeight (int pIndex, float pWeight, bool pAdjustTan=false)=0
+     Set the right tangent weight of a key.
+   virtual float  KeyGetLeftTangentVelocity (int pIndex) const =0
+     Get the velocity value component of the left tangent of a key.
+   virtual float  KeyGetRightTangentVelocity (int pIndex) const =0
+     Get the velocity value component of the right tangent of a key.
+
+Evaluation and Analysis
+
+   virtual float  Evaluate (FbxTime pTime, int *pLast=NULL)=0
+     Evaluate animation curve value at a given time.
+   virtual float  EvaluateIndex (double pIndex)=0
+     Evaluate animation curve value at a given key index.
+   virtual float  EvaluateLeftDerivative (FbxTime pTime, int *pLast=NULL)=0
+     Evaluate function left derivative at given time.
+   virtual float  EvaluateRightDerivative (FbxTime pTime, int *pLast=NULL)=0
+     Evaluate function right derivative at given time.
+
+Utility functions.
+
+   virtual bool  GetTimeInterval (FbxTimeSpan &pTimeInterval)=0
+     Find out start and end time of the animation animation curve.
+   virtual void  CopyFrom (FbxAnimCurve &pSource, bool pWithKeys=true)=0
+     Copy animation curve content into current animation curve.
+   virtual float  GetValue (int pCurveNodeIndex=0)=0
+     Retrieve the value of the parent curve node channel.
+   virtual void  SetValue (float pValue, int pCurveNodeIndex=0)=0
+     Set the value to the parent curve node channel.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxAnimCurve* Create ( FbxScene *    pContainer,
+                                 const char *  pName
+                               )               [static]
+   Search for all occurrences
+
+   Create a FbxAnimCurve.
+
+   Parameters:
+
+          pContainer Scene to which the created animation curve belongs.
+          pName      Name of the animation curve.
+
+   Returns:
+          Newly created animation curve
+
+   Examples:
+          Animation/main.cxx, and Instances/main.cxx.
+
+   virtual void ResizeKeyBuffer ( int  pKeyCount ) [pure virtual]
+   Search for all occurrences
+
+   Resize animation curve buffer to hold a certain number of keys.
+
+   Parameters:
+
+          pKeyCount Number of keys the animation curve will eventually hold.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   virtual void KeyModifyBegin ( ) [pure virtual]
+   Search for all occurrences
+
+   Call this function prior to adding, removing or editing keys of an animation curve.
+
+   Call function FbxAnimCurve::KeyModifyEnd() after modification.
+
+   Examples:
+          Animation/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, Instances/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   virtual void KeyModifyEnd ( ) [pure virtual]
+   Search for all occurrences
+
+   Call this function after adding, removing or editing keys of an animation curve.
+
+   Function FbxAnimCurve::KeyModifyBegin() must have been called prior to modify the keys.
+
+   Examples:
+          Animation/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, Instances/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   virtual void KeyClear ( ) [pure virtual]
+   Search for all occurrences
+
+   Remove all the keys of the animation curve and free buffer memory.
+
+   Implements FbxAnimCurveBase.
+   virtual int KeyGetCount ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get the number of keys.
+
+   Returns:
+          Key count.
+
+   Implements FbxAnimCurveBase.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual int KeyAdd ( FbxTime                pTime,
+                        FbxAnimCurveKeyBase &  pKey,
+                        int *                  pLast = NULL
+                      )                        [pure virtual]
+   Search for all occurrences
+
+   Add a given key at given time.
+
+   The new key is appended after all the other animation curve's keys. Function FbxAnimCurve::KeyInsert() should be used instead if the key is to be added in the curve and not at the end. This function does not respect the interpolation type and tangents of the neighboring keys. If there is already a key at the given time, the key is modified and no new key is added.
+
+   Parameters:
+
+          pTime Time of the new key.
+          pKey  Key to add.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Index of the key at given time, no matter if it was added or already present.
+
+   Remarks:
+          Key value, interpolation type and tangent mode must be set explicitly afterwards.
+
+   Implements FbxAnimCurveBase.
+
+   Examples:
+          Animation/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, Instances/main.cxx, Pivot/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   virtual int KeyAdd ( FbxTime  pTime,
+                        int *    pLast = NULL
+                      )          [pure virtual]
+   Search for all occurrences
+
+   Add a key at given time.
+
+   The new key is appended after all the other animation curve's keys. Function FbxAnimCurve::KeyInsert() should be used instead if the key is to be added in the curve and not at the end. This function does not respect of the interpolation type and tangents of the neighboring keys. If there is already a key a the given time, no key is added.
+
+   Parameters:
+
+          pTime Time of the new key.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Index of the key at given time, no matter if it was added or already present.
+
+   Remarks:
+          Key value, interpolation type and tangent mode must be set explicitly afterwards.
+
+   virtual bool KeySet ( int                    pIndex,
+                         FbxAnimCurveKeyBase &  pKey
+                       )                        [pure virtual]
+   Search for all occurrences
+
+   Set (or replace) key at given index with given key.
+
+   Parameters:
+
+          pIndex Index of the key to be set or replaced.
+          pKey   New key at this index.
+
+   Returns:
+          true if key time is superior to previous key time and inferior to next key time, false otherwise.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   Implements FbxAnimCurveBase.
+
+   Examples:
+          ExportScene04/main.cxx, Instances/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   virtual bool KeyRemove ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Remove key at given index.
+
+   Other key indices are updated automatically.
+
+   Parameters:
+
+          pIndex Index of key to remove.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implements FbxAnimCurveBase.
+   virtual bool KeyRemove ( int  pStartIndex,
+                            int  pEndIndex
+                          )      [pure virtual]
+   Search for all occurrences
+
+   Remove all the keys in the given range.
+
+   Parameters:
+
+          pStartIndex Index of the first key to remove (inclusive).
+          pEndIndex   Index of the last key to remove (inclusive).
+
+   Returns:
+          true on success.
+
+   Implements FbxAnimCurveBase.
+   virtual int KeyInsert ( FbxTime  pTime,
+                           int *    pLast = NULL
+                         )          [pure virtual]
+   Search for all occurrences
+
+   Insert a key at given time.
+
+   This function should be used instead of FbxAnimCurve::KeyAdd() if the key is to be added in the curve and not at the end. It inserts the key in respect to the interpolation type and tangents of the neighboring keys. If there is already a key a the given time, the key is modified and no new key is added.
+
+   Parameters:
+
+          pTime Time of the new key.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Index of the key at given time, no matter if it was inserted or already present.
+
+   Remarks:
+          Key value must be set explicitly afterwards. The interpolation type and tangent mode are copied from the previous key.
+
+   virtual double KeyFind ( FbxTime  pTime,
+                            int *    pLast = NULL
+                          )          [pure virtual]
+   Search for all occurrences
+
+   Find key index for a given time.
+
+   Parameters:
+
+          pTime Time of the key looked for.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Key index. The integer part of the key index gives the index of the closest key with a smaller time. The decimals give the relative position of given time compared to previous and next key times. Returns -1 if animation curve has no key.
+
+   For example (using seconds for clarity), if there is a key at time 10s with index 5, and a key at time 11s with index 6, KeyFind(10.3s) would return 5.3.
+   virtual bool KeyScaleValue ( float  pMultValue ) [pure virtual]
+   Search for all occurrences
+
+   Scale value of all keys.
+
+   Parameters:
+
+          pMultValue Scale applied on key values.
+
+   Returns:
+          true on success, false otherwise.
+
+   virtual bool KeyScaleValueAndTangent ( float  pMultValue ) [pure virtual]
+   Search for all occurrences
+
+   Scale value and tangent of all keys.
+
+   Parameters:
+
+          pMultValue Scale applied on key values and tangents.
+
+   Returns:
+          true on success, false otherwise.
+
+   virtual void KeySet ( int                                  pKeyIndex,
+                         FbxTime                              pTime,
+                         float                                pValue,
+                         FbxAnimCurveDef::EInterpolationType  pInterpolation = FbxAnimCurveDef::eInterpolationCubic,
+                         FbxAnimCurveDef::ETangentMode        pTangentMode = FbxAnimCurveDef::eTangentAuto,
+                         float                                pData0 = 0.0,
+                         float                                pData1 = 0.0,
+                         FbxAnimCurveDef::EWeightedMode       pTangentWeightMode = FbxAnimCurveDef::eWeightedNone,
+                         float                                pWeight0 = FbxAnimCurveDef::sDEFAULT_WEIGHT,
+                         float                                pWeight1 = FbxAnimCurveDef::sDEFAULT_WEIGHT,
+                         float                                pVelocity0 = FbxAnimCurveDef::sDEFAULT_VELOCITY,
+                         float                                pVelocity1 = FbxAnimCurveDef::sDEFAULT_VELOCITY
+                       )                                      [pure virtual]
+   Search for all occurrences
+
+   General function to set key properties.
+
+   The key at index pKeyIndex is retrieved and modified according to the other parameters. The key must have been previously created, for example using KeyAdd. Use FbxAnimCurve::SetTCB() in the specific case of setting a key with cubic interpolation and TCB tangent mode.
+
+   Parameters:
+
+          pKeyIndex          Index of the key.
+          pTime              Key time.
+          pValue             Key value.
+          pInterpolation     Key interpolation type.
+          pTangentMode       Key tangent mode (meaningful for cubic interpolation only).
+          pData0             Value of right slope.
+          pData1             Value of next left slope.
+          pTangentWeightMode Weight mode, if used.
+          pWeight0           Weight for right slope, if tangent weight mode is eWeightedRight or eWeightedAll.
+          pWeight1           Weight for next left slope, if tangent weight mode is eWeightedNextLeft or eWeightedAll.
+          pVelocity0         Velocity for right slope, if tangent velocity mode is eVelocityRight or eVelocityAll.
+          pVelocity1         Velocity for next left slope, if tangent velocity mode is eVelocityNextLeft or eVelocityAll.
+
+   virtual void KeySetTCB ( int      pKeyIndex,
+                            FbxTime  pTime,
+                            float    pValue,
+                            float    pData0 = 0.0f,
+                            float    pData1 = 0.0f,
+                            float    pData2 = 0.0f
+                          )          [pure virtual]
+   Search for all occurrences
+
+   Set a key with cubic interpolation, TCB tangent mode.
+
+   The key at index pKeyIndex is retrieved and modified according to the other parameters. The TCB mode controls the tension, continuity, and bias of the curve.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pTime     Key time.
+          pValue    Key value.
+          pData0    Tension. Controls the amount of curvature in the animation curve. The higher the tension is, the more linear the curve looks. When the tension is low, the curve looks rounder or wider.
+          pData1    Continuity. Controls the smoothness or singularity of the curve on the key.
+          pData2    Bias. Controls if the effect of tension and continuity affect the curve before or after the key.
+
+   virtual FbxAnimCurveDef::EInterpolationType KeyGetInterpolation ( int  pKeyIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's interpolation type.
+
+   Parameters:
+
+          pKeyIndex Index of the queried key.
+
+   Returns:
+          Interpolation type of the queried key.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual void KeySetInterpolation ( int                                  pKeyIndex,
+                                      FbxAnimCurveDef::EInterpolationType  pInterpolation
+                                    )                                      [pure virtual]
+   Search for all occurrences
+
+   Set key's interpolation type.
+
+   Parameters:
+
+          pKeyIndex      Index of the key.
+          pInterpolation Key interpolation type.
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, and ExportScene04/main.cxx.
+
+   virtual FbxAnimCurveDef::EConstantMode KeyGetConstantMode ( int  pKeyIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's constant mode.
+
+   Note:
+          This method is only relevant if the key's interpolation type is constant (eInterpolationConstant). Using this method on a key with an other interpolation type will return unpredictable value.
+
+   Parameters:
+
+          pKeyIndex Index of the queried key.
+
+   Returns:
+          Key constant mode.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual FbxAnimCurveDef::ETangentMode KeyGetTangentMode ( int   pKeyIndex,
+                                                             bool  pIncludeOverrides = false
+                                                           )       const [pure virtual]
+   Search for all occurrences
+
+   Get key's tangent mode.
+
+   Parameters:
+
+          pKeyIndex         Index of the key.
+          pIncludeOverrides Include override flags: Break, Clamp, Time-Independent. This method is meaningful for cubic interpolation only. Using this method for non cubic interpolated key will return unpredictable value.
+
+   Returns:
+          Key tangent mode.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual void KeySetConstantMode ( int                             pKeyIndex,
+                                     FbxAnimCurveDef::EConstantMode  pMode
+                                   )                                 [pure virtual]
+   Search for all occurrences
+
+   Set key's constant mode.
+
+   This method is meaningful for constant interpolation only.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pMode     Key constant mode.
+
+   virtual void KeySetTangentMode ( int                            pKeyIndex,
+                                    FbxAnimCurveDef::ETangentMode  pTangent
+                                  )                                [pure virtual]
+   Search for all occurrences
+
+   Set key's tangent mode.
+
+   This method is meaningful for cubic interpolation only.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pTangent  Key tangent mode.
+
+   virtual FbxAnimCurveKey KeyGet ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get key at given index.
+
+   Parameters:
+
+          pIndex Index of the key on the animation curve.
+
+   Returns:
+          The key at the given index.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual float KeyGetValue ( int  pKeyIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get key value.
+
+   Parameters:
+
+          pKeyIndex Index of the queried key.
+
+   Returns:
+          Key value.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual void KeySetValue ( int    pKeyIndex,
+                              float  pValue
+                            )        [pure virtual]
+   Search for all occurrences
+
+   Set key value.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pValue    The value to set.
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, and ExportScene04/main.cxx.
+
+   virtual void KeyIncValue ( int    pKeyIndex,
+                              float  pValue
+                            )        [pure virtual]
+   Search for all occurrences
+
+   Increment key value.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pValue    Term added to the key value.
+
+   virtual void KeyMultValue ( int    pKeyIndex,
+                               float  pValue
+                             )        [pure virtual]
+   Search for all occurrences
+
+   Multiply key value.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pValue    Factor multiplying the key value.
+
+   See also:
+          FbxAnimCurve::KeyMultTangent.
+
+   virtual void KeyMultTangent ( int    pKeyIndex,
+                                 float  pValue
+                               )        [pure virtual]
+   Search for all occurrences
+
+   Multiply key tangents.
+
+   Remarks:
+          When multiplying a key value, tangents must be multiplied to conserve the same topology.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pValue    Factor multiplying the key tangents.
+
+   virtual FbxTime KeyGetTime ( int  pKeyIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get key time.
+
+   Parameters:
+
+          pKeyIndex Index of the queried key.
+
+   Returns:
+          Key time (time at which this key is occurring).
+
+   Reimplemented from FbxAnimCurveBase.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   virtual void KeySetTime ( int      pKeyIndex,
+                             FbxTime  pTime
+                           )          [pure virtual]
+   Search for all occurrences
+
+   Set key time.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pTime     Key time (time at which this key is occurring).
+
+   Remarks:
+          The new key time might modify the key index.
+
+   Implements FbxAnimCurveBase.
+   virtual void KeySetBreak ( int   pKeyIndex,
+                              bool  pVal
+                            )       [pure virtual]
+   Search for all occurrences
+
+   Set or unset the tangent break.
+
+   When this flag is set (FbxAnimCurveDef::eTangentBreak), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal. This method is relevant for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+
+   Parameters:
+
+          pKeyIndex Index of the key.
+          pVal      Break flag (true or false).
+
+   virtual bool KeyGetBreak ( int  pKeyIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get if the tangent has a break.
+
+   When this flag is set (FbxAnimCurveDef::eTangentBreak), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal. This method is relevant for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+
+   Parameters:
+
+          pKeyIndex Index of the queried key.
+
+   Returns:
+          Break flag (true or false).
+
+   virtual float KeyGetLeftDerivative ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Get the left derivative of a key.
+
+   Parameters:
+
+          pIndex Index of the queried key.
+
+   Returns:
+          Left derivative (Value over time (s)).
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual void KeySetLeftDerivative ( int    pIndex,
+                                       float  pValue
+                                     )        [pure virtual]
+   Search for all occurrences
+
+   Set the left derivative of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+          pValue Left derivative.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds. This function is only relevant if previous key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser, FbxAnimCurveDef::eTangentBreak or FbxAnimCurveDef::eTangentAuto.
+
+   virtual float KeyGetLeftAuto ( int   pIndex,
+                                  bool  pApplyOvershootProtection = false
+                                )       [pure virtual]
+   Search for all occurrences
+
+   Get the left auto parametric of a key.
+
+   This is used to compute the slope of Auto and User keys.
+
+   Parameters:
+
+          pIndex                    Index of the key.
+          pApplyOvershootProtection Clamp flag (eGENERIC_CLAMP) is taken into account.
+
+   Returns:
+          Left auto parametric.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual FbxAnimCurveTangentInfo KeyGetLeftDerivativeInfo ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Get the left derivative info (of type FbxAnimCurveTangentInfo) of a key.
+
+   Parameters:
+
+          pIndex Index of the queried key.
+
+   Returns:
+          Left derivative info.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual void KeySetLeftDerivativeInfo ( int                              pIndex,
+                                           const FbxAnimCurveTangentInfo &  pValue,
+                                           bool                             pForceDerivative = false
+                                         )                                  [pure virtual]
+   Search for all occurrences
+
+   Set the left derivative info (of type FbxAnimCurveTangentInfo) of a key.
+
+   Parameters:
+
+          pIndex           Index of the key.
+          pValue           Left derivative info.
+          pForceDerivative If true, assign the tangent info's derivative value to the key derivative. If false, use the tangent info's auto parametric value to recompute the key derivative.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds. This function is only relevant if previous key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser or FbxAnimCurveDef::eTangentBreak.
+
+   virtual float KeyGetRightDerivative ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Get the right derivative of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+
+   Returns:
+          Right derivative (Value over time (s)).
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual void KeySetRightDerivative ( int    pIndex,
+                                        float  pValue
+                                      )        [pure virtual]
+   Search for all occurrences
+
+   Set the right derivative of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+          pValue Right derivative.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds. This function is only relevant if previous key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser, FbxAnimCurveDef::eTangentBreak or FbxAnimCurveDef::eTangentAuto.
+
+   virtual float KeyGetRightAuto ( int   pIndex,
+                                   bool  pApplyOvershootProtection = false
+                                 )       [pure virtual]
+   Search for all occurrences
+
+   Get the right auto parametric of a key.
+
+   This is used to compute the slope of Auto and User keys.
+
+   Parameters:
+
+          pIndex                    Index of the key.
+          pApplyOvershootProtection Clamp flag (eGENERIC_CLAMP) is taken into account.
+
+   Returns:
+          Right auto parametric.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual FbxAnimCurveTangentInfo KeyGetRightDerivativeInfo ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Get the right derivative info (of type FbxAnimCurveTangentInfo) of a key.
+
+   Parameters:
+
+          pIndex Index of the queried key.
+
+   Returns:
+          Right derivative info.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual void KeySetRightDerivativeInfo ( int                              pIndex,
+                                            const FbxAnimCurveTangentInfo &  pValue,
+                                            bool                             pForceDerivative = false
+                                          )                                  [pure virtual]
+   Search for all occurrences
+
+   Set the right derivative info (of type FbxAnimCurveTangentInfo) of a key.
+
+   Parameters:
+
+          pIndex           Index of the key.
+          pValue           Right derivative info.
+          pForceDerivative If true, assign the tangent info's derivative value to the key derivative. If false, use the tangent info's auto parametric value to recompute the key derivative.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds. This function is only relevant if previous key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser or FbxAnimCurveDef::eTangentBreak.
+
+   virtual bool KeyIsLeftTangentWeighted ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the left tangent weight mode of a key.
+
+   Parameters:
+
+          pIndex Index of queried key.
+
+   Returns:
+          true if the key is left weighted (Weight mode is eWEIGHT_WEIGHTED_RIGHT or eWeightedAll). false otherwise.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual bool KeyIsRightTangentWeighted ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the right tangent weight mode of a key.
+
+   Parameters:
+
+          pIndex Index of queried key.
+
+   Returns:
+          true if the key is right weighted (Weight mode is eWeightedRight or eWeightedAll). false otherwise.
+
+   Remarks:
+          Result is undetermined if animation curve has no key or if index is out of bounds.
+
+   virtual float KeyGetLeftTangentWeight ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the weight value component of the left tangent of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+
+   Returns:
+          Left tangent weight, or eDEFAULT_WEIGHT (0.333...) if left tangent is not weighted.
+
+   Remarks:
+          This function is only relevant if key interpolation type is eInterpolationCubic.
+
+   virtual float KeyGetRightTangentWeight ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the weight value component of the right tangent of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+
+   Returns:
+          Right tangent weight, or eDEFAULT_WEIGHT (0.333...) if right tangent is not weighted.
+
+   Remarks:
+          This function is only relevant if key interpolation type is eInterpolationCubic.
+
+   virtual void KeySetLeftTangentWeight ( int    pIndex,
+                                          float  pWeight,
+                                          bool   pAdjustTan = false
+                                        )        [pure virtual]
+   Search for all occurrences
+
+   Set the left tangent weight of a key.
+
+   Parameters:
+
+          pIndex     Index of the key.
+          pWeight    Weight to set on the left tangent.
+          pAdjustTan If true, recompute the tangent height to compensate for very small weights.
+
+   Remarks:
+          This function is only relevant if previous key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser or FbxAnimCurveDef::eTangentBreak. The tangent is automatically set in weighted mode. The pAdjustTan option will only produce correct results provided that the tangent has already been set before calling this function.
+
+   virtual void KeySetRightTangentWeight ( int    pIndex,
+                                           float  pWeight,
+                                           bool   pAdjustTan = false
+                                         )        [pure virtual]
+   Search for all occurrences
+
+   Set the right tangent weight of a key.
+
+   Parameters:
+
+          pIndex     Index of the key.
+          pWeight    Weight to set on the right tangent.
+          pAdjustTan If true, recompute the tangent height to compensate for very small weights.
+
+   Remarks:
+          This function is only relevant if key interpolation type is eInterpolationCubic and tangent mode is FbxAnimCurveDef::eTangentUser or FbxAnimCurveDef::eTangentBreak. The tangent is automatically set in weighted mode. The pAdjustTan option will only produce correct results provided that the tangent has already been set before calling this function.
+
+   virtual float KeyGetLeftTangentVelocity ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the velocity value component of the left tangent of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+
+   Returns:
+          Tangent velocity of the left tangent.
+
+   Remarks:
+          This function is only relevant if key interpolation type is eInterpolationCubic
+
+   virtual float KeyGetRightTangentVelocity ( int  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the velocity value component of the right tangent of a key.
+
+   Parameters:
+
+          pIndex Index of the key.
+
+   Returns:
+          Tangent velocity of the right tangent.
+
+   Remarks:
+          This function is only relevant if key interpolation type is eInterpolationCubic
+
+   virtual float Evaluate ( FbxTime  pTime,
+                            int *    pLast = NULL
+                          )          [pure virtual]
+   Search for all occurrences
+
+   Evaluate animation curve value at a given time.
+
+   Parameters:
+
+          pTime Time of evaluation. If time falls between two keys, animation curve value is interpolated according to previous key interpolation type and tangent mode if relevant.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Animation curve value on given time, or animation curve's default value if animation curve has no key.
+
+   Remarks:
+          This function takes extrapolation into account.
+
+   Implements FbxAnimCurveBase.
+
+   Examples:
+          ViewScene/DrawScene.cxx, and ViewScene/SetCamera.cxx.
+
+   virtual float EvaluateIndex ( double  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Evaluate animation curve value at a given key index.
+
+   Parameters:
+
+          pIndex Any value from 0 to FbxAnimCurve::KeyGetCount() - 1.
+
+   Returns:
+          Animation curve value, or default value if animation curve has no key.
+
+   Remarks:
+          If key index is not an integer value, animation curve value is interpolated according to previous key interpolation type and tangent mode, if relevant. This function does not take extrapolation into account. Result is undetermined if index is out of bounds.
+
+   Implements FbxAnimCurveBase.
+   virtual float EvaluateLeftDerivative ( FbxTime  pTime,
+                                          int *    pLast = NULL
+                                        )          [pure virtual]
+   Search for all occurrences
+
+   Evaluate function left derivative at given time.
+
+   Parameters:
+
+          pTime Time of evaluation.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Left derivative at given time.
+
+   Remarks:
+          This function does not take extrapolation into account. Result is undetermined if index is out of bounds.
+
+   virtual float EvaluateRightDerivative ( FbxTime  pTime,
+                                           int *    pLast = NULL
+                                         )          [pure virtual]
+   Search for all occurrences
+
+   Evaluate function right derivative at given time.
+
+   Parameters:
+
+          pTime Time of evaluation.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Right derivative at given time.
+
+   Remarks:
+          This function does not take extrapolation into account. Result is undetermined if index is out of bounds.
+
+   virtual bool GetTimeInterval ( FbxTimeSpan &  pTimeInterval ) [pure virtual]
+   Search for all occurrences
+
+   Find out start and end time of the animation animation curve.
+
+   This function retrieves the animation curve's time span.
+
+   Parameters:
+
+          pTimeInterval Reference to receive start and end time.
+
+   Returns:
+          true on success, false otherwise.
+
+   Reimplemented from FbxAnimCurveBase.
+   virtual void CopyFrom ( FbxAnimCurve &  pSource,
+                           bool            pWithKeys = true
+                         )                 [pure virtual]
+   Search for all occurrences
+
+   Copy animation curve content into current animation curve.
+
+   Parameters:
+
+          pSource   Animation curve to be copied (which will not be modified).
+          pWithKeys If true, clear keys in current animation curve and copy keys from source animation curve. If false, keys in current animation curve are left as is.
+
+   virtual float GetValue ( int  pCurveNodeIndex = 0 ) [pure virtual]
+   Search for all occurrences
+
+   Retrieve the value of the parent curve node channel.
+
+   Parameters:
+
+          pCurveNodeIndex The index of the parent curve node, if more than one exist.
+
+   Returns:
+          The value of the parent curve node channel of this curve.
+
+   Remarks:
+          In most case, the curve will have a single curve node channel as destination. However, it is possible that more are connected, hence why we provide the curve node index parameter.
+
+   virtual void SetValue ( float  pValue,
+                           int    pCurveNodeIndex = 0
+                         )        [pure virtual]
+   Search for all occurrences
+
+   Set the value to the parent curve node channel.
+
+   Parameters:
+
+          pValue          The value to set to the parent curve node channel of this curve.
+          pCurveNodeIndex The index of the parent curve node, if more than one exist.
+
+   Remarks:
+          In most case, the curve will have a single curve node channel as destination. However, it is possible that more are connected, hence why we provide the curve node index parameter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurve.h
+
+   Please send us your comment about this page

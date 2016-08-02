@@ -1,0 +1,337 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementTexture Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxLayerElementTexture Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for mapping Textures to a geometry.
+
+   This class is deprecated.
+
+   Deprecated since FBX SDK 2011. Textures (FbxTexture derived classes) should be connected to material properties.
+
+   For example:
+ FbxFileTexture*  file;
+ FbxSurfacePhong* phong;
+ phong->Diffuse.ConnectSrcObject(file);
+
+   See also:
+          FbxSurfaceMaterial
+
+   Remarks:
+          To be correctly saved in FBX file, this type of Layer element should have its reference mode set to eIndexToDirect.
+
+   Definition at line 2143 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementTexture:
+   [USEMAP:class_fbx_layer_element_texture.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EBlendMode {
+     eTranslucent, eAdd, eModulate, eModulate2,
+     eOver, eNormal, eDissolve, eDarken,
+     eColorBurn, eLinearBurn, eDarkerColor, eLighten,
+     eScreen, eColorDodge, eLinearDodge, eLighterColor,
+     eSoftLight, eHardLight, eVividLight, eLinearLight,
+     ePinLight, eHardMix, eDifference, eExclusion,
+     eSubtract, eDivide, eHue, eSaturation,
+     eColor, eLuminosity, eOverlay, eBlendModeCount
+   }
+     Lets you control how textures are combined when you apply multiple layers of texture to a surface. More...
+
+Public Member Functions
+
+     FBXSDK_LAYER_ELEMENT_CREATE_DECLARE (LayerElementTexture)
+     Allocation method.
+   void  SetBlendMode (EBlendMode pBlendMode)
+     Sets the way Textures blend between layers.
+   void  SetAlpha (double pAlpha)
+     Sets the transparency level between multiple texture levels.
+   EBlendMode  GetBlendMode () const
+     Returns the way Textures blend between layers.
+   double  GetAlpha () const
+     Returns the transparency level between multiple levels of textures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EBlendMode
+   Search for all occurrences
+
+   Lets you control how textures are combined when you apply multiple layers of texture to a surface.
+     * eTranslucent The new texture layer is transparent (depending on the Alpha value).
+     * eAdd Add the color of the new texture to the previous texture.
+     * eModulate Multiples the color value of the new texture by the color values of all previous layers of texture.
+     * eModulate2 Multiples the color value of the new texture by two and then by the color values of all previous layers of texture.
+     * eOver Equivalent to eTranslucent. Blends the new texture over top of the old texture, according to the new texture's alpha channel.
+     * eNormal, The colors of the two layers will not interact in any way, and it will display the full value of the colors in layer 1.
+     * eDissolve, Dissolve makes the lower layer take on the colors of the top layer, and how much depends on the opacity of the upper layer.
+     * eDarken, Darken compares each pixel value of the upper layer to its counterpart's pixel value of the lower layer and chooses the darker of the two to display.
+     * eColorBurn, Color Burn burns in the color of the upper layer with the lower layer. No part of the image will get lighter.
+     * eLinearBurn, Linear Burn works like multiply but the results are more intense.
+     * eDarkerColor, This blend mode simply divides pixel values of one layer with the other.
+     * eLighten, Lighten compares the two layers pixel for pixel and uses the lightest pixel value. No part of the image gets darker.
+     * eScreen, Screen brightens by lightning the lower layer based on the lightness of the upper layer
+     * eColorDodge, Color Dodge dodges the lower layer with the upper layer, resulting in a lighter image. No part of the image will be darkened.
+     * eLinearDodge, Linear Dodge works like screen but with more intense results.
+     * eLighterColor, This blend mode has the opposite effect of the Darker Color mode. It compares all the values in both layers, then displays the lightest values.
+     * eSoftLight, Soft Light will multiply the dark tones and screen the light tones.
+     * eHardLight, Hard Light multiplies the dark colors and screens the light colors.
+     * eVividLight, Vivid Light will dodges or burn the lower layer pixels depending on whether the upper layer pixels are brighter or darker than neutral gray. It works on the contrast of the lower layer.
+     * eLinearLight, Linear Light is the same as Vivid light but it works on the brightness of the lower layer.
+     * ePinLight, Pin Light changes the lower layer pixels depending on how bright the pixels are in the upper layer.
+     * eHardMix, Produces either white or black, depending on similarities between A and B.
+     * eDifference, Difference reacts to the differences between the upper and lower layer pixels.
+     * eExclusion, Exclusion uses the darkness of the lower layer to mask the difference between upper and lower layers.
+     * eSubtract, The result color is the foreground color subtracted from the background color. The result color is then applied over the background color using the foreground alpha to define the opacity of the result.
+     * eDivide, This blend mode simply divides pixel values of one layer with the other.
+     * eHue, Hue changes the hue of the lower layer to the hue of the upper layer but leaves brightness and saturation alone.
+     * eSaturation, Saturation changes the saturation of the lower layer to the hue of the upper layer but leaves brightness and hue alone.
+     * eColor, Color changes the hue and saturation of the lower layer to the hue and saturation of the upper layer but leaves luminosity alone.
+     * eLuminosity, Luminosity changes the luminosity of the lower layer to the luminosity of the upper layer while leaving hue and saturation the same.
+     * eOverlay, Multiplies (darkens) when the layer on which the mode is set is dark and screens (brightens) when the layer on which the mode is applied is lighter.
+     * eBlendModeCount Marks the end of the blend mode enum.
+
+   Enumerator:
+
+          eTranslucent
+
+   Search for all occurrences
+          eAdd
+
+   Search for all occurrences
+          eModulate
+
+   Search for all occurrences
+          eModulate2
+
+   Search for all occurrences
+          eOver
+
+   Search for all occurrences
+          eNormal
+
+   Search for all occurrences
+          eDissolve
+
+   Search for all occurrences
+          eDarken
+
+   Search for all occurrences
+          eColorBurn
+
+   Search for all occurrences
+          eLinearBurn
+
+   Search for all occurrences
+          eDarkerColor
+
+   Search for all occurrences
+          eLighten
+
+   Search for all occurrences
+          eScreen
+
+   Search for all occurrences
+          eColorDodge
+
+   Search for all occurrences
+          eLinearDodge
+
+   Search for all occurrences
+          eLighterColor
+
+   Search for all occurrences
+          eSoftLight
+
+   Search for all occurrences
+          eHardLight
+
+   Search for all occurrences
+          eVividLight
+
+   Search for all occurrences
+          eLinearLight
+
+   Search for all occurrences
+          ePinLight
+
+   Search for all occurrences
+          eHardMix
+
+   Search for all occurrences
+          eDifference
+
+   Search for all occurrences
+          eExclusion
+
+   Search for all occurrences
+          eSubtract
+
+   Search for all occurrences
+          eDivide
+
+   Search for all occurrences
+          eHue
+
+   Search for all occurrences
+          eSaturation
+
+   Search for all occurrences
+          eColor
+
+   Search for all occurrences
+          eLuminosity
+
+   Search for all occurrences
+          eOverlay
+
+   Search for all occurrences
+          eBlendModeCount
+
+   Search for all occurrences
+
+   Definition at line 2185 of file fbxlayer.h.
+        {
+                eTranslucent,
+                eAdd,
+                eModulate,
+                eModulate2,
+        eOver,
+        eNormal,
+        eDissolve,
+        eDarken,
+        eColorBurn,
+        eLinearBurn,
+        eDarkerColor,
+        eLighten,
+        eScreen,
+        eColorDodge,
+        eLinearDodge,
+        eLighterColor,
+        eSoftLight,
+        eHardLight,
+        eVividLight,
+        eLinearLight,
+        ePinLight,
+        eHardMix,
+        eDifference,
+        eExclusion,
+        eSubtract,
+        eDivide,
+        eHue,
+        eSaturation,
+        eColor,
+        eLuminosity,
+        eOverlay,
+                eBlendModeCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_LAYER_ELEMENT_CREATE_DECLARE ( LayerElementTexture  )
+   Search for all occurrences
+
+   Allocation method.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+
+   void SetBlendMode ( EBlendMode  pBlendMode ) [inline]
+   Search for all occurrences
+
+   Sets the way Textures blend between layers.
+
+   Parameters:
+
+          pBlendMode A valid blend mode.
+
+   Definition at line 2224 of file fbxlayer.h.
+{ mBlendMode = pBlendMode; }
+
+   void SetAlpha ( double  pAlpha ) [inline]
+   Search for all occurrences
+
+   Sets the transparency level between multiple texture levels.
+
+   Parameters:
+
+          pAlpha Set to a value between 0.0 and 1.0, where 0.0 is totally transparent and 1.0 is totally opaque.
+
+   Remarks:
+          Values smaller than 0.0 are clipped to 0.0, while values greater than 1.0 are clipped to 1.0.
+
+   Definition at line 2230 of file fbxlayer.h.
+    {
+        if (pAlpha > 1.0)
+            mAlpha = 1.0;
+        else if (pAlpha < 0.0)
+            mAlpha = 0.0;
+        else
+            mAlpha = pAlpha;
+    }
+
+   EBlendMode GetBlendMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the way Textures blend between layers.
+
+   Returns:
+          The current Blend Mode.
+
+   Definition at line 2243 of file fbxlayer.h.
+{ return mBlendMode; }
+
+   double GetAlpha ( ) const [inline]
+   Search for all occurrences
+
+   Returns the transparency level between multiple levels of textures.
+
+   Returns:
+          An alpha value between 0.0 and 1.0, where 0.0 is totally transparent and 1.0 is totally opaque.
+
+   Definition at line 2248 of file fbxlayer.h.
+{ return mAlpha; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

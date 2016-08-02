@@ -1,0 +1,230 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxFileTexture Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxFileTexture Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Materials and Textures, Referencing Media, Textures, Layered Textures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxfiletexture.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class describes image mapping on top of geometry.
+
+   Note:
+          To apply a texture to geometry, first connect the geometry to a FbxSurfaceMaterial object (e.g. FbxSurfaceLambert) and then connect one of its properties (e.g. Diffuse) to the FbxFileTexture object.
+
+   See also:
+          FbxSurfaceLambert
+          FbxSurfacePhong
+          FbxSurfaceMaterial
+
+   Note:
+          For some example code, see also the CreateTexture() function in the ExportScene03 of FBX SDK examples.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportShader/main.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayTexture.cxx, Layers/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, ViewScene/SceneCache.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 34 of file fbxfiletexture.h.
+   Inheritance diagram for FbxFileTexture:
+   [USEMAP:class_fbx_file_texture.png]
+
+   List of all members.
+
+Texture Properties
+
+                     enum   EMaterialUse { eModelMaterial, eDefaultMaterial }
+                            Specify if texture uses model material. More...
+   FbxPropertyT< FbxBool >  UseMaterial
+                            This property handles the material use.
+   FbxPropertyT< FbxBool >  UseMipMap
+                            This property handles the Mipmap use.
+                      void  Reset ()
+                            Resets the default texture values.
+                      bool  SetFileName (const char *pName)
+                            Sets the associated texture file.
+                      bool  SetRelativeFileName (const char *pName)
+                            Sets the associated texture file.
+              const char *  GetFileName () const
+                            Returns the absolute texture file path.
+              const char *  GetRelativeFileName () const
+                            Returns the relative texture file path.
+                      void  SetMaterialUse (EMaterialUse pMaterialUse)
+                            Sets the material use.
+              EMaterialUse  GetMaterialUse () const
+                            Returns the material use.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EMaterialUse
+   Search for all occurrences
+
+   Specify if texture uses model material.
+
+   Enumerator:
+
+          eModelMaterial
+
+   Search for all occurrences
+   eDefaultMaterial
+
+   Texture uses model material.
+   Texture does not use model material.
+   Search for all occurrences
+
+   Definition at line 86 of file fbxfiletexture.h.
+    {
+        eModelMaterial,
+        eDefaultMaterial
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Resets the default texture values.
+
+   Remarks:
+          The texture file name is not reset.
+
+   Reimplemented from FbxTexture.
+   bool SetFileName ( const char *  pName )
+   Search for all occurrences
+
+   Sets the associated texture file.
+
+   Parameters:
+
+          pName The absolute path of the texture file.
+
+   Returns:
+          True if successful, returns false otherwise.
+
+   Remarks:
+          The texture file name must be valid, you cannot leave the name empty.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportShader/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool SetRelativeFileName ( const char *  pName )
+   Search for all occurrences
+
+   Sets the associated texture file.
+
+   Parameters:
+
+          pName The relative path of the texture file.
+
+   Returns:
+          True if successful, returns false otherwise.
+
+   Remarks:
+          The texture file name must be valid.
+
+   const char* GetFileName ( ) const
+   Search for all occurrences
+
+   Returns the absolute texture file path.
+
+   Returns:
+          The absolute texture file path.
+
+   Remarks:
+          An empty string is returned if FbxFileTexture::SetFileName() has not been called before.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayTexture.cxx, and ViewScene/SceneContext.cxx.
+
+   const char* GetRelativeFileName ( ) const
+   Search for all occurrences
+
+   Returns the relative texture file path.
+
+   Returns:
+          The relative texture file path.
+
+   Remarks:
+          An empty string is returned if FbxFileTexture::SetRelativeFileName() has not been called before.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   void SetMaterialUse ( EMaterialUse  pMaterialUse )
+   Search for all occurrences
+
+   Sets the material use.
+
+   Parameters:
+
+          pMaterialUse Specify how texture uses model material.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   EMaterialUse GetMaterialUse ( ) const
+   Search for all occurrences
+
+   Returns the material use.
+
+   Returns:
+          How the texture uses model material.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> UseMaterial
+   Search for all occurrences
+
+   This property handles the material use.
+
+   Default value is false.
+
+   Definition at line 46 of file fbxfiletexture.h.
+   FbxPropertyT<FbxBool> UseMipMap
+   Search for all occurrences
+
+   This property handles the Mipmap use.
+
+   Default value is false.
+
+   Definition at line 51 of file fbxfiletexture.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxfiletexture.h
+
+   Please send us your comment about this page

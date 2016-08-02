@@ -1,0 +1,126 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxColladaNamespace Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxColladaNamespace Struct Reference
+   Search for all occurrences
+
+   #include <fbxcolladanamespace.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Containing the valid parameter definition and modification in local scope.
+
+   Definition at line 24 of file fbxcolladanamespace.h.
+
+   List of all members.
+
+Public Member Functions
+
+        void  Push (xmlNode *pElement)
+              Push the newparam and setparam elements found in this element.
+        void  Pop ()
+              Pop the newparam and setparam elements found in this element.
+   xmlNode *  FindParamDefinition (const char *pSID) const
+              Find the specific newparam element with given SID.
+   xmlNode *  FindParamModification (const char *pSID) const
+              Find the specific setparam element with given SID.
+         int  GetParamModificationCount () const
+              Get the count of all the setparam elements in local scope.
+   xmlNode *  GetParamModification (int pIndex) const
+              Get the setparam element with given index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Push ( xmlNode *  pElement )
+   Search for all occurrences
+
+   Push the newparam and setparam elements found in this element.
+
+   Call this method at the beginning of importing an element.
+
+   Parameters:
+
+          pElement The specific element.
+
+   void Pop ( )
+   Search for all occurrences
+
+   Pop the newparam and setparam elements found in this element.
+
+   Call this method at the end of importing an element.
+   xmlNode* FindParamDefinition ( const char *  pSID ) const
+   Search for all occurrences
+
+   Find the specific newparam element with given SID.
+
+   Parameters:
+
+          pSID The given SID.
+
+   Returns:
+          Return the found element or NULL if fail.
+
+   xmlNode* FindParamModification ( const char *  pSID ) const
+   Search for all occurrences
+
+   Find the specific setparam element with given SID.
+
+   Parameters:
+
+          pSID The given SID.
+
+   Returns:
+          Return the found element or NULL if fail.
+
+   int GetParamModificationCount ( ) const
+   Search for all occurrences
+
+   Get the count of all the setparam elements in local scope.
+
+   Returns:
+          The count.
+
+   xmlNode* GetParamModification ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the setparam element with given index.
+
+   Parameters:
+
+          pIndex The given index.
+
+   Returns:
+          The element.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladanamespace.h
+
+   Please send us your comment about this page

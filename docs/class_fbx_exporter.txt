@@ -1,0 +1,365 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxExporter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxExporter Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, FBX SDK 2014, Exporting a Scene, Customizing File Formats with FBX SDK I/O Plug-ins, Using Python FBX with Eclipse, FBX SDK Object Model, Importing and Exporting a Scene, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxexporter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to export SDK objects into an FBX file.
+
+   Normally this class is used as is. But for very special needs a user can override Initialize() for special purpose.
+
+   An exporter will select the appropriate writer to a particular file. Ex: When an exporter must export an FBX 7 file, the exporter will ask for all registered writers if an FBX 7 file writer is available, then if a writer is found, the exporter will create the specialized FBX 7 writer and write the file. This way, an exporter can "write" many different type of files like FBX 5/6/7, 3DS, Obj, Dxf, Collada, etc.
+
+   See also:
+          FbxWriter
+
+   Typical workflow for using the FbxExporter class:
+    1. create a SDKManager
+    2. create an IOSettings object
+    3. create an empty scene
+    4. create an exporter
+    5. initialize it with a file name
+    6. set numerous options to control how the exporter will behave.
+       ex: set IOSettings values to export Materials or Textures.
+    7. call FbxExporter::Export() with the entity to export.
+
+ // ex:
+ // create a SdkManager
+ FbxManager* lSdkManager = FbxManager::Create();
+
+ // create an IOSettings object
+ FbxIOSettings* ios = FbxIOSettings::Create(lSdkManager, IOSROOT);
+
+ // set some IOSettings options
+ ios->SetBoolProp(EXP_FBX_MATERIAL, true);
+ ios->SetBoolProp(EXP_FBX_TEXTURE,  true);
+
+ // create an empty scene
+ FbxScene* lScene = FbxScene::Create(lSdkManager, "");
+
+ // create an exporter.
+ FbxExporter* lExporter = FbxExporter::Create(lSdkManager, "");
+
+ // initialize the exporter by providing a filename and the IOSettings to use
+ lExporter->Initialize("C:\\myfile.fbx", -1, ios);
+
+ // export the scene.
+ lExporter->Export(lScene);
+
+ // destroy the exporter
+ lExporter->Destroy();
+
+   Remarks:
+          According to the file suffix, a specialized writer will be created internally.
+          Ex: for .fbx files a FBX Writer, for .3ds files, a 3ds writer, etc.
+          Supported files formats: FBX 5/6/7 Binary & ASCII, Collada, DXF, OBJ, 3DS
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, FileStream/main.cxx, MyOwnWriterReader/MyOwnWriterReader.cxx, MyOwnWriterReader/MyOwnWriterReader.h, UI_Examples/Common/ImportExport.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 89 of file fbxexporter.h.
+   Inheritance diagram for FbxExporter:
+   [USEMAP:class_fbx_exporter.png]
+
+   List of all members.
+
+Export Functions
+
+            virtual bool  Initialize (const char *pFileName, int pFileFormat=-1, FbxIOSettings *pIOSettings=NULL)
+                          Initialize object.
+            virtual bool  Initialize (FbxStream *pStream, void *pStreamData=NULL, int pFileFormat=-1, FbxIOSettings *pIOSettings=NULL)
+                          Initialize object.
+                    bool  GetExportOptions ()
+                          Setup file export options settings.
+         FbxIOSettings *  GetIOSettings ()
+                          Access to a IOSettings object.
+                    void  SetIOSettings (FbxIOSettings *pIOSettings)
+                          Set the IOSettings pointer.
+                    bool  Export (FbxDocument *pDocument, bool pNonBlocking=false)
+                          Export the document to the currently created file.
+                    bool  IsExporting (bool &pExportResult)
+                          Check if the exporter is currently exporting.
+                   float  GetProgress (FbxString *pStatus=NULL)
+                          Get the progress status in non-blocking mode.
+                    void  SetProgressCallback (FbxProgressCallback pCallback, void *pArgs=NULL)
+                          Register a callback function for progress reporting in single thread mode.
+
+File Format
+
+                     int  GetFileFormat ()
+                          Get the format of the exported file.
+                    bool  IsFBX ()
+                          Return true if the file format is a recognized FBX format.
+       char const *const  GetCurrentWritableVersions ()
+                          Get the list of writable versions for the current file format.
+                    bool  SetFileExportVersion (FbxString pVersion, FbxSceneRenamer::ERenamingMode pRenamingMode)
+                          Set file version for a given file format.
+                    void  SetResamplingRate (double pResamplingRate)
+                          Set the resampling rate (only used when exporting to FBX 5.3 and lower)
+                    void  SetDefaultRenderResolution (FbxString pCamName, FbxString pResolutionMode, double pW, double pH)
+                          Set the default rendering resolution.
+   FbxIOFileHeaderInfo *  GetFileHeaderInfo ()
+                          Get the complete file header information.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Initialize ( const char *     pFileName,
+                             int              pFileFormat = -1,
+                             FbxIOSettings *  pIOSettings = NULL
+                           )                  [virtual]
+   Search for all occurrences
+
+   Initialize object.
+
+   Parameters:
+
+          pFileName   Name of file to access.
+          pFileFormat file format identifier User does not need to specify it by default. if not specified, plugin will detect the file format according to file suffix automatically.
+          pIOSettings client IOSettings, if not specified, a default IOSettings will be created
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function.
+
+   Reimplemented from FbxIOBase.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   virtual bool Initialize ( FbxStream *      pStream,
+                             void *           pStreamData = NULL,
+                             int              pFileFormat = -1,
+                             FbxIOSettings *  pIOSettings = NULL
+                           )                  [virtual]
+   Search for all occurrences
+
+   Initialize object.
+
+   Parameters:
+
+          pStream     stream to access.
+          pStreamData user-defined stream data.
+          pFileFormat file format identifier User does not need to specify it by default. if not specified, plugin will request the file format from the stream.
+          pIOSettings client IOSettings, if not specified, a default IOSettings will be created
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function.
+
+   bool GetExportOptions ( )
+   Search for all occurrences
+
+   Setup file export options settings.
+
+   Returns:
+          true on success, false otherwise.
+
+   FbxIOSettings* GetIOSettings ( )
+   Search for all occurrences
+
+   Access to a IOSettings object.
+
+   Returns:
+          The pointer to IOSettings or NULL if the object has not been allocated.
+
+   void SetIOSettings ( FbxIOSettings *  pIOSettings )
+   Search for all occurrences
+
+   Set the IOSettings pointer.
+
+   Parameters:
+
+          pIOSettings Pointer on a FbxIOSettings object.
+
+   bool Export ( FbxDocument *  pDocument,
+                 bool           pNonBlocking = false
+               )
+   Search for all occurrences
+
+   Export the document to the currently created file.
+
+   Parameters:
+
+          pDocument    Document to export.
+          pNonBlocking If true, the export process will be executed in a new thread, allowing it to be non-blocking. To determine if the export finished, refer to the function IsExporting().
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool IsExporting ( bool &  pExportResult )
+   Search for all occurrences
+
+   Check if the exporter is currently exporting.
+
+   Parameters:
+
+          pExportResult This parameter, after the export finished, will contain the result of the export success or failure.
+
+   Returns:
+          Return true if the exporter is currently exporting.
+
+   Remarks:
+          This function will always return false if Export() was called with pNonBlocking set to false. This function should be used only in the context of pNonBlocking set to true. It is very important to periodically check if the export finished using this function, since it will also free up the thread's allocations when its done.
+
+   float GetProgress ( FbxString *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the progress status in non-blocking mode.
+
+   Parameters:
+
+          pStatus Optional current status string.
+
+   Returns:
+          Percentage of the finished workload.
+
+   void SetProgressCallback ( FbxProgressCallback  pCallback,
+                              void *               pArgs = NULL
+                            )
+   Search for all occurrences
+
+   Register a callback function for progress reporting in single thread mode.
+
+   Parameters:
+
+          pCallback Pointer of the callback function.
+          pArgs     Pointer to the arguments passed to the callback function.
+
+   int GetFileFormat ( )
+   Search for all occurrences
+
+   Get the format of the exported file.
+
+   Returns:
+          File format identifier.
+
+   bool IsFBX ( )
+   Search for all occurrences
+
+   Return true if the file format is a recognized FBX format.
+   char const* const GetCurrentWritableVersions ( )
+   Search for all occurrences
+
+   Get the list of writable versions for the current file format.
+
+   Returns:
+          NULL or a null terminated array of strings.
+
+   Remarks:
+          the strings returned match the writers registered for the current format. The array items can be retrieved with the following code:
+
+   char const* const* lWV = lExporter->GetCurrentWritableVersions();
+   if (lWV)
+   {
+       int i = 0;
+       while (lWV[i] != NULL)
+       {
+           printf("fmt = %s\n", lWV[i]);
+           i++;
+       }
+   }
+
+   bool SetFileExportVersion ( FbxString                       pVersion,
+                               FbxSceneRenamer::ERenamingMode  pRenamingMode
+                             )
+   Search for all occurrences
+
+   Set file version for a given file format.
+
+   Parameters:
+
+          pVersion      String description of the file format.
+          pRenamingMode Renaming mode.
+
+   Returns:
+          true if mode is set correctly
+
+   void SetResamplingRate ( double  pResamplingRate ) [inline]
+   Search for all occurrences
+
+   Set the resampling rate (only used when exporting to FBX 5.3 and lower)
+
+   Parameters:
+
+          pResamplingRate resampling rate
+
+   Definition at line 215 of file fbxexporter.h.
+{ mResamplingRate = pResamplingRate; }
+
+   void SetDefaultRenderResolution ( FbxString  pCamName,
+                                     FbxString  pResolutionMode,
+                                     double     pW,
+                                     double     pH
+                                   )
+   Search for all occurrences
+
+   Set the default rendering resolution.
+
+   Parameters:
+
+          pCamName        name of the camera.
+          pResolutionMode resolution mode.
+          pW              width.
+          pH              height.
+
+   Remarks:
+          These values are ignored when exporting to FBX 7.x and higher. With FBX version 6.x and lower, the HeaderInfo is still accessible for legacy reasons and any other custom writers. For FBX filles, these values are used by the FBX QuickTime plug-in (obsolete now) to help it get the window size without loading the whole file. The information contained in the FbxIOFileHeaderInfo is a duplicate of AspectRatioMode, AspectWidth and AspectHeight properties defined in the FbxCamera class. Retrieveing
+          the FileHeaderInfo starting from FBX 7.x will always return the uninitialized structure.
+
+   FbxIOFileHeaderInfo* GetFileHeaderInfo ( )
+   Search for all occurrences
+
+   Get the complete file header information.
+
+   Returns:
+          valid pointer to the complete header information
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxexporter.h
+
+   Please send us your comment about this page

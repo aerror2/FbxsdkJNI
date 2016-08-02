@@ -1,0 +1,71 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStatusGlobal Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxStatusGlobal Class Reference
+   Search for all occurrences
+
+   #include <fbxutils.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Global accessor to an FbxStatus object.
+
+   This object is not used internally by the FBX SDK. It is provided for convenience and its usage is shown in the custom reader/writers samples.
+
+   Examples:
+          MyOwnWriterReader/MyOwnReader.cxx, and MyOwnWriterReader/MyOwnWriter.cxx.
+
+   Definition at line 146 of file fbxutils.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static FbxStatus &  GetRef ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxStatus& GetRef ( ) [inline, static]
+   Search for all occurrences
+
+   Definition at line 149 of file fbxutils.h.
+        {
+                if( !mStatusPtr )
+                {
+                        mStatusPtr = FbxNew<FbxStatus>();
+                }
+                return *mStatusPtr;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxutils.h
+
+   Please send us your comment about this page

@@ -1,0 +1,556 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPose Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxPose Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxpose.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains the description of a Pose and provide some methods to access Pose info in one FBX scene.
+
+   The FbxPose object can be setup to hold "Bind Pose" data or "Rest Pose" data.
+
+   The Bind Pose holds the transformation (translation, rotation and scaling) matrix of all the nodes implied in a link deformation. This includes the geometry being deformed, the links deforming the geometry, and recursively all the ancestors nodes of the link. The Bind Pose gives you the transformation of the nodes at the moment of the binding operation when no deformation occurs.
+
+   The Rest Pose is a snapshot of a node transformation. A Rest Pose can be used to store the position of every node of a character at a certain point in time. This pose can then be used as a reference position for animation tasks, like editing walk cycles.
+
+   One difference between the two modes is in the validation performed before adding an item and the kind of matrix stored.
+
+   In "Bind Pose" mode, the matrix is assumed to be defined in the global space, while in "Rest Pose" the type of the matrix may be specified by the caller. So local system matrices can be used. Actually, because there is one such flag for each entry (FbxPoseInfo), it is possible to have mixed types in a FbxPose elements. It is therefore the responsibility of the caller to check for the type of the retrieved matrix and to do the appropriate conversions if required.
+
+   The validation of the data to be added consists of the following steps:
+     * If this FbxPose object stores "Bind Poses", then add a FbxPoseInfo only if the node is not already associated to another "Bind Pose". This check is done by visiting ALL the FbxPose objects in the system.
+
+   The above test is only performed for the "Bind Pose" type. While the next one is always performed, no matter what kind of poses this FbxPose object is setup to hold.
+     * If a node is already inserted in the FbxPose internal list, then the passed matrix MUST be equal to the one already stored. If this is not the case, the Add method will return -1, indicating that no new FbxPoseInfo has been created.
+
+   If the Add method succeeds, it will return the index of the FbxPoseInfo structure that as been created and held by the FbxPose object.
+
+   To ensure data integrity, the stored information can only be accessed using the provided methods (read-only). If an entry needs to be modified, the caller has to remove the FbxPoseInfo item by calling Remove(i) and then Add a new one.
+
+   The internal list is not ordered and the search inside this list is linear (from the first element to ... the first match or the end of the list).
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayPose.cxx, SwitchBinding/main.cxx, ViewScene/DrawScene.cxx, ViewScene/DrawScene.h, ViewScene/GetPosition.cxx, ViewScene/GetPosition.h, and ViewScene/SceneContext.cxx.
+
+   Definition at line 96 of file fbxpose.h.
+   Inheritance diagram for FbxPose:
+   [USEMAP:class_fbx_pose.png]
+
+   List of all members.
+
+Public Member Functions
+
+                void  SetIsBindPose (bool pIsBindPose)
+                      Set the type of pose.
+                bool  IsBindPose () const
+                      Pose identifier flag.
+                bool  IsRestPose () const
+                      Pose identifier flag.
+                 int  GetCount () const
+                      Get number of stored items.
+                 int  Add (FbxNode *pNode, const FbxMatrix &pMatrix, bool pLocalMatrix=false, bool pMultipleBindPose=true)
+                      Stores the pose transformation for the given node.
+                void  Remove (int pIndex)
+                      Remove the pIndexth item from the Pose object.
+      FbxNameHandler  GetNodeName (int pIndex) const
+                      Get the node name.
+           FbxNode *  GetNode (int pIndex) const
+                      Get the node.
+   const FbxMatrix &  GetMatrix (int pIndex) const
+                      Get the transform matrix.
+                bool  IsLocalMatrix (int pIndex) const
+                      Get the type of the matrix.
+
+Search Section
+
+               enum   ENameComponent { eInitialNameComponent = 1, eCurrentNameComponent = 2, eAllNameComponents = 3 }
+                      This structure defines the strategy of comparing FBX node name. More...
+                 int  Find (const FbxNameHandler &pNodeName, char pCompareWhat=eAllNameComponents) const
+                      Look in the FbxPose object for the given node name.
+                 int  Find (const FbxNode *pNode) const
+                      Look in the FbxPose object for the given node.
+
+Utility Section
+
+                bool  IsValidBindPose (FbxNode *pRoot, double pMatrixCmpTolerance=0.0001, FbxStatus *pStatus=NULL)
+                      Check this BindPose and report an error if all the conditions to a valid bind pose are not met.
+                bool  IsValidBindPoseVerbose (FbxNode *pRoot, NodeList &pMissingAncestors, NodeList &pMissingDeformers, NodeList &pMissingDeformersAncestors, NodeList &pWrongMatrices, double pMatrixCmpTolerance=0.0001, FbxStatus *pStatus=NULL)
+                      Same as IsValidBindPose() but slower because it will not stop as soon as a failure occurs.
+                bool  IsValidBindPoseVerbose (FbxNode *pRoot, FbxUserNotification *pUserNotification, double pMatrixCmpTolerance=0.0001, FbxStatus *pStatus=NULL)
+                      Same as IsValidBindPose() but slower because it will not stop as soon as a failure occurs.
+         static bool  GetPosesContaining (FbxManager &pManager, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of Poses objects that contain the node with name pNodeName.
+         static bool  GetPosesContaining (FbxScene *pScene, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of Poses objects that contain the node with name pNodeName.
+         static bool  GetBindPoseContaining (FbxManager &pManager, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of BindPose objects that contain the node with name pNodeName.
+         static bool  GetBindPoseContaining (FbxScene *pScene, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of BindPose objects that contain the node with name pNodeName.
+         static bool  GetRestPoseContaining (FbxManager &pManager, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of RestPose objects that contain the node with name pNodeName.
+         static bool  GetRestPoseContaining (FbxScene *pScene, FbxNode *pNode, PoseList &pPoseList, FbxArray< int > &pIndex)
+                      Get the list of RestPose objects that contain the node with name pNodeName.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ENameComponent
+   Search for all occurrences
+
+   This structure defines the strategy of comparing FBX node name.
+
+   FBX node has an initial name and a current name (refer to FbxNameHandler). The structure defines which name to use when compare two nodes.
+
+   Enumerator:
+
+          eInitialNameComponent
+
+   Search for all occurrences
+          eCurrentNameComponent
+
+   use initial name when compare two nodes
+   Search for all occurrences
+          eAllNameComponents
+
+   use current name when compare two nodes
+   Search for all occurrences
+
+   Definition at line 172 of file fbxpose.h.
+                {
+                        eInitialNameComponent = 1,
+                        eCurrentNameComponent = 2,
+                        eAllNameComponents = 3
+                };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetIsBindPose ( bool  pIsBindPose )
+   Search for all occurrences
+
+   Set the type of pose.
+
+   Parameters:
+
+          pIsBindPose If true, type will be bind pose, else rest pose.
+
+   Examples:
+          ExportScene01/main.cxx, and SwitchBinding/main.cxx.
+
+   bool IsBindPose ( ) const [inline]
+   Search for all occurrences
+
+   Pose identifier flag.
+
+   Returns:
+          true if this object holds BindPose data.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and ViewScene/GetPosition.cxx.
+
+   Definition at line 109 of file fbxpose.h.
+{ return mType == 'b'; }
+
+   bool IsRestPose ( ) const [inline]
+   Search for all occurrences
+
+   Pose identifier flag.
+
+   Returns:
+          true if this object holds RestPose data.
+
+   Definition at line 114 of file fbxpose.h.
+{ return mType == 'r'; }
+
+   int GetCount ( ) const [inline]
+   Search for all occurrences
+
+   Get number of stored items.
+
+   Returns:
+          The number of items stored.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   Definition at line 119 of file fbxpose.h.
+{ return mPoseInfo.GetCount(); }
+
+   int Add ( FbxNode *          pNode,
+             const FbxMatrix &  pMatrix,
+             bool               pLocalMatrix = false,
+             bool               pMultipleBindPose = true
+           )
+   Search for all occurrences
+
+   Stores the pose transformation for the given node.
+
+   Parameters:
+
+          pNode             pointer to the node for which the pose is stored.
+          pMatrix           Pose transform of the node.
+          pLocalMatrix      Flag to indicate if pMatrix is defined in Local or Global space.
+          pMultipleBindPose Flag to indicate if multiple bind pose exist. If this is false, all matrix for one node should be same in different bind pose.
+
+   Returns:
+          -1 if the function failed or the index of the stored item.
+
+   Examples:
+          ExportScene01/main.cxx, and SwitchBinding/main.cxx.
+
+   void Remove ( int  pIndex )
+   Search for all occurrences
+
+   Remove the pIndexth item from the Pose object.
+
+   Parameters:
+
+          pIndex Index of the item to be removed.
+
+   FbxNameHandler GetNodeName ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the node name.
+
+   Parameters:
+
+          pIndex Index of the queried item.
+
+   Returns:
+          The node initial and current names.
+
+   Remarks:
+          If the index is invalid an empty FbxNameHandler is returned.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   FbxNode* GetNode ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the node.
+
+   Parameters:
+
+          pIndex Index of the queried item.
+
+   Returns:
+          A pointer to the node referenced.
+
+   Remarks:
+          If the index is invalid or no pointer to a node is set, returns NULL. The returned pointer will become undefined if the FbxPose object is destroyed.
+
+   const FbxMatrix& GetMatrix ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the transform matrix.
+
+   Parameters:
+
+          pIndex Index of the queried item.
+
+   Returns:
+          A reference to the pose matrix.
+
+   Remarks:
+          If the index is invalid a reference to an identity matrix is returned. The reference will become undefined if the FbxPose object is destroyed.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and ViewScene/GetPosition.cxx.
+
+   bool IsLocalMatrix ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the type of the matrix.
+
+   Parameters:
+
+          pIndex Index of the queried item.
+
+   Returns:
+          true if the matrix is defined in the Local coordinate space and false otherwise.
+
+   Remarks:
+          If the FbxPose object is configured to hold BindPose data, this method will always return false.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and ViewScene/GetPosition.cxx.
+
+   int Find ( const FbxNameHandler &  pNodeName,
+              char                    pCompareWhat = eAllNameComponents
+            )                         const
+   Search for all occurrences
+
+   Look in the FbxPose object for the given node name.
+
+   Parameters:
+
+          pNodeName    Name of the node we are looking for.
+          pCompareWhat Bitwise or of the following flags: INTIALNAME_COMPONENT, eCurrentNameComponent
+
+   Returns:
+          -1 if the node is not in the list. Otherwise, the index of the corresponding FbxPoseInfo element.
+
+   Examples:
+          ViewScene/GetPosition.cxx.
+
+   int Find ( const FbxNode *  pNode ) const
+   Search for all occurrences
+
+   Look in the FbxPose object for the given node.
+
+   Parameters:
+
+          pNode the node we are looking for.
+
+   Returns:
+          -1 if the node is not in the list. Otherwise, the index of the corresponding FbxPoseInfo element.
+
+   static bool GetPosesContaining ( FbxManager &       pManager,
+                                    FbxNode *          pNode,
+                                    PoseList &         pPoseList,
+                                    FbxArray< int > &  pIndex
+                                  )                    [static]
+   Search for all occurrences
+
+   Get the list of Poses objects that contain the node with name pNodeName.
+
+   This method will look in all the poses of all the scenes.
+
+   Parameters:
+
+          pManager  The manager owning the poses and scenes.
+          pNode     The node being explored.
+          pPoseList List of BindPoses/RestPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding poses lists.
+
+   Returns:
+          true if the node belongs to at least one Pose (either a BindPose or a RestPose).
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   static bool GetPosesContaining ( FbxScene *         pScene,
+                                    FbxNode *          pNode,
+                                    PoseList &         pPoseList,
+                                    FbxArray< int > &  pIndex
+                                  )                    [static]
+   Search for all occurrences
+
+   Get the list of Poses objects that contain the node with name pNodeName.
+
+   Parameters:
+
+          pScene    Scene owning the poses.
+          pNode     The node being explored.
+          pPoseList List of BindPoses/RestPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding poses lists.
+
+   Returns:
+          true if the node belongs to at least one Pose (either a BindPose or a RestPose).
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   static bool GetBindPoseContaining ( FbxManager &       pManager,
+                                       FbxNode *          pNode,
+                                       PoseList &         pPoseList,
+                                       FbxArray< int > &  pIndex
+                                     )                    [static]
+   Search for all occurrences
+
+   Get the list of BindPose objects that contain the node with name pNodeName.
+
+   This method will look in all the bind poses of all the scenes.
+
+   Parameters:
+
+          pManager  The manager owning the poses.
+          pNode     The node being explored.
+          pPoseList List of BindPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding bind poses lists.
+
+   Returns:
+          true if the node belongs to at least one BindPose.
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   static bool GetBindPoseContaining ( FbxScene *         pScene,
+                                       FbxNode *          pNode,
+                                       PoseList &         pPoseList,
+                                       FbxArray< int > &  pIndex
+                                     )                    [static]
+   Search for all occurrences
+
+   Get the list of BindPose objects that contain the node with name pNodeName.
+
+   Parameters:
+
+          pScene    The scene owning the poses.
+          pNode     The node being explored.
+          pPoseList List of BindPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding bind poses lists.
+
+   Returns:
+          true if the node belongs to at least one BindPose.
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   static bool GetRestPoseContaining ( FbxManager &       pManager,
+                                       FbxNode *          pNode,
+                                       PoseList &         pPoseList,
+                                       FbxArray< int > &  pIndex
+                                     )                    [static]
+   Search for all occurrences
+
+   Get the list of RestPose objects that contain the node with name pNodeName.
+
+   This method will look in all the bind poses of all the scenes.
+
+   Parameters:
+
+          pManager  The manager owning the poses.
+          pNode     The node being explored.
+          pPoseList List of RestPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding rest poses lists.
+
+   Returns:
+          true if the node belongs to at least one RestPose.
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   static bool GetRestPoseContaining ( FbxScene *         pScene,
+                                       FbxNode *          pNode,
+                                       PoseList &         pPoseList,
+                                       FbxArray< int > &  pIndex
+                                     )                    [static]
+   Search for all occurrences
+
+   Get the list of RestPose objects that contain the node with name pNodeName.
+
+   Parameters:
+
+          pScene    The scene owning the poses.
+          pNode     The node being explored.
+          pPoseList List of RestPoses that have the node.
+          pIndex    List of indices of the nodes in the corresponding rest poses lists.
+
+   Returns:
+          true if the node belongs to at least one RestPose.
+
+   Remarks:
+          The pPoseList and pIndex are filled by this method. The elements of the returned list must not be deleted since they still belong to the scene.
+
+   bool IsValidBindPose ( FbxNode *    pRoot,
+                          double       pMatrixCmpTolerance = 0.0001,
+                          FbxStatus *  pStatus = NULL
+                        )
+   Search for all occurrences
+
+   Check this BindPose and report an error if all the conditions to a valid bind pose are not met.
+
+   The conditions are:
+     * a) We are a BindPose.
+     * b) For every node in the bind pose, all their parent node are part of the bind pose.
+     * c) All the deforming nodes are part of the bind pose.
+     * d) All the parents of the deforming nodes are part of the bind pose.
+     * e) Each deformer relative matrix correspond to the deformer Inv(bindMatrix) * deformed Geometry bindMatrix.
+
+   Parameters:
+
+          pRoot               This node is used as the stop point when visiting the parents (cannot be NULL).
+          pMatrixCmpTolerance Tolerance value when comparing the matrices.
+          pStatus             The FbxStatus object to hold error codes.
+
+   Returns:
+          true if all the above conditions are met and false otherwise.
+
+   Remarks:
+          If the returned value is false, querying for the error will return the reason of the failure. As soon as one of the above conditions is not met, this method return ignoring any subsequent errors. Run the IsBindPoseVerbose if more details are needed.
+
+   bool IsValidBindPoseVerbose ( FbxNode *    pRoot,
+                                 NodeList &   pMissingAncestors,
+                                 NodeList &   pMissingDeformers,
+                                 NodeList &   pMissingDeformersAncestors,
+                                 NodeList &   pWrongMatrices,
+                                 double       pMatrixCmpTolerance = 0.0001,
+                                 FbxStatus *  pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Same as IsValidBindPose() but slower because it will not stop as soon as a failure occurs.
+
+   Instead, keeps running to accumulate the faulty nodes (stored in the appropriate array). It is then up to the caller to fill the UserNotification if desired.
+
+   Parameters:
+
+          pRoot                      This node is used as the stop point when visiting the parents (cannot be NULL).
+          pMissingAncestors          Each ancestor missing from the BindPose is added to this list.
+          pMissingDeformers          Each deformer missing from the BindPose is added to this list.
+          pMissingDeformersAncestors Each deformer ancestors missing from the BindPose is added to this list.
+          pWrongMatrices             Nodes that yield to a wrong matrix comparisons are added to this list.
+          pMatrixCmpTolerance        Tolerance value when comparing the matrices.
+          pStatus                    The FbxStatus object to hold error codes.
+
+   bool IsValidBindPoseVerbose ( FbxNode *              pRoot,
+                                 FbxUserNotification *  pUserNotification,
+                                 double                 pMatrixCmpTolerance = 0.0001,
+                                 FbxStatus *            pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Same as IsValidBindPose() but slower because it will not stop as soon as a failure occurs.
+
+   Instead, keeps running to accumulate the faulty nodes and send them directly to the UserNotification.
+
+   Parameters:
+
+          pRoot               This node is used as the stop point when visiting the parents (cannot be NULL).
+          pUserNotification   Pointer to the user notification where the messages will be accumulated.
+          pMatrixCmpTolerance Tolerance value when comparing the matrices.
+          pStatus             The FbxStatus object to hold error codes.
+
+   Remarks:
+          If the pUserNotification parameter is NULL, this method will call IsValidBindPose().
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxpose.h
+
+   Please send us your comment about this page

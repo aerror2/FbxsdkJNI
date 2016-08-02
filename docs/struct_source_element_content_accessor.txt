@@ -1,0 +1,115 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   SourceElementContentAccessor< TYPE > Struct Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   SourceElementContentAccessor< TYPE > Struct Template Reference
+   Search for all occurrences
+
+   #include <fbxcolladaelement.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename TYPE>
+struct SourceElementContentAccessor< TYPE >
+
+   A struct for convenient access to the content of COLLADA source element.
+
+   Definition at line 110 of file fbxcolladaelement.h.
+   Inheritance diagram for SourceElementContentAccessor< TYPE >:
+   [USEMAP:struct_source_element_content_accessor.png]
+
+   List of all members.
+
+Public Member Functions
+
+        SourceElementContentAccessor (xmlNode *pSourceElement)
+
+Public Attributes
+
+   int  mCount
+   int  mStride
+   int  mOffset
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   SourceElementContentAccessor ( xmlNode *  pSourceElement ) [inline]
+
+   Definition at line 112 of file fbxcolladaelement.h.
+        : mCount(0), mStride(1), mOffset(0)
+    {
+        bool lReadCount = true;
+        xmlNode* lTechniqueElement = DAE_FindChildElementByTag(pSourceElement, COLLADA_TECHNIQUE_COMMON_ELEMENT);
+        if (lTechniqueElement)
+        {
+            xmlNode* lAccessorElement = DAE_FindChildElementByTag(lTechniqueElement, COLLADA_ACCESSOR_STRUCTURE);
+            FBX_ASSERT(lAccessorElement);
+            if (!lAccessorElement)
+                return;
+
+            DAE_GetElementAttributeValue(lAccessorElement, COLLADA_COUNT_PROPERTY, mCount);
+            DAE_GetElementAttributeValue(lAccessorElement, COLLADA_STRIDE_PROPERTY, mStride);
+            DAE_GetElementAttributeValue(lAccessorElement, COLLADA_OFFSET_PROPERTY, mOffset);
+            lReadCount = false;
+        }
+
+        xmlNode * lDataArrayElement = DAE_FindChildElementByTag(pSourceElement,
+            TypeToArrayTag<TYPE>());
+        // Some COLLADA exporters use IDREF_array instead of Name_array
+        if (!lDataArrayElement && TypeToArrayTag<TYPE>() == COLLADA_NAME_ARRAY_STRUCTURE)
+            lDataArrayElement = DAE_FindChildElementByTag(pSourceElement, COLLADA_IDREF_ARRAY_STRUCTURE);
+        FBX_ASSERT(lDataArrayElement);
+
+        if (lDataArrayElement && lReadCount)
+            DAE_GetElementAttributeValue(lDataArrayElement, COLLADA_COUNT_PROPERTY, mCount);
+
+        mContent = xmlNodeGetContent(lDataArrayElement);
+        mPointer = (const char *)mContent;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int mCount
+   Search for all occurrences
+
+   Definition at line 144 of file fbxcolladaelement.h.
+   int mStride
+   Search for all occurrences
+
+   Definition at line 145 of file fbxcolladaelement.h.
+   int mOffset
+   Search for all occurrences
+
+   Definition at line 146 of file fbxcolladaelement.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladaelement.h
+
+   Please send us your comment about this page

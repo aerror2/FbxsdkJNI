@@ -1,0 +1,77 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharacterPropertyInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxCharacterPropertyInfo Class Reference
+   Search for all occurrences
+
+   #include <fbxhik2fbxcharacter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 22 of file fbxhik2fbxcharacter.h.
+
+   List of all members.
+
+Public Attributes
+
+                  const char *  mHIKPropertyName
+                  const char *  mFbxCharacterPropertyModeName
+                  const char *  mFbxCharacterPropertyName
+                           int  mIndex
+   FbxCharacter::EPropertyUnit  mUnit
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* mHIKPropertyName
+   Search for all occurrences
+
+   Definition at line 25 of file fbxhik2fbxcharacter.h.
+   const char* mFbxCharacterPropertyModeName
+   Search for all occurrences
+
+   Definition at line 26 of file fbxhik2fbxcharacter.h.
+   const char* mFbxCharacterPropertyName
+   Search for all occurrences
+
+   Definition at line 27 of file fbxhik2fbxcharacter.h.
+   int mIndex
+   Search for all occurrences
+
+   Definition at line 28 of file fbxhik2fbxcharacter.h.
+   FbxCharacter::EPropertyUnit mUnit
+   Search for all occurrences
+
+   Definition at line 29 of file fbxhik2fbxcharacter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxhik2fbxcharacter.h
+
+   Please send us your comment about this page

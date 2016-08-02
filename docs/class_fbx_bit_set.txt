@@ -1,0 +1,169 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBitSet Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBitSet Class Reference
+   Search for all occurrences
+
+   #include <fbxbitset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An automatic growing array of bit.
+
+   The bit array will automatically grow when specifying bit indexes that are greater than the array size when calling SetBit or UnsetBit. Indexes can vary from 0 to FBXSDK_UINT_MAX-1. When an invalid index is returned from any functions, FBXSDK_UINT_MAX is returned. The bit array is not thread safe.
+
+   Definition at line 27 of file fbxbitset.h.
+
+   List of all members.
+
+Public Member Functions
+
+            FbxBitSet (const FbxUInt pInitialSize=0)
+            Constructor.
+   virtual  ~FbxBitSet ()
+            Destructor.
+      void  SetBit (const FbxUInt pBitIndex)
+            Set the bit at the specified bit index to true regardless of its current value.
+      void  SetAllBits (const bool pValue)
+            Set all the bits to the specified value regardless of their current value.
+      void  UnsetBit (const FbxUInt pBitIndex)
+            Set the bit at the specified bit index to false regardless of its current value.
+      bool  GetBit (const FbxUInt pBitIndex) const
+            Get the bit boolean value at the specified bit index.
+   FbxUInt  GetFirstSetBitIndex () const
+            Get the bit index of the first bit that is currently set.
+   FbxUInt  GetLastSetBitIndex () const
+            Get the bit index of the last bit that is currently set.
+   FbxUInt  GetNextSetBitIndex (const FbxUInt pBitIndex) const
+            Get the bit index of the next set bit after the specified bit index.
+   FbxUInt  GetPreviousSetBitIndex (const FbxUInt pBitIndex) const
+            Get the bit index of the previous set bit before the specified bit index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxBitSet ( const FbxUInt  pInitialSize = 0 )
+
+   Constructor.
+
+   Parameters:
+
+          pInitialSize Initial bit array size in bit count (not in byte count!).
+
+   virtual ~FbxBitSet ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetBit ( const FbxUInt  pBitIndex )
+   Search for all occurrences
+
+   Set the bit at the specified bit index to true regardless of its current value.
+
+   Parameters:
+
+          pBitIndex The bit index in the array in the range of [0, FBXSDK_UINT_MAX-1].
+
+   void SetAllBits ( const bool  pValue )
+   Search for all occurrences
+
+   Set all the bits to the specified value regardless of their current value.
+
+   Parameters:
+
+          pValue The boolean value to set to all bits.
+
+   void UnsetBit ( const FbxUInt  pBitIndex )
+   Search for all occurrences
+
+   Set the bit at the specified bit index to false regardless of its current value.
+
+   Parameters:
+
+          pBitIndex The bit index in the array in the range of [0, FBXSDK_UINT_MAX-1].
+
+   bool GetBit ( const FbxUInt  pBitIndex ) const
+   Search for all occurrences
+
+   Get the bit boolean value at the specified bit index.
+
+   Parameters:
+
+          pBitIndex The bit index in the array in the range of [0, FBXSDK_UINT_MAX-1].
+
+   Returns:
+          True if the bit is set, false otherwise.
+
+   FbxUInt GetFirstSetBitIndex ( ) const
+   Search for all occurrences
+
+   Get the bit index of the first bit that is currently set.
+
+   Returns:
+          The bit index of the first set bit, FBXSDK_UINT_MAX if none found.
+
+   FbxUInt GetLastSetBitIndex ( ) const
+   Search for all occurrences
+
+   Get the bit index of the last bit that is currently set.
+
+   Returns:
+          The bit index of the last set bit, FBXSDK_UINT_MAX if none found.
+
+   FbxUInt GetNextSetBitIndex ( const FbxUInt  pBitIndex ) const
+   Search for all occurrences
+
+   Get the bit index of the next set bit after the specified bit index.
+
+   Parameters:
+
+          pBitIndex The start bit index in the array in the range of [0, FBXSDK_UINT_MAX-1].
+
+   Returns:
+          The bit index of the next set bit, FBXSDK_UINT_MAX if none found.
+
+   FbxUInt GetPreviousSetBitIndex ( const FbxUInt  pBitIndex ) const
+   Search for all occurrences
+
+   Get the bit index of the previous set bit before the specified bit index.
+
+   Parameters:
+
+          pBitIndex The start bit index in the array in the range of [0, FBXSDK_UINT_MAX-1].
+
+   Returns:
+          The bit index of the previous set bit, FBXSDK_UINT_MAX if none found.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxbitset.h
+
+   Please send us your comment about this page

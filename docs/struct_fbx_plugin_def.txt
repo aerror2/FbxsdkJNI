@@ -1,0 +1,94 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPluginDef Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxPluginDef Struct Reference
+   Search for all occurrences
+
+   #include <fbxplugin.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Structure used by plug-ins for identification purposes.
+
+   Note:
+          To avoid confusions in the system, it is recommended to choose an appropriate unique identifier string name when defining your plug-in, as well as incrementing the version string to a correct value whenever something changes in the implementation of the plug-in. Both of these string are used when comparing plug-ins for searches, as well as identification in FBX files.
+
+   Definition at line 47 of file fbxplugin.h.
+
+   List of all members.
+
+Public Member Functions
+
+              FbxPluginDef ()
+              Constructor.
+
+Public Attributes
+
+   FbxString  mName
+              The identifier name string of the plug-in.
+   FbxString  mVersion
+              The version string of the plug-in.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPluginDef ( ) [inline]
+
+   Constructor.
+
+   Definition at line 50 of file fbxplugin.h.
+                       :
+                mName("Unknown Name"),
+                mVersion("Unknown Version")
+        {
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   The identifier name string of the plug-in.
+
+   If the name is already used by another plug-in, the plug-in will still register.
+
+   Definition at line 56 of file fbxplugin.h.
+   FbxString mVersion
+   Search for all occurrences
+
+   The version string of the plug-in.
+
+   Definition at line 57 of file fbxplugin.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/core/fbxplugin.h
+
+   Please send us your comment about this page

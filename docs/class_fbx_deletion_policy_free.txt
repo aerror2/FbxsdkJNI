@@ -1,0 +1,72 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDeletionPolicyFree< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxDeletionPolicyFree< Type > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxalloc.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxDeletionPolicyFree< Type >
+
+   Deletion policy for pointer template classes that uses the FbxFree() function.
+
+   Definition at line 156 of file fbxalloc.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static void  DeleteIt (Type **pPtr)
+                Destruction policy implementation.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static void DeleteIt ( Type **  pPtr ) [inline, static]
+   Search for all occurrences
+
+   Destruction policy implementation.
+
+   Definition at line 160 of file fbxalloc.h.
+        {
+                if( *pPtr )
+                {
+                        FbxFree(*pPtr);
+                        *pPtr = NULL;
+                }
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxalloc.h
+
+   Please send us your comment about this page

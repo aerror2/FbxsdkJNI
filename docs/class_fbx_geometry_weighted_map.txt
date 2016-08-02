@@ -1,0 +1,107 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGeometryWeightedMap Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxGeometryWeightedMap Class Reference
+   Search for all occurrences
+
+   #include <fbxgeometryweightedmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class provides the structure to build a correspondence between 2 geometries.
+
+   This correspondence is done at the vertex level. Which means that for each vertex in the source geometry, you can have from 0 to N corresponding vertices in the destination geometry. Each corresponding vertex is weighted.
+
+   For example, if the source geometry is a NURB and the destination geometry is a mesh, the correspondence object will express the correspondence between the NURB's control vertices and the mesh's vertices.
+
+   If the mesh corresponds to a tesselation of the NURB, the correspondence object can be used to transfer any deformation that affect the NURB's control vertices to the mesh's vertices.
+
+   See FbxWeightedMapping for more details.
+
+   Definition at line 40 of file fbxgeometryweightedmap.h.
+   Inheritance diagram for FbxGeometryWeightedMap:
+   [USEMAP:class_fbx_geometry_weighted_map.png]
+
+   List of all members.
+
+Public Member Functions
+
+                   void  SetValues (const FbxWeightedMapping *pWeightedMappingTable)
+                         Set correspondence values.
+   FbxWeightedMapping *  GetValues () const
+                         Return correspondence values.
+          FbxGeometry *  GetSourceGeometry ()
+                         Return source geometry.
+          FbxGeometry *  GetDestinationGeometry ()
+                         Return destination geometry.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetValues ( const FbxWeightedMapping *  pWeightedMappingTable )
+   Search for all occurrences
+
+   Set correspondence values.
+
+   Parameters:
+
+          pWeightedMappingTable Pointer to the table containing values
+
+   Remarks:
+          pWeightedMappingTable becomes owned by this object and will be destroyed by it when the object goes out of scope or on the next call to SetValues(). The deletion uses FbxDelete() so the content of the pointer must have been allocated with FbxNew<>()
+
+   FbxWeightedMapping* GetValues ( ) const
+   Search for all occurrences
+
+   Return correspondence values.
+
+   Returns:
+          Pointer to the correspondence values table.
+
+   FbxGeometry* GetSourceGeometry ( )
+   Search for all occurrences
+
+   Return source geometry.
+
+   Returns:
+          Pointer to the source geometry, or NULL if there is no connected source geometry
+
+   FbxGeometry* GetDestinationGeometry ( )
+   Search for all occurrences
+
+   Return destination geometry.
+
+   Returns:
+          Pointer to the destination geometry, or NULL if there is no connected destination geometry
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxgeometryweightedmap.h
+
+   Please send us your comment about this page

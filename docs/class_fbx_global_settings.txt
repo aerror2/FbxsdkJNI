@@ -1,0 +1,465 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGlobalSettings Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   FbxGlobalSettings Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, Supported Scene Elements, FBX Scenes, List of Python Fbx classes, Lights.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxglobalsettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains functions for accessing global settings.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayGlobalSettings.cxx, ImportScene/DisplayGlobalSettings.h, ViewScene/SceneContext.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 27 of file fbxglobalsettings.h.
+   Inheritance diagram for FbxGlobalSettings:
+   [USEMAP:class_fbx_global_settings.png]
+
+   List of all members.
+
+Classes
+
+              struct   TimeMarker
+
+Public Member Functions
+
+                 void  SetOriginalUpAxis (const FbxAxisSystem &pAxisSystem)
+                       Sets the coordinate system's original Up Axis when the scene is created.
+                  int  GetOriginalUpAxis () const
+                       Returns the coordinate system's original Up Axis.
+
+Axis system
+
+                 void  SetAxisSystem (const FbxAxisSystem &pAxisSystem)
+                       Sets the scene's coordinate system.
+        FbxAxisSystem  GetAxisSystem ()
+                       Returns the scene's current coordinate system.
+
+System Units
+
+                 void  SetSystemUnit (const FbxSystemUnit &pOther)
+                       Sets the unit of measurement used by the system.
+        FbxSystemUnit  GetSystemUnit () const
+                       Returns the unit of measurement used by the system.
+                 void  SetOriginalSystemUnit (const FbxSystemUnit &pOther)
+                       Sets the original unit of measurement used by the system.
+        FbxSystemUnit  GetOriginalSystemUnit () const
+                       Returns the original unit of measurement used by the system.
+
+Light Settings
+
+                 void  SetAmbientColor (FbxColor pAmbientColor)
+                       Sets the ambient color.
+             FbxColor  GetAmbientColor () const
+                       Returns the ambient color.
+
+Camera Settings
+
+                 bool  SetDefaultCamera (const char *pCameraName)
+                       Sets the default camera.
+            FbxString  GetDefaultCamera () const
+                       Returns the default camera name.
+
+Time Settings
+
+                enum   ESnapOnFrameMode { eNoSnap, eSnapOnFrame, ePlayOnFrame, eSnapAndPlayOnFrame }
+                       Snap on frame mode. More...
+                 void  SetTimeMode (FbxTime::EMode pTimeMode)
+                       Sets the time mode.
+       FbxTime::EMode  GetTimeMode () const
+                       Returns the time mode.
+                 void  SetTimeProtocol (FbxTime::EProtocol pTimeProtocol)
+                       Sets the time protocol.
+   FbxTime::EProtocol  GetTimeProtocol () const
+                       Returns the time protocol.
+                 void  SetSnapOnFrameMode (ESnapOnFrameMode pSnapOnFrameMode)
+                       Sets the snap on frame mode.
+     ESnapOnFrameMode  GetSnapOnFrameMode () const
+                       Returns the snap on frame mode.
+                 void  SetTimelineDefaultTimeSpan (const FbxTimeSpan &pTimeSpan)
+                       Sets the default time span of the time line.
+                 void  GetTimelineDefaultTimeSpan (FbxTimeSpan &pTimeSpan) const
+                       Returns the default time span of the time line.
+                 void  SetCustomFrameRate (double pCustomFrameRate)
+                       Set custom frame rate.
+               double  GetCustomFrameRate () const
+                       Return frame rate if the time mode is FbxTime::eCustom.
+
+Time Markers
+
+                  int  GetTimeMarkerCount () const
+                       Returns the number of time markers.
+           TimeMarker  GetTimeMarker (int pIndex, FbxStatus *pStatus=NULL) const
+                       Returns the time marker at the given index.
+                 void  AddTimeMarker (const TimeMarker &pTimeMarker, FbxStatus *pStatus=NULL)
+                       Adds a time marker.
+                 void  ReplaceTimeMarker (int pIndex, const TimeMarker &pTimeMarker, FbxStatus *pStatus=NULL)
+                       Replaces the time marker at the specified index with the new one.
+                 void  RemoveAllTimeMarkers ()
+                       Removes all time markers and sets the current time marker index to -1.
+                 bool  SetCurrentTimeMarker (int pIndex, FbxStatus *pStatus=NULL)
+                       Sets the index of the current time marker.
+                  int  GetCurrentTimeMarker () const
+                       Returns the current time marker index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESnapOnFrameMode
+   Search for all occurrences
+
+   Snap on frame mode.
+
+   Enumerator:
+
+          eNoSnap
+
+   Search for all occurrences
+          eSnapOnFrame
+
+   No snap.
+   Search for all occurrences
+          ePlayOnFrame
+
+   Snap on frame.
+   Search for all occurrences
+   eSnapAndPlayOnFrame
+
+   Play on frame.
+   Snap and play on frame.
+   Search for all occurrences
+
+   Definition at line 149 of file fbxglobalsettings.h.
+    {
+        eNoSnap,
+        eSnapOnFrame,
+        ePlayOnFrame,
+        eSnapAndPlayOnFrame
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetAxisSystem ( const FbxAxisSystem &  pAxisSystem )
+   Search for all occurrences
+
+   Sets the scene's coordinate system.
+
+   Parameters:
+
+          pAxisSystem The coordinate system to set.
+
+   FbxAxisSystem GetAxisSystem ( )
+   Search for all occurrences
+
+   Returns the scene's current coordinate system.
+
+   Returns:
+          The scene's current coordinate system.
+
+   void SetOriginalUpAxis ( const FbxAxisSystem &  pAxisSystem )
+   Search for all occurrences
+
+   Sets the coordinate system's original Up Axis when the scene is created.
+
+   Parameters:
+
+          pAxisSystem The coordinate system whose Up Axis is copied.
+
+   int GetOriginalUpAxis ( ) const
+   Search for all occurrences
+
+   Returns the coordinate system's original Up Axis.
+
+   Returns:
+          The coordinate system's original Up Axis when the scene is created. 0 is X, 1 is Y, 2 is Z axis.
+
+   void SetSystemUnit ( const FbxSystemUnit &  pOther )
+   Search for all occurrences
+
+   Sets the unit of measurement used by the system.
+
+   Parameters:
+
+          pOther The system unit to set.
+
+   FbxSystemUnit GetSystemUnit ( ) const
+   Search for all occurrences
+
+   Returns the unit of measurement used by the system.
+
+   Returns:
+          The unit of measurement used by the system.
+
+   void SetOriginalSystemUnit ( const FbxSystemUnit &  pOther )
+   Search for all occurrences
+
+   Sets the original unit of measurement used by the system.
+
+   Parameters:
+
+          pOther The original system unit to set.
+
+   FbxSystemUnit GetOriginalSystemUnit ( ) const
+   Search for all occurrences
+
+   Returns the original unit of measurement used by the system.
+
+   Returns:
+          The original unit of measurement used by the system.
+
+   void SetAmbientColor ( FbxColor  pAmbientColor )
+   Search for all occurrences
+
+   Sets the ambient color.
+
+   Parameters:
+
+          pAmbientColor The ambient color to set.
+
+   Remarks:
+          The ambient color only uses the RGB channels.
+
+   Examples:
+          ExportScene04/main.cxx.
+
+   FbxColor GetAmbientColor ( ) const
+   Search for all occurrences
+
+   Returns the ambient color.
+
+   Returns:
+          The ambient color.
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx, and ViewScene/DrawScene.cxx.
+
+   bool SetDefaultCamera ( const char *  pCameraName )
+   Search for all occurrences
+
+   Sets the default camera.
+
+   Parameters:
+
+          pCameraName Name of the default camera.
+
+   Returns:
+          true if camera name is valid, returns false if the camera does not have a valid name.
+
+   Remarks:
+          A valid camera name can be either one of the defined tokens (FBXSDK_CAMERA_PERSPECTIVE, FBXSDK_CAMERA_TOP, FBXSDK_CAMERA_FRONT, FBXSDK_CAMERA_BACK, FBXSDK_CAMERA_RIGHT, FBXSDK_CAMERA_LEFT and FBXSDK_CAMERA_BOTTOM) or the name of a camera inserted in the node tree under the scene's root node.
+
+   Examples:
+          ExportScene04/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and ViewScene/SceneContext.cxx.
+
+   FbxString GetDefaultCamera ( ) const
+   Search for all occurrences
+
+   Returns the default camera name.
+
+   Returns:
+          The default camera name, or an empty string if no camera name has been set.
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetTimeMode ( FbxTime::EMode  pTimeMode )
+   Search for all occurrences
+
+   Sets the time mode.
+
+   Parameters:
+
+          pTimeMode One of the defined modes in class FbxTime.
+
+   FbxTime::EMode GetTimeMode ( ) const
+   Search for all occurrences
+
+   Returns the time mode.
+
+   Returns:
+          The currently set TimeMode.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayGlobalSettings.cxx, and ViewScene/SceneContext.cxx.
+
+   void SetTimeProtocol ( FbxTime::EProtocol  pTimeProtocol )
+   Search for all occurrences
+
+   Sets the time protocol.
+
+   Parameters:
+
+          pTimeProtocol One of the defined protocols in FbxTime class.
+
+   FbxTime::EProtocol GetTimeProtocol ( ) const
+   Search for all occurrences
+
+   Returns the time protocol.
+
+   Returns:
+          The currently set time protocol (default FbxTime::eFrameCount).
+
+   void SetSnapOnFrameMode ( ESnapOnFrameMode  pSnapOnFrameMode )
+   Search for all occurrences
+
+   Sets the snap on frame mode.
+
+   Parameters:
+
+          pSnapOnFrameMode One of the following values: eNoSnap, eSnapOnFrame, ePlayOnFrame, or eSnapAndPlayOnFrame.
+
+   ESnapOnFrameMode GetSnapOnFrameMode ( ) const
+   Search for all occurrences
+
+   Returns the snap on frame mode.
+
+   Returns:
+          The currently set snap on frame mode (default eNoSnap).
+
+   void SetTimelineDefaultTimeSpan ( const FbxTimeSpan &  pTimeSpan )
+   Search for all occurrences
+
+   Sets the default time span of the time line.
+
+   Parameters:
+
+          pTimeSpan The default time span of the time line.
+
+   void GetTimelineDefaultTimeSpan ( FbxTimeSpan &  pTimeSpan ) const
+   Search for all occurrences
+
+   Returns the default time span of the time line.
+
+   Parameters:
+
+          pTimeSpan The default time span of the time line.
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx.
+
+   void SetCustomFrameRate ( double  pCustomFrameRate )
+   Search for all occurrences
+
+   Set custom frame rate.
+
+   This is meaningless if the time mode is not FbxTime::eCustom.
+   double GetCustomFrameRate ( ) const
+   Search for all occurrences
+
+   Return frame rate if the time mode is FbxTime::eCustom.
+
+   If the time mode is not FbxTime::eCustom, return -1.
+   int GetTimeMarkerCount ( ) const
+   Search for all occurrences
+
+   Returns the number of time markers.
+
+   Returns:
+          The number of time markers.
+
+   TimeMarker GetTimeMarker ( int          pIndex,
+                              FbxStatus *  pStatus = NULL
+                            )              const
+   Search for all occurrences
+
+   Returns the time marker at the given index.
+
+   Parameters:
+
+          pIndex  The time marker index.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          A copy of the time marker at the given index, or an empty one if an error occurred.
+
+   void AddTimeMarker ( const TimeMarker &  pTimeMarker,
+                        FbxStatus *         pStatus = NULL
+                      )
+   Search for all occurrences
+
+   Adds a time marker.
+
+   Parameters:
+
+          pTimeMarker The new time marker to be added.
+          pStatus     The FbxStatus object to hold error codes.
+
+   void ReplaceTimeMarker ( int                 pIndex,
+                            const TimeMarker &  pTimeMarker,
+                            FbxStatus *         pStatus = NULL
+                          )
+   Search for all occurrences
+
+   Replaces the time marker at the specified index with the new one.
+
+   Parameters:
+
+          pIndex      The time marker index.
+          pTimeMarker The new time marker.
+          pStatus     The FbxStatus object to hold error codes.
+
+   void RemoveAllTimeMarkers ( )
+   Search for all occurrences
+
+   Removes all time markers and sets the current time marker index to -1.
+   bool SetCurrentTimeMarker ( int          pIndex,
+                               FbxStatus *  pStatus = NULL
+                             )
+   Search for all occurrences
+
+   Sets the index of the current time marker.
+
+   Parameters:
+
+          pIndex  The current time marker index.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, or returns false if the index is not valid.
+
+   int GetCurrentTimeMarker ( ) const
+   Search for all occurrences
+
+   Returns the current time marker index.
+
+   Returns:
+          The current time marker index, or -1 if no current time marker has been set.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxglobalsettings.h
+
+   Please send us your comment about this page

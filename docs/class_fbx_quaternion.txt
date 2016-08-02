@@ -1,0 +1,618 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxQuaternion Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxQuaternion Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxquaternion.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK quaternion class.
+
+   Quaternions form a four-dimensional normed division algebra over the real numbers. It is for calculations involving three-dimensional rotations.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   Definition at line 27 of file fbxquaternion.h.
+   Inheritance diagram for FbxQuaternion:
+   [USEMAP:class_fbx_quaternion.png]
+
+   List of all members.
+
+Constructors and Destructor
+
+                    FbxQuaternion ()
+                    Constructor.
+                    FbxQuaternion (const FbxQuaternion &pV)
+                    Copy constructor.
+                    FbxQuaternion (double pX, double pY, double pZ, double pW=1.0)
+                    Constructor.
+                    ~FbxQuaternion ()
+                    Destructor.
+
+Access
+
+   FbxQuaternion &  operator= (const FbxQuaternion &pQuaternion)
+                    Assignment operation.
+          double &  operator[] (int pIndex)
+                    Accessor.
+    const double &  operator[] (int pIndex) const
+                    Accessor.
+            double  GetAt (int pIndex) const
+                    Get a vector element.
+              void  SetAt (int pIndex, double pValue)
+                    Set a vector element.
+              void  Set (double pX, double pY, double pZ, double pW=1.0)
+                    Set vector.
+
+Scalar Operations
+
+     FbxQuaternion  operator+ (double pValue) const
+                    The addition operator between the scalar part of this quaternion and a scalar value, no influence on the vector part of the quaternion.
+     FbxQuaternion  operator- (double pValue) const
+                    The subtraction operator between the scalar part of this quaternion and a scalar value, no influence on the vector part of the quaternion.
+     FbxQuaternion  operator* (double pValue) const
+                    Multiply all vector components by a value.
+     FbxQuaternion  operator/ (double pValue) const
+                    Divide all vector components by a value.
+   FbxQuaternion &  operator+= (double pValue)
+                    The in place addition operator between the real part of this quaternion and a scalar value.
+   FbxQuaternion &  operator-= (double pValue)
+                    The subtraction operator between the real part of this quaternion and a scalar value.
+   FbxQuaternion &  operator*= (double pValue)
+                    Multiply a value to all vector elements.
+   FbxQuaternion &  operator/= (double pValue)
+                    Divide all vector elements by a value.
+
+Vector Operations
+
+     FbxQuaternion  operator- () const
+                    Unary minus operator.
+     FbxQuaternion  operator+ (const FbxQuaternion &pQuaternion) const
+                    Add two vectors together.
+     FbxQuaternion  operator- (const FbxQuaternion &pQuaternion) const
+                    Subtract a quaternion from another quaternion.
+     FbxQuaternion  operator* (const FbxQuaternion &pOther) const
+                    The quaternion multiplication operator.
+     FbxQuaternion  operator/ (const FbxQuaternion &pOther) const
+                    The quaternion division operator.
+   FbxQuaternion &  operator+= (const FbxQuaternion &pQuaternion)
+                    Add two quaternions together.
+   FbxQuaternion &  operator-= (const FbxQuaternion &pQuaternion)
+                    Subtract a quaternion from another vector.
+   FbxQuaternion &  operator*= (const FbxQuaternion &pOther)
+                    The in place quaternion multiplication operator.
+   FbxQuaternion &  operator/= (const FbxQuaternion &pOther)
+                    The in place quaternion division operator.
+     FbxQuaternion  Product (const FbxQuaternion &pOther) const
+                    Return quaternion product.
+            double  DotProduct (const FbxQuaternion &pQuaternion) const
+                    Return quaternion dot product.
+              void  Normalize ()
+                    Normalize the quaternion, length set to 1.
+              void  Conjugate ()
+                    Calculate the quaternion conjugate.
+            double  Length ()
+                    Calculate the length (norm) of the quaternion.
+              void  Inverse ()
+                    Calculate the inverse of the quaternion.
+              void  ComposeSphericalXYZ (const FbxVector4 pEuler)
+                    Create a Quaternion equivalent to the supplied Euler XYZ in spherical coordinate.
+        FbxVector4  DecomposeSphericalXYZ () const
+                    Create an Euler XYZ equivalent to the current quaternion.
+
+Boolean Operations
+
+              bool  operator== (const FbxQuaternion &pV) const
+                    Equivalence operator.
+              bool  operator!= (const FbxQuaternion &pV) const
+                    Non equivalence operator.
+
+Casting
+
+                    operator double * ()
+                    Cast the vector in a double pointer.
+                    operator const double * () const
+                    Cast the vector in a const double pointer.
+
+Comparison methods
+
+               int  Compare (const FbxQuaternion &pQ2, const double pThreshold=FBXSDK_TOLERANCE) const
+                    Comparison method.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxQuaternion ( )
+
+   Constructor.
+
+   Initialize to the multiplicative identity.
+   FbxQuaternion ( const FbxQuaternion &  pV )
+
+   Copy constructor.
+
+   Parameters:
+
+          pV FbxQuaternion object copied to this one.
+
+   FbxQuaternion ( double  pX,
+                   double  pY,
+                   double  pZ,
+                   double  pW = 1.0
+                 )
+
+   Constructor.
+
+   Parameters:
+
+          pX The X component.
+          pY The Y component.
+          pZ The Z component.
+          pW The W component.
+
+   ~FbxQuaternion ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxQuaternion& operator= ( const FbxQuaternion &  pQuaternion )
+
+   Assignment operation.
+
+   Parameters:
+
+          pQuaternion FbxQuaternion object assigned to this one.
+
+   double& operator[] ( int  pIndex )
+
+   Accessor.
+
+   Parameters:
+
+          pIndex The index of the component to access.
+
+   Returns:
+          The reference to the indexed component.
+
+   Remarks:
+          The index parameter is not checked for values out of bounds. The valid range is [0,3].
+
+   Reimplemented from FbxVectorTemplate4< T >.
+   const double& operator[] ( int  pIndex ) const
+
+   Accessor.
+
+   Parameters:
+
+          pIndex The index of the component to access.
+
+   Returns:
+          The const reference to the indexed component.
+
+   Remarks:
+          The index parameter is not checked for values out of bounds. The valid range is [0,3].
+
+   Reimplemented from FbxVectorTemplate4< T >.
+   double GetAt ( int  pIndex ) const
+   Search for all occurrences
+
+   Get a vector element.
+
+   Parameters:
+
+          pIndex The index of the component to access.
+
+   Returns:
+          The value of the indexed component.
+
+   Remarks:
+          The index parameter is not checked for values out of bounds. The valid range is [0,3].
+
+   void SetAt ( int     pIndex,
+                double  pValue
+              )
+   Search for all occurrences
+
+   Set a vector element.
+
+   Parameters:
+
+          pIndex The index of the component to set.
+          pValue The new value to set the component.
+
+   Remarks:
+          The index parameter is not checked for values out of bounds. The valid range is [0,3].
+
+   void Set ( double  pX,
+              double  pY,
+              double  pZ,
+              double  pW = 1.0
+            )
+   Search for all occurrences
+
+   Set vector.
+
+   Parameters:
+
+          pX The X component value.
+          pY The Y component value.
+          pZ The Z component value.
+          pW The W component value.
+
+   FbxQuaternion operator+ ( double  pValue ) const
+
+   The addition operator between the scalar part of this quaternion and a scalar value, no influence on the vector part of the quaternion.
+
+   Parameters:
+
+          pValue The scalar value to be added.
+
+   Returns:
+          The sum of addition.
+
+   FbxQuaternion operator- ( double  pValue ) const
+
+   The subtraction operator between the scalar part of this quaternion and a scalar value, no influence on the vector part of the quaternion.
+
+   Parameters:
+
+          pValue The scalar subtrahend.
+
+   Returns:
+          The difference of subtraction.
+
+   FbxQuaternion operator* ( double  pValue ) const
+
+   Multiply all vector components by a value.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxQuaternion operator/ ( double  pValue ) const
+
+   Divide all vector components by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxQuaternion& operator+= ( double  pValue )
+
+   The in place addition operator between the real part of this quaternion and a scalar value.
+
+   Parameters:
+
+          pValue The value to be added.
+
+   Returns:
+          The sum of addition.
+
+   FbxQuaternion& operator-= ( double  pValue )
+
+   The subtraction operator between the real part of this quaternion and a scalar value.
+
+   Parameters:
+
+          pValue The scalar subtrahend.
+
+   Returns:
+          The difference of subtraction.
+
+   FbxQuaternion& operator*= ( double  pValue )
+
+   Multiply a value to all vector elements.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          The result of multiplying each component of the vector by pValue, replacing this quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxQuaternion& operator/= ( double  pValue )
+
+   Divide all vector elements by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          The result of dividing each component of the vector by pValue, replacing this quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxQuaternion operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          A quaternion where each component is multiplied by -1.
+
+   FbxQuaternion operator+ ( const FbxQuaternion &  pQuaternion ) const
+
+   Add two vectors together.
+
+   Parameters:
+
+          pQuaternion Quaternion to add.
+
+   Returns:
+          The quaternion v' = this + pQuaternion.
+
+   Remarks:
+          The values in pQuaternion are not checked.
+
+   FbxQuaternion operator- ( const FbxQuaternion &  pQuaternion ) const
+
+   Subtract a quaternion from another quaternion.
+
+   Parameters:
+
+          pQuaternion Quaternion to subtract.
+
+   Returns:
+          The quaternion v' = this - pQuaternion.
+
+   Remarks:
+          The values in pQuaternion are not checked.
+
+   FbxQuaternion operator* ( const FbxQuaternion &  pOther ) const
+
+   The quaternion multiplication operator.
+
+   Parameters:
+
+          pOther The quaternion to be multiplied with this quaternion.
+
+   Returns:
+          The product of two quaternions.
+
+   Remarks:
+          In general, quaternion multiplication does not commute.
+
+   FbxQuaternion operator/ ( const FbxQuaternion &  pOther ) const
+
+   The quaternion division operator.
+
+   Parameters:
+
+          pOther The divisor quaternion.
+
+   Returns:
+          The quotient quaternion.
+
+   Remarks:
+          If the divisor has a zero length, return zero quaternion.
+
+   FbxQuaternion& operator+= ( const FbxQuaternion &  pQuaternion )
+
+   Add two quaternions together.
+
+   Parameters:
+
+          pQuaternion Quaternion to add.
+
+   Returns:
+          The quaternion v' = this + pQuaternion, replacing this quaternion.
+
+   Remarks:
+          The values in pQuaternion are not checked.
+
+   FbxQuaternion& operator-= ( const FbxQuaternion &  pQuaternion )
+
+   Subtract a quaternion from another vector.
+
+   Parameters:
+
+          pQuaternion Quaternion to subtract.
+
+   Returns:
+          The quaternion v' = this - pQuaternion, replacing this quaternion.
+
+   Remarks:
+          The values in pQuaternion are not checked.
+
+   FbxQuaternion& operator*= ( const FbxQuaternion &  pOther )
+
+   The in place quaternion multiplication operator.
+
+   Parameters:
+
+          pOther The quaternion to be multiplied with this quaternion.
+
+   Returns:
+          The product of two quaternions.
+
+   Remarks:
+          In general, quaternion multiplication does not commute.
+
+   FbxQuaternion& operator/= ( const FbxQuaternion &  pOther )
+
+   The in place quaternion division operator.
+
+   Parameters:
+
+          pOther The divisor quaternion.
+
+   Returns:
+          The quotient quaternion.
+
+   Remarks:
+          If the divisor has a zero length, return zero quaternion.
+
+   FbxQuaternion Product ( const FbxQuaternion &  pOther ) const
+   Search for all occurrences
+
+   Return quaternion product.
+
+   Parameters:
+
+          pOther The quaternion to be multiplied with this quaternion.
+
+   Returns:
+          The product of two quaternions.
+
+   double DotProduct ( const FbxQuaternion &  pQuaternion ) const
+   Search for all occurrences
+
+   Return quaternion dot product.
+
+   Parameters:
+
+          pQuaternion Dot product quaternion.
+
+   Returns:
+          The dot product of this quaternion and pQuaternion.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void Normalize ( )
+   Search for all occurrences
+
+   Normalize the quaternion, length set to 1.
+   void Conjugate ( )
+   Search for all occurrences
+
+   Calculate the quaternion conjugate.
+
+   Returns:
+          The conjugate of this quaternion.
+
+   double Length ( )
+   Search for all occurrences
+
+   Calculate the length (norm) of the quaternion.
+
+   Returns:
+          The length of the quaternion.
+
+   void Inverse ( )
+   Search for all occurrences
+
+   Calculate the inverse of the quaternion.
+
+   Returns:
+          The inverse of this quaternion.
+
+   Remarks:
+          If this quaternion has a zero length, retain the original value.
+          If the quaternion is normalized, then its inverse is equal to its conjugate.
+
+   void ComposeSphericalXYZ ( const FbxVector4  pEuler )
+   Search for all occurrences
+
+   Create a Quaternion equivalent to the supplied Euler XYZ in spherical coordinate.
+
+   Parameters:
+
+          pEuler The Euler XYZ angle.
+
+   FbxVector4 DecomposeSphericalXYZ ( ) const
+   Search for all occurrences
+
+   Create an Euler XYZ equivalent to the current quaternion.
+
+   Returns:
+          The Euler XYZ equivalent to the current quaternion in spherical coordinate.
+
+   bool operator== ( const FbxQuaternion &  pV ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pV The quaternion to be compared to this quaternion.
+
+   Returns:
+          true if the two quaternions are equal (each element is within a FBXSDK_TOLERANCE tolerance), false otherwise.
+
+   bool operator!= ( const FbxQuaternion &  pV ) const
+
+   Non equivalence operator.
+
+   Parameters:
+
+          pV The quaternion to be compared to this.
+
+   Returns:
+          false if the two quaternions are equal (each element is within a FBXSDK_TOLERANCE tolerance), true otherwise.
+
+   operator double * ( )
+
+   Cast the vector in a double pointer.
+   operator const double * ( ) const
+
+   Cast the vector in a const double pointer.
+   int Compare ( const FbxQuaternion &  pQ2,
+                 const double           pThreshold = FBXSDK_TOLERANCE
+               )                        const
+   Search for all occurrences
+
+   Comparison method.
+
+   Parameters:
+
+          pQ2        Quaternion to compare with this
+          pThreshold Epsilon for small number comparison
+
+   Returns:
+          0 if quaternions are equal, non-zero value otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxquaternion.h
+
+   Please send us your comment about this page

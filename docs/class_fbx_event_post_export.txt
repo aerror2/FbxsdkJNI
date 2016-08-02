@@ -1,0 +1,76 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEventPostExport Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxEventPostExport Class Reference
+   Search for all occurrences
+
+   #include <fbxexporter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Event that is emitted to plugins after a file is exported to the FBX format.
+
+   Definition at line 291 of file fbxexporter.h.
+   Inheritance diagram for FbxEventPostExport:
+   [USEMAP:class_fbx_event_post_export.png]
+
+   List of all members.
+
+Public Member Functions
+
+                  FbxEventPostExport (FbxDocument *pDocument)
+
+Public Attributes
+
+   FbxDocument *  mDocument
+                  The document to be exported.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEventPostExport ( FbxDocument *  pDocument ) [inline]
+
+   Definition at line 296 of file fbxexporter.h.
+: mDocument(pDocument) {};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxDocument* mDocument
+   Search for all occurrences
+
+   The document to be exported.
+
+   Definition at line 296 of file fbxexporter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxexporter.h
+
+   Please send us your comment about this page

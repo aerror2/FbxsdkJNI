@@ -1,0 +1,108 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConnection Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types
+   FbxConnection Class Reference
+   Search for all occurrences
+
+   #include <fbxconnectionpoint.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 22 of file fbxconnectionpoint.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EType {
+     eNone = 0, eSystem = 1 << 0, eUser = 1 << 1, eSystemOrUser = eUser | eSystem,
+     eReference = 1 << 2, eContains = 1 << 3, eData = 1 << 4, eLinkType = eReference | eContains | eData,
+     eDefault = eUser | eReference, eUnidirectional = 1 << 7
+   }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Enumerator:
+
+          eNone
+
+   Search for all occurrences
+          eSystem
+
+   Search for all occurrences
+          eUser
+
+   Search for all occurrences
+          eSystemOrUser
+
+   Search for all occurrences
+          eReference
+
+   Search for all occurrences
+          eContains
+
+   Search for all occurrences
+          eData
+
+   Search for all occurrences
+          eLinkType
+
+   Search for all occurrences
+          eDefault
+
+   Search for all occurrences
+          eUnidirectional
+
+   Search for all occurrences
+
+   Definition at line 25 of file fbxconnectionpoint.h.
+        {
+                eNone = 0,
+                // System or user
+                eSystem = 1 << 0,
+                eUser = 1 << 1,
+                eSystemOrUser = eUser | eSystem,
+                // Type of Link
+                eReference = 1 << 2,
+                eContains = 1 << 3,
+                eData = 1 << 4,
+                eLinkType = eReference | eContains | eData,
+                eDefault = eUser | eReference,
+                eUnidirectional = 1 << 7
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxconnectionpoint.h
+
+   Please send us your comment about this page

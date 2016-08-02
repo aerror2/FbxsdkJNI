@@ -1,0 +1,94 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEmbeddedFilesAccumulator::PropertyUrlIndex Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxEmbeddedFilesAccumulator
+     * PropertyUrlIndex
+
+   Public Member Functions | Public Attributes
+   FbxEmbeddedFilesAccumulator::PropertyUrlIndex Struct Reference
+   Search for all occurrences
+
+   #include <fbxembeddedfilesaccumulator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Map the object to the property's hierarchical name.
+
+   An object may use the same file on multiple properties, hence the set. Each property may have multiple URLs, separate by |. We thus need to store the index along with the property.
+
+   Definition at line 38 of file fbxembeddedfilesaccumulator.h.
+
+   List of all members.
+
+Public Member Functions
+
+              PropertyUrlIndex ()
+              PropertyUrlIndex (const FbxString &pUrl, int pIndex)
+
+Public Attributes
+
+   FbxString  mPropName
+         int  mIndex
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   PropertyUrlIndex ( ) [inline]
+
+   Definition at line 43 of file fbxembeddedfilesaccumulator.h.
+                           : mIndex(0)
+        {
+        }
+
+   PropertyUrlIndex ( const FbxString &  pUrl,
+                      int                pIndex
+                    )                    [inline]
+
+   Definition at line 47 of file fbxembeddedfilesaccumulator.h.
+            : mPropName(pUrl)
+            , mIndex(pIndex)
+        {
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mPropName
+   Search for all occurrences
+
+   Definition at line 40 of file fbxembeddedfilesaccumulator.h.
+   int mIndex
+   Search for all occurrences
+
+   Definition at line 41 of file fbxembeddedfilesaccumulator.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxembeddedfilesaccumulator.h
+
+   Please send us your comment about this page

@@ -1,0 +1,157 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessorXRefCopy Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions | Public Attributes
+   FbxProcessorXRefCopy Class Reference
+   Search for all occurrences
+
+   #include <fbxprocessorxref.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains objects This class also provides access to global settings and take information.
+
+   Definition at line 26 of file fbxprocessorxref.h.
+   Inheritance diagram for FbxProcessorXRefCopy:
+   [USEMAP:class_fbx_processor_x_ref_copy.png]
+
+   List of all members.
+
+Classes
+
+                                             struct   AutoRevertPropertyChanges
+                                                      This is just a safety net to make sure RevertPropertyChanges is called when this goes out of scope. More...
+                                              class   MissingUrlHandler
+                                             struct   PropertyUpdate
+                                                      Since FbxProperty is an opaque type, we can't do an efficient operator < on it, and must keep the data on the object, which can be compared through pointers, and then we can further compare against the property name. More...
+
+Public Types
+
+                   typedef FbxSet2< PropertyUpdate >  UpdateSet
+   typedef FbxMap< FbxObject
+   *, UpdateSet >  PropertyUpdateMap
+
+Public Member Functions
+
+                                 PropertyUpdateMap &  GetUpdatedProperties ()
+                                                      All properties that were updated, with their original value.
+                                                void  RevertPropertyChanges ()
+                                                      If property tracking was enabled, goes through and reverts all changes to the properties.
+
+Public Attributes
+
+                                 MissingUrlHandler *  MissingUrlHandler
+                                                      Optional callback; when set, this will be called when an Url cannot be be copied because the source is not found.
+                   Properties
+                           FbxPropertyT< FbxString >  OutputDirectory
+                             FbxPropertyT< FbxBool >  UpdateProperties
+                                                      As we resolve xref and copy assets, do we update properties to now use this relative path? Defaults to TRUE.
+                             FbxPropertyT< FbxBool >  TrackUpdatedProperties
+                                                      Default to FALSE -- when set, this informs the processor to track every properties that were modified during the scene processing.
+                             FbxPropertyT< FbxBool >  ForceCopy
+                                                      Default to TRUE -- when not set, files are only copied if one of the following conditions is met:
+                             FbxPropertyT< FbxBool >  CopyFileTimes
+                                                      Default to TRUE -- when copying a file, also copy its modification time.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxSet2<PropertyUpdate> UpdateSet
+   Search for all occurrences
+
+   Definition at line 93 of file fbxprocessorxref.h.
+   typedef FbxMap<FbxObject*, UpdateSet> PropertyUpdateMap
+   Search for all occurrences
+
+   Definition at line 94 of file fbxprocessorxref.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   PropertyUpdateMap& GetUpdatedProperties ( )
+   Search for all occurrences
+
+   All properties that were updated, with their original value.
+
+   Will always be empty if TrackUpdatedProperties was not set before calling ProcessCollection/ProcessObject. NOT cleared before each processing run.
+   void RevertPropertyChanges ( )
+   Search for all occurrences
+
+   If property tracking was enabled, goes through and reverts all changes to the properties.
+
+   Does not un-copy the files, naturally.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> OutputDirectory
+   Search for all occurrences
+
+   Definition at line 42 of file fbxprocessorxref.h.
+   FbxPropertyT<FbxBool> UpdateProperties
+   Search for all occurrences
+
+   As we resolve xref and copy assets, do we update properties to now use this relative path? Defaults to TRUE.
+
+   Definition at line 47 of file fbxprocessorxref.h.
+   FbxPropertyT<FbxBool> TrackUpdatedProperties
+   Search for all occurrences
+
+   Default to FALSE -- when set, this informs the processor to track every properties that were modified during the scene processing.
+
+   Definition at line 52 of file fbxprocessorxref.h.
+   FbxPropertyT<FbxBool> ForceCopy
+   Search for all occurrences
+
+   Default to TRUE -- when not set, files are only copied if one of the following conditions is met:
+
+   1) Target does not exist 2) Target has a different time 3) Target has a different size
+
+   Definition at line 61 of file fbxprocessorxref.h.
+   FbxPropertyT<FbxBool> CopyFileTimes
+   Search for all occurrences
+
+   Default to TRUE -- when copying a file, also copy its modification time.
+
+   A bit of a requirement if you're not going to use ForceCopy.
+
+   Definition at line 66 of file fbxprocessorxref.h.
+   MissingUrlHandler* MissingUrlHandler
+   Search for all occurrences
+
+   Optional callback; when set, this will be called when an Url cannot be be copied because the source is not found.
+
+   Memory is owned by the client code, and will not be freed by us.
+
+   Definition at line 73 of file fbxprocessorxref.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxprocessorxref.h
+
+   Please send us your comment about this page

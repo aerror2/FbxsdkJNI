@@ -1,0 +1,336 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions | Friends
+   FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxhashmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename KEY, typename VALUE, typename HASH, class Destruct = FbxNoOpDestruct<VALUE>, class Comparator = FbxDefaultComparator<KEY>>
+class FbxHashMap< KEY, VALUE, HASH, Destruct, Comparator >
+
+   This object represents a standard hash map.
+
+   You must provide the typename of KEY and VALUE as well as the typename of the class that contains the hash function to use to hash values. The hash class must overload operator() and be built like this.
+    class SimpleHash
+    {
+    public:
+        inline unsigned int operator() ( const int pKey ) const
+        {
+            return pKey;
+        }
+    };
+
+   Definition at line 45 of file fbxhashmap.h.
+
+   List of all members.
+
+Classes
+
+           class   Iterator
+                   Iterate through every element in a hash map. More...
+           class   ListItem
+
+Public Types
+
+      typedef KEY  KeyType
+    typedef VALUE  ValueType
+     typedef HASH  HashFunctorType
+
+Public Member Functions
+
+                   FbxHashMap (int pBucketSize)
+                   Construct a FbxHashMap with an user-defined maximum number of elements.
+                   FbxHashMap ()
+                   Construct a FbxHashMap with the default maximum number of elements (30)
+                   ~FbxHashMap ()
+                   Clear all elements in the hash map before destroying itself.
+             void  Clear ()
+                   Calls operator delete on all elements of the hashmap, de-allocating all memory and destroying them.
+   const Iterator  Find (const KeyType &pKey) const
+                   Find an element in the hashmap.
+            VALUE  Remove (const KEY &pKey)
+                   Remove an element in the hashmap.
+      ValueType &  operator[] (const KeyType &pKey)
+                   Add or retrieve a KeyValuePair from the Hashmap.
+         Iterator  Start () const
+                   Returns an iterator pointing on the first non-null element in the map.
+         Iterator  End () const
+                   Returns an iterator pointing on the last element in the map.
+
+Friends
+
+            class  Iterator
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef KEY KeyType
+   Search for all occurrences
+
+   Definition at line 48 of file fbxhashmap.h.
+   typedef VALUE ValueType
+   Search for all occurrences
+
+   Definition at line 49 of file fbxhashmap.h.
+   typedef HASH HashFunctorType
+   Search for all occurrences
+
+   Definition at line 50 of file fbxhashmap.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxHashMap ( int  pBucketSize ) [inline]
+
+   Construct a FbxHashMap with an user-defined maximum number of elements.
+
+   Parameters:
+
+          pBucketSize Initial maximum number of elements.
+
+   Definition at line 213 of file fbxhashmap.h.
+        {
+                mBuckets.Resize( pBucketSize );
+        }
+
+   FbxHashMap ( ) [inline]
+
+   Construct a FbxHashMap with the default maximum number of elements (30)
+
+   Definition at line 221 of file fbxhashmap.h.
+    {
+        mBuckets.Resize(30);
+    }
+
+   ~FbxHashMap ( ) [inline]
+
+   Clear all elements in the hash map before destroying itself.
+
+   Definition at line 229 of file fbxhashmap.h.
+        {
+                Clear();
+                mBuckets.Clear();
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Clear ( ) [inline]
+   Search for all occurrences
+
+   Calls operator delete on all elements of the hashmap, de-allocating all memory and destroying them.
+
+   Definition at line 238 of file fbxhashmap.h.
+        {
+                for( int i = 0; i < mBuckets.GetCount(); ++i)
+                {
+                        if( mBuckets[i] )
+                        {
+                                ListItem* lNext = mBuckets[i]->mNext;
+                                while( lNext )
+                                {
+                                        ListItem* lNextNext = lNext->mNext;
+                                        FbxDelete(lNext);
+                                        lNext = lNextNext;
+                                }
+
+                                FbxDelete(mBuckets[i]);
+                                mBuckets[i] = NULL;
+                        }
+                }
+        }
+
+   const Iterator Find ( const KeyType &  pKey ) const [inline]
+   Search for all occurrences
+
+   Find an element in the hashmap.
+
+   If no element exist with the specified key, returns an iterator pointing on the end of the map (not an actual KeyValuePair).
+
+   Parameters:
+
+          pKey The value of the key corresponding to the element
+
+   Returns:
+          An Iterator referencing that element
+
+   Definition at line 264 of file fbxhashmap.h.
+        {
+                unsigned int lIndex = mHashFunctor(pKey);
+                lIndex = lIndex % mBuckets.GetCount();
+                ListItem* lItem = mBuckets[lIndex];
+                while( lItem )
+                {
+            if( Comparator::CompareIt( lItem->mKey, pKey ) )
+                        {
+                                Iterator lIt( this, lIndex, lItem );
+                                return lIt;
+                        }
+                        lItem = lItem->mNext;
+                }
+
+                return End();
+        }
+
+   VALUE Remove ( const KEY &  pKey ) [inline]
+   Search for all occurrences
+
+   Remove an element in the hashmap.
+
+   Parameters:
+
+          pKey The key value of the element to remove
+
+   Returns:
+          The value of the element that was just deleted. If the element does not exist, a value created with its default constructor will be returned
+
+   Definition at line 287 of file fbxhashmap.h.
+    {
+                unsigned int lIndex = mHashFunctor(pKey);
+                lIndex = lIndex % mBuckets.GetCount();
+                ListItem* lItem = mBuckets.GetAt(lIndex);
+        ListItem* lLastItem = NULL;
+
+        while( lItem )
+                {
+                        if( lItem->mKey == pKey )
+                        {
+                if( lLastItem )
+                    lLastItem->mNext = lItem->mNext;
+
+                if( mBuckets.GetAt(lIndex) == lItem )
+                    mBuckets.SetAt(lIndex, lItem->mNext );
+
+                VALUE lValue = lItem->mValue;
+                FbxDelete(lItem);
+
+                return lValue;
+                        }
+
+            lLastItem = lItem;
+                        lItem = lItem->mNext;
+                }
+
+        return VALUE();
+    }
+
+   ValueType& operator[] ( const KeyType &  pKey ) [inline]
+
+   Add or retrieve a KeyValuePair from the Hashmap.
+
+   If there is already an entry in the map for an element with key value specified in parameter, the value will be returned. Otherwise, a new entry will be created with this key value and the default value for ValueType will be returned. It can be modified using the assignment operator
+
+   Parameters:
+
+          pKey The key for which to retrieve/add a value.
+
+   Returns:
+          Value of the element referenced by the key specified in parameter.
+
+   Definition at line 324 of file fbxhashmap.h.
+        {
+        unsigned int lIndex = 0;
+                Iterator lIt = InternalFind( pKey, lIndex);
+                if( lIt != End() )
+                {
+                        return lIt.mCurrentItem->mValue;
+                }
+
+                lIndex = lIndex % mBuckets.GetCount();
+                ListItem* lItem = FbxNew< ListItem >();
+                lItem->mNext = NULL;
+                lItem->mKey = pKey;
+
+                if( !mBuckets.GetAt(lIndex) )
+                {
+                        mBuckets.SetAt(lIndex, lItem);
+                }
+                else
+                {
+                        lItem->mNext = mBuckets.GetAt(lIndex);
+                        mBuckets.SetAt(lIndex, lItem);
+                }
+
+                return lItem->mValue;
+        }
+
+   Iterator Start ( ) const [inline]
+   Search for all occurrences
+
+   Returns an iterator pointing on the first non-null element in the map.
+
+   Returns:
+          An iterator pointing on the first non-null element in the map.
+
+   Definition at line 354 of file fbxhashmap.h.
+        {
+                for( int i = 0; i < mBuckets.GetCount(); ++i )
+                {
+                        if( mBuckets[i] )
+                        {
+                                Iterator lIt( this, i, mBuckets[i] );
+                                return lIt;
+                        }
+                }
+
+                return End();
+        }
+
+   Iterator End ( ) const [inline]
+   Search for all occurrences
+
+   Returns an iterator pointing on the last element in the map.
+
+   This is not an actual KeyValuePair but but an iterator pointing on a null element.
+
+   Returns:
+          Iterator pointing on a null value at the end of the map
+
+   Definition at line 372 of file fbxhashmap.h.
+        {
+                Iterator lIt( this, 0, NULL );
+                return lIt;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class Iterator [friend]
+   Search for all occurrences
+
+   Definition at line 406 of file fbxhashmap.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxhashmap.h
+
+   Please send us your comment about this page

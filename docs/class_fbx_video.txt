@@ -1,0 +1,502 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVideo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxVideo Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxvideo.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK video class.
+
+   Definition at line 25 of file fbxvideo.h.
+   Inheritance diagram for FbxVideo:
+   [USEMAP:class_fbx_video.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EInterlaceMode {
+     eNone, eFields, eHalfEven, eHalfOdd,
+     eFullEven, eFullOdd, eFullEvenOdd, eFullOddEven
+   }
+     Video interlace modes. More...
+   enum   EAccessMode { eDisk, eMemory, eDiskAsync }
+     Video clip access mode. More...
+
+Public Member Functions
+
+   double  GetFrameRate () const
+     Retrieve the Frame rate of the video clip.
+   int  GetLastFrame () const
+     Retrieve the last frame of the video clip.
+   int  GetWidth () const
+     Retrieve the clip width.
+   int  GetHeight () const
+     Retrieve the clip height.
+   void  SetStartFrame (int pStartFrame)
+     Set the start frame of the video clip.
+   int  GetStartFrame () const
+     Retrieve the start frame of the video clip.
+   void  SetStopFrame (int pStopFrame)
+     Set the stop frame of the video clip.
+   int  GetStopFrame () const
+     Retrieve the stop frame of the video clip.
+   void  SetPlaySpeed (double pPlaySpeed)
+     Set the play speed of the video clip.
+   double  GetPlaySpeed () const
+     Retrieve the play speed of the video clip.
+   void  SetOffset (FbxTime pTime)
+     Set the time offset.
+   FbxTime  GetOffset () const
+   void  SetFreeRunning (bool pState)
+     Set the Free Running state of the video clip.
+   bool  GetFreeRunning () const
+     Retrieve the Free Running state.
+   void  SetLoop (bool pLoop)
+     Set the Loop state of the video clip.
+   bool  GetLoop () const
+     Retrieve the Loop state.
+   void  SetInterlaceMode (EInterlaceMode pInterlaceMode)
+     Set the Interlace mode.
+   EInterlaceMode  GetInterlaceMode () const
+     Retrieve the Interlace mode.
+   void  SetAccessMode (EAccessMode pAccessMode)
+     Set the clip Access Mode.
+   EAccessMode  GetAccessMode () const
+     Retrieve the clip Access Mode.
+
+Reset video
+
+   void  Reset ()
+     Reset the video to default values.
+
+Video attributes Management
+
+   void  ImageTextureSetMipMap (bool pUseMipMap)
+     Set the use of MipMap on the video.
+   bool  ImageTextureGetMipMap () const
+     Retrieve use MipMap state.
+   bool  SetFileName (const char *pName)
+     Specify the Video full filename.
+   FbxString  GetFileName () const
+     Retrieve the Video full filename.
+   bool  SetRelativeFileName (const char *pName)
+     Specify the Video relative filename.
+   const char *  GetRelativeFileName () const
+     Retrieve the Video relative filename.
+
+Image sequence attributes Management
+
+   Besides storing video clips, the FbxVideo object can also store image sequences.
+
+   This section contains the manipulation methods used in this specialized mode. Note that, except for the GetFileName(), SetFileName(), GetRelativeFileName(), SetRelativeFileName() and the methods in this section, all the other ones are not mandatory therefore could contain uninitialized or default data values.
+   void  SetImageSequence (bool pImageSequence)
+     Specify if this video object is holding the starting point of an image sequence.
+   bool  GetImageSequence () const
+     Get the current state of the ImageSequence property.
+   void  SetImageSequenceOffset (int pOffset)
+     Specify the frame offset to be applied to the image sequence.
+   int  GetImageSequenceOffset () const
+     Get the current value of the ImageSequenceOffset property.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EInterlaceMode
+   Search for all occurrences
+
+   Video interlace modes.
+
+   Enumerator:
+
+          eNone
+
+   Progressive frame (full frame).
+   Search for all occurrences
+          eFields
+
+   Alternate even/odd fields.
+   Search for all occurrences
+          eHalfEven
+
+   Half of a frame, even fields only.
+   Search for all occurrences
+          eHalfOdd
+
+   Half of a frame, odd fields only.
+   Search for all occurrences
+          eFullEven
+
+   Extract and use the even field of a full frame.
+   Search for all occurrences
+          eFullOdd
+
+   Extract and use the odd field of a full frame.
+   Search for all occurrences
+          eFullEvenOdd
+
+   Extract eFields and make full frame with each one beginning with Odd (60fps).
+   Search for all occurrences
+          eFullOddEven
+
+   Extract eFields and make full frame with each one beginning with Even (60fps).
+   Search for all occurrences
+
+   Definition at line 203 of file fbxvideo.h.
+                {
+                        eNone,
+                        eFields,
+                        eHalfEven,
+                        eHalfOdd,
+                        eFullEven,
+                        eFullOdd,
+                        eFullEvenOdd,
+                        eFullOddEven
+                };
+
+   enum EAccessMode
+   Search for all occurrences
+
+   Video clip access mode.
+
+   Enumerator:
+
+          eDisk
+
+   Search for all occurrences
+          eMemory
+
+   Search for all occurrences
+          eDiskAsync
+
+   Search for all occurrences
+
+   Definition at line 228 of file fbxvideo.h.
+                {
+                        eDisk,
+                        eMemory,
+                        eDiskAsync
+                };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the video to default values.
+   void ImageTextureSetMipMap ( bool  pUseMipMap )
+   Search for all occurrences
+
+   Set the use of MipMap on the video.
+
+   Parameters:
+
+          pUseMipMap If true, use MipMap on the video.
+
+   bool ImageTextureGetMipMap ( ) const
+   Search for all occurrences
+
+   Retrieve use MipMap state.
+
+   Returns:
+          MipMap flag state.
+
+   bool SetFileName ( const char *  pName )
+   Search for all occurrences
+
+   Specify the Video full filename.
+
+   Parameters:
+
+          pName Video full filename.
+
+   Returns:
+          True,if update successfully, false otherwise.
+
+   Remarks:
+          Update the texture filename if the connection exists.
+
+   FbxString GetFileName ( ) const
+   Search for all occurrences
+
+   Retrieve the Video full filename.
+
+   Returns:
+          Video full filename.
+
+   bool SetRelativeFileName ( const char *  pName )
+   Search for all occurrences
+
+   Specify the Video relative filename.
+
+   Parameters:
+
+          pName Video relative filename.
+
+   Returns:
+          True, if update successfully, false otherwise.
+
+   Remarks:
+          Update the texture filename if the connection exists.
+
+   const char* GetRelativeFileName ( ) const
+   Search for all occurrences
+
+   Retrieve the Video relative filename.
+
+   Returns:
+          Video relative filename.
+
+   void SetImageSequence ( bool  pImageSequence )
+   Search for all occurrences
+
+   Specify if this video object is holding the starting point of an image sequence.
+
+   Parameters:
+
+          pImageSequence If true, this object is holding an image sequence.
+
+   Remarks:
+          When this object is used as image sequence, the FBX SDK will automatically exclude it from the embedding mechanism.
+
+   bool GetImageSequence ( ) const
+   Search for all occurrences
+
+   Get the current state of the ImageSequence property.
+
+   Returns:
+          ImageSequence property value.
+
+   void SetImageSequenceOffset ( int  pOffset )
+   Search for all occurrences
+
+   Specify the frame offset to be applied to the image sequence.
+
+   Parameters:
+
+          pOffset The frame offset value.
+
+   int GetImageSequenceOffset ( ) const
+   Search for all occurrences
+
+   Get the current value of the ImageSequenceOffset property.
+
+   Returns:
+          ImageSequenceOffset property value.
+
+   double GetFrameRate ( ) const
+   Search for all occurrences
+
+   Retrieve the Frame rate of the video clip.
+
+   Returns:
+          Frame rate.
+
+   int GetLastFrame ( ) const
+   Search for all occurrences
+
+   Retrieve the last frame of the video clip.
+
+   Returns:
+          Last frame number.
+
+   int GetWidth ( ) const
+   Search for all occurrences
+
+   Retrieve the clip width.
+
+   Returns:
+          Video image width.
+
+   int GetHeight ( ) const
+   Search for all occurrences
+
+   Retrieve the clip height.
+
+   Returns:
+          Video image height.
+
+   void SetStartFrame ( int  pStartFrame )
+   Search for all occurrences
+
+   Set the start frame of the video clip.
+
+   Parameters:
+
+          pStartFrame Start frame number.
+
+   Remarks:
+          The parameter value is not checked. It is the responsibility of the caller to deal with bad frame numbers.
+
+   int GetStartFrame ( ) const
+   Search for all occurrences
+
+   Retrieve the start frame of the video clip.
+
+   Returns:
+          Start frame number.
+
+   void SetStopFrame ( int  pStopFrame )
+   Search for all occurrences
+
+   Set the stop frame of the video clip.
+
+   Parameters:
+
+          pStopFrame Stop frame number.
+
+   Remarks:
+          The parameter value is not checked. It is the responsibility of the caller to deal with bad frame numbers.
+
+   int GetStopFrame ( ) const
+   Search for all occurrences
+
+   Retrieve the stop frame of the video clip.
+
+   Returns:
+          Stop frame number.
+
+   void SetPlaySpeed ( double  pPlaySpeed )
+   Search for all occurrences
+
+   Set the play speed of the video clip.
+
+   Parameters:
+
+          pPlaySpeed Playback speed of the clip.
+
+   Remarks:
+          The parameter value is not checked. It is the responsibility of the caller to deal with bad playback speed values.
+
+   double GetPlaySpeed ( ) const
+   Search for all occurrences
+
+   Retrieve the play speed of the video clip.
+
+   Returns:
+          Playback speed.
+
+   void SetOffset ( FbxTime  pTime )
+   Search for all occurrences
+
+   Set the time offset.
+
+   The offset can be used to shift the playback start time of the clip.
+
+   Parameters:
+
+          pTime Time offset of the clip.
+
+   FbxTime GetOffset ( ) const
+   Search for all occurrences
+   void SetFreeRunning ( bool  pState )
+   Search for all occurrences
+
+   Set the Free Running state of the video clip.
+
+   The Free Running flag can be used by a client application to implement a playback scheme that is independent of the main timeline.
+
+   Parameters:
+
+          pState State of the Free running flag.
+
+   bool GetFreeRunning ( ) const
+   Search for all occurrences
+
+   Retrieve the Free Running state.
+
+   Returns:
+          Current free running flag.
+
+   void SetLoop ( bool  pLoop )
+   Search for all occurrences
+
+   Set the Loop state of the video clip.
+
+   The Loop flag can be used by a client application to implement the loop playback of the video clip.
+
+   Parameters:
+
+          pLoop State of the loop flag.
+
+   bool GetLoop ( ) const
+   Search for all occurrences
+
+   Retrieve the Loop state.
+
+   Returns:
+          Current loop flag.
+
+   void SetInterlaceMode ( EInterlaceMode  pInterlaceMode )
+   Search for all occurrences
+
+   Set the Interlace mode.
+
+   Parameters:
+
+          pInterlaceMode Interlace mode identifier.
+
+   EInterlaceMode GetInterlaceMode ( ) const
+   Search for all occurrences
+
+   Retrieve the Interlace mode.
+
+   Returns:
+          Interlace mode identifier.
+
+   void SetAccessMode ( EAccessMode  pAccessMode )
+   Search for all occurrences
+
+   Set the clip Access Mode.
+
+   Parameters:
+
+          pAccessMode Clip access mode identifier.
+
+   EAccessMode GetAccessMode ( ) const
+   Search for all occurrences
+
+   Retrieve the clip Access Mode.
+
+   Returns:
+          Clip access mode identifier.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxvideo.h
+
+   Please send us your comment about this page

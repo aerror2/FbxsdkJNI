@@ -1,0 +1,112 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPluginData Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxPluginData Struct Reference
+   Search for all occurrences
+
+   #include <fbxplugin.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Data used to communicate information between an application and the plug-in.
+
+   Definition at line 62 of file fbxplugin.h.
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxPluginData ()
+                         Constructor.
+                         FbxPluginData (const FbxPluginData &pOther)
+                         Copy Constructor.
+
+Public Attributes
+
+           FbxEmitter *  mQueryEmitter
+                         The emitter on which the plug-in can listen to receive events.
+           FbxManager *  mSDKManager
+                         The FBX SDK Manager on which the plug-in was instanced.
+   FbxPluginContainer *  mPluginContainer
+                         The container which will have the ownership of the plug-in.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPluginData ( ) [inline]
+
+   Constructor.
+
+   Definition at line 65 of file fbxplugin.h.
+                        :
+                mQueryEmitter(NULL),
+                mSDKManager(NULL),
+                mPluginContainer(NULL)
+        {
+        }
+
+   FbxPluginData ( const FbxPluginData &  pOther ) [inline, explicit]
+
+   Copy Constructor.
+
+   Definition at line 73 of file fbxplugin.h.
+                                                            :
+                mQueryEmitter(pOther.mQueryEmitter),
+                mSDKManager(pOther.mSDKManager),
+                mPluginContainer(pOther.mPluginContainer)
+        {
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxEmitter* mQueryEmitter
+   Search for all occurrences
+
+   The emitter on which the plug-in can listen to receive events.
+
+   Definition at line 80 of file fbxplugin.h.
+   FbxManager* mSDKManager
+   Search for all occurrences
+
+   The FBX SDK Manager on which the plug-in was instanced.
+
+   Definition at line 81 of file fbxplugin.h.
+   FbxPluginContainer* mPluginContainer
+   Search for all occurrences
+
+   The container which will have the ownership of the plug-in.
+
+   Definition at line 82 of file fbxplugin.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/core/fbxplugin.h
+
+   Please send us your comment about this page

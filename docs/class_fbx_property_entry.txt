@@ -1,0 +1,176 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyEntry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions | Friends
+   FbxPropertyEntry Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertypage.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 336 of file fbxpropertypage.h.
+
+   List of all members.
+
+Public Member Functions
+
+                        void  Destroy ()
+                      FbxInt  GetParentId ()
+                        bool  IsEmpty ()
+           FbxPropertyInfo *  Get (const FbxPropertyInfo *pType)
+                        void  Set (FbxPropertyInfo *pInfo)
+          FbxPropertyValue *  Get (const FbxPropertyValue *pType)
+                        void  Set (FbxPropertyValue *pValue)
+        FbxPropertyConnect *  Get (const FbxPropertyConnect *pType)
+                        void  Set (FbxPropertyConnect *pConnect)
+          FbxPropertyFlags *  Get (const FbxPropertyFlags *pType)
+                        void  Set (FbxPropertyFlags pType)
+                        void  Set (FbxPropertyFlags *pType)
+
+Static Public Member Functions
+
+   static FbxPropertyEntry *  Create (FbxInt pParentId, FbxPropertyInfo *pInfo, FbxPropertyValue *pValue, FbxPropertyConnect *pConnect)
+
+Friends
+
+                       class  FbxPropertyPage
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxPropertyEntry* Create ( FbxInt                pParentId,
+                                     FbxPropertyInfo *     pInfo,
+                                     FbxPropertyValue *    pValue,
+                                     FbxPropertyConnect *  pConnect
+                                   )                       [inline, static]
+   Search for all occurrences
+
+   Definition at line 339 of file fbxpropertypage.h.
+{ return FbxNew<FbxPropertyEntry>(pParentId, pInfo, pValue, pConnect); }
+
+   void Destroy ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 341 of file fbxpropertypage.h.
+{ FbxDelete(this); }
+
+   FbxInt GetParentId ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 343 of file fbxpropertypage.h.
+{ return mParentId; }
+
+   bool IsEmpty ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 344 of file fbxpropertypage.h.
+{ return (mInfo || mValue || mConnect || mFlags.GetMask() != 0) ? false : true; }
+
+   FbxPropertyInfo* Get ( const FbxPropertyInfo *  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 346 of file fbxpropertypage.h.
+{ return mInfo; }
+
+   void Set ( FbxPropertyInfo *  pInfo ) [inline]
+   Search for all occurrences
+
+   Definition at line 348 of file fbxpropertypage.h.
+        {
+                FbxPropertyInfo* lInfo = mInfo;
+                if( pInfo ) pInfo->IncRef();
+                mInfo = pInfo;
+                if( lInfo ) lInfo->DecRef();
+        }
+
+   FbxPropertyValue* Get ( const FbxPropertyValue *  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 356 of file fbxpropertypage.h.
+{ return mValue; }
+
+   void Set ( FbxPropertyValue *  pValue ) [inline]
+   Search for all occurrences
+
+   Definition at line 358 of file fbxpropertypage.h.
+        {
+                FbxPropertyValue* lValue = mValue;
+                if( pValue ) pValue->IncRef();
+                mValue = pValue;
+                if( lValue ) lValue->DecRef();
+        }
+
+   FbxPropertyConnect* Get ( const FbxPropertyConnect *  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 366 of file fbxpropertypage.h.
+{ return mConnect; }
+
+   void Set ( FbxPropertyConnect *  pConnect ) [inline]
+   Search for all occurrences
+
+   Definition at line 368 of file fbxpropertypage.h.
+        {
+                FbxPropertyConnect* lConnect = mConnect;
+                if( pConnect ) pConnect->IncRef();
+                mConnect = pConnect;
+                if( lConnect ) lConnect->DecRef();
+        }
+
+   FbxPropertyFlags* Get ( const FbxPropertyFlags *  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 376 of file fbxpropertypage.h.
+{ return &mFlags; }
+
+   void Set ( FbxPropertyFlags  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 377 of file fbxpropertypage.h.
+{ mFlags = pType; }
+
+   void Set ( FbxPropertyFlags *  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 378 of file fbxpropertypage.h.
+{ mFlags = pType ? *pType : FbxPropertyFlags(FbxPropertyFlags::eNone); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxPropertyPage [friend]
+   Search for all occurrences
+
+   Definition at line 407 of file fbxpropertypage.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertypage.h
+
+   Please send us your comment about this page

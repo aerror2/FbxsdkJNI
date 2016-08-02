@@ -1,0 +1,306 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintAim Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxConstraintAim Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraintaim.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An aim constraint governs an object's orientation so that the object points to other objects.
+
+   For example, you can use the aim constraint to point a light at an object or group of objects.
+
+   Definition at line 26 of file fbxconstraintaim.h.
+   Inheritance diagram for FbxConstraintAim:
+   [USEMAP:class_fbx_constraint_aim.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EWorldUp {
+     eAimAtSceneUp, eAimAtObjectUp, eAimAtObjectRotationUp, eAimAtVector,
+     eAimAtNone, eAimAtCount
+   }
+     Constraint world up type, which has the same meaning with Maya. More...
+
+Public Member Functions
+
+   void  AddConstraintSource (FbxObject *pObject, double pWeight=100)
+     Add a source to the constraint.
+   int  GetConstraintSourceCount () const
+     Retrieve the constraint source count.
+   FbxObject *  GetConstraintSource (int pIndex) const
+     Retrieve a constraint source object.
+   void  SetConstrainedObject (FbxObject *pObject)
+     Set the constrained object.
+   FbxObject *  GetConstrainedObject () const
+     Retrieve the constrained object.
+   void  SetWorldUpObject (FbxObject *pObject)
+     Set the world up object.
+   FbxObject *  GetWorldUpObject () const
+     Retrieve the world up object.
+
+Properties
+
+   FbxPropertyT< FbxDouble3 >  RotationOffset
+     This property handles the rotation offset value.
+   FbxPropertyT< FbxReference >  AimAtObjects
+     This property provides access to the object or objects which are the targets.
+   FbxPropertyT< FbxReference >  ConstrainedObject
+     This property provides access to the object being aimed.
+   FbxPropertyT< FbxEnum >  WorldUpType
+     This property handles world up type.
+   FbxPropertyT< FbxReference >  WorldUpObject
+     This property handles world up object.
+   FbxPropertyT< FbxDouble3 >  WorldUpVector
+     This property handles world up vector.
+   FbxPropertyT< FbxDouble3 >  UpVector
+     This property handles up vector.
+   FbxPropertyT< FbxDouble3 >  AimVector
+     This property enables you set a specific axis for the constrained object to orient towards.
+   FbxPropertyT< FbxBool >  AffectX
+     This property handles whether to affect the rotation around X axis.
+   FbxPropertyT< FbxBool >  AffectY
+     This property handles whether to affect the rotation around Y axis.
+   FbxPropertyT< FbxBool >  AffectZ
+     This property handles whether to affect the rotation around Z axis.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EWorldUp
+   Search for all occurrences
+
+   Constraint world up type, which has the same meaning with Maya.
+
+   Enumerator:
+
+          eAimAtSceneUp
+
+   Search for all occurrences
+          eAimAtObjectUp
+
+   Constraint scene up type.
+   Search for all occurrences
+          eAimAtObjectRotationUp
+
+   Constraint object up type.
+   Search for all occurrences
+          eAimAtVector
+
+   Constraint object rotation up type.
+   Search for all occurrences
+          eAimAtNone
+
+   Constraint vector type.
+   Search for all occurrences
+   eAimAtCount
+
+   None constraint type.
+   Constraint world up type count.
+   Search for all occurrences
+
+   Definition at line 33 of file fbxconstraintaim.h.
+    {
+        eAimAtSceneUp,
+        eAimAtObjectUp,
+        eAimAtObjectRotationUp,
+        eAimAtVector,
+        eAimAtNone,
+        eAimAtCount
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void AddConstraintSource ( FbxObject *  pObject,
+                              double       pWeight = 100
+                            )
+   Search for all occurrences
+
+   Add a source to the constraint.
+
+   Parameters:
+
+          pObject New source object.
+          pWeight Weight of the source object.
+
+   int GetConstraintSourceCount ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constraint source count.
+
+   Returns:
+          Current constraint source count.
+
+   Reimplemented from FbxConstraint.
+   FbxObject* GetConstraintSource ( int  pIndex ) const [virtual]
+   Search for all occurrences
+
+   Retrieve a constraint source object.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          Current source at the specified index.
+
+   Reimplemented from FbxConstraint.
+   void SetConstrainedObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the constrained object.
+
+   Parameters:
+
+          pObject The constrained object.
+
+   FbxObject* GetConstrainedObject ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constrained object.
+
+   Returns:
+          Current constrained object.
+
+   Reimplemented from FbxConstraint.
+   void SetWorldUpObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the world up object.
+
+   Parameters:
+
+          pObject The new world up object.
+
+   FbxObject* GetWorldUpObject ( ) const
+   Search for all occurrences
+
+   Retrieve the world up object.
+
+   Returns:
+          The current world up object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble3> RotationOffset
+   Search for all occurrences
+
+   This property handles the rotation offset value.
+
+   Default value is (0, 0, 0).
+
+   Definition at line 51 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxReference> AimAtObjects
+   Search for all occurrences
+
+   This property provides access to the object or objects which are the targets.
+
+   Definition at line 55 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxReference> ConstrainedObject
+   Search for all occurrences
+
+   This property provides access to the object being aimed.
+
+   Definition at line 59 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxEnum> WorldUpType
+   Search for all occurrences
+
+   This property handles world up type.
+
+   Definition at line 63 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxReference> WorldUpObject
+   Search for all occurrences
+
+   This property handles world up object.
+
+   Definition at line 67 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxDouble3> WorldUpVector
+   Search for all occurrences
+
+   This property handles world up vector.
+
+   Default value is (0, 1, 0).
+
+   Definition at line 73 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxDouble3> UpVector
+   Search for all occurrences
+
+   This property handles up vector.
+
+   Default value is (0, 1, 0).
+
+   Definition at line 79 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxDouble3> AimVector
+   Search for all occurrences
+
+   This property enables you set a specific axis for the constrained object to orient towards.
+
+   Default value is (1, 0, 0).
+
+   Definition at line 85 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxBool> AffectX
+   Search for all occurrences
+
+   This property handles whether to affect the rotation around X axis.
+
+   Default value is true.
+
+   Definition at line 91 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxBool> AffectY
+   Search for all occurrences
+
+   This property handles whether to affect the rotation around Y axis.
+
+   Default value is true.
+
+   Definition at line 97 of file fbxconstraintaim.h.
+   FbxPropertyT<FbxBool> AffectZ
+   Search for all occurrences
+
+   This property handles whether to affect the rotation around Z axis.
+
+   Default value is true.
+
+   Definition at line 103 of file fbxconstraintaim.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintaim.h
+
+   Please send us your comment about this page

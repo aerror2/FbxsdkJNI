@@ -1,0 +1,99 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIterator< FbxProperty > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxIterator< FbxProperty > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxobject.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename FbxProperty>
+class FbxIterator< FbxProperty >
+
+   A utility class for iterating over the properties (FbxProperty) of any FbxObject.
+
+   Definition at line 1255 of file fbxobject.h.
+
+   List of all members.
+
+Public Member Functions
+
+                        FbxIterator (const FbxObject *pObject)
+                        Constructor.
+   const FbxProperty &  GetFirst ()
+                        Get the first property of the object.
+   const FbxProperty &  GetNext ()
+                        Get next property of the object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxIterator ( const FbxObject *  pObject ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pObject The object whose properties are going to be iterated.
+
+   Definition at line 1261 of file fbxobject.h.
+{ mProperty = mObject->GetFirstProperty(); return mProperty; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const FbxProperty& GetFirst ( ) [inline]
+   Search for all occurrences
+
+   Get the first property of the object.
+
+   Returns:
+          The first property of the object.
+
+   Definition at line 1266 of file fbxobject.h.
+{ mProperty = mObject->GetNextProperty(mProperty); return mProperty; }
+
+   const FbxProperty& GetNext ( ) [inline]
+   Search for all occurrences
+
+   Get next property of the object.
+
+   Returns:
+          The next property of the object.
+
+   Definition at line 1271 of file fbxobject.h.
+:
+        FbxProperty        mProperty;
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxobject.h
+
+   Please send us your comment about this page

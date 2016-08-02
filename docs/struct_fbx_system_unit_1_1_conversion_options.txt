@@ -1,0 +1,112 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSystemUnit::ConversionOptions Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxSystemUnit
+     * ConversionOptions
+
+   Public Attributes
+   FbxSystemUnit::ConversionOptions Struct Reference
+   Search for all occurrences
+
+   #include <fbxsystemunit.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Struct to define various options that you can use to convert the system unit of a scene.
+
+   The default values are: mConvertRrsNodes = true mConvertLimits = true mConvertClusters = true mConvertLightIntensity = true mConvertPhotometricLProperties = true mConvertCameraClipPlanes = true
+
+   The default configuration have been tested to give the best conversion results in the majority of the case.
+
+   Remarks:
+          Changing any of these values will have a direct impact on the whole scene behavior.
+
+   Definition at line 47 of file fbxsystemunit.h.
+
+   List of all members.
+
+Public Attributes
+
+   bool  mConvertRrsNodes
+         This flag indicates whether or not to convert the nodes that do not inherit their parent's scale.
+   bool  mConvertLimits
+         This flag indicates whether or not to convert limits.
+   bool  mConvertClusters
+         This flag indicates whether or not to convert clusters.
+   bool  mConvertLightIntensity
+         This flag indicates whether or not to convert the light intensity property.
+   bool  mConvertPhotometricLProperties
+         This flag indicates whether or not to convert photometric lights properties.
+   bool  mConvertCameraClipPlanes
+         This flag indicates whether or not to convert the cameras clip planes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   bool mConvertRrsNodes
+   Search for all occurrences
+
+   This flag indicates whether or not to convert the nodes that do not inherit their parent's scale.
+
+   Definition at line 50 of file fbxsystemunit.h.
+   bool mConvertLimits
+   Search for all occurrences
+
+   This flag indicates whether or not to convert limits.
+
+   Definition at line 53 of file fbxsystemunit.h.
+   bool mConvertClusters
+   Search for all occurrences
+
+   This flag indicates whether or not to convert clusters.
+
+   Definition at line 56 of file fbxsystemunit.h.
+   bool mConvertLightIntensity
+   Search for all occurrences
+
+   This flag indicates whether or not to convert the light intensity property.
+
+   Definition at line 59 of file fbxsystemunit.h.
+   bool mConvertPhotometricLProperties
+   Search for all occurrences
+
+   This flag indicates whether or not to convert photometric lights properties.
+
+   Definition at line 62 of file fbxsystemunit.h.
+   bool mConvertCameraClipPlanes
+   Search for all occurrences
+
+   This flag indicates whether or not to convert the cameras clip planes.
+
+   Definition at line 65 of file fbxsystemunit.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/core/fbxsystemunit.h
+
+   Please send us your comment about this page

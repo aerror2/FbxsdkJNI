@@ -1,0 +1,180 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVertexCacheDeformer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxVertexCacheDeformer Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxvertexcachedeformer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class deforms control points of a geometry using control point positions stored in the associated cache object.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 27 of file fbxvertexcachedeformer.h.
+   Inheritance diagram for FbxVertexCacheDeformer:
+   [USEMAP:class_fbx_vertex_cache_deformer.png]
+
+   List of all members.
+
+Public Member Functions
+
+                        void  SetCache (FbxCache *pCache)
+                              Assign a cache object to be used by this deformer.
+                  FbxCache *  GetCache () const
+                              Get the cache object used by this deformer.
+             //          void  SetCacheChannel (const char *pName)
+             //                Select the cache channel by name.
+             //     FbxString  GetCacheChannel () const
+             //                Get the name of the selected channel.
+             //          void  SetActive (bool pValue)
+             //                Activate the deformer.
+             //          bool  IsActive () const
+             //                Indicate if the deformer is active or not.
+       virtual EDeformerType  GetDeformerType () const
+                              Get the deformer type.
+
+Properties
+
+     FbxPropertyT< FbxBool >  Active
+   FbxPropertyT< FbxString >  Channel
+   FbxPropertyT< FbxString >  CacheSet
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetCache ( FbxCache *  pCache )
+   Search for all occurrences
+
+   Assign a cache object to be used by this deformer.
+
+   Parameters:
+
+          pCache The cache object.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   FbxCache* GetCache ( ) const
+   Search for all occurrences
+
+   Get the cache object used by this deformer.
+
+   Returns:
+          A pointer to the cache object used by this deformer, or NULL if no cache object is assigned.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   void SetCacheChannel ( const char *  pName )
+   Search for all occurrences
+
+   Select the cache channel by name.
+
+   Parameters:
+
+          pName The name of channel to use within the cache object.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   FbxString GetCacheChannel ( ) const
+   Search for all occurrences
+
+   Get the name of the selected channel.
+
+   Returns:
+          The name of the selected channel within the cache object.
+
+   Examples:
+          ImportScene/DisplayCache.cxx, and ViewScene/DrawScene.cxx.
+
+   void SetActive ( bool  pValue )
+   Search for all occurrences
+
+   Activate the deformer.
+
+   Parameters:
+
+          pValue Set to true to enable the deformer.
+
+   Examples:
+          ExportScene03/main.cxx, and ViewScene/SceneContext.cxx.
+
+   bool IsActive ( ) const
+   Search for all occurrences
+
+   Indicate if the deformer is active or not.
+
+   Returns:
+          The current state of the deformer.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   virtual EDeformerType GetDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the deformer type.
+
+   Returns:
+          Deformer type identifier.
+
+   Reimplemented from FbxDeformer.
+
+   Definition at line 66 of file fbxvertexcachedeformer.h.
+{ return FbxDeformer::eVertexCache; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> Active [protected]
+   Search for all occurrences
+
+   Definition at line 73 of file fbxvertexcachedeformer.h.
+   FbxPropertyT<FbxString> Channel [protected]
+   Search for all occurrences
+
+   Definition at line 74 of file fbxvertexcachedeformer.h.
+   FbxPropertyT<FbxString> CacheSet [protected]
+   Search for all occurrences
+
+   Definition at line 75 of file fbxvertexcachedeformer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxvertexcachedeformer.h
+
+   Please send us your comment about this page

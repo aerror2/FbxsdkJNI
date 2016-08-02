@@ -1,0 +1,127 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimUtilities::CurveNodeIntfce Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxAnimUtilities
+     * CurveNodeIntfce
+
+   Public Member Functions | Friends
+   FbxAnimUtilities::CurveNodeIntfce Class Reference
+   Search for all occurrences
+
+   #include <fbxanimutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 84 of file fbxanimutilities.h.
+
+   List of all members.
+
+Public Member Functions
+
+                      CurveNodeIntfce (void *pData)
+                      ~CurveNodeIntfce ()
+           FbxHandle  GetHandle ()
+              char *  GetTimeWarpName () const
+     CurveNodeIntfce  GetTimeWarp ()
+     CurveNodeIntfce  GetLayer (int pId)
+                 int  GetCount ()
+              void *  GetHandle (unsigned int pId)
+              void *  GetCurveHandle (int pId=-1)
+                void  SetCurveHandle (void *pCurveHandle, int pId=-1)
+     CurveNodeIntfce  FindRecursive (const char *pName)
+                bool  IsValid ()
+   CurveNodeIntfce &  operator= (CurveNodeIntfce &lRhs)
+                bool  operator== (CurveNodeIntfce &lRhs)
+
+Friends
+
+               class  FbxAnimUtilities
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   CurveNodeIntfce ( void *  pData )
+   ~CurveNodeIntfce ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxHandle GetHandle ( )
+   Search for all occurrences
+   char* GetTimeWarpName ( ) const
+   Search for all occurrences
+   CurveNodeIntfce GetTimeWarp ( )
+   Search for all occurrences
+   CurveNodeIntfce GetLayer ( int  pId )
+   Search for all occurrences
+   int GetCount ( )
+   Search for all occurrences
+   void* GetHandle ( unsigned int  pId )
+   Search for all occurrences
+   void* GetCurveHandle ( int  pId = -1 )
+   Search for all occurrences
+   void SetCurveHandle ( void *  pCurveHandle,
+                         int     pId = -1
+                       )
+   Search for all occurrences
+   CurveNodeIntfce FindRecursive ( const char *  pName )
+   Search for all occurrences
+   bool IsValid ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 104 of file fbxanimutilities.h.
+{ return mImp != NULL; }
+
+   CurveNodeIntfce& operator= ( CurveNodeIntfce &  lRhs ) [inline]
+
+   Definition at line 105 of file fbxanimutilities.h.
+        {
+            mImp = lRhs.mImp;
+            return *this;
+        }
+
+   bool operator== ( CurveNodeIntfce &  lRhs ) [inline]
+
+   Definition at line 111 of file fbxanimutilities.h.
+        {
+            return (mImp == lRhs.mImp);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxAnimUtilities [friend]
+   Search for all occurrences
+
+   Definition at line 117 of file fbxanimutilities.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimutilities.h
+
+   Please send us your comment about this page

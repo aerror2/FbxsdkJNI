@@ -1,0 +1,287 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementTemplate< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxLayerElementTemplate< Type > Class Template Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxLayerElementTemplate< Type >
+
+   This class complements the FbxLayerElement class.
+
+   It provides interfaces to access the direct array and index array of different layer elements.
+
+   Definition at line 987 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementTemplate< Type >:
+   [USEMAP:class_fbx_layer_element_template.png]
+
+   List of all members.
+
+Public Member Functions
+
+   FbxLayerElementArrayTemplate
+   < Type > &  GetDirectArray () const
+                                           Returns the direct array of Layer Elements.
+   FbxLayerElementArrayTemplate
+   < Type > &  GetDirectArray ()
+                                           Returns the direct array of Layer Elements.
+   FbxLayerElementArrayTemplate
+   < int > &   GetIndexArray () const
+                                           Returns the index array of Layer Elements.
+   FbxLayerElementArrayTemplate
+   < int > &   GetIndexArray ()
+                                           Returns the index array of Layer Elements.
+                                      bool  Clear ()
+                                           Removes all elements from the direct and the index arrays.
+                                      bool  operator== (const FbxLayerElementTemplate &pOther) const
+                                           Equivalence operator.
+                 FbxLayerElementTemplate &  operator= (FbxLayerElementTemplate const &pOther)
+                                           Assignment operator.
+                                       int  RemapIndexTo (FbxLayerElement::EMappingMode pNewMapping)
+                                           Changes the Mapping mode to the new one and re-computes the index array.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxLayerElementArrayTemplate<Type>& GetDirectArray ( ) const [inline]
+   Search for all occurrences
+
+   Returns the direct array of Layer Elements.
+
+   Returns:
+          A reference to the Layer Elements direct array.
+
+   Remarks:
+          You cannot put elements in the direct array when the reference mode is set to eIndex.
+
+   Definition at line 995 of file fbxlayer.h.
+        {
+                FBX_ASSERT(mReferenceMode == FbxLayerElement::eDirect || mReferenceMode == FbxLayerElement::eIndexToDirect);
+                return *mDirectArray;
+        }
+
+   FbxLayerElementArrayTemplate<Type>& GetDirectArray ( ) [inline]
+   Search for all occurrences
+
+   Returns the direct array of Layer Elements.
+
+   Returns:
+          A reference to the Layer Elements direct array.
+
+   Remarks:
+          You cannot put elements in the direct array when the reference mode is set to eIndex.
+
+   Definition at line 1005 of file fbxlayer.h.
+        {
+                FBX_ASSERT(mReferenceMode == FbxLayerElement::eDirect || mReferenceMode == FbxLayerElement::eIndexToDirect);
+                return *mDirectArray;
+        }
+
+   FbxLayerElementArrayTemplate<int>& GetIndexArray ( ) const [inline]
+   Search for all occurrences
+
+   Returns the index array of Layer Elements.
+
+   Returns:
+          A reference to the index array.
+
+   Remarks:
+          You cannot put elements in the index array when the mapping mode is set to eDirect.
+
+   Definition at line 1015 of file fbxlayer.h.
+        {
+                FBX_ASSERT(mReferenceMode == FbxLayerElement::eIndex || mReferenceMode == FbxLayerElement::eIndexToDirect);
+                return *mIndexArray;
+        }
+
+   FbxLayerElementArrayTemplate<int>& GetIndexArray ( ) [inline]
+   Search for all occurrences
+
+   Returns the index array of Layer Elements.
+
+   Returns:
+          A reference to the index array.
+
+   Remarks:
+          You cannot put elements in the index array when the mapping mode is set to eDirect.
+
+   Definition at line 1025 of file fbxlayer.h.
+        {
+                FBX_ASSERT(mReferenceMode == FbxLayerElement::eIndex || mReferenceMode == FbxLayerElement::eIndexToDirect);
+                return *mIndexArray;
+        }
+
+   bool Clear ( ) [inline, virtual]
+   Search for all occurrences
+
+   Removes all elements from the direct and the index arrays.
+
+   Remarks:
+          This function fails if there is a lock on the arrays.
+
+   Returns:
+          True if successful, false if a lock is present.
+
+   Reimplemented from FbxLayerElement.
+
+   Reimplemented in FbxLayerElementUserData.
+
+   Definition at line 1035 of file fbxlayer.h.
+        {
+                bool ret = true;
+                mDirectArray->Clear();
+                ret = (mDirectArray->GetStatus() == LockAccessStatus::eSuccess);
+
+                mIndexArray->Clear();
+                ret |= (mIndexArray->GetStatus() == LockAccessStatus::eSuccess);
+
+                return ret;
+        }
+
+   bool operator== ( const FbxLayerElementTemplate< Type > &  pOther ) const [inline]
+
+   Equivalence operator.
+
+   Parameters:
+
+          pOther Another element compared to this object
+
+   Returns:
+          True if equal, false if unequal.
+
+   Definition at line 1053 of file fbxlayer.h.
+        {
+                bool ret = true;
+
+        if (pOther.GetReferenceMode() == FbxLayerElement::eDirect ||
+            pOther.GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+        {
+            const FbxLayerElementArrayTemplate<Type>& directArray = pOther.GetDirectArray();
+            if( directArray.GetCount() != mDirectArray->GetCount() ||
+                !directArray.ReadLock() || !mDirectArray->ReadLock() )
+            {
+                ret = false;
+            }
+
+            if( ret && !mDirectArray->IsEqual(directArray) )
+                ret = false;
+
+            directArray.ReadUnlock();
+            mDirectArray->ReadUnlock();
+        }
+
+        if (ret)
+        {
+            if (pOther.GetReferenceMode() == FbxLayerElement::eIndex ||
+                pOther.GetReferenceMode()  == FbxLayerElement::eIndexToDirect)
+            {
+                const FbxLayerElementArrayTemplate<int>& indexArray = pOther.GetIndexArray();
+                if( indexArray.GetCount() != mIndexArray->GetCount() ||
+                    !indexArray.ReadLock() || !mIndexArray->ReadLock() )
+                {
+                    ret = false;
+                }
+
+                if( ret && !mIndexArray->IsEqual(indexArray) )
+                    ret = false;
+
+                indexArray.ReadUnlock();
+                mIndexArray->ReadUnlock();
+            }
+        }
+
+        if (ret == false)
+            return false;
+
+        return FbxLayerElement::operator==(pOther);
+        }
+
+   FbxLayerElementTemplate& operator= ( FbxLayerElementTemplate< Type > const &  pOther ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pOther Another element assigned to this one
+
+   Definition at line 1103 of file fbxlayer.h.
+        {
+                FBX_ASSERT(mDirectArray != NULL);
+                FBX_ASSERT(mIndexArray != NULL);
+
+                if (pOther.GetReferenceMode() == FbxLayerElement::eDirect ||
+                        pOther.GetReferenceMode() == FbxLayerElement::eIndexToDirect)
+                {
+                        const FbxLayerElementArrayTemplate<Type>& directArray = pOther.GetDirectArray();
+                        *mDirectArray = directArray;
+                }
+
+                if (pOther.GetReferenceMode() == FbxLayerElement::eIndex ||
+                        pOther.GetReferenceMode()  == FbxLayerElement::eIndexToDirect)
+                {
+                        const FbxLayerElementArrayTemplate<int>& indexArray = pOther.GetIndexArray();
+                        *mIndexArray = indexArray;
+                }
+
+                FbxLayerElement* myself = (FbxLayerElement*)this;
+                FbxLayerElement* myOther = (FbxLayerElement*)&pOther;
+                *myself = *myOther;
+                return *this;
+        }
+
+   int RemapIndexTo ( FbxLayerElement::EMappingMode  pNewMapping ) [inline]
+   Search for all occurrences
+
+   Changes the Mapping mode to the new one and re-computes the index array.
+
+   Parameters:
+
+          pNewMapping New mapping mode.
+
+   Returns:
+          If the remapping is successful, returns 1. If an error occurs, returns 0. In case the function cannot remap to the desired mode because of incompatible modes or unsupported modes, returns -1.
+
+   Definition at line 1135 of file fbxlayer.h.
+        {
+                return RemapIndexArrayTo(this, pNewMapping, mIndexArray);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

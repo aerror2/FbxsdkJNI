@@ -1,0 +1,123 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingOperator::Function Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxBindingOperator
+     * Function
+
+   Public Member Functions
+   FbxBindingOperator::Function Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingoperator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   It represents a binding relationship between current object and the target.
+
+   Any binding operation need to specify a certain kind of binding function.
+
+   Definition at line 183 of file fbxbindingoperator.h.
+   Inheritance diagram for FbxBindingOperator::Function:
+   [USEMAP:class_fbx_binding_operator_1_1_function.png]
+
+   List of all members.
+
+Public Member Functions
+
+        virtual  ~Function ()
+                 Destructor.
+   virtual bool  Evaluate (const FbxBindingOperator *pOperator, const FbxObject *pObject, EFbxType *pResultType, void **pResult) const =0
+                 Run the operator on the given object.
+   virtual bool  ReverseEvaluate (const FbxBindingOperator *pOperator, const FbxObject *pTarget, const void *pIn, void **pOut, EFbxType *pOutType, bool setObj, int index) const =0
+                 Run the inverse operator on the given object, assigning the result directly to the object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~Function ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 187 of file fbxbindingoperator.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Evaluate ( const FbxBindingOperator *  pOperator,
+                           const FbxObject *           pObject,
+                           EFbxType *                  pResultType,
+                           void **                     pResult
+                         )                             const [pure virtual]
+   Search for all occurrences
+
+   Run the operator on the given object.
+
+   Parameters:
+
+          pOperator   The operator that will be applied.
+          pObject     The object that will be evaluated.
+          pResultType Will be filled by the type of the result.
+          pResult     Will be filled by a pointer to a buffer that hold the result. The caller must call FreeEvaluationResult() when it is done with this pointer.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implemented in FbxNodePositionBOF, FbxNodeDirectionBOF, FbxAssignBOF, FbxConditionalBOF, FbxSwitchBOF, FbxTRSToMatrixBOF, FbxAddBOF, FbxSubstractBOF, FbxMultiplyBOF, FbxMultiplyDistBOF, FbxOneOverXBOF, FbxPowerBOF, FbxDegreeToRadianBOF, FbxVectorDegreeToVectorRadianBOF, FbxSphericalToCartesianBOF, FbxIsYupBOF, FbxSymbolIDBOF, and FbxSpotDistributionChooserBOF.
+   virtual bool ReverseEvaluate ( const FbxBindingOperator *  pOperator,
+                                  const FbxObject *           pTarget,
+                                  const void *                pIn,
+                                  void **                     pOut,
+                                  EFbxType *                  pOutType,
+                                  bool                        setObj,
+                                  int                         index
+                                )                             const [pure virtual]
+   Search for all occurrences
+
+   Run the inverse operator on the given object, assigning the result directly to the object.
+
+   Parameters:
+
+          pOperator The operator that will be applied.
+          pTarget   The object that will be evaluated.
+          pIn
+          pOut
+          pOutType  Type of value being reversed.
+          setObj    Control to set the property (only to query by the default ).
+          index     Used only in FbxMultiplyDistBOF.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implemented in FbxNodePositionBOF, FbxNodeDirectionBOF, FbxAssignBOF, FbxConditionalBOF, FbxSwitchBOF, FbxTRSToMatrixBOF, FbxAddBOF, FbxSubstractBOF, FbxMultiplyBOF, FbxMultiplyDistBOF, FbxOneOverXBOF, FbxPowerBOF, FbxDegreeToRadianBOF, FbxVectorDegreeToVectorRadianBOF, FbxSphericalToCartesianBOF, FbxIsYupBOF, FbxSymbolIDBOF, and FbxSpotDistributionChooserBOF.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingoperator.h
+
+   Please send us your comment about this page

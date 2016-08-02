@@ -1,0 +1,116 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMesh::DuplicateVertex Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxMesh
+     * DuplicateVertex
+
+   Public Member Functions | Public Attributes
+   FbxMesh::DuplicateVertex Class Reference
+   Search for all occurrences
+
+   #include <fbxmesh.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Internal structure used to keep the duplicate vertex information.
+
+   Definition at line 331 of file fbxmesh.h.
+
+   List of all members.
+
+Public Member Functions
+
+               DuplicateVertex ()
+
+Public Attributes
+
+          int  lVertexPolyIndex
+               Index in mPolygonsVertex where the vertex is found.
+          int  lNewVertexIndex
+               The new index of the vertex.
+   FbxVector4  lNormal
+               The normal associated with this duplicate control point.
+   FbxVector2  lUV
+               The UV associated with this duplicate control point.
+          int  lEdgeIndex
+               The edge index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   DuplicateVertex ( ) [inline]
+
+   Definition at line 334 of file fbxmesh.h.
+                                          :
+                                lVertexPolyIndex(0),
+                                lNewVertexIndex(0),
+                                lNormal(0, 0, 0),
+                                lUV(0, 0),
+                                lEdgeIndex(0)
+                        {
+                        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int lVertexPolyIndex
+   Search for all occurrences
+
+   Index in mPolygonsVertex where the vertex is found.
+
+   Definition at line 343 of file fbxmesh.h.
+   int lNewVertexIndex
+   Search for all occurrences
+
+   The new index of the vertex.
+
+   Definition at line 344 of file fbxmesh.h.
+   FbxVector4 lNormal
+   Search for all occurrences
+
+   The normal associated with this duplicate control point.
+
+   Definition at line 345 of file fbxmesh.h.
+   FbxVector2 lUV
+   Search for all occurrences
+
+   The UV associated with this duplicate control point.
+
+   Definition at line 346 of file fbxmesh.h.
+   int lEdgeIndex
+   Search for all occurrences
+
+   The edge index.
+
+   Definition at line 347 of file fbxmesh.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxmesh.h
+
+   Please send us your comment about this page

@@ -1,0 +1,91 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyEvalState Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxPropertyEvalState Class Reference
+   Search for all occurrences
+
+   #include <fbxanimevalstate.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class hold results for property evaluation.
+
+   Definition at line 122 of file fbxanimevalstate.h.
+   Inheritance diagram for FbxPropertyEvalState:
+   [USEMAP:class_fbx_property_eval_state.png]
+
+   List of all members.
+
+Public Member Functions
+
+                       FbxPropertyEvalState (FbxProperty &pProperty)
+              virtual  ~FbxPropertyEvalState ()
+   template<class T >
+                    T  Get () const
+   template<class T >
+                 bool  Set (const T &pValue)
+
+Public Attributes
+
+   FbxPropertyValue *  mValue
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPropertyEvalState ( FbxProperty &  pProperty )
+   virtual ~FbxPropertyEvalState ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   T Get ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 128 of file fbxanimevalstate.h.
+{ T lValue; mValue->Get(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   bool Set ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   Definition at line 129 of file fbxanimevalstate.h.
+{ return mValue->Set(&pValue, FbxTypeOf(pValue)); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyValue* mValue
+   Search for all occurrences
+
+   Definition at line 131 of file fbxanimevalstate.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimevalstate.h
+
+   Please send us your comment about this page

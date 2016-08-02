@@ -1,0 +1,340 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintSingleChainIK Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxConstraintSingleChainIK Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraintsinglechainik.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This constraint class contains methods for accessing the properties of a single chain IK constraint.
+
+   Definition at line 25 of file fbxconstraintsinglechainik.h.
+   Inheritance diagram for FbxConstraintSingleChainIK:
+   [USEMAP:class_fbx_constraint_single_chain_i_k.png]
+
+   List of all members.
+
+Public Types
+
+                          enum   ESolverMode { eRotatePlane, eSingleChain }
+                                 Solver pole vector mode. More...
+                          enum   EPoleVectorMode { eVector, eObject }
+                                 Pole vector mode. More...
+                          enum   EEvaluationMode { eNeverTS, eAutoDetect, eAlwaysTS }
+                                 If the constraints read its animation on Translation and Scale for the nodes it constraints. More...
+
+Public Member Functions
+
+                         double  GetPoleVectorObjectWeight (const FbxObject *pObject) const
+                                 Get the weight of a source.
+                           void  AddPoleVectorObject (FbxObject *pObject, double pWeight=100)
+                                 Add a source to the constraint.
+                            int  GetConstraintPoleVectorCount () const
+                                 Retrieve the constraint source count.
+                    FbxObject *  GetPoleVectorObject (int pIndex) const
+                                 Retrieve a constraint source object.
+                           void  SetFirstJointObject (FbxObject *pObject)
+                                 Set the first joint object.
+                    FbxObject *  GetFirstJointObject () const
+                                 Retrieve the first joint object.
+                           void  SetEndJointObject (FbxObject *pObject)
+                                 Set the end joint object.
+                    FbxObject *  GetEndJointObject () const
+                                 Retrieve the end joint object.
+                           void  SetEffectorObject (FbxObject *pObject)
+                                 Set the effector object.
+                    FbxObject *  GetEffectorObject () const
+                                 Retrieve the effector object.
+
+Properties
+
+        FbxPropertyT< FbxEnum >  PoleVectorType
+                                 This property handles pole vector type.
+        FbxPropertyT< FbxEnum >  SolverType
+                                 This property handles solver type.
+        FbxPropertyT< FbxEnum >  EvaluateTSAnim
+                                 This property handles evaluate TS animation.
+   FbxPropertyT< FbxReference >  PoleVectorObjects
+                                 This property handles pole vector objects.
+     FbxPropertyT< FbxDouble3 >  PoleVector
+                                 This property handles pole vector.
+      FbxPropertyT< FbxDouble >  Twist
+                                 This property handles twist value.
+   FbxPropertyT< FbxReference >  FirstJointObject
+                                 This property handles first joint object.
+   FbxPropertyT< FbxReference >  EndJointObject
+                                 This property handles end joint object.
+   FbxPropertyT< FbxReference >  EffectorObject
+                                 This property handles effector object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESolverMode
+   Search for all occurrences
+
+   Solver pole vector mode.
+
+   Enumerator:
+
+          eRotatePlane
+
+   Search for all occurrences
+   eSingleChain
+
+   Rotate plane solver.
+   Single chain solver.
+   Search for all occurrences
+
+   Definition at line 32 of file fbxconstraintsinglechainik.h.
+    {
+        eRotatePlane,
+        eSingleChain
+    };
+
+   enum EPoleVectorMode
+   Search for all occurrences
+
+   Pole vector mode.
+
+   Enumerator:
+
+          eVector
+
+   Search for all occurrences
+   eObject
+
+   Pole vector type is vector.
+   Pole vector type is object.
+   Search for all occurrences
+
+   Definition at line 40 of file fbxconstraintsinglechainik.h.
+    {
+        eVector,
+        eObject
+    };
+
+   enum EEvaluationMode
+   Search for all occurrences
+
+   If the constraints read its animation on Translation and Scale for the nodes it constraints.
+
+   Enumerator:
+
+          eNeverTS
+
+   Search for all occurrences
+          eAutoDetect
+
+   The constraints never read its animation on translation and scale for the nodes.
+   Search for all occurrences
+   eAlwaysTS
+
+   The constraints read its animation on translation and scale for the nodes according to automatic detection.
+   The constraints always read its animation on translation and scale for the nodes.
+   Search for all occurrences
+
+   Definition at line 48 of file fbxconstraintsinglechainik.h.
+        {
+                eNeverTS,
+                eAutoDetect,
+                eAlwaysTS
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   double GetPoleVectorObjectWeight ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Get the weight of a source.
+
+   Parameters:
+
+          pObject Source object that we want the weight.
+
+   void AddPoleVectorObject ( FbxObject *  pObject,
+                              double       pWeight = 100
+                            )
+   Search for all occurrences
+
+   Add a source to the constraint.
+
+   Parameters:
+
+          pObject New source object.
+          pWeight Weight value of the source object expressed as a percentage.
+
+   Remarks:
+          pWeight value is 100 percent by default.
+
+   int GetConstraintPoleVectorCount ( ) const
+   Search for all occurrences
+
+   Retrieve the constraint source count.
+
+   Returns:
+          Current constraint source count.
+
+   FbxObject* GetPoleVectorObject ( int  pIndex ) const
+   Search for all occurrences
+
+   Retrieve a constraint source object.
+
+   Parameters:
+
+          pIndex Index of constraint source object.
+
+   Returns:
+          Current source at the specified index.
+
+   void SetFirstJointObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the first joint object.
+
+   Parameters:
+
+          pObject The first joint object.
+
+   FbxObject* GetFirstJointObject ( ) const
+   Search for all occurrences
+
+   Retrieve the first joint object.
+
+   Returns:
+          Current first joint object.
+
+   void SetEndJointObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the end joint object.
+
+   Parameters:
+
+          pObject The end joint object.
+
+   FbxObject* GetEndJointObject ( ) const
+   Search for all occurrences
+
+   Retrieve the end joint object.
+
+   Returns:
+          Current end joint object.
+
+   void SetEffectorObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the effector object.
+
+   Parameters:
+
+          pObject The effector object.
+
+   FbxObject* GetEffectorObject ( ) const
+   Search for all occurrences
+
+   Retrieve the effector object.
+
+   Returns:
+          Current effector object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxEnum> PoleVectorType
+   Search for all occurrences
+
+   This property handles pole vector type.
+
+   Definition at line 61 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxEnum> SolverType
+   Search for all occurrences
+
+   This property handles solver type.
+
+   Definition at line 65 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxEnum> EvaluateTSAnim
+   Search for all occurrences
+
+   This property handles evaluate TS animation.
+
+   Definition at line 69 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxReference> PoleVectorObjects
+   Search for all occurrences
+
+   This property handles pole vector objects.
+
+   Definition at line 73 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxDouble3> PoleVector
+   Search for all occurrences
+
+   This property handles pole vector.
+
+   Default value is (0, 1, 0).
+
+   Definition at line 79 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxDouble> Twist
+   Search for all occurrences
+
+   This property handles twist value.
+
+   Default value is 0.
+
+   Definition at line 85 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxReference> FirstJointObject
+   Search for all occurrences
+
+   This property handles first joint object.
+
+   Definition at line 89 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxReference> EndJointObject
+   Search for all occurrences
+
+   This property handles end joint object.
+
+   Definition at line 93 of file fbxconstraintsinglechainik.h.
+   FbxPropertyT<FbxReference> EffectorObject
+   Search for all occurrences
+
+   This property handles effector object.
+
+   Definition at line 97 of file fbxconstraintsinglechainik.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintsinglechainik.h
+
+   Please send us your comment about this page

@@ -1,0 +1,516 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveNode Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxAnimCurveNode Class Reference
+
+   This reference page is linked to from the following overview topics: Animating a Node, Animation Classes and their Interrelationships, Migrating to the New Data Structures for Animation, List of Python Fbx classes, Extracting the Animation Data from a FBX File, Animation Data Structures, Evaluating the Animation in a Scene.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimcurvenode.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class is an composite of animation curves and is called as animation curve node.
+
+   Animation curve node is used as the connection point for animation curves and other animation curve nodes associated to a property. FbxAnimCurveNode can be connected to other FbxAnimCurveNode, in this case, the destination animation curve node may be considered as "composite", IsComposite(). remarks When created, the FbxAnimCurveNode has no valid channels unless it is created using the function CreateTypedCurveNode(). This function will add all the required channels to correctly match the number of
+   values of the property. For instance, when CreateTypedCurveNode(pNode.LclTranslation, pScene) is called, the resulting FbxAnimCurveNode will automatically have 3 channels corresponding to the X,Y and Z components of the LclTranslation property. You can add and remove channels dynamically but can never remove the channels that have been added by the call to CreateTypedCurveNode().
+
+   However, the FBX SDK animation system's default implementation is to consider only the first curve connected to the channel. Therefore, if the caller connects multiple animation curves to the same channel, then it becomes the caller's responsibility to handle and manipulate these extra curves in a meaningful manner.
+
+   Examples:
+          Animation/main.cxx, ImportScene/DisplayAnimation.cxx, Instances/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   Definition at line 55 of file fbxanimcurvenode.h.
+   Inheritance diagram for FbxAnimCurveNode:
+   [USEMAP:class_fbx_anim_curve_node.png]
+
+   List of all members.
+
+Utility functions.
+
+                        bool  IsAnimated (bool pRecurse=false) const
+                              Check if the animation curve node contains any animation key.
+                        bool  GetAnimationInterval (FbxTimeSpan &pTimeInterval) const
+                              Find out start and end time of the animation.
+                        bool  IsComposite () const
+                              Test this object to see if it is a composite FbxAnimCurveNode or a "leaf".
+          FbxAnimCurveNode *  Find (const char *pName)
+                              Recursively look for the FbxAnimCurveNode matching the passed named argument.
+                unsigned int  GetChannelsCount () const
+                              Get the total number of property channels defined in this animation curve node.
+                         int  GetChannelIndex (const char *pChannelName) const
+                              Get the index of the named channel.
+                   FbxString  GetChannelName (int pChannelId) const
+                              Get the name of the channel.
+                        void  ResetChannels ()
+                              Empties the property channels of this animation curve node.
+   template<class T >
+                        bool  AddChannel (const char *pChnlName, T const &pValue)
+                              Adds the specified channel property.
+   template<class T >
+                        void  SetChannelValue (const char *pChnlName, T pValue)
+                              Set the default value of the channel.
+   template<class T >
+                        void  SetChannelValue (unsigned int pChnlId, T pValue)
+                              Set the default value of the channel.
+   template<class T >
+                           T  GetChannelValue (const char *pChnlName, T pInitVal)
+                              Get the default value of the channel.
+   template<class T >
+                           T  GetChannelValue (unsigned int pChnlId, T pInitVal)
+                              Get the default value of the channel.
+   static FbxAnimCurveNode *  CreateTypedCurveNode (FbxProperty &pProperty, FbxScene *pScene)
+                              Create a FbxAnimCurveNode compatible with the specified property data type.
+
+FbxAnimCurve management.
+
+                        bool  DisconnectFromChannel (FbxAnimCurve *pCurve, unsigned int pChnlId)
+                              Disconnect the animation curve from the channel.
+                        bool  ConnectToChannel (FbxAnimCurve *pCurve, const char *pChnl, bool pInFront=false)
+                              Connects the given animation curve to the specified channel.
+                        bool  ConnectToChannel (FbxAnimCurve *pCurve, unsigned int pChnlId, bool pInFront=false)
+                              Connects the given animation curve to the specified channel.
+              FbxAnimCurve *  CreateCurve (const char *pCurveNodeName, const char *pChannel)
+                              Creates a new curve and connects it to the specified channel of the animation curve node named pCurveNodeName.
+              FbxAnimCurve *  CreateCurve (const char *pCurveNodeName, unsigned int pChannelId=0)
+                              Creates a new curve and connects it to the specified channel of the animation curve node named pCurveNodeName.
+                         int  GetCurveCount (unsigned int pChannelId, const char *pCurveNodeName=NULL)
+                              Get the number of FbxAnimCurve connected to the specified channel.
+              FbxAnimCurve *  GetCurve (unsigned int pChannelId, unsigned int pId=0, const char *pCurveNodeName=NULL)
+                              Get the FbxAnimCurve of the specified channel.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool IsAnimated ( bool  pRecurse = false ) const
+   Search for all occurrences
+
+   Check if the animation curve node contains any animation key.
+
+   Parameters:
+
+          pRecurse true to descend to the children if the animation curve node is composite.
+
+   Returns:
+          true if at least one animation curve that contains one or more animation keys is found, false otherwise.
+
+   Remarks:
+          This method only considers the first animation curve connected to each channel. To check multiple animation curves that are connected to the same channel, it is the caller's responsibility to write a new version of this method, and GetCurveCount() will be useful in this case.
+
+   bool GetAnimationInterval ( FbxTimeSpan &  pTimeInterval ) const
+   Search for all occurrences
+
+   Find out start and end time of the animation.
+
+   This function retrieves the including time span for all animation curves of this animation curve node.
+
+   Parameters:
+
+          pTimeInterval Reference to receive start time and end time.
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          false is also returned if this animation curve node has no animation.
+          This method only considers the first animation curve connected to each channel. To find time interval of multiple animation curves that are connected to the same channel, it is the caller's responsibility to write a new version of this method, and GetCurveCount() will be useful in this case.
+
+   bool IsComposite ( ) const
+   Search for all occurrences
+
+   Test this object to see if it is a composite FbxAnimCurveNode or a "leaf".
+
+   A composite FbxAnimCurveNode is a FbxAnimCurveNode whose all source connections are FbxAnimCurveNode and its property channels is totally empty. It is just a container to take other FbxAnimCurveNode.
+
+   Returns:
+          true if this object is a composite, false otherwise.
+
+   FbxAnimCurveNode* Find ( const char *  pName )
+   Search for all occurrences
+
+   Recursively look for the FbxAnimCurveNode matching the passed named argument.
+
+   Parameters:
+
+          pName Name of the FbxAnimCurveNode we are looking for.
+
+   Returns:
+          The found anim curve node or NULL.
+
+   Remarks:
+          If pName is an empty string, this function automatically return NULL.
+
+   static FbxAnimCurveNode* CreateTypedCurveNode ( FbxProperty &  pProperty,
+                                                   FbxScene *     pScene
+                                                 )                [static]
+   Search for all occurrences
+
+   Create a FbxAnimCurveNode compatible with the specified property data type.
+
+   Parameters:
+
+          pProperty The property that needs a FbxAnimCurveNode.
+          pScene    The scene the created FbxAnimCurveNode will belong to.
+
+   Returns:
+          The pointer to the newly created FbxAnimCurveNode. Returns NULL if an error occurred.
+
+   Remarks:
+          This function does not connect the newly created FbxAnimCurveNode to the property.
+          This function detects FbxDouble3, FbxDouble4 and FbxDouble4x4 properties DataTypes and automatically adds the required channels properties. Any other DataType is not specifically processed and the channels properties are left empty and need to be filled using the AddChannel() function.
+
+   Examples:
+          Animation/main.cxx.
+
+   unsigned int GetChannelsCount ( ) const
+   Search for all occurrences
+
+   Get the total number of property channels defined in this animation curve node.
+
+   For composite animation curve nodes, since they do not contain any channels, this function will always return 0.
+
+   Returns:
+          The number of property channels.
+
+   Examples:
+          Animation/main.cxx.
+
+   int GetChannelIndex ( const char *  pChannelName ) const
+   Search for all occurrences
+
+   Get the index of the named channel.
+
+   Parameters:
+
+          pChannelName Name of the channel for which we want the index.
+
+   Returns:
+          the index of the named channel or -1 if no channel with this name is found.
+
+   FbxString GetChannelName ( int  pChannelId ) const
+   Search for all occurrences
+
+   Get the name of the channel.
+
+   Parameters:
+
+          pChannelId Index of the channel for which we want the name.
+
+   Returns:
+          the name of the indexed channel or "" if the index is invalid.
+
+   void ResetChannels ( )
+   Search for all occurrences
+
+   Empties the property channels of this animation curve node.
+
+   Remarks:
+          This function will remove all the channels added with the AddChannel() method regardless of their use and/or connections. But it can not remove the channels that are added by the call to CreateTypedCurveNode().
+
+   Examples:
+          Animation/main.cxx.
+
+   bool AddChannel ( const char *  pChnlName,
+                     T const &     pValue
+                   )               [inline]
+   Search for all occurrences
+
+   Adds the specified channel property.
+
+   Parameters:
+
+          pChnlName Channel name.
+          pValue    Default value of the channel.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          It is an error to try to add a channel that already exists.
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 143 of file fbxanimcurvenode.h.
+        {
+            if (!pChnlName || strlen(pChnlName)==0) return false;
+            FbxProperty c = GetChannel(pChnlName);
+            if (c.IsValid())
+            {
+                return false;
+            }
+
+            mChannels.BeginCreateOrFindProperty();
+            FbxDataType dt = FbxGetDataTypeFromEnum(FbxTypeOf(pValue));
+            c = FbxProperty::Create(mChannels, dt, pChnlName);
+            c.Set(pValue);
+            mChannels.EndCreateOrFindProperty();
+            return true;
+        }
+
+   void SetChannelValue ( const char *  pChnlName,
+                          T             pValue
+                        )               [inline]
+   Search for all occurrences
+
+   Set the default value of the channel.
+
+   Parameters:
+
+          pChnlName Channel name.
+          pValue    New default value of this channel.
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 164 of file fbxanimcurvenode.h.
+        {
+            FbxProperty c = GetChannel(pChnlName);
+            if( c.IsValid() ) c.Set(pValue);
+        }
+
+   void SetChannelValue ( unsigned int  pChnlId,
+                          T             pValue
+                        )               [inline]
+   Search for all occurrences
+
+   Set the default value of the channel.
+
+   Parameters:
+
+          pChnlId Channel index.
+          pValue  New default value of this channel.
+
+   Definition at line 174 of file fbxanimcurvenode.h.
+        {
+            FbxProperty c = GetChannel(pChnlId);
+            if( c.IsValid() ) c.Set(pValue);
+        }
+
+   T GetChannelValue ( const char *  pChnlName,
+                       T             pInitVal
+                     )               [inline]
+   Search for all occurrences
+
+   Get the default value of the channel.
+
+   Parameters:
+
+          pChnlName Channel name.
+          pInitVal  Value returned if the specified channel is invalid.
+
+   Returns:
+          The default value of this channel.
+
+   Definition at line 185 of file fbxanimcurvenode.h.
+        {
+            T v = pInitVal;
+            FbxProperty c = GetChannel(pChnlName);
+            if( c.IsValid() ) v = c.Get<T>();
+            return v;
+        }
+
+   T GetChannelValue ( unsigned int  pChnlId,
+                       T             pInitVal
+                     )               [inline]
+   Search for all occurrences
+
+   Get the default value of the channel.
+
+   Parameters:
+
+          pChnlId  Channel index.
+          pInitVal Value returned if the specified channel is invalid.
+
+   Returns:
+          The default value of this channel.
+
+   Definition at line 198 of file fbxanimcurvenode.h.
+        {
+            T v = pInitVal;
+            FbxProperty c = GetChannel(pChnlId);
+            if( c.IsValid() ) v = c.Get<T>();
+            return v;
+        }
+
+   bool DisconnectFromChannel ( FbxAnimCurve *  pCurve,
+                                unsigned int    pChnlId
+                              )
+   Search for all occurrences
+
+   Disconnect the animation curve from the channel.
+
+   Parameters:
+
+          pCurve  The curve to disconnect from the channel.
+          pChnlId The channel index.
+
+   Returns:
+          true if the disconnection was made, false if an error occurred.
+
+   bool ConnectToChannel ( FbxAnimCurve *  pCurve,
+                           const char *    pChnl,
+                           bool            pInFront = false
+                         )
+   Search for all occurrences
+
+   Connects the given animation curve to the specified channel.
+
+   Parameters:
+
+          pCurve   The curve to connect to the channel.
+          pChnl    The name of the channel the curve is to be connected to.
+          pInFront When true, all the current connections are moved after this one, making this one the first. By default, the connection is the last one.
+
+   Returns:
+          true if the connection was made, false if an error occurred.
+
+   Examples:
+          Animation/main.cxx, and Instances/main.cxx.
+
+   bool ConnectToChannel ( FbxAnimCurve *  pCurve,
+                           unsigned int    pChnlId,
+                           bool            pInFront = false
+                         )
+   Search for all occurrences
+
+   Connects the given animation curve to the specified channel.
+
+   Parameters:
+
+          pCurve   The curve to connect to the channel.
+          pChnlId  Index of the channel the curve is to be connected to.
+          pInFront When true, all the current connections are moved after this one. making this one the first. By default, the connection is the last one.
+
+   Returns:
+          true if the connection was made, false if an error occurred.
+
+   Remarks:
+          The index is 0 based.
+
+   FbxAnimCurve* CreateCurve ( const char *  pCurveNodeName,
+                               const char *  pChannel
+                             )
+   Search for all occurrences
+
+   Creates a new curve and connects it to the specified channel of the animation curve node named pCurveNodeName.
+
+   If this animation curve node is composite, this function will try to search all children animation curve nodes recursively for the one named pCurveNodeName.
+
+   Parameters:
+
+          pCurveNodeName Name of the FbxAnimCurveNode we are looking for.
+          pChannel       Channel identifier.
+
+   Returns:
+          Pointer to the FbxAnimCurve or NULL if an error occurred.
+
+   Remarks:
+          pCurveNodeName cannot be empty.
+          If the pChannel identifier is left NULL, the first valid channel will be used to create curve.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   FbxAnimCurve* CreateCurve ( const char *  pCurveNodeName,
+                               unsigned int  pChannelId = 0
+                             )
+   Search for all occurrences
+
+   Creates a new curve and connects it to the specified channel of the animation curve node named pCurveNodeName.
+
+   If this animation curve node is composite, this function will try to search all children animation curve nodes recursively for the one named pCurveNodeName.
+
+   Parameters:
+
+          pCurveNodeName Name of the FbxAnimCurveNode we are looking for.
+          pChannelId     Channel index.
+
+   Returns:
+          Pointer to the FbxAnimCurve or NULL if an error occurred.
+
+   Remarks:
+          pCurveNodeName cannot be empty. If the pChannelId is not assigned, the first valid channel will be used to create curve.
+
+   int GetCurveCount ( unsigned int  pChannelId,
+                       const char *  pCurveNodeName = NULL
+                     )
+   Search for all occurrences
+
+   Get the number of FbxAnimCurve connected to the specified channel.
+
+   If this animation curve node is composite, this function will try to search all children animation curve nodes recursively for the one named pCurveNodeName.
+
+   Parameters:
+
+          pChannelId     Channel index.
+          pCurveNodeName Name of the FbxAnimCurveNode we are looking for.
+
+   Returns:
+          The number of animation curves on the specified channel or 0 if an error occurred.
+
+   Remarks:
+          This method fails if the FbxAnimCurveNode with name pCurveNodeName does not exist and return 0. If the specified channel cannot be found on the FbxAnimCurveNode with name pCurveNodeName, return 0.
+          If this animation curve node is composite, this function will try to search all children animation curve nodes recursively for the one named pCurveNodeName. If the pCurveNodeName is left NULL, then only look for the curves on this animation curve node even if it is composite.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   FbxAnimCurve* GetCurve ( unsigned int  pChannelId,
+                            unsigned int  pId = 0,
+                            const char *  pCurveNodeName = NULL
+                          )
+   Search for all occurrences
+
+   Get the FbxAnimCurve of the specified channel.
+
+   If this animation curve node is composite, this function will try to search all children animation curve nodes recursively for the one named pCurveNodeName.
+
+   Parameters:
+
+          pChannelId     Channel index.
+          pId            The index of the desired anim curve (in case there is more than one).
+          pCurveNodeName Name of the FbxAnimCurveNode we are looking for (if this object is a composite).
+
+   Returns:
+          Pointer to the FbxAnimCurve that matches the criteria.
+
+   Remarks:
+          This method fails if the FbxAnimCurveNode with name pCurveNodeName does not exist and return NULL. If the specified channel cannot be found in the FbxAnimCurveNode with name pCurveNodeName, return NULL.
+          If the pCurveNodeName is left NULL, then only search in the curves on this animation curve node even if it is composite.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and UserProperties/main.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvenode.h
+
+   Please send us your comment about this page

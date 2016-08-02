@@ -1,0 +1,66 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNameMapCompare Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxNameMapCompare Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertypage.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 27 of file fbxpropertypage.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (const FbxNameMapKey &pKeyA, const FbxNameMapKey &pKeyB) const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( const FbxNameMapKey &  pKeyA,
+                    const FbxNameMapKey &  pKeyB
+                  )                        const [inline]
+
+   Definition at line 30 of file fbxpropertypage.h.
+    {
+        if( pKeyA.mFirst < pKeyB.mFirst )
+            return -1;
+        else if( pKeyA.mFirst > pKeyB.mFirst )
+            return 1;
+
+        return strcmp( pKeyA.mSecond, pKeyB.mSecond );
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertypage.h
+
+   Please send us your comment about this page

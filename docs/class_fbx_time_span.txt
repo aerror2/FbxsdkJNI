@@ -1,0 +1,278 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxTimeSpan Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxTimeSpan Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtime.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to encapsulate time intervals.
+
+   See also:
+          FbxTime
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 525 of file fbxtime.h.
+
+   List of all members.
+
+Public Member Functions
+
+                FbxTimeSpan ()
+                Constructor.
+                FbxTimeSpan (FbxTime pStart, FbxTime pStop)
+                Constructor.
+          void  Set (FbxTime pStart, FbxTime pStop)
+                Set start and stop time.
+          void  SetStart (FbxTime pStart)
+                Set start time.
+          void  SetStop (FbxTime pStop)
+                Set stop time.
+       FbxTime  GetStart () const
+                Get start time.
+       FbxTime  GetStop () const
+                Get stop time.
+       FbxTime  GetDuration () const
+                Get time interval in absolute value.
+       FbxTime  GetSignedDuration () const
+                Get time interval.
+           int  GetDirection () const
+                Get direction of the time interval.
+          bool  IsInside (FbxTime pTime) const
+                Return true if the time is inside the timespan.
+   FbxTimeSpan  Intersect (const FbxTimeSpan &pTime) const
+                Return the intersection of the two time spans.
+          bool  operator!= (const FbxTimeSpan &pTime) const
+                Inequality operator.
+          bool  operator== (const FbxTimeSpan &pTime) const
+                Equality operator.
+          void  UnionAssignment (const FbxTimeSpan &pSpan, int pDirection=FBXSDK_TIME_FORWARD)
+                Unite with another FbxTimeSpan.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxTimeSpan ( ) [inline]
+
+   Constructor.
+
+   Definition at line 529 of file fbxtime.h.
+{}
+
+   FbxTimeSpan ( FbxTime  pStart,
+                 FbxTime  pStop
+               )          [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pStart Beginning of the time interval.
+          pStop  Ending of the time interval.
+
+   Definition at line 535 of file fbxtime.h.
+{ mStart = pStart; mStop = pStop; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Set ( FbxTime  pStart,
+              FbxTime  pStop
+            )          [inline]
+   Search for all occurrences
+
+   Set start and stop time.
+
+   Parameters:
+
+          pStart Beginning of the time interval.
+          pStop  Ending of the time interval.
+
+   Definition at line 541 of file fbxtime.h.
+{ mStart = pStart; mStop = pStop; }
+
+   void SetStart ( FbxTime  pStart ) [inline]
+   Search for all occurrences
+
+   Set start time.
+
+   Parameters:
+
+          pStart Beginning of the time interval.
+
+   Definition at line 546 of file fbxtime.h.
+{ mStart = pStart; }
+
+   void SetStop ( FbxTime  pStop ) [inline]
+   Search for all occurrences
+
+   Set stop time.
+
+   Parameters:
+
+          pStop Ending of the time interval.
+
+   Definition at line 551 of file fbxtime.h.
+{ mStop = pStop; }
+
+   FbxTime GetStart ( ) const [inline]
+   Search for all occurrences
+
+   Get start time.
+
+   Returns:
+          Beginning of time interval.
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 556 of file fbxtime.h.
+{ return mStart; }
+
+   FbxTime GetStop ( ) const [inline]
+   Search for all occurrences
+
+   Get stop time.
+
+   Returns:
+          Ending of time interval.
+
+   Examples:
+          ImportScene/DisplayGlobalSettings.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 561 of file fbxtime.h.
+{ return mStop; }
+
+   FbxTime GetDuration ( ) const [inline]
+   Search for all occurrences
+
+   Get time interval in absolute value.
+
+   Returns:
+          Time interval.
+
+   Definition at line 566 of file fbxtime.h.
+{ if( mStop > mStart ) return mStop - mStart; else return mStart - mStop; }
+
+   FbxTime GetSignedDuration ( ) const [inline]
+   Search for all occurrences
+
+   Get time interval.
+
+   Returns:
+          Signed time interval.
+
+   Definition at line 571 of file fbxtime.h.
+{ return mStop - mStart; }
+
+   int GetDirection ( ) const [inline]
+   Search for all occurrences
+
+   Get direction of the time interval.
+
+   Returns:
+          FBXSDK_TIME_FORWARD if time interval is forward, FBXSDK_TIME_BACKWARD if backward.
+
+   Definition at line 576 of file fbxtime.h.
+{ if( mStop >= mStart ) return FBXSDK_TIME_FORWARD; else return FBXSDK_TIME_BACKWARD; }
+
+   bool IsInside ( FbxTime  pTime ) const
+   Search for all occurrences
+
+   Return true if the time is inside the timespan.
+
+   Parameters:
+
+          pTime Judge whether pTime is inside the timespan.
+
+   Returns:
+          True if is, false otherwise.
+
+   FbxTimeSpan Intersect ( const FbxTimeSpan &  pTime ) const
+   Search for all occurrences
+
+   Return the intersection of the two time spans.
+
+   Parameters:
+
+          pTime
+
+   Returns:
+          The intersection of pTime and this FbxTimeSpan.
+
+   bool operator!= ( const FbxTimeSpan &  pTime ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pTime FbxTimeSpan compared with this one.
+
+   Returns:
+          True if unequal, false otherwise.
+
+   bool operator== ( const FbxTimeSpan &  pTime ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pTime FbxTimeSpan compared with this one.
+
+   Returns:
+          True if equal, false otherwise.
+
+   void UnionAssignment ( const FbxTimeSpan &  pSpan,
+                          int                  pDirection = FBXSDK_TIME_FORWARD
+                        )
+   Search for all occurrences
+
+   Unite with another FbxTimeSpan.
+
+   Parameters:
+
+          pSpan      The FbxTimeSpan
+          pDirection FBXSDK_TIME_FORWARD or FBXSDK_TIME_BACKWARD
+
+   Remarks:
+          This function assumes both of the FbxTimeSpan objects are in the same direction. Use FBXSDK_TIME_FORWARD when start < stop in both timespan Use FBXSDK_TIME_BACKWARD when start > stop in both timespan
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxtime.h
+
+   Please send us your comment about this page

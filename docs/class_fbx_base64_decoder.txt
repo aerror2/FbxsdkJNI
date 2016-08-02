@@ -1,0 +1,93 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBase64Decoder Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBase64Decoder Class Reference
+   Search for all occurrences
+
+   #include <fbxbase64coder.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class decodes Base64 encoded data.
+
+   Definition at line 23 of file fbxbase64coder.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  Decode (const void *pInBuffer, int pInSize, void *pOutBuffer, int pOutSize)
+        Decodes the input buffer.
+   int  Decode (const char *pInBuffer, void *pOutBuffer, int pOutSize)
+        Decodes the input buffer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int Decode ( const void *  pInBuffer,
+                int           pInSize,
+                void *        pOutBuffer,
+                int           pOutSize
+              )
+   Search for all occurrences
+
+   Decodes the input buffer.
+
+   Parameters:
+
+          pInBuffer  the input buffer containing Base64 data.
+          pInSize    the size of the input data in bytes (must be a multiple of 4)
+          pOutBuffer the destination buffer.
+          pOutSize   the capacity of the output buffer in bytes.
+
+   Returns:
+          the number of bytes put in the output buffer, or -1 if the output buffer is too small, or contains invalid characters
+
+   int Decode ( const char *  pInBuffer,
+                void *        pOutBuffer,
+                int           pOutSize
+              )
+   Search for all occurrences
+
+   Decodes the input buffer.
+
+   Parameters:
+
+          pInBuffer  the input buffer containing Base64 data; its length is computed using strlen().
+          pOutBuffer the destination buffer.
+          pOutSize   the capacity of the output buffer in bytes.
+
+   Returns:
+          the number of bytes put in the output buffer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxbase64coder.h
+
+   Please send us your comment about this page

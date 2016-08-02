@@ -1,0 +1,252 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCameraManipulator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxCameraManipulator Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxmanipulators.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class can be used to provide basic camera manipulation in any program using this library.
+
+   Definition at line 30 of file fbxmanipulators.h.
+   Inheritance diagram for FbxCameraManipulator:
+   [USEMAP:class_fbx_camera_manipulator.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EAction {
+     eNone, eOrbit, eDolly, ePan,
+     eFreePan
+   }
+     All possible manipulation actions that can be performed on a camera using this manipulator. More...
+
+Public Member Functions
+
+   void  Begin (EAction pAction, float pX, float pY)
+     Begin manipulation of the camera.
+   void  Notify (float pX, float pY, float pZ=0)
+     Notify manipulation of latest input.
+   void  End ()
+     End current manipulation.
+   void  FrameAll (const FbxTime &pTime=FBXSDK_TIME_INFINITE)
+     Change camera position, rotation and LookAt node to frame all objects.
+   void  FrameSelected (const FbxTime &pTime=FBXSDK_TIME_INFINITE)
+     Change camera position, rotation and LookAt to frame all selected objects.
+   EAction  GetCurrentAction () const
+     Retrieve current manipulation action.
+
+Public Attributes
+
+   FbxPropertyT< FbxReference >  Camera
+     The camera controlled by the manipulator.
+   FbxPropertyT< FbxFloat >  ViewportWidth
+     Width of the camera viewport, in pixels.
+   FbxPropertyT< FbxFloat >  ViewportHeight
+     Height of the camera viewport, in pixels.
+   FbxPropertyT< FbxBool >  InvertX
+     Invert the camera horizontal manipulation direction if set to true.
+   FbxPropertyT< FbxBool >  InvertY
+     Invert the camera vertical manipulation direction if set to true.
+   FbxPropertyT< FbxBool >  Restore
+     Restore the camera transform upon destruction of the manipulator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EAction
+   Search for all occurrences
+
+   All possible manipulation actions that can be performed on a camera using this manipulator.
+
+   Enumerator:
+
+          eNone
+
+   No action.
+   Search for all occurrences
+          eOrbit
+
+   Orbiting camera around LootAt/Interest position.
+   Search for all occurrences
+          eDolly
+
+   Moving camera closer or away from its LookAt/Intest position.
+   Search for all occurrences
+          ePan
+
+   Panning camera up, down and sideways.
+   Search for all occurrences
+          eFreePan
+
+   Panning and dollying all at once.
+   Search for all occurrences
+
+   Definition at line 36 of file fbxmanipulators.h.
+        {
+                eNone,
+                eOrbit,
+                eDolly,
+                ePan,
+                eFreePan
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Begin ( EAction  pAction,
+                float    pX,
+                float    pY
+              )
+   Search for all occurrences
+
+   Begin manipulation of the camera.
+
+   Parameters:
+
+          pAction The action performed for this manipulation scope.
+          pX      Begin horizontal position of the manipulation, in pixels.
+          pY      Begin vertical position of the manipulation, in pixels.
+
+   void Notify ( float  pX,
+                 float  pY,
+                 float  pZ = 0
+               )
+   Search for all occurrences
+
+   Notify manipulation of latest input.
+
+   Parameters:
+
+          pX Horizontal position of the manipulation, in pixels.
+          pY Vertical position of the manipulation, in pixels.
+          pZ Depth position of the manipulation, in pixels. Only used by eDollyPan action.
+
+   void End ( )
+   Search for all occurrences
+
+   End current manipulation.
+   void FrameAll ( const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                   int              pOnAnimLayer = 0
+                 )
+   Search for all occurrences
+
+   Change camera position, rotation and LookAt node to frame all objects.
+
+   Parameters:
+
+          pTime        Current time.
+          pOnAnimLayer Specify which animation layer to use for the evaluation.
+
+   void FrameSelected ( const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                        int              pOnAnimLayer = 0
+                      )
+   Search for all occurrences
+
+   Change camera position, rotation and LookAt to frame all selected objects.
+
+   Parameters:
+
+          pTime        Current time.
+          pOnAnimLayer Specify which animation layer to use for the evaluation.
+
+   EAction GetCurrentAction ( ) const
+   Search for all occurrences
+
+   Retrieve current manipulation action.
+
+   Returns:
+          The action currently performed by the camera manipulator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxReference> Camera
+   Search for all occurrences
+
+   The camera controlled by the manipulator.
+
+   Definition at line 75 of file fbxmanipulators.h.
+   FbxPropertyT<FbxFloat> ViewportWidth
+   Search for all occurrences
+
+   Width of the camera viewport, in pixels.
+
+   This is used to accurately calculate to movement speed.
+
+   Remarks:
+          If this property is not correctly set, movements will be erronous.
+
+   Definition at line 79 of file fbxmanipulators.h.
+   FbxPropertyT<FbxFloat> ViewportHeight
+   Search for all occurrences
+
+   Height of the camera viewport, in pixels.
+
+   This is used to accurately calculate to movement speed.
+
+   Remarks:
+          If this property is not correctly set, movements will be erronous.
+
+   Definition at line 83 of file fbxmanipulators.h.
+   FbxPropertyT<FbxBool> InvertX
+   Search for all occurrences
+
+   Invert the camera horizontal manipulation direction if set to true.
+
+   False by default.
+
+   Definition at line 86 of file fbxmanipulators.h.
+   FbxPropertyT<FbxBool> InvertY
+   Search for all occurrences
+
+   Invert the camera vertical manipulation direction if set to true.
+
+   False by default.
+
+   Definition at line 89 of file fbxmanipulators.h.
+   FbxPropertyT<FbxBool> Restore
+   Search for all occurrences
+
+   Restore the camera transform upon destruction of the manipulator.
+
+   Definition at line 92 of file fbxmanipulators.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxmanipulators.h
+
+   Please send us your comment about this page

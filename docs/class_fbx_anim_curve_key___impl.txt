@@ -1,0 +1,410 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveKey_Impl Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimCurveKey_Impl Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is the interface for implementation of animation key objects.
+
+   Remarks:
+          Users should not use this class directly, but always use FbxAnimCurveKey. A FbxAnimCurveKey has a FbxAnimCurveKey_Impl. But FbxAnimCurveKey_Impl is just an implementation interface,
+
+   Definition at line 134 of file fbxanimcurve.h.
+
+   List of all members.
+
+Public Member Functions
+
+                                                                                      virtual  ~FbxAnimCurveKey_Impl ()
+                                                                                              Destructor.
+                                                               virtual FbxAnimCurveKey_Impl &  operator= (const FbxAnimCurveKey_Impl &pFKey)=0
+                                                                                              Assignment operator.
+                                                                                 virtual void  Set (FbxTime pTime, float pValue)=0
+                                                                                              Set time and value of key.
+                                                                                 virtual void  SetTCB (FbxTime pTime, float pValue, float pData0=0.0f, float pData1=0.0f, float pData2=0.0f)=0
+                                                                                              Set a key with cubic interpolation, TCB tangent mode.
+                                                                                virtual float  GetValue () const =0
+                                                                                              Get the key value.
+                                                                                 virtual void  SetValue (float pValue)=0
+                                                                                              Set the key value.
+   virtual
+   FbxAnimCurveDef::EInterpolationType  GetInterpolation () const =0
+                                                                                              Get key's interpolation type.
+                                                                                 virtual void  SetInterpolation (FbxAnimCurveDef::EInterpolationType pInterpolation)=0
+                                                                                              Set key's interpolation type.
+   virtual
+   FbxAnimCurveDef::ETangentMode        GetTangentMode (bool pIncludeOverrides=false) const =0
+                                                                                              Get key's tangent mode.
+                                                                                 virtual void  SetTangentMode (FbxAnimCurveDef::ETangentMode pTangentMode)=0
+                                                                                              Set tangent mode.
+   virtual
+   FbxAnimCurveDef::EWeightedMode       GetTangentWeightMode () const =0
+                                                                                              Get key's tangent weight mode.
+                                                                                 virtual void  SetTangentWeightMode (FbxAnimCurveDef::EWeightedMode pTangentWeightMode, FbxAnimCurveDef::EWeightedMode pMask=FbxAnimCurveDef::eWeightedAll)=0
+                                                                                              Set key's tangent weight mode as double value (cubic interpolation, non TCB tangent mode).
+                                                                                 virtual void  SetTangentWeightAndAdjustTangent (FbxAnimCurveDef::EDataIndex pIndex, double pWeight)=0
+                                                                                              Adjust the actual tangent of the key so that the tangent control point (tangent extremity) stays closer to where it should be.
+   virtual
+   FbxAnimCurveDef::EVelocityMode       GetTangentVelocityMode () const =0
+                                                                                              Get key's tangent velocity mode.
+                                                                                 virtual void  SetTangentVelocityMode (FbxAnimCurveDef::EVelocityMode pTangentVelocityMode, FbxAnimCurveDef::EVelocityMode pMask=FbxAnimCurveDef::eVelocityAll)=0
+                                                                                              Set key's tangent velocity mode as double value (cubic interpolation, non TCB tangent mode).
+   virtual
+   FbxAnimCurveDef::EConstantMode       GetConstantMode () const =0
+                                                                                              Get key constant mode.
+                                                                                 virtual void  SetConstantMode (FbxAnimCurveDef::EConstantMode pMode)=0
+                                                                                              Set key's constant mode.
+                                                                                virtual float  GetDataFloat (FbxAnimCurveDef::EDataIndex pIndex) const =0
+                                                                                              Get the value of specified data of the key.
+                                                                                 virtual void  SetDataFloat (FbxAnimCurveDef::EDataIndex pIndex, float pValue)=0
+                                                                                              Set the value of specified data of the key.
+                                                                                 virtual void  SetTangentVisibility (FbxAnimCurveDef::ETangentVisibility pVisibility)=0
+                                                                                              Set tangent visibility mode.
+   virtual
+   FbxAnimCurveDef::ETangentVisibility  GetTangentVisibility () const =0
+                                                                                              Return tangent visibility mode.
+                                                                                 virtual void  SetBreak (bool pVal)=0
+                                                                                              Turn on or turn off the tangent break.
+                                                                                 virtual bool  GetBreak () const =0
+                                                                                              Get if the tangent has a break.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~FbxAnimCurveKey_Impl ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 139 of file fbxanimcurve.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxAnimCurveKey_Impl& operator= ( const FbxAnimCurveKey_Impl &  pFKey ) [pure virtual]
+
+   Assignment operator.
+   virtual void Set ( FbxTime  pTime,
+                      float    pValue
+                    )          [pure virtual]
+   Search for all occurrences
+
+   Set time and value of key.
+
+   Parameters:
+
+          pTime  New time of this key.
+          pValue New value of this key.
+
+   virtual void SetTCB ( FbxTime  pTime,
+                         float    pValue,
+                         float    pData0 = 0.0f,
+                         float    pData1 = 0.0f,
+                         float    pData2 = 0.0f
+                       )          [pure virtual]
+   Search for all occurrences
+
+   Set a key with cubic interpolation, TCB tangent mode.
+
+   The key is modified according to the other parameters. The TCB mode controls the tension, continuity, and bias of the curve.
+
+   Parameters:
+
+          pTime  Key time.
+          pValue Key value.
+          pData0 Tension. Controls the amount of curvature in the animation curve. The higher the tension is, the more linear the curve looks. When the tension is low, the curve looks rounder or wider.
+          pData1 Continuity. Controls the smoothness or singularity of the curve on the key.
+          pData2 Bias. Controls if the effect of tension and continuity affect the curve before or after the key.
+
+   virtual float GetValue ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get the key value.
+
+   Returns:
+          The value of the key.
+
+   virtual void SetValue ( float  pValue ) [pure virtual]
+   Search for all occurrences
+
+   Set the key value.
+
+   Parameters:
+
+          pValue The value to set.
+
+   virtual FbxAnimCurveDef::EInterpolationType GetInterpolation ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's interpolation type.
+
+   Returns:
+          Interpolation type of the queried key.
+
+   virtual void SetInterpolation ( FbxAnimCurveDef::EInterpolationType  pInterpolation ) [pure virtual]
+   Search for all occurrences
+
+   Set key's interpolation type.
+
+   Parameters:
+
+          pInterpolation Interpolation type of the key.
+
+   virtual FbxAnimCurveDef::ETangentMode GetTangentMode ( bool  pIncludeOverrides = false ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's tangent mode.
+
+   Parameters:
+
+          pIncludeOverrides Include override flags: Break, Clamp, Time-Independent.
+
+   Returns:
+          Tangent mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. Using this method for non cubic interpolated key will return unpredictable value.
+
+   virtual void SetTangentMode ( FbxAnimCurveDef::ETangentMode  pTangentMode ) [pure virtual]
+   Search for all occurrences
+
+   Set tangent mode.
+
+   Parameters:
+
+          pTangentMode Tangent mode to set.
+
+   virtual FbxAnimCurveDef::EWeightedMode GetTangentWeightMode ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's tangent weight mode.
+
+   Returns:
+          Tangent weight mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   virtual void SetTangentWeightMode ( FbxAnimCurveDef::EWeightedMode  pTangentWeightMode,
+                                       FbxAnimCurveDef::EWeightedMode  pMask = FbxAnimCurveDef::eWeightedAll
+                                     )                                 [pure virtual]
+   Search for all occurrences
+
+   Set key's tangent weight mode as double value (cubic interpolation, non TCB tangent mode).
+
+   Parameters:
+
+          pTangentWeightMode Weight mode.
+          pMask              Used to select the affected tangents.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. The pMask will be used to cancel out the current tangent weight mode first, and then be used to define which tangent to select to affect.
+
+   Sample01:
+   FbxAnimCurveKey* lAnimCurveKey = FbxSdkNew<FbxAnimCurveKey>();
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedNextLeft);
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedRight, FbxAnimCurveDef::eWeightedRight);
+
+   pMask is eWeightedRight, it will first be used to cancel out the current tangent weight mode eWeightedNextLeft, since they are not the same, it fails to cancel it out. Then the mask eWeightedRight will be used to define which tangent should be affected, since it is the same as pTangentWeightMode (eWeightedRight), so the eWeightedRight should be affected. In total, after above calls, both eWeightedNextLeft and eWeightedRight of this key are affected, so lAnimCurveKey->GetTangentWeightMode() will be
+   FbxAnimCurveDef::eWeightedAll.
+
+   Sample02:
+   FbxAnimCurveKey* lAnimCurveKey = FbxSdkNew<FbxAnimCurveKey>();
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedAll);
+   lAnimCurveKey->SetTangentWeightMode(FbxAnimCurveDef::eWeightedRight, FbxAnimCurveDef::eWeightedNextLeft);
+
+   pMask is eWeightedNextLeft, it will first be used to cancel out the current tangent weight mode eWeightedAll, it will cancel out affect on eWeightedNextLeft, but leave affect on eWeightedRight. Then the mask eWeightedNextLeft will be used to define which tangent should be affected, since it is not the same as pTangentWeightMode (eWeightedRight), so the pMask won't affect anything in this step. In total, after above calls, only eWeightedRight of this key is still affected, so
+   lAnimCurveKey->GetTangentWeightMode() will be FbxAnimCurveDef::eWeightedRight.
+   virtual void SetTangentWeightAndAdjustTangent ( FbxAnimCurveDef::EDataIndex  pIndex,
+                                                   double                       pWeight
+                                                 )                              [pure virtual]
+   Search for all occurrences
+
+   Adjust the actual tangent of the key so that the tangent control point (tangent extremity) stays closer to where it should be.
+
+   This is required because the weight value gets imprecise when it is small (it is stored as a fixed point value). This method must be called when setting the weight coming from a source where the precision is the same. It must be called after the tangent value has been set.
+
+   Remarks:
+          Do not use this call repetitively (from an interactive editor for example) because this function will create imprecision on the tangent value.
+
+   Parameters:
+
+          pIndex  FbxAnimCurveDef::EDataIndex
+          pWeight New tangent weight value.
+
+   virtual FbxAnimCurveDef::EVelocityMode GetTangentVelocityMode ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get key's tangent velocity mode.
+
+   Returns:
+          Tangent velocity mode of the key.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   virtual void SetTangentVelocityMode ( FbxAnimCurveDef::EVelocityMode  pTangentVelocityMode,
+                                         FbxAnimCurveDef::EVelocityMode  pMask = FbxAnimCurveDef::eVelocityAll
+                                       )                                 [pure virtual]
+   Search for all occurrences
+
+   Set key's tangent velocity mode as double value (cubic interpolation, non TCB tangent mode).
+
+   Parameters:
+
+          pTangentVelocityMode Velocity mode.
+          pMask                Used to select the affected tangents
+
+   Remarks:
+          This method is meaningful for cubic interpolation only. The pMask will be used to cancel out the current tangent velocity mode first, and then be used to define which tangent to select to affect.
+
+   See also:
+          The documentation of SetTangentWeightMode for more details and samples about how the pMask works.
+
+   virtual FbxAnimCurveDef::EConstantMode GetConstantMode ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get key constant mode.
+
+   Returns:
+          Key constant mode.
+
+   Remarks:
+          This method is meaningful for constant interpolation only. Using this method for non constant interpolated key will return unpredicted value.
+
+   virtual void SetConstantMode ( FbxAnimCurveDef::EConstantMode  pMode ) [pure virtual]
+   Search for all occurrences
+
+   Set key's constant mode.
+
+   Parameters:
+
+          pMode Constant mode to set.
+
+   Remarks:
+          This method is meaningful for constant interpolation only.
+
+   virtual float GetDataFloat ( FbxAnimCurveDef::EDataIndex  pIndex ) const [pure virtual]
+   Search for all occurrences
+
+   Get the value of specified data of the key.
+
+   Parameters:
+
+          pIndex Data index to specify which data to get value, the index is dependent on the key tangent mode.
+
+   Returns:
+          The value of the specified data.
+
+ FbxAnimCurveKey* lKey; // we suppose this is a valid pointer
+ if(lKey->GetTangentMode() == FbxAnimCurveDef::eTangentTCB)
+ {
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBTension);
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBContinuity);
+     lKey->GetDataFloat(FbxAnimCurveDef::eTCBBias);
+ }
+
+   virtual void SetDataFloat ( FbxAnimCurveDef::EDataIndex  pIndex,
+                               float                        pValue
+                             )                              [pure virtual]
+   Search for all occurrences
+
+   Set the value of specified data of the key.
+
+   Parameters:
+
+          pIndex Data index to specify which data to get value, the index is dependent on the key tangent mode.
+          pValue The data value to set.
+
+ FbxAnimCurveKey* lKey; // we suppose this is a valid pointer
+ lKey->SetInterpolation(FbxAnimCurveDef::eInterpolationCubic);
+ lKey->SetTangentMode(FbxAnimCurveDef::eTangentAuto);
+ lKey->SetDataFloat(FbxAnimCurveDef::eRightSlope, 0.0);
+
+   virtual void SetTangentVisibility ( FbxAnimCurveDef::ETangentVisibility  pVisibility ) [pure virtual]
+   Search for all occurrences
+
+   Set tangent visibility mode.
+
+   This would indicate what part of the tangent is visible in a graphical interface.
+
+   Parameters:
+
+          pVisibility Tangent visibility mode.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   virtual FbxAnimCurveDef::ETangentVisibility GetTangentVisibility ( ) const [pure virtual]
+   Search for all occurrences
+
+   Return tangent visibility mode.
+
+   Returns:
+          Tangent visibility mode.
+
+   Remarks:
+          This method is meaningful for cubic interpolation only.
+
+   virtual void SetBreak ( bool  pVal ) [pure virtual]
+   Search for all occurrences
+
+   Turn on or turn off the tangent break.
+
+   When this flag is on (FbxAnimCurveDef::eTANGEAT_BREAK will be set), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal.
+
+   Parameters:
+
+          pVal Break flag (true or false).
+
+   Remarks:
+          This method is meaningful for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+
+   virtual bool GetBreak ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get if the tangent has a break.
+
+   When this flag is set (FbxAnimCurveDef::eTANGEAT_BREAK), the key's left and right slopes are independent. When this flag is off, the key's left and right slope are equal.
+
+   Returns:
+          Break flag (true or false).
+
+   Remarks:
+          This method is meaningful for User (FbxAnimCurveDef::eTangentUser) and Auto (FbxAnimCurveDef::eTangentAuto) tangent modes only.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurve.h
+
+   Please send us your comment about this page

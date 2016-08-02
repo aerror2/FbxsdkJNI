@@ -1,0 +1,48 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGenericNode Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxGenericNode Class Reference
+   Search for all occurrences
+
+   #include <fbxgenericnode.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Empty node containing properties.
+
+   Definition at line 24 of file fbxgenericnode.h.
+   Inheritance diagram for FbxGenericNode:
+   [USEMAP:class_fbx_generic_node.png]
+
+   List of all members.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxgenericnode.h
+
+   Please send us your comment about this page

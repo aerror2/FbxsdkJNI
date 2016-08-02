@@ -1,0 +1,88 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyTFbxDouble3 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxPropertyTFbxDouble3 Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxproperty.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class FbxDouble3 >
+class FbxPropertyT< FbxDouble3  >
+
+   This template class is used to contain user properties of specific data types.
+
+   Definition at line 1233 of file fbxproperty.h.
+   Inheritance diagram for FbxPropertyT< FbxDouble3  >:
+   [USEMAP:class_fbx_property_t.png]
+
+   List of all members.
+
+Static initialization.
+
+    FbxProperty &  StaticInit (FbxObject *pObject, const char *pName, const FbxDouble3  &pValue, bool pForceSet, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+    FbxProperty &  StaticInit (FbxObject *pObject, const char *pName, const FbxDataType &pDataType, const FbxDouble3  &pValue, bool pForceSet, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+    FbxProperty &  StaticInit (FbxProperty pCompound, const char *pName, const FbxDataType &pDataType, const FbxDouble3  &pValue, bool pForceSet=true, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+
+Value Management
+
+   void  Set (const FbxDouble3  &pValue)
+                   Assignment function.
+                FbxDouble3   Get () const
+                   Retrieve function.
+
+Animation Evaluation
+
+                FbxDouble3   EvaluateValue (const FbxTime &pTime=FBXSDK_TIME_INFINITE, bool pForceEval=false)
+                   Evaluate the value of a property if it has animation and return the result.
+               FbxAnimCurveNode *  CreateCurveNode (FbxAnimLayer *pAnimLayer)
+                                  Creates a FbxAnimCurveNode on the specified layer.
+              FbxAnimCurveNode *  GetCurveNode (bool pCreate=false)
+                                  Get the property's animation curve node on the default animation stack and base layer.
+              FbxAnimCurveNode *  GetCurveNode (FbxAnimStack *pAnimStack, bool pCreate=false)
+                                  Get the property's animation curve node on the specified animation stack, using its base layer.
+              FbxAnimCurveNode *  GetCurveNode (FbxAnimLayer *pAnimLayer, bool pCreate=false)
+                                  Get the property's animation curve node on the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, bool pCreate=false)
+                                  Get the FbxAnimCurve from the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, const char *pChannel, bool pCreate=false)
+                                  Get the FbxAnimCurve from the specified animation layer.
+                  FbxAnimCurve *  GetCurve (FbxAnimLayer *pAnimLayer, const char *pName, const char *pChannel, bool pCreate)
+                                  Get the FbxAnimCurve of the specified channel from the specified animation layer.
+
+Member Function Documentation
+
+

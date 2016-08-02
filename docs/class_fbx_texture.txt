@@ -1,0 +1,1249 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxTexture Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxTexture Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, FBX Scenes, Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtexture.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class is the base class for textures, ie classes FbxFileTexture, FbxLayeredTexture and FbxProceduralTexture.
+
+   It describes image mapping on top of a geometry.
+
+   Examples:
+          ExportDocument/main.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, ImportScene/DisplayTexture.h, Layers/main.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 26 of file fbxtexture.h.
+   Inheritance diagram for FbxTexture:
+   [USEMAP:class_fbx_texture.png]
+
+   List of all members.
+
+Texture Properties
+
+   enum   EUnifiedMappingType {
+     eUMT_UV, eUMT_XY, eUMT_YZ, eUMT_XZ,
+     eUMT_SPHERICAL, eUMT_CYLINDRICAL, eUMT_ENVIRONMENT, eUMT_PROJECTION,
+     eUMT_BOX, eUMT_FACE, eUMT_NO_MAPPING
+   }
+     Internal enum for texture mapping types. More...
+   enum   ETextureUse6 {
+     eTEXTURE_USE_6_STANDARD, eTEXTURE_USE_6_SPHERICAL_REFLEXION_MAP, eTEXTURE_USE_6_SPHERE_REFLEXION_MAP, eTEXTURE_USE_6_SHADOW_MAP,
+     eTEXTURE_USE_6_LIGHT_MAP, eTEXTURE_USE_6_BUMP_NORMAL_MAP
+   }
+     Internal enum for texture usage. More...
+   enum   EWrapMode { eRepeat, eClamp }
+     Wrap modes. More...
+   enum   EBlendMode {
+     eTranslucent, eAdditive, eModulate, eModulate2,
+     eOver
+   }
+     Blend modes. More...
+   enum   EAlignMode { eLeft, eRight, eTop, eBottom }
+     Align indices for cropping. More...
+   enum   ECoordinates { eU, eV, eW }
+     Texture coordinates. More...
+   enum   EAlphaSource { eNone, eRGBIntensity, eBlack }
+     Controls if the Alpha computation of the current texture comes from the Alpha channel, RGB Intensity channel, or if there is No Alpha. More...
+   enum   EMappingType {
+     eNull, ePlanar, eSpherical, eCylindrical,
+     eBox, eFace, eUV, eEnvironment
+   }
+     Texture mapping types. More...
+   enum   EPlanarMappingNormal { ePlanarNormalX, ePlanarNormalY, ePlanarNormalZ }
+     Planar mapping normal orientations. More...
+   enum   ETextureUse {
+     eStandard, eShadowMap, eLightMap, eSphericalReflectionMap,
+     eSphereReflectionMap, eBumpNormalMap
+   }
+     Texture uses. More...
+   FbxPropertyT< ETextureUse6 >  TextureTypeUse
+     This property handles the use of textures.
+   FbxPropertyT< FbxDouble >  Alpha
+     This property handles the default alpha value for textures.
+   FbxPropertyT< EUnifiedMappingType >  CurrentMappingType
+     This property handles the texture mapping types.
+   FbxPropertyT< EWrapMode >  WrapModeU
+     This property handles the texture wrap modes in U.
+   FbxPropertyT< EWrapMode >  WrapModeV
+     This property handles the texture wrap modes in V.
+   FbxPropertyT< FbxBool >  UVSwap
+     This property handles the swap UV flag.
+   FbxPropertyT< FbxBool >  PremultiplyAlpha
+     This property handles the PremultiplyAlpha flag.
+   FbxPropertyT< FbxDouble3 >  Translation
+     This property handles the default translation vector.
+   FbxPropertyT< FbxDouble3 >  Rotation
+     This property handles the default rotation vector.
+   FbxPropertyT< FbxDouble3 >  Scaling
+     This property handles the default scale vector.
+   FbxPropertyT< FbxDouble3 >  RotationPivot
+     This property handles the rotation pivot vector.
+   FbxPropertyT< FbxDouble3 >  ScalingPivot
+     This property handles the scaling pivot vector.
+   FbxPropertyT< EBlendMode >  CurrentTextureBlendMode
+     This property handles the texture blend mode.
+   FbxPropertyT< FbxString >  UVSet
+     This property handles the use of UV sets.
+   static const char *  sVectorSpace
+     This property only used by Vector Displacement Texture so it is not added to FbxTexture.
+   static const char *  sVectorSpaceWorld
+   static const char *  sVectorSpaceObject
+   static const char *  sVectorSpaceTangent
+   static const char *  sVectorEncoding
+     This property only used by Vector Displacement Texture so it is not added to FbxTexture.
+   static const char *  sVectorEncodingFP
+   static const char *  sVectorEncodingSE
+   virtual void  Reset ()
+     Resets the default texture values.
+   void  SetSwapUV (bool pSwapUV)
+     Sets the swap UV flag.
+   bool  GetSwapUV () const
+     Returns the swap UV flag.
+   void  SetPremultiplyAlpha (bool pPremultiplyAlpha)
+     Sets the PremultiplyAlpha flag.
+   bool  GetPremultiplyAlpha () const
+     Returns the PremultiplyAlpha flag.
+   void  SetAlphaSource (EAlphaSource pAlphaSource)
+     Sets the alpha source.
+   EAlphaSource  GetAlphaSource () const
+     Returns the alpha source.
+   void  SetCropping (int pLeft, int pTop, int pRight, int pBottom)
+     Sets cropping.
+   int  GetCroppingLeft () const
+     Returns left cropping.
+   int  GetCroppingTop () const
+     Returns top cropping.
+   int  GetCroppingRight () const
+     Returns right cropping.
+   int  GetCroppingBottom () const
+     Returns bottom cropping.
+   void  SetMappingType (EMappingType pMappingType)
+     Sets the mapping type.
+   EMappingType  GetMappingType () const
+     Returns the mapping type.
+   void  SetPlanarMappingNormal (EPlanarMappingNormal pPlanarMappingNormal)
+     Sets the normal orientations for planar mapping.
+   EPlanarMappingNormal  GetPlanarMappingNormal () const
+     Returns the normal orientations for planar mapping.
+   void  SetTextureUse (ETextureUse pTextureUse)
+     Sets the texture use.
+   ETextureUse  GetTextureUse () const
+     Returns the texture use.
+   void  SetWrapMode (EWrapMode pWrapU, EWrapMode pWrapV)
+     Sets the U and V wrap mode.
+   EWrapMode  GetWrapModeU () const
+     Returns the U wrap mode.
+   EWrapMode  GetWrapModeV () const
+     Returns the V wrap mode.
+   void  SetBlendMode (EBlendMode pBlendMode)
+     Sets the blend mode.
+   EBlendMode  GetBlendMode () const
+     Returns the blend mode.
+
+Default Values Management By Vectors
+
+   This set of functions provides direct access to the default values in vector base.
+   void  SetDefaultT (const FbxVector4 &pT)
+     Sets the default translation vector.
+   FbxVector4 &  GetDefaultT (FbxVector4 &pT) const
+     Returns the default translation vector.
+   void  SetDefaultR (const FbxVector4 &pR)
+     Sets the default rotation vector.
+   FbxVector4 &  GetDefaultR (FbxVector4 &pR) const
+     Returns the default rotation vector.
+   void  SetDefaultS (const FbxVector4 &pS)
+     Sets the default scale vector.
+   FbxVector4 &  GetDefaultS (FbxVector4 &pS) const
+     Returns the default scale vector.
+
+Default Alpha Value
+
+   void  SetDefaultAlpha (double pAlpha)
+     Sets the default alpha.
+   double  GetDefaultAlpha () const
+     Returns the default alpha.
+
+Default Values Management By Numbers
+
+   This set of functions provides direct access to the default values in number base.
+
+   U, V and W coordinates are mapped to the X, Y and Z coordinates of the default vectors found in the "Default Values By Vector" section.
+   void  SetTranslation (double pU, double pV)
+     Sets translation.
+   double  GetTranslationU () const
+     Returns translation applied to the texture width.
+   double  GetTranslationV () const
+     Returns translation applied to the texture height.
+   void  SetRotation (double pU, double pV, double pW=0.0)
+     Sets rotation.
+   double  GetRotationU () const
+     Returns the texture rotation around the U axis in degrees.
+   double  GetRotationV () const
+     Returns the texture rotation around the V axis in degrees.
+   double  GetRotationW () const
+     Returns the texture rotation around the W axis in degrees.
+   void  SetScale (double pU, double pV)
+     Sets scale.
+   double  GetScaleU () const
+     Returns scale applied to the texture width.
+   double  GetScaleV () const
+     Returns scale applied to the texture height.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EUnifiedMappingType
+   Search for all occurrences
+
+   Internal enum for texture mapping types.
+
+   Includes mapping types and planar mapping normal orientations. Use SetMappingType(), GetMappingType(), SetPlanarMappingNormal() and GetPlanarMappingNormal() to access these values.
+
+   Enumerator:
+
+          eUMT_UV
+
+   Search for all occurrences
+          eUMT_XY
+
+   Maps to EMappingType::eUV.
+   Search for all occurrences
+          eUMT_YZ
+
+   Maps to EMappingType::ePlanar and EPlanarMappingNormal::ePlanarNormalZ.
+   Search for all occurrences
+          eUMT_XZ
+
+   Maps to EMappingType::ePlanar and EPlanarMappingNormal::ePlanarNormalX.
+   Search for all occurrences
+          eUMT_SPHERICAL
+
+   Maps to EMappingType::ePlanar and EPlanarMappingNormal::ePlanarNormalY.
+   Search for all occurrences
+          eUMT_CYLINDRICAL
+
+   Maps to EMappingType::eSpherical.
+   Search for all occurrences
+          eUMT_ENVIRONMENT
+
+   Maps to EMappingType::eCylindrical.
+   Search for all occurrences
+          eUMT_PROJECTION
+
+   Maps to EMappingType::eEnvironment.
+   Search for all occurrences
+          eUMT_BOX
+
+   Unused.
+   Search for all occurrences
+          eUMT_FACE
+
+   DEPRECATED! Maps to EMappingType::eBox.
+   Search for all occurrences
+          eUMT_NO_MAPPING
+
+   DEPRECATED! Maps to EMappingType::eFace.
+   Search for all occurrences
+
+   Definition at line 40 of file fbxtexture.h.
+                {
+                        eUMT_UV,
+                        eUMT_XY,
+                        eUMT_YZ,
+                        eUMT_XZ,
+                        eUMT_SPHERICAL,
+                        eUMT_CYLINDRICAL,
+                        eUMT_ENVIRONMENT,
+                        eUMT_PROJECTION,
+                        eUMT_BOX,
+                        eUMT_FACE,
+                        eUMT_NO_MAPPING,
+                };
+
+   enum ETextureUse6
+   Search for all occurrences
+
+   Internal enum for texture usage.
+
+   For example, the texture might be used as a standard texture, as a shadow map, as a bump map, etc. Use SetTextureUse() and GetTextureUse() to access these values.
+
+   Enumerator:
+
+          eTEXTURE_USE_6_STANDARD
+
+   Search for all occurrences
+          eTEXTURE_USE_6_SPHERICAL_REFLEXION_MAP
+
+   Maps to ETextureUse::eStandard.
+   Search for all occurrences
+          eTEXTURE_USE_6_SPHERE_REFLEXION_MAP
+
+   Maps to ETextureUse::eSphericalReflectionMap.
+   Search for all occurrences
+          eTEXTURE_USE_6_SHADOW_MAP
+
+   Maps to ETextureUse::eSphereReflectionMap.
+   Search for all occurrences
+          eTEXTURE_USE_6_LIGHT_MAP
+
+   Maps to ETextureUse::eShadowMap.
+   Search for all occurrences
+   eTEXTURE_USE_6_BUMP_NORMAL_MAP
+
+   Maps to ETextureUse::eLightMap.
+   Maps to ETextureUse::eBumpNormalMap.
+   Search for all occurrences
+
+   Definition at line 59 of file fbxtexture.h.
+                {
+                        eTEXTURE_USE_6_STANDARD,
+                        eTEXTURE_USE_6_SPHERICAL_REFLEXION_MAP,
+                        eTEXTURE_USE_6_SPHERE_REFLEXION_MAP,
+                        eTEXTURE_USE_6_SHADOW_MAP,
+                        eTEXTURE_USE_6_LIGHT_MAP,
+                        eTEXTURE_USE_6_BUMP_NORMAL_MAP
+                };
+
+   enum EWrapMode
+   Search for all occurrences
+
+   Wrap modes.
+
+   Use SetWrapMode(), GetWrapModeU() and GetWrapModeV() to access these values.
+
+   Enumerator:
+
+          eRepeat
+
+   Search for all occurrences
+   eClamp
+
+   Apply the texture over and over on the model's surface until the model is covered. This is the default setting.
+   Apply the texture to a model only once, using the color at the ends of the texture as the "filter".
+   Search for all occurrences
+
+   Definition at line 72 of file fbxtexture.h.
+                {
+                        eRepeat,
+                        eClamp
+                };
+
+   enum EBlendMode
+   Search for all occurrences
+
+   Blend modes.
+
+   Enumerator:
+
+          eTranslucent
+
+   Search for all occurrences
+          eAdditive
+
+   The texture is transparent, depending on the Alpha settings.
+   Search for all occurrences
+          eModulate
+
+   The color of the texture is added to the previous texture.
+   Search for all occurrences
+          eModulate2
+
+   The color value of the texture is multiplied by the color values of all previous layers of texture.
+   Search for all occurrences
+   eOver
+
+   The color value of the texture is multiplied by two and then multiplied by the color values of all previous layers of texture.
+   The texture is opaque.
+   Search for all occurrences
+
+   Reimplemented in FbxLayeredTexture.
+
+   Definition at line 80 of file fbxtexture.h.
+                {
+                        eTranslucent,
+                        eAdditive,
+                        eModulate,
+                        eModulate2,
+                        eOver
+        };
+
+   enum EAlignMode
+   Search for all occurrences
+
+   Align indices for cropping.
+
+   Enumerator:
+
+          eLeft
+
+   Search for all occurrences
+          eRight
+
+   Left cropping.
+   Search for all occurrences
+          eTop
+
+   Right cropping.
+   Search for all occurrences
+   eBottom
+
+   Top cropping.
+   Bottom cropping.
+   Search for all occurrences
+
+   Definition at line 91 of file fbxtexture.h.
+        {
+            eLeft,
+            eRight,
+            eTop,
+            eBottom
+        };
+
+   enum ECoordinates
+   Search for all occurrences
+
+   Texture coordinates.
+
+   Enumerator:
+
+          eU
+
+   Search for all occurrences
+          eV
+
+   U axis.
+   Search for all occurrences
+   eW
+
+   V axis.
+   W axis.
+   Search for all occurrences
+
+   Definition at line 101 of file fbxtexture.h.
+        {
+            eU,
+            eV,
+            eW
+        };
+
+   enum EAlphaSource
+   Search for all occurrences
+
+   Controls if the Alpha computation of the current texture comes from the Alpha channel, RGB Intensity channel, or if there is No Alpha.
+
+   Enumerator:
+
+          eNone
+
+   No flags.
+   Search for all occurrences
+          eRGBIntensity
+
+   No Alpha.
+   Search for all occurrences
+   eBlack
+
+   RGB Intensity (computed).
+   Alpha channel. Black is 100% transparency, white is opaque.
+   Search for all occurrences
+
+   Definition at line 237 of file fbxtexture.h.
+    {
+        eNone,
+        eRGBIntensity,
+        eBlack
+    };
+
+   enum EMappingType
+   Search for all occurrences
+
+   Texture mapping types.
+
+   Enumerator:
+
+          eNull
+
+   Search for all occurrences
+          ePlanar
+
+   No texture mapping defined.
+   Search for all occurrences
+          eSpherical
+
+   Apply texture to the model viewed as a plane.
+   Search for all occurrences
+          eCylindrical
+
+   Wrap texture around the model as if it was a sphere.
+   Search for all occurrences
+          eBox
+
+   Wrap texture around the model as if it was a cylinder.
+   Search for all occurrences
+          eFace
+
+   Wrap texture around the model as if it was a box.
+   Search for all occurrences
+          eUV
+
+   Apply texture to the model viewed as a face.
+   Search for all occurrences
+   eEnvironment
+
+   Apply texture to the model according to UVs.
+   Texture is an environment map.
+   Search for all occurrences
+
+   Definition at line 287 of file fbxtexture.h.
+    {
+        eNull,
+        ePlanar,
+        eSpherical,
+        eCylindrical,
+        eBox,
+        eFace,
+        eUV,
+                eEnvironment
+    };
+
+   enum EPlanarMappingNormal
+   Search for all occurrences
+
+   Planar mapping normal orientations.
+
+   Enumerator:
+
+          ePlanarNormalX
+
+   Search for all occurrences
+          ePlanarNormalY
+
+   Normals are in the direction of the X axis, mapping plan is in the YZ axis.
+   Search for all occurrences
+   ePlanarNormalZ
+
+   Normals are in the direction of the Y axis, mapping plan is in the XZ axis.
+   Normals are in the direction of the Z axis, mapping plan is in the XY axis.
+   Search for all occurrences
+
+   Definition at line 311 of file fbxtexture.h.
+    {
+        ePlanarNormalX,
+        ePlanarNormalY,
+        ePlanarNormalZ
+    };
+
+   enum ETextureUse
+   Search for all occurrences
+
+   Texture uses.
+
+   Enumerator:
+
+          eStandard
+
+   Search for all occurrences
+          eShadowMap
+
+   Standard texture use (ex. image)
+   Search for all occurrences
+          eLightMap
+
+   Shadow map.
+   Search for all occurrences
+          eSphericalReflectionMap
+
+   Light map.
+   Search for all occurrences
+          eSphereReflectionMap
+
+   Spherical reflection map: Object reflects the contents of the scene.
+   Search for all occurrences
+   eBumpNormalMap
+
+   Sphere reflection map: Object reflects the contents of the scene from only one point of view.
+   Bump map: Texture contains two direction vectors, that are used to convey relief in a texture.
+   Search for all occurrences
+
+   Definition at line 330 of file fbxtexture.h.
+        {
+                eStandard,
+                eShadowMap,
+                eLightMap,
+                eSphericalReflectionMap,
+                eSphereReflectionMap,
+                eBumpNormalMap
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Resets the default texture values.
+
+   Reimplemented in FbxFileTexture, and FbxProceduralTexture.
+   void SetSwapUV ( bool  pSwapUV )
+   Search for all occurrences
+
+   Sets the swap UV flag.
+
+   Parameters:
+
+          pSwapUV Set to true if the swap UV flag is enabled.
+
+   Remarks:
+          If the swap UV flag is enabled, the texture's width and height are swapped.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool GetSwapUV ( ) const
+   Search for all occurrences
+
+   Returns the swap UV flag.
+
+   Returns:
+          True if the swap UV flag is enabled.
+
+   Remarks:
+          If the swap UV flag is enabled, the texture's width and height are swapped.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetPremultiplyAlpha ( bool  pPremultiplyAlpha )
+   Search for all occurrences
+
+   Sets the PremultiplyAlpha flag.
+
+   Parameters:
+
+          pPremultiplyAlpha Set to true if the method of storing alpha is PremultiplyAlpha.
+
+   Remarks:
+          If PremultiplyAlpha flag is true, the R, G, and B components you store have already been multiplied in with the alpha.
+
+   bool GetPremultiplyAlpha ( ) const
+   Search for all occurrences
+
+   Returns the PremultiplyAlpha flag.
+
+   Returns:
+          True if the method of storing alpha is PremultiplyAlpha.
+
+   Remarks:
+          If PremultiplyAlpha flag is true, the R, G, and B components you store have already been multiplied in with the alpha.
+
+   void SetAlphaSource ( EAlphaSource  pAlphaSource )
+   Search for all occurrences
+
+   Sets the alpha source.
+
+   Parameters:
+
+          pAlphaSource The alpha source identifier.
+
+   Examples:
+          ExportDocument/main.cxx.
+
+   EAlphaSource GetAlphaSource ( ) const
+   Search for all occurrences
+
+   Returns the alpha source.
+
+   Returns:
+          The alpha source identifier for this texture.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetCropping ( int  pLeft,
+                      int  pTop,
+                      int  pRight,
+                      int  pBottom
+                    )
+   Search for all occurrences
+
+   Sets cropping.
+
+   Parameters:
+
+          pLeft   Left cropping value.
+          pTop    Top cropping value.
+          pRight  Right cropping value.
+          pBottom Bottom cropping value.
+
+   Remarks:
+          The defined rectangle is not checked for invalid values. The caller must verify that the rectangle is meaningful for this texture.
+
+   int GetCroppingLeft ( ) const
+   Search for all occurrences
+
+   Returns left cropping.
+
+   Returns:
+          The left side of the cropping rectangle.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   int GetCroppingTop ( ) const
+   Search for all occurrences
+
+   Returns top cropping.
+
+   Returns:
+          The top side of the cropping rectangle.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   int GetCroppingRight ( ) const
+   Search for all occurrences
+
+   Returns right cropping.
+
+   Returns:
+          The right side of the cropping rectangle.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   int GetCroppingBottom ( ) const
+   Search for all occurrences
+
+   Returns bottom cropping.
+
+   Returns:
+          The bottom side of the cropping rectangle.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetMappingType ( EMappingType  pMappingType )
+   Search for all occurrences
+
+   Sets the mapping type.
+
+   Parameters:
+
+          pMappingType The mapping type identifier.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportShader/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   EMappingType GetMappingType ( ) const
+   Search for all occurrences
+
+   Returns the mapping type.
+
+   Returns:
+          The mapping type identifier.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetPlanarMappingNormal ( EPlanarMappingNormal  pPlanarMappingNormal )
+   Search for all occurrences
+
+   Sets the normal orientations for planar mapping.
+
+   Parameters:
+
+          pPlanarMappingNormal The identifier for planar mapping normal orientation.
+
+   EPlanarMappingNormal GetPlanarMappingNormal ( ) const
+   Search for all occurrences
+
+   Returns the normal orientations for planar mapping.
+
+   Returns:
+          The identifier for planar mapping normal orientation.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetTextureUse ( ETextureUse  pTextureUse )
+   Search for all occurrences
+
+   Sets the texture use.
+
+   Parameters:
+
+          pTextureUse The texture use identifier.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportShader/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   ETextureUse GetTextureUse ( ) const
+   Search for all occurrences
+
+   Returns the texture use.
+
+   Returns:
+          The texture use identifier.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetWrapMode ( EWrapMode  pWrapU,
+                      EWrapMode  pWrapV
+                    )
+   Search for all occurrences
+
+   Sets the U and V wrap mode.
+
+   Parameters:
+
+          pWrapU Wrap mode identifier.
+          pWrapV Wrap mode identifier.
+
+   EWrapMode GetWrapModeU ( ) const
+   Search for all occurrences
+
+   Returns the U wrap mode.
+
+   Returns:
+          U wrap mode identifier.
+
+   EWrapMode GetWrapModeV ( ) const
+   Search for all occurrences
+
+   Returns the V wrap mode.
+
+   Returns:
+          V wrap mode identifier.
+
+   void SetBlendMode ( EBlendMode  pBlendMode )
+   Search for all occurrences
+
+   Sets the blend mode.
+
+   Parameters:
+
+          pBlendMode Blend mode identifier.
+
+   EBlendMode GetBlendMode ( ) const
+   Search for all occurrences
+
+   Returns the blend mode.
+
+   Returns:
+          Blend mode identifier.
+
+   void SetDefaultT ( const FbxVector4 &  pT ) [inline]
+   Search for all occurrences
+
+   Sets the default translation vector.
+
+   Parameters:
+
+          pT The first element is the U translation applied to the texture. A displacement of one unit is equal to the texture width after the U scaling is applied. The second element is the V translation applied to the texture. A displacement of one unit is equal to the texture height after the V scaling is applied. The third and fourth elements have no effect on texture translation.
+
+   Definition at line 395 of file fbxtexture.h.
+{ Translation.Set( pT ); }
+
+   FbxVector4& GetDefaultT ( FbxVector4 &  pT ) const
+   Search for all occurrences
+
+   Returns the default translation vector.
+
+   Parameters:
+
+          pT The first element is the U translation applied to the texture. A displacement of one unit is equal to the texture width after the U scaling is applied. The second element is the V translation applied to the texture. A displacement of one unit is equal to the texture height after the V scaling is applied. The third and fourth elements have no effect on texture translation.
+
+   Returns:
+          The input parameter completed with appropriate data.
+
+   void SetDefaultR ( const FbxVector4 &  pR ) [inline]
+   Search for all occurrences
+
+   Sets the default rotation vector.
+
+   Parameters:
+
+          pR The first element is the texture rotation around the U axis in degrees. The second element is the texture rotation around the V axis in degrees. The third element is the texture rotation around the W axis in degrees.
+
+   Remarks:
+          The W axis is oriented toward the result of the vector product of the U and V axes that is W = U x V.
+
+   Definition at line 417 of file fbxtexture.h.
+{ Rotation.Set( FbxDouble3(pR[0],pR[1],pR[2]) ); }
+
+   FbxVector4& GetDefaultR ( FbxVector4 &  pR ) const
+   Search for all occurrences
+
+   Returns the default rotation vector.
+
+   Parameters:
+
+          pR First element is the texture rotation around the U axis in degrees. Second element is the texture rotation around the V axis in degrees. Third element is the texture rotation around the W axis in degrees.
+
+   Returns:
+          Input parameter filled with appropriate data.
+
+   Remarks:
+          The W axis is oriented towards the result of the vector product of the U axis and V axis i.e. W = U x V.
+
+   void SetDefaultS ( const FbxVector4 &  pS ) [inline]
+   Search for all occurrences
+
+   Sets the default scale vector.
+
+   Parameters:
+
+          pS The first element is scale applied to the texture width. The second element is scale applied to the texture height. The third and fourth elements have no effect on the texture.
+
+   Remarks:
+          A scale value less than 1 stretches the texture. A scale value greater than 1 compresses the texture.
+
+   Definition at line 437 of file fbxtexture.h.
+{ Scaling.Set( FbxDouble3(pS[0],pS[1],pS[2]) ); }
+
+   FbxVector4& GetDefaultS ( FbxVector4 &  pS ) const
+   Search for all occurrences
+
+   Returns the default scale vector.
+
+   Parameters:
+
+          pS The first element is scale applied to the texture width. The second element is scale applied to the texture height. The third and fourth elements have no effect on the texture.
+
+   Remarks:
+          A scale value less than 1 stretches the texture. A scale value greater than 1 compresses the texture.
+
+   void SetDefaultAlpha ( double  pAlpha )
+   Search for all occurrences
+
+   Sets the default alpha.
+
+   Parameters:
+
+          pAlpha A value on a scale from 0 to 1, with 0 being transparent.
+
+   double GetDefaultAlpha ( ) const
+   Search for all occurrences
+
+   Returns the default alpha.
+
+   Returns:
+          A value on a scale from 0 to 1, with 0 being transparent.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetTranslation ( double  pU,
+                         double  pV
+                       )
+   Search for all occurrences
+
+   Sets translation.
+
+   Parameters:
+
+          pU Horizontal translation applied to a texture. A displacement of one unit is equal to the texture's width after applying U scaling.
+          pV Vertical translation applied to a texture. A displacement of one unit is equal to the texture's height after applying V scaling.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   double GetTranslationU ( ) const
+   Search for all occurrences
+
+   Returns translation applied to the texture width.
+
+   Remarks:
+          A displacement of one unit is equal to the texture's width after applying U scaling.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   double GetTranslationV ( ) const
+   Search for all occurrences
+
+   Returns translation applied to the texture height.
+
+   Remarks:
+          A displacement of one unit is equal to the texture's height after applying V scaling.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetRotation ( double  pU,
+                      double  pV,
+                      double  pW = 0.0
+                    )
+   Search for all occurrences
+
+   Sets rotation.
+
+   Parameters:
+
+          pU Texture rotation around the U axis in degrees.
+          pV Texture rotation around the V axis in degrees.
+          pW Texture rotation around the W axis in degrees.
+
+   Remarks:
+          The W axis is oriented toward the result of the vector product of the U and V axes that is W = U x V.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   double GetRotationU ( ) const
+   Search for all occurrences
+
+   Returns the texture rotation around the U axis in degrees.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   double GetRotationV ( ) const
+   Search for all occurrences
+
+   Returns the texture rotation around the V axis in degrees.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   double GetRotationW ( ) const
+   Search for all occurrences
+
+   Returns the texture rotation around the W axis in degrees.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   void SetScale ( double  pU,
+                   double  pV
+                 )
+   Search for all occurrences
+
+   Sets scale.
+
+   Parameters:
+
+          pU Scale applied to the texture width.
+          pV Scale applied to the texture height.
+
+   Remarks:
+          A scale value less than 1 stretches the texture. A scale value greater than 1 compresses the texture.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   double GetScaleU ( ) const
+   Search for all occurrences
+
+   Returns scale applied to the texture width.
+
+   Remarks:
+          A scale value less than 1 stretches the texture. A scale value greater than 1 compresses the texture.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   double GetScaleV ( ) const
+   Search for all occurrences
+
+   Returns scale applied to the texture height.
+
+   Remarks:
+          A scale value less than 1 stretches the texture. A scale value greater than 1 compresses the texture.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<ETextureUse6> TextureTypeUse
+   Search for all occurrences
+
+   This property handles the use of textures.
+
+   Default value is eTEXTURE_USE_6_STANDARD.
+
+   Definition at line 113 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble> Alpha
+   Search for all occurrences
+
+   This property handles the default alpha value for textures.
+
+   Default value is 1.0
+
+   Definition at line 118 of file fbxtexture.h.
+   FbxPropertyT<EUnifiedMappingType> CurrentMappingType
+   Search for all occurrences
+
+   This property handles the texture mapping types.
+
+   Default value is eUMT_UV.
+
+   Definition at line 126 of file fbxtexture.h.
+   FbxPropertyT<EWrapMode> WrapModeU
+   Search for all occurrences
+
+   This property handles the texture wrap modes in U.
+
+   Default value is eRepeat.
+
+   Definition at line 131 of file fbxtexture.h.
+   FbxPropertyT<EWrapMode> WrapModeV
+   Search for all occurrences
+
+   This property handles the texture wrap modes in V.
+
+   Default value is eRepeat.
+
+   Definition at line 136 of file fbxtexture.h.
+   FbxPropertyT<FbxBool> UVSwap
+   Search for all occurrences
+
+   This property handles the swap UV flag.
+
+   If swap UV flag is enabled, the texture's width and height are swapped. Default value is false.
+
+   Definition at line 142 of file fbxtexture.h.
+   FbxPropertyT<FbxBool> PremultiplyAlpha
+   Search for all occurrences
+
+   This property handles the PremultiplyAlpha flag.
+
+   If PremultiplyAlpha flag is true, the R, G, and B components you store have already been multiplied in with the alpha. Default value is true.
+
+   Definition at line 148 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble3> Translation
+   Search for all occurrences
+
+   This property handles the default translation vector.
+
+   Default value is FbxDouble3(0.0,0.0,0.0).
+
+   Definition at line 155 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble3> Rotation
+   Search for all occurrences
+
+   This property handles the default rotation vector.
+
+   Default value is FbxDouble3(0.0,0.0,0.0).
+
+   Definition at line 160 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble3> Scaling
+   Search for all occurrences
+
+   This property handles the default scale vector.
+
+   Default value is FbxDouble3(1.0,1.0,1.0).
+
+   Definition at line 165 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble3> RotationPivot
+   Search for all occurrences
+
+   This property handles the rotation pivot vector.
+
+   Default value is FbxDouble3(0.0,0.0,0.0).
+
+   Definition at line 170 of file fbxtexture.h.
+   FbxPropertyT<FbxDouble3> ScalingPivot
+   Search for all occurrences
+
+   This property handles the scaling pivot vector.
+
+   Default value is FbxDouble3(0.0,0.0,0.0).
+
+   Definition at line 175 of file fbxtexture.h.
+   FbxPropertyT<EBlendMode> CurrentTextureBlendMode
+   Search for all occurrences
+
+   This property handles the texture blend mode.
+
+   Default value is eAdditive.
+
+   Definition at line 181 of file fbxtexture.h.
+   FbxPropertyT<FbxString> UVSet
+   Search for all occurrences
+
+   This property handles the use of UV sets.
+
+   Default value is "default".
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 187 of file fbxtexture.h.
+   const char* sVectorSpace [static]
+   Search for all occurrences
+
+   This property only used by Vector Displacement Texture so it is not added to FbxTexture.
+
+   It is a dynamic enum property which has values : "World", "Object" and "Tangent" Default value is "Object".
+
+   Definition at line 193 of file fbxtexture.h.
+   const char* sVectorSpaceWorld [static]
+   Search for all occurrences
+
+   Definition at line 194 of file fbxtexture.h.
+   const char* sVectorSpaceObject [static]
+   Search for all occurrences
+
+   Definition at line 195 of file fbxtexture.h.
+   const char* sVectorSpaceTangent [static]
+   Search for all occurrences
+
+   Definition at line 196 of file fbxtexture.h.
+   const char* sVectorEncoding [static]
+   Search for all occurrences
+
+   This property only used by Vector Displacement Texture so it is not added to FbxTexture.
+
+   It is a dynamic enum property which has values : "Floating-point Absolute" and "Signed Encoding" Default value is "Floating-point Absolute".
+
+   Definition at line 202 of file fbxtexture.h.
+   const char* sVectorEncodingFP [static]
+   Search for all occurrences
+
+   Definition at line 203 of file fbxtexture.h.
+   const char* sVectorEncodingSE [static]
+   Search for all occurrences
+
+   Definition at line 204 of file fbxtexture.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxtexture.h
+
+   Please send us your comment about this page

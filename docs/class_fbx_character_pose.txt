@@ -1,0 +1,170 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharacterPose Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCharacterPose Class Reference
+
+   This reference page is linked to from the following overview topics: FBX Scenes, Merging Two Scenes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcharacterpose.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A character pose is a character and an associated hierarchy of nodes.
+
+   Only the default position of the nodes is considered, the animation data is ignored.
+
+   You can access the content of a character pose, using the functions FbxCharacterPose::GetOffset(), FbxCharacterPose::GetLocalPosition(), and FbxCharacterPose::GetGlobalPosition(). Their source code is provided inline as examples on how to access the character pose data.
+
+   To create a character pose, You must first create a hierarchy of nodes under the root node provided by function FbxCharacterPose::GetRootNode(). Then, feed this hierarchy of nodes into the character returned by function FbxCharacterPose::GetCharacter(). Offsets are set in the character links. Local positions are set using FbxNode::SetDefaultT(), FbxNode::SetDefaultR(), and FbxNode::SetDefaultS().
+
+   To set local positions from global positions:
+    1. Declare lCharacterPose as a valid pointer to a FbxCharacterPose;
+    2. Call lCharacterPose->GetRootNode()->SetLocalStateId(0, true);
+    3. Call lCharacterPose->GetRootNode()->SetGlobalStateId(1, true);
+    4. Call FbxNode::SetGlobalState() for all nodes found in the hierarchy under lCharacterPose->GetRootNode();
+    5. Call lCharacterPose->GetRootNode()->ComputeLocalState(1, true);
+    6. Call lCharacterPose->GetRootNode()->SetCurrentTakeFromLocalState(FBXSDK_TIME_ZERO, true).
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   Definition at line 48 of file fbxcharacterpose.h.
+   Inheritance diagram for FbxCharacterPose:
+   [USEMAP:class_fbx_character_pose.png]
+
+   List of all members.
+
+Public Member Functions
+
+             void  Reset ()
+                   Reset to an empty character pose.
+        FbxNode *  GetRootNode () const
+                   Get the root node.
+   FbxCharacter *  GetCharacter () const
+                   Get the character.
+             bool  GetOffset (FbxCharacter::ENodeId pCharacterNodeId, FbxAMatrix &pOffset) const
+                   Get offset matrix for a given character node.
+             bool  GetLocalPosition (FbxCharacter::ENodeId pCharacterNodeId, FbxVector4 &pLocalT, FbxVector4 &pLocalR, FbxVector4 &pLocalS) const
+                   Get local position for a given character node.
+             bool  GetGlobalPosition (FbxCharacter::ENodeId pCharacterNodeId, FbxAMatrix &pGlobalPosition) const
+                   Get global position for a given character node.
+       FbxScene *  GetPoseScene () const
+                   Retrieve the pose scene used by this character pose.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset to an empty character pose.
+   FbxNode* GetRootNode ( ) const
+   Search for all occurrences
+
+   Get the root node.
+
+   Returns:
+          Pointer to the root node.
+
+   FbxCharacter* GetCharacter ( ) const
+   Search for all occurrences
+
+   Get the character.
+
+   Returns:
+          Pointer to the character.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   bool GetOffset ( FbxCharacter::ENodeId  pCharacterNodeId,
+                    FbxAMatrix &           pOffset
+                  )                        const
+   Search for all occurrences
+
+   Get offset matrix for a given character node.
+
+   Parameters:
+
+          pCharacterNodeId Character Node ID.
+          pOffset          Receives offset matrix.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool GetLocalPosition ( FbxCharacter::ENodeId  pCharacterNodeId,
+                           FbxVector4 &           pLocalT,
+                           FbxVector4 &           pLocalR,
+                           FbxVector4 &           pLocalS
+                         )                        const
+   Search for all occurrences
+
+   Get local position for a given character node.
+
+   Parameters:
+
+          pCharacterNodeId Character Node ID.
+          pLocalT          Receives local translation vector.
+          pLocalR          Receives local rotation vector.
+          pLocalS          Receives local scaling vector.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool GetGlobalPosition ( FbxCharacter::ENodeId  pCharacterNodeId,
+                            FbxAMatrix &           pGlobalPosition
+                          )                        const
+   Search for all occurrences
+
+   Get global position for a given character node.
+
+   Parameters:
+
+          pCharacterNodeId Character Node ID.
+          pGlobalPosition  Receives global position.
+
+   Returns:
+          true if successful, false otherwise.
+
+   FbxScene* GetPoseScene ( ) const
+   Search for all occurrences
+
+   Retrieve the pose scene used by this character pose.
+
+   Returns:
+          The pose's scene (this is a different scene than the scene the character pose is in).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcharacterpose.h
+
+   Please send us your comment about this page

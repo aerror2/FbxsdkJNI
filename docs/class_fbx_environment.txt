@@ -1,0 +1,50 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEnvironment Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxEnvironment Class Reference
+   Search for all occurrences
+
+   #include <fbxenvironment.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains the description of a scene environment.
+
+   It contains the properties of sun parameters, sky parameters, daylight controller parameters ,environment map parameters and cloud map parameters.
+
+   Definition at line 27 of file fbxenvironment.h.
+   Inheritance diagram for FbxEnvironment:
+   [USEMAP:class_fbx_environment.png]
+
+   List of all members.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxenvironment.h
+
+   Please send us your comment about this page

@@ -1,0 +1,622 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDualQuaternion Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxDualQuaternion Class Reference
+   Search for all occurrences
+
+   #include <fbxdualquaternion.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK dual quaternion class to represent rigid transformation, which is combined by two quaternions.
+
+   A transformation is said to be rigid if it preserves relative distances and angles. That means rotation and translation.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   Definition at line 27 of file fbxdualquaternion.h.
+
+   List of all members.
+
+Constructors and Destructor
+
+                          FbxDualQuaternion ()
+                          Constructor.
+                          FbxDualQuaternion (const FbxQuaternion &pV1, const FbxQuaternion &pV2)
+                          Constructor.
+                          FbxDualQuaternion (const FbxDualQuaternion &pV)
+                          Copy constructor.
+                          FbxDualQuaternion (const FbxQuaternion &pRotation, const FbxVector4 &pTranslation)
+                          Constructor.
+                          FbxDualQuaternion (double pX1, double pY1, double pZ1, double pW1, double pX2, double pY2, double pZ2, double pW2)
+                          Constructor.
+                          ~FbxDualQuaternion ()
+                          Destructor.
+
+Access
+
+     FbxDualQuaternion &  operator= (const FbxDualQuaternion &pDualQuaternion)
+                          Assignment operation.
+                    void  Set (double pX1, double pY1, double pZ1, double pW1, double pX2, double pY2, double pZ2, double pW2)
+                          Set vector.
+         FbxQuaternion &  GetFirstQuaternion ()
+                          Get the first quaternion of the dual quaternion.
+         FbxQuaternion &  GetSecondQuaternion ()
+                          Get the second quaternion of the dual quaternion.
+   const FbxQuaternion &  GetFirstQuaternion () const
+                          Get the first quaternion of the dual quaternion.
+   const FbxQuaternion &  GetSecondQuaternion () const
+                          Get the second quaternion of the dual quaternion.
+           FbxQuaternion  GetRotation () const
+                          Get the rotation part from the dual quaternion.
+              FbxVector4  GetTranslation () const
+                          Get the translation part from the dual quaternion.
+
+Scalar Operations
+
+       FbxDualQuaternion  operator+ (double pValue) const
+                          Add a value to all vector components.
+       FbxDualQuaternion  operator- (double pValue) const
+                          Subtract a value from all vector components.
+       FbxDualQuaternion  operator* (double pValue) const
+                          Multiply all vector components by a value.
+       FbxDualQuaternion  operator/ (double pValue) const
+                          Divide all vector components by a value.
+     FbxDualQuaternion &  operator+= (double pValue)
+                          Add a value to all vector components.
+     FbxDualQuaternion &  operator-= (double pValue)
+                          Subtract a value from all vector components.
+     FbxDualQuaternion &  operator*= (double pValue)
+                          Multiply a value to all vector elements.
+     FbxDualQuaternion &  operator/= (double pValue)
+                          Divide all vector elements by a value.
+
+Vector Operations
+
+       FbxDualQuaternion  operator- () const
+                          Unary minus operator.
+       FbxDualQuaternion  operator+ (const FbxDualQuaternion &pDualQuaternion) const
+                          Add two vectors together.
+       FbxDualQuaternion  operator- (const FbxDualQuaternion &pDualQuaternion) const
+                          Subtract a quaternion from another quaternion.
+       FbxDualQuaternion  operator* (const FbxDualQuaternion &pDualQuaternion) const
+                          Memberwise multiplication of two vectors.
+       FbxDualQuaternion  operator/ (const FbxDualQuaternion &pDualQuaternion) const
+                          Memberwise division of a dual quaternion with another dual quaternion.
+     FbxDualQuaternion &  operator+= (const FbxDualQuaternion &pDualQuaternion)
+                          Add two quaternions together.
+     FbxDualQuaternion &  operator-= (const FbxDualQuaternion &pDualQuaternion)
+                          Subtract a dual quaternion from another vector.
+     FbxDualQuaternion &  operator*= (const FbxDualQuaternion &pDualQuaternion)
+                          Memberwise multiplication of two quaternions.
+     FbxDualQuaternion &  operator/= (const FbxDualQuaternion &pDualQuaternion)
+                          Memberwise division of a dual quaternion by another dual quaternion.
+       FbxDualQuaternion  operator* (const FbxVector4 pVector) const
+                          Multiplication of a dual quaternion by a FbxVector4.
+       FbxDualQuaternion  Product (const FbxDualQuaternion &pDualQuaternion) const
+                          Return dual quaternion product.
+                    void  Normalize ()
+                          Normalize the dual quaternion, length set to 1.
+                    void  Inverse ()
+                          Calculate the dual quaternion's inverse.
+              FbxVector4  Deform (FbxVector4 &pPoint)
+                          Deform a point by this dual quaternion.
+
+Conjugate Operations
+
+   Dual quaternion has three types of conjugate.
+                    void  Conjugate ()
+                          Conjugate both quaternions of this dual quaternion.
+                    void  Dual ()
+                          Conjugate in dual space.
+                    void  DualConjugate ()
+                          Conjugate both quaternions of this dual quaternion in dual space.
+
+Boolean Operations
+
+                    bool  operator== (const FbxDualQuaternion &pV) const
+                          Equivalence operator.
+                    bool  operator!= (const FbxDualQuaternion &pV) const
+                          Non equivalence operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxDualQuaternion ( )
+
+   Constructor.
+   FbxDualQuaternion ( const FbxQuaternion &  pV1,
+                       const FbxQuaternion &  pV2
+                     )
+
+   Constructor.
+
+   Parameters:
+
+          pV1 FbxQuaternion object.
+          pV2 FbxQuaternion object.
+
+   FbxDualQuaternion ( const FbxDualQuaternion &  pV )
+
+   Copy constructor.
+
+   Parameters:
+
+          pV FbxQuaternion object copied to this one.
+
+   FbxDualQuaternion ( const FbxQuaternion &  pRotation,
+                       const FbxVector4 &     pTranslation
+                     )
+
+   Constructor.
+
+   Parameters:
+
+          pRotation    The rotation the dual quaternion is going to represent.
+          pTranslation The translation the dual quaternion is going to represent.
+
+   FbxDualQuaternion ( double  pX1,
+                       double  pY1,
+                       double  pZ1,
+                       double  pW1,
+                       double  pX2,
+                       double  pY2,
+                       double  pZ2,
+                       double  pW2
+                     )
+
+   Constructor.
+
+   Parameters:
+
+          pX1 The X component of the first quaternion.
+          pY1 The Y component of the first quaternion.
+          pZ1 The Z component of the first quaternion.
+          pW1 The W component of the first quaternion.
+          pX2 The X component of the second quaternion.
+          pY2 The Y component of the second quaternion.
+          pZ2 The Z component of the second quaternion.
+          pW2 The W component of the second quaternion.
+
+   ~FbxDualQuaternion ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxDualQuaternion& operator= ( const FbxDualQuaternion &  pDualQuaternion )
+
+   Assignment operation.
+
+   Parameters:
+
+          pDualQuaternion FbxDualQuaternion object assigned to this one.
+
+   void Set ( double  pX1,
+              double  pY1,
+              double  pZ1,
+              double  pW1,
+              double  pX2,
+              double  pY2,
+              double  pZ2,
+              double  pW2
+            )
+   Search for all occurrences
+
+   Set vector.
+
+   Parameters:
+
+          pX1 The X component of the first quaternion.
+          pY1 The Y component of the first quaternion.
+          pZ1 The Z component of the first quaternion.
+          pW1 The W component of the first quaternion.
+          pX2 The X component of the second quaternion.
+          pY2 The Y component of the second quaternion.
+          pZ2 The Z component of the second quaternion.
+          pW2 The W component of the second quaternion.
+
+   FbxQuaternion& GetFirstQuaternion ( )
+   Search for all occurrences
+
+   Get the first quaternion of the dual quaternion.
+
+   Returns:
+          The first quaternion of the dual quaternion.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   FbxQuaternion& GetSecondQuaternion ( )
+   Search for all occurrences
+
+   Get the second quaternion of the dual quaternion.
+
+   Returns:
+          The second quaternion of the dual quaternion.
+
+   const FbxQuaternion& GetFirstQuaternion ( ) const
+   Search for all occurrences
+
+   Get the first quaternion of the dual quaternion.
+
+   Returns:
+          The first quaternion of the dual quaternion.
+
+   const FbxQuaternion& GetSecondQuaternion ( ) const
+   Search for all occurrences
+
+   Get the second quaternion of the dual quaternion.
+
+   Returns:
+          The second quaternion of the dual quaternion.
+
+   FbxQuaternion GetRotation ( ) const
+   Search for all occurrences
+
+   Get the rotation part from the dual quaternion.
+
+   Returns:
+          FbxQuaternion object to represent rotation.
+
+   FbxVector4 GetTranslation ( ) const
+   Search for all occurrences
+
+   Get the translation part from the dual quaternion.
+
+   Returns:
+          FbxVector4 object to represent translation.
+
+   Remarks:
+          A dual quaternion can represent rotation followed by translation, or translation followed by rotation. This method assumes that the rotation is expressed first, followed by translation, as is done by most DCC tools.
+
+   FbxDualQuaternion operator+ ( double  pValue ) const
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion operator- ( double  pValue ) const
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion operator* ( double  pValue ) const
+
+   Multiply all vector components by a value.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion operator/ ( double  pValue ) const
+
+   Divide all vector components by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion& operator+= ( double  pValue )
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          The result of adding pValue to each component of the vector, replacing this dual quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion& operator-= ( double  pValue )
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          The result of subtracting pValue from each component of the vector, replacing this dual quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion& operator*= ( double  pValue )
+
+   Multiply a value to all vector elements.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          The result of multiplying each component of the vector by pValue, replacing this dual quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion& operator/= ( double  pValue )
+
+   Divide all vector elements by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          The result of dividing each component of the vector by pValue, replacing this dual quaternion.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxDualQuaternion operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          A dual quaternion where each component is multiplied by -1.
+
+   FbxDualQuaternion operator+ ( const FbxDualQuaternion &  pDualQuaternion ) const
+
+   Add two vectors together.
+
+   Parameters:
+
+          pDualQuaternion Dual quaternion to add.
+
+   Returns:
+          The dual quaternion v' = this + pDualQuaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion operator- ( const FbxDualQuaternion &  pDualQuaternion ) const
+
+   Subtract a quaternion from another quaternion.
+
+   Parameters:
+
+          pDualQuaternion Dual quaternion to subtract.
+
+   Returns:
+          The dual quaternion v' = this - pDualQuaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion operator* ( const FbxDualQuaternion &  pDualQuaternion ) const
+
+   Memberwise multiplication of two vectors.
+
+   Parameters:
+
+          pDualQuaternion Multiplying dual quaternion.
+
+   Returns:
+          The dual quaternion v' = this * pQuaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion operator/ ( const FbxDualQuaternion &  pDualQuaternion ) const
+
+   Memberwise division of a dual quaternion with another dual quaternion.
+
+   Parameters:
+
+          pDualQuaternion Dividing dual quaternion.
+
+   Returns:
+          The dual quaternion v' = this / pQuaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion& operator+= ( const FbxDualQuaternion &  pDualQuaternion )
+
+   Add two quaternions together.
+
+   Parameters:
+
+          pDualQuaternion Dual quaternion to add.
+
+   Returns:
+          The dual quaternion v' = this + pQuaternion, replacing this dual quaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion& operator-= ( const FbxDualQuaternion &  pDualQuaternion )
+
+   Subtract a dual quaternion from another vector.
+
+   Parameters:
+
+          pDualQuaternion Dual quaternion to subtract.
+
+   Returns:
+          The dual quaternion v' = this - pQuaternion, replacing this dual quaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion& operator*= ( const FbxDualQuaternion &  pDualQuaternion )
+
+   Memberwise multiplication of two quaternions.
+
+   Parameters:
+
+          pDualQuaternion Multiplying dual quaternion.
+
+   Returns:
+          The dual quaternion v' = this * pQuaternion, replacing this dual quaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion& operator/= ( const FbxDualQuaternion &  pDualQuaternion )
+
+   Memberwise division of a dual quaternion by another dual quaternion.
+
+   Parameters:
+
+          pDualQuaternion Dividing dual quaternion.
+
+   Returns:
+          The dual quaternion v' = this / pQuaternion, replacing this dual quaternion.
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion operator* ( const FbxVector4  pVector ) const
+
+   Multiplication of a dual quaternion by a FbxVector4.
+
+   Parameters:
+
+          pVector The FbxVector4 to multiply with.
+
+   Returns:
+          The dual quaternion v' = FbxDualQuaternion(mQ1, (mQ1 * pVector) + mQ2).
+
+   Remarks:
+          The values in pDualQuaternion are not checked.
+
+   FbxDualQuaternion Product ( const FbxDualQuaternion &  pDualQuaternion ) const
+   Search for all occurrences
+
+   Return dual quaternion product.
+
+   Parameters:
+
+          pDualQuaternion product dual quaternion.
+
+   Returns:
+          This dual quaternion replace with the dual quaternion product.
+
+   void Normalize ( )
+   Search for all occurrences
+
+   Normalize the dual quaternion, length set to 1.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void Inverse ( )
+   Search for all occurrences
+
+   Calculate the dual quaternion's inverse.
+
+   Returns:
+          The inverse of this dual quaternion.
+
+   FbxVector4 Deform ( FbxVector4 &  pPoint )
+   Search for all occurrences
+
+   Deform a point by this dual quaternion.
+
+   Returns:
+          The inverse of this quaternion.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void Conjugate ( )
+   Search for all occurrences
+
+   Conjugate both quaternions of this dual quaternion.
+   void Dual ( )
+   Search for all occurrences
+
+   Conjugate in dual space.
+   void DualConjugate ( )
+   Search for all occurrences
+
+   Conjugate both quaternions of this dual quaternion in dual space.
+   bool operator== ( const FbxDualQuaternion &  pV ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pV The quaternion to be compared to this quaternion.
+
+   Returns:
+          true if the two quaternions are equal (each element is within a FBXSDK_TOLERANCE tolerance), false otherwise.
+
+   bool operator!= ( const FbxDualQuaternion &  pV ) const
+
+   Non equivalence operator.
+
+   Parameters:
+
+          pV The quaternion to be compared to this.
+
+   Returns:
+          false if the two quaternions are equal (each element is within a FBXSDK_TOLERANCE tolerance), true otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxdualquaternion.h
+
+   Please send us your comment about this page

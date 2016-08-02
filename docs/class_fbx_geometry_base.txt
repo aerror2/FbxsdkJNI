@@ -1,0 +1,1370 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGeometryBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxGeometryBase Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, FBX SDK 2013, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxgeometrybase.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 42 of file fbxgeometrybase.h.
+   Inheritance diagram for FbxGeometryBase:
+   [USEMAP:class_fbx_geometry_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                                                    virtual int  MemoryUsage () const
+                                                                                Calculate the actual amount of memory used by this geometry object.
+                                     Control Points, Normals, Binormals and Tangent Management.
+                                                                   virtual void  InitControlPoints (int pCount)
+                                                                                Allocates memory space for the array of control points.
+                                                                           void  InitNormals (int pCount=0)
+                                                                                Allocates memory space for the array of normals.
+                                                                           void  InitNormals (FbxGeometryBase *pSrc)
+                                                                                Allocates memory space for the array of normals cloned from the pSrc.
+                                                                           void  InitTangents (int pCount=0, const int pLayerIndex=0, const char *pName="")
+                                                                                Allocates memory space for the array of tangents on specified layer.
+                                                                           void  InitTangents (FbxGeometryBase *pSrc, const int pLayerIndex=0)
+                                                                                Allocates memory space for the array of tangents cloned from the pSrc on the specified layer.
+                                                                           void  InitBinormals (int pCount=0, const int pLayerIndex=0, const char *pName="")
+                                                                                Allocates memory space for the array of binormals.
+                                                                           void  InitBinormals (FbxGeometryBase *pSrc, const int pLayerIndex=0)
+                                                                                Allocates memory space for the array of binormals cloned from the pSrc.
+                                                                   virtual void  SetControlPointAt (const FbxVector4 &pCtrlPoint, const FbxVector4 &pNormal, int pIndex, bool pI2DSearch=false)
+                                                                                Sets the control point and the normal values at the specified index.
+                                                                   virtual void  SetControlPointAt (const FbxVector4 &pCtrlPoint, int pIndex)
+                                                                                Sets the control point at a specified index.
+                                                             virtual FbxVector4  GetControlPointAt (int pIndex) const
+                                                                                Gets the control point at the specified index.
+                                                                   virtual void  SetControlPointNormalAt (const FbxVector4 &pNormal, int pIndex, bool pI2DSearch=false)
+                                                                                Sets the control point normal value at the specified index.
+                                                                    virtual int  GetControlPointsCount () const
+                                                                                Returns the number of control points.
+                                                           virtual FbxVector4 *  GetControlPoints (FbxStatus *pStatus=NULL) const
+                                                                                Returns a pointer to the array of control points.
+                                                                   virtual void  SetControlPointCount (int pCount)
+                                                                                Allocates memory space for the array of control points.
+                                     Geometry Element Management.
+
+   A FbxGeometryElement describes how the geometry element (normals, UVs and etc.) is mapped to a geometry surface and how the mapping information is arranged in memory.
+
+   FbxGeometryElement is exactly the same as FbxLayerElement but does not expose the geometry's layer information. Use the geometry element classes to decompose the geometry without dealing with layers.
+                                                     FbxGeometryElementNormal *  CreateElementNormal ()
+                                                                                Creates a normal geometry element for this geometry.
+                                                                           bool  RemoveElementNormal (FbxGeometryElementNormal *pElementNormal)
+                                                                                Remove the normal geometry element from this geometry.
+                                                     FbxGeometryElementNormal *  GetElementNormal (int pIndex=0)
+                                                                                Returns this geometry's normal element.
+                                               const FbxGeometryElementNormal *  GetElementNormal (int pIndex=0) const
+                                                                                Returns this geometry's normal element.
+                                                                            int  GetElementNormalCount () const
+                                                                                Get the number of this geometry's normal geometry element.
+                                                   FbxGeometryElementBinormal *  CreateElementBinormal ()
+                                                                                Creates a binormal geometry element for this geometry.
+                                                                           bool  RemoveElementBinormal (FbxGeometryElementBinormal *pElementBinormal)
+                                                                                Remove the binormal geometry element from this geometry.
+                                                   FbxGeometryElementBinormal *  GetElementBinormal (int pIndex=0)
+                                                                                Returns this geometry's binormal element.
+                                             const FbxGeometryElementBinormal *  GetElementBinormal (int pIndex=0) const
+                                                                                Returns this geometry's binormal element.
+                                                                            int  GetElementBinormalCount () const
+                                                                                Get the number of this geometry's binormal geometry element.
+                                                    FbxGeometryElementTangent *  CreateElementTangent ()
+                                                                                Creates a tangent geometry element for this geometry.
+                                                                           bool  RemoveElementTangent (FbxGeometryElementTangent *pElementTangent)
+                                                                                Remove the tangent geometry element from this geometry.
+                                                    FbxGeometryElementTangent *  GetElementTangent (int pIndex=0)
+                                                                                Returns this geometry's tangent element.
+                                              const FbxGeometryElementTangent *  GetElementTangent (int pIndex=0) const
+                                                                                Returns this geometry's tangent element.
+                                                                            int  GetElementTangentCount () const
+                                                                                Get the number of this geometry's tangent geometry element.
+                                                   FbxGeometryElementMaterial *  CreateElementMaterial ()
+                                                                                Creates a material geometry element for this geometry.
+                                                                           bool  RemoveElementMaterial (FbxGeometryElementMaterial *pElementMaterial)
+                                                                                Remove the material geometry element from this geometry.
+                                                   FbxGeometryElementMaterial *  GetElementMaterial (int pIndex=0)
+                                                                                Returns this geometry's material element.
+                                             const FbxGeometryElementMaterial *  GetElementMaterial (int pIndex=0) const
+                                                                                Returns this geometry's material element.
+                                                                            int  GetElementMaterialCount () const
+                                                                                Get the number of this geometry's material geometry element.
+                                               FbxGeometryElementPolygonGroup *  CreateElementPolygonGroup ()
+                                                                                Creates a polygon group geometry element for this geometry.
+                                                                           bool  RemoveElementPolygonGroup (FbxGeometryElementPolygonGroup *pElementPolygonGroup)
+                                                                                Remove the polygon group geometry element from this geometry.
+                                               FbxGeometryElementPolygonGroup *  GetElementPolygonGroup (int pIndex=0)
+                                                                                Returns this geometry's polygon group element.
+   const
+   FbxGeometryElementPolygonGroup *  GetElementPolygonGroup (int pIndex=0) const
+                                                                                Returns this geometry's polygon group element.
+                                                                            int  GetElementPolygonGroupCount () const
+                                                                                Get the number of this geometry's polygon group geometry element.
+                                                FbxGeometryElementVertexColor *  CreateElementVertexColor ()
+                                                                                Creates a vertex color geometry element for this geometry.
+                                                                           bool  RemoveElementVertexColor (FbxGeometryElementVertexColor *pElementVertexColor)
+                                                                                Remove the vertex color geometry element from this geometry.
+                                                FbxGeometryElementVertexColor *  GetElementVertexColor (int pIndex=0)
+                                                                                Returns this geometry's vertex color element.
+   const
+   FbxGeometryElementVertexColor *   GetElementVertexColor (int pIndex=0) const
+                                                                                Returns this geometry's vertex color element.
+                                                                            int  GetElementVertexColorCount () const
+                                                                                Get the number of this geometry's vertex color geometry element.
+                                                  FbxGeometryElementSmoothing *  CreateElementSmoothing ()
+                                                                                Creates a smoothing geometry element for this geometry.
+                                                                           bool  RemoveElementSmoothing (FbxGeometryElementSmoothing *pElementSmoothing)
+                                                                                Remove the smoothing geometry element from this geometry.
+                                                  FbxGeometryElementSmoothing *  GetElementSmoothing (int pIndex=0)
+                                                                                Returns this geometry's smoothing element.
+                                            const FbxGeometryElementSmoothing *  GetElementSmoothing (int pIndex=0) const
+                                                                                Returns this geometry's smoothing element.
+                                                                            int  GetElementSmoothingCount () const
+                                                                                Get the number of this geometry's smoothing geometry element.
+                                                     FbxGeometryElementCrease *  CreateElementVertexCrease ()
+                                                                                Creates a vertex crease geometry element for this geometry.
+                                                                           bool  RemoveElementVertexCrease (FbxGeometryElementCrease *pElementCrease)
+                                                                                Remove the vertex crease geometry element from this geometry.
+                                                     FbxGeometryElementCrease *  GetElementVertexCrease (int pIndex=0)
+                                                                                Returns this geometry's vertex crease element.
+                                               const FbxGeometryElementCrease *  GetElementVertexCrease (int pIndex=0) const
+                                                                                Returns this geometry's vertex crease element.
+                                                                            int  GetElementVertexCreaseCount () const
+                                                                                Get the number of this geometry's vertex crease geometry element.
+                                                     FbxGeometryElementCrease *  CreateElementEdgeCrease ()
+                                                                                Creates an edge crease geometry element for this geometry.
+                                                                           bool  RemoveElementEdgeCrease (FbxGeometryElementCrease *pElementCrease)
+                                                                                Remove the edge crease geometry element from this geometry.
+                                                     FbxGeometryElementCrease *  GetElementEdgeCrease (int pIndex=0)
+                                                                                Returns this geometry's edge crease element.
+                                               const FbxGeometryElementCrease *  GetElementEdgeCrease (int pIndex=0) const
+                                                                                Returns this geometry's edge crease element.
+                                                                            int  GetElementEdgeCreaseCount () const
+                                                                                Get the number of this geometry's edge crease geometry element.
+                                                       FbxGeometryElementHole *  CreateElementHole ()
+                                                                                Creates a hole geometry element for this geometry.
+                                                                           bool  RemoveElementHole (FbxGeometryElementHole *pElementHole)
+                                                                                Remove the hole geometry element from this geometry.
+                                                       FbxGeometryElementHole *  GetElementHole (int pIndex=0)
+                                                                                Returns this geometry's hole element.
+                                                 const FbxGeometryElementHole *  GetElementHole (int pIndex=0) const
+                                                                                Returns this geometry's hole element.
+                                                                            int  GetElementHoleCount () const
+                                                                                Get the number of this geometry's hole geometry element.
+                                                   FbxGeometryElementUserData *  CreateElementUserData ()
+                                                                                Creates a user data geometry element for this geometry.
+                                                                           bool  RemoveElementUserData (FbxGeometryElementUserData *pElementUserData)
+                                                                                Remove the user data geometry element from this geometry.
+                                                   FbxGeometryElementUserData *  GetElementUserData (int pIndex=0)
+                                                                                Returns this geometry's user data element.
+                                             const FbxGeometryElementUserData *  GetElementUserData (int pIndex=0) const
+                                                                                Returns this geometry's user data element.
+                                                                            int  GetElementUserDataCount () const
+                                                                                Get the number of this geometry's user data geometry element.
+                                                 FbxGeometryElementVisibility *  CreateElementVisibility ()
+                                                                                Creates a visibility geometry element for this geometry.
+                                                                           bool  RemoveElementVisibility (FbxGeometryElementVisibility *pElementVisibility)
+                                                                                Remove the visibility geometry element from this geometry.
+                                                 FbxGeometryElementVisibility *  GetElementVisibility (int pIndex=0)
+                                                                                Returns this geometry's visibility element.
+   const
+   FbxGeometryElementVisibility *    GetElementVisibility (int pIndex=0) const
+                                                                                Returns this geometry's visibility element.
+                                                                            int  GetElementVisibilityCount () const
+                                                                                Get the number of this geometry's visibility geometry element.
+                                                         FbxGeometryElementUV *  CreateElementUV (const char *pUVSetName)
+                                                                                Creates a UV geometry element for this geometry.
+                                                                           bool  RemoveElementUV (FbxGeometryElementUV *pElementUV)
+                                                                                Remove the UV geometry element from this geometry.
+                                                         FbxGeometryElementUV *  GetElementUV (int pIndex=0)
+                                                                                Returns this geometry's UV element.
+                                                   const FbxGeometryElementUV *  GetElementUV (int pIndex=0) const
+                                                                                Returns this geometry's UV element.
+                                                                            int  GetElementUVCount () const
+                                                                                Get the number of this geometry's UV geometry element.
+                                                         FbxGeometryElementUV *  GetElementUV (const char *pUVSetName)
+                                                                                Returns this geometry's UV element.
+                                                   const FbxGeometryElementUV *  GetElementUV (const char *pUVSetName) const
+                                                                                Returns this geometry's UV element.
+                                                                           void  GetUVSetNames (FbxStringList &pUVSetNameList) const
+                                                                                Returns this geometry's all UV set names.
+                                     Off-loading Serialization section
+
+   The methods in this section are typically called by a peripheral (FbxPeripheral).
+
+   There should be no real interest in calling them directly. The functions will write/read the memory dump of the data contained in this class. Each data block written/read will start with an (int) value representing the number of items in the array. If this value (v) is not zero, it will be followed by the array content. A block of data that is (v * sizeof(array item size)) bytes big. The methods will also call the parent class ones to dump the Layers content.
+                                                                   virtual bool  ContentWriteTo (FbxStream &pStream) const
+                                                                                Writes the content of the geometry object to the specified stream.
+                                                                   virtual bool  ContentReadFrom (const FbxStream &pStream)
+                                                                                Reads the content of the geometry object from the specified stream.
+
+Public and fast access Properties
+
+                                                        FbxPropertyT< FbxBool >  PrimaryVisibility
+                                                                                Control the geometry render state. Geometry can still cast shadows even if this is turned off.
+                                                        FbxPropertyT< FbxBool >  CastShadow
+                                                                                If true, the geometry will produce shadows.
+                                                        FbxPropertyT< FbxBool >  ReceiveShadow
+                                                                                If true, the geometry will receive shadows.
+                                                     FbxPropertyT< FbxDouble3 >  BBoxMin
+                                                                                The minimum value of the control points bounding box.
+                                                     FbxPropertyT< FbxDouble3 >  BBoxMax
+                                                                                The maximum value of the control points bounding box.
+                                                                           void  ComputeBBox ()
+                                                                                Computes the control points Bounding box.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void InitControlPoints ( int  pCount ) [virtual]
+   Search for all occurrences
+
+   Allocates memory space for the array of control points.
+
+   Parameters:
+
+          pCount The number of control points.
+
+   Remarks:
+          Any previously allocated array of control points will be cleared.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   void InitNormals ( int  pCount = 0 )
+   Search for all occurrences
+
+   Allocates memory space for the array of normals.
+
+   Parameters:
+
+          pCount The desired size for the normal array. If pCount is specified, the array will be the same size as pCount. If pCount is not specified, the array will be the same length as the array of control points.
+
+   Remarks:
+          This function must be called after function FbxLayerContainer::InitControlPoints().
+          The normals initialized with this function will have the ReferenceMode set to eDirect. Also, the array will always be defined on layer 0.
+
+   void InitNormals ( FbxGeometryBase *  pSrc )
+   Search for all occurrences
+
+   Allocates memory space for the array of normals cloned from the pSrc.
+
+   Parameters:
+
+          pSrc The source geometry from which the normals information is cloned.
+
+   Remarks:
+          This function must be called with the argument, otherwise it does not do anything. Also, it will only process the normals array defined on layer 0 of the pSrc.
+
+   void InitTangents ( int           pCount = 0,
+                       const int     pLayerIndex = 0,
+                       const char *  pName = ""
+                     )
+   Search for all occurrences
+
+   Allocates memory space for the array of tangents on specified layer.
+
+   Parameters:
+
+          pCount      The desired size of the tangent array. If pCount is specified, the array will be the same size as pCount. If pCount is not specified, the array will be the same length as the array of control points.
+          pLayerIndex The specified layer index to allocate memory space for the array of tangents.
+          pName       The specified name for the allocated tangents array.
+
+   Remarks:
+          This function must be called after function FbxLayerContainer::InitControlPoints(). The tangents initialized with this function will have the reference mode set to eDirect.
+
+   void InitTangents ( FbxGeometryBase *  pSrc,
+                       const int          pLayerIndex = 0
+                     )
+   Search for all occurrences
+
+   Allocates memory space for the array of tangents cloned from the pSrc on the specified layer.
+
+   Parameters:
+
+          pSrc        The source geometry from which the tangents information is cloned.
+          pLayerIndex The specified layer index to allocate memory space for cloned array of tangents from the pSrc.
+
+   Remarks:
+          This function must be called with the argument, otherwise it does not do anything.
+
+   void InitBinormals ( int           pCount = 0,
+                        const int     pLayerIndex = 0,
+                        const char *  pName = ""
+                      )
+   Search for all occurrences
+
+   Allocates memory space for the array of binormals.
+
+   Parameters:
+
+          pCount      The desired size of the binormal array. If pCount is specified, the array will have the same size as pCount. If pCount is not specified, the array will be the same length as the array of control points.
+          pLayerIndex The specified layer index to allocate memory space for the array of binormals.
+          pName       The specified name for the allocated binormals array.
+
+   Remarks:
+          This function must be called after function FbxLayerContainer::InitControlPoints(). The binormals initialized with this function will have the reference mode set to eDirect.
+
+   void InitBinormals ( FbxGeometryBase *  pSrc,
+                        const int          pLayerIndex = 0
+                      )
+   Search for all occurrences
+
+   Allocates memory space for the array of binormals cloned from the pSrc.
+
+   Parameters:
+
+          pSrc        The source geometry from which the binormals information is cloned.
+          pLayerIndex The specified layer index to allocate memory space for cloned array of binormals from the pSrc.
+
+   Remarks:
+          This function must be called with the argument, otherwise it does not do anything.
+
+   virtual void SetControlPointAt ( const FbxVector4 &  pCtrlPoint,
+                                    const FbxVector4 &  pNormal,
+                                    int                 pIndex,
+                                    bool                pI2DSearch = false
+                                  )                     [virtual]
+   Search for all occurrences
+
+   Sets the control point and the normal values at the specified index.
+
+   Parameters:
+
+          pCtrlPoint The value of the control point.
+          pNormal    The value of the normal.
+          pIndex     The specified index of the control point/normal.
+          pI2DSearch When true AND the normals array reference mode is eIndexToDirect, search pNormal in the existing array to avoid inserting if it already exist. NOTE: This feature uses a linear search algorithm, therefore it can be time consuming if the DIRECT array of normals contains a huge number of elements.
+
+   Remarks:
+          If the arrays (control points and normals) are not big enough to store the values at the specified index, they will be automatically resized to accommodate the new entries.
+
+   Reimplemented in FbxTrimNurbsSurface.
+
+   Examples:
+          Common/GeometryUtility.cxx.
+
+   virtual void SetControlPointAt ( const FbxVector4 &  pCtrlPoint,
+                                    int                 pIndex
+                                  )                     [virtual]
+   Search for all occurrences
+
+   Sets the control point at a specified index.
+
+   Parameters:
+
+          pCtrlPoint The value of the control point.
+          pIndex     The specified index of the control point.
+
+   Remarks:
+          If the array is not big enough to store the value at the specified index, it will be automatically resized to accommodate the new entry.
+
+   Reimplemented in FbxTrimNurbsSurface.
+   virtual FbxVector4 GetControlPointAt ( int  pIndex ) const [virtual]
+   Search for all occurrences
+
+   Gets the control point at the specified index.
+
+   Parameters:
+
+          pIndex The specified index of the control point.
+
+   Returns:
+          The value of the specific control point.
+
+   Remarks:
+          If index is out of range, FbxVector4(0, 0, 0) is returned.
+
+   virtual void SetControlPointNormalAt ( const FbxVector4 &  pNormal,
+                                          int                 pIndex,
+                                          bool                pI2DSearch = false
+                                        )                     [virtual]
+   Search for all occurrences
+
+   Sets the control point normal value at the specified index.
+
+   Parameters:
+
+          pNormal    The value of the normal.
+          pIndex     The specified index of the normal.
+          pI2DSearch When true AND the normals array reference mode is eIndexToDirect, search pNormal in the existing array to avoid inserting it if it already exist. NOTE: this feature uses a linear search algorithm, therefore it can be time consuming if the DIRECT array of normals contains a huge number of elements.
+
+   Remarks:
+          If the array is not big enough to store the value at the specified index, it will be automatically resized to accommodate the new entry.
+
+   virtual int GetControlPointsCount ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the number of control points.
+
+   Returns:
+          The number of control points allocated in the geometry.
+
+   Reimplemented in FbxTrimNurbsSurface.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, ImportScene/DisplayNurb.cxx, ImportScene/DisplayPatch.cxx, ImportScene/DisplayShape.cxx, Normals/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneCache.cxx.
+
+   virtual FbxVector4* GetControlPoints ( FbxStatus *  pStatus = NULL ) const [virtual]
+   Search for all occurrences
+
+   Returns a pointer to the array of control points.
+
+   Parameters:
+
+          pStatus Not used in the implementation of this class.
+
+   Returns:
+          Pointer to the array of control points, or NULL if the array has not been allocated.
+
+   Remarks:
+          Use the function FbxGeometryBase::InitControlPoints() to allocate the array.
+
+   Reimplemented in FbxTrimNurbsSurface.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayNurb.cxx, ImportScene/DisplayPatch.cxx, ImportScene/DisplayShape.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UserProperties/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneCache.cxx.
+
+   virtual void SetControlPointCount ( int  pCount ) [virtual]
+   Search for all occurrences
+
+   Allocates memory space for the array of control points.
+
+   Parameters:
+
+          pCount The number of control points.
+
+   Remarks:
+          Any previously allocated array of control points will NOT be cleared.
+
+   void ComputeBBox ( )
+   Search for all occurrences
+
+   Computes the control points Bounding box.
+   FbxGeometryElementNormal* CreateElementNormal ( )
+   Search for all occurrences
+
+   Creates a normal geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   bool RemoveElementNormal ( FbxGeometryElementNormal *  pElementNormal )
+   Search for all occurrences
+
+   Remove the normal geometry element from this geometry.
+
+   Parameters:
+
+          pElementNormal A pointer to the normal element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementNormal* GetElementNormal ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's normal element.
+
+   Parameters:
+
+          pIndex The normal geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, Normals/main.cxx, and ViewScene/SceneCache.cxx.
+
+   const FbxGeometryElementNormal* GetElementNormal ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's normal element.
+
+   Parameters:
+
+          pIndex The normal geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementNormalCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's normal geometry element.
+
+   Returns:
+          Total number of normal geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   FbxGeometryElementBinormal* CreateElementBinormal ( )
+   Search for all occurrences
+
+   Creates a binormal geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementBinormal ( FbxGeometryElementBinormal *  pElementBinormal )
+   Search for all occurrences
+
+   Remove the binormal geometry element from this geometry.
+
+   Parameters:
+
+          pElementBinormal A pointer to the binormal element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementBinormal* GetElementBinormal ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's binormal element.
+
+   Parameters:
+
+          pIndex The binormal geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   const FbxGeometryElementBinormal* GetElementBinormal ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's binormal element.
+
+   Parameters:
+
+          pIndex The binormal geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementBinormalCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's binormal geometry element.
+
+   Returns:
+          Total number of binormal geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementTangent* CreateElementTangent ( )
+   Search for all occurrences
+
+   Creates a tangent geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementTangent ( FbxGeometryElementTangent *  pElementTangent )
+   Search for all occurrences
+
+   Remove the tangent geometry element from this geometry.
+
+   Parameters:
+
+          pElementTangent A pointer to the tangent element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementTangent* GetElementTangent ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's tangent element.
+
+   Parameters:
+
+          pIndex The tangent geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   const FbxGeometryElementTangent* GetElementTangent ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's tangent element.
+
+   Parameters:
+
+          pIndex The tangent geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementTangentCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's tangent geometry element.
+
+   Returns:
+          Total number of tangent geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementMaterial* CreateElementMaterial ( )
+   Search for all occurrences
+
+   Creates a material geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool RemoveElementMaterial ( FbxGeometryElementMaterial *  pElementMaterial )
+   Search for all occurrences
+
+   Remove the material geometry element from this geometry.
+
+   Parameters:
+
+          pElementMaterial A pointer to the material element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementMaterial* GetElementMaterial ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's material element.
+
+   Parameters:
+
+          pIndex The material geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   const FbxGeometryElementMaterial* GetElementMaterial ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's material element.
+
+   Parameters:
+
+          pIndex The material geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementMaterialCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's material geometry element.
+
+   Returns:
+          Total number of material geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementPolygonGroup* CreateElementPolygonGroup ( )
+   Search for all occurrences
+
+   Creates a polygon group geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   Examples:
+          Layers/main.cxx.
+
+   bool RemoveElementPolygonGroup ( FbxGeometryElementPolygonGroup *  pElementPolygonGroup )
+   Search for all occurrences
+
+   Remove the polygon group geometry element from this geometry.
+
+   Parameters:
+
+          pElementPolygonGroup A pointer to the polygon group element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementPolygonGroup* GetElementPolygonGroup ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's polygon group element.
+
+   Parameters:
+
+          pIndex The polygon group geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   const FbxGeometryElementPolygonGroup* GetElementPolygonGroup ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's polygon group element.
+
+   Parameters:
+
+          pIndex The polygon group geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementPolygonGroupCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's polygon group geometry element.
+
+   Returns:
+          Total number of polygon group geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementVertexColor* CreateElementVertexColor ( )
+   Search for all occurrences
+
+   Creates a vertex color geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   Examples:
+          Layers/main.cxx.
+
+   bool RemoveElementVertexColor ( FbxGeometryElementVertexColor *  pElementVertexColor )
+   Search for all occurrences
+
+   Remove the vertex color geometry element from this geometry.
+
+   Parameters:
+
+          pElementVertexColor A pointer to the vertex color element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementVertexColor* GetElementVertexColor ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's vertex color element.
+
+   Parameters:
+
+          pIndex The vertex color geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   const FbxGeometryElementVertexColor* GetElementVertexColor ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's vertex color element.
+
+   Parameters:
+
+          pIndex The vertex color geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementVertexColorCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's vertex color geometry element.
+
+   Returns:
+          Total number of vertex color geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementSmoothing* CreateElementSmoothing ( )
+   Search for all occurrences
+
+   Creates a smoothing geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementSmoothing ( FbxGeometryElementSmoothing *  pElementSmoothing )
+   Search for all occurrences
+
+   Remove the smoothing geometry element from this geometry.
+
+   Parameters:
+
+          pElementSmoothing A pointer to the smoothing element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementSmoothing* GetElementSmoothing ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's smoothing element.
+
+   Parameters:
+
+          pIndex The smoothing geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          Normals/main.cxx.
+
+   const FbxGeometryElementSmoothing* GetElementSmoothing ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's smoothing element.
+
+   Parameters:
+
+          pIndex The smoothing geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementSmoothingCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's smoothing geometry element.
+
+   Returns:
+          Total number of smoothing geometry elements for this geometry.
+
+   FbxGeometryElementCrease* CreateElementVertexCrease ( )
+   Search for all occurrences
+
+   Creates a vertex crease geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementVertexCrease ( FbxGeometryElementCrease *  pElementCrease )
+   Search for all occurrences
+
+   Remove the vertex crease geometry element from this geometry.
+
+   Parameters:
+
+          pElementCrease A pointer to the vertex crease element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementCrease* GetElementVertexCrease ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's vertex crease element.
+
+   Parameters:
+
+          pIndex The vertex crease geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   const FbxGeometryElementCrease* GetElementVertexCrease ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's vertex crease element.
+
+   Parameters:
+
+          pIndex The vertex crease geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementVertexCreaseCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's vertex crease geometry element.
+
+   Returns:
+          Total number of vertex crease geometry elements for this geometry.
+
+   FbxGeometryElementCrease* CreateElementEdgeCrease ( )
+   Search for all occurrences
+
+   Creates an edge crease geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementEdgeCrease ( FbxGeometryElementCrease *  pElementCrease )
+   Search for all occurrences
+
+   Remove the edge crease geometry element from this geometry.
+
+   Parameters:
+
+          pElementCrease A pointer to the edge crease element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementCrease* GetElementEdgeCrease ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's edge crease element.
+
+   Parameters:
+
+          pIndex The edge crease geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   const FbxGeometryElementCrease* GetElementEdgeCrease ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's edge crease element.
+
+   Parameters:
+
+          pIndex The edge crease geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementEdgeCreaseCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's edge crease geometry element.
+
+   Returns:
+          Total number of edge crease geometry elements for this geometry.
+
+   FbxGeometryElementHole* CreateElementHole ( )
+   Search for all occurrences
+
+   Creates a hole geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementHole ( FbxGeometryElementHole *  pElementHole )
+   Search for all occurrences
+
+   Remove the hole geometry element from this geometry.
+
+   Parameters:
+
+          pElementHole A pointer to the hole element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementHole* GetElementHole ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's hole element.
+
+   Parameters:
+
+          pIndex The hole geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   const FbxGeometryElementHole* GetElementHole ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's hole element.
+
+   Parameters:
+
+          pIndex The hole geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementHoleCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's hole geometry element.
+
+   Returns:
+          Total number of hole geometry elements for this geometry.
+
+   FbxGeometryElementUserData* CreateElementUserData ( )
+   Search for all occurrences
+
+   Creates a user data geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementUserData ( FbxGeometryElementUserData *  pElementUserData )
+   Search for all occurrences
+
+   Remove the user data geometry element from this geometry.
+
+   Parameters:
+
+          pElementUserData A pointer to the user data element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementUserData* GetElementUserData ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's user data element.
+
+   Parameters:
+
+          pIndex The user data geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   const FbxGeometryElementUserData* GetElementUserData ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's user data element.
+
+   Parameters:
+
+          pIndex The user data geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementUserDataCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's user data geometry element.
+
+   Returns:
+          Total number of user data geometry elements for this geometry.
+
+   FbxGeometryElementVisibility* CreateElementVisibility ( )
+   Search for all occurrences
+
+   Creates a visibility geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   bool RemoveElementVisibility ( FbxGeometryElementVisibility *  pElementVisibility )
+   Search for all occurrences
+
+   Remove the visibility geometry element from this geometry.
+
+   Parameters:
+
+          pElementVisibility A pointer to the visibility element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementVisibility* GetElementVisibility ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's visibility element.
+
+   Parameters:
+
+          pIndex The visibility geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   const FbxGeometryElementVisibility* GetElementVisibility ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's visibility element.
+
+   Parameters:
+
+          pIndex The visibility geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementVisibilityCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's visibility geometry element.
+
+   Returns:
+          Total number of visibility geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   FbxGeometryElementUV* CreateElementUV ( const char *  pUVSetName )
+   Search for all occurrences
+
+   Creates a UV geometry element for this geometry.
+
+   Returns:
+          A pointer to the newly created geometry element.
+
+   Remarks:
+          The created geometry element is associated with this geometry automatically.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool RemoveElementUV ( FbxGeometryElementUV *  pElementUV )
+   Search for all occurrences
+
+   Remove the UV geometry element from this geometry.
+
+   Parameters:
+
+          pElementUV A pointer to the UV element to be removed.
+
+   Returns:
+          True if the geometry element is removed, false otherwise.
+
+   FbxGeometryElementUV* GetElementUV ( int  pIndex = 0 )
+   Search for all occurrences
+
+   Returns this geometry's UV element.
+
+   Parameters:
+
+          pIndex The UV geometry element index.
+
+   Returns:
+          A pointer to the geometry element or NULL if pIndex is out of range.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   const FbxGeometryElementUV* GetElementUV ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Returns this geometry's UV element.
+
+   Parameters:
+
+          pIndex The UV geometry element index.
+
+   Returns:
+          A const pointer to the geometry element or NULL if pIndex is out of range.
+
+   int GetElementUVCount ( ) const
+   Search for all occurrences
+
+   Get the number of this geometry's UV geometry element.
+
+   Returns:
+          Total number of UV geometry elements for this geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   FbxGeometryElementUV* GetElementUV ( const char *  pUVSetName )
+   Search for all occurrences
+
+   Returns this geometry's UV element.
+
+   Parameters:
+
+          pUVSetName The UV set name of the UV geometry element.
+
+   Returns:
+          A pointer to the UV geometry element or NULL if no UV geometry element with this name exists.
+
+   const FbxGeometryElementUV* GetElementUV ( const char *  pUVSetName ) const
+   Search for all occurrences
+
+   Returns this geometry's UV element.
+
+   Parameters:
+
+          pUVSetName The UV set name of the UV geometry element.
+
+   Returns:
+          A const pointer to the UV geometry element or NULL if no UV geometry element with this name exists.
+
+   void GetUVSetNames ( FbxStringList &  pUVSetNameList ) const
+   Search for all occurrences
+
+   Returns this geometry's all UV set names.
+
+   Parameters:
+
+          pUVSetNameList A reference to FbxStringList that will be filled with this geometry's all UV set names.
+
+   Examples:
+          UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   virtual bool ContentWriteTo ( FbxStream &  pStream ) const [virtual]
+   Search for all occurrences
+
+   Writes the content of the geometry object to the specified stream.
+
+   Parameters:
+
+          pStream The destination stream.
+
+   Returns:
+          True if the content is successfully processed by the receiving stream, false otherwise.
+
+   Reimplemented from FbxObject.
+
+   Reimplemented in FbxPatch.
+   virtual bool ContentReadFrom ( const FbxStream &  pStream ) [virtual]
+   Search for all occurrences
+
+   Reads the content of the geometry object from the specified stream.
+
+   Parameters:
+
+          pStream The source stream.
+
+   Returns:
+          True if the geometry object fills itself with the received data from the stream successfully, false otherwise.
+
+   Reimplemented from FbxObject.
+
+   Reimplemented in FbxPatch.
+   virtual int MemoryUsage ( ) const [virtual]
+   Search for all occurrences
+
+   Calculate the actual amount of memory used by this geometry object.
+
+   Returns:
+          The memory size in bytes (includes the amount use by the data defined in the layers).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> PrimaryVisibility
+   Search for all occurrences
+
+   Control the geometry render state. Geometry can still cast shadows even if this is turned off.
+
+   Definition at line 178 of file fbxgeometrybase.h.
+   FbxPropertyT<FbxBool> CastShadow
+   Search for all occurrences
+
+   If true, the geometry will produce shadows.
+
+   Definition at line 181 of file fbxgeometrybase.h.
+   FbxPropertyT<FbxBool> ReceiveShadow
+   Search for all occurrences
+
+   If true, the geometry will receive shadows.
+
+   Definition at line 184 of file fbxgeometrybase.h.
+   FbxPropertyT<FbxDouble3> BBoxMin
+   Search for all occurrences
+
+   The minimum value of the control points bounding box.
+
+   Definition at line 187 of file fbxgeometrybase.h.
+   FbxPropertyT<FbxDouble3> BBoxMax
+   Search for all occurrences
+
+   The maximum value of the control points bounding box.
+
+   Definition at line 190 of file fbxgeometrybase.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxgeometrybase.h
+
+   Please send us your comment about this page

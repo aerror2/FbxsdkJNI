@@ -1,0 +1,131 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveKeyBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxAnimCurveKeyBase Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvebase.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is the base class interface for the FBX animation curve keys.
+
+   Remarks:
+          For an example of implemented class, please see FbxAnimCurveKey.
+
+   Definition at line 29 of file fbxanimcurvebase.h.
+   Inheritance diagram for FbxAnimCurveKeyBase:
+   [USEMAP:class_fbx_anim_curve_key_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+                    FbxAnimCurveKeyBase ()
+                    Constructor.
+           virtual  ~FbxAnimCurveKeyBase ()
+                    Destructor.
+   virtual FbxTime  GetTime () const
+                    Get time value.
+      virtual void  SetTime (const FbxTime &pTime)
+                    Set time value.
+
+Public Attributes
+
+           FbxTime  mTime
+                    Data member representing time value.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveKeyBase ( ) [inline]
+
+   Constructor.
+
+   Definition at line 38 of file fbxanimcurvebase.h.
+    {
+        mTime = FBXSDK_TIME_ZERO;
+    }
+
+   virtual ~FbxAnimCurveKeyBase ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 45 of file fbxanimcurvebase.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxTime GetTime ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get time value.
+
+   Returns:
+          Time value.
+
+   Reimplemented in FbxAnimCurveKey.
+
+   Definition at line 50 of file fbxanimcurvebase.h.
+        {
+                return mTime;
+        }
+
+   virtual void SetTime ( const FbxTime &  pTime ) [inline, virtual]
+   Search for all occurrences
+
+   Set time value.
+
+   Parameters:
+
+          pTime Time value to set.
+
+   Reimplemented in FbxAnimCurveKey.
+
+   Definition at line 58 of file fbxanimcurvebase.h.
+                                                {
+                mTime = pTime;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxTime mTime
+   Search for all occurrences
+
+   Data member representing time value.
+
+   Definition at line 34 of file fbxanimcurvebase.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvebase.h
+
+   Please send us your comment about this page

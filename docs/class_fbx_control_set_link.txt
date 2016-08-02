@@ -1,0 +1,117 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxControlSetLink Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxControlSetLink Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcontrolset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class represents a link between a given character's FK node and the associated node in the character hierarchy.
+
+   Definition at line 29 of file fbxcontrolset.h.
+
+   List of all members.
+
+Public Member Functions
+
+                        FbxControlSetLink ()
+                        Default constructor.
+                        FbxControlSetLink (const FbxControlSetLink &pControlSetLink)
+                        Copy constructor.
+   FbxControlSetLink &  operator= (const FbxControlSetLink &pControlSetLink)
+                        Assignment operator.
+                  void  Reset ()
+                        Reset to default values.
+
+Public Attributes
+
+             FbxNode *  mNode
+                        The character's node in a hierarchy linked to this control set link.
+             FbxString  mTemplateName
+                        A template name is a naming convention that is used to automatically map the nodes of other skeletons that use the same naming convention for automatic characterization.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxControlSetLink ( )
+
+   Default constructor.
+   FbxControlSetLink ( const FbxControlSetLink &  pControlSetLink )
+
+   Copy constructor.
+
+   Parameters:
+
+          pControlSetLink Given object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxControlSetLink& operator= ( const FbxControlSetLink &  pControlSetLink )
+
+   Assignment operator.
+
+   Parameters:
+
+          pControlSetLink Another FbxControlSetLink object assigned to this one.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset to default values.
+
+   Member mNode is set to NULL and member mTemplateName is cleared.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxNode* mNode
+   Search for all occurrences
+
+   The character's node in a hierarchy linked to this control set link.
+
+   Definition at line 52 of file fbxcontrolset.h.
+   FbxString mTemplateName
+   Search for all occurrences
+
+   A template name is a naming convention that is used to automatically map the nodes of other skeletons that use the same naming convention for automatic characterization.
+
+   Definition at line 56 of file fbxcontrolset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcontrolset.h
+
+   Please send us your comment about this page

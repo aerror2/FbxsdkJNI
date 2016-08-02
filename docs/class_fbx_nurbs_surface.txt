@@ -1,0 +1,494 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNurbsSurface Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxNurbsSurface Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxnurbssurface.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A NURBS surface is a type of parametric geometry.
+
+   A NURBS surface is defined by the order, form, knot vector and control points in the U and V directions.
+
+   For more information on the meaning of the form, knot vector and control points, see the documentation for the FbxNurbsCurve. The same concepts for NURBS curves apply to NURBS surfaces. NURBS surfaces simply have two dimensions (U and V).
+
+   Definition at line 33 of file fbxnurbssurface.h.
+   Inheritance diagram for FbxNurbsSurface:
+   [USEMAP:class_fbx_nurbs_surface.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the FbxNodeAttribute::EType::eNurbsSurface node attribute type.
+                              void  Reset ()
+                                    Resets the NURBS surface its default values.
+                              bool  IsRational () const
+                                    Checks if the surface has all rational control points.
+
+NURBS surface Properties
+
+                             enum   EType { ePeriodic, eClosed, eOpen }
+                                    NURBS types. More...
+                              void  SetSurfaceMode (FbxGeometry::ESurfaceMode pMode)
+                                    Sets the surface mode.
+                      ESurfaceMode  GetSurfaceMode () const
+                                    Returns the surface mode.
+                              void  InitControlPoints (int pUCount, EType pUType, int pVCount, EType pVType)
+                                    Allocates memory space for an array of control points as well as knot and multiplicity vectors.
+                               int  GetUCount () const
+                                    Returns the number of U-dimension control points.
+                               int  GetVCount () const
+                                    Returns the number of V-dimension control points.
+                             EType  GetNurbsUType () const
+                                    Returns the U-dimension NURBS type.
+                             EType  GetNurbsVType () const
+                                    Returns the V-dimension NURBS type.
+                               int  GetUKnotCount () const
+                                    Returns the number of elements in the U-dimension knot vector.
+                          double *  GetUKnotVector () const
+                                    Returns the U-dimension knot vector.
+                               int  GetVKnotCount () const
+                                    Returns the number of elements in the V-dimension knot vector.
+                          double *  GetVKnotVector () const
+                                    Returns the V-dimension knot vector.
+                              void  SetOrder (FbxUInt pUOrder, FbxUInt pVOrder)
+                                    Sets the order of the NURBS surface.
+                               int  GetUOrder () const
+                                    Returns the NURBS order in U dimension.
+                               int  GetVOrder () const
+                                    Returns the NURBS order in V dimension.
+                              void  SetStep (int pUStep, int pVStep)
+                                    Sets the NURBS step.
+                               int  GetUStep () const
+                                    Returns the number of divisions between adjacent control points in U dimension.
+                               int  GetVStep () const
+                                    Returns the number of divisions between adjacent control points in V dimension.
+                               int  GetUSpanCount () const
+                                    Calculates the number of surface spans in the U dimension.
+                               int  GetVSpanCount () const
+                                    Calculates the number of surface spans in the V dimension.
+
+NURBS surface Export Flags
+
+                              void  SetApplyFlipUV (bool pFlag)
+                                    Sets the flag that induces UV flipping at export.
+                              bool  GetApplyFlipUV () const
+                                    Returns the flag that induces UV flipping at export.
+                              void  SetApplyFlipLinks (bool pFlag)
+                                    Sets the flag that induces link flipping at export.
+                              bool  GetApplyFlipLinks () const
+                                    Returns the flag that induces link flipping at export.
+                              bool  GetApplyFlip () const
+                                    Returns flip flags state.
+                              void  AddCurveOnSurface (FbxNode *pCurve)
+                                    Adds a curve to the NURBS surface.
+                         FbxNode *  GetCurveOnSurface (int pIndex)
+                                    Retrieves a curve from this surface.
+                   const FbxNode *  GetCurveOnSurface (int pIndex) const
+                                    Retrieves a curve from this surface.
+                               int  GetCurveOnSurfaceCount () const
+                                    Returns the number of curves on this surface.
+                              bool  RemoveCurveOnSurface (FbxNode *pCurve)
+                                    Removes a curve from this surface.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   NURBS types.
+     * ePeriodic
+     * eClosed
+     * eOpen
+
+   Enumerator:
+
+          ePeriodic
+
+   Search for all occurrences
+          eClosed
+
+   Search for all occurrences
+          eOpen
+
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 64 of file fbxnurbssurface.h.
+    {
+        ePeriodic,
+        eClosed,
+        eOpen
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the FbxNodeAttribute::EType::eNurbsSurface node attribute type.
+
+   Reimplemented from FbxGeometry.
+   void Reset ( )
+   Search for all occurrences
+
+   Resets the NURBS surface its default values.
+   void SetSurfaceMode ( FbxGeometry::ESurfaceMode  pMode )
+   Search for all occurrences
+
+   Sets the surface mode.
+
+   Parameters:
+
+          pMode Surface mode identifier (see class FbxGeometry).
+
+   ESurfaceMode GetSurfaceMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the surface mode.
+
+   Returns:
+          The surface mode identifier that is currently set.
+
+   Definition at line 57 of file fbxnurbssurface.h.
+{return mSurfaceMode;}
+
+   void InitControlPoints ( int    pUCount,
+                            EType  pUType,
+                            int    pVCount,
+                            EType  pVType
+                          )
+   Search for all occurrences
+
+   Allocates memory space for an array of control points as well as knot and multiplicity vectors.
+
+   Parameters:
+
+          pUCount Number of U-dimension control points.
+          pUType  U-dimension NURBS type.
+          pVCount Number of V-dimension control points.
+          pVType  V-dimension NURBS type.
+
+   Remarks:
+          Always call this function after FbxNurbsSurface::SetOrder().
+
+   int GetUCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of U-dimension control points.
+
+   Returns:
+          Number of U-dimension control points.
+
+   Definition at line 84 of file fbxnurbssurface.h.
+{return mUCount;}
+
+   int GetVCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of V-dimension control points.
+
+   Returns:
+          Number of V-dimension control points.
+
+   Definition at line 89 of file fbxnurbssurface.h.
+{return mVCount;}
+
+   EType GetNurbsUType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the U-dimension NURBS type.
+
+   Returns:
+          NURBS type identifier.
+
+   Definition at line 94 of file fbxnurbssurface.h.
+{return mUType;}
+
+   EType GetNurbsVType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the V-dimension NURBS type.
+
+   Returns:
+          NURBS type identifier.
+
+   Definition at line 99 of file fbxnurbssurface.h.
+{return mVType;}
+
+   int GetUKnotCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the U-dimension knot vector.
+
+   See FbxNurbsCurve for more information.
+
+   Returns:
+          The number of elements in the U-dimension knot vector.
+
+   double* GetUKnotVector ( ) const
+   Search for all occurrences
+
+   Returns the U-dimension knot vector.
+
+   Returns:
+          Pointer to the U-dimension knot vector.
+
+   int GetVKnotCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the V-dimension knot vector.
+
+   See FbxNurbsCurve for more information.
+
+   Returns:
+          The number of elements in the V-dimension knot vector.
+
+   double* GetVKnotVector ( ) const
+   Search for all occurrences
+
+   Returns the V-dimension knot vector.
+
+   Returns:
+          Pointer to the V-dimension knot vector.
+
+   void SetOrder ( FbxUInt  pUOrder,
+                   FbxUInt  pVOrder
+                 )
+   Search for all occurrences
+
+   Sets the order of the NURBS surface.
+
+   Parameters:
+
+          pUOrder NURBS order in U dimension.
+          pVOrder NURBS order in V dimension.
+
+   int GetUOrder ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS order in U dimension.
+
+   Returns:
+          NURBS order in U dimension.
+
+   Definition at line 130 of file fbxnurbssurface.h.
+{return mUOrder;}
+
+   int GetVOrder ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS order in V dimension.
+
+   Returns:
+          NURBS order in V dimension.
+
+   Definition at line 135 of file fbxnurbssurface.h.
+{return mVOrder;}
+
+   void SetStep ( int  pUStep,
+                  int  pVStep
+                )
+   Search for all occurrences
+
+   Sets the NURBS step.
+
+   The step value is the number of divisions between adjacent control points.
+
+   Parameters:
+
+          pUStep Steps in U dimension.
+          pVStep Steps in V dimension.
+
+   int GetUStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in U dimension.
+
+   Returns:
+          Steps in U dimension.
+
+   Definition at line 147 of file fbxnurbssurface.h.
+{return mUStep;}
+
+   int GetVStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in V dimension.
+
+   Returns:
+          Steps in V dimension.
+
+   Definition at line 152 of file fbxnurbssurface.h.
+{return mVStep;}
+
+   int GetUSpanCount ( ) const
+   Search for all occurrences
+
+   Calculates the number of surface spans in the U dimension.
+
+   See FbxNurbsCurve::GetSpanCount() for more information.
+
+   Returns:
+          The number of spans in the U dimension if the surface has been initialized. If the spans have not been initialized, returns -1.
+
+   int GetVSpanCount ( ) const
+   Search for all occurrences
+
+   Calculates the number of surface spans in the V dimension.
+
+   See FbxNurbsCurve::GetSpanCount() for more information.
+
+   Returns:
+          The number of spans in the V dimension if the surface has been initialized. If the spans have not been initialized, returns -1.
+
+   void SetApplyFlipUV ( bool  pFlag )
+   Search for all occurrences
+
+   Sets the flag that induces UV flipping at export.
+
+   Parameters:
+
+          pFlag If true, UV flipping occurs.
+
+   bool GetApplyFlipUV ( ) const
+   Search for all occurrences
+
+   Returns the flag that induces UV flipping at export.
+
+   Returns:
+          The current state of the UV flip flag.
+
+   void SetApplyFlipLinks ( bool  pFlag )
+   Search for all occurrences
+
+   Sets the flag that induces link flipping at export.
+
+   Parameters:
+
+          pFlag If true, the links control points indices are flipped.
+
+   bool GetApplyFlipLinks ( ) const
+   Search for all occurrences
+
+   Returns the flag that induces link flipping at export.
+
+   Returns:
+          The current state of the link flip flag.
+
+   bool GetApplyFlip ( ) const [inline]
+   Search for all occurrences
+
+   Returns flip flags state.
+
+   Returns:
+          True if we need to flip either the UV or the links.
+
+   Definition at line 198 of file fbxnurbssurface.h.
+{ return GetApplyFlipUV() || GetApplyFlipLinks(); }
+
+   void AddCurveOnSurface ( FbxNode *  pCurve )
+   Search for all occurrences
+
+   Adds a curve to the NURBS surface.
+
+   Adds a 2D, parametric space curve to this surface
+
+   Parameters:
+
+          pCurve The curve to be added to the surface.
+
+   FbxNode* GetCurveOnSurface ( int  pIndex )
+   Search for all occurrences
+
+   Retrieves a curve from this surface.
+
+   Parameters:
+
+          pIndex Index of the curve to retrieve (Valid range is 0 to GetCurveOnSurfaceCount() - 1).
+
+   Returns:
+          The curve at the specified index, or returns NULL if pIndex is out of range.
+
+   const FbxNode* GetCurveOnSurface ( int  pIndex ) const
+   Search for all occurrences
+
+   Retrieves a curve from this surface.
+
+   Parameters:
+
+          pIndex Index of the curve to retrieve (Valid range is 0 to GetCurveOnSurfaceCount() - 1).
+
+   Returns:
+          The curve at the specified index, or returns NULL if pIndex is out of range.
+
+   int GetCurveOnSurfaceCount ( ) const
+   Search for all occurrences
+
+   Returns the number of curves on this surface.
+
+   Returns:
+          The number of curves on this surface.
+
+   bool RemoveCurveOnSurface ( FbxNode *  pCurve )
+   Search for all occurrences
+
+   Removes a curve from this surface.
+
+   Parameters:
+
+          pCurve The curve to be removed.
+
+   Returns:
+          True if the curve is removed successfully, if unsuccessful, returns false.
+
+   bool IsRational ( ) const
+   Search for all occurrences
+
+   Checks if the surface has all rational control points.
+
+   Returns:
+          True if rational, false otherwise
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxnurbssurface.h
+
+   Please send us your comment about this page

@@ -1,0 +1,178 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAutoPtr< Type, Policy > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAutoPtr< Type, Policy > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxalloc.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type, class Policy = FbxDeletionPolicyDefault<Type>>
+class FbxAutoPtr< Type, Policy >
+
+   FbxAutoPtr mimics the auto_ptr class template implementation available in the C++ Standard Library.
+
+   The auto_ptr template class describes an object that stores a pointer to a single allocated object of type Type* that ensures that the object to which it points gets destroyed automatically when control leaves a scope.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 188 of file fbxalloc.h.
+
+   List of all members.
+
+Public Member Functions
+
+           FbxAutoPtr (Type *pPtr=0)
+           Construct from a pointer.
+           ~FbxAutoPtr ()
+           Destructor.
+   Type *  Get () const
+           Retrieve the pointer it holds.
+   Type *  operator-> () const
+           Member access operator.
+           operator Type * () const
+           Convert to a Type pointer.
+   Type &  operator* () const
+           Dereference operator.
+     bool  operator! () const
+           Logical not operator.
+           operator bool () const
+           Convert to boolean value.
+     void  Reset (Type *pPtr=0)
+           Reset the scoped pointer by swapping with another pointer.
+     void  Swap (FbxAutoPtr &pOther)
+           Swap with another pointer.
+   Type *  Release ()
+           Release the pointer, so that it won't perform deletion in its destruction.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAutoPtr ( Type *  pPtr = 0 ) [inline, explicit]
+
+   Construct from a pointer.
+
+   Definition at line 192 of file fbxalloc.h.
+: mPtr(pPtr){}
+
+   ~FbxAutoPtr ( ) [inline]
+
+   Destructor.
+
+   Definition at line 195 of file fbxalloc.h.
+{ Policy::DeleteIt(&mPtr); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   Type* Get ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the pointer it holds.
+
+   Definition at line 198 of file fbxalloc.h.
+{ return mPtr; }
+
+   Type* operator-> ( ) const [inline]
+
+   Member access operator.
+
+   Definition at line 201 of file fbxalloc.h.
+{ return mPtr; }
+
+   operator Type * ( ) const [inline]
+
+   Convert to a Type pointer.
+
+   Definition at line 204 of file fbxalloc.h.
+{ return mPtr; }
+
+   Type& operator* ( ) const [inline]
+
+   Dereference operator.
+
+   Definition at line 207 of file fbxalloc.h.
+{ return *mPtr; }
+
+   bool operator! ( ) const [inline]
+
+   Logical not operator.
+
+   Definition at line 210 of file fbxalloc.h.
+{ return mPtr == 0; }
+
+   operator bool ( ) const [inline]
+
+   Convert to boolean value.
+
+   Definition at line 213 of file fbxalloc.h.
+{ return mPtr != 0; }
+
+   void Reset ( Type *  pPtr = 0 ) [inline]
+   Search for all occurrences
+
+   Reset the scoped pointer by swapping with another pointer.
+
+   Definition at line 216 of file fbxalloc.h.
+        {
+                FBX_ASSERT(pPtr == 0 || pPtr != mPtr);  //Catch self-reset errors
+                FbxAutoPtr<Type, Policy>(pPtr).Swap(*this);
+        }
+
+   void Swap ( FbxAutoPtr< Type, Policy > &  pOther ) [inline]
+   Search for all occurrences
+
+   Swap with another pointer.
+
+   Definition at line 223 of file fbxalloc.h.
+        {
+                Type* TmpPtr = pOther.mPtr;
+                pOther.mPtr = mPtr;
+                mPtr = TmpPtr;
+        }
+
+   Type* Release ( ) [inline]
+   Search for all occurrences
+
+   Release the pointer, so that it won't perform deletion in its destruction.
+
+   Definition at line 231 of file fbxalloc.h.
+        {
+                Type* TmpPtr = mPtr;
+                mPtr = NULL;
+                return TmpPtr;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxalloc.h
+
+   Please send us your comment about this page

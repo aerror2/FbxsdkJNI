@@ -1,0 +1,328 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSkeleton Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxSkeleton Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxskeleton.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class specializes a node attribute to represent the elements forming "bone" chains.
+
+   The FbxSkeleton name of the class comes from the analogy with the human body skeletal structure. In fact, an object of this type is nothing more than a transform node with special properties that are useful for its graphical representation and during IK/FK and skin deformation computations. Typically, a scene will contain chains of FbxSkeleton node attributes that, together, form a skeleton segment. For instance, the representation of the leg of a character can be achieved using one parent node
+   with the attribute eRoot, followed by one child (femur) of type eLimb, this child having a child also (tibia) of the same type. Finally, terminated with a last node attribute of type eEffector (ankle).
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene05/main.cxx, ImportScene/DisplaySkeleton.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 34 of file fbxskeleton.h.
+   Inheritance diagram for FbxSkeleton:
+   [USEMAP:class_fbx_skeleton.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Return the type of node attribute (i.e: FbxNodeAttribute::EType::eSkeleton).
+                              void  Reset ()
+                                    Reset the skeleton to default values and type to eRoot.
+
+Skeleton Properties
+
+                             enum   EType { eRoot, eLimb, eLimbNode, eEffector }
+                                    Skeleton types. More...
+                              void  SetSkeletonType (EType pSkeletonType)
+                                    Set the skeleton type.
+                             EType  GetSkeletonType () const
+                                    Get the skeleton type.
+                              bool  GetSkeletonTypeIsSet () const
+                                    Get a flag to know if the skeleton type was set.
+                             EType  GetSkeletonTypeDefaultValue () const
+                                    Get the default value for the skeleton type.
+                            double  GetLimbLengthDefaultValue () const
+                                    Get the default value for the limb length.
+                            double  GetLimbNodeSizeDefaultValue () const
+                                    Get the default value for the limb node size.
+                              bool  SetLimbNodeColor (const FbxColor &pColor)
+                                    Set limb or limb node color.
+                          FbxColor  GetLimbNodeColor () const
+                                    Get limb or limb node color.
+                              bool  GetLimbNodeColorIsSet () const
+                                    Get a flag to know if the limb node color was set.
+                          FbxColor  GetLimbNodeColorDefaultValue () const
+                                    Get the default value for the limb node color.
+                              bool  IsSkeletonRoot () const
+                                    To see if this skeleton is Root.
+
+Property Names
+
+               static const char *  sSize
+               static const char *  sLimbLength
+
+Property Default Values
+
+            static const FbxDouble  sDefaultSize
+            static const FbxDouble  sDefaultLimbLength
+         FbxPropertyT< FbxDouble >  Size
+                                    This property handles the limb node size.
+         FbxPropertyT< FbxDouble >  LimbLength
+                                    This property handles the skeleton limb length.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Skeleton types.
+
+   Remarks:
+          eEffector is synonymous to eRoot.
+          The eLimbNode type is a bone defined uniquely by a transform and a size value while
+          the eLimb type is a bone defined by a transform and a length.
+
+   Enumerator:
+
+          eRoot
+
+   First element of a chain.
+   Search for all occurrences
+          eLimb
+
+   Chain element.
+   Search for all occurrences
+          eLimbNode
+
+   Chain element.
+   Search for all occurrences
+          eEffector
+
+   Last element of a chain.
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 55 of file fbxskeleton.h.
+    {
+            eRoot,
+            eLimb,
+            eLimbNode,
+            eEffector
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute (i.e: FbxNodeAttribute::EType::eSkeleton).
+
+   Reimplemented from FbxNodeAttribute.
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the skeleton to default values and type to eRoot.
+   void SetSkeletonType ( EType  pSkeletonType )
+   Search for all occurrences
+
+   Set the skeleton type.
+
+   Parameters:
+
+          pSkeletonType Skeleton type identifier.
+
+   Examples:
+          ExportScene01/main.cxx, and ExportScene05/main.cxx.
+
+   EType GetSkeletonType ( ) const
+   Search for all occurrences
+
+   Get the skeleton type.
+
+   Returns:
+          Skeleton type identifier.
+
+   Examples:
+          ImportScene/DisplaySkeleton.cxx, and ViewScene/DrawScene.cxx.
+
+   bool GetSkeletonTypeIsSet ( ) const
+   Search for all occurrences
+
+   Get a flag to know if the skeleton type was set.
+
+   Returns:
+          true if a call to SetSkeletonType() has been made.
+
+   Remarks:
+          When the attribute is not set, the application can choose to ignore the attribute or use the default value.
+          The flag is set back to false when Reset() is called.
+
+   EType GetSkeletonTypeDefaultValue ( ) const
+   Search for all occurrences
+
+   Get the default value for the skeleton type.
+
+   Returns:
+          eRoot
+
+   double GetLimbLengthDefaultValue ( ) const
+   Search for all occurrences
+
+   Get the default value for the limb length.
+
+   Returns:
+          1.0
+
+   double GetLimbNodeSizeDefaultValue ( ) const
+   Search for all occurrences
+
+   Get the default value for the limb node size.
+
+   Returns:
+          100.0
+
+   bool SetLimbNodeColor ( const FbxColor &  pColor )
+   Search for all occurrences
+
+   Set limb or limb node color.
+
+   Parameters:
+
+          pColor RGB values for the limb color.
+
+   Returns:
+          true if skeleton type is eLimb or eLimbNode, false otherwise.
+
+   Remarks:
+          Limb or limb node color is only set if skeleton type is eLimb or eLimbNode.
+
+   FbxColor GetLimbNodeColor ( ) const
+   Search for all occurrences
+
+   Get limb or limb node color.
+
+   Returns:
+          Currently set limb color.
+
+   Remarks:
+          Limb or limb node color is only valid if skeleton type is eLimb or eLimbNode.
+
+   Examples:
+          ImportScene/DisplaySkeleton.cxx.
+
+   bool GetLimbNodeColorIsSet ( ) const
+   Search for all occurrences
+
+   Get a flag to know if the limb node color was set.
+
+   Returns:
+          true if a call to SetLimbNodeColor() has been made.
+
+   Remarks:
+          When the attribute is not set, the application can choose to ignore the attribute or use the default value.
+          The flag is set back to false when Reset() is called.
+
+   FbxColor GetLimbNodeColorDefaultValue ( ) const
+   Search for all occurrences
+
+   Get the default value for the limb node color.
+
+   Returns:
+          R=0.8, G=0.8, B=0.8
+
+   bool IsSkeletonRoot ( ) const
+   Search for all occurrences
+
+   To see if this skeleton is Root.
+
+   Returns:
+          true if this is root of the skeleton, false otherwise.
+
+   Remarks:
+          if a skeleton node do not have a parent or its parent is not a skeleton node itself, then this skeleton is root in the hierarchy.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sSize [static]
+   Search for all occurrences
+
+   Definition at line 133 of file fbxskeleton.h.
+   const char* sLimbLength [static]
+   Search for all occurrences
+
+   Definition at line 134 of file fbxskeleton.h.
+   const FbxDouble sDefaultSize [static]
+   Search for all occurrences
+
+   Definition at line 140 of file fbxskeleton.h.
+   const FbxDouble sDefaultLimbLength [static]
+   Search for all occurrences
+
+   Definition at line 141 of file fbxskeleton.h.
+   FbxPropertyT<FbxDouble> Size
+   Search for all occurrences
+
+   This property handles the limb node size.
+
+   To access this property do: Size.Get(). To set this property do: Size.Set(FbxDouble).
+
+   Default value is 100.0
+
+   Examples:
+          ExportScene01/main.cxx, and ImportScene/DisplaySkeleton.cxx.
+
+   Definition at line 157 of file fbxskeleton.h.
+   FbxPropertyT<FbxDouble> LimbLength
+   Search for all occurrences
+
+   This property handles the skeleton limb length.
+
+   To access this property do: LimbLength.Get(). To set this property do: LimbLength.Set(FbxDouble).
+
+   FbxSkeleton is a node attribute and it will be attached to a FbxNode which represents the transform. Given a chain of skeleton nodes the parent and child skeletons will be attached to a parent node and a child node. The orientation of the limb is computed from the vector between the parent and child position (from parent to child). The LimbLength represents the proportion of the parent node's position to the child node's position which is used to compute the actual limb length. The default value of
+   1.0 means the LimbLength is equal to the length between the parent and child node's position. So if the value is 0.5, it means the LimbLength will be half of the length between the parent and child node's position.
+
+   Examples:
+          ImportScene/DisplaySkeleton.cxx.
+
+   Definition at line 172 of file fbxskeleton.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxskeleton.h
+
+   Please send us your comment about this page

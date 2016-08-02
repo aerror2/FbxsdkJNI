@@ -1,0 +1,401 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSet2< Type, Compare, Allocator > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions | Protected Types
+   FbxSet2< Type, Compare, Allocator > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename Type, typename Compare = FbxLessCompare<Type>, typename Allocator = FbxBaseAllocator>
+class FbxSet2< Type, Compare, Allocator >
+
+   This class implements an efficient set based on value comparison, which stores values.
+
+   It executes insertion, deletion and query operations in O(log(n)) time.
+
+   Definition at line 143 of file fbxset.h.
+
+   List of all members.
+
+Classes
+
+                                                              class   Value
+                                                                      This class defines the value type used by the set. More...
+
+Public Types
+
+                                                        typedef Type  ValueType
+                                     typedef StorageType::RecordType  RecordType
+                                   typedef StorageType::IteratorType  Iterator
+   typedef
+   StorageType::ConstIteratorType  ConstIterator
+
+Public Member Functions
+
+                                                                void  Reserve (unsigned int pRecordCount)
+                                                                      Preallocate memory.
+                                                                 int  GetSize () const
+                                                                      Retrieve the number of values it holds.
+                                       FbxPair< RecordType *, bool >  Insert (const ValueType &pValue)
+                                                                      Insert a value.
+                                                                 int  Remove (const ValueType &pValue)
+                                                                      Delete a value.
+                                                                void  Clear ()
+                                                                      Clear the set.
+                                                                bool  Empty () const
+                                                                      Query whether the set is empty.
+                                                            Iterator  Begin ()
+                                                                      Retrieve the begin iterator of the set.
+                                                            Iterator  End ()
+                                                                      Retrieve the end iterator of the set.
+                                                       ConstIterator  Begin () const
+                                                                      Retrieve the begin iterator of the set.
+                                                       ConstIterator  End () const
+                                                                      Retrieve the end iterator of the set.
+                                                  const RecordType *  Find (const ValueType &pValue) const
+                                                                      Find a given value in the set.
+                                                        RecordType *  Find (const ValueType &pValue)
+                                                                      Find a given value in the set.
+                                                  const RecordType *  Minimum () const
+                                                                      Retrieve the minimum value in the set.
+                                                        RecordType *  Minimum ()
+                                                                      Retrieve the minimum value in the set.
+                                                  const RecordType *  Maximum () const
+                                                                      Retrieve the maximum value in the set.
+                                                        RecordType *  Maximum ()
+                                                                      Retrieve the maximum value in the set.
+                                                                bool  operator== (const FbxSet2< Type, Compare, Allocator > &pOther) const
+                                                                      Equality operator.
+                                                                bool  operator!= (const FbxSet2< Type, Compare, Allocator > &pOther) const
+                                                                      Inequality operator.
+                                                             FbxSet2  Intersect (const FbxSet2 &pOther) const
+                                                                      Intersect with another set.
+                                                             FbxSet2  Union (const FbxSet2 &pOther) const
+                                                                      Unite with another set.
+
+Protected Types
+
+   typedef FbxRedBlackTree< Value,
+   Compare, Allocator >            StorageType
+                                                                      Declaration of the storage type used by the set.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxRedBlackTree<Value, Compare, Allocator> StorageType [protected]
+   Search for all occurrences
+
+   Declaration of the storage type used by the set.
+
+   Definition at line 174 of file fbxset.h.
+   typedef Type ValueType
+   Search for all occurrences
+
+   Definition at line 177 of file fbxset.h.
+   typedef StorageType::RecordType RecordType
+   Search for all occurrences
+
+   Definition at line 178 of file fbxset.h.
+   typedef StorageType::IteratorType Iterator
+   Search for all occurrences
+
+   Definition at line 179 of file fbxset.h.
+   typedef StorageType::ConstIteratorType ConstIterator
+   Search for all occurrences
+
+   Definition at line 180 of file fbxset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reserve ( unsigned int  pRecordCount ) [inline]
+   Search for all occurrences
+
+   Preallocate memory.
+
+   Parameters:
+
+          pRecordCount The number of elements.
+
+   Definition at line 185 of file fbxset.h.
+        {
+                mTree.Reserve(pRecordCount);
+        }
+
+   int GetSize ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the number of values it holds.
+
+   Definition at line 191 of file fbxset.h.
+        {
+                return mTree.GetSize();
+        }
+
+   FbxPair<RecordType*, bool> Insert ( const ValueType &  pValue ) [inline]
+   Search for all occurrences
+
+   Insert a value.
+
+   Parameters:
+
+          pValue The value.
+
+   Returns:
+          If the value is already present in the map, returns the existing value and false; else returns the pointer to the new value and true.
+
+   Definition at line 199 of file fbxset.h.
+        {
+                return mTree.Insert(Value(pValue));
+        }
+
+   int Remove ( const ValueType &  pValue ) [inline]
+   Search for all occurrences
+
+   Delete a value.
+
+   Parameters:
+
+          pValue The value.
+
+   Returns:
+          true if success, false if value is not found.
+
+   Definition at line 207 of file fbxset.h.
+        {
+                return mTree.Remove(pValue);
+        }
+
+   void Clear ( ) [inline]
+   Search for all occurrences
+
+   Clear the set.
+
+   Definition at line 213 of file fbxset.h.
+        {
+                mTree.Clear();
+        }
+
+   bool Empty ( ) const [inline]
+   Search for all occurrences
+
+   Query whether the set is empty.
+
+   Definition at line 219 of file fbxset.h.
+        {
+                return mTree.Empty();
+        }
+
+   Iterator Begin ( ) [inline]
+   Search for all occurrences
+
+   Retrieve the begin iterator of the set.
+
+   Definition at line 225 of file fbxset.h.
+        {
+                return Iterator(Minimum());
+        }
+
+   Iterator End ( ) [inline]
+   Search for all occurrences
+
+   Retrieve the end iterator of the set.
+
+   Definition at line 231 of file fbxset.h.
+        {
+                return Iterator();
+        }
+
+   ConstIterator Begin ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the begin iterator of the set.
+
+   Definition at line 237 of file fbxset.h.
+        {
+                return ConstIterator(Minimum());
+        }
+
+   ConstIterator End ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the end iterator of the set.
+
+   Definition at line 243 of file fbxset.h.
+        {
+                return ConstIterator();
+        }
+
+   const RecordType* Find ( const ValueType &  pValue ) const [inline]
+   Search for all occurrences
+
+   Find a given value in the set.
+
+   Parameters:
+
+          pValue The value to find.
+
+   Returns:
+          The value in the set, or NULL if the value is not found in the set.
+
+   Definition at line 251 of file fbxset.h.
+        {
+                return mTree.Find(pValue);
+        }
+
+   RecordType* Find ( const ValueType &  pValue ) [inline]
+   Search for all occurrences
+
+   Find a given value in the set.
+
+   Parameters:
+
+          pValue The value to find.
+
+   Returns:
+          The value in the set, or NULL if the value is not found in the set.
+
+   Definition at line 259 of file fbxset.h.
+        {
+                return mTree.Find(pValue);
+        }
+
+   const RecordType* Minimum ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the minimum value in the set.
+
+   Definition at line 265 of file fbxset.h.
+        {
+                return mTree.Minimum();
+        }
+
+   RecordType* Minimum ( ) [inline]
+   Search for all occurrences
+
+   Retrieve the minimum value in the set.
+
+   Definition at line 271 of file fbxset.h.
+        {
+                return mTree.Minimum();
+        }
+
+   const RecordType* Maximum ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the maximum value in the set.
+
+   Definition at line 277 of file fbxset.h.
+        {
+                return mTree.Maximum();
+        }
+
+   RecordType* Maximum ( ) [inline]
+   Search for all occurrences
+
+   Retrieve the maximum value in the set.
+
+   Definition at line 283 of file fbxset.h.
+        {
+                return mTree.Maximum();
+        }
+
+   bool operator== ( const FbxSet2< Type, Compare, Allocator > &  pOther ) const [inline]
+
+   Equality operator.
+
+   Definition at line 289 of file fbxset.h.
+        {
+                return (this == &pOther) || (mTree == pOther.mTree);
+        }
+
+   bool operator!= ( const FbxSet2< Type, Compare, Allocator > &  pOther ) const [inline]
+
+   Inequality operator.
+
+   Definition at line 295 of file fbxset.h.
+        {
+                return !(*this == pOther);
+        }
+
+   FbxSet2 Intersect ( const FbxSet2< Type, Compare, Allocator > &  pOther ) const [inline]
+   Search for all occurrences
+
+   Intersect with another set.
+
+   Parameters:
+
+          pOther The other set.
+
+   Returns:
+          The intersection set of the two sets.
+
+   Definition at line 303 of file fbxset.h.
+        {
+                FbxSet2 lReturn;
+                ConstIterator lBegin = Begin();
+                for (; lBegin != End(); ++lBegin)
+                {
+                        if (pOther.Find(lBegin->GetValue()) != NULL)
+                                lReturn.Insert(lBegin->GetValue());
+                }
+                return lReturn;
+        }
+
+   FbxSet2 Union ( const FbxSet2< Type, Compare, Allocator > &  pOther ) const [inline]
+   Search for all occurrences
+
+   Unite with another set.
+
+   Parameters:
+
+          pOther The other set.
+
+   Returns:
+          The union set of the two sets (no duplicated items).
+
+   Definition at line 318 of file fbxset.h.
+        {
+                FbxSet2 lReturn(*this);
+                ConstIterator lBegin = pOther.Begin();
+                for (; lBegin != End(); ++lBegin)
+                {
+                        if (Find(lBegin->GetValue()) == NULL)
+                                lReturn.Insert(lBegin->GetValue());
+                }
+                return lReturn;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxset.h
+
+   Please send us your comment about this page

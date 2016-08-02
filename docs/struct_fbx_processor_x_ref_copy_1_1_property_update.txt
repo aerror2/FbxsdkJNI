@@ -1,0 +1,99 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessorXRefCopy::PropertyUpdate Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxProcessorXRefCopy
+     * PropertyUpdate
+
+   Public Member Functions | Public Attributes
+   FbxProcessorXRefCopy::PropertyUpdate Struct Reference
+   Search for all occurrences
+
+   #include <fbxprocessorxref.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Since FbxProperty is an opaque type, we can't do an efficient operator < on it, and must keep the data on the object, which can be compared through pointers, and then we can further compare against the property name.
+
+   Definition at line 79 of file fbxprocessorxref.h.
+
+   List of all members.
+
+Public Member Functions
+
+                PropertyUpdate ()
+                PropertyUpdate (const FbxProperty &pProp, const FbxString &pVal)
+          bool  operator< (const PropertyUpdate &pOther) const
+
+Public Attributes
+
+   FbxProperty  mProperty
+     FbxString  mOriginalValue
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   PropertyUpdate ( ) [inline]
+
+   Definition at line 84 of file fbxprocessorxref.h.
+{}
+
+   PropertyUpdate ( const FbxProperty &  pProp,
+                    const FbxString &    pVal
+                  )                      [inline]
+
+   Definition at line 85 of file fbxprocessorxref.h.
+                                                                               :
+            mProperty(pProp), mOriginalValue(pVal) {}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool operator< ( const PropertyUpdate &  pOther ) const [inline]
+
+   Definition at line 88 of file fbxprocessorxref.h.
+        {
+            return strcmp(mProperty.GetName(), pOther.mProperty.GetName()) < 0;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxProperty mProperty
+   Search for all occurrences
+
+   Definition at line 81 of file fbxprocessorxref.h.
+   FbxString mOriginalValue
+   Search for all occurrences
+
+   Definition at line 82 of file fbxprocessorxref.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxprocessorxref.h
+
+   Please send us your comment about this page

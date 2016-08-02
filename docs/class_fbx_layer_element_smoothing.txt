@@ -1,0 +1,113 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementSmoothing Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxLayerElementSmoothing Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for indicating smoothness of components of a geometry.
+
+   Remarks:
+          To be correctly saved in FBX file, this type of Layer element should have its reference mode set to eDirect.
+
+   Examples:
+          Normals/main.cxx.
+
+   Definition at line 1987 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementSmoothing:
+   [USEMAP:class_fbx_layer_element_smoothing.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                      FBXSDK_FRIEND_NEW ()
+                                void  SetReferenceMode (FbxLayerElement::EReferenceMode pMode)
+                                      Sets the Reference Mode.
+
+Static Public Member Functions
+
+   static FbxLayerElementSmoothing *  Create (FbxLayerContainer *pOwner, const char *pName)
+                                      Allocation method.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   static FbxLayerElementSmoothing* Create ( FbxLayerContainer *  pOwner,
+                                             const char *         pName
+                                           )                      [static]
+   Search for all occurrences
+
+   Allocation method.
+
+   Parameters:
+
+          pOwner The owner of this layer element.
+          pName  The name of this layer element.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+
+   void SetReferenceMode ( FbxLayerElement::EReferenceMode  pMode ) [inline]
+   Search for all occurrences
+
+   Sets the Reference Mode.
+
+   Parameters:
+
+          pMode Specifies the reference mode.
+
+   Remarks:
+          Only support eDirect.
+
+   Reimplemented from FbxLayerElement.
+
+   Definition at line 2003 of file fbxlayer.h.
+        {
+                if( pMode != FbxLayerElement::eDirect )
+                {
+                        FBX_ASSERT_NOW( "Smoothing layer elements must be direct mapped" );
+                        return;
+                }
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

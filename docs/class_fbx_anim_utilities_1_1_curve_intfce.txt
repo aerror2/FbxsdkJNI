@@ -1,0 +1,128 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimUtilities::CurveIntfce Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxAnimUtilities
+     * CurveIntfce
+
+   Public Member Functions | Friends
+   FbxAnimUtilities::CurveIntfce Class Reference
+   Search for all occurrences
+
+   #include <fbxanimutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 121 of file fbxanimutilities.h.
+
+   List of all members.
+
+Public Member Functions
+
+                  CurveIntfce (void *pData)
+                  CurveIntfce (FbxAnimCurve *pAnimCurve)
+                  ~CurveIntfce ()
+           float  GetValue ()
+            void  SetValue (float pVal)
+             int  KeyGetCount ()
+          void *  GetCurveHandle ()
+            void  SetCurveHandle (void *pData)
+             int  GetPreExtrapolation ()
+             int  GetPreExtrapolationCount ()
+             int  GetPostExtrapolation ()
+             int  GetPostExtrapolationCount ()
+            bool  IsValid ()
+   CurveIntfce &  operator= (CurveIntfce &lRhs)
+            bool  operator== (CurveIntfce &lRhs)
+
+Friends
+
+           class  FbxAnimUtilities
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   CurveIntfce ( void *  pData )
+   CurveIntfce ( FbxAnimCurve *  pAnimCurve )
+   ~CurveIntfce ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   float GetValue ( )
+   Search for all occurrences
+   void SetValue ( float  pVal )
+   Search for all occurrences
+   int KeyGetCount ( )
+   Search for all occurrences
+   void* GetCurveHandle ( )
+   Search for all occurrences
+   void SetCurveHandle ( void *  pData )
+   Search for all occurrences
+   int GetPreExtrapolation ( )
+   Search for all occurrences
+   int GetPreExtrapolationCount ( )
+   Search for all occurrences
+   int GetPostExtrapolation ( )
+   Search for all occurrences
+   int GetPostExtrapolationCount ( )
+   Search for all occurrences
+   bool IsValid ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 142 of file fbxanimutilities.h.
+{ return mImp != NULL; }
+
+   CurveIntfce& operator= ( CurveIntfce &  lRhs ) [inline]
+
+   Definition at line 143 of file fbxanimutilities.h.
+        {
+            mImp = lRhs.mImp;
+            mIsAnimCurveImp = lRhs.mIsAnimCurveImp;
+            return *this;
+        }
+
+   bool operator== ( CurveIntfce &  lRhs ) [inline]
+
+   Definition at line 150 of file fbxanimutilities.h.
+        {
+            return (mImp == lRhs.mImp);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxAnimUtilities [friend]
+   Search for all occurrences
+
+   Definition at line 156 of file fbxanimutilities.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimutilities.h
+
+   Please send us your comment about this page

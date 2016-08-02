@@ -1,0 +1,731 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveFilterMatrixConverter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxAnimCurveFilterMatrixConverter Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvefilters.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Matrix conversion filter.
+
+   Remarks:
+          The current implementation of this filter expects to process 9 curves. If the ApplyUnroll flag is enabled, set with a call to SetApplyUnroll(), the internal unroll filter will automatically be configured to convert USER and BREAK tangents to AUTO (refer to the FbxAnimCurveFilterUnroll documentation).
+
+   Definition at line 1162 of file fbxanimcurvefilters.h.
+   Inheritance diagram for FbxAnimCurveFilterMatrixConverter:
+   [USEMAP:class_fbx_anim_curve_filter_matrix_converter.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EMatrixIndex {
+     ePreGlobal, ePreTranslate, ePostTranslate, ePreRotate,
+     ePostRotate, ePreScale, ePostScale, ePostGlobal,
+     eScaleOffset, eInactivePre, eInactivePost, eRotationPivot,
+     eScalingPivot, eMatrixIndexCount
+   }
+     Matrix index type. More...
+
+Public Member Functions
+
+     FbxAnimCurveFilterMatrixConverter ()
+     Constructor.
+   virtual  ~FbxAnimCurveFilterMatrixConverter ()
+     Destructor.
+   virtual const char *  GetName () const
+     Get the name of the filter.
+   virtual bool  NeedApply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+     This filter expects to work with interdependent curves.
+   virtual bool  NeedApply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+     This filter expects to work with 9 interdependent curves.
+   virtual bool  NeedApply (FbxAnimCurveNode *pCurveNode[3], FbxStatus *pStatus=NULL)
+     Check if the animation curve nodes need an application of the filter.
+   virtual bool  NeedApply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+     This filter expects to work with interdependent curves.
+   virtual bool  Apply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+     This filter expects to work with interdependent curves.
+   virtual bool  Apply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+     This filter expects to work with 9 interdependent curves.
+   virtual bool  Apply (FbxAnimCurveNode *pCurveNode[3], FbxStatus *pStatus=NULL)
+     Apply filter on all the curves of the animation curve nodes.
+   virtual bool  Apply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+     Apply filter on the given animation curves.
+   bool  Apply (FbxAnimCurve **pCurve, double *pVals, FbxStatus *pStatus=NULL)
+     Apply filter on the given animation curves.
+   virtual bool  Apply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+     This filter expects to work with interdependent curves.
+   virtual void  Reset ()
+     Reset the filter to its default parameters.
+   void  GetSourceMatrix (EMatrixIndex pIndex, FbxAMatrix &pMatrix) const
+     Get the Translation Rotation Scaling source matrix.
+   void  SetSourceMatrix (EMatrixIndex pIndex, FbxAMatrix &pMatrix)
+     Set the Translation Rotation Scaling source matrix.
+   void  GetDestMatrix (EMatrixIndex pIndex, FbxAMatrix &pMatrix) const
+     Get the Translation Rotation Scaling destination matrix.
+   void  SetDestMatrix (EMatrixIndex pIndex, FbxAMatrix &pMatrix)
+     Set the Translation Rotation Scaling destination matrix.
+   FbxTime  GetResamplingPeriod () const
+     Get the re-sampling period.
+   void  SetResamplingPeriod (FbxTime &pResamplingPeriod)
+     Set the re-sampling period.
+   bool  GetGenerateLastKeyExactlyAtEndTime () const
+     Get the current state of the flag which determines if the last key should be generated exactly at the end time or not.
+   void  SetGenerateLastKeyExactlyAtEndTime (bool pFlag)
+     Set the flag to determine if the last key will be generated exactly at the end time or not.
+   bool  GetResamplingOnFrameRateMultiple () const
+     Check if re-sampling is on frame rate multiple.
+   void  SetResamplingOnFrameRateMultiple (bool pFlag)
+     Set the re-sample on a frame rate multiple.
+   bool  GetApplyUnroll () const
+     Get the current state of the ApplyUnroll flag.
+   void  SetApplyUnroll (bool pFlag)
+     Set the state of the ApplyUnroll flag.
+   bool  GetApplyConstantKeyReducer () const
+     Get the current state of the flag that determines if constant key reducer is used or not.
+   void  SetApplyConstantKeyReducer (bool pFlag)
+     Set the state of the flag that determines if constant key reducer is used or not.
+   bool  GetResampleTranslation () const
+     Get the current state of the flag that determines if the translation data should be re-sampled or not.
+   void  SetResampleTranslation (bool pFlag)
+     Set the state of the flag that determines if the translation data should be re-sampled or not.
+   void  SetSrcRotateOrder (int pOrder)
+     Set the rotation order of the source matrix.
+   void  SetDestRotateOrder (int pOrder)
+     Set the rotation order of the destination matrix.
+   void  SetForceApply (bool pVal)
+     Set the state of the flag to force usage of the filter even if source and destination matrices are equivalent.
+   bool  GetForceApply () const
+     Get the current state of the flag to force usage of the filter even if source and destination matrices are equivalent.
+
+Exposed parent class methods.
+
+   virtual bool  NeedApply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+     Check if the given animation curve need an application of the filter.
+   virtual bool  NeedApply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+     Check if the animation curve node needs an application of the filter.
+   virtual bool  Apply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+     Apply filter on all the curves of an animation curve node.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EMatrixIndex
+   Search for all occurrences
+
+   Matrix index type.
+     * ePreGlobal
+     * ePreTranslate
+     * ePostTranslate
+     * ePreRotate
+     * ePreScale
+     * ePostGlobal
+     * eScaleOffset
+     * eInactivePre
+     * eInactivePost
+     * eRotationPivot
+     * eScalingPivot
+     * eMatrixIndexCount
+
+   Enumerator:
+
+          ePreGlobal
+
+   Search for all occurrences
+          ePreTranslate
+
+   Search for all occurrences
+          ePostTranslate
+
+   Search for all occurrences
+          ePreRotate
+
+   Search for all occurrences
+          ePostRotate
+
+   Search for all occurrences
+          ePreScale
+
+   Search for all occurrences
+          ePostScale
+
+   Search for all occurrences
+          ePostGlobal
+
+   Search for all occurrences
+          eScaleOffset
+
+   Search for all occurrences
+          eInactivePre
+
+   Search for all occurrences
+          eInactivePost
+
+   Search for all occurrences
+          eRotationPivot
+
+   Search for all occurrences
+          eScalingPivot
+
+   Search for all occurrences
+          eMatrixIndexCount
+
+   Search for all occurrences
+
+   Definition at line 1296 of file fbxanimcurvefilters.h.
+    {
+        ePreGlobal,
+        ePreTranslate,
+        ePostTranslate,
+        ePreRotate,
+        ePostRotate,
+        ePreScale,
+        ePostScale,
+        ePostGlobal,
+        eScaleOffset,
+        eInactivePre,
+        eInactivePost,
+        eRotationPivot,
+        eScalingPivot,
+        eMatrixIndexCount
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveFilterMatrixConverter ( )
+
+   Constructor.
+   virtual ~FbxAnimCurveFilterMatrixConverter ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetName ( ) const [virtual]
+   Search for all occurrences
+
+   Get the name of the filter.
+
+   Returns:
+          Pointer to name.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimCurve **  pCurve,
+                            int              pCount,
+                            FbxStatus *      pStatus = NULL
+                          )                  [inline, virtual]
+   Search for all occurrences
+
+   Check if the given animation curve need an application of the filter.
+
+   Parameters:
+
+          pCurve  Array of curves to test if they need the and application of the filter.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if at least one animation curve in the array needs an application of the filter.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1180 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::NeedApply(pCurve, pCount,pStatus); }
+
+   virtual bool NeedApply ( FbxAnimCurveNode &  pCurveNode,
+                            FbxStatus *         pStatus = NULL
+                          )                     [inline, virtual]
+   Search for all occurrences
+
+   Check if the animation curve node needs an application of the filter.
+
+   Parameters:
+
+          pCurveNode Curve node to test.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the animation curve node needs an application of the filter.
+
+   Remarks:
+          This method collects all the FbxAnimCurve objects connected to the curve node and calls NeedApply(FbxAnimCurve**, int)
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1181 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::NeedApply(pCurveNode, pStatus);    }
+
+   virtual bool Apply ( FbxAnimCurveNode &  pCurveNode,
+                        FbxStatus *         pStatus = NULL
+                      )                     [inline, virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of an animation curve node.
+
+   Parameters:
+
+          pCurveNode Curve node to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method collects all the FbxAnimCurve objects connected to the curve node and calls Apply(FbxAnimCurve**, int)
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1182 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pCurveNode, pStatus);        }
+
+   virtual bool NeedApply ( FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Passing the animation stack makes no sense since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1191 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool NeedApply ( FbxObject *     pObj,
+                            FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 9 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 9 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1200 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool NeedApply ( FbxAnimCurveNode *  pCurveNode[3],
+                            FbxStatus *         pStatus = NULL
+                          )                     [virtual]
+   Search for all occurrences
+
+   Check if the animation curve nodes need an application of the filter.
+
+   Parameters:
+
+          pCurveNode Curves to test if they need an application of the filter.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the animation curve nodes need an application of the filter and false if they don't or an incompatible configuration is detected.
+
+   Remarks:
+          This method assumes that pCurveNode[0] holds the translation curve, pCurveNode[1] holds the rotation curves and pCurveNode[2] holds the scaling curves.
+
+   virtual bool NeedApply ( FbxAnimCurve &  pCurve,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1216 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Passing the animation stack makes no sense since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack where to retrieve the animation curves.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1224 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxObject *     pObj,
+                        FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 9 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 9 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1233 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxAnimCurveNode *  pCurveNode[3],
+                        FbxStatus *         pStatus = NULL
+                      )                     [virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of the animation curve nodes.
+
+   Parameters:
+
+          pCurveNode Curve nodes to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method assumes that pCurveNode[0] holds the translation curve, pCurveNode[1] holds the rotation curves and pCurveNode[2] holds the scaling curves.
+
+   virtual bool Apply ( FbxAnimCurve **  pCurve,
+                        int              pCount,
+                        FbxStatus *      pStatus = NULL
+                      )                  [virtual]
+   Search for all occurrences
+
+   Apply filter on the given animation curves.
+
+   Parameters:
+
+          pCurve  Array of curve to which the filter is applied.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          pCount must be equal to 9
+          Because this method only manipulates FbxAnimCurve objects, it cannot set/get the channels value. If the calling application wishes to use this flavor of the Apply() method, it is strongly suggested to use the method: FbxAnimCurveFilterMatrixConverter::Apply(FbxAnimCurve** pCurve, double& pVals[9]); The Apply(FbxAnimCurveNode*) method is not affected by this limitation since the channel values can be accessed via the animation curve node.
+
+   Reimplemented from FbxAnimCurveFilter.
+   bool Apply ( FbxAnimCurve **  pCurve,
+                double *         pVals,
+                FbxStatus *      pStatus = NULL
+              )
+   Search for all occurrences
+
+   Apply filter on the given animation curves.
+
+   Parameters:
+
+          pCurve  Array of curve to which the filter is applied.
+          pVals   Array of channel values (same size as pCurve).
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method assumes that pCurve contains exactly 9 curves.
+          pVals must be correctly initialized with the channels values and, if the method calculates new values, they will be returned in this array.
+          The curves are assumed to represent: Translation X,Y and Z, Rotation X,Y and Z and Scaling X,Y and Z in this order.
+
+   virtual bool Apply ( FbxAnimCurve &  pCurve,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false.
+
+   Implements FbxAnimCurveFilter.
+
+   Definition at line 1276 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; };
+
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset the filter to its default parameters.
+
+   Reimplemented from FbxAnimCurveFilter.
+   void GetSourceMatrix ( EMatrixIndex  pIndex,
+                          FbxAMatrix &  pMatrix
+                        )               const
+   Search for all occurrences
+
+   Get the Translation Rotation Scaling source matrix.
+
+   Parameters:
+
+          pIndex  The matrix ID.
+          pMatrix The matrix used to receive the source matrix.
+
+   void SetSourceMatrix ( EMatrixIndex  pIndex,
+                          FbxAMatrix &  pMatrix
+                        )
+   Search for all occurrences
+
+   Set the Translation Rotation Scaling source matrix.
+
+   Parameters:
+
+          pIndex  The matrix ID.
+          pMatrix The matrix used to set the source matrix.
+
+   void GetDestMatrix ( EMatrixIndex  pIndex,
+                        FbxAMatrix &  pMatrix
+                      )               const
+   Search for all occurrences
+
+   Get the Translation Rotation Scaling destination matrix.
+
+   Parameters:
+
+          pIndex  The matrix ID.
+          pMatrix The matrix used to receive the destination matrix.
+
+   void SetDestMatrix ( EMatrixIndex  pIndex,
+                        FbxAMatrix &  pMatrix
+                      )
+   Search for all occurrences
+
+   Set the Translation Rotation Scaling destination matrix.
+
+   Parameters:
+
+          pIndex  The matrix ID.
+          pMatrix The matrix used to set the destination matrix.
+
+   FbxTime GetResamplingPeriod ( ) const
+   Search for all occurrences
+
+   Get the re-sampling period.
+
+   Returns:
+          the re-sampling period.
+
+   void SetResamplingPeriod ( FbxTime &  pResamplingPeriod )
+   Search for all occurrences
+
+   Set the re-sampling period.
+
+   Parameters:
+
+          pResamplingPeriod The re-sampling period to be set.
+
+   bool GetGenerateLastKeyExactlyAtEndTime ( ) const
+   Search for all occurrences
+
+   Get the current state of the flag which determines if the last key should be generated exactly at the end time or not.
+
+   This filter handles 9 animation curves, each of them has a stop time, the latest one is defined as the end time.
+
+   Returns:
+          true if last key is set exactly at end time, false otherwise.
+
+   void SetGenerateLastKeyExactlyAtEndTime ( bool  pFlag )
+   Search for all occurrences
+
+   Set the flag to determine if the last key will be generated exactly at the end time or not.
+
+   This filter handles 9 animation curves, each of them has a stop time, the latest one is defined as the end time.
+
+   Parameters:
+
+          pFlag Set to true to generate the last key exactly at the end time, false otherwise.
+
+   bool GetResamplingOnFrameRateMultiple ( ) const
+   Search for all occurrences
+
+   Check if re-sampling is on frame rate multiple.
+
+   Returns:
+          true if re-sampling is on a frame rate multiple.
+
+   void SetResamplingOnFrameRateMultiple ( bool  pFlag )
+   Search for all occurrences
+
+   Set the re-sample on a frame rate multiple.
+
+   Parameters:
+
+          pFlag The value to be set.
+
+   Remarks:
+          It might be necessary that the starting time of the converted animation starts at an multiple of frame period starting from time 0. Most softwares play their animation at a definite frame rate, starting from time 0. As re-sampling occurs when we can't guarantee interpolation, keys must match with the moment when the curve is evaluated.
+
+   bool GetApplyUnroll ( ) const
+   Search for all occurrences
+
+   Get the current state of the ApplyUnroll flag.
+
+   Returns:
+          true if the internal unroll filter is applied, false otherwise.
+
+   Remarks:
+          Enable the internal unroll filter to get continuous rotation animation curves.
+
+   See also:
+          FbxAnimCurveFilterUnroll.
+
+   void SetApplyUnroll ( bool  pFlag )
+   Search for all occurrences
+
+   Set the state of the ApplyUnroll flag.
+
+   Parameters:
+
+          pFlag Set to true to apply an unroll filter to the rotation curves internally, \ set to false otherwise.
+
+   bool GetApplyConstantKeyReducer ( ) const
+   Search for all occurrences
+
+   Get the current state of the flag that determines if constant key reducer is used or not.
+
+   Returns:
+          true if constant key reducer is applied, false otherwise.
+
+   void SetApplyConstantKeyReducer ( bool  pFlag )
+   Search for all occurrences
+
+   Set the state of the flag that determines if constant key reducer is used or not.
+
+   Parameters:
+
+          pFlag Set to true to apply the constant key reducer, \ Set to false otherwise.
+
+   bool GetResampleTranslation ( ) const
+   Search for all occurrences
+
+   Get the current state of the flag that determines if the translation data should be re-sampled or not.
+
+   Returns:
+          true if translation data is re-sampled upon conversion, false otherwise.
+
+   Remarks:
+          If this flag is false, translation data must be calculated after the conversion process, overriding the re-sampling process.
+
+   void SetResampleTranslation ( bool  pFlag )
+   Search for all occurrences
+
+   Set the state of the flag that determines if the translation data should be re-sampled or not.
+
+   Parameters:
+
+          pFlag Set to true to re-sample the translation data, set to false otherwise.
+
+   Remarks:
+          If this flag is set to false, translation data must be calculated after the conversion process, overriding the re-sampling process.
+
+   void SetSrcRotateOrder ( int  pOrder )
+   Search for all occurrences
+
+   Set the rotation order of the source matrix.
+
+   Parameters:
+
+          pOrder The rotation order to be set.
+
+   void SetDestRotateOrder ( int  pOrder )
+   Search for all occurrences
+
+   Set the rotation order of the destination matrix.
+
+   Parameters:
+
+          pOrder The rotation order to be set.
+
+   void SetForceApply ( bool  pVal )
+   Search for all occurrences
+
+   Set the state of the flag to force usage of the filter even if source and destination matrices are equivalent.
+
+   Parameters:
+
+          pVal Set to true to force usage of the filter, set to false otherwise.
+
+   bool GetForceApply ( ) const
+   Search for all occurrences
+
+   Get the current state of the flag to force usage of the filter even if source and destination matrices are equivalent.
+
+   Returns:
+          true to force usage of the filter, false otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvefilters.h
+
+   Please send us your comment about this page

@@ -1,0 +1,141 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStringSymbol Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxStringSymbol Class Reference
+   Search for all occurrences
+
+   #include <fbxsymbol.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class is to mark a string as symbol.
+
+   String Symbol only has its name. /remarks Each symbol is unique. That means there are no symbols which have the same name.
+
+   Definition at line 81 of file fbxsymbol.h.
+
+   List of all members.
+
+Public Member Functions
+
+                      operator const char * () const
+                      Cast operator to const char* type.
+                bool  IsEmpty () const
+                      Determine the symbol empty or not.
+   FbxStringSymbol &  operator= (const char *pName)
+                      Assignment operator.
+
+Static Public Member Functions
+
+         static void  AllocateGlobalStringSymbolMap ()
+                      Static function to allocate global string symbol map.
+         static void  FreeGlobalStringSymbolMap ()
+                      Static function to deallocate global string symbol map.
+
+Constructors and Destructor
+
+                      FbxStringSymbol ()
+                      Default constructor.
+                      FbxStringSymbol (const char *pName)
+                      Constructor.
+                      FbxStringSymbol (const FbxStringSymbol &pOther)
+                      Copy constructor.
+                      ~FbxStringSymbol ()
+                      Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStringSymbol ( )
+
+   Default constructor.
+   FbxStringSymbol ( const char *  pName )
+
+   Constructor.
+
+   Construct a symbol and add it to global symbol table.
+
+   Parameters:
+
+          pName Symbol name.
+
+   FbxStringSymbol ( const FbxStringSymbol &  pOther )
+
+   Copy constructor.
+   ~FbxStringSymbol ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   operator const char * ( ) const [inline]
+
+   Cast operator to const char* type.
+
+   Definition at line 106 of file fbxsymbol.h.
+{ return mItem ? ((const char*) mItem->GetKey()) : NULL; }
+
+   bool IsEmpty ( ) const [inline]
+   Search for all occurrences
+
+   Determine the symbol empty or not.
+
+   Returns:
+          true if empty. false otherwise.
+
+   Definition at line 112 of file fbxsymbol.h.
+    {
+        return !mItem || mItem->GetKey().IsEmpty();
+    }
+
+   static void AllocateGlobalStringSymbolMap ( ) [static]
+   Search for all occurrences
+
+   Static function to allocate global string symbol map.
+   static void FreeGlobalStringSymbolMap ( ) [static]
+   Search for all occurrences
+
+   Static function to deallocate global string symbol map.
+   FbxStringSymbol& operator= ( const char *  pName )
+
+   Assignment operator.
+
+   Parameters:
+
+          pName The symbol value.
+
+   Returns:
+          The self after assignment.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxsymbol.h
+
+   Please send us your comment about this page

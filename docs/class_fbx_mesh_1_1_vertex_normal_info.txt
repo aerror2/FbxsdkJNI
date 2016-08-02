@@ -1,0 +1,89 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMesh::VertexNormalInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxMesh
+     * VertexNormalInfo
+
+   Public Member Functions | Public Attributes
+   FbxMesh::VertexNormalInfo Class Reference
+   Search for all occurrences
+
+   #include <fbxmesh.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Internal structure used to compute the normals on a mesh.
+
+   Definition at line 351 of file fbxmesh.h.
+
+   List of all members.
+
+Public Member Functions
+
+               VertexNormalInfo ()
+
+Public Attributes
+
+   FbxVector4  mTotalNormal
+               Sum of all the normals found.
+          int  mNumNormal
+               Number of normals added.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   VertexNormalInfo ( ) [inline]
+
+   Definition at line 354 of file fbxmesh.h.
+                                           :
+                                mTotalNormal(0, 0, 0),
+                                mNumNormal(0)
+                        {
+                        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxVector4 mTotalNormal
+   Search for all occurrences
+
+   Sum of all the normals found.
+
+   Definition at line 360 of file fbxmesh.h.
+   int mNumNormal
+   Search for all occurrences
+
+   Number of normals added.
+
+   Definition at line 361 of file fbxmesh.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxmesh.h
+
+   Please send us your comment about this page

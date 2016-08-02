@@ -1,0 +1,142 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxControlSetPlug Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes | Protected Member Functions | Friends
+   FbxControlSetPlug Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcontrolset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Plug class for control set.
+
+   Definition at line 338 of file fbxcontrolset.h.
+   Inheritance diagram for FbxControlSetPlug:
+   [USEMAP:class_fbx_control_set_plug.png]
+
+   List of all members.
+
+Public Attributes
+
+   FbxPropertyT
+   < FbxControlSet::EType >  ControlSetType
+                                                           EType property of control set.
+                                  FbxPropertyT< FbxBool >  UseAxis
+                                                           Use axis flag.
+                             FbxPropertyT< FbxReference >  Character
+                                                           Reference character.
+
+Protected Member Functions
+
+                                             //virtual void  Construct (const FbxObject *pFrom)
+                                              //             Optional constructor override, automatically called by default constructor.
+                                             //virtual void  ConstructProperties (bool pForceSet)
+                                        //                   Optional property constructor override, automatically called by default constructor.
+                                   // virtual FbxStringList  GetTypeFlags () const
+
+Friends
+
+                                                    class  FbxScene
+                                                    class  FbxControlSet
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Construct ( const FbxObject *  pFrom ) [protected, virtual]
+   Search for all occurrences
+
+   Optional constructor override, automatically called by default constructor.
+
+   Parameters:
+
+          pFrom If not null, the function must take it into account like a copy constructor.
+
+   Remarks:
+          In case it is decided to override this function, do not forget to call ParentClass::Construct(pFrom) at the beginning.
+
+   Reimplemented from FbxObject.
+   virtual void ConstructProperties ( bool  pForceSet ) [protected, virtual]
+   Search for all occurrences
+
+   Optional property constructor override, automatically called by default constructor.
+
+   Parameters:
+
+          pForceSet If the property value must be set regardless of default value.
+
+   Remarks:
+          If your object have properties, they must be initialized in this function.
+
+   Reimplemented from FbxObject.
+   virtual FbxStringList GetTypeFlags ( ) const [protected, virtual]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxScene [friend]
+   Search for all occurrences
+
+   Definition at line 361 of file fbxcontrolset.h.
+   friend class FbxControlSet [friend]
+   Search for all occurrences
+
+   Definition at line 362 of file fbxcontrolset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxControlSet::EType> ControlSetType
+   Search for all occurrences
+
+   EType property of control set.
+
+   Definition at line 344 of file fbxcontrolset.h.
+   FbxPropertyT<FbxBool> UseAxis
+   Search for all occurrences
+
+   Use axis flag.
+
+   Definition at line 347 of file fbxcontrolset.h.
+   FbxPropertyT<FbxReference> Character
+   Search for all occurrences
+
+   Reference character.
+
+   Definition at line 350 of file fbxcontrolset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcontrolset.h
+
+   Please send us your comment about this page

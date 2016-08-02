@@ -1,0 +1,306 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStream Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxStream Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxstream.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Abstract class for implementing I/O operations through a stream of data.
+
+   For instance, it can be used to read data from a memory source, thus making it possible to import files from memory. However, for the time being, the FbxStream class is only supported with FBX files.
+
+   Examples:
+          FileStream/main.cxx.
+
+   Definition at line 26 of file fbxstream.h.
+
+   List of all members.
+
+Public Types
+
+            enum   EState { eClosed, eOpen, eEmpty }
+                   Current stream state. More...
+
+Public Member Functions
+
+   virtual EState  GetState ()=0
+                   Query the current state of the stream.
+     virtual bool  Open (void *pStreamData)=0
+                   Open the stream.
+     virtual bool  Close ()=0
+                   Close the stream.
+     virtual bool  Flush ()=0
+                   Empties the internal data of the stream.
+      virtual int  Write (const void *pData, int pSize)=0
+                   Writes a memory block.
+      virtual int  Read (void *pData, int pSize) const =0
+                   Read bytes from the stream and store them in the memory block.
+   virtual char *  ReadString (char *pBuffer, int pMaxSize, bool pStopAtFirstWhiteSpace=false)
+                   Read a string from the stream.
+      virtual int  GetReaderID () const =0
+                   If not specified by KFbxImporter::Initialize(), the importer will ask the stream to select an appropriate reader ID to associate with the stream.
+      virtual int  GetWriterID () const =0
+                   If not specified by KFbxExporter::Initialize(), the exporter will ask the stream to select an appropriate writer ID to associate with the stream.
+     virtual void  Seek (const FbxInt64 &pOffset, const FbxFile::ESeekPos &pSeekPos)=0
+                   Adjust the current stream position.
+     virtual long  GetPosition () const =0
+                   Get the current stream position.
+     virtual void  SetPosition (long pPosition)=0
+                   Set the current stream position.
+      virtual int  GetError () const =0
+                   Return 0 if no errors occurred.
+     virtual void  ClearError ()=0
+                   Clear current error condition by setting the current error value to 0.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EState
+   Search for all occurrences
+
+   Current stream state.
+
+   Enumerator:
+
+          eClosed
+
+   The stream is closed.
+   Search for all occurrences
+          eOpen
+
+   The stream is open.
+   Search for all occurrences
+          eEmpty
+
+   The stream is empty.
+   Search for all occurrences
+
+   Definition at line 30 of file fbxstream.h.
+        {
+                eClosed,
+                eOpen,
+                eEmpty
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual EState GetState ( ) [pure virtual]
+   Search for all occurrences
+
+   Query the current state of the stream.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual bool Open ( void *  pStreamData ) [pure virtual]
+   Search for all occurrences
+
+   Open the stream.
+
+   Returns:
+          True if successful.
+
+   Remarks:
+          Each time the stream is open or closed, the stream position must be reset to zero.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual bool Close ( ) [pure virtual]
+   Search for all occurrences
+
+   Close the stream.
+
+   Returns:
+          True if successful.
+
+   Remarks:
+          Each time the stream is open or closed, the stream position must be reset to zero.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual bool Flush ( ) [pure virtual]
+   Search for all occurrences
+
+   Empties the internal data of the stream.
+
+   Returns:
+          True if successful.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual int Write ( const void *  pData,
+                       int           pSize
+                     )               [pure virtual]
+   Search for all occurrences
+
+   Writes a memory block.
+
+   Parameters:
+
+          pData Pointer to the memory block to write.
+          pSize Size (in bytes) of the memory block to write.
+
+   Returns:
+          The number of bytes written in the stream.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual int Read ( void *  pData,
+                      int     pSize
+                    )         const [pure virtual]
+   Search for all occurrences
+
+   Read bytes from the stream and store them in the memory block.
+
+   Parameters:
+
+          pData Pointer to the memory block where the read bytes are stored.
+          pSize Number of bytes read from the stream.
+
+   Returns:
+          The actual number of bytes successfully read from the stream.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual char* ReadString ( char *  pBuffer,
+                              int     pMaxSize,
+                              bool    pStopAtFirstWhiteSpace = false
+                            )         [virtual]
+   Search for all occurrences
+
+   Read a string from the stream.
+
+   The default implementation is written in terms of Read() but does not cope with DOS line endings. Subclasses may need to override this if DOS line endings are to be supported.
+
+   Parameters:
+
+          pBuffer                Pointer to the memory block where the read bytes are stored.
+          pMaxSize               Maximum number of bytes to be read from the stream.
+          pStopAtFirstWhiteSpace Stop reading when any whitespace is encountered. Otherwise read to end of line (like fgets()).
+
+   Returns:
+          pBuffer, if successful, else NULL.
+
+   Remarks:
+          The default implementation terminates the pBuffer with a null character and assumes there is enough room for it. For example, a call with pMaxSize = 1 will fill pBuffer with the null character only.
+
+   virtual int GetReaderID ( ) const [pure virtual]
+   Search for all occurrences
+
+   If not specified by KFbxImporter::Initialize(), the importer will ask the stream to select an appropriate reader ID to associate with the stream.
+
+   FbxIOPluginRegistry can be used to locate id by extension or description. Return -1 to allow FBX to select an appropriate default.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual int GetWriterID ( ) const [pure virtual]
+   Search for all occurrences
+
+   If not specified by KFbxExporter::Initialize(), the exporter will ask the stream to select an appropriate writer ID to associate with the stream.
+
+   KFbxIOPluginRegistry can be used to locate id by extension or description. Return -1 to allow FBX to select an appropriate default.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual void Seek ( const FbxInt64 &           pOffset,
+                       const FbxFile::ESeekPos &  pSeekPos
+                     )                            [pure virtual]
+   Search for all occurrences
+
+   Adjust the current stream position.
+
+   Parameters:
+
+          pSeekPos Pre-defined position where offset is added (FbxFile::eBegin, FbxFile::eCurrent:, FbxFile::eEnd)
+          pOffset  Number of bytes to offset from pSeekPos.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual long GetPosition ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get the current stream position.
+
+   Returns:
+          Current number of bytes from the beginning of the stream.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual void SetPosition ( long  pPosition ) [pure virtual]
+   Search for all occurrences
+
+   Set the current stream position.
+
+   Parameters:
+
+          pPosition Number of bytes from the beginning of the stream to seek to.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual int GetError ( ) const [pure virtual]
+   Search for all occurrences
+
+   Return 0 if no errors occurred.
+
+   Otherwise, return 1 to indicate an error. This method will be invoked whenever FBX needs to verify that the last operation succeeded.
+
+   Examples:
+          FileStream/main.cxx.
+
+   virtual void ClearError ( ) [pure virtual]
+   Search for all occurrences
+
+   Clear current error condition by setting the current error value to 0.
+
+   Examples:
+          FileStream/main.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxstream.h
+
+   Please send us your comment about this page

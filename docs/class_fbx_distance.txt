@@ -1,0 +1,201 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDistance Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxDistance Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxpropertytypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK distance class.
+
+   Examples:
+          ImportScene/DisplayLodGroup.cxx.
+
+   Definition at line 435 of file fbxpropertytypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+         FbxDistance &  operator= (const FbxDistance &pValue)
+                        Assign operator.
+       const FbxString  unitName () const
+           const float  internalValue () const
+                        Get the value of distance when converting this measurement unit to inch.
+           const float  valueAs (const FbxSystemUnit &pUnit) const
+                        Get the value of distance when converting this measurement unit to the specified measurement unit.
+
+Constructors and Destructor
+
+                        FbxDistance ()
+                        Default constructor.
+                        FbxDistance (float pValue, FbxSystemUnit pUnit)
+                        Constructor with default values.
+                        FbxDistance (float pValue, const char *pUnit)
+                        Constructor.
+                        ~FbxDistance ()
+                        Destructor.
+
+boolean operation
+
+                  bool  operator== (const FbxDistance &pRHS) const
+                        Equivalence operator.
+                  bool  operator!= (const FbxDistance &pRHS) const
+                        Non-equivalence operator.
+
+Access
+
+   const FbxSystemUnit  unit () const
+                        Retrieve the measurement unit.
+           const float  value () const
+                        Retrieve the value of distance using the measurement unit.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxDistance ( )
+
+   Default constructor.
+   FbxDistance ( float          pValue,
+                 FbxSystemUnit  pUnit
+               )
+
+   Constructor with default values.
+
+   Parameters:
+
+          pValue Value of distance using the measurement unit.
+          pUnit  Unit of measurement.
+
+   FbxDistance ( float         pValue,
+                 const char *  pUnit
+               )
+
+   Constructor.
+
+   Parameters:
+
+          pValue Value of distance using the measurement unit.
+          pUnit  Unit of measurement.
+
+   Remarks:
+          This constructor will convert string to FbxSystemUnit.
+
+   ~FbxDistance ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxDistance& operator= ( const FbxDistance &  pValue )
+
+   Assign operator.
+
+   Parameters:
+
+          pValue The distance to be assigned to this distance.
+
+   Returns:
+          This distance.
+
+   bool operator== ( const FbxDistance &  pRHS ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pRHS The distance to be compared with this distance.
+
+   Returns:
+          True, if the two distances are equal, false otherwise.
+
+   bool operator!= ( const FbxDistance &  pRHS ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pRHS The distance to be compared with this distance.
+
+   Returns:
+          True, if the two distances are unequal, false otherwise.
+
+   const FbxString unitName ( ) const
+   Search for all occurrences
+   const FbxSystemUnit unit ( ) const
+   Search for all occurrences
+
+   Retrieve the measurement unit.
+
+   Returns:
+          The measure unit of the distance.
+
+   const float value ( ) const
+   Search for all occurrences
+
+   Retrieve the value of distance using the measurement unit.
+
+   Returns:
+          The value of distance using the measurement unit.
+
+   Examples:
+          ImportScene/DisplayLodGroup.cxx.
+
+   const float internalValue ( ) const
+   Search for all occurrences
+
+   Get the value of distance when converting this measurement unit to inch.
+
+   Returns:
+          The value of distance when converting this measurement unit to inch.
+
+   const float valueAs ( const FbxSystemUnit &  pUnit ) const
+   Search for all occurrences
+
+   Get the value of distance when converting this measurement unit to the specified measurement unit.
+
+   Parameters:
+
+          pUnit The measurement unit to be converted to.
+
+   Returns:
+          The value of distance when using the specified measurement unit.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertytypes.h
+
+   Please send us your comment about this page

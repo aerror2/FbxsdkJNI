@@ -1,0 +1,245 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSet Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxSet Class Reference
+   Search for all occurrences
+
+   #include <fbxset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to manipulate set.
+
+   Definition at line 26 of file fbxset.h.
+
+   List of all members.
+
+Public Member Functions
+
+             bool  Add (FbxHandle pReference, FbxHandle pItem)
+                   If can't find the matching item,append a item at the end of the array.
+             bool  Remove (FbxHandle pReference)
+                   Remove the first matching item, whose reference is the same as given.
+             bool  RemoveItem (FbxHandle pItem)
+                   Remove all the matching item, whose item is the same as given.
+             bool  SetItem (FbxHandle pReference, FbxHandle pItem)
+                   Set first matching item with the given parameter.
+        FbxHandle  Get (FbxHandle pReference, int *pIndex=NULL) const
+                   Get first matching item with the given parameter.
+             void  Clear ()
+                   Delete the array.
+        FbxHandle  GetFromIndex (int pIndex, FbxHandle *pReference=NULL) const
+                   Get the item of the given index.
+             bool  RemoveFromIndex (int pIndex)
+                   Remove the item of the given index.
+              int  GetCount () const
+                   Get number of items in the array.
+             bool  Swap () const
+                   Swap the value of Reference and Item in every item of array, and sort the new array with the value of Reference.
+             bool  Sort () const
+                   Sort the array according the value of Reference in each item.
+   const FbxSet &  operator= (const FbxSet &)
+                   FbxString assignment operator.
+
+Constructors and Destructor
+
+                   FbxSet (int pItemPerBlock=20)
+                   Int constructor.
+                   FbxSet (const FbxSet &other)
+                   Copy constructor.
+                   ~FbxSet ()
+                   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSet ( int  pItemPerBlock = 20 )
+
+   Int constructor.
+
+   Parameters:
+
+          pItemPerBlock The number of items that every block included
+
+   FbxSet ( const FbxSet &  other )
+
+   Copy constructor.
+
+   Parameters:
+
+          other Given object.
+
+   ~FbxSet ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool Add ( FbxHandle  pReference,
+              FbxHandle  pItem
+            )
+   Search for all occurrences
+
+   If can't find the matching item,append a item at the end of the array.
+
+   If find the matching item ,insert the new item before the matching item.
+
+   Parameters:
+
+          pReference The value of Reference in new item, also is the character for matching.
+          pItem      The value of Item in new item.
+
+   Returns:
+          If add successfully return true,otherwise return false.
+
+   bool Remove ( FbxHandle  pReference )
+   Search for all occurrences
+
+   Remove the first matching item, whose reference is the same as given.
+
+   Parameters:
+
+          pReference The given reference.
+
+   Returns:
+          If remove successfully return true,otherwise return false.
+
+   bool RemoveItem ( FbxHandle  pItem )
+   Search for all occurrences
+
+   Remove all the matching item, whose item is the same as given.
+
+   Parameters:
+
+          pItem The given item.
+
+   Returns:
+          If remove successfully return true,otherwise return false.
+
+   bool SetItem ( FbxHandle  pReference,
+                  FbxHandle  pItem
+                )
+   Search for all occurrences
+
+   Set first matching item with the given parameter.
+
+   Parameters:
+
+          pReference The character for matching.
+          pItem      The value of Item that the matching item will be set.
+
+   Returns:
+          If set successfully return true,otherwise return false.
+
+   FbxHandle Get ( FbxHandle  pReference,
+                   int *      pIndex = NULL
+                 )            const
+   Search for all occurrences
+
+   Get first matching item with the given parameter.
+
+   Parameters:
+
+          pReference The character for matching.
+          pIndex     The pointer to the index of the matching item.
+
+   Returns:
+          The value of Item in the matching item.
+
+   Remarks:
+          If there are multiple elements that match the character, the index returned is unspecified.
+
+   void Clear ( )
+   Search for all occurrences
+
+   Delete the array.
+   FbxHandle GetFromIndex ( int          pIndex,
+                            FbxHandle *  pReference = NULL
+                          )              const
+   Search for all occurrences
+
+   Get the item of the given index.
+
+   Parameters:
+
+          pIndex     The index for matching.
+          pReference The pointer to the Reference of the matching item.
+
+   Returns:
+          The value of Item in the matching item.
+
+   bool RemoveFromIndex ( int  pIndex )
+   Search for all occurrences
+
+   Remove the item of the given index.
+
+   Parameters:
+
+          pIndex The given index.
+
+   Returns:
+          If remove successfully return true,otherwise return false.
+
+   int GetCount ( ) const [inline]
+   Search for all occurrences
+
+   Get number of items in the array.
+
+   Returns:
+          The number of items in the array.
+
+   Definition at line 104 of file fbxset.h.
+{ return mSetCount; }
+
+   bool Swap ( ) const
+   Search for all occurrences
+
+   Swap the value of Reference and Item in every item of array, and sort the new array with the value of Reference.
+
+   Returns:
+          If swap successfully return true,otherwise return false.
+
+   bool Sort ( ) const
+   Search for all occurrences
+
+   Sort the array according the value of Reference in each item.
+
+   Returns:
+          If sort successfully return true,otherwise return false.
+
+   const FbxSet& operator= ( const FbxSet &  )
+
+   FbxString assignment operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxset.h
+
+   Please send us your comment about this page

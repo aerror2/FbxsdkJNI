@@ -1,0 +1,345 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSystemUnit Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions | Static Public Attributes
+   FbxSystemUnit Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes, Scene Axis and Unit Conversion.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxsystemunit.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class describes the units of measurement used within a particular scene.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 31 of file fbxsystemunit.h.
+
+   List of all members.
+
+Classes
+
+                          struct   ConversionOptions
+                                   Struct to define various options that you can use to convert the system unit of a scene. More...
+
+Public Member Functions
+
+                                   FbxSystemUnit ()
+                                   FbxSystemUnit (double pScaleFactor, double pMultiplier=1.0)
+                                   Constructor.
+                                   ~FbxSystemUnit ()
+                                   Destructor.
+                             void  ConvertScene (FbxScene *pScene, const ConversionOptions &pOptions=DefaultConversionOptions) const
+                                   Converts a scene from its system units to this system unit.
+                             void  ConvertChildren (FbxNode *pRoot, const FbxSystemUnit &pSrcUnit, const ConversionOptions &pOptions=DefaultConversionOptions) const
+                                   Converts the child (or children) of the given node from the system unit to this system unit.
+                             void  ConvertScene (FbxScene *pScene, FbxNode *pFbxRoot, const ConversionOptions &pOptions=DefaultConversionOptions) const
+                                   Converts a scene from its system unit to this system unit, using the specified Fbx_Root node.
+                           double  GetScaleFactor () const
+                                   Returns the system unit's scale factor, relative to centimeters.
+                        FbxString  GetScaleFactorAsString (bool pAbbreviated=true) const
+                                   Returns a unit label for the current scale factor.
+                        FbxString  GetScaleFactorAsString_Plurial () const
+                                   Returns a unit label for the current scale factor.
+                           double  GetMultiplier () const
+                                   Returns the multiplier factor of the system unit.
+                             bool  operator== (const FbxSystemUnit &pOther) const
+                                   Equivalence operator.
+                             bool  operator!= (const FbxSystemUnit &pOther) const
+                                   Non-equivalence operator.
+                  FbxSystemUnit &  operator= (const FbxSystemUnit &pSystemUnit)
+                                   Assignment operation.
+                           double  GetConversionFactorTo (const FbxSystemUnit &pTarget) const
+                                   Returns the conversion factor from this system unit to the target system unit, excluding the multiplier factor.
+                           double  GetConversionFactorFrom (const FbxSystemUnit &pSource) const
+                                   Returns the conversion factor from the source system unit to this system unit, excluding the multiplier factor.
+
+Static Public Attributes
+
+       static const FbxSystemUnit  mm
+                                   Predefined system unit for millimeters.
+       static const FbxSystemUnit  dm
+                                   Predefined system unit for decimeters.
+       static const FbxSystemUnit  cm
+                                   Predefined system unit for centimeters.
+       static const FbxSystemUnit  m
+                                   Predefined system unit for meters.
+       static const FbxSystemUnit  km
+                                   Predefined system unit for kilometers.
+       static const FbxSystemUnit  Inch
+                                   Predefined system unit for inches.
+       static const FbxSystemUnit  Foot
+                                   Predefined system unit for feet.
+       static const FbxSystemUnit  Mile
+                                   Predefined system unit for miles.
+       static const FbxSystemUnit  Yard
+                                   Predefined system unit for yards.
+     static const FbxSystemUnit *  sPredefinedUnits
+                                   Points to a FbxSystemUnit array to store the predefined system units. The array size is FBXSDK_SYSTEM_UNIT_PREDEF_COUNT.
+   static const ConversionOptions  DefaultConversionOptions
+                                   Stores the default conversion options.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSystemUnit ( )
+   FbxSystemUnit ( double  pScaleFactor,
+                   double  pMultiplier = 1.0
+                 )
+
+   Constructor.
+
+   Parameters:
+
+          pScaleFactor The equivalent number of centimeters in the new system unit. For example, an inch unit uses a scale factor of 2.54.
+          pMultiplier  A multiplier factor of pScaleFactor.
+
+   ~FbxSystemUnit ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void ConvertScene ( FbxScene *                 pScene,
+                       const ConversionOptions &  pOptions = DefaultConversionOptions
+                     )                            const
+   Search for all occurrences
+
+   Converts a scene from its system units to this system unit.
+
+   Parameters:
+
+          pScene   The scene to convert.
+          pOptions Conversion options, see:FbxSystemUnit::ConversionOptions.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   void ConvertChildren ( FbxNode *                  pRoot,
+                          const FbxSystemUnit &      pSrcUnit,
+                          const ConversionOptions &  pOptions = DefaultConversionOptions
+                        )                            const
+   Search for all occurrences
+
+   Converts the child (or children) of the given node from the system unit to this system unit.
+
+   Unlike the ConvertScene() method, this method does not set the axis system of the scene to which the pRoot node belongs. It also does not adjust FbxPose as they are not stored under the scene, and not under a particular node.
+
+   Parameters:
+
+          pRoot    The given node.
+          pSrcUnit The source system unit.
+          pOptions Conversion options, see:FbxSystemUnit::ConversionOptions.
+
+   void ConvertScene ( FbxScene *                 pScene,
+                       FbxNode *                  pFbxRoot,
+                       const ConversionOptions &  pOptions = DefaultConversionOptions
+                     )                            const
+   Search for all occurrences
+
+   Converts a scene from its system unit to this system unit, using the specified Fbx_Root node.
+
+   This method is provided for backwards compatibility only and instead you should use ConvertScene( FbxScene* , const ConversionOptions& ) whenever possible.
+
+   Parameters:
+
+          pScene   The scene to convert.
+          pFbxRoot The Fbx_Root node to use for conversion.
+          pOptions Conversion options, see:FbxSystemUnit::ConversionOptions
+
+   double GetScaleFactor ( ) const
+   Search for all occurrences
+
+   Returns the system unit's scale factor, relative to centimeters.
+
+   This factor scales system unit values to centimeters. If you want to scale values to centimeters, use this value. Ignore the "multiplier" (returned by GetMultiplier()) value.
+
+   Returns:
+          The the system unit's scale factor, relative to centimeters.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   FbxString GetScaleFactorAsString ( bool  pAbbreviated = true ) const
+   Search for all occurrences
+
+   Returns a unit label for the current scale factor.
+
+   Parameters:
+
+          pAbbreviated If true, returns abbreviated string.
+
+   Returns:
+          The unit label for the current scale factor.
+
+   FbxString GetScaleFactorAsString_Plurial ( ) const
+   Search for all occurrences
+
+   Returns a unit label for the current scale factor.
+
+   The first letter of the label is in upper case and the label should be pluralized.
+
+   Returns:
+          The unit label for the current scale factor.
+
+   double GetMultiplier ( ) const
+   Search for all occurrences
+
+   Returns the multiplier factor of the system unit.
+   bool operator== ( const FbxSystemUnit &  pOther ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pOther Another system unit compared with this system unit.
+
+   Returns:
+          True if equal, false otherwise.
+
+   bool operator!= ( const FbxSystemUnit &  pOther ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pOther Another system unit compared with this system unit.
+
+   Returns:
+          True if unequal, false otherwise.
+
+   FbxSystemUnit& operator= ( const FbxSystemUnit &  pSystemUnit )
+
+   Assignment operation.
+
+   Parameters:
+
+          pSystemUnit Unit system assigned to this one.
+
+   double GetConversionFactorTo ( const FbxSystemUnit &  pTarget ) const
+   Search for all occurrences
+
+   Returns the conversion factor from this system unit to the target system unit, excluding the multiplier factor.
+
+   Parameters:
+
+          pTarget The target system unit.
+
+   double GetConversionFactorFrom ( const FbxSystemUnit &  pSource ) const
+   Search for all occurrences
+
+   Returns the conversion factor from the source system unit to this system unit, excluding the multiplier factor.
+
+   Parameters:
+
+          pSource The source system unit.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const FbxSystemUnit mm [static]
+   Search for all occurrences
+
+   Predefined system unit for millimeters.
+
+   Definition at line 82 of file fbxsystemunit.h.
+   const FbxSystemUnit dm [static]
+   Search for all occurrences
+
+   Predefined system unit for decimeters.
+
+   Definition at line 85 of file fbxsystemunit.h.
+   const FbxSystemUnit cm [static]
+   Search for all occurrences
+
+   Predefined system unit for centimeters.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 88 of file fbxsystemunit.h.
+   const FbxSystemUnit m [static]
+   Search for all occurrences
+
+   Predefined system unit for meters.
+
+   Definition at line 91 of file fbxsystemunit.h.
+   const FbxSystemUnit km [static]
+   Search for all occurrences
+
+   Predefined system unit for kilometers.
+
+   Definition at line 94 of file fbxsystemunit.h.
+   const FbxSystemUnit Inch [static]
+   Search for all occurrences
+
+   Predefined system unit for inches.
+
+   Definition at line 97 of file fbxsystemunit.h.
+   const FbxSystemUnit Foot [static]
+   Search for all occurrences
+
+   Predefined system unit for feet.
+
+   Definition at line 100 of file fbxsystemunit.h.
+   const FbxSystemUnit Mile [static]
+   Search for all occurrences
+
+   Predefined system unit for miles.
+
+   Definition at line 103 of file fbxsystemunit.h.
+   const FbxSystemUnit Yard [static]
+   Search for all occurrences
+
+   Predefined system unit for yards.
+
+   Definition at line 106 of file fbxsystemunit.h.
+   const FbxSystemUnit* sPredefinedUnits [static]
+   Search for all occurrences
+
+   Points to a FbxSystemUnit array to store the predefined system units. The array size is FBXSDK_SYSTEM_UNIT_PREDEF_COUNT.
+
+   Definition at line 111 of file fbxsystemunit.h.
+   const ConversionOptions DefaultConversionOptions [static]
+   Search for all occurrences
+
+   Stores the default conversion options.
+
+   Definition at line 114 of file fbxsystemunit.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxsystemunit.h
+
+   Please send us your comment about this page

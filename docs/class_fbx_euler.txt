@@ -1,0 +1,182 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEuler Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Static Public Attributes
+   FbxEuler Class Reference
+   Search for all occurrences
+
+   #include <fbxmath.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 70 of file fbxmath.h.
+
+   List of all members.
+
+Public Types
+
+   enum   ERepeat { eRepeatNo = 0, eRepeatYes = 1 }
+   enum   EParity { eParityEven = 0, eParityOdd = 2 }
+   enum   EAxis { eAxisX = 0, eAxisY = 1, eAxisZ = 2 }
+   enum   EOrder {
+     eOrderXYZ = EulerOrder(eAxisX, eParityEven, eRepeatNo), eOrderXYX = EulerOrder(eAxisX, eParityEven, eRepeatYes), eOrderXZY = EulerOrder(eAxisX, eParityOdd, eRepeatNo), eOrderXZX = EulerOrder(eAxisX, eParityOdd, eRepeatYes),
+     eOrderYZX = EulerOrder(eAxisY, eParityEven, eRepeatNo), eOrderYZY = EulerOrder(eAxisY, eParityEven, eRepeatYes), eOrderYXZ = EulerOrder(eAxisY, eParityOdd, eRepeatNo), eOrderYXY = EulerOrder(eAxisY, eParityOdd, eRepeatYes),
+     eOrderZXY = EulerOrder(eAxisZ, eParityEven, eRepeatNo), eOrderZXZ = EulerOrder(eAxisZ, eParityEven, eRepeatYes), eOrderZYX = EulerOrder(eAxisZ, eParityOdd, eRepeatNo), eOrderZYZ = EulerOrder(eAxisZ, eParityOdd, eRepeatYes)
+   }
+
+Static Public Attributes
+
+   static const int  AxisTableSize
+   static const int  AxisTable [][3]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ERepeat
+   Search for all occurrences
+
+   Enumerator:
+
+          eRepeatNo
+
+   Search for all occurrences
+          eRepeatYes
+
+   Search for all occurrences
+
+   Definition at line 73 of file fbxmath.h.
+{eRepeatNo=0, eRepeatYes=1};
+
+   enum EParity
+   Search for all occurrences
+
+   Enumerator:
+
+          eParityEven
+
+   Search for all occurrences
+          eParityOdd
+
+   Search for all occurrences
+
+   Definition at line 74 of file fbxmath.h.
+{eParityEven=0, eParityOdd=2};
+
+   enum EAxis
+   Search for all occurrences
+
+   Enumerator:
+
+          eAxisX
+
+   Search for all occurrences
+          eAxisY
+
+   Search for all occurrences
+          eAxisZ
+
+   Search for all occurrences
+
+   Definition at line 75 of file fbxmath.h.
+{eAxisX=0, eAxisY=1, eAxisZ=2};
+
+   enum EOrder
+   Search for all occurrences
+
+   Enumerator:
+
+          eOrderXYZ
+
+   Search for all occurrences
+          eOrderXYX
+
+   Search for all occurrences
+          eOrderXZY
+
+   Search for all occurrences
+          eOrderXZX
+
+   Search for all occurrences
+          eOrderYZX
+
+   Search for all occurrences
+          eOrderYZY
+
+   Search for all occurrences
+          eOrderYXZ
+
+   Search for all occurrences
+          eOrderYXY
+
+   Search for all occurrences
+          eOrderZXY
+
+   Search for all occurrences
+          eOrderZXZ
+
+   Search for all occurrences
+          eOrderZYX
+
+   Search for all occurrences
+          eOrderZYZ
+
+   Search for all occurrences
+
+   Definition at line 79 of file fbxmath.h.
+        {
+                eOrderXYZ = EulerOrder(eAxisX, eParityEven, eRepeatNo),
+                eOrderXYX = EulerOrder(eAxisX, eParityEven, eRepeatYes),        //deprecated
+                eOrderXZY = EulerOrder(eAxisX, eParityOdd, eRepeatNo),
+                eOrderXZX = EulerOrder(eAxisX, eParityOdd, eRepeatYes),         //deprecated
+                eOrderYZX = EulerOrder(eAxisY, eParityEven, eRepeatNo),
+                eOrderYZY = EulerOrder(eAxisY, eParityEven, eRepeatYes),        //deprecated
+                eOrderYXZ = EulerOrder(eAxisY, eParityOdd, eRepeatNo),
+                eOrderYXY = EulerOrder(eAxisY, eParityOdd, eRepeatYes),         //deprecated
+                eOrderZXY = EulerOrder(eAxisZ, eParityEven, eRepeatNo),
+                eOrderZXZ = EulerOrder(eAxisZ, eParityEven, eRepeatYes),        //deprecated
+                eOrderZYX = EulerOrder(eAxisZ, eParityOdd, eRepeatNo),
+                eOrderZYZ = EulerOrder(eAxisZ, eParityOdd, eRepeatYes)          //deprecated
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const int AxisTableSize [static]
+   Search for all occurrences
+
+   Definition at line 95 of file fbxmath.h.
+   const int AxisTable[][3] [static]
+   Search for all occurrences
+
+   Definition at line 96 of file fbxmath.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxmath.h
+
+   Please send us your comment about this page

@@ -1,0 +1,136 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   ElementBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Attributes
+   ElementBase Class Reference
+   Search for all occurrences
+
+   #include <fbxcolladaelement.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Representing a common COLLADA element.
+
+   Definition at line 153 of file fbxcolladaelement.h.
+   Inheritance diagram for ElementBase:
+   [USEMAP:class_element_base.png]
+
+   List of all members.
+
+Public Types
+
+                   enum   { MATRIX_STRIDE = 16 }
+
+Public Member Functions
+
+                          ElementBase ()
+                          Constructor & Destructor.
+                 virtual  ~ElementBase ()
+                    void  SetXMLElement (xmlNode *pElement)
+                          Access for XML element.
+               xmlNode *  GetXMLElement () const
+       const FbxString &  GetID () const
+                          Get the ID of the element.
+   const FbxSystemUnit *  GetUnit () const
+                          Get the unit of the element, which takes effect in this element and its children elements.
+
+Static Public Attributes
+
+     static const char *  smID_PROPERTY_NAME
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   anonymous enum
+   Search for all occurrences
+
+   Enumerator:
+
+          MATRIX_STRIDE
+
+   Search for all occurrences
+
+   Definition at line 156 of file fbxcolladaelement.h.
+    {
+        MATRIX_STRIDE = 16,
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   ElementBase ( )
+
+   Constructor & Destructor.
+   virtual ~ElementBase ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetXMLElement ( xmlNode *  pElement ) [inline]
+   Search for all occurrences
+
+   Access for XML element.
+
+   Definition at line 171 of file fbxcolladaelement.h.
+{ mXMLElement = pElement; }
+
+   xmlNode* GetXMLElement ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 172 of file fbxcolladaelement.h.
+{ return mXMLElement; }
+
+   const FbxString& GetID ( ) const
+   Search for all occurrences
+
+   Get the ID of the element.
+
+   Returns:
+          Return the ID string.
+
+   const FbxSystemUnit* GetUnit ( ) const
+   Search for all occurrences
+
+   Get the unit of the element, which takes effect in this element and its children elements.
+
+   Returns:
+          Return the unit.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* smID_PROPERTY_NAME [static]
+   Search for all occurrences
+
+   Definition at line 162 of file fbxcolladaelement.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladaelement.h
+
+   Please send us your comment about this page

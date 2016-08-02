@@ -1,0 +1,50 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProceduralGeometry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxProceduralGeometry Class Reference
+   Search for all occurrences
+
+   #include <fbxproceduralgeometry.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for procedural geometry.
+
+   In a standard geometry (FbxGeometry, FbxGeometryBase), control points, normals, possibly polygons (FbxMesh) and other specifications are described. A procedural geometry contains minimal information to be created on-the-fly.
+
+   Definition at line 27 of file fbxproceduralgeometry.h.
+   Inheritance diagram for FbxProceduralGeometry:
+   [USEMAP:class_fbx_procedural_geometry.png]
+
+   List of all members.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxproceduralgeometry.h
+
+   Please send us your comment about this page

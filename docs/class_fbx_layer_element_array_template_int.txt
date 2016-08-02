@@ -1,0 +1,403 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementArrayTemplateInt Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Friends
+   FbxLayerElementArrayTemplateInt Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class T>
+class FbxLayerElementArrayTemplate< int >
+
+   FbxLayerElementArrayTemplate provides data array manipulation of the data buffer for FbxLayerElement.
+
+   It is the subclass of FbxLayerElementArray.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayShape.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 823 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementArrayTemplate< int >:
+   [USEMAP:class_fbx_layer_element_array_template.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                        FbxLayerElementArrayTemplateInt (EFbxType pDataType)
+                                        Constructor.
+                                   int  Add (int const &pItem)
+                                        Appends a new item to the end of the data buffer.
+                                   int  InsertAt (int pIndex, int const &pItem)
+                                        Inserts a new item at the specified position of the data buffer.
+                                  void  SetAt (int pIndex, int const &pItem)
+                                        Sets the value of the specified item.
+                                  void  SetLast (int const &pItem)
+                                        Sets the value of the last item.
+                                     int  RemoveAt (int pIndex)
+                                        Removes the specified item from the data buffer.
+                                     int  RemoveLast ()
+                                        Removes the last item from the data buffer.
+                                  bool  RemoveIt (int const &pItem)
+                                        Removes one item from the data buffer.
+                                     int  GetAt (int pIndex) const
+                                        Returns the specified item's value.
+                                     int  GetFirst () const
+                                        Returns the first item's value.
+                                     int  GetLast () const
+                                        Returns the last item's value.
+                                   int  Find (int const &pItem)
+                                        Searches for an item in the data buffer.
+                                   int  FindAfter (int pAfterIndex, int const &pItem)
+                                        Searches for an item after the specified index in the data buffer.
+                                   int  FindBefore (int pBeforeIndex, int const &pItem)
+                                        Searches for one item before the specified index in the data buffer.
+                                     int  operator[] (int pIndex) const
+                                        Returns the specified item's value.
+                FbxLayerElementArray &  operator= (const FbxArray< int > &pArrayTemplate)
+                                        Assignment operator.
+   FbxLayerElementArrayTemplate< int > &  operator= (const FbxLayerElementArrayTemplate< int > &pArrayTemplate)
+                                        Assignment operator.
+
+Friends
+
+                                 class  FbxLayerElementUserData
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLayerElementArrayTemplate ( EFbxType  pDataType ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pDataType The data type of the array items.
+
+   Definition at line 830 of file fbxlayer.h.
+                                                         :
+                FbxLayerElementArray(pDataType)
+                {
+                }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int Add ( int const &  pItem ) [inline]
+   Search for all occurrences
+
+   Appends a new item to the end of the data buffer.
+
+   Parameters:
+
+          pItem The new item to be added
+
+   Returns:
+          The index of the new item
+
+   Reimplemented from FbxLayerElementArray.
+
+   Definition at line 839 of file fbxlayer.h.
+{ return FbxLayerElementArray::Add(pItem); }
+
+   int InsertAt ( int        pIndex,
+                  int const &  pItem
+                )            [inline]
+   Search for all occurrences
+
+   Inserts a new item at the specified position of the data buffer.
+
+   Parameters:
+
+          pIndex The specified position
+          pItem  The new item to be inserted
+
+   Returns:
+          The index of the inserted item
+
+   Reimplemented from FbxLayerElementArray.
+
+   Definition at line 846 of file fbxlayer.h.
+{ return FbxLayerElementArray::InsertAt(pIndex, pItem); }
+
+   void SetAt ( int        pIndex,
+                int const &  pItem
+              )            [inline]
+   Search for all occurrences
+
+   Sets the value of the specified item.
+
+   Parameters:
+
+          pIndex The index of the item to be updated.
+          pItem  The item whose value is copied to pIndex'th item
+
+   Reimplemented from FbxLayerElementArray.
+
+   Definition at line 852 of file fbxlayer.h.
+{ FbxLayerElementArray::SetAt(pIndex, pItem); }
+
+   void SetLast ( int const &  pItem ) [inline]
+   Search for all occurrences
+
+   Sets the value of the last item.
+
+   Parameters:
+
+          pItem The item whose value is copied to the last item
+
+   Reimplemented from FbxLayerElementArray.
+
+   Definition at line 857 of file fbxlayer.h.
+{ FbxLayerElementArray::SetLast(pItem); }
+
+   int RemoveAt ( int  pIndex ) [inline]
+   Search for all occurrences
+
+   Removes the specified item from the data buffer.
+
+   Parameters:
+
+          pIndex The index of the item to be removed
+
+   Returns:
+          The value of the item removed
+
+   Definition at line 863 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::RemoveAt(pIndex, &lValue); return lValue; }
+
+   int RemoveLast ( ) [inline]
+   Search for all occurrences
+
+   Removes the last item from the data buffer.
+
+   Returns:
+          The value of the last item removed
+
+   Definition at line 868 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::RemoveLast(&lValue); return lValue; }
+
+   bool RemoveIt ( int const &  pItem ) [inline]
+   Search for all occurrences
+
+   Removes one item from the data buffer.
+
+   Parameters:
+
+          pItem The first item who equals pItem is to be removed
+
+   Returns:
+          True if the item is removed successfully, false otherwise
+
+   Definition at line 874 of file fbxlayer.h.
+{ return FbxLayerElementArray::RemoveIt(&pItem); }
+
+   int GetAt ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Returns the specified item's value.
+
+   Parameters:
+
+          pIndex Index of the item
+
+   Returns:
+          The value of the specified item
+
+   Remarks:
+          If the index is invalid, pItem is set to zero.
+
+   Definition at line 881 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::GetAt(pIndex, &lValue); return lValue; }
+
+   int GetFirst ( ) const [inline]
+   Search for all occurrences
+
+   Returns the first item's value.
+
+   Returns:
+          The first item's value.
+
+   Definition at line 886 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::GetFirst(&lValue); return lValue; }
+
+   int GetLast ( ) const [inline]
+   Search for all occurrences
+
+   Returns the last item's value.
+
+   Returns:
+          The last item's value.
+
+   Definition at line 891 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::GetLast(&lValue); return lValue; }
+
+   int Find ( int const &  pItem ) [inline]
+   Search for all occurrences
+
+   Searches for an item in the data buffer.
+
+   Parameters:
+
+          pItem The value of the item for which to search
+
+   Returns:
+          The index of the item found, -1 if not found.
+
+   Remarks:
+          The index of the first item whose value equals pItem is returned.
+
+   Definition at line 898 of file fbxlayer.h.
+{ return FbxLayerElementArray::Find(pItem); }
+
+   int FindAfter ( int        pAfterIndex,
+                   int const &  pItem
+                 )            [inline]
+   Search for all occurrences
+
+   Searches for an item after the specified index in the data buffer.
+
+   Parameters:
+
+          pAfterIndex The specified index after which the searching begins
+          pItem       The value of the item for which to search, the searching begins after pAfterIndex.
+
+   Returns:
+          The index of the item found, -1 if not found.
+
+   Remarks:
+          The index of the first item whose value equals pItem is returned.
+
+   Definition at line 906 of file fbxlayer.h.
+{ return FbxLayerElementArray::FindAfter(pAfterIndex, pItem); }
+
+   int FindBefore ( int        pBeforeIndex,
+                    int const &  pItem
+                  )            [inline]
+   Search for all occurrences
+
+   Searches for one item before the specified index in the data buffer.
+
+   Parameters:
+
+          pBeforeIndex The specified index before which the searching begins
+          pItem        The value of the item for which to search, the searching begins before pBeforeIndex.
+
+   Returns:
+          The index of the item found, -1 if not found.
+
+   Remarks:
+          The index of the first item whose value equals pItem is returned.
+
+   Definition at line 914 of file fbxlayer.h.
+{ return FbxLayerElementArray::FindBefore(pBeforeIndex, pItem); }
+
+   int operator[] ( int  pIndex ) const [inline]
+
+   Returns the specified item's value.
+
+   Parameters:
+
+          pIndex Index of the item
+
+   Returns:
+          The value of the item
+
+   Remarks:
+          If the index is invalid, pItem is set to zero.
+
+   Definition at line 921 of file fbxlayer.h.
+{ int lValue; FbxLayerElementArray::GetAt(pIndex, &lValue); return lValue; }
+
+   FbxLayerElementArray& operator= ( const FbxArray< int > &  pArrayTemplate ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pArrayTemplate The source array whose items are copied to this array.
+
+   Definition at line 926 of file fbxlayer.h.
+    {
+        SetStatus(LockAccessStatus::eNoWriteLock);
+        if (WriteLock())
+        {
+            SetCount(pArrayTemplate.GetCount());
+            for (int i = 0; i < pArrayTemplate.GetCount(); i++)
+                SetAt(i, pArrayTemplate.GetAt(i));
+            WriteUnlock();
+            SetStatus(LockAccessStatus::eSuccess);
+        }
+        return *this;
+    }
+
+   FbxLayerElementArrayTemplate<T>& operator= ( const FbxLayerElementArrayTemplate< int > &  pArrayTemplate ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pArrayTemplate The source array whose items are copied to this array.
+
+   Definition at line 943 of file fbxlayer.h.
+    {
+        if ( this != &pArrayTemplate )
+        {
+            SetStatus(LockAccessStatus::eNoWriteLock);
+            if (WriteLock())
+            {
+                SetCount(pArrayTemplate.GetCount());
+                for (int i = 0; i < pArrayTemplate.GetCount(); i++)
+                    SetAt(i, pArrayTemplate.GetAt(i));
+                WriteUnlock();
+                SetStatus(LockAccessStatus::eSuccess);
+            }
+        }
+        return *this;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxLayerElementUserData [friend]
+   Search for all occurrences
+
+   Definition at line 964 of file fbxlayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

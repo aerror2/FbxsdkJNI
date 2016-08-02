@@ -1,0 +1,157 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxShape Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxShape Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxshape.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A shape describes the deformation on a set of control points, which is similar to the cluster deformer in Maya.
+
+   For example, we can add a shape to a created geometry. And the shape and the geometry have the same topological information but different position of the control points. With varying amounts of influence, the geometry performs a deformation effect.
+
+   See also:
+          FbxGeometry
+
+   Examples:
+          ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 32 of file fbxshape.h.
+   Inheritance diagram for FbxShape:
+   [USEMAP:class_fbx_shape.png]
+
+   List of all members.
+
+Public Member Functions
+
+                     bool  SetBlendShapeChannel (FbxBlendShapeChannel *pBlendShapeChannel)
+                           Set the blend shape channel that contains this target shape.
+   FbxBlendShapeChannel *  GetBlendShapeChannel () const
+                           Get the blend shape channel that contains this target shape.
+            FbxGeometry *  GetBaseGeometry ()
+                           Get the base geometry of this target shape.
+                      int  GetControlPointIndicesCount () const
+                           Get the length of the arrays of control point indices and weights.
+                    int *  GetControlPointIndices () const
+                           Get the array of control point indices.
+                     void  SetControlPointIndicesCount (int pCount)
+                           Set the array size for the control point indices.
+                     void  AddControlPointIndex (int pIndex)
+                           Add a control point index to the control point indices array.
+                     void  Reset ()
+                           Restore the shape to its initial state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool SetBlendShapeChannel ( FbxBlendShapeChannel *  pBlendShapeChannel )
+   Search for all occurrences
+
+   Set the blend shape channel that contains this target shape.
+
+   Parameters:
+
+          pBlendShapeChannel Pointer to the blend shape channel to set.
+
+   Returns:
+          true on success, false otherwise.
+
+   FbxBlendShapeChannel* GetBlendShapeChannel ( ) const
+   Search for all occurrences
+
+   Get the blend shape channel that contains this target shape.
+
+   Returns:
+          a pointer to the blend shape channel if set or NULL.
+
+   FbxGeometry* GetBaseGeometry ( )
+   Search for all occurrences
+
+   Get the base geometry of this target shape.
+
+   Returns:
+          a pointer to the base geometry if set or NULL.
+
+   Remarks:
+          Since target shape can only connected to its base geometry through blend shape channel and blend shape deformer. So only when this target shape is connected to a blend shape channel, and the blend shape channel is connected to a blend shape deformer, and the blend shape deformer is used on a base geometry, then to get base geometry will success.
+
+   int GetControlPointIndicesCount ( ) const
+   Search for all occurrences
+
+   Get the length of the arrays of control point indices and weights.
+
+   Returns:
+          Length of the arrays of control point indices and weights. Returns 0 if no control point indices have been added or the arrays have been reset.
+
+   int* GetControlPointIndices ( ) const
+   Search for all occurrences
+
+   Get the array of control point indices.
+
+   Returns:
+          Pointer to the array of control point indices. NULL if no control point indices have been added or the array has been reset.
+
+   void SetControlPointIndicesCount ( int  pCount )
+   Search for all occurrences
+
+   Set the array size for the control point indices.
+
+   Parameters:
+
+          pCount The new count.
+
+   void AddControlPointIndex ( int  pIndex )
+   Search for all occurrences
+
+   Add a control point index to the control point indices array.
+
+   Parameters:
+
+          pIndex The control point index to add.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Restore the shape to its initial state.
+
+   Calling this function will clear the following:
+     * Pointer to blend shape channel.
+     * Control point indices.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxshape.h
+
+   Please send us your comment about this page

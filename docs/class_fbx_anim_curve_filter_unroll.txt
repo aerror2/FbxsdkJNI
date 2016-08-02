@@ -1,0 +1,407 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveFilterUnroll Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimCurveFilterUnroll Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvefilters.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Unroll filter.
+
+   Filter to apply continuous rotation values to animation curves. Due to Euler rotation properties, when a rotation angle cross over the 180 degree value, it becomes -179. This filter tries to keep a continuous rotation effectively by producing increasing values, to actually become 181 degrees, etc...
+
+   Remarks:
+          The current implementation of this filter expects to process 3 curves at the same time.
+          By default, this filter does not affect the tangent values of the modified keys. This means that, for CUBIC interpolation curves containing keys with USER or BREAK tangents, the unrolled curves will correctly match the original rotation exactly on the curve keys but not in-between them. The filter can be configured to automatically convert the USER and BREAK tangents to AUTO tangents by setting the ForceAutoTangents flag. Using the AUTO tangents mode can result in a more consistent
+          interpolation between the curve keys.
+
+   Definition at line 983 of file fbxanimcurvefilters.h.
+   Inheritance diagram for FbxAnimCurveFilterUnroll:
+   [USEMAP:class_fbx_anim_curve_filter_unroll.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxAnimCurveFilterUnroll ()
+                         Constructor.
+                virtual  ~FbxAnimCurveFilterUnroll ()
+                         Destructor.
+   virtual const char *  GetName () const
+                         Get the name of the filter.
+           virtual bool  NeedApply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  NeedApply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  NeedApply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Check if the animation curve node needs an application of the filter.
+           virtual bool  NeedApply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Check if the given animation curve needs an application of the filter.
+           virtual bool  NeedApply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         This filter expects to work with interdependent curves.
+           virtual bool  Apply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  Apply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  Apply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Apply filter on all the curves of an animation curve node.
+           virtual bool  Apply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Apply filter on the given animation curve.
+           virtual bool  Apply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual void  Reset ()
+                         Reset the filter to its default parameters.
+                 double  GetQualityTolerance () const
+                         Get the unroll quality tolerance.
+                   void  SetQualityTolerance (double pQualityTolerance)
+                         Set the unroll quality tolerance.
+                   bool  GetTestForPath () const
+                         Get if the test path is enabled.
+                   void  SetTestForPath (bool pTestForPath)
+                         Set if the test path is enabled.
+                   bool  GetForceAutoTangents () const
+                         Get the current state of the ForceAutoTangents flag.
+                   void  SetForceAutoTangents (bool pForceAutoTangents)
+                         Set the new state of the ForceAutoTangents flag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveFilterUnroll ( )
+
+   Constructor.
+   virtual ~FbxAnimCurveFilterUnroll ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 990 of file fbxanimcurvefilters.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetName ( ) const [virtual]
+   Search for all occurrences
+
+   Get the name of the filter.
+
+   Returns:
+          Pointer to the name.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Passing the animation stack makes no sense since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1003 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; };
+
+   virtual bool NeedApply ( FbxObject *     pObj,
+                            FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 3 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1012 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool NeedApply ( FbxAnimCurveNode &  pCurveNode,
+                            FbxStatus *         pStatus = NULL
+                          )                     [virtual]
+   Search for all occurrences
+
+   Check if the animation curve node needs an application of the filter.
+
+   Parameters:
+
+          pCurveNode Curve node to test.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the animation curve node needs an application of the filter, false otherwise.
+
+   Remarks:
+          This method checks that the pCurveNode is representing an Euler rotation. It will validate that 3 animation curves are defined. If the condition is not met, the method will return false.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimCurve **  pCurve,
+                            int              pCount,
+                            FbxStatus *      pStatus = NULL
+                          )                  [virtual]
+   Search for all occurrences
+
+   Check if the given animation curve needs an application of the filter.
+
+   Parameters:
+
+          pCurve  Array of curves to test if they need an application of the filter.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if at least one animation curve in the array needs an application of the filter, false otherwise.
+
+   Remarks:
+          Because this method only receives an array of interdependent curves, this filter assumes that they are all coming from an Euler rotation anim curve node. Therefore, it expects pCount to be equal to 3.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimCurve &  pCurve,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1039 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; };
+
+   virtual bool Apply ( FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Passing the animation stack makes no sense since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack where to retrieve the animation curves.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1047 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; };
+
+   virtual bool Apply ( FbxObject *     pObj,
+                        FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 3 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 1056 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxAnimCurveNode &  pCurveNode,
+                        FbxStatus *         pStatus = NULL
+                      )                     [virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of an animation curve node.
+
+   Parameters:
+
+          pCurveNode Curve node to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This filter expects a Euler rotation curve node with three curves.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve **  pCurve,
+                        int              pCount,
+                        FbxStatus *      pStatus = NULL
+                      )                  [virtual]
+   Search for all occurrences
+
+   Apply filter on the given animation curve.
+
+   Parameters:
+
+          pCurve  Array of curve to which the filter is applied.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          Because this method only receives an array of interdependent curves, this filter assumes that they are all coming from an Euler rotation anim curve node. Therefore, it expects pCount to be equal to 3.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve &  pCurve,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false.
+
+   Implements FbxAnimCurveFilter.
+
+   Definition at line 1080 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset the filter to its default parameters.
+
+   Reimplemented from FbxAnimCurveFilter.
+   double GetQualityTolerance ( ) const
+   Search for all occurrences
+
+   Get the unroll quality tolerance.
+
+   Returns:
+          The current unroll quality tolerance.
+
+   Remarks:
+          This value is only used when SetTestForPath() is set to true.
+
+   void SetQualityTolerance ( double  pQualityTolerance )
+   Search for all occurrences
+
+   Set the unroll quality tolerance.
+
+   Parameters:
+
+          pQualityTolerance The unroll quality tolerance to set.
+
+   Remarks:
+          This value is only used when SetTestForPath() is set to true.
+
+   bool GetTestForPath ( ) const
+   Search for all occurrences
+
+   Get if the test path is enabled.
+
+   Returns:
+          true if test for path is enabled.
+
+   Remarks:
+          The unroll filter takes a key as a reference key and updates the following keys accordingly to try to keep the continuity between this reference key and its following keys. If the test path is enabled, the filter can use the same key as reference key to update the following keys until the difference of continuity between the newly updated key and the reference key exceeds the quality tolerance, then the reference key will be updated as the newly updated key. If the test path is not enabled,
+          the filter will always use the newly updated key as reference to update the next key. The quality tolerance can be set and queried by SetQualityTolerance() and GetQualityTolerance().
+
+   void SetTestForPath ( bool  pTestForPath )
+   Search for all occurrences
+
+   Set if the test path is enabled.
+
+   Parameters:
+
+          pTestForPath Value to set if test for path is to be enabled.
+
+   Remarks:
+          The unroll filter takes a key as a reference key and updates the following keys accordingly to try to keep the continuity between this reference key and its following keys. If the test path is enabled, the filter can use the same key as reference key to update the following keys until the difference of continuity between the newly updated key and the reference key exceeds the quality tolerance, then the reference key will be updated as the newly updated key. If the test path is not enabled,
+          the filter will always use the newly updated key as reference to update the next key. The quality tolerance can be set and queried by SetQualityTolerance() and GetQualityTolerance().
+
+   bool GetForceAutoTangents ( ) const
+   Search for all occurrences
+
+   Get the current state of the ForceAutoTangents flag.
+
+   Returns:
+          true if forcing AUTO tangents is enabled.
+
+   Remarks:
+          This flag is considered only on curves using the CUBIC interpolation and keys with the USER or BREAK tangents. For any other type of interpolations or tangents, this flag is ignored.
+
+   void SetForceAutoTangents ( bool  pForceAutoTangents )
+   Search for all occurrences
+
+   Set the new state of the ForceAutoTangents flag.
+
+   Parameters:
+
+          pForceAutoTangents New value of the flag.
+
+   Remarks:
+          This flag is considered only on curves using the CUBIC interpolation and keys with the USER or BREAK tangents. For any other type of interpolations or tangents, this flag is ignored.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvefilters.h
+
+   Please send us your comment about this page

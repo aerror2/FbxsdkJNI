@@ -1,0 +1,982 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxScene Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxScene Class Reference
+
+   This reference page is linked to from the following overview topics: FBX Extensions to Maya, Your First FBX SDK Program, Animating a Node, Animation Classes and their Interrelationships, Importing a Scene, FBX Extensions to 3ds Max, FBX SDK 2014, FBX Extensions to MotionBuilder, Exporting a Scene, Exporting with the FBX Extensions SDK, Supported Scene Elements, Customizing the FBX SDK, Customizing File Formats with FBX SDK I/O Plug-ins, Writing and Using your Own Evaluator, Using Python FBX with
+   Eclipse, Importing with the FBX Extensions SDK, Information and Technical Support, Instancing - Sharing a Mesh, FBX Scenes, FBX Objects, Transformation Data, Managing Memory with the FBX SDK Manager, Merging Two Scenes, List of Python Fbx classes, Extracting the Animation Data from a FBX File, Animation Data Structures, FBX Properties, Evaluating the Animation in a Scene, Connections, FBX Nodes, Lights.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxscene.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains the description of a 3D scene.
+
+   It contains the nodes (including the root node) (FbxNode), materials, textures, videos, gobos, poses, characters, character poses, control set plugs, generic nodes, scene information, global settings, and a global evaluator. The nodes are structured in a tree under the scene's root node.
+
+   When an object is created using the FBX SDK, a scene is usually passed as argument to the object creation function to specify that the object belongs to this scene. At this point, a connection is made with the object as source and the scene as destination.
+
+   All objects in the scene can be queried by connection index. In addition, generic nodes, materials, and textures can also be queried by name. In this latter case, the first object with the queried name will be returned.
+
+   The global evaluator (FbxAnimEvaluator) is used to compute animation values for animated scenes.
+
+   Examples:
+          Animation/main.cxx, Camera/main.cxx, Common/AnimationUtility.cxx, Common/AnimationUtility.h, Common/Common.cxx, Common/Common.h, Common/GeometryUtility.cxx, Common/GeometryUtility.h, ConvertScene/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, FileStream/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayAnimation.h, ImportScene/DisplayGenericInfo.cxx,
+          ImportScene/DisplayGenericInfo.h, ImportScene/DisplayHierarchy.cxx, ImportScene/DisplayHierarchy.h, ImportScene/DisplayPose.cxx, ImportScene/DisplayPose.h, ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, MyOwnWriterReader/MyOwnWriter.cxx, MyOwnWriterReader/MyOwnWriter.h, Normals/main.cxx, Pivot/main.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, SwitchBinding/main.cxx, Transformations/main.cxx, UI_Examples/Common/ImportExport.cxx,
+          UI_Examples/Common/ImportExport.h, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/CubeCreator/SDK_Utility.h, UI_Examples/CubeCreator/UI.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.h, UI_Examples/SceneTreeView/UI.cxx, UserProperties/main.cxx, UVSample/main.cxx, ViewScene/DrawScene.cxx, ViewScene/DrawScene.h, ViewScene/SceneContext.cxx, ViewScene/SceneContext.h, ViewScene/SetCamera.cxx, and ViewScene/SetCamera.h.
+
+   Definition at line 61 of file fbxscene.h.
+   Inheritance diagram for FbxScene:
+   [USEMAP:class_fbx_scene.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                void  FillPoseArray (FbxArray< FbxPose * > &pPoseArray)
+                                      Clear then fill a pose array with all existing pose included in the scene.
+
+Clear scene
+
+                                void  Clear ()
+                                      Delete the node tree below the root node and restore default settings.
+
+Node Tree Access
+
+                           FbxNode *  GetRootNode () const
+                                      Get the root node of the scene.
+
+Texture Material and Video Access
+
+                                void  FillTextureArray (FbxArray< FbxTexture * > &pTextureArray)
+                                      Clear, then fill, a texture array with all existing textures included in the scene.
+                                void  FillMaterialArray (FbxArray< FbxSurfaceMaterial * > &pMaterialArray)
+                                      Clear, then fill, a material array with all existing materials included in the scene.
+
+Generic Node Access
+
+                                 int  GetGenericNodeCount () const
+                                      Get number of generic nodes in the scene.
+                    FbxGenericNode *  GetGenericNode (int pIndex)
+                                      Get generic node at given index.
+                    FbxGenericNode *  GetGenericNode (char *pName)
+                                      Access a generic node from its name.
+                                bool  AddGenericNode (FbxGenericNode *pGenericNode)
+                                      Add a generic node to this scene.
+                                bool  RemoveGenericNode (FbxGenericNode *pGenericNode)
+                                      Remove the generic node from this scene.
+
+Character Management
+
+                                 int  GetCharacterCount () const
+                                      Get number of characters.
+                      FbxCharacter *  GetCharacter (int pIndex)
+                                      Get character at given index.
+                                 int  CreateCharacter (const char *pName)
+                                      Create a new character.
+                                void  DestroyCharacter (int pIndex)
+                                      Destroy character.
+
+ControlSetPlug Management
+
+                                 int  GetControlSetPlugCount () const
+                                      Get number of ControlSetPlugs.
+                 FbxControlSetPlug *  GetControlSetPlug (int pIndex)
+                                      Get ControlSetPlug at given index.
+                                 int  CreateControlSetPlug (char *pName)
+                                      Create a new ControlSetPlug.
+                                void  DestroyControlSetPlug (int pIndex)
+                                      Destroy ControlSetPlug.
+
+Character Pose Management
+
+                                 int  GetCharacterPoseCount () const
+                                      Get number of character poses.
+                  FbxCharacterPose *  GetCharacterPose (int pIndex)
+                                      Get character pose at given index.
+                                 int  CreateCharacterPose (char *pName)
+                                      Create a new character pose.
+                                void  DestroyCharacterPose (int pIndex)
+                                      Destroy character pose.
+
+Pose Management
+
+                                 int  GetPoseCount () const
+                                      Get number of poses.
+                           FbxPose *  GetPose (int pIndex)
+                                      Get pose at given index.
+                                bool  AddPose (FbxPose *pPose)
+                                      Add a pose to this scene.
+                                bool  RemovePose (FbxPose *pPose)
+                                      Remove the specified pose from the scene.
+                                bool  RemovePose (int pIndex)
+                                      Remove the pose at the given index from the scene.
+
+Scene information
+
+                   FbxDocumentInfo *  GetSceneInfo ()
+                                      Get the scene information.
+                                void  SetSceneInfo (FbxDocumentInfo *pSceneInfo)
+                                      Set the scene information.
+
+Global Settings
+
+                 FbxGlobalSettings &  GetGlobalSettings ()
+                                      Access global settings.
+           const FbxGlobalSettings &  GetGlobalSettings () const
+                                      Const access to global settings.
+
+Global Evaluator
+
+   The global evaluator is used to compute animation values for animated scenes.
+
+   A typical usage would be to compute the global transform matrix of a node lNode at a given time lTime.
+          FbxAMatrix& lGlobalMatrix = lNode->GetScene()->GetEvaluator()->GetNodeGlobalTransform(lNode, lTime);
+
+          or the exact equivalent:
+
+          FbxAMatrix& lGlobalMatrix = lNode->EvaluateGlobalTransform(lTime);
+
+   The user can create one or more evaluators in the scene. The default evaluator is set using SetEvaluator. When GetEvaluator is called, if the scene has no evaluator, an evaluator is created with default values.
+                 FBX_DEPRECATED void  SetEvaluator (FbxAnimEvaluator *pEvaluator)
+                                      Set the global evaluator used by this scene evaluation engine.
+   FBX_DEPRECATED FbxAnimEvaluator *  GetEvaluator ()
+                                      Get the global evaluator used by this scene evaluation engine.
+
+Material Access
+
+                                 int  GetMaterialCount () const
+                                      Get number of materials.
+                FbxSurfaceMaterial *  GetMaterial (int pIndex)
+                                      Get the material at the given index.
+                FbxSurfaceMaterial *  GetMaterial (char *pName)
+                                      Get the material by its name.
+                                bool  AddMaterial (FbxSurfaceMaterial *pMaterial)
+                                      Add the material to this scene.
+                                bool  RemoveMaterial (FbxSurfaceMaterial *pMaterial)
+                                      Remove the material from this scene.
+
+Texture Access
+
+                                 int  GetTextureCount () const
+                                      Get number of textures (type FbxTexture).
+                        FbxTexture *  GetTexture (int pIndex)
+                                      Get the texture at the given index.
+                        FbxTexture *  GetTexture (char *pName)
+                                      Get the texture by its name.
+                                bool  AddTexture (FbxTexture *pTexture)
+                                      Add the texture to this scene.
+                                bool  RemoveTexture (FbxTexture *pTexture)
+                                      Remove the texture from this scene.
+
+Node Access
+
+                                 int  GetNodeCount () const
+                                      Get number of nodes.
+                           FbxNode *  GetNode (int pIndex)
+                                      Get the node at the given index.
+                                bool  AddNode (FbxNode *pNode)
+                                      Add the node to this scene.
+                                bool  RemoveNode (FbxNode *pNode)
+                                      Remove the node from this scene.
+                                 int  GetCurveOnSurfaceCount ()
+                                      Helper method for determining the number of nodes that have curves on surface attributes in the scene.
+                           FbxNode *  FindNodeByName (const FbxString &pName)
+                                      Get the first node with this name.
+
+Geometry Access
+
+                                 int  GetGeometryCount () const
+                                      Get number of geometries.
+                       FbxGeometry *  GetGeometry (int pIndex)
+                                      Get the geometry at the given index.
+                                bool  AddGeometry (FbxGeometry *pGeometry)
+                                      Add the geometry to this scene.
+                                bool  RemoveGeometry (FbxGeometry *pGeometry)
+                                      Remove the geometry from this scene.
+
+Video Access
+
+                                 int  GetVideoCount () const
+                                      Get number of videos.
+                          FbxVideo *  GetVideo (int pIndex)
+                                      Get the video at the given index.
+                                bool  AddVideo (FbxVideo *pVideo)
+                                      Add the video to this scene.
+                                bool  RemoveVideo (FbxVideo *pVideo)
+                                      Remove the video from this scene.
+
+Utilities
+
+                                void  SyncShowPropertyForInstance ()
+                                      Synchronize all the Show properties of node instances.
+                                bool  ComputeBoundingBoxMinMaxCenter (FbxVector4 &pBBoxMin, FbxVector4 &pBBoxMax, FbxVector4 &pBBoxCenter, bool pSelected=false, const FbxTime &pTime=FBXSDK_TIME_INFINITE)
+                                      Compute the bounding box and its center for all (or selected) nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Clear ( ) [virtual]
+   Search for all occurrences
+
+   Delete the node tree below the root node and restore default settings.
+
+   Reimplemented from FbxDocument.
+   FbxNode* GetRootNode ( ) const
+   Search for all occurrences
+
+   Get the root node of the scene.
+
+   Returns:
+          Pointer to the root node.
+
+   Remarks:
+          This node is not saved. Do not use it to apply a global transformation to the node hierarchy. If a global transformation must be applied, insert a new node below this one.
+
+   Examples:
+          Camera/main.cxx, Common/GeometryUtility.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayHierarchy.cxx, ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, MyOwnWriterReader/MyOwnWriter.cxx, Normals/main.cxx, Pivot/main.cxx, ProceduralTexture/main.cxx,
+          StereoCamera/main.cxx, Transformations/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, UserProperties/main.cxx, UVSample/main.cxx, and ViewScene/SceneContext.cxx.
+
+   void FillTextureArray ( FbxArray< FbxTexture * > &  pTextureArray )
+   Search for all occurrences
+
+   Clear, then fill, a texture array with all existing textures included in the scene.
+
+   Parameters:
+
+          pTextureArray An array of texture pointers.
+
+   void FillMaterialArray ( FbxArray< FbxSurfaceMaterial * > &  pMaterialArray )
+   Search for all occurrences
+
+   Clear, then fill, a material array with all existing materials included in the scene.
+
+   Parameters:
+
+          pMaterialArray An array of material pointers.
+
+   int GetGenericNodeCount ( ) const
+   Search for all occurrences
+
+   Get number of generic nodes in the scene.
+
+   Returns:
+          Number of Generic Nodes in this scene.
+
+   FbxGenericNode* GetGenericNode ( int  pIndex )
+   Search for all occurrences
+
+   Get generic node at given index.
+
+   Parameters:
+
+          pIndex Position in the list of the generic nodes.
+
+   Returns:
+          Pointer to the generic node or NULL if the index is out of bounds.
+
+   FbxGenericNode* GetGenericNode ( char *  pName )
+   Search for all occurrences
+
+   Access a generic node from its name.
+
+   Parameters:
+
+          pName Name of the generic node.
+
+   Returns:
+          found generic node
+
+   bool AddGenericNode ( FbxGenericNode *  pGenericNode )
+   Search for all occurrences
+
+   Add a generic node to this scene.
+
+   Parameters:
+
+          pGenericNode Pointer to the generic node to be added.
+
+   Returns:
+          If the passed parameter is NULL, this method will return false, otherwise true.
+
+   bool RemoveGenericNode ( FbxGenericNode *  pGenericNode )
+   Search for all occurrences
+
+   Remove the generic node from this scene.
+
+   Parameters:
+
+          pGenericNode Pointer to the generic node to be removed.
+
+   Returns:
+          If the passed parameter is NULL, this method will return false, otherwise true.
+
+   Remarks:
+          The pointed object is not referenced by the scene anymore but is not deleted.
+
+   int GetCharacterCount ( ) const
+   Search for all occurrences
+
+   Get number of characters.
+
+   Returns:
+          Number of characters in this scene.
+
+   FbxCharacter* GetCharacter ( int  pIndex )
+   Search for all occurrences
+
+   Get character at given index.
+
+   Parameters:
+
+          pIndex Position in the list of the characters.
+
+   Returns:
+          Pointer to the character or NULL if index is out of bounds.
+
+   int CreateCharacter ( const char *  pName )
+   Search for all occurrences
+
+   Create a new character.
+
+   Parameters:
+
+          pName Name given to character.
+
+   Returns:
+          Index of the created character.
+
+   void DestroyCharacter ( int  pIndex )
+   Search for all occurrences
+
+   Destroy character.
+
+   Parameters:
+
+          pIndex Specify which character to destroy.
+
+   int GetControlSetPlugCount ( ) const
+   Search for all occurrences
+
+   Get number of ControlSetPlugs.
+
+   Returns:
+          Number of ControlSet plugs in this scene.
+
+   FbxControlSetPlug* GetControlSetPlug ( int  pIndex )
+   Search for all occurrences
+
+   Get ControlSetPlug at given index.
+
+   Parameters:
+
+          pIndex Position in the list of the ControlSetPlug
+
+   Returns:
+          Pointer to ControlSetPlug or NULL if index is out of bounds.
+
+   int CreateControlSetPlug ( char *  pName )
+   Search for all occurrences
+
+   Create a new ControlSetPlug.
+
+   Parameters:
+
+          pName Name given to ControlSetPlug.
+
+   Returns:
+          Index of created ControlSetPlug.
+
+   void DestroyControlSetPlug ( int  pIndex )
+   Search for all occurrences
+
+   Destroy ControlSetPlug.
+
+   Parameters:
+
+          pIndex Specify which ControlSetPlug to destroy.
+
+   int GetCharacterPoseCount ( ) const
+   Search for all occurrences
+
+   Get number of character poses.
+
+   Returns:
+          Number of character poses in this scene.
+
+   Remarks:
+          Character Poses and Poses are two distinct entities having their own lists.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   FbxCharacterPose* GetCharacterPose ( int  pIndex )
+   Search for all occurrences
+
+   Get character pose at given index.
+
+   Parameters:
+
+          pIndex Position in the list of character poses.
+
+   Returns:
+          Pointer to the character pose or NULL if index is out of bounds.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   int CreateCharacterPose ( char *  pName )
+   Search for all occurrences
+
+   Create a new character pose.
+
+   Parameters:
+
+          pName Name given to character pose.
+
+   Returns:
+          Index of created character pose.
+
+   void DestroyCharacterPose ( int  pIndex )
+   Search for all occurrences
+
+   Destroy character pose.
+
+   Parameters:
+
+          pIndex Specify which character pose to destroy.
+
+   int GetPoseCount ( ) const
+   Search for all occurrences
+
+   Get number of poses.
+
+   Returns:
+          Number of poses in the scene.
+
+   Remarks:
+          Poses and Character Poses are two distinct entities having their own lists.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and ViewScene/SceneContext.cxx.
+
+   FbxPose* GetPose ( int  pIndex )
+   Search for all occurrences
+
+   Get pose at given index.
+
+   Parameters:
+
+          pIndex Position in the list of poses.
+
+   Returns:
+          Pointer to the pose or NULL if index is out of bounds.
+
+   Examples:
+          ImportScene/DisplayPose.cxx, and ViewScene/SceneContext.cxx.
+
+   bool AddPose ( FbxPose *  pPose )
+   Search for all occurrences
+
+   Add a pose to this scene.
+
+   Parameters:
+
+          pPose The pose (for example: bind pose, rest pose) to be added to the scene.
+
+   Returns:
+          If the pose is correctly added to the scene, return true. Otherwise, if the pose is already in the scene, return false.
+
+   Examples:
+          ExportScene01/main.cxx, and SwitchBinding/main.cxx.
+
+   bool RemovePose ( FbxPose *  pPose )
+   Search for all occurrences
+
+   Remove the specified pose from the scene.
+
+   Parameters:
+
+          pPose The pose (for example: bind pose, rest pose) to be removed from the scene.
+
+   Returns:
+          If the pose was successfully removed from the scene, return true. Otherwise, if the pose could not be found return false.
+
+   Examples:
+          SwitchBinding/main.cxx.
+
+   bool RemovePose ( int  pIndex )
+   Search for all occurrences
+
+   Remove the pose at the given index from the scene.
+
+   Parameters:
+
+          pIndex Index of the pose to be removed.
+
+   Returns:
+          If the pose was successfully removed from the scene, return true. Otherwise, if the pose could not be found return false.
+
+   FbxDocumentInfo* GetSceneInfo ( ) [inline]
+   Search for all occurrences
+
+   Get the scene information.
+
+   Returns:
+          Pointer to the scene information object.
+
+   Examples:
+          ExportScene01/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 279 of file fbxscene.h.
+{ return GetDocumentInfo(); }
+
+   void SetSceneInfo ( FbxDocumentInfo *  pSceneInfo ) [inline]
+   Search for all occurrences
+
+   Set the scene information.
+
+   Parameters:
+
+          pSceneInfo Pointer to the scene information object.
+
+   Examples:
+          ExportScene01/main.cxx, and ExportShader/main.cxx.
+
+   Definition at line 284 of file fbxscene.h.
+{ SetDocumentInfo(pSceneInfo); }
+
+   FbxGlobalSettings& GetGlobalSettings ( )
+   Search for all occurrences
+
+   Access global settings.
+
+   Returns:
+          Reference to the Global Settings.
+
+   Examples:
+          ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneContext.cxx, and ViewScene/SetCamera.cxx.
+
+   const FbxGlobalSettings& GetGlobalSettings ( ) const
+   Search for all occurrences
+
+   Const access to global settings.
+
+   Returns:
+          Const reference to the Global Settings.
+
+   FBX_DEPRECATED void SetEvaluator ( FbxAnimEvaluator *  pEvaluator )
+   Search for all occurrences
+
+   Set the global evaluator used by this scene evaluation engine.
+
+   Deprecated function, please use FbxManager::SetEvaluator instead.
+
+   Parameters:
+
+          pEvaluator The evaluator to be used for evaluation processing of this scene.
+
+   FBX_DEPRECATED FbxAnimEvaluator* GetEvaluator ( )
+   Search for all occurrences
+
+   Get the global evaluator used by this scene evaluation engine.
+
+   Deprecated function, please use FbxManager::GetEvaluator instead. If no evaluator were previously set, this function will return either the first evaluator found attached to this scene, or a new default evaluator.
+
+   Returns:
+          The evaluator to be used for evaluation processing of this scene.
+
+   void FillPoseArray ( FbxArray< FbxPose * > &  pPoseArray )
+   Search for all occurrences
+
+   Clear then fill a pose array with all existing pose included in the scene.
+
+   Parameters:
+
+          pPoseArray An array of pose pointers.
+
+   int GetMaterialCount ( ) const
+   Search for all occurrences
+
+   Get number of materials.
+
+   Returns:
+          Number of materials in this scene.
+
+   FbxSurfaceMaterial* GetMaterial ( int  pIndex )
+   Search for all occurrences
+
+   Get the material at the given index.
+
+   Parameters:
+
+          pIndex Position in the list of materials.
+
+   Returns:
+          Pointer to the material or NULL if the index is out of bounds.
+
+   Remarks:
+          pIndex must be between 0 and GetMaterialCount().
+
+   FbxSurfaceMaterial* GetMaterial ( char *  pName )
+   Search for all occurrences
+
+   Get the material by its name.
+
+   Parameters:
+
+          pName Name of the material.
+
+   Returns:
+          Pointer to the material or NULL if not found.
+
+   bool AddMaterial ( FbxSurfaceMaterial *  pMaterial )
+   Search for all occurrences
+
+   Add the material to this scene.
+
+   Parameters:
+
+          pMaterial Pointer to the material to be added.
+
+   Returns:
+          true on successful addition.
+
+   bool RemoveMaterial ( FbxSurfaceMaterial *  pMaterial )
+   Search for all occurrences
+
+   Remove the material from this scene.
+
+   Parameters:
+
+          pMaterial Pointer to the material to be removed.
+
+   Returns:
+          true on successful removal.
+
+   int GetTextureCount ( ) const
+   Search for all occurrences
+
+   Get number of textures (type FbxTexture).
+
+   Returns:
+          Number of textures in this scene. Includes types FbxFileTexture, FbxLayeredTexture and FbxProceduralTexture.
+
+   Remarks:
+          To get the number of textures of a specific type, use GetSrcCount(). For example:
+
+ int lNbFileTextures = lScene->GetSrcObjectCount<FbxFileTexture>();
+ int lNbLayeredTextures = lScene->GetSrcObjectCount<FbxLayeredTexture>();
+ int lNbProceduralTextures = lScene->GetSrcObjectCount<FbxProceduralTexture>();
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   FbxTexture* GetTexture ( int  pIndex )
+   Search for all occurrences
+
+   Get the texture at the given index.
+
+   pIndex must be between 0 and GetTextureCount().
+
+   Parameters:
+
+          pIndex Position in the list of textures.
+
+   Returns:
+          Pointer to the texture or NULL if the index is out of bounds.
+
+   Remarks:
+          To get the texture of a specific texture type, use GetSrcObject(). For example:
+
+ FbxFileTexture* lFileTexture = lScene->GetSrcObject<FbxFileTexture>(i);
+ FbxLayeredTexture* lLayeredTexture = lScene->GetSrcObject<FbxLayeredTexture>(i);
+ FbxProceduralTexture* lProceduralTexture = lScene->GetSrcObject<FbxProceduralTexture>(i);
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   FbxTexture* GetTexture ( char *  pName )
+   Search for all occurrences
+
+   Get the texture by its name.
+
+   Parameters:
+
+          pName Name of the texture.
+
+   Returns:
+          Pointer to the texture or NULL if not found.
+
+   bool AddTexture ( FbxTexture *  pTexture )
+   Search for all occurrences
+
+   Add the texture to this scene.
+
+   Parameters:
+
+          pTexture Pointer to the texture to be added.
+
+   Returns:
+          true on successful addition.
+
+   bool RemoveTexture ( FbxTexture *  pTexture )
+   Search for all occurrences
+
+   Remove the texture from this scene.
+
+   Parameters:
+
+          pTexture Pointer to the texture to be removed.
+
+   Returns:
+          true on successful removal.
+
+   int GetNodeCount ( ) const
+   Search for all occurrences
+
+   Get number of nodes.
+
+   Returns:
+          Number of nodes in this scene.
+
+   Examples:
+          UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   FbxNode* GetNode ( int  pIndex )
+   Search for all occurrences
+
+   Get the node at the given index.
+
+   Parameters:
+
+          pIndex Position in the list of nodes.
+
+   Returns:
+          Pointer to the node or NULL if the index is out of bounds.
+
+   Remarks:
+          pIndex must be between 0 and GetNodeCount().
+
+   Examples:
+          SwitchBinding/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   bool AddNode ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Add the node to this scene.
+
+   Parameters:
+
+          pNode Pointer to the node to be added.
+
+   Returns:
+          true on successful addition.
+
+   bool RemoveNode ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Remove the node from this scene.
+
+   Parameters:
+
+          pNode Pointer to the node to be removed.
+
+   Returns:
+          true on successful removal.
+
+   Examples:
+          UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   int GetCurveOnSurfaceCount ( )
+   Search for all occurrences
+
+   Helper method for determining the number of nodes that have curves on surface attributes in the scene.
+
+   Since the curve-on-surface nodes are connected to nurbs geometry and not any FbxNode in the scene, they won't normally be picked up in a graph traversal.
+
+   Returns:
+          The number of curve-on-surface nodes in the scene
+
+   FbxNode* FindNodeByName ( const FbxString &  pName )
+   Search for all occurrences
+
+   Get the first node with this name.
+
+   Parameters:
+
+          pName Name of the node.
+
+   Returns:
+          Pointer to the node, or NULL if node is not found.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   int GetGeometryCount ( ) const
+   Search for all occurrences
+
+   Get number of geometries.
+
+   Returns:
+          Number of geometries in this scene.
+
+   FbxGeometry* GetGeometry ( int  pIndex )
+   Search for all occurrences
+
+   Get the geometry at the given index.
+
+   Parameters:
+
+          pIndex Position in the list of geometries.
+
+   Returns:
+          Pointer to the geometry or NULL if the index is out of bounds.
+
+   Remarks:
+          pIndex must be between 0 and GetGeometryCount().
+
+   bool AddGeometry ( FbxGeometry *  pGeometry )
+   Search for all occurrences
+
+   Add the geometry to this scene.
+
+   Parameters:
+
+          pGeometry Pointer to the geometry to be added.
+
+   Returns:
+          true on successful addition.
+
+   bool RemoveGeometry ( FbxGeometry *  pGeometry )
+   Search for all occurrences
+
+   Remove the geometry from this scene.
+
+   Parameters:
+
+          pGeometry Pointer to the geometry to be removed.
+
+   Returns:
+          true on successful removal.
+
+   int GetVideoCount ( ) const
+   Search for all occurrences
+
+   Get number of videos.
+
+   Returns:
+          Number of videos in this scene.
+
+   FbxVideo* GetVideo ( int  pIndex )
+   Search for all occurrences
+
+   Get the video at the given index.
+
+   Parameters:
+
+          pIndex Position in the list of videos.
+
+   Returns:
+          Pointer to the video or NULL if the index is out of bounds.
+
+   Remarks:
+          pIndex must be between 0 and GetVideoCount().
+
+   bool AddVideo ( FbxVideo *  pVideo )
+   Search for all occurrences
+
+   Add the video to this scene.
+
+   Parameters:
+
+          pVideo Pointer to the video to be added.
+
+   Returns:
+          true on successful addition.
+
+   bool RemoveVideo ( FbxVideo *  pVideo )
+   Search for all occurrences
+
+   Remove the video from this scene.
+
+   Parameters:
+
+          pVideo Pointer to the video to be removed.
+
+   Returns:
+          true on successful removal.
+
+   void SyncShowPropertyForInstance ( )
+   Search for all occurrences
+
+   Synchronize all the Show properties of node instances.
+
+   Walks all the node attributes defined in the scene and synchronize the Show property of all the nodes that reference the node attribute so that they all contain the same value. This method should be called after the FBX scene is completely created, typically right after the calls to the FbxImporter::Import() or just before the calls to the FbxExporter::Export().
+
+   Remarks:
+          Applications only need to call this method if their interpretation of the Show property implies that setting the Show state on one instance affect all of them.
+
+   See also:
+          FbxNode::Visibility property, FbxNode::Show property
+
+   bool ComputeBoundingBoxMinMaxCenter ( FbxVector4 &     pBBoxMin,
+                                         FbxVector4 &     pBBoxMax,
+                                         FbxVector4 &     pBBoxCenter,
+                                         bool             pSelected = false,
+                                         const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                                         int              pAnimLayerId = 0
+                                       )
+   Search for all occurrences
+
+   Compute the bounding box and its center for all (or selected) nodes.
+
+   Parameters:
+
+          pBBoxMin     The minimum value of the bounding box upon successful return.
+          pBBoxMax     The maximum value of the bounding box upon successful return.
+          pBBoxCenter  The center value of the bounding box upon successful return.
+          pSelected    If true, only take into account selected geometry, otherwise take all geometry into account.
+          pTime        If different from FBXSDK_TIME_INFINITE, time used to compute the bounding box for deformed geometry.
+          pAnimLayerId The animation layer used to compute the bounding box for deformed geometry.
+
+   Returns:
+          true if successful, otherwise false.
+
+   Remarks:
+          If geometry have been unloaded from memory, their bounding box cannot be calculated and will use any value set previously.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxscene.h
+
+   Please send us your comment about this page

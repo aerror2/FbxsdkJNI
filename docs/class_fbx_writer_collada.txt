@@ -1,0 +1,182 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxWriterCollada Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxWriterCollada Class Reference
+   Search for all occurrences
+
+   #include <fbxwritercollada14.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to export FBX scene into a Collada file.
+
+   Definition at line 25 of file fbxwritercollada14.h.
+   Inheritance diagram for FbxWriterCollada:
+   [USEMAP:class_fbx_writer_collada.png]
+
+   List of all members.
+
+Constructors and Destructor
+
+                 FbxWriterCollada (FbxManager &pManager, int pID, FbxStatus &pStatus)
+                 Constructor.
+        virtual  ~FbxWriterCollada ()
+                 Destructor.
+
+File Management
+
+   virtual bool  FileCreate (char *pFileName)
+                 Create and open file with the given name.
+   virtual bool  FileClose ()
+                 Close file.
+   virtual bool  IsFileOpen ()
+                 Check if current file is open.
+
+Write Functions
+
+   virtual void  GetWriteOptions ()
+                 Get Collada export options settings.
+   virtual bool  Write (FbxDocument *pDocument)
+                 Export the FBX document to Collada file, according to the given options settings.
+   virtual bool  PreprocessScene (FbxScene &pScene)
+                 Process FBX scene before exporting FBX scene to Collada file.
+   virtual bool  PostprocessScene (FbxScene &pScene)
+                 Process FBX scene after exporting FBX scene to Collada file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxWriterCollada ( FbxManager &  pManager,
+                      int           pID,
+                      FbxStatus &   pStatus
+                    )
+
+   Constructor.
+
+   Parameters:
+
+          pManager FBX SDK object Manager.
+          pID      Internal ID.
+          pStatus  The FbxStatus object to hold error codes.
+
+   virtual ~FbxWriterCollada ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool FileCreate ( char *  pFileName ) [virtual]
+   Search for all occurrences
+
+   Create and open file with the given name.
+
+   Parameters:
+
+          pFileName the name of file.
+
+   Returns:
+          Return true if the specified file is created and opened.
+
+   Implements FbxWriter.
+   virtual bool FileClose ( ) [virtual]
+   Search for all occurrences
+
+   Close file.
+
+   Returns:
+          Return true if file is closed successfully, false otherwise.
+
+   Implements FbxWriter.
+   virtual bool IsFileOpen ( ) [virtual]
+   Search for all occurrences
+
+   Check if current file is open.
+
+   Returns:
+          Return true if file is open, false otherwise.
+
+   Implements FbxWriter.
+   virtual void GetWriteOptions ( ) [inline, virtual]
+   Search for all occurrences
+
+   Get Collada export options settings.
+
+   Implements FbxWriter.
+
+   Definition at line 75 of file fbxwritercollada14.h.
+{}
+
+   virtual bool Write ( FbxDocument *  pDocument ) [virtual]
+   Search for all occurrences
+
+   Export the FBX document to Collada file, according to the given options settings.
+
+   Parameters:
+
+          pDocument FBX Document to export.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implements FbxWriter.
+   virtual bool PreprocessScene ( FbxScene &  pScene ) [virtual]
+   Search for all occurrences
+
+   Process FBX scene before exporting FBX scene to Collada file.
+
+   Parameters:
+
+          pScene the FBX scene to precess.
+
+   Returns:
+          Return true if the given scene is processed successfully.
+
+   Remarks:
+          This function is processing name clash, special transformation conversion etc.
+
+   Implements FbxWriter.
+   virtual bool PostprocessScene ( FbxScene &  pScene ) [virtual]
+   Search for all occurrences
+
+   Process FBX scene after exporting FBX scene to Collada file.
+
+   Parameters:
+
+          pScene the FBX scene to precess.
+
+   Returns:
+          Return true if the given scene is processed successfully.
+
+   Implements FbxWriter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/collada/fbxwritercollada14.h
+
+   Please send us your comment about this page

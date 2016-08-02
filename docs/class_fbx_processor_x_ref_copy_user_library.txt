@@ -1,0 +1,71 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessorXRefCopyUserLibrary Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxProcessorXRefCopyUserLibrary Class Reference
+   Search for all occurrences
+
+   #include <fbxprocessorxrefuserlib.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Specialized xref copy processor.
+
+   Definition at line 25 of file fbxprocessorxrefuserlib.h.
+   Inheritance diagram for FbxProcessorXRefCopyUserLibrary:
+   [USEMAP:class_fbx_processor_x_ref_copy_user_library.png]
+
+   List of all members.
+
+Public Attributes
+
+   Properties
+   FbxPropertyT< FbxBool >  CopyAllAssets
+   FbxPropertyT< FbxBool >  CopyExternalAssets
+   FbxPropertyT< FbxBool >  CopyAbsoluteUrlAssets
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> CopyAllAssets
+   Search for all occurrences
+
+   Definition at line 36 of file fbxprocessorxrefuserlib.h.
+   FbxPropertyT<FbxBool> CopyExternalAssets
+   Search for all occurrences
+
+   Definition at line 43 of file fbxprocessorxrefuserlib.h.
+   FbxPropertyT<FbxBool> CopyAbsoluteUrlAssets
+   Search for all occurrences
+
+   Definition at line 49 of file fbxprocessorxrefuserlib.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxprocessorxrefuserlib.h
+
+   Please send us your comment about this page

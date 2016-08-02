@@ -1,0 +1,199 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAccumulatorEntry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Friends
+   FbxAccumulatorEntry Class Reference
+   Search for all occurrences
+
+   #include <fbxusernotification.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class defines one entry object held by the FbxUserNotification class.
+
+   An entry object is a message to show error, warning or information. Direct manipulation of this object should not be required. At most, access to its members can be granted for querying purposes.
+
+   Definition at line 34 of file fbxusernotification.h.
+
+   List of all members.
+
+Public Types
+
+               enum   EClass { eError = 1, eWarning = 2, eInformation = 4, eAny = 7 }
+                      Category of the accumulator entry. More...
+
+Public Member Functions
+
+                      FbxAccumulatorEntry (EClass pAEClass, const FbxString &pName, const FbxString &pDescr, FbxString pDetail="", bool pMuteState=true)
+                      Constructor.
+                      FbxAccumulatorEntry (const FbxAccumulatorEntry &pAE, bool pSkipDetails)
+                      Copy Constructor.
+                      ~FbxAccumulatorEntry ()
+                      Destructor.
+              EClass  GetClass () const
+                      Returns the category class of this entry.
+           FbxString  GetName () const
+                      Returns the name of this entry.
+           FbxString  GetDescription () const
+                      Returns the description of this entry.
+                 int  GetDetailsCount () const
+                      Returns the number of details stored.
+   const FbxString *  GetDetail (int id) const
+                      Returns a pointer to one specific detail string (or NULL if the id is invalid).
+                bool  IsMuted () const
+                      Returns True if this entry is muted.
+
+Friends
+
+               class  FbxUserNotification
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EClass
+   Search for all occurrences
+
+   Category of the accumulator entry.
+
+   Enumerator:
+
+          eError
+
+   Error message entry.
+   Search for all occurrences
+          eWarning
+
+   Warning message entry.
+   Search for all occurrences
+          eInformation
+
+   Information message entry.
+   Search for all occurrences
+   eAny
+
+   Entry that does not belong to above class.
+   Cannot be used as a class ID
+   Search for all occurrences
+
+   Definition at line 39 of file fbxusernotification.h.
+        {
+        eError=1,
+        eWarning=2,
+        eInformation=4,
+        eAny=7
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAccumulatorEntry ( EClass             pAEClass,
+                         const FbxString &  pName,
+                         const FbxString &  pDescr,
+                         FbxString          pDetail = "",
+                         bool               pMuteState = true
+                       )
+
+   Constructor.
+
+   Parameters:
+
+          pAEClass   Specify the category for this entry.
+          pName      Identifies this entry (more than one object can have the same name).
+          pDescr     The description of the entry. This is the common message. The details are added separately by the FbxUserNotification classes.
+          pDetail    A list of detail string that will be copied into the local array.
+          pMuteState Whether this entry is muted.
+
+   Remarks:
+          By default the object is muted so it does not get processed by the low level output routines of the UserNotification accumulator. The entry gets activated (unmuted) by the calls to AddDetail() in the accumulator.
+
+   FbxAccumulatorEntry ( const FbxAccumulatorEntry &  pAE,
+                         bool                         pSkipDetails
+                       )
+
+   Copy Constructor.
+
+   Parameters:
+
+          pAE          Another FbxAccumulatorEntry object to be copied.
+          pSkipDetails Flag to skip details.
+
+   ~FbxAccumulatorEntry ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   EClass GetClass ( ) const
+   Search for all occurrences
+
+   Returns the category class of this entry.
+   FbxString GetName ( ) const
+   Search for all occurrences
+
+   Returns the name of this entry.
+   FbxString GetDescription ( ) const
+   Search for all occurrences
+
+   Returns the description of this entry.
+   int GetDetailsCount ( ) const
+   Search for all occurrences
+
+   Returns the number of details stored.
+   const FbxString* GetDetail ( int  id ) const
+   Search for all occurrences
+
+   Returns a pointer to one specific detail string (or NULL if the id is invalid).
+
+   Detail string is dynamic. One entry can have multiple detail strings to hold extra information. For example, if one entry message is related to many FBX nodes, user can add these nodes' name as details.
+
+   Parameters:
+
+          id The detail id.
+
+   Returns:
+          Pointer to the specific detail.
+
+   bool IsMuted ( ) const
+   Search for all occurrences
+
+   Returns True if this entry is muted.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxUserNotification [friend]
+   Search for all occurrences
+
+   Definition at line 103 of file fbxusernotification.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxusernotification.h
+
+   Please send us your comment about this page

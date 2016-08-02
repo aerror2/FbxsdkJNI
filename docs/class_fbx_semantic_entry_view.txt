@@ -1,0 +1,168 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSemanticEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxSemanticEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxsemanticentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxSemanticEntryView stores a binding corresponding to a semantic within a shader file.
+
+   A shader semantic is a parameter, a constant or an operator. So a shader semantic could bind with FbxProperty ( parameter, constant) and FbxBindingOperator (operator).
+
+   Here is a code snippet to show how it used.
+ FbxProperty lProp;
+ FbxBindingTable lTable;
+ FbxBindingTableEntry& lEntry = lBindingTable.AddNewEntry();
+ FbxPropertyEntryView lSrcView( lEntry, true, true);
+ lSrcView.SetProperty( lProp.GetHierarchicalName());
+ FbxSemanticEntryView lDstView( &pEntry, false, true );
+ lDstView.SetSemantic( lProp.Getname());
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 42 of file fbxsemanticentryview.h.
+   Inheritance diagram for FbxSemanticEntryView:
+   [USEMAP:class_fbx_semantic_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+                   void  SetSemantic (const char *pSemantic)
+                         Set the semantic to the binding entry.
+              FbxString  GetSemantic (bool pAppendIndex=true) const
+                         Get the semantic from the binding entry.
+                    int  GetIndex () const
+                         Get the semantic index suffix.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+
+Constructor and Destructor.
+
+                         FbxSemanticEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                virtual  ~FbxSemanticEntryView ()
+                         Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSemanticEntryView ( FbxBindingTableEntry *  pEntry,
+                          bool                    pAsSource,
+                          bool                    pCreate = false
+                        )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   virtual ~FbxSemanticEntryView ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetSemantic ( const char *  pSemantic )
+   Search for all occurrences
+
+   Set the semantic to the binding entry.
+
+   Parameters:
+
+          pSemantic The semantic string to set.
+
+   FbxString GetSemantic ( bool  pAppendIndex = true ) const
+   Search for all occurrences
+
+   Get the semantic from the binding entry.
+
+   Parameters:
+
+          pAppendIndex true if the returned semantic append a index, false otherwise.
+
+   Returns:
+          The semantic.
+
+   int GetIndex ( ) const
+   Search for all occurrences
+
+   Get the semantic index suffix.
+
+   Returns:
+          Semantic index suffix.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxSemanticEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxSemanticEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Definition at line 49 of file fbxsemanticentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxsemanticentryview.h
+
+   Please send us your comment about this page

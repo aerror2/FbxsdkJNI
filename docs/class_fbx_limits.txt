@@ -1,0 +1,351 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLimits Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxLimits Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtransforms.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxLimits defines a limit range for one transform component, either translation, rotation or scaling.
+
+   One transform component limit contains two part: a min value and a max value limit, which means that each value of the corresponding transform component cannot go beyond the range set by the min and max values. Although the members are identified as X, Y and Z (the W component is ignored) at this level, they are unitless values and will only have meaning within the context they are queried.
+
+   For each limit, there is one flag to indicate if the limit is active or not. Before accessing the limit info, the caller need to query the flag first to make sure that the retrieved values will be meaningful.
+
+   Definition at line 34 of file fbxtransforms.h.
+
+   List of all members.
+
+Public Member Functions
+
+                FbxLimits ()
+                Constructor.
+   FbxLimits &  operator= (const FbxLimits &pLimits)
+                Assignment Operator.
+          bool  GetActive () const
+                Retrieve the active state of this limit.
+          void  SetActive (const bool pActive)
+                Set the active state of this limit.
+          bool  GetMinXActive () const
+                Get the active state of the minimum X component.
+          bool  GetMinYActive () const
+                Get the active state of the minimum Y component.
+          bool  GetMinZActive () const
+                Get the active state of the minimum Z component.
+          void  GetMinActive (bool &pXActive, bool &pYActive, bool &pZActive) const
+                Get the active states of the three components of the minimum limit.
+    FbxDouble3  GetMin () const
+                Get the minimum limits.
+          void  SetMinXActive (const bool pActive)
+                Set the active state of the minimum X component.
+          void  SetMinYActive (const bool pActive)
+                Set the active state of the minimum Y component.
+          void  SetMinZActive (const bool pActive)
+                Set the active state of the minimum Z component.
+          void  SetMinActive (const bool pXActive, const bool pYActive, const bool pZActive)
+                Set the active states of the three components of the minimum limits.
+          void  SetMin (const FbxDouble3 &pMin)
+                Set the minimum limits.
+          bool  GetMaxXActive () const
+                Get the active state of the maximum X component.
+          bool  GetMaxYActive () const
+                Get the active state of the maximum Y component.
+          bool  GetMaxZActive () const
+                Get the active state of the maximum Z component.
+          void  GetMaxActive (bool &pXActive, bool &pYActive, bool &pZActive) const
+                Get the active states of the three components of the maximum limit.
+    FbxDouble3  GetMax () const
+                Get the maximum limits.
+          void  SetMaxXActive (const bool pActive)
+                Set the active state of the maximum X component.
+          void  SetMaxYActive (const bool pActive)
+                Set the active state of the maximum Y component.
+          void  SetMaxZActive (const bool pActive)
+                Set the active state of the maximum Z component.
+          void  SetMaxActive (const bool pXActive, const bool pYActive, const bool pZActive)
+                Set the active states of the three components of the maximum limits.
+          void  SetMax (const FbxDouble3 &pMax)
+                Set the maximum limits.
+          bool  GetAnyMinMaxActive () const
+                Find if any of the minimum or maximum active state are set.
+    FbxDouble3  Apply (const FbxDouble3 &pVector)
+                Apply the active limits to the components of the vector provided.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLimits ( )
+
+   Constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxLimits& operator= ( const FbxLimits &  pLimits )
+
+   Assignment Operator.
+   bool GetActive ( ) const
+   Search for all occurrences
+
+   Retrieve the active state of this limit.
+
+   Returns:
+          True if the limit is active.
+
+   void SetActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of this limit.
+
+   Parameters:
+
+          pActive If true, this limit will become globally active.
+
+   bool GetMinXActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the minimum X component.
+
+   Returns:
+          True if the X component minimum limit is active.
+
+   bool GetMinYActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the minimum Y component.
+
+   Returns:
+          True if the Y component minimum limit is active.
+
+   bool GetMinZActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the minimum Z component.
+
+   Returns:
+          True if the Z component minimum limit is active.
+
+   void GetMinActive ( bool &  pXActive,
+                       bool &  pYActive,
+                       bool &  pZActive
+                     )         const
+   Search for all occurrences
+
+   Get the active states of the three components of the minimum limit.
+
+   Parameters:
+
+          pXActive True if the X component minimum limit is active.
+          pYActive True if the Y component minimum limit is active.
+          pZActive True if the Z component minimum limit is active.
+
+   FbxDouble3 GetMin ( ) const
+   Search for all occurrences
+
+   Get the minimum limits.
+
+   Returns:
+          The current X, Y and Z values for the minimum limits.
+
+   void SetMinXActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the minimum X component.
+
+   Parameters:
+
+          pActive If true, the X component minimum limit will be active.
+
+   void SetMinYActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the minimum Y component.
+
+   Parameters:
+
+          pActive If true, the Y component minimum limit will be active.
+
+   void SetMinZActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the minimum Z component.
+
+   Parameters:
+
+          pActive If true, the Z component minimum limit will be active.
+
+   void SetMinActive ( const bool  pXActive,
+                       const bool  pYActive,
+                       const bool  pZActive
+                     )
+   Search for all occurrences
+
+   Set the active states of the three components of the minimum limits.
+
+   Parameters:
+
+          pXActive If true, the X component minimum limit will be active.
+          pYActive If true, the Y component minimum limit will be active.
+          pZActive If true, the Z component minimum limit will be active.
+
+   void SetMin ( const FbxDouble3 &  pMin )
+   Search for all occurrences
+
+   Set the minimum limits.
+
+   Parameters:
+
+          pMin The X, Y and Z values for the minimum limits.
+
+   bool GetMaxXActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the maximum X component.
+
+   Returns:
+          True if the X component maximum limit is active.
+
+   bool GetMaxYActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the maximum Y component.
+
+   Returns:
+          True if the Y component maximum limit is active.
+
+   bool GetMaxZActive ( ) const
+   Search for all occurrences
+
+   Get the active state of the maximum Z component.
+
+   Returns:
+          True if the Z component maximum limit is active.
+
+   void GetMaxActive ( bool &  pXActive,
+                       bool &  pYActive,
+                       bool &  pZActive
+                     )         const
+   Search for all occurrences
+
+   Get the active states of the three components of the maximum limit.
+
+   Parameters:
+
+          pXActive True if the X component maximum limit is active.
+          pYActive True if the Y component maximum limit is active.
+          pZActive True if the Z component maximum limit is active.
+
+   FbxDouble3 GetMax ( ) const
+   Search for all occurrences
+
+   Get the maximum limits.
+
+   Returns:
+          The current X, Y and Z values for the maximum limits.
+
+   void SetMaxXActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the maximum X component.
+
+   Parameters:
+
+          pActive If true, the X component maximum limit will be active.
+
+   void SetMaxYActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the maximum Y component.
+
+   Parameters:
+
+          pActive If true, the Y component maximum limit will be active.
+
+   void SetMaxZActive ( const bool  pActive )
+   Search for all occurrences
+
+   Set the active state of the maximum Z component.
+
+   Parameters:
+
+          pActive If true, the Z component maximum limit will be active.
+
+   void SetMaxActive ( const bool  pXActive,
+                       const bool  pYActive,
+                       const bool  pZActive
+                     )
+   Search for all occurrences
+
+   Set the active states of the three components of the maximum limits.
+
+   Parameters:
+
+          pXActive If true, the X component maximum limit will be active.
+          pYActive If true, the Y component maximum limit will be active.
+          pZActive If true, the Z component maximum limit will be active.
+
+   void SetMax ( const FbxDouble3 &  pMax )
+   Search for all occurrences
+
+   Set the maximum limits.
+
+   Parameters:
+
+          pMax The X, Y and Z values for the maximum limits.
+
+   bool GetAnyMinMaxActive ( ) const
+   Search for all occurrences
+
+   Find if any of the minimum or maximum active state are set.
+
+   Returns:
+          If any component of the minimum or maximum active state are set, true is returned.
+
+   Remarks:
+          The global active state will not count when resolving this.
+
+   FbxDouble3 Apply ( const FbxDouble3 &  pVector )
+   Search for all occurrences
+
+   Apply the active limits to the components of the vector provided.
+
+   Returns:
+          The new vector clamped by active limits.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxtransforms.h
+
+   Please send us your comment about this page

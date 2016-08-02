@@ -1,0 +1,73 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxWeightedMapping::Element Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxWeightedMapping
+     * Element
+
+   Public Attributes
+   FbxWeightedMapping::Element Struct Reference
+   Search for all occurrences
+
+   #include <fbxweightedmapping.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Record one mapping from one object.
+
+   Definition at line 40 of file fbxweightedmapping.h.
+
+   List of all members.
+
+Public Attributes
+
+      int  mIndex
+           The index of another object in the mapping in the another ESet array.
+   double  mWeight
+           Weight of the mapping.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int mIndex
+   Search for all occurrences
+
+   The index of another object in the mapping in the another ESet array.
+
+   Definition at line 43 of file fbxweightedmapping.h.
+   double mWeight
+   Search for all occurrences
+
+   Weight of the mapping.
+
+   Definition at line 45 of file fbxweightedmapping.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/scene/geometry/fbxweightedmapping.h
+
+   Please send us your comment about this page

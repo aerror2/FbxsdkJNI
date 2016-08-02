@@ -1,0 +1,139 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxOperatorEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxOperatorEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxoperatorentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxOperatorEntryView represents binding operator entry in entry tables.
+
+   The binding operator can be used as source or destination for the binding entry.
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Definition at line 29 of file fbxoperatorentryview.h.
+   Inheritance diagram for FbxOperatorEntryView:
+   [USEMAP:class_fbx_operator_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxOperatorEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                         ~FbxOperatorEntryView ()
+                         Destructor.
+           const char *  GetOperatorName () const
+                         Get the operator name from the binding entry.
+                   void  SetOperatorName (const char *pName)
+                         Set the operator name to the binding entry.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxOperatorEntryView ( FbxBindingTableEntry *  pEntry,
+                          bool                    pAsSource,
+                          bool                    pCreate = false
+                        )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   ~FbxOperatorEntryView ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const char* GetOperatorName ( ) const
+   Search for all occurrences
+
+   Get the operator name from the binding entry.
+
+   Returns:
+          The operator name.
+
+   void SetOperatorName ( const char *  pName )
+   Search for all occurrences
+
+   Set the operator name to the binding entry.
+
+   Parameters:
+
+          pName The operator name to set.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxOperatorEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxOperatorEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Definition at line 35 of file fbxoperatorentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxoperatorentryview.h
+
+   Please send us your comment about this page

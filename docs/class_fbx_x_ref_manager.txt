@@ -1,0 +1,424 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxXRefManager Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxXRefManager Class Reference
+   Search for all occurrences
+
+   #include <fbxxref.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class manages external references to files.
+
+   Definition at line 30 of file fbxxref.h.
+
+   List of all members.
+
+Public Member Functions
+
+                        FbxXRefManager ()
+                        Default constructor.
+               virtual  ~FbxXRefManager ()
+                        Destructor.
+                  bool  GetFirstMatchingUrl (const char *pPrefix, const char *pOptExt, const FbxDocument *pDoc, FbxString &pResolvedPath) const
+                        Looks for the first file that matches a specified "pattern", which is built as:
+
+Predefined Project Types
+
+   static const char *  sTemporaryFileProject
+                        This project represents an URL for storing temporary files.
+   static const char *  sConfigurationProject
+                        This project represents an URL for configuration files.
+   static const char *  sLocalizationProject
+                        This project represents an URL for storing localization files (that is not part of the asset library).
+   static const char *  sEmbeddedFileProject
+                        This project is used for creating the ".fbm" folders that are used for storing embedded resources in FBX files.
+
+XRef URL properties
+
+                  bool  GetResolvedUrl (FbxProperty const &pProperty, int pIndex, FbxString &pResolvedPath) const
+                        Tries to resolve the URL stored in the property at the given index.
+                  bool  GetResolvedUrl (const char *pUrl, FbxDocument *pDoc, FbxString &pResolvedPath) const
+                        Tries to resolve the specified URL.
+            static int  GetUrlCount (FbxProperty const &pProperty)
+                        Returns the number of URLs that are stored in a property.
+            static int  GetUrlCount (FbxString const &pUrl)
+                        Returns the number of URLs that are stored in a string.
+           static bool  IsRelativeUrl (FbxProperty const &pProperty, int pIndex)
+                        Checks whether the URL at the given index stored in the property is relative or not.
+      static FbxString  GetUrl (FbxProperty const &pProperty, int pIndex)
+                        Returns the URL stored in the property at the given index.
+
+XRef Resolve URL and Projects
+
+                  bool  AddXRefProject (const char *pName, const char *pUrl)
+                        Adds an XRef Project.
+                  bool  AddXRefProject (const char *pName, const char *pExtension, const char *pUrl)
+                        Adds an XRef Project.
+                  bool  AddXRefProject (FbxDocument *pDoc)
+                        Adds an XRef project based on the document's EmbeddedUrl property if set, if EmbeddedUrl is not set, based on its current URL property.
+                  bool  RemoveXRefProject (const char *pName)
+                        Removes an XRef Projects.
+                  bool  RemoveAllXRefProjects ()
+                        Removes all XRef Projects.
+                   int  GetXRefProjectCount () const
+                        Returns the number of XRef Projects.
+          const char *  GetXRefProjectName (int pIndex) const
+                        Returns the name of the XRef project at the specified index.
+          const char *  GetXRefProjectUrl (const char *pName)
+                        Returns the base URL for the given project.
+          const char *  GetXRefProjectUrl (const char *pName) const
+                        Returns the base URL for the given project.
+          const char *  GetXRefProjectUrl (int pIndex) const
+                        Returns the base URL for the given project.
+                  bool  HasXRefProject (const char *pName)
+                        Checks if a project with the given name is defined in this manager.
+                  bool  GetResolvedUrl (const char *pUrl, FbxString &pResolvePath) const
+                        Tries to resolve an relative URL.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxXRefManager ( )
+
+   Default constructor.
+   virtual ~FbxXRefManager ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static int GetUrlCount ( FbxProperty const &  pProperty ) [static]
+   Search for all occurrences
+
+   Returns the number of URLs that are stored in a property.
+
+   Parameters:
+
+          pProperty The property.
+
+   Returns:
+          The URL count.
+
+   static int GetUrlCount ( FbxString const &  pUrl ) [static]
+   Search for all occurrences
+
+   Returns the number of URLs that are stored in a string.
+
+   Parameters:
+
+          pUrl The string.
+
+   Returns:
+          The URL count.
+
+   static bool IsRelativeUrl ( FbxProperty const &  pProperty,
+                               int                  pIndex
+                             )                      [static]
+   Search for all occurrences
+
+   Checks whether the URL at the given index stored in the property is relative or not.
+
+   Parameters:
+
+          pProperty The property.
+          pIndex    The URL index.
+
+   Returns:
+          True if the URL is relative, false if the URL is not relative.
+
+   static FbxString GetUrl ( FbxProperty const &  pProperty,
+                             int                  pIndex
+                           )                      [static]
+   Search for all occurrences
+
+   Returns the URL stored in the property at the given index.
+
+   Parameters:
+
+          pProperty The property.
+          pIndex    The URL index.
+
+   Returns:
+          The URL
+
+   bool GetResolvedUrl ( FbxProperty const &  pProperty,
+                         int                  pIndex,
+                         FbxString &          pResolvedPath
+                       )                      const
+   Search for all occurrences
+
+   Tries to resolve the URL stored in the property at the given index.
+
+   Parameters:
+
+          pProperty     The property.
+          pIndex        The URL index.
+          pResolvedPath Filled with the resolved path.
+
+   Returns:
+          True if the URL is resolved, return false if the URL is not resolved.
+
+   bool GetResolvedUrl ( const char *   pUrl,
+                         FbxDocument *  pDoc,
+                         FbxString &    pResolvedPath
+                       )                const
+   Search for all occurrences
+
+   Tries to resolve the specified URL.
+
+   Parameters:
+
+          pUrl          The specified URL.
+          pDoc          The document whose ".fbm" folder is used to resolve the URL.
+          pResolvedPath Filled with the resolved path.
+
+   Returns:
+          True if the URL is resolved, return false if the URL is not resolved.
+
+   bool GetFirstMatchingUrl ( const char *         pPrefix,
+                              const char *         pOptExt,
+                              const FbxDocument *  pDoc,
+                              FbxString &          pResolvedPath
+                            )                      const
+   Search for all occurrences
+
+   Looks for the first file that matches a specified "pattern", which is built as:
+
+   if pOptExt is given: prefix*.ext If pOptExt is NULL: prefix* if pOptExt is "" or ".": prefix*.
+
+   Returns the URL of the first matching files. This function cannot be used to resolve folders, only files.
+
+   If a document is given, we start by looking at the document's ".fbm" folder.
+
+   Parameters:
+
+          pPrefix       The prefix of the pattern.
+          pOptExt       The extension of the pattern.
+          pDoc          The given document.
+          pResolvedPath Filled with the first matching URL.
+
+   Returns:
+          True if one matching file is found, returns false if no matching file is found.
+
+   bool AddXRefProject ( const char *  pName,
+                         const char *  pUrl
+                       )
+   Search for all occurrences
+
+   Adds an XRef Project.
+
+   Note:Only one URL is associated with a project. Calling this on an existing project replaces the project's existing URL.
+
+   Parameters:
+
+          pName The name of the project
+          pUrl  The URL to be associated with the project.
+
+   Returns:
+          True if the project is added successfully, false if no project is added.
+
+   bool AddXRefProject ( const char *  pName,
+                         const char *  pExtension,
+                         const char *  pUrl
+                       )
+   Search for all occurrences
+
+   Adds an XRef Project.
+
+   Note:Only one URL is associated with a project. Calling this on an existing project replaces the project's existing URL.
+
+   Parameters:
+
+          pName      The name of the project
+          pExtension The extension of the project.
+          pUrl       The URL to be associated with the project.
+
+   Returns:
+          True if the project is added successfully, returns false if no project is added.
+
+   bool AddXRefProject ( FbxDocument *  pDoc )
+   Search for all occurrences
+
+   Adds an XRef project based on the document's EmbeddedUrl property if set, if EmbeddedUrl is not set, based on its current URL property.
+
+   Parameters:
+
+          pDoc The document used to name the project and to specify the URL.
+
+   Returns:
+          True if the project is added successfully, returns false if no project is added.
+
+   Remarks:
+          The project name is set as the document name and the URL is set as EmbeddedUrl or URL of the document.
+
+   bool RemoveXRefProject ( const char *  pName )
+   Search for all occurrences
+
+   Removes an XRef Projects.
+
+   Parameters:
+
+          pName The name of the project to be removed.
+
+   Returns:
+          True if the project is removed successfully, returns false if the project with the name does not exist.
+
+   bool RemoveAllXRefProjects ( )
+   Search for all occurrences
+
+   Removes all XRef Projects.
+
+   Returns:
+          True always.
+
+   int GetXRefProjectCount ( ) const
+   Search for all occurrences
+
+   Returns the number of XRef Projects.
+
+   Returns:
+          The number of XRef Projects.
+
+   const char* GetXRefProjectName ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the name of the XRef project at the specified index.
+
+   Parameters:
+
+          pIndex The XRef project index.
+
+   Returns:
+          The XRef project name.
+
+   const char* GetXRefProjectUrl ( const char *  pName )
+   Search for all occurrences
+
+   Returns the base URL for the given project.
+
+   Parameters:
+
+          pName The name of the given project
+
+   Returns:
+          The base URL of the project or returns NULL if the project with the name is not found.
+
+   const char* GetXRefProjectUrl ( const char *  pName ) const
+   Search for all occurrences
+
+   Returns the base URL for the given project.
+
+   Parameters:
+
+          pName The name of the given project
+
+   Returns:
+          The base URL of the project or returns NULL if the project with the name is not found.
+
+   const char* GetXRefProjectUrl ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the base URL for the given project.
+
+   Parameters:
+
+          pIndex The index of the project.
+
+   Returns:
+          The base URL of the project or NULL if the index is out of bounds.
+
+   bool HasXRefProject ( const char *  pName ) [inline]
+   Search for all occurrences
+
+   Checks if a project with the given name is defined in this manager.
+
+   Parameters:
+
+          pName The name of the project.
+
+   Returns:
+          True if the project is defined in this manager, returns false if it isn't defined in this manager.
+
+   Definition at line 209 of file fbxxref.h.
+{ return GetXRefProjectUrl(pName) != NULL; }
+
+   bool GetResolvedUrl ( const char *  pUrl,
+                         FbxString &   pResolvePath
+                       )               const
+   Search for all occurrences
+
+   Tries to resolve an relative URL.
+
+   Parameters:
+
+          pUrl         The relative URL to be resolved.
+          pResolvePath Filled with the resolved path.
+
+   Returns:
+          True if the URL is resolved, returns false if the URL is not resolved.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sTemporaryFileProject [static]
+   Search for all occurrences
+
+   This project represents an URL for storing temporary files.
+
+   Definition at line 45 of file fbxxref.h.
+   const char* sConfigurationProject [static]
+   Search for all occurrences
+
+   This project represents an URL for configuration files.
+
+   Definition at line 48 of file fbxxref.h.
+   const char* sLocalizationProject [static]
+   Search for all occurrences
+
+   This project represents an URL for storing localization files (that is not part of the asset library).
+
+   Definition at line 51 of file fbxxref.h.
+   const char* sEmbeddedFileProject [static]
+   Search for all occurrences
+
+   This project is used for creating the ".fbm" folders that are used for storing embedded resources in FBX files.
+
+   When not set, or if the folder is not writable, the ".fbm" folder is created alongside the FBX file.
+
+   If we cannot write in that folder, we look at the sTemporaryFileProject location. If no folder is set in the sTemporaryFileProject location, or it is not writable, the operating system's Temp folder becomes the location.
+
+   Definition at line 63 of file fbxxref.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxxref.h
+
+   Please send us your comment about this page

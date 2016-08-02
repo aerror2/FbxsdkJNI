@@ -1,0 +1,288 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxReaderFbx5 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxReaderFbx5 Class Reference
+   Search for all occurrences
+
+   #include <fbxreaderfbx5.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 31 of file fbxreaderfbx5.h.
+   Inheritance diagram for FbxReaderFbx5:
+   [USEMAP:class_fbx_reader_fbx5.png]
+
+   List of all members.
+
+Public Types
+
+                                 enum   EImportMode { eASCII, eBINARY, eENCRYPTED }
+
+Public Member Functions
+
+                                        FbxReaderFbx5 (FbxManager &pManager, FbxImporter &pImporter, int pID, FbxStatus &pStatus)
+                               virtual  ~FbxReaderFbx5 ()
+                          virtual bool  FileOpen (char *pFileName, bool pIgnoredArg)
+                          virtual bool  FileOpen (char *pFileName, EFileOpenSpecialFlags pFlags)
+                                        Opens the file with specific EFileOpenSpecialFlags.
+                          virtual bool  FileOpen (char *pFileName)
+                                        Opens the file with default flag.
+                          virtual bool  FileOpen (FbxFile *pFile)
+                          virtual bool  FileOpen (FbxStream *pStream, void *pStreamData)
+                                        Opens the stream with default flag.
+                          virtual bool  FileClose ()
+                                        Closes the file stream.
+                          virtual bool  IsFileOpen ()
+                                        Checks if the file stream is open.
+                          virtual void  SetEmbeddingExtractionFolder (const char *pExtractFolder)
+                           EImportMode  GetImportMode ()
+                          virtual void  GetVersion (int &pMajor, int &pMinor, int &pRevision)
+                                        Returns the file version.
+                          virtual bool  GetReadOptions (bool pParseFileAsNeeded=true)
+                                        Returns file stream options.
+                          virtual bool  Read (FbxDocument *pDocument)
+                                        Reads file with stream options.
+                          virtual bool  GetReadOptions (FbxIO *pFbx, bool pParseFileAsNeeded=true)
+                          virtual bool  Read (FbxScene &pScene, FbxIO *pFbx)
+             virtual FbxDocumentInfo *  GetSceneInfo ()
+                                        Returns the scene info from the file.
+   virtual FbxArray< FbxTakeInfo * > *  GetTakeInfo ()
+                                        Returns the list of take infos from the file.
+                          virtual bool  SupportsStreams () const
+                                        Returns true if this reader supports FbxStream I/O.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EImportMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eASCII
+
+   Search for all occurrences
+          eBINARY
+
+   Search for all occurrences
+          eENCRYPTED
+
+   Search for all occurrences
+
+   Definition at line 47 of file fbxreaderfbx5.h.
+        {
+                eASCII,
+                eBINARY,
+                eENCRYPTED
+        } EImportMode;
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxReaderFbx5 ( FbxManager &   pManager,
+                   FbxImporter &  pImporter,
+                   int            pID,
+                   FbxStatus &    pStatus
+                 )
+   virtual ~FbxReaderFbx5 ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool FileOpen ( char *  pFileName,
+                           bool    pIgnoredArg
+                         )         [virtual]
+   Search for all occurrences
+   virtual bool FileOpen ( char *                 pFileName,
+                           EFileOpenSpecialFlags  pFlags
+                         )                        [inline, virtual]
+   Search for all occurrences
+
+   Opens the file with specific EFileOpenSpecialFlags.
+
+   Parameters:
+
+          pFileName Name of the File to open.
+          pFlags    The EFileOpenSpecialFlags to open with
+
+   Returns:
+          If the file opens successfully return true, otherwise return false.
+
+   Reimplemented from FbxReader.
+
+   Definition at line 38 of file fbxreaderfbx5.h.
+{ return FbxReader::FileOpen(pFileName, pFlags); }
+
+   virtual bool FileOpen ( char *  pFileName ) [virtual]
+   Search for all occurrences
+
+   Opens the file with default flag.
+
+   Parameters:
+
+          pFileName Name of the File to open
+
+   Returns:
+          If the file opens successfully return true, otherwise return false.
+
+   Implements FbxReader.
+   virtual bool FileOpen ( FbxFile *  pFile ) [virtual]
+   Search for all occurrences
+   virtual bool FileOpen ( FbxStream *  pStream,
+                           void *       pStreamData
+                         )              [virtual]
+   Search for all occurrences
+
+   Opens the stream with default flag.
+
+   Parameters:
+
+          pStream     stream to open
+          pStreamData user-defined stream data
+
+   Returns:
+          If the stream opens successfully return true, otherwise return false.
+
+   Reimplemented from FbxReader.
+   virtual bool FileClose ( ) [virtual]
+   Search for all occurrences
+
+   Closes the file stream.
+
+   Returns:
+          false
+
+   Implements FbxReader.
+   virtual bool IsFileOpen ( ) [virtual]
+   Search for all occurrences
+
+   Checks if the file stream is open.
+
+   Returns:
+          false.
+
+   Implements FbxReader.
+   virtual void SetEmbeddingExtractionFolder ( const char *  pExtractFolder ) [virtual]
+   Search for all occurrences
+
+   Reimplemented from FbxReader.
+   EImportMode GetImportMode ( )
+   Search for all occurrences
+   virtual void GetVersion ( int &  pMajor,
+                             int &  pMinor,
+                             int &  pRevision
+                           )        [virtual]
+   Search for all occurrences
+
+   Returns the file version.
+
+   Parameters:
+
+          pMajor    Major version.
+          pMinor    Minor version.
+          pRevision Revision version.
+
+   Reimplemented from FbxReader.
+   virtual bool GetReadOptions ( bool  pParseFileAsNeeded = true ) [virtual]
+   Search for all occurrences
+
+   Returns file stream options.
+
+   Parameters:
+
+          pParseFileAsNeeded Sets whether to parse file as read options
+
+   Returns:
+          true on success, otherwise return false.
+
+   Implements FbxReader.
+   virtual bool Read ( FbxDocument *  pDocument ) [virtual]
+   Search for all occurrences
+
+   Reads file with stream options.
+
+   Parameters:
+
+          pDocument FbxDocument to store the file data
+
+   Returns:
+          false.
+
+   Implements FbxReader.
+   virtual bool GetReadOptions ( FbxIO *  pFbx,
+                                 bool     pParseFileAsNeeded = true
+                               )          [virtual]
+   Search for all occurrences
+   virtual bool Read ( FbxScene &  pScene,
+                       FbxIO *     pFbx
+                     )             [virtual]
+   Search for all occurrences
+   virtual FbxDocumentInfo* GetSceneInfo ( ) [inline, virtual]
+   Search for all occurrences
+
+   Returns the scene info from the file.
+
+   Returns:
+          NULL.
+
+   Reimplemented from FbxReader.
+
+   Definition at line 63 of file fbxreaderfbx5.h.
+{ return mSceneInfo; }
+
+   virtual FbxArray<FbxTakeInfo*>* GetTakeInfo ( ) [inline, virtual]
+   Search for all occurrences
+
+   Returns the list of take infos from the file.
+
+   Returns:
+          NULL
+
+   Reimplemented from FbxReader.
+
+   Definition at line 64 of file fbxreaderfbx5.h.
+{ return &mTakeInfo; }
+
+   virtual bool SupportsStreams ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Returns true if this reader supports FbxStream I/O.
+
+   Default value is false.
+
+   Reimplemented from FbxReader.
+
+   Definition at line 66 of file fbxreaderfbx5.h.
+{ return true; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxreaderfbx5.h
+
+   Please send us your comment about this page

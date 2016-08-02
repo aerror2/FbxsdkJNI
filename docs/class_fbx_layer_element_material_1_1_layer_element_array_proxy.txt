@@ -1,0 +1,84 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementMaterial::LayerElementArrayProxy Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxLayerElementMaterial
+     * LayerElementArrayProxy
+
+   Public Types | Public Member Functions
+   FbxLayerElementMaterial::LayerElementArrayProxy Class Reference
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Internal class to maintain backward compatibility with old FBX code (prior to FBX SDK 2011). This class synchronizes the direct array with FbxNode connections. Thus, changes on the direct array will reflect on FbxNode.
+
+   Definition at line 1374 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementMaterial::LayerElementArrayProxy:
+   [USEMAP:class_fbx_layer_element_material_1_1_layer_element_array_proxy.png]
+
+   List of all members.
+
+Public Types
+
+   typedef
+   FbxLayerElementArrayTemplate
+   < FbxSurfaceMaterial * >  ParentClass
+
+Public Member Functions
+
+                                         LayerElementArrayProxy (EFbxType pType)
+                                   void  SetContainer (FbxLayerContainer *pContainer, int pInstance=0)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxLayerElementArrayTemplate<FbxSurfaceMaterial*> ParentClass
+   Search for all occurrences
+
+   Definition at line 1377 of file fbxlayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   LayerElementArrayProxy ( EFbxType  pType )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetContainer ( FbxLayerContainer *  pContainer,
+                       int                  pInstance = 0
+                     )
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

@@ -1,0 +1,285 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyFlags Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Static Public Attributes
+   FbxPropertyFlags Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertydef.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 27 of file fbxpropertydef.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EInheritType { eOverride, eInherit, eDeleted }
+   enum   EFlags {
+     eNone = 0, eStatic = 1 << 0, eAnimatable = 1 << 1, eAnimated = 1 << 2,
+     eImported = 1 << 3, eUserDefined = 1 << 4, eHidden = 1 << 5, eNotSavable = 1 << 6,
+     eLockedMember0 = 1 << 7, eLockedMember1 = 1 << 8, eLockedMember2 = 1 << 9, eLockedMember3 = 1 << 10,
+     eLockedAll = eLockedMember0 | eLockedMember1 | eLockedMember2 | eLockedMember3, eMutedMember0 = 1 << 11, eMutedMember1 = 1 << 12, eMutedMember2 = 1 << 13,
+     eMutedMember3 = 1 << 14, eMutedAll = eMutedMember0 | eMutedMember1 | eMutedMember2 | eMutedMember3, eUIDisabled = 1 << 15, eUIGroup = 1 << 16,
+     eUIBoolGroup = 1 << 17, eUIExpanded = 1 << 18, eUINoCaption = 1 << 19, eUIPanel = 1 << 20,
+     eUILeftLabel = 1 << 21, eUIHidden = 1 << 22, eCtrlFlags = eStatic | eAnimatable | eAnimated | eImported | eUserDefined | eHidden | eNotSavable | eLockedAll | eMutedAll, eUIFlags = eUIDisabled | eUIGroup | eUIBoolGroup | eUIExpanded | eUINoCaption | eUIPanel | eUILeftLabel | eUIHidden,
+     eAllFlags = eCtrlFlags | eUIFlags, eFlagCount = 23
+   }
+
+Static Public Attributes
+
+   static const int  sLockedMembersMax = 4
+     Maximum number of property sub-member that can be locked.
+   static const int  sLockedMembersBitOffset = 7
+     Number of bits to shift to get to the first locked member flag.
+   static const int  sMutedMembersMax = 4
+     Maximum number of property sub-member that can be muted.
+   static const int  sMutedMembersBitOffset = 11
+     Number of bits to shift to get to the first muted member flag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EInheritType
+   Search for all occurrences
+
+   Enumerator:
+
+          eOverride
+
+   Property override this flag from its reference property.
+   Search for all occurrences
+          eInherit
+
+   Property inherit this flag from its reference property.
+   Search for all occurrences
+          eDeleted
+
+   Property has been deleted, so inheritance is invalid.
+   Search for all occurrences
+
+   Definition at line 30 of file fbxpropertydef.h.
+        {
+                eOverride,
+                eInherit,
+                eDeleted
+        };
+
+   enum EFlags
+   Search for all occurrences
+
+   Enumerator:
+
+          eNone
+
+   No flag.
+   Search for all occurrences
+          eStatic
+
+   Property is defined in the class declaration, so it wasn't created dynamically.
+   Search for all occurrences
+          eAnimatable
+
+   Property can be animated, thus is can have am animation curve node connected.
+   Search for all occurrences
+          eAnimated
+
+   Property is animated, so it also has an animation curve node connected.
+   Search for all occurrences
+          eImported
+
+   Property has been created during import process when reading FBX file.
+   Search for all occurrences
+          eUserDefined
+
+   Property has been defined by user, not by the FBX SDK.
+   Search for all occurrences
+          eHidden
+
+   Property should not be displayed on user interface.
+   Search for all occurrences
+          eNotSavable
+
+   Property value must not be exported when writing FBX files.
+   Search for all occurrences
+          eLockedMember0
+
+   This property has its member #0 locked.
+   Search for all occurrences
+          eLockedMember1
+
+   This property has its member #1 locked.
+   Search for all occurrences
+          eLockedMember2
+
+   This property has its member #2 locked.
+   Search for all occurrences
+          eLockedMember3
+
+   This property has its member #3 locked.
+   Search for all occurrences
+          eLockedAll
+
+   Search for all occurrences
+          eMutedMember0
+
+   This property has its member #0 muted.
+   Search for all occurrences
+          eMutedMember1
+
+   This property has its member #1 muted.
+   Search for all occurrences
+          eMutedMember2
+
+   This property has its member #2 muted.
+   Search for all occurrences
+          eMutedMember3
+
+   This property has its member #3 muted.
+   Search for all occurrences
+          eMutedAll
+
+   Search for all occurrences
+          eUIDisabled
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUIGroup
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUIBoolGroup
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUIExpanded
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUINoCaption
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUIPanel
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUILeftLabel
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eUIHidden
+
+   Private flag for dynamic UI in FBX plug-ins.
+   Search for all occurrences
+          eCtrlFlags
+
+   Search for all occurrences
+          eUIFlags
+
+   Search for all occurrences
+          eAllFlags
+
+   Search for all occurrences
+          eFlagCount
+
+   Search for all occurrences
+
+   Definition at line 37 of file fbxpropertydef.h.
+        {
+                eNone = 0,
+                eStatic = 1 << 0,
+                eAnimatable = 1 << 1,
+                eAnimated = 1 << 2,
+                eImported = 1 << 3,
+                eUserDefined = 1 << 4,
+                eHidden = 1 << 5,
+                eNotSavable = 1 << 6,
+
+        eLockedMember0 = 1 << 7,
+        eLockedMember1 = 1 << 8,
+        eLockedMember2 = 1 << 9,
+        eLockedMember3 = 1 << 10,
+        eLockedAll = eLockedMember0 | eLockedMember1 | eLockedMember2 | eLockedMember3,
+        eMutedMember0 = 1 << 11,
+        eMutedMember1 = 1 << 12,
+        eMutedMember2 = 1 << 13,
+        eMutedMember3 = 1 << 14,
+        eMutedAll = eMutedMember0 | eMutedMember1 | eMutedMember2 | eMutedMember3,
+
+                //Private flags
+                eUIDisabled = 1 << 15,
+                eUIGroup = 1 << 16,
+                eUIBoolGroup = 1 << 17,
+                eUIExpanded = 1 << 18,
+                eUINoCaption = 1 << 19,
+                eUIPanel = 1 << 20,
+                eUILeftLabel = 1 << 21,
+                eUIHidden = 1 << 22,
+
+                eCtrlFlags = eStatic | eAnimatable | eAnimated | eImported | eUserDefined | eHidden | eNotSavable | eLockedAll | eMutedAll,
+                eUIFlags = eUIDisabled | eUIGroup | eUIBoolGroup | eUIExpanded | eUINoCaption | eUIPanel | eUILeftLabel | eUIHidden,
+                eAllFlags = eCtrlFlags | eUIFlags,
+
+                eFlagCount = 23,
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const int sLockedMembersMax = 4 [static]
+   Search for all occurrences
+
+   Maximum number of property sub-member that can be locked.
+
+   Definition at line 76 of file fbxpropertydef.h.
+   const int sLockedMembersBitOffset = 7 [static]
+   Search for all occurrences
+
+   Number of bits to shift to get to the first locked member flag.
+
+   Definition at line 77 of file fbxpropertydef.h.
+   const int sMutedMembersMax = 4 [static]
+   Search for all occurrences
+
+   Maximum number of property sub-member that can be muted.
+
+   Definition at line 78 of file fbxpropertydef.h.
+   const int sMutedMembersBitOffset = 11 [static]
+   Search for all occurrences
+
+   Number of bits to shift to get to the first muted member flag.
+
+   Definition at line 79 of file fbxpropertydef.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertydef.h
+
+   Please send us your comment about this page

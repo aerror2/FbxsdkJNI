@@ -1,0 +1,583 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDocument Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxDocument Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxdocument.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxDocument is a base class for FbxScene and FbxLibrary classes.
+
+   A document is a collection (FbxCollection) of objects (FbxObject), called the root member objects. This is because these objects each form the root of an object graph. The manager (FbxManager) has access to all documents, scenes and libraries.
+
+   A document can be contained in another document, thus, a hierarchy of documents can be built. The root of all documents is simply called the root document.
+
+   A document manages animation stacks (FbxAnimStack). It also provides access to animation stack information (FbxTakeInfo).
+
+   A document carries information in its FbxDocumentInfo.
+
+   Documents manage peripherals to load and unload objects (see class FbxPeripheral), as well as references to other objects or documents.
+
+   Error management is also available.
+
+   Examples:
+          Common/Common.cxx, Common/Common.h, ExportDocument/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, MyOwnWriterReader/MyOwnReader.h, MyOwnWriterReader/MyOwnWriter.cxx, MyOwnWriterReader/MyOwnWriter.h, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/CubeCreator/SDK_Utility.h.
+
+   Definition at line 46 of file fbxdocument.h.
+   Inheritance diagram for FbxDocument:
+   [USEMAP:class_fbx_document.png]
+
+   List of all members.
+
+Properties
+
+   FbxPropertyT< FbxReference >  Roots
+
+Document Member Manager
+
+                   virtual void  Clear ()
+                                 Remove document members and restore default settings.
+                           void  AddRootMember (FbxObject *pMember)
+                                 Add a member object and connect it to Roots.
+                           void  RootRootRemoveMember (FbxObject *pMember)
+                                 Remove a member object from the document.
+   template<class T >
+             FBX_DEPRECATED T *  FindRootMember (const T *pfbxType, char *pName)
+                                 Find a member object in the document, that has the given type and name.
+   template<class T >
+                            T *  FindRootMember (char *pName)
+                                 Find a member object in the document, that has the given type and name.
+                            int  GetRootMemberCount () const
+                                 Return the number of objects in the document.
+   template<class T >
+             FBX_DEPRECATED int  GetRootMemberCount (const T *pFBX_TYPE) const
+                                 Return the number of objects of class T in the document.
+   template<class T >
+                            int  GetRootMemberCount () const
+                                 Return the number of objects of class T in the document.
+                            int  GetRootMemberCount (FbxCriteria pCriteria) const
+                                 Return the number of objects of the document that satisfy the given criteria.
+                    FbxObject *  GetRootMember (int pIndex=0) const
+                                 Return the member of the document at given index.
+   template<class T >
+             FBX_DEPRECATED T *  GetRootMember (const T *pFBX_TYPE, int pIndex=0) const
+                                 Return the member of class T of the document at given index.
+   template<class T >
+                            T *  GetRootMember (int pIndex=0) const
+                                 Return the member of class T of the document at given index.
+                    FbxObject *  GetRootMember (FbxCriteria pCriteria, int pIndex=0) const
+                                 Return the document member which satisfies given criteria, for given index.
+                   virtual bool  IsRootMember (FbxObject *pMember) const
+                                 Is an object part of the document.
+
+Document information
+
+              FbxDocumentInfo *  GetDocumentInfo () const
+                                 Get the document information.
+                           void  SetDocumentInfo (FbxDocumentInfo *pSceneInfo)
+                                 Set the document information.
+
+Offloading management
+
+   Documents manage peripherals to load and unload objects (see class FbxPeripheral).
+
+   A peripheral manipulates the content of an object. For instance, a peripheral can load the connections of an object on demand.
+
+   The document does not own the peripheral therefore it will not attempt to delete it at destruction time. Cloning the document will share the pointer to the peripheral across the cloned objects. The assignment operator has a similar behavior.
+                           void  SetPeripheral (FbxPeripheral *pPeripheral)
+                                 Set the current peripheral to be used to load or unload objects from this document.
+        virtual FbxPeripheral *  GetPeripheral ()
+                                 Retrieve the current peripheral of the document.
+                            int  UnloadContent (FbxStatus *pStatus=NULL)
+                                 Unload all the unloadable objects contained in the document using the currently set peripheral.
+                            int  LoadContent (FbxStatus *pStatus=NULL)
+                                 Load all the objects contained in the document with the data from the currently set peripheral.
+
+Referencing management
+
+                            int  GetReferencingDocuments (FbxArray< FbxDocument * > &pReferencingDocuments) const
+                                 Fills an array of pointers to documents that reference objects in this document.
+                            int  GetReferencingObjects (const FbxDocument *pFromDoc, FbxArray< FbxObject * > &pReferencingObjects) const
+                                 Fills an array of pointers to objects in a given document (pFromDoc) that reference objects in this document.
+                            int  GetReferencedDocuments (FbxArray< FbxDocument * > &pReferencedDocuments) const
+                                 Fills an array of pointers to documents that are referenced by objects in this document.
+                            int  GetReferencedObjects (const FbxDocument *pToDoc, FbxArray< FbxObject * > &pReferencedObjects) const
+                                 Fills an array of pointers to objects in a given document (pToDoc) that are referenced by objects in this document.
+                      FbxString  GetPathToRootDocument (void) const
+                                 Gets the path string to the root document, if the current document is contained in another document.
+                           void  GetDocumentPathToRootDocument (FbxArray< FbxDocument * > &pDocumentPath, bool pFirstCall=true) const
+                                 Gets the document path to the root document as an array of documents, if the current document is contained in another document.
+                           bool  IsARootDocument (void)
+                                 Tells if this document is a root document.
+
+Animation Stack Management
+
+   Remarks:
+          Animation stacks replaces the deprecated takes.
+
+      FbxPropertyT< FbxString >  ActiveAnimStackName
+                                 Holds the name of the FbxAnimStack that the application uses for animation in this document.
+                           bool  CreateAnimStack (const char *pName, FbxStatus *pStatus=NULL)
+                                 Adds a new animation stack object to this document.
+                           bool  RemoveAnimStack (const char *pName)
+                                 Destroy the animation stack object identified by pName from this document.
+                           void  FillAnimStackNameArray (FbxArray< FbxString * > &pNameArray)
+                                 Fill a string array with all existing animation stack names.
+
+Animation Stack Information Management
+
+   Remarks:
+          Although takes are deprecated, class FbxTakeInfo is not deprecated and now contains animation stack information.
+
+                           bool  SetTakeInfo (const FbxTakeInfo &pTakeInfo)
+                                 Set information about an animation stack.
+                  FbxTakeInfo *  GetTakeInfo (const FbxString &pTakeName) const
+                                 Get information about an animation stack.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Clear ( ) [virtual]
+   Search for all occurrences
+
+   Remove document members and restore default settings.
+
+   Reimplemented from FbxCollection.
+
+   Reimplemented in FbxScene.
+   void AddRootMember ( FbxObject *  pMember ) [inline]
+   Search for all occurrences
+
+   Add a member object and connect it to Roots.
+
+   Parameters:
+
+          pMember Object to add to the document.
+
+   Examples:
+          ExportDocument/main.cxx.
+
+   Definition at line 68 of file fbxdocument.h.
+{ AddMember(pMember); Roots.ConnectSrcObject(pMember); }
+
+   void RootRootRemoveMember ( FbxObject *  pMember ) [inline]
+   Search for all occurrences
+
+   Remove a member object from the document.
+
+   Parameters:
+
+          pMember Object to remove from the document.
+
+   Definition at line 73 of file fbxdocument.h.
+{ RemoveMember(pMember); Roots.DisconnectSrcObject(pMember); }
+
+   FBX_DEPRECATED T* FindRootMember ( const T *  pfbxType,
+                                      char *     pName
+                                    )            [inline]
+   Search for all occurrences
+
+   Find a member object in the document, that has the given type and name.
+
+   (Deprecated, please use FindRootMember<Type>() instead.)
+
+   Parameters:
+
+          pfbxType Type information.
+          pName    Member name.
+
+   Definition at line 79 of file fbxdocument.h.
+{ return Roots.FindSrcObject<T>(pName); }
+
+   T* FindRootMember ( char *  pName ) [inline]
+   Search for all occurrences
+
+   Find a member object in the document, that has the given type and name.
+
+   Parameters:
+
+          pName Member name.
+
+   Definition at line 83 of file fbxdocument.h.
+{ return Roots.FindSrcObject<T>(pName); }
+
+   int GetRootMemberCount ( ) const [inline]
+   Search for all occurrences
+
+   Return the number of objects in the document.
+
+   Examples:
+          ExportDocument/main.cxx.
+
+   Definition at line 86 of file fbxdocument.h.
+{ return Roots.GetSrcObjectCount(); }
+
+   FBX_DEPRECATED int GetRootMemberCount ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Return the number of objects of class T in the document.
+
+   (Deprecated, please use GetRootMemberCount<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE Type information.
+
+   Returns:
+          The number of objects of class T in the document.
+
+   Definition at line 92 of file fbxdocument.h.
+{ return Roots.GetSrcObjectCount(T::ClassId); }
+
+   int GetRootMemberCount ( ) const [inline]
+   Search for all occurrences
+
+   Return the number of objects of class T in the document.
+
+   Returns:
+          The number of objects of class T in the document.
+
+   Definition at line 96 of file fbxdocument.h.
+{ return Roots.GetSrcObjectCount<T>(); }
+
+   int GetRootMemberCount ( FbxCriteria  pCriteria ) const
+   Search for all occurrences
+
+   Return the number of objects of the document that satisfy the given criteria.
+
+   Parameters:
+
+          pCriteria Criteria for selecting objects.
+
+   Returns:
+          The number of objects satisfying the given criteria.
+
+   FbxObject* GetRootMember ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Return the member of the document at given index.
+
+   Parameters:
+
+          pIndex Selection index.
+
+   Definition at line 107 of file fbxdocument.h.
+{ return Roots.GetSrcObject(pIndex); }
+
+   FBX_DEPRECATED T* GetRootMember ( const T *  pFBX_TYPE,
+                                     int        pIndex = 0
+                                   )            const [inline]
+   Search for all occurrences
+
+   Return the member of class T of the document at given index.
+
+   (Deprecated, please use GetRootMember<Type>() instead.)
+
+   Parameters:
+
+          pFBX_TYPE Type information.
+          pIndex    Selection index.
+
+   Definition at line 113 of file fbxdocument.h.
+{ return (T*)Roots.GetSrcObject(T::ClassId,pIndex); }
+
+   T* GetRootMember ( int  pIndex = 0 ) const [inline]
+   Search for all occurrences
+
+   Return the member of class T of the document at given index.
+
+   Parameters:
+
+          pIndex Selection index.
+
+   Definition at line 117 of file fbxdocument.h.
+{ return Roots.GetSrcObject<T>(pIndex); }
+
+   FbxObject* GetRootMember ( FbxCriteria  pCriteria,
+                              int          pIndex = 0
+                            )              const
+   Search for all occurrences
+
+   Return the document member which satisfies given criteria, for given index.
+
+   Parameters:
+
+          pCriteria Criteria for selecting objects.
+          pIndex    Selection index.
+
+   virtual bool IsRootMember ( FbxObject *  pMember ) const [virtual]
+   Search for all occurrences
+
+   Is an object part of the document.
+
+   Parameters:
+
+          pMember Queried object.
+
+   Returns:
+          true if pMember is an object part of the document, false otherwise.
+
+   FbxDocumentInfo* GetDocumentInfo ( ) const
+   Search for all occurrences
+
+   Get the document information.
+
+   Returns:
+          Pointer to the document information object.
+
+   void SetDocumentInfo ( FbxDocumentInfo *  pSceneInfo )
+   Search for all occurrences
+
+   Set the document information.
+
+   Parameters:
+
+          pSceneInfo Pointer to the document information object.
+
+   Examples:
+          ExportDocument/main.cxx.
+
+   void SetPeripheral ( FbxPeripheral *  pPeripheral )
+   Search for all occurrences
+
+   Set the current peripheral to be used to load or unload objects from this document.
+
+   Parameters:
+
+          pPeripheral The peripheral to be set.
+
+   virtual FbxPeripheral* GetPeripheral ( ) [virtual]
+   Search for all occurrences
+
+   Retrieve the current peripheral of the document.
+
+   Returns:
+          Current peripheral.
+
+   Reimplemented from FbxObject.
+   int UnloadContent ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Unload all the unloadable objects contained in the document using the currently set peripheral.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of objects that the document has been able to unload.
+
+   int LoadContent ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Load all the objects contained in the document with the data from the currently set peripheral.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of loaded objects.
+
+   int GetReferencingDocuments ( FbxArray< FbxDocument * > &  pReferencingDocuments ) const
+   Search for all occurrences
+
+   Fills an array of pointers to documents that reference objects in this document.
+
+   Parameters:
+
+          pReferencingDocuments Array of pointers to documents.
+
+   Returns:
+          Number of documents that reference objects in this document.
+
+   int GetReferencingObjects ( const FbxDocument *        pFromDoc,
+                               FbxArray< FbxObject * > &  pReferencingObjects
+                             )                            const
+   Search for all occurrences
+
+   Fills an array of pointers to objects in a given document (pFromDoc) that reference objects in this document.
+
+   Parameters:
+
+          pFromDoc            Pointer to the document containing referencing objects.
+          pReferencingObjects Array of pointers to referencing objects.
+
+   Returns:
+          Number of objects that reference objects in this document.
+
+   int GetReferencedDocuments ( FbxArray< FbxDocument * > &  pReferencedDocuments ) const
+   Search for all occurrences
+
+   Fills an array of pointers to documents that are referenced by objects in this document.
+
+   Parameters:
+
+          pReferencedDocuments Array of pointers to documents.
+
+   Returns:
+          Number of documents that are referenced by objects in this document.
+
+   int GetReferencedObjects ( const FbxDocument *        pToDoc,
+                              FbxArray< FbxObject * > &  pReferencedObjects
+                            )                            const
+   Search for all occurrences
+
+   Fills an array of pointers to objects in a given document (pToDoc) that are referenced by objects in this document.
+
+   Parameters:
+
+          pToDoc             Pointer to the document containing referenced objects.
+          pReferencedObjects Array of pointers to referenced objects.
+
+   Returns:
+          Number of objects that are referenced by objects in this document.
+
+   FbxString GetPathToRootDocument ( void  ) const
+   Search for all occurrences
+
+   Gets the path string to the root document, if the current document is contained in another document.
+
+   Returns:
+          Path to the root document.
+
+   void GetDocumentPathToRootDocument ( FbxArray< FbxDocument * > &  pDocumentPath,
+                                        bool                         pFirstCall = true
+                                      )                              const
+   Search for all occurrences
+
+   Gets the document path to the root document as an array of documents, if the current document is contained in another document.
+
+   Parameters:
+
+          pDocumentPath Array of FbxDocument to store the document path.
+          pFirstCall    Recursive flag: always use pFirstCall = true.
+
+   bool IsARootDocument ( void  ) [inline]
+   Search for all occurrences
+
+   Tells if this document is a root document.
+
+   Returns:
+          false if the current document is contained in another document, true otherwise.
+
+   Definition at line 243 of file fbxdocument.h.
+{ return (NULL == GetDocument()); }
+
+   bool CreateAnimStack ( const char *  pName,
+                          FbxStatus *   pStatus = NULL
+                        )
+   Search for all occurrences
+
+   Adds a new animation stack object to this document.
+
+   In case of error, FbxDocument::GetLastErrorID() will return eTakeError.
+
+   Parameters:
+
+          pName   Animation stack name.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if a new FbxAnimStack has been successfully created, false if an error occurred or if the specified name defines a FbxAnimStack that already exists in the document.
+
+   Examples:
+          ExportDocument/main.cxx.
+
+   bool RemoveAnimStack ( const char *  pName )
+   Search for all occurrences
+
+   Destroy the animation stack object identified by pName from this document.
+
+   Parameters:
+
+          pName Name of the animation stack to be deleted.
+
+   Returns:
+          true if the FbxAnimStack has been destroyed and false otherwise.
+
+   void FillAnimStackNameArray ( FbxArray< FbxString * > &  pNameArray )
+   Search for all occurrences
+
+   Fill a string array with all existing animation stack names.
+
+   The array of string is cleared before it is used
+
+   Parameters:
+
+          pNameArray An array of string objects.
+
+   bool SetTakeInfo ( const FbxTakeInfo &  pTakeInfo )
+   Search for all occurrences
+
+   Set information about an animation stack.
+
+   Parameters:
+
+          pTakeInfo Animation stack information. Field FbxTakeInfo::mName specifies the targeted animation stack.
+
+   Returns:
+          true if animation stack is found with this name, and if information is set.
+
+   FbxTakeInfo* GetTakeInfo ( const FbxString &  pTakeName ) const
+   Search for all occurrences
+
+   Get information about an animation stack.
+
+   Parameters:
+
+          pTakeName Name of the targeted animation stack.
+
+   Returns:
+          Animation stack information, or NULL if animation stack isn't found or has no information set for this document.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxReference> Roots
+   Search for all occurrences
+
+   Definition at line 55 of file fbxdocument.h.
+   FbxPropertyT<FbxString> ActiveAnimStackName
+   Search for all occurrences
+
+   Holds the name of the FbxAnimStack that the application uses for animation in this document.
+
+   Definition at line 253 of file fbxdocument.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxdocument.h
+
+   Please send us your comment about this page

@@ -1,0 +1,194 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxListener Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxListener Class Reference
+   Search for all occurrences
+
+   #include <fbxlistener.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK listener class.
+
+   Once an event is emitted by an emitter, a listener should be created to listen to the event. The listener could receive a signal and take action to process the event data.
+
+   Note:
+          The data will be process by the callback function of FbxListener::Bind(). Plug-in could be used as listener, since FbxPlugin is derived from FbxListener. To emit event, you could create an emitter and a listener, and then bind them together via event handler. To listen to an event which is emitted by an emitter, you should bind current listener to the emitter by calling FbxListener::Bind(). Event listener contains a list of event handlers.
+
+   Remarks:
+          An object(emitter) can emit a certain type of event, the plug-in(listener) who are listening to that type of event, will receive a signal and take action to process the event data.
+
+   The whole process of event is:
+
+          + 1. Create an emitter and a listener, then bind them together via the same event handler.
+          + 2. Emitter can emit an event at certain conditions. The event could be handled by event handler.
+          + 3. Once an event is emitted, the listener to this event will receive a signal.
+          + 4. And then the listener could process the event data according to the types of event, by calling event handler.
+
+   Note:
+          The event data is process by the callback function of event handler.
+
+   See also:
+          FbxEmitter FbxEventHandler FbxEvent FbxEventBase
+
+   Definition at line 41 of file fbxlistener.h.
+   Inheritance diagram for FbxListener:
+   [USEMAP:class_fbx_listener.png]
+
+   List of all members.
+
+Public Member Functions
+
+   Constructor and Destructor
+                      ~FbxListener ()
+                      Destructor.
+                      FbxListener ()
+                      Constructor.
+   Bind and unbind methods
+   template<typename EventType , typename ListenerType >
+   FbxEventHandler *  Bind (FbxEmitter &pEmitter, void(ListenerType::*pFunc)(const EventType *))
+                      Bind current listener and the specified emitter together via an automatically created event handler.
+   template<typename EventType , typename ListenerType >
+   FbxEventHandler *  Bind (FbxEmitter &pEmitter, void(ListenerType::*pFunc)(const EventType *) const)
+                      Bind current listener and the specified emitter together via an automatically created event handler.
+   template<typename EventType >
+   FbxEventHandler *  Bind (FbxEmitter &pEmitter, void(*pFunc)(const EventType *, FbxListener *))
+                      Bind current listener and the specified emitter together via an automatically created event handler.
+                void  Unbind (const FbxEventHandler *aBindId)
+                      Unbind an event handler.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   ~FbxListener ( )
+
+   Destructor.
+   FbxListener ( ) [inline]
+
+   Constructor.
+
+   Definition at line 51 of file fbxlistener.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxEventHandler* Bind ( FbxEmitter &                              pEmitter,
+                           void(ListenerType::*)(const EventType *)  pFunc
+                         )                                           [inline]
+   Search for all occurrences
+
+   Bind current listener and the specified emitter together via an automatically created event handler.
+
+   An event handler will be created automatically and added to the handlers list of current listener and the specified emitter. After that, the listener can listen to the event which is emitted by the specified emitter.
+
+   Parameters:
+
+          pEmitter Event emitter to bind. Current listener can listen to the event which is emitted by pEmitter.
+          pFunc    The callback function to process event date.
+
+   Returns:
+          The automatically created event handler.
+
+   Definition at line 67 of file fbxlistener.h.
+    {
+        FbxMemberFuncEventHandler<EventType,ListenerType>* eventHandler =
+            FbxNew< FbxMemberFuncEventHandler<EventType,ListenerType> >(static_cast<ListenerType*>(this),pFunc);
+        pEmitter.AddListener(*eventHandler);
+        mEventHandler.PushBack(*eventHandler);
+        return eventHandler;
+    }
+
+   FbxEventHandler* Bind ( FbxEmitter &                                    pEmitter,
+                           void(ListenerType::*)(const EventType *) const  pFunc
+                         )                                                 [inline]
+   Search for all occurrences
+
+   Bind current listener and the specified emitter together via an automatically created event handler.
+
+   An event handler will be created automatically and added to the handlers list of current listener and the specified emitter. After that, the listener can listen to the event which is emitted by the specified emitter.
+
+   Parameters:
+
+          pEmitter Event emitter to bind. Current listener can listen to the event which is emitted by pEmitter.
+          pFunc    The callback function to process event date.
+
+   Returns:
+          The automatically created event handler.
+
+   Definition at line 83 of file fbxlistener.h.
+    {
+        FbxConstMemberFuncEventHandler<EventType,ListenerType>* eventHandler =
+                    FbxNew< FbxConstMemberFuncEventHandler<EventType,ListenerType> >(static_cast<ListenerType*>(this),pFunc);
+        pEmitter.AddListener(*eventHandler);
+        mEventHandler.PushBack(*eventHandler);
+        return eventHandler;
+    }
+
+   FbxEventHandler* Bind ( FbxEmitter &                               pEmitter,
+                           void(*)(const EventType *, FbxListener *)  pFunc
+                         )                                            [inline]
+   Search for all occurrences
+
+   Bind current listener and the specified emitter together via an automatically created event handler.
+
+   An event handler will be created automatically and added to the handlers list of current listener and the specified emitter. After that, the listener can listen to the event which is emitted by the specified emitter.
+
+   Parameters:
+
+          pEmitter Event emitter to bind. Current listener can listen to the event which is emitted by pEmitter.
+          pFunc    The callback function to process event date.
+
+   Returns:
+          The automatically created event handler.
+
+   Definition at line 99 of file fbxlistener.h.
+    {
+        FbxFuncEventHandler<EventType>* eventHandler =
+                        FbxNew< FbxFuncEventHandler<EventType> >(this, pFunc);
+        pEmitter.AddListener(*eventHandler);
+        mEventHandler.PushBack(*eventHandler);
+        return eventHandler;
+    }
+
+   void Unbind ( const FbxEventHandler *  aBindId )
+   Search for all occurrences
+
+   Unbind an event handler.
+
+   The specified event handler will be removed from the handlers list of current listener.
+
+   Parameters:
+
+          aBindId The event handler to unbind.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxlistener.h
+
+   Please send us your comment about this page

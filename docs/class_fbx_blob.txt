@@ -1,0 +1,236 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBlob Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Attributes
+   FbxBlob Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertytypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK blob class.
+
+   Uninitialized data of a specified size, to be filled by the user.
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   Definition at line 232 of file fbxpropertytypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+         void *  Modify ()
+                 Make a copy if the reference count > 1 (i.e. if the buffer is shared).
+           void  Clear ()
+                 Free the memory if this blob is the last one to hold it.
+
+Protected Attributes
+
+          int *  mRefCount
+         void *  mData
+            int  mSize
+
+Constructors and Destructor
+
+                 FbxBlob ()
+                 Constructor. Set attributes to 0.
+                 FbxBlob (int pSize)
+                 Constructor.
+                 FbxBlob (const FbxBlob &pRHS)
+                 Copy constructor.
+                 FbxBlob (const void *pData, int pSize)
+                 Constructor.
+                 ~FbxBlob ()
+                 Destructor.
+
+Assignment.
+
+      FbxBlob &  operator= (const FbxBlob &pValue)
+                 Share the buffer of the specified blob with this blob.
+           void  Assign (const void *pData, int pSize)
+                 Copy the data in the buffer.
+
+Boolean operation
+
+           bool  operator== (const FbxBlob &pRHS) const
+                 Equality operator.
+           bool  operator!= (const FbxBlob &pRHS) const
+                 Inequality operator.
+
+Access
+
+   const void *  Access () const
+                 Retrieve the buffer pointer.
+            int  Size () const
+                 Retrieve the buffer size.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxBlob ( )
+
+   Constructor. Set attributes to 0.
+   FbxBlob ( int  pSize )
+
+   Constructor.
+
+   Construct a buffer with uninitialized data of a specified size, to be filled by the user.
+
+   Parameters:
+
+          pSize Buffer size.
+
+   FbxBlob ( const FbxBlob &  pRHS )
+
+   Copy constructor.
+
+   Parameters:
+
+          pRHS The blob to be copied to this blob.
+
+   FbxBlob ( const void *  pData,
+             int           pSize
+           )
+
+   Constructor.
+
+   Parameters:
+
+          pData The data to be filled in the buffer.
+          pSize Buffer size.
+
+   ~FbxBlob ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxBlob& operator= ( const FbxBlob &  pValue )
+
+   Share the buffer of the specified blob with this blob.
+
+   Parameters:
+
+          pValue The blob whose buffer is shared with this blob.
+
+   Returns:
+          This blob.
+
+   void Assign ( const void *  pData,
+                 int           pSize
+               )
+   Search for all occurrences
+
+   Copy the data in the buffer.
+
+   Parameters:
+
+          pData The buffer to be copied data from.
+          pSize Buffer size.
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   bool operator== ( const FbxBlob &  pRHS ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pRHS The blob to be compared with this blob.
+
+   Returns:
+          True, if the two blobs are equal, false otherwise.
+
+   bool operator!= ( const FbxBlob &  pRHS ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pRHS The blob to be compared with this blob.
+
+   Returns:
+          True, if the two blobs are unequal, otherwise false.
+
+   void* Modify ( )
+   Search for all occurrences
+
+   Make a copy if the reference count > 1 (i.e. if the buffer is shared).
+   const void* Access ( ) const
+   Search for all occurrences
+
+   Retrieve the buffer pointer.
+
+   Returns:
+          The buffer pointer.
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   int Size ( ) const
+   Search for all occurrences
+
+   Retrieve the buffer size.
+
+   Returns:
+          The buffer size.
+
+   Examples:
+          ProceduralTexture/main.cxx.
+
+   void Clear ( )
+   Search for all occurrences
+
+   Free the memory if this blob is the last one to hold it.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int* mRefCount [protected]
+   Search for all occurrences
+
+   Definition at line 319 of file fbxpropertytypes.h.
+   void* mData [protected]
+   Search for all occurrences
+
+   Definition at line 320 of file fbxpropertytypes.h.
+   int mSize [protected]
+   Search for all occurrences
+
+   Definition at line 321 of file fbxpropertytypes.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertytypes.h
+
+   Please send us your comment about this page

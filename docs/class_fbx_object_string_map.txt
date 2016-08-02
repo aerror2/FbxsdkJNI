@@ -1,0 +1,64 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObjectStringMap Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxObjectStringMap Class Reference
+   Search for all occurrences
+
+   #include <fbxmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A class that maps strings to objects with a basic string comparator.
+
+   Definition at line 366 of file fbxmap.h.
+   Inheritance diagram for FbxObjectStringMap:
+   [USEMAP:class_fbx_object_string_map.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FbxObjectStringMap ()
+     Constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxObjectStringMap ( ) [inline]
+
+   Constructor.
+
+   Definition at line 370 of file fbxmap.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxmap.h
+
+   Please send us your comment about this page

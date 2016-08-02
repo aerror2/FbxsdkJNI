@@ -1,0 +1,92 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingOperator::FunctionCreator< FUNCTION > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxBindingOperator
+     * FunctionCreator
+
+   Public Member Functions
+   FbxBindingOperator::FunctionCreator< FUNCTION > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxbindingoperator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class FUNCTION>
+class FbxBindingOperator::FunctionCreator< FUNCTION >
+
+   The concrete factory class for binding function.
+
+   Definition at line 236 of file fbxbindingoperator.h.
+   Inheritance diagram for FbxBindingOperator::FunctionCreator< FUNCTION >:
+   [USEMAP:class_fbx_binding_operator_1_1_function_creator.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual const char *  GetFunctionName () const
+                         Get Name of the operation function.
+     virtual Function *  CreateFunction () const
+                         Create the operation function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetFunctionName ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get Name of the operation function.
+
+   Returns:
+          The Name of the operation function.
+
+   Implements FbxBindingOperator::FunctionCreatorBase.
+
+   Definition at line 243 of file fbxbindingoperator.h.
+        {
+            return FUNCTION::FunctionName;
+        }
+
+   virtual Function* CreateFunction ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Create the operation function.
+
+   Implements FbxBindingOperator::FunctionCreatorBase.
+
+   Definition at line 250 of file fbxbindingoperator.h.
+        {
+            return FbxNew< FUNCTION >();
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingoperator.h
+
+   Please send us your comment about this page

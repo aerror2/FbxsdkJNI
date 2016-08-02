@@ -1,0 +1,189 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStatistics Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Member Functions | Protected Attributes
+   FbxStatistics Class Reference
+
+
+   List of all members.
+
+Public Member Functions
+
+                      void  Reset ()
+                            Reset the statistics.
+                       int  GetNbItems () const
+                            Get the number of items.
+                      bool  GetItemPair (int pNum, FbxString &pItemName, int &pItemCount) const
+                            Get the statistics information by pair.
+           FbxStatistics &  operator= (const FbxStatistics &pStatistics)
+                            Assignment operator.
+
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxstatistics.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+                            FbxStatistics ()
+                   virtual  ~FbxStatistics ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStatistics ( )
+   virtual ~FbxStatistics ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the statistics.
+   int GetNbItems ( ) const
+   Search for all occurrences
+
+   Get the number of items.
+   bool GetItemPair ( int          pNum,
+                      FbxString &  pItemName,
+                      int &        pItemCount
+                    )              const
+   Search for all occurrences
+
+   Get the statistics information by pair.
+
+   Parameters:
+
+          pNum       The index of statistics data to be got.
+          pItemName  Output the item's name.
+          pItemCount Output the item's count.
+
+   Returns:
+          True if successful, False otherwise.
+
+   FbxStatistics& operator= ( const FbxStatistics &  pStatistics )
+
+   Assignment operator.
+
+   Parameters:
+
+          pStatistics FbxStatistics assigned to this one.
+
+   virtual bool AddItem ( FbxString &  pItemName,
+                          int          pItemCount
+                        )              [inline, protected, virtual]
+   Search for all occurrences
+
+   virtual function to define the process of the incoming statistics data.
+
+   Parameters:
+
+          pItemName  The item's name
+          pItemCount The item's count.
+
+   Returns:
+          False.
+
+   Definition at line 96 of file fbxstatistics.h.
+{ return false; };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+Class Description
+
+   This class is a basic class to get the quantity of items.
+
+   User processes the statistics raw data by deriving FbxStatistics class and overrides AddItem method. When overriding AddItem method, User must store item's name and item's count by pair which means The index of one item's name in array mItemName is the same as the index of this item's count in array mItemCount.
+ Here is a code snippet to show how it used.
+ //Define my own statistics class.
+ class MyStatistics : public FbxStatistics
+ {
+  public:
+        virtual bool AddItem(FbxString& pItemName, int pItemCount)
+        {
+            mItemName.Add( FbxSdkNew< FbxString >(pItemName) );
+            mItemCount.Add( pItemCount);
+            return true;
+        };
+ };
+
+ FbxManager* lSdkManager = FbxManager::Create();
+ FbxScene*      lScene      = FbxScene::Create( lSdkManager, "Scene");
+ FbxNode*       lNode1      = FbxNode::Create(lScene, "Node1");
+ FbxNode*       lNode2      = FbxNode::Create(lScene, "Node2");
+ FbxNode*       lNode3      = FbxNode::Create(lScene, "Node3");
+ FbxNode*       lNode4      = FbxNode::Create(lScene, "Node4");
+ lScene.AddNode(lNode1);
+ lScene.AddNode(lNode2);
+ lScene.AddNode(lNode3);
+ MyStatistics lStatistics;
+ lStatistics.AddItem("Node_Count", lScene.GetNodeCount() );
+ FbxString lItemName;
+ int     lItemCount;
+ if( lStatistics.GetItemPair( 0, lItemName, lItemCount))
+ {
+     //do something
+ }
+
+   Definition at line 62 of file fbxstatistics.h.
+
+Protected Member Functions
+
+          //   virtual bool  AddItem (FbxString &pItemName, int pItemCount)
+          //                 virtual function to define the process of the incoming statistics data.
+
+Protected Attributes
+
+   FbxArray< FbxString * >  mItemName
+                            An array to store item's name.
+           FbxArray< int >  mItemCount
+                            An array to store item's count.
+
+Constructor and Destructor.
+
+   FbxArray<FbxString*> mItemName [protected]
+   Search for all occurrences
+
+   An array to store item's name.
+
+   Definition at line 96 of file fbxstatistics.h.
+   FbxArray<int> mItemCount [protected]
+   Search for all occurrences
+
+   An array to store item's count.
+
+   Definition at line 102 of file fbxstatistics.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxstatistics.h
+
+   Please send us your comment about this page

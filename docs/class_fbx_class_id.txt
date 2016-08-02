@@ -1,0 +1,304 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxClassId Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxClassId Class Reference
+
+   This reference page is linked to from the following overview topics: Importing a Scene, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxclassid.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Internal class used to differentiate objects during run-time.
+
+   Essentially, each class has an unique ClassId, that the system can request in order to test if the class match the description. This class implement the necessary tools to be able to perform hierarchic class testing. This means that a class B that inherits from the class A will answer yes to a "Is A" query of type A or B, but will answer no to a class C that can still inherit from A. All class must inherit from FbxObject before they can have their own ClassId. When using the standard macros to
+   create new types of objects in the FBX SDK, a static ClassId will automatically be generated for that new class.
+
+   When objects are exported to an FBX file, their class type is maintained using 3 sort of strings. They are the Object Type string, the Object Sub Type string and the Object Type Prefix. There is no good or bad way to choose the value of these identifiers, but it is preferable to use meaningful values to keep the ASCII version of FBX readable and easy to understand.
+
+   See also:
+          FbxObject
+
+   Definition at line 39 of file fbxclassid.h.
+
+   List of all members.
+
+Public Member Functions
+
+                        FbxClassId ()
+                        Constructor.
+                        FbxClassId (const char *pClassName, const FbxClassId &pParentClassId, FbxObjectCreateProc pConstructor=0, const char *pFBXType=NULL, const char *pFBXSubType=NULL)
+                        Advanced constructor were we can specify the general parameters for this ClassId.
+                  void  Destroy ()
+                        Destructor.
+          const char *  GetName () const
+                        Retrieve the class name.
+            FbxClassId  GetParent () const
+                        Retrieve the parent ClassId.
+           FbxObject *  Create (FbxManager &pManager, const char *pName, const FbxObject *pFrom)
+                        Create an instance of this class.
+                  bool  Override (FbxObjectCreateProc pConstructor)
+                        Override the function pointer method to construct this object.
+                  bool  Is (const FbxClassId &pId) const
+                        Test if this class is a hierarchical children of the specified class type.
+                  bool  operator== (const FbxClassId &pClassId) const
+                        Equivalence operator.
+                  bool  operator!= (const FbxClassId &pClassId) const
+                        Inequivalence operator.
+          const char *  GetFbxFileTypeName (bool pAskParent=false) const
+                        Retrieve the FBX file Object Type string associated to this class.
+          const char *  GetFbxFileSubTypeName () const
+                        Retrieve the FBX file Object Sub Type string associated to this class.
+                  bool  IsValid () const
+                        Find out if self ClassId is valid or not.
+                  void  SetObjectTypePrefix (const char *pObjectTypePrefix)
+                        Set the Object Type Prefix string associated to this class.
+          const char *  GetObjectTypePrefix ()
+                        Retrieve the Object Type Prefix string associated to this class.
+   FbxPropertyHandle *  GetRootClassDefaultPropertyHandle ()
+                        Retrieve the root property handle of this class.
+                   int  ClassInstanceIncRef ()
+                        Increase the instance reference count for this class type.
+                   int  ClassInstanceDecRef ()
+                        Decrease the instance reference count for this class type.
+                   int  GetInstanceRef ()
+                        Retrieve the instance reference count for this class type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxClassId ( )
+
+   Constructor.
+   FbxClassId ( const char *         pClassName,
+                const FbxClassId &   pParentClassId,
+                FbxObjectCreateProc  pConstructor = 0,
+                const char *         pFBXType = NULL,
+                const char *         pFBXSubType = NULL
+              )
+
+   Advanced constructor were we can specify the general parameters for this ClassId.
+
+   Parameters:
+
+          pClassName     The name of the class represented.
+          pParentClassId The parent ClassId of this class.
+          pConstructor   A function pointer to a construction method for this ClassId.
+          pFBXType       The FBX file Object Type string associated to this class.
+          pFBXSubType    The FBX file Object Sub Type string associated to this class.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Destroy ( )
+   Search for all occurrences
+
+   Destructor.
+   const char* GetName ( ) const
+   Search for all occurrences
+
+   Retrieve the class name.
+
+   Returns:
+          The class identification string name.
+
+   FbxClassId GetParent ( ) const
+   Search for all occurrences
+
+   Retrieve the parent ClassId.
+
+   Returns:
+          The parent ClassId.
+
+   FbxObject* Create ( FbxManager &       pManager,
+                       const char *       pName,
+                       const FbxObject *  pFrom
+                     )
+   Search for all occurrences
+
+   Create an instance of this class.
+
+   Parameters:
+
+          pManager The FBX SDK Manager to be used to instantiate this object. This allow the object to use the same memory manager as the provided manager.
+          pName    The name to assign to this new object instance.
+          pFrom    An object to clone if it matches the same ClassId. This is an optional parameter.
+
+   Returns:
+          The newly created instance of this class.
+
+   bool Override ( FbxObjectCreateProc  pConstructor )
+   Search for all occurrences
+
+   Override the function pointer method to construct this object.
+
+   Parameters:
+
+          pConstructor A newly defined function pointer to a construction method to replace the existing one.
+
+   Returns:
+          True if the operation was successful.
+
+   bool Is ( const FbxClassId &  pId ) const
+   Search for all occurrences
+
+   Test if this class is a hierarchical children of the specified class type.
+
+   This is the standard method to differentiate object classes.
+
+   Parameters:
+
+          pId The class type to test against self.
+
+   Returns:
+          True if the object is a hierarchical children of the type specified.
+
+   Remarks:
+          This function will perform a complete search until it reaches the top level class, but it will stop as soon as one ClassId matches the test.
+
+   bool operator== ( const FbxClassId &  pClassId ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pClassId The class type to test against self.
+
+   Returns:
+          true if the ClassId is exactly the same, false otherwise.
+
+   Remarks:
+          This function only perform direct equality test, and doesn't test hierarchic children.
+
+   bool operator!= ( const FbxClassId &  pClassId ) const
+
+   Inequivalence operator.
+
+   Parameters:
+
+          pClassId The class type to test against self.
+
+   Returns:
+          true if the ClassId is not the same, false otherwise.
+
+   Remarks:
+          This function only perform direct inequality test, and doesn't test hierarchic children.
+
+   const char* GetFbxFileTypeName ( bool  pAskParent = false ) const
+   Search for all occurrences
+
+   Retrieve the FBX file Object Type string associated to this class.
+
+   Parameters:
+
+          pAskParent If true, retrieve the parent ClassId, but only if self ClassId is not valid.
+
+   Returns:
+          The FBX file Object Type string associated to this class.
+
+   const char* GetFbxFileSubTypeName ( ) const
+   Search for all occurrences
+
+   Retrieve the FBX file Object Sub Type string associated to this class.
+
+   Returns:
+          The FBX file Object Sub Type string associated to this class.
+
+   bool IsValid ( ) const [inline]
+   Search for all occurrences
+
+   Find out if self ClassId is valid or not.
+
+   Returns:
+          true if self ClassId is valid, false otherwise.
+
+   Definition at line 105 of file fbxclassid.h.
+{ return mClassInfo ? true : false; }
+
+   void SetObjectTypePrefix ( const char *  pObjectTypePrefix )
+   Search for all occurrences
+
+   Set the Object Type Prefix string associated to this class.
+
+   This will change the "ObjectTypePrefix::" found in front of object name in the FBX file. This is useful to differentiate objects by their name without using the Object Type or Sub Type strings in the file.
+
+   Parameters:
+
+          pObjectTypePrefix The Object Type prefix string.
+
+   const char* GetObjectTypePrefix ( )
+   Search for all occurrences
+
+   Retrieve the Object Type Prefix string associated to this class.
+
+   Returns:
+          The Object Type Prefix string.
+
+   FbxPropertyHandle* GetRootClassDefaultPropertyHandle ( )
+   Search for all occurrences
+
+   Retrieve the root property handle of this class.
+
+   This is useful to access the default property hierarchy for this class. This allow users to retrieve information such as the default value for all properties of this class.
+
+   Returns:
+          The root property handle for this class.
+
+   int ClassInstanceIncRef ( )
+   Search for all occurrences
+
+   Increase the instance reference count for this class type.
+
+   Returns:
+          the new count of reference to this class after increment.
+
+   int ClassInstanceDecRef ( )
+   Search for all occurrences
+
+   Decrease the instance reference count for this class type.
+
+   Returns:
+          the new count of reference to this class after decrement.
+
+   int GetInstanceRef ( )
+   Search for all occurrences
+
+   Retrieve the instance reference count for this class type.
+
+   Returns:
+          The reference count of this class type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxclassid.h
+
+   Please send us your comment about this page

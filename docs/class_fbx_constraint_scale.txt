@@ -1,0 +1,187 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintScale Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxConstraintScale Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraintscale.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This constraint class contains methods for accessing the properties of a scale constraint.
+
+   A scale constraint lets you constrain the scale of an object based on the scale of one or more sources.
+
+   Definition at line 26 of file fbxconstraintscale.h.
+   Inheritance diagram for FbxConstraintScale:
+   [USEMAP:class_fbx_constraint_scale.png]
+
+   List of all members.
+
+Public Member Functions
+
+                           void  AddConstraintSource (FbxObject *pObject, double pWeight=100)
+                                 Add a source to the constraint.
+                            int  GetConstraintSourceCount () const
+                                 Retrieve the constraint source count.
+                    FbxObject *  GetConstraintSource (int pIndex) const
+                                 Retrieve a constraint source object.
+                           void  SetConstrainedObject (FbxObject *pObject)
+                                 Set the constrained object.
+                    FbxObject *  GetConstrainedObject () const
+                                 Retrieve the constrained object.
+
+Properties
+
+        FbxPropertyT< FbxBool >  AffectX
+                                 This property handles whether to affect x axis.
+        FbxPropertyT< FbxBool >  AffectY
+                                 This property handles whether to affect y axis.
+        FbxPropertyT< FbxBool >  AffectZ
+                                 This property handles whether to affect z axis.
+     FbxPropertyT< FbxDouble3 >  Scaling
+                                 This property handles scaling offset.
+   FbxPropertyT< FbxReference >  ConstraintSources
+                                 This property handles constraint source objects.
+   FbxPropertyT< FbxReference >  ConstrainedObject
+                                 This property handles constraint target objects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void AddConstraintSource ( FbxObject *  pObject,
+                              double       pWeight = 100
+                            )
+   Search for all occurrences
+
+   Add a source to the constraint.
+
+   Parameters:
+
+          pObject New source object.
+          pWeight Weight of the source object.
+
+   int GetConstraintSourceCount ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constraint source count.
+
+   Returns:
+          Current constraint source count.
+
+   Reimplemented from FbxConstraint.
+   FbxObject* GetConstraintSource ( int  pIndex ) const [virtual]
+   Search for all occurrences
+
+   Retrieve a constraint source object.
+
+   Parameters:
+
+          pIndex Index of the source
+
+   Returns:
+          Current source at the specified index.
+
+   Reimplemented from FbxConstraint.
+   void SetConstrainedObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the constrained object.
+
+   Parameters:
+
+          pObject The constrained object.
+
+   FbxObject* GetConstrainedObject ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constrained object.
+
+   Returns:
+          Current constrained object.
+
+   Reimplemented from FbxConstraint.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> AffectX
+   Search for all occurrences
+
+   This property handles whether to affect x axis.
+
+   Default value is true.
+
+   Definition at line 38 of file fbxconstraintscale.h.
+   FbxPropertyT<FbxBool> AffectY
+   Search for all occurrences
+
+   This property handles whether to affect y axis.
+
+   Default value is true.
+
+   Definition at line 43 of file fbxconstraintscale.h.
+   FbxPropertyT<FbxBool> AffectZ
+   Search for all occurrences
+
+   This property handles whether to affect z axis.
+
+   Default value is true.
+
+   Definition at line 48 of file fbxconstraintscale.h.
+   FbxPropertyT<FbxDouble3> Scaling
+   Search for all occurrences
+
+   This property handles scaling offset.
+
+   Default value is (0, 0, 0).
+
+   Definition at line 53 of file fbxconstraintscale.h.
+   FbxPropertyT<FbxReference> ConstraintSources
+   Search for all occurrences
+
+   This property handles constraint source objects.
+
+   Definition at line 57 of file fbxconstraintscale.h.
+   FbxPropertyT<FbxReference> ConstrainedObject
+   Search for all occurrences
+
+   This property handles constraint target objects.
+
+   Definition at line 61 of file fbxconstraintscale.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintscale.h
+
+   Please send us your comment about this page

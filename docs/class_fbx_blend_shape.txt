@@ -1,0 +1,197 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBlendShape Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBlendShape Class Reference
+   Search for all occurrences
+
+   #include <fbxblendshape.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for blend shape deformer.
+
+   A blend shape deformer takes a base shape (polygonal surface, curve, or surface) and blends it with other target shapes based on weight values. Blend shape deformer organize all target shapes via blend shape channel. One blend shape deformer can contains multiple blend shape channels, then each channel can organize multiple target shapes,
+
+   See also:
+          FbxBlendShapeChannel, FbxShape.
+
+   Remarks:
+          The blend effect of each blend shape channel is additive, so the final blend effect of a blend shape deformer is the sum of blend effect of all blend shape channels it contains, the blend effect of each blend shape channel is controlled by the property DeformPercent of blend shape channel.
+
+   See also:
+          FbxGeometry, FbxGeometryBase.
+
+   Examples:
+          ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 39 of file fbxblendshape.h.
+   Inheritance diagram for FbxBlendShape:
+   [USEMAP:class_fbx_blend_shape.png]
+
+   List of all members.
+
+Public Member Functions
+
+                           bool  SetGeometry (FbxGeometry *pGeometry)
+                                 Set the geometry affected by this blend shape deformer.
+                  FbxGeometry *  GetGeometry ()
+                                 Get the geometry affected by this blend shape deformer.
+                           bool  AddBlendShapeChannel (FbxBlendShapeChannel *pBlendShapeChannel)
+                                 Add a blend shape channel.
+         FbxBlendShapeChannel *  RemoveBlendShapeChannel (FbxBlendShapeChannel *pBlendShapeChannel)
+                                 Remove the given blend shape.
+                            int  GetBlendShapeChannelCount () const
+                                 Get the number of blend shape channels.
+         FbxBlendShapeChannel *  GetBlendShapeChannel (int pIndex)
+                                 Get blend shape channel at given index.
+   const FbxBlendShapeChannel *  GetBlendShapeChannel (int pIndex) const
+                                 Get the blend shape channel at given index.
+                  EDeformerType  GetDeformerType () const
+                                 Get the type of the deformer.
+                           void  Reset ()
+                                 Restore the blend shape deformer to the initial state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool SetGeometry ( FbxGeometry *  pGeometry )
+   Search for all occurrences
+
+   Set the geometry affected by this blend shape deformer.
+
+   Parameters:
+
+          pGeometry Pointer to the geometry object to set.
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          One blend shape deformer can only be used on one base geometry. So when SetGeometry is called, the pGeometry will replace the current base geometry connected to this blend shape deformer.
+
+   FbxGeometry* GetGeometry ( )
+   Search for all occurrences
+
+   Get the geometry affected by this blend shape deformer.
+
+   Returns:
+          A pointer to the geometry if it is set or NULL if not set yet.
+
+   bool AddBlendShapeChannel ( FbxBlendShapeChannel *  pBlendShapeChannel )
+   Search for all occurrences
+
+   Add a blend shape channel.
+
+   Parameters:
+
+          pBlendShapeChannel Pointer to the blend shape channel object to add.
+
+   Returns:
+          true on success, false otherwise.
+
+   Examples:
+          ExportScene02/main.cxx, and ExportScene03/main.cxx.
+
+   FbxBlendShapeChannel* RemoveBlendShapeChannel ( FbxBlendShapeChannel *  pBlendShapeChannel )
+   Search for all occurrences
+
+   Remove the given blend shape.
+
+   Parameters:
+
+          pBlendShapeChannel Pointer to the blend shape channel to remove from this blend shape deformer.
+
+   Returns:
+          Pointer to the blend shape channel or NULL if pBlendShapeChannel is not owned by this blend shape deformer.
+
+   int GetBlendShapeChannelCount ( ) const
+   Search for all occurrences
+
+   Get the number of blend shape channels.
+
+   Returns:
+          Number of blend shape channels that have been added to this object.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   FbxBlendShapeChannel* GetBlendShapeChannel ( int  pIndex )
+   Search for all occurrences
+
+   Get blend shape channel at given index.
+
+   Parameters:
+
+          pIndex Index of the blend shape channel.
+
+   Returns:
+          Pointer to the blend shape channel or NULL if index is out of range.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayShape.cxx, and ViewScene/DrawScene.cxx.
+
+   const FbxBlendShapeChannel* GetBlendShapeChannel ( int  pIndex ) const
+   Search for all occurrences
+
+   Get the blend shape channel at given index.
+
+   Parameters:
+
+          pIndex Index of the blend shape channel.
+
+   Returns:
+          Pointer to the blend shape channel or NULL if index is out of range.
+
+   EDeformerType GetDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the type of the deformer.
+
+   Returns:
+          The deformer type identifier of blend shape deformer.
+
+   Reimplemented from FbxDeformer.
+
+   Definition at line 90 of file fbxblendshape.h.
+{return eBlendShape; };
+
+   void Reset ( )
+   Search for all occurrences
+
+   Restore the blend shape deformer to the initial state.
+
+   Calling this function will do the following:
+     * Clear the pointer to base geometry.
+     * Remove all the blend shape channels.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxblendshape.h
+
+   Please send us your comment about this page

@@ -1,0 +1,506 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLight Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxLight Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, Nodes and the Scene Graph, FBX SDK 2013, List of Python Fbx classes, FBX Node Attributes, Connections, FBX Nodes, Lights.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlight.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This node attribute contains methods for accessing the properties of a light.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayLight.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, ViewScene/SceneCache.h, and ViewScene/SceneContext.cxx.
+
+   Definition at line 27 of file fbxlight.h.
+   Inheritance diagram for FbxLight:
+   [USEMAP:class_fbx_light.png]
+
+   List of all members.
+
+Light Properties
+
+   enum   EType {
+     ePoint, eDirectional, eSpot, eArea,
+     eVolume
+   }
+     Light types. More...
+   enum   EDecayType { eNone, eLinear, eQuadratic, eCubic }
+     Decay types. More...
+   enum   EAreaLightShape { eRectangle, eSphere }
+     Supported area light types. More...
+   void  SetShadowTexture (FbxTexture *pTexture)
+     Set the shadow texture for the light.
+   FbxTexture *  GetShadowTexture () const
+     Get the light state.
+
+Properties
+
+   FbxPropertyT< EType >  LightType
+     This property handles the light type.
+   FbxPropertyT< FbxBool >  CastLight
+     This property handles the cast light on object flag.
+   FbxPropertyT< FbxBool >  DrawVolumetricLight
+     This property handles the draw volumetric light flag.
+   FbxPropertyT< FbxBool >  DrawGroundProjection
+     This property handles the draw ground projection flag.
+   FbxPropertyT< FbxBool >  DrawFrontFacingVolumetricLight
+     This property handles the draw facing volumetric projection flag.
+   FbxPropertyT< FbxDouble3 >  Color
+     This property handles the light color.
+   FbxPropertyT< FbxDouble >  Intensity
+     This property handles the light intensity.
+   FbxPropertyT< FbxDouble >  InnerAngle
+     This property handles the light inner cone angle (in degrees).
+   FbxPropertyT< FbxDouble >  OuterAngle
+     This property handles the light outer cone angle (in degrees).
+   FbxPropertyT< FbxDouble >  Fog
+     This property handles the light fog intensity.
+   FbxPropertyT< EDecayType >  DecayType
+     This property handles the decay type.
+   FbxPropertyT< FbxDouble >  DecayStart
+     This property handles the decay start distance.
+   FbxPropertyT< FbxString >  FileName
+     This property handles the gobo file name.
+   FbxPropertyT< FbxBool >  EnableNearAttenuation
+     This property handles the enable near attenuation flag.
+   FbxPropertyT< FbxDouble >  NearAttenuationStart
+     This property handles the near attenuation start distance.
+   FbxPropertyT< FbxDouble >  NearAttenuationEnd
+     This property handles the near end attenuation.
+   FbxPropertyT< FbxBool >  EnableFarAttenuation
+     This property handles the enable far attenuation flag.
+   FbxPropertyT< FbxDouble >  FarAttenuationStart
+     This property handles the far attenuation start distance.
+   FbxPropertyT< FbxDouble >  FarAttenuationEnd
+     This property handles the attenuation end distance.
+   FbxPropertyT< FbxBool >  CastShadows
+     This property handles the cast shadow flag.
+   FbxPropertyT< FbxDouble3 >  ShadowColor
+     This property handles the shadow color.
+   FbxPropertyT< EAreaLightShape >  AreaLightShape
+     This property handles type when LightType is eArea.
+   FbxPropertyT< FbxFloat >  LeftBarnDoor
+     This property handles the left barn door angle.
+   FbxPropertyT< FbxFloat >  RightBarnDoor
+     This property handles the right barn door angle.
+   FbxPropertyT< FbxFloat >  TopBarnDoor
+     This property handles the top barn door angle.
+   FbxPropertyT< FbxFloat >  BottomBarnDoor
+     This property handles the bottom barn door angle.
+   FbxPropertyT< FbxBool >  EnableBarnDoor
+     This property handles active status of barn doors.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Light types.
+     * ePoint
+     * eDirectional
+     * eSpot
+     * eArea
+     * eVolume
+
+   Enumerator:
+
+          ePoint
+
+   Search for all occurrences
+          eDirectional
+
+   Search for all occurrences
+          eSpot
+
+   Search for all occurrences
+          eArea
+
+   Search for all occurrences
+          eVolume
+
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 43 of file fbxlight.h.
+                {
+                        ePoint,
+                        eDirectional,
+                        eSpot,
+                        eArea,
+                        eVolume
+                };
+
+   enum EDecayType
+   Search for all occurrences
+
+   Decay types.
+
+   Used for setting the attenuation of the light.
+     * eNone No decay. The light's intensity will not diminish with distance.
+     * eLinear Linear decay. The light's intensity will diminish linearly with the distance from the light.
+     * eQuadratic Quadratic decay. The light's intensity will diminish with the squared distance from the light. This is the most physically accurate decay rate.
+     * eCubic Cubic decay. The light's intensity will diminish with the cubed distance from the light.
+
+   Enumerator:
+
+          eNone
+
+   No flags.
+   Search for all occurrences
+          eLinear
+
+   Search for all occurrences
+          eQuadratic
+
+   Search for all occurrences
+          eCubic
+
+   Search for all occurrences
+
+   Definition at line 59 of file fbxlight.h.
+                {
+                        eNone,
+                        eLinear,
+                        eQuadratic,
+                        eCubic
+                };
+
+   enum EAreaLightShape
+   Search for all occurrences
+
+   Supported area light types.
+     * eRectangle Rectangle (or often called a plane) area light type.
+     * eSphere Area light that illuminate all directions.
+
+   Enumerator:
+
+          eRectangle
+
+   Search for all occurrences
+          eSphere
+
+   Search for all occurrences
+
+   Definition at line 71 of file fbxlight.h.
+                {
+                        eRectangle,
+                        eSphere
+                };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetShadowTexture ( FbxTexture *  pTexture )
+   Search for all occurrences
+
+   Set the shadow texture for the light.
+
+   Parameters:
+
+          pTexture The texture cast by the light shadow.
+
+   FbxTexture* GetShadowTexture ( ) const
+   Search for all occurrences
+
+   Get the light state.
+
+   Returns:
+          Pointer to the texture cast by the light shadow, or NULL if the shadow texture has not been set.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<EType> LightType
+   Search for all occurrences
+
+   This property handles the light type.
+
+   Default value is ePoint
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayLight.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 96 of file fbxlight.h.
+   FbxPropertyT<FbxBool> CastLight
+   Search for all occurrences
+
+   This property handles the cast light on object flag.
+
+   Default value is true
+
+   Examples:
+          ExportScene04/main.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 102 of file fbxlight.h.
+   FbxPropertyT<FbxBool> DrawVolumetricLight
+   Search for all occurrences
+
+   This property handles the draw volumetric light flag.
+
+   Default value is true
+
+   Examples:
+          ExportScene04/main.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 108 of file fbxlight.h.
+   FbxPropertyT<FbxBool> DrawGroundProjection
+   Search for all occurrences
+
+   This property handles the draw ground projection flag.
+
+   Default value is true
+
+   Examples:
+          ExportScene04/main.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 114 of file fbxlight.h.
+   FbxPropertyT<FbxBool> DrawFrontFacingVolumetricLight
+   Search for all occurrences
+
+   This property handles the draw facing volumetric projection flag.
+
+   Default value is false
+
+   Examples:
+          ExportScene04/main.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 120 of file fbxlight.h.
+   FbxPropertyT<FbxDouble3> Color
+   Search for all occurrences
+
+   This property handles the light color.
+
+   Default value is (1.0, 1.0, 1.0)
+
+   Reimplemented from FbxNodeAttribute.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayLight.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 126 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> Intensity
+   Search for all occurrences
+
+   This property handles the light intensity.
+
+   Default value is 100.0
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 132 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> InnerAngle
+   Search for all occurrences
+
+   This property handles the light inner cone angle (in degrees).
+
+   Also know as the HotSpot
+
+   Default value is 45.0
+
+   Examples:
+          ExportDocument/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 138 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> OuterAngle
+   Search for all occurrences
+
+   This property handles the light outer cone angle (in degrees).
+
+   Also known as the Falloff
+
+   Default value is 45.0
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 144 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> Fog
+   Search for all occurrences
+
+   This property handles the light fog intensity.
+
+   Default value is 50.0
+
+   Examples:
+          ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 150 of file fbxlight.h.
+   FbxPropertyT<EDecayType> DecayType
+   Search for all occurrences
+
+   This property handles the decay type.
+
+   Default value is eNone
+
+   Definition at line 156 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> DecayStart
+   Search for all occurrences
+
+   This property handles the decay start distance.
+
+   Default value is 0.0
+
+   Definition at line 162 of file fbxlight.h.
+   FbxPropertyT<FbxString> FileName
+   Search for all occurrences
+
+   This property handles the gobo file name.
+
+   Default value is ""
+
+   Examples:
+          ExportScene04/main.cxx, and ImportScene/DisplayLight.cxx.
+
+   Definition at line 168 of file fbxlight.h.
+   FbxPropertyT<FbxBool> EnableNearAttenuation
+   Search for all occurrences
+
+   This property handles the enable near attenuation flag.
+
+   Default value is false
+
+   Definition at line 174 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> NearAttenuationStart
+   Search for all occurrences
+
+   This property handles the near attenuation start distance.
+
+   Default value is 0.0
+
+   Definition at line 180 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> NearAttenuationEnd
+   Search for all occurrences
+
+   This property handles the near end attenuation.
+
+   Default value is 0.0
+
+   Definition at line 186 of file fbxlight.h.
+   FbxPropertyT<FbxBool> EnableFarAttenuation
+   Search for all occurrences
+
+   This property handles the enable far attenuation flag.
+
+   Default value is false
+
+   Definition at line 192 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> FarAttenuationStart
+   Search for all occurrences
+
+   This property handles the far attenuation start distance.
+
+   Default value is 0.0
+
+   Definition at line 198 of file fbxlight.h.
+   FbxPropertyT<FbxDouble> FarAttenuationEnd
+   Search for all occurrences
+
+   This property handles the attenuation end distance.
+
+   Default value is 0.0
+
+   Definition at line 204 of file fbxlight.h.
+   FbxPropertyT<FbxBool> CastShadows
+   Search for all occurrences
+
+   This property handles the cast shadow flag.
+
+   Default value is false
+
+   Definition at line 210 of file fbxlight.h.
+   FbxPropertyT<FbxDouble3> ShadowColor
+   Search for all occurrences
+
+   This property handles the shadow color.
+
+   Default value is (0.0, 0.0, 0.0)
+
+   Definition at line 216 of file fbxlight.h.
+   FbxPropertyT<EAreaLightShape> AreaLightShape
+   Search for all occurrences
+
+   This property handles type when LightType is eArea.
+
+   Default value is eRectangle
+
+   Definition at line 222 of file fbxlight.h.
+   FbxPropertyT<FbxFloat> LeftBarnDoor
+   Search for all occurrences
+
+   This property handles the left barn door angle.
+
+   Default value is 20.0
+
+   Definition at line 228 of file fbxlight.h.
+   FbxPropertyT<FbxFloat> RightBarnDoor
+   Search for all occurrences
+
+   This property handles the right barn door angle.
+
+   Default value is 20.0
+
+   Definition at line 234 of file fbxlight.h.
+   FbxPropertyT<FbxFloat> TopBarnDoor
+   Search for all occurrences
+
+   This property handles the top barn door angle.
+
+   Default value is 20.0
+
+   Definition at line 240 of file fbxlight.h.
+   FbxPropertyT<FbxFloat> BottomBarnDoor
+   Search for all occurrences
+
+   This property handles the bottom barn door angle.
+
+   Default value is 20.0
+
+   Definition at line 246 of file fbxlight.h.
+   FbxPropertyT<FbxBool> EnableBarnDoor
+   Search for all occurrences
+
+   This property handles active status of barn doors.
+
+   Default value is false
+
+   Definition at line 252 of file fbxlight.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlight.h
+
+   Please send us your comment about this page

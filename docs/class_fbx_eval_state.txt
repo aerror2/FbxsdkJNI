@@ -1,0 +1,76 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEvalState Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxEvalState Class Reference
+   Search for all occurrences
+
+   #include <fbxanimevalstate.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class serves as the base class for an evaluation state element.
+
+   Definition at line 96 of file fbxanimevalstate.h.
+   Inheritance diagram for FbxEvalState:
+   [USEMAP:class_fbx_eval_state.png]
+
+   List of all members.
+
+Public Member Functions
+
+         FbxEvalState ()
+
+Public Attributes
+
+   bool  mUpToDate
+         If true, the evaluation state element is up-to-date for the current evaluation time.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEvalState ( ) [inline]
+
+   Definition at line 99 of file fbxanimevalstate.h.
+: mUpToDate(false){}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   bool mUpToDate
+   Search for all occurrences
+
+   If true, the evaluation state element is up-to-date for the current evaluation time.
+
+   Definition at line 100 of file fbxanimevalstate.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimevalstate.h
+
+   Please send us your comment about this page

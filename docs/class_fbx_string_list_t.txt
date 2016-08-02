@@ -1,0 +1,543 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStringListT< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Protected Attributes
+   FbxStringListT< Type > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxstringlist.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxStringListT< Type >
+
+   Base class of FbxStringList.
+
+   Definition at line 50 of file fbxstringlist.h.
+
+   List of all members.
+
+Public Member Functions
+
+   Operation With The Array
+                  int  AddItem (Type *pItem)
+                       Append a item at the end of the array.
+                  int  InsertItemAt (int pIndex, Type *pItem)
+                       Insert a item in the array.
+               Type *  GetItemAt (int pIndex) const
+                       Access item at given index.
+                  int  FindItem (Type *pItem) const
+                       Find first matching item.
+   Constructor and Destructor
+                       FbxStringListT ()
+                       Default constructor.
+              virtual  ~FbxStringListT ()
+                       Destructor.
+                 void  RemoveLast ()
+                       Remove the item at the end of the array and delete the associated object.
+                  int  GetCount () const
+                       Get number of items in the array.
+          FbxString &  operator[] (int pIndex)
+                       Access the string in the item at given index.
+            FbxHandle  GetReferenceAt (int pIndex) const
+                       Access the value of reference in the item at given index.
+                 void  SetReferenceAt (int pIndex, FbxHandle pRef)
+                       Set the value of reference at given index.
+               char *  GetStringAt (int pIndex) const
+                       Access the pointer of string at given index.
+         virtual bool  SetStringAt (int pIndex, const char *pString)
+                       Set string at given index.
+                  int  Find (Type &pItem) const
+                       Find first matching item.
+                  int  FindIndex (FbxHandle pReference) const
+                       Find first matching item which has the same reference as given parameter.
+                  int  FindIndex (const char *pString) const
+                       Find first matching item in array whose string address is the same as given pointer.
+            FbxHandle  FindReference (const char *pString) const
+                       Access the value of reference of the first matching item in array whose string address is the same as given pointer.
+                 bool  Remove (Type &pItem)
+                       Remove first matching item.
+                 bool  Remove (const char *pString)
+                       Remove first matching item in array whose string address is the same as given pointer.
+                 bool  RemoveIt (Type &pItem)
+                       Remove first matching item.
+                 void  Sort ()
+                       Sort the array by the string of every item,not case sensitive.
+               void *  FindEqual (const char *pString) const
+                       Find first matching item which has the same string as given parameter,not case sensitive.
+               void *  FindCaseSensitive (const char *pString) const
+                       Find first matching item which has the same string as given parameter, case sensitive.
+                  int  Add (const char *pString, FbxHandle pItem=0)
+                       Add a new item at the end of array.
+          virtual int  InsertAt (int pIndex, const char *pString, FbxHandle pItem=0)
+         virtual void  RemoveAt (int pIndex)
+                       Remove the item at the given position in the array and delete the associated object.
+         virtual void  Clear ()
+                       Delete the array.
+         virtual void  GetText (FbxString &pText) const
+                       Get the string of all the item.
+          virtual int  SetText (const char *pList)
+                       Clear the array and set the array's new items with the substring separated by '~' from the given string.
+
+Protected Attributes
+
+   FbxArray< Type * >  mList
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStringListT ( ) [inline]
+
+   Default constructor.
+
+   Definition at line 90 of file fbxstringlist.h.
+    {
+    }
+
+   virtual ~FbxStringListT ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 95 of file fbxstringlist.h.
+{ Clear(); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int AddItem ( Type *  pItem ) [inline]
+   Search for all occurrences
+
+   Append a item at the end of the array.
+
+   Returns:
+          Index of appended pointer.
+
+   Definition at line 64 of file fbxstringlist.h.
+{ return mList.Add( pItem ); }
+
+   int InsertItemAt ( int     pIndex,
+                      Type *  pItem
+                    )         [inline]
+   Search for all occurrences
+
+   Insert a item in the array.
+
+   Parameters:
+
+          pIndex Position where to insert the item.
+          pItem  Item to insert.
+
+   Returns:
+          Position of the inserted item in the array.
+
+   Remarks:
+          If the given index is out of range, the pointer is appended at the end of the array.
+
+   Definition at line 72 of file fbxstringlist.h.
+{ return mList.InsertAt( pIndex, pItem ); }
+
+   Type* GetItemAt ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Access item at given index.
+
+   Definition at line 75 of file fbxstringlist.h.
+{ return mList[pIndex]; }
+
+   int FindItem ( Type *  pItem ) const [inline]
+   Search for all occurrences
+
+   Find first matching item.
+
+   Returns:
+          Index of first matching item found or -1 if there is no matching element.
+
+   Definition at line 80 of file fbxstringlist.h.
+{ return mList.Find( pItem ); }
+
+   void RemoveLast ( ) [inline]
+   Search for all occurrences
+
+   Remove the item at the end of the array and delete the associated object.
+
+   Definition at line 99 of file fbxstringlist.h.
+{ RemoveAt( mList.GetCount()-1 ); }
+
+   int GetCount ( ) const [inline]
+   Search for all occurrences
+
+   Get number of items in the array.
+
+   Returns:
+          The number of items in the array.
+
+   Definition at line 104 of file fbxstringlist.h.
+{ return mList.GetCount(); }
+
+   FbxString& operator[] ( int  pIndex ) [inline]
+
+   Access the string in the item at given index.
+
+   Definition at line 107 of file fbxstringlist.h.
+{ return mList[pIndex]->mString; }
+
+   FbxHandle GetReferenceAt ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Access the value of reference in the item at given index.
+
+   Definition at line 110 of file fbxstringlist.h.
+{ return mList[pIndex]->mReference; }
+
+   void SetReferenceAt ( int        pIndex,
+                         FbxHandle  pRef
+                       )            [inline]
+   Search for all occurrences
+
+   Set the value of reference at given index.
+
+   Definition at line 113 of file fbxstringlist.h.
+{ mList[pIndex]->mReference = pRef; }
+
+   char* GetStringAt ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Access the pointer of string at given index.
+
+   Definition at line 116 of file fbxstringlist.h.
+{ if (pIndex<mList.GetCount()) return mList[pIndex]->mString.Buffer(); else return NULL; }
+
+   virtual bool SetStringAt ( int           pIndex,
+                              const char *  pString
+                            )               [inline, virtual]
+   Search for all occurrences
+
+   Set string at given index.
+
+   Definition at line 119 of file fbxstringlist.h.
+    {
+            if (pIndex<mList.GetCount())
+            {
+                    mList[pIndex]->mString = pString;
+                    return true;
+            } else return false;
+    }
+
+   int Find ( Type &  pItem ) const [inline]
+   Search for all occurrences
+
+   Find first matching item.
+
+   Returns:
+          Index of first matching item found or -1 if there is no matching element.
+
+   Definition at line 132 of file fbxstringlist.h.
+    {
+            for (int Count=0; Count<mList.GetCount(); Count++) {
+                    if (mList[Count]==&pItem) {
+                            return Count;
+                    }
+            }
+            return -1;
+    }
+
+   int FindIndex ( FbxHandle  pReference ) const [inline]
+   Search for all occurrences
+
+   Find first matching item which has the same reference as given parameter.
+
+   Returns:
+          Index of first matching item found or -1 if there is no matching element.
+
+   Definition at line 146 of file fbxstringlist.h.
+    {
+            for (int Count=0; Count<mList.GetCount(); Count++) {
+                    if (mList[Count]->mReference==pReference) {
+                            return Count;
+                    }
+            }
+            return -1;
+    }
+
+   int FindIndex ( const char *  pString ) const [inline]
+   Search for all occurrences
+
+   Find first matching item in array whose string address is the same as given pointer.
+
+   Returns:
+          Index of first matching item found or -1 if there is no matching element.
+
+   Definition at line 160 of file fbxstringlist.h.
+    {
+            for (int lCount=0; lCount<mList.GetCount(); lCount++) {
+                    if (mList[lCount]->mString==pString) {
+                            return lCount;
+                    }
+            }
+            return -1;
+    }
+
+   FbxHandle FindReference ( const char *  pString ) const [inline]
+   Search for all occurrences
+
+   Access the value of reference of the first matching item in array whose string address is the same as given pointer.
+
+   Returns:
+          The value of reference of the first matching item found or NULL if there is no matching element.
+
+   Definition at line 175 of file fbxstringlist.h.
+    {
+    int lIndex = FindIndex( pString );
+            if (lIndex!=-1) {
+                    return mList[lIndex]->mReference;
+            }
+            return 0; // NULL
+    }
+
+   bool Remove ( Type &  pItem ) [inline]
+   Search for all occurrences
+
+   Remove first matching item.
+
+   Definition at line 185 of file fbxstringlist.h.
+    {
+    int lIndex = Find( pItem );
+        if (lIndex>=0) {
+                    RemoveAt( lIndex );
+                    return true;
+            }
+            return false;
+    }
+
+   bool Remove ( const char *  pString ) [inline]
+   Search for all occurrences
+
+   Remove first matching item in array whose string address is the same as given pointer.
+
+   Definition at line 196 of file fbxstringlist.h.
+    {
+    int lIndex = FindIndex( pString );
+        if (lIndex>=0) {
+                    RemoveAt( lIndex );
+                    return true;
+            }
+            return false;
+    }
+
+   bool RemoveIt ( Type &  pItem ) [inline]
+   Search for all occurrences
+
+   Remove first matching item.
+
+   Definition at line 207 of file fbxstringlist.h.
+    {
+    int lIndex = Find( pItem );
+        if (lIndex>=0) {
+                    RemoveAt( lIndex );
+                    return true;
+            }
+            return false;
+    }
+
+   void Sort ( ) [inline]
+   Search for all occurrences
+
+   Sort the array by the string of every item,not case sensitive.
+
+   Definition at line 218 of file fbxstringlist.h.
+    {
+            qsort( &(mList.GetArray()[0]),mList.GetCount(),sizeof(FbxStringListItem*),FbxCompareStringListSort );
+    }
+
+   void* FindEqual ( const char *  pString ) const [inline]
+   Search for all occurrences
+
+   Find first matching item which has the same string as given parameter,not case sensitive.
+
+   Returns:
+          the pointer of matching item found or NULL if there is no matching element.
+
+   Definition at line 227 of file fbxstringlist.h.
+    {
+    FbxStringListItem Key(pString);
+
+            if (mList.GetCount() != 0)
+            {
+                    return bsearch ( &Key, &(mList.GetArray()[0]),mList.GetCount(),sizeof(FbxStringListItem*),FbxCompareStringListFindEqual );
+            }
+            else
+            {
+                    return NULL ;
+            }
+    }
+
+   void* FindCaseSensitive ( const char *  pString ) const [inline]
+   Search for all occurrences
+
+   Find first matching item which has the same string as given parameter, case sensitive.
+
+   Returns:
+          the pointer of matching item found or NULL if there is no matching element.
+
+   Definition at line 245 of file fbxstringlist.h.
+        {
+    FbxStringListItem Key(pString);
+
+            if (mList.GetCount() != 0)
+            {
+                    return bsearch ( &Key, &(mList.GetArray()[0]),mList.GetCount(),sizeof(FbxStringListItem*), FbxCompareCaseSensitiveStringList);
+            }
+            else
+            {
+                    return NULL ;
+            }
+
+        }
+
+   int Add ( const char *  pString,
+             FbxHandle     pItem = 0
+           )               [inline]
+   Search for all occurrences
+
+   Add a new item at the end of array.
+
+   Definition at line 262 of file fbxstringlist.h.
+    {
+            return InsertAt( mList.GetCount(),pString,pItem );
+    }
+
+   virtual int InsertAt ( int           pIndex,
+                          const char *  pString,
+                          FbxHandle     pItem = 0
+                        )               [inline, virtual]
+   Search for all occurrences
+
+   Definition at line 267 of file fbxstringlist.h.
+    {
+            return mList.InsertAt( pIndex,FbxNew< Type >( pString,(FbxHandle)pItem ));
+    }
+
+   virtual void RemoveAt ( int  pIndex ) [inline, virtual]
+   Search for all occurrences
+
+   Remove the item at the given position in the array and delete the associated object.
+
+   Parameters:
+
+          pIndex Position of the item to remove.
+
+   Remarks:
+          If the index is not valid, nothing is performed. Otherwise, the item is removed from the array and the items are shifted to fill the empty slot.
+
+   Definition at line 278 of file fbxstringlist.h.
+    {
+            FbxDelete(mList.RemoveAt(pIndex));
+    }
+
+   virtual void Clear ( ) [inline, virtual]
+   Search for all occurrences
+
+   Delete the array.
+
+   Definition at line 284 of file fbxstringlist.h.
+    {
+                FbxArrayDelete(mList);
+    }
+
+   virtual void GetText ( FbxString &  pText ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the string of all the item.
+
+   Returns:
+          The text of string, each item's string separated by '~'.
+
+   Definition at line 292 of file fbxstringlist.h.
+    {
+            int lCount;
+            for (lCount=0; lCount<mList.GetCount(); lCount++)
+        {
+            pText += mList[lCount]->mString;
+            if (lCount<mList.GetCount()-1)
+            {
+                pText += "~";
+            }
+            }
+    }
+
+   virtual int SetText ( const char *  pList ) [inline, virtual]
+   Search for all occurrences
+
+   Clear the array and set the array's new items with the substring separated by '~' from the given string.
+
+   Parameters:
+
+          pList The string which used to generate the new items.
+
+   Returns:
+          The last index of the item in the new array.
+
+   Remarks:
+          The number of items in the new array is the same as the number of substrings, and the string of each item is decided by the content of each substring.
+
+   Definition at line 311 of file fbxstringlist.h.
+    {
+    int         lPos=0, lOldPos = 0;
+    int         lLastIndex=0;
+    FbxString   lName=pList;
+
+            Clear();
+            for (lPos=0; lName.Buffer()[lPos]!=0; lPos++) {
+            if (lName.Buffer()[lPos]=='~') {
+                    lName.Buffer()[lPos]=0;
+                    lLastIndex = Add(lName.Buffer()+lOldPos);
+                    lOldPos=lPos+1;
+            }
+            }
+
+            if(lOldPos != lPos)
+            {
+                lLastIndex = Add(lName.Buffer()+lOldPos);
+            }
+            return lLastIndex;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxArray<Type*> mList [protected]
+   Search for all occurrences
+
+   Definition at line 53 of file fbxstringlist.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstringlist.h
+
+   Please send us your comment about this page

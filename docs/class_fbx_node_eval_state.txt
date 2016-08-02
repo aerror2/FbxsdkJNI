@@ -1,0 +1,119 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNodeEvalState Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxNodeEvalState Class Reference
+   Search for all occurrences
+
+   #include <fbxanimevalstate.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class hold results for node evaluation.
+
+   Definition at line 104 of file fbxanimevalstate.h.
+   Inheritance diagram for FbxNodeEvalState:
+   [USEMAP:class_fbx_node_eval_state.png]
+
+   List of all members.
+
+Public Member Functions
+
+                   FbxNodeEvalState (FbxNode *pNode)
+
+Public Attributes
+
+       FbxVector4  mLT
+                   Used to hold result value of LclTranslation property from node evaluation.
+       FbxVector4  mLR
+                   Used to hold result value of LclRotation property from node evaluation.
+       FbxVector4  mLS
+                   Used to hold result value of LclScaling property from node evaluation.
+       FbxAMatrix  mLX
+                   Used to hold result local transform matrix from node evaluation.
+       FbxAMatrix  mGX
+                   Used to hold result global transform matrix from node evaluation.
+   FbxTransform *  mTransform
+                   mTransform is used to hold the corresponding FbxTransform of the node.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxNodeEvalState ( FbxNode *  pNode )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxVector4 mLT
+   Search for all occurrences
+
+   Used to hold result value of LclTranslation property from node evaluation.
+
+   Definition at line 109 of file fbxanimevalstate.h.
+   FbxVector4 mLR
+   Search for all occurrences
+
+   Used to hold result value of LclRotation property from node evaluation.
+
+   Definition at line 110 of file fbxanimevalstate.h.
+   FbxVector4 mLS
+   Search for all occurrences
+
+   Used to hold result value of LclScaling property from node evaluation.
+
+   Definition at line 111 of file fbxanimevalstate.h.
+   FbxAMatrix mLX
+   Search for all occurrences
+
+   Used to hold result local transform matrix from node evaluation.
+
+   Pivots, offsets, pre/post rotation and all other transforms are taken into consideration.
+
+   Definition at line 112 of file fbxanimevalstate.h.
+   FbxAMatrix mGX
+   Search for all occurrences
+
+   Used to hold result global transform matrix from node evaluation.
+
+   Pivots, offsets, pre/post rotation and all other transforms are taken into consideration.
+
+   Definition at line 113 of file fbxanimevalstate.h.
+   FbxTransform* mTransform
+   Search for all occurrences
+
+   mTransform is used to hold the corresponding FbxTransform of the node.
+
+   This FbxTransform takes all transform-related info, including pivots, offsets, pre/post rotation, rotation order, limits, etc. The evaluation is actually done through the utility functions of FbxTransform.
+
+   Definition at line 118 of file fbxanimevalstate.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimevalstate.h
+
+   Please send us your comment about this page

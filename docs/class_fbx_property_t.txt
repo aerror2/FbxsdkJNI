@@ -1,0 +1,248 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyT< T > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxPropertyT< T > Class Template Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxproperty.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class T>
+class FbxPropertyT< T >
+
+   This template class is used to contain user properties of specific data types.
+
+   Definition at line 1233 of file fbxproperty.h.
+   Inheritance diagram for FbxPropertyT< T >:
+   [USEMAP:class_fbx_property_t.png]
+
+   List of all members.
+
+Static initialization.
+
+    FbxProperty &  StaticInit (FbxObject *pObject, const char *pName, const T &pValue, bool pForceSet, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+    FbxProperty &  StaticInit (FbxObject *pObject, const char *pName, const FbxDataType &pDataType, const T &pValue, bool pForceSet, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+    FbxProperty &  StaticInit (FbxProperty pCompound, const char *pName, const FbxDataType &pDataType, const T &pValue, bool pForceSet=true, FbxPropertyFlags::EFlags pFlags=FbxPropertyFlags::eNone)
+                   Creates a property and initializes it using a specific value and flag.
+
+Value Management
+
+   FbxPropertyT &  Set (const T &pValue)
+                   Assignment function.
+                T  Get () const
+                   Retrieve function.
+   FbxPropertyT &  operator= (const T &pValue)
+                   Assignment operator.
+                   operator T () const
+                   Type cast operator.
+
+Animation Evaluation
+
+                T  EvaluateValue (const FbxTime &pTime=FBXSDK_TIME_INFINITE, bool pForceEval=false)
+                   Evaluate the value of a property if it has animation and return the result.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxProperty& StaticInit ( FbxObject *              pObject,
+                             const char *             pName,
+                             const T &                pValue,
+                             bool                     pForceSet,
+                             FbxPropertyFlags::EFlags  pFlags = FbxPropertyFlags::eNone
+                           )                          [inline]
+   Search for all occurrences
+
+   Creates a property and initializes it using a specific value and flag.
+
+   Parameters:
+
+          pObject   The object that contains this property.
+          pName     The name of the property.
+          pValue    The value of the property.
+          pForceSet If true, the value is forcibly set, if false the value is not set when it equals the default value.
+          pFlags    The property flag.
+
+   Definition at line 1247 of file fbxproperty.h.
+                {
+                        return StaticInit(pObject, pName, FbxGetDataTypeFromEnum(FbxTypeOf(*((T*)0))), pValue, pForceSet, pFlags);
+                }
+
+   FbxProperty& StaticInit ( FbxObject *              pObject,
+                             const char *             pName,
+                             const FbxDataType &      pDataType,
+                             const T &                pValue,
+                             bool                     pForceSet,
+                             FbxPropertyFlags::EFlags  pFlags = FbxPropertyFlags::eNone
+                           )                          [inline]
+   Search for all occurrences
+
+   Creates a property and initializes it using a specific value and flag.
+
+   Parameters:
+
+          pObject   The object that contains this property.
+          pName     The name of the property.
+          pDataType The property data type.
+          pValue    The property value.
+          pForceSet If true, the value is forcibly set, if false the value is not set when it equals the default value.
+          pFlags    The property flag.
+
+   Definition at line 1260 of file fbxproperty.h.
+                {
+                        bool lWasFound = false;
+                        *this = Create(pObject, pDataType, pName, "", true, &lWasFound);
+                        if( pForceSet || !lWasFound )
+                        {
+                                ModifyFlag(pFlags, true);       // modify the flags before we set the value
+                                FbxProperty::Set(&pValue, FbxTypeOf(pValue), false);
+                        }
+                        ModifyFlag(FbxPropertyFlags::eStatic, true);
+                        return *this;
+                }
+
+   FbxProperty& StaticInit ( FbxProperty              pCompound,
+                             const char *             pName,
+                             const FbxDataType &      pDataType,
+                             const T &                pValue,
+                             bool                     pForceSet = true,
+                             FbxPropertyFlags::EFlags  pFlags = FbxPropertyFlags::eNone
+                           )                          [inline]
+   Search for all occurrences
+
+   Creates a property and initializes it using a specific value and flag.
+
+   Parameters:
+
+          pCompound The parent property of this property.
+          pName     The name of the property.
+          pDataType The property data type.
+          pValue    The property value.
+          pForceSet If true, the value is forcibly set, if false the value is not set when it equals to the default value.
+          pFlags    The property flag.
+
+   Definition at line 1281 of file fbxproperty.h.
+                {
+                        bool lWasFound = false;
+                        *this = Create(pCompound, pDataType, pName, "", true, &lWasFound);
+                        if( pForceSet || !lWasFound )
+                        {
+                                ModifyFlag(pFlags, true);       // modify the flags before we set the value
+                                FbxProperty::Set(&pValue, FbxTypeOf(pValue), false);
+                        }
+                        ModifyFlag(FbxPropertyFlags::eStatic, true);
+                        return *this;
+                }
+
+   FbxPropertyT& Set ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   Assignment function.
+
+   Parameters:
+
+          pValue The value assigned to this property.
+
+   Returns:
+          This property.
+
+   Reimplemented from FbxProperty.
+
+   Definition at line 1300 of file fbxproperty.h.
+{ FbxProperty::Set(&pValue, FbxTypeOf(pValue)); return *this; }
+
+   T Get ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve function.
+
+   Returns:
+          The value of the property.
+
+   Reimplemented from FbxProperty.
+
+   Definition at line 1304 of file fbxproperty.h.
+{ T lValue; FbxProperty::Get(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   FbxPropertyT& operator= ( const T &  pValue ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pValue The value of type T assigned to this property.
+
+   Returns:
+          This property.
+
+   Definition at line 1309 of file fbxproperty.h.
+{ return Set(pValue); }
+
+   operator T ( ) const [inline]
+
+   Type cast operator.
+
+   Returns:
+          The value of the property of type T.
+
+   Definition at line 1313 of file fbxproperty.h.
+{ return Get(); }
+
+   T EvaluateValue ( const FbxTime &  pTime = FBXSDK_TIME_INFINITE,
+                     bool             pForceEval = false
+                   )                  [inline]
+   Search for all occurrences
+
+   Evaluate the value of a property if it has animation and return the result.
+
+   Parameters:
+
+          pTime      The time used for evaluate.
+          pForceEval Force the evaluator to refresh the evaluation state cache even if its already up-to-date.
+
+   Returns:
+          The property value at the specified time.
+
+   Reimplemented from FbxProperty.
+
+   Definition at line 1322 of file fbxproperty.h.
+                {
+                        return GetFbxObject()->GetFbxManager()->GetAnimationEvaluator()-> template GetPropertyValue<T>(*this, pTime, pForceEval);
+                }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxproperty.h
+
+   Please send us your comment about this page

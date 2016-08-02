@@ -1,0 +1,133 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Entry view class represents binding entry in entry tables.
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Definition at line 26 of file fbxentryview.h.
+   Inheritance diagram for FbxEntryView:
+   [USEMAP:class_fbx_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+           virtual bool  IsValid () const
+                         Check whether this entry view is valid or not.
+           virtual bool  Create ()
+                         Create a new entry view.
+   virtual const char *  EntryType () const
+                         Get the entry type of this entry view.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Entry type.
+
+Constructor and Destructor.
+
+                         FbxEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                virtual  ~FbxEntryView ()
+                         Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEntryView ( FbxBindingTableEntry *  pEntry,
+                  bool                    pAsSource,
+                  bool                    pCreate = false
+                )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   virtual ~FbxEntryView ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool IsValid ( ) const [virtual]
+   Search for all occurrences
+
+   Check whether this entry view is valid or not.
+
+   If this entry view corresponds with an valid entry which is not NULL, and the entry type of this entry view is the same as that of the entry it corresponds with, then this entry view is valid.
+
+   Returns:
+          true if the entry view is valid, false otherwise.
+
+   virtual bool Create ( ) [virtual]
+   Search for all occurrences
+
+   Create a new entry view.
+
+   Returns:
+          true if the entry view is created successfully, false otherwise.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type of this entry view.
+
+   Reimplemented in FbxBindingsEntryView, FbxConstantEntryView, FbxLayerEntryView, FbxOperatorEntryView, FbxPropertyEntryView, and FbxSemanticEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Entry type.
+
+   Reimplemented in FbxBindingsEntryView, FbxConstantEntryView, FbxLayerEntryView, FbxOperatorEntryView, FbxPropertyEntryView, and FbxSemanticEntryView.
+
+   Definition at line 31 of file fbxentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxentryview.h
+
+   Please send us your comment about this page

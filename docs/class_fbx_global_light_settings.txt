@@ -1,0 +1,390 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGlobalLightSettings Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   FbxGlobalLightSettings Class Reference
+   Search for all occurrences
+
+   #include <fbxgloballightsettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains functions for accessing global light settings.
+
+   Remarks:
+          This class exists for FBX version 6.x and earlier. The new FBX v7.x file format that is now the default no longer uses it. The relevant data (a subset of this class) has been moved to the FbxGlobalSettings object and should be used instead.
+
+   Definition at line 30 of file fbxgloballightsettings.h.
+
+   List of all members.
+
+Classes
+
+                          struct   ShadowPlane
+                                   Struct used to define the shadow plane. More...
+
+Public Member Functions
+
+                                   FBXSDK_FRIEND_NEW ()
+                             void  RestoreDefaultSettings ()
+                                   Restores default settings.
+   const FbxGlobalLightSettings &  operator= (const FbxGlobalLightSettings &pGlobalLightSettings)
+                                   Assignment operator.
+
+Ambient Color
+
+                             void  SetAmbientColor (FbxColor pAmbientColor)
+                                   Sets the ambient color.
+                         FbxColor  GetAmbientColor () const
+                                   Returns the ambient color.
+
+Fog Option
+
+                            enum   EFogMode { eLinear, eExponential, eExponentialSquareRoot }
+                                   Fog types. More...
+                             void  SetFogEnable (bool pEnable)
+                                   Activates or disables the fog.
+                             bool  GetFogEnable () const
+                                   Returns the fog option's current state.
+                             void  SetFogColor (FbxColor pColor)
+                                   Sets the fog color.
+                         FbxColor  GetFogColor () const
+                                   Returns the fog color.
+                             void  SetFogMode (EFogMode pMode)
+                                   Sets the fog mode.
+                         EFogMode  GetFogMode () const
+                                   Returns the fog mode.
+                             void  SetFogDensity (double pDensity)
+                                   Sets the fog density.
+                           double  GetFogDensity () const
+                                   Returns the fog density.
+                             void  SetFogStart (double pStart)
+                                   Sets the distance from the view where the fog begins.
+                           double  GetFogStart () const
+                                   Returns the distance from the view where the fog begins.
+                             void  SetFogEnd (double pEnd)
+                                   Sets the distance from the view where the fog ends.
+                           double  GetFogEnd () const
+                                   Returns the distance from the view where the fog ends.
+
+Shadow Planes
+
+   The functions in this section are supported only by FiLMBOX version 2.7 and earlier.
+
+   FiLMBOX 3.0 supports shadow planes within a specific shader, which is not supported by the FBX SDK.
+                             void  SetShadowEnable (bool pShadowEnable)
+                                   Activates or disables the display of shadow planes.
+                             bool  GetShadowEnable () const
+                                   Returns the current state of the shadow enable flag.
+                             void  SetShadowIntensity (double pShadowIntensity)
+                                   Sets the shadow intensity that is applied to all shadow planes.
+                           double  GetShadowIntensity () const
+                                   Returns the shadow intensity applied to all shadow planes.
+                              int  GetShadowPlaneCount () const
+                                   Returns the number of shadow planes.
+                    ShadowPlane *  GetShadowPlane (int pIndex, FbxStatus *pStatus=NULL)
+                                   Returns a shadow plane at the specified index.
+                             void  AddShadowPlane (ShadowPlane pShadowPlane)
+                                   Adds a shadow plane.
+                             void  RemoveAllShadowPlanes ()
+                                   Removes all shadow planes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EFogMode
+   Search for all occurrences
+
+   Fog types.
+
+   Enumerator:
+
+          eLinear
+
+   Search for all occurrences
+          eExponential
+
+   Linear fog mode.
+   Search for all occurrences
+   eExponentialSquareRoot
+
+   Exponential fog mode.
+   Exponential square root fog mode.
+   Search for all occurrences
+
+   Definition at line 82 of file fbxgloballightsettings.h.
+    {
+        eLinear,
+        eExponential,
+        eExponentialSquareRoot
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   void SetAmbientColor ( FbxColor  pAmbientColor )
+   Search for all occurrences
+
+   Sets the ambient color.
+
+   Parameters:
+
+          pAmbientColor The ambient color to set.
+
+   Remarks:
+          The ambient color only use RGB channels.
+
+   FbxColor GetAmbientColor ( ) const
+   Search for all occurrences
+
+   Returns the ambient color.
+
+   Returns:
+          The ambient color.
+
+   void SetFogEnable ( bool  pEnable )
+   Search for all occurrences
+
+   Activates or disables the fog.
+
+   Parameters:
+
+          pEnable Set to true to activate the fog option or set to false to disable the fog option.
+
+   bool GetFogEnable ( ) const
+   Search for all occurrences
+
+   Returns the fog option's current state.
+
+   Returns:
+          True if fog is activated, returns false if fog is disabled.
+
+   void SetFogColor ( FbxColor  pColor )
+   Search for all occurrences
+
+   Sets the fog color.
+
+   Parameters:
+
+          pColor The fog color to be set.
+
+   Remarks:
+          The fog color only uses RGB channels.
+
+   FbxColor GetFogColor ( ) const
+   Search for all occurrences
+
+   Returns the fog color.
+
+   Returns:
+          The fog color.
+
+   Remarks:
+          The fog color only uses RGB channels.
+
+   void SetFogMode ( EFogMode  pMode )
+   Search for all occurrences
+
+   Sets the fog mode.
+
+   Parameters:
+
+          pMode The fog type to be set.
+
+   EFogMode GetFogMode ( ) const
+   Search for all occurrences
+
+   Returns the fog mode.
+
+   Returns:
+          The currently set fog mode.
+
+   void SetFogDensity ( double  pDensity )
+   Search for all occurrences
+
+   Sets the fog density.
+
+   Parameters:
+
+          pDensity The fog density to be set. It can be any double value, however it can happen that other sections of FBX SDK may clamp values to reasonable values.
+
+   Remarks:
+          This function is only used when the fog mode is set to exponential or square root exponential.
+
+   double GetFogDensity ( ) const
+   Search for all occurrences
+
+   Returns the fog density.
+
+   Returns:
+          The currently set fog density.
+
+   Remarks:
+          This function is only used when the fog mode is set to exponential or square root exponential.
+
+   void SetFogStart ( double  pStart )
+   Search for all occurrences
+
+   Sets the distance from the view where the fog begins.
+
+   Parameters:
+
+          pStart Distance where the fog begins.
+
+   Remarks:
+          This function is only used when the fog mode is set to linear. The new value is clamped to fit inside the interval [0, FogEnd()].
+
+   double GetFogStart ( ) const
+   Search for all occurrences
+
+   Returns the distance from the view where the fog begins.
+
+   Returns:
+          The distance from the view where the fog begins.
+
+   Remarks:
+          This function is only used when the fog mode is set to linear.
+
+   void SetFogEnd ( double  pEnd )
+   Search for all occurrences
+
+   Sets the distance from the view where the fog ends.
+
+   Parameters:
+
+          pEnd Distance where the fog ends.
+
+   Remarks:
+          This function is only used when the fog mode is set to linear. The new value is adjusted to fit within the interval [FogStart(), inf).
+
+   double GetFogEnd ( ) const
+   Search for all occurrences
+
+   Returns the distance from the view where the fog ends.
+
+   Returns:
+          The distance from the view where the fog ends.
+
+   Remarks:
+          This function is only used when the fog mode is set to linear.
+
+   void SetShadowEnable ( bool  pShadowEnable )
+   Search for all occurrences
+
+   Activates or disables the display of shadow planes.
+
+   Parameters:
+
+          pShadowEnable Set to true to display shadow planes in the scene.
+
+   bool GetShadowEnable ( ) const
+   Search for all occurrences
+
+   Returns the current state of the shadow enable flag.
+
+   Returns:
+          True if shadow planes are set to be displayed in the scene.
+
+   void SetShadowIntensity ( double  pShadowIntensity )
+   Search for all occurrences
+
+   Sets the shadow intensity that is applied to all shadow planes.
+
+   Parameters:
+
+          pShadowIntensity Intensity applied to all the shadow planes.
+
+   Remarks:
+          Ranges from 0 to 300.
+
+   double GetShadowIntensity ( ) const
+   Search for all occurrences
+
+   Returns the shadow intensity applied to all shadow planes.
+
+   Returns:
+          The intensity applied to all shadow planes in the scene.
+
+   Remarks:
+          Ranges from 0 to 300.
+
+   int GetShadowPlaneCount ( ) const
+   Search for all occurrences
+
+   Returns the number of shadow planes.
+
+   Returns:
+          Number of shadow planes.
+
+   ShadowPlane* GetShadowPlane ( int          pIndex,
+                                 FbxStatus *  pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Returns a shadow plane at the specified index.
+
+   Parameters:
+
+          pIndex  Shadow plane index.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer the shadow plane, or NULL if the index is out of range.
+
+   void AddShadowPlane ( ShadowPlane  pShadowPlane )
+   Search for all occurrences
+
+   Adds a shadow plane.
+
+   Parameters:
+
+          pShadowPlane The shadow plane to be added.
+
+   void RemoveAllShadowPlanes ( )
+   Search for all occurrences
+
+   Removes all shadow planes.
+   void RestoreDefaultSettings ( )
+   Search for all occurrences
+
+   Restores default settings.
+   const FbxGlobalLightSettings& operator= ( const FbxGlobalLightSettings &  pGlobalLightSettings )
+
+   Assignment operator.
+
+   Parameters:
+
+          pGlobalLightSettings FbxGlobalLightSettings object assigned to this one.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxgloballightsettings.h
+
+   Please send us your comment about this page

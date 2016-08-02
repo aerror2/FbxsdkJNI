@@ -1,0 +1,2927 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIO Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions | Static Public Member Functions
+   FbxIO Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK Object Model, FBX Objects, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxio.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxIO represents an FBX file.
+
+   It is primarily used by FBX importers (FbxImporter) and exporter (FbxExporter) when reading or writing data from or to a disk or memory. Most users will not use the FbxIO class directly but will use an instance of either FbxImporter or FbxExporter to read or write FBX files.
+
+   An FBX file may contain binary data or ASCII data. A good way to learn the internal structure of a FBX file is to open a FBX file saved in ASCII in a text editor.
+
+   Ex: to read a FBX file content using FbxIO class directly
+ // Create a FbxIO object with FbxIO::Create()
+ // Open the file with ProjectOpen( ... ) a NULL pointer can be passed for (FbxReader)* param
+ // ProjectOpen_xxx_Section() to open a particular section
+ int nbSec = FieldGetCount(); // to get the number of fields of the current section opened
+        for(int i=0; i < nbSec; i++) // read all fields
+        {
+                // check if the field is a block
+                if(FieldReadIsBlock()){ } ... Read sub fields recursively ... may contain other blocks and fields
+                else
+                {
+                        FieldReadBegin();       // navigate on the field
+                        char fieldType = FieldReadGetType(); // get the data type
+
+                        // According to the Field data type, call the appropriate read functions
+
+                             if(fieldType == 'S') FieldReadS(...) to read a string
+                        else if(fieldType == 'B') FieldReadB(...) to read a bool
+                        else if(fieldType == 'I') FieldReadI(...) to read a int
+                    ...
+                        FieldReadEnd(); // navigate to next field
+                }
+        }
+
+ ProjectCloseSection() // close the section opened
+ // repeat for another section ...
+ // finally close the Project
+ ProjectClose(); // or delete the FbxIO object created.
+
+   Definition at line 318 of file fbxio.h.
+
+   List of all members.
+
+Classes
+
+                  struct   FbxAutoResetXRefManager
+
+Public Member Functions
+
+                           FbxIO (FbxStatus &pStatus)
+                           Default constructor.
+                  virtual  ~FbxIO ()
+                           Destructor.
+             virtual bool  FieldReadEmbeddedFile (FbxString &pFileName, FbxString &pRelativeFileName, const char *pEmbeddedMediaDirectory="", bool *pIsFileCreated=NULL)
+                           Read field and copy it into a file.
+           const double *  FieldReadArrayD (int &pCount)
+                           Read the whole array and return the pointer to it.
+            const float *  FieldReadArrayF (int &pCount)
+                           Read the whole array and return the pointer to it.
+              const int *  FieldReadArrayI (int &pCount)
+                           Read the whole array and return the pointer to it.
+      const FbxLongLong *  FieldReadArrayLL (int &pCount)
+                           Read the whole array and return the pointer to it.
+             const bool *  FieldReadArrayB (int &pCount)
+                           Read the whole array and return the pointer to it.
+         const FbxUChar *  FieldReadArrayBytes (int &pCount)
+                           Read the whole array and return the pointer to it.
+              const int *  FieldReadArray (int &pCount, const int *)
+                           Read the whole array and return the pointer to it.
+            const float *  FieldReadArray (int &pCount, const float *)
+                           Read the whole array and return the pointer to it.
+           const double *  FieldReadArray (int &pCount, const double *)
+                           Read the whole array and return the pointer to it.
+      const FbxLongLong *  FieldReadArray (int &pCount, const FbxLongLong *)
+                           Read the whole array and return the pointer to it.
+             const bool *  FieldReadArray (int &pCount, const bool *)
+                           Read the whole array and return the pointer to it.
+         const FbxUChar *  FieldReadArray (int &pCount, const FbxUChar *)
+                           Read the whole array and return the pointer to it.
+                      int  GetFieldRMaxChunkSize () const
+                           ASCII files may limit how big you can write your raw data, forcing you to break it down into chunks.
+                     void  FieldWriteObjectReference (const char *pName)
+                           Write object reference pName in the current field.
+                     void  FieldWriteObjectReference (const char *pFieldName, const char *pName)
+                           Write object reference pName in field pFieldName.
+                     bool  FieldWriteEmbeddedFile (FbxString pFileName, FbxString pRelativeFileName)
+                           Write field with file content as a value.
+                     void  WriteComments (const char *pFieldName)
+                           Write comments, only effective in ASCII mode.
+                     bool  GetHaveLoadedEmbededFile () const
+                           Get if the embedded file is currently loaded.
+                     void  GetMemoryFileInfo (void **pMemPtr, size_t &pSize) const
+                           Get the maximum byte count written.
+                     bool  IsBeforeVersion6 () const
+                           Get a internal flag to manage pre FBX version 6 data format Used for backwards compatibility.
+                     void  SetIsBeforeVersion6 (bool pIsBeforeVersion6)
+                           Set a internal flag to manage pre FBX version 6 data format Used for backwards compatibility.
+   Project Global
+
+   The term "Project" here is an abstract name chosen to represent a group of data ex: a file, a stream, a memory buffer, etc.
+                     bool  ProjectOpen (void *pAddress, FbxULong pMaxLength, FbxReader *pReader, bool pCheckCRC=false, bool pOpenMainSection=true, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Open a project already in Memory.
+                     bool  ProjectOpen (const char *pName, FbxReader *pReader, bool pCheckCRC=false, bool pOpenMainSection=true, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Open a project.
+                     bool  ProjectOpen (FbxStream *pStream, void *pStreamData, FbxReader *pReader, bool pCheckCRC=false, bool pOpenMainSection=true, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Open a project.
+                     bool  ProjectOpenDirect (const char *pName, FbxReader *pReader, bool pCheckCRC=false, bool pOpenMainSection=true, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Open project file without necessarily an .fbx extension.
+                     bool  ProjectCreate (void *pAddress, FbxUInt pSize, FbxWriter *pWriter, bool pBinary, bool pEncrypted, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Create a project in Memory.
+                     bool  ProjectCreate (const char *pName, FbxWriter *pWriter, bool pBinary, bool pEncrypted, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Create a project.
+                     bool  ProjectCreate (FbxStream *pStream, void *pStreamData, FbxWriter *pWriter, bool pBinary, bool pEncrypted, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Create a project.
+                     bool  ProjectCreateDirect (const char *pName, FbxWriter *pWriter, bool pBinary, bool pEncrypted, FbxIOFileHeaderInfo *pFileHeaderInfo=NULL)
+                           Create a project without necessary an .fbx extension.
+                     bool  ProjectCreateEmpty (const char *pName, FbxWriter *pWriter, int pVersion, bool pBinary, bool pEncrypted)
+                           Create a project, without writing out the header (yet)
+                     bool  ProjectCreateEmpty (FbxStream *pStream, void *pStreamData, FbxWriter *pWriter, int pVersion, bool pBinary, bool pEncrypted)
+                           Create a project, without writing out the header (yet)
+                     bool  ProjectWrite_BeginFileHeader ()
+                           Write FBX signature at the top of the file, prepare file for writing header information.
+                     bool  ProjectWrite_BeginExtendedHeader ()
+                           Open up the 'extended header'.
+                     bool  ProjectWrite_WriteExtendedHeader (const FbxIOFileHeaderInfo *pExtendedHeader)
+                           Write the contents of the extended header.
+                     bool  ProjectWrite_EndExtendedHeader ()
+                           Close the extended header.
+                     bool  ProjectWrite_EndFileHeader ()
+                           Close up the header, prepare file for payload write.
+                     bool  ProjectClose (void **pData=0, size_t *pSize=0)
+                           Close the project.
+                     void  ProjectSetXRefManager (const FbxXRefManager *)
+                           Provide the XRef Manager to use to create the .fbm folder.
+   const FbxXRefManager *  ProjectGetXRefManager () const
+                           Get the XRef Manager to use.
+                     bool  ProjectCreateEmbeddedFolder (const FbxXRefManager &pXRefManager, FbxString &pCreatedFolder, const char *pUserDefinedFolder=NULL)
+                           Select (and create) a folder to store embedded files (the .fbm file folder).
+                     void  SetEmbedded (bool pValue)
+                           On store event, use this function to tell if we are embedding.
+                     void  SetEmbeddingExtractionFolder (const char *pExtractionFolder)
+                           Explicitly set the embedding extraction folder.
+             const char *  GetEmbeddingExtractionFolder ()
+                           Retrieve the current folder destination where the embedded files will be extracted.
+                     bool  IsEmbedded () const
+                           Check if file is embedded or not.
+                     bool  IsBinary () const
+                           Check if file is binary or ASCII.
+                     bool  IsEncrypted () const
+                           Return if binary file is encrypted.
+                     bool  CheckCRC ()
+                           Check CRC code.
+                FbxUInt32  GetFileVersionNumber () const
+                           Return the file version number.
+                     void  CacheSize (FbxUInt32 pCacheSize)
+                           Set the cache size for accelerated IO.
+                FbxUInt32  CacheSize () const
+                           Return the current cache size.
+   FBX 7 Format specific functions.
+
+   The FBX 7 format can compress internal arrays to make the file smaller.
+
+   The writer may decide not to compress all arrays, or it may even decide not to compress anyway. Flags are written in the file to help the FBX7 reader to know if a decompression is required, on a per-array basis. The following functions address specific topics of the FBX 7 file format.
+                     bool  Fbx7Support () const
+                     void  Fbx7Support (bool pSupport)
+                           Set the flag state to tell the parser to handle FBX7 files.
+                     bool  CompressArrays () const
+                     void  CompressArrays (bool pCompress)
+                           Set the flag state.
+                      int  CompressMinimumSize () const
+                     void  CompressMinimumSize (int pSize)
+                           Set the compression minimum size.
+                      int  CompressLevel () const
+                     void  CompressLevel (int pLevel)
+                           Set the compression level.
+   Directory related functions used to get or set file path information.
+             const char *  GetFilename () const
+                           Get project file name.
+                FbxString  GetDataDirectory (bool pAutoCreate=true)
+                           Get project data directory name.
+                FbxString  GetMediaDirectory (bool pCreate=false, const char *pUserDefinedFolder=NULL)
+                           Get the current embedded folder used by this object.
+                FbxString  GetContainerTemplateDirectory (const char *pTemplateName, bool pCreate)
+                           Get the full path of the directory to extract the template file.
+                   char *  GetRelativePath (const char *pPath)
+                           Get the path relative to project directory.
+                   char *  GetRelativeFilePath (const char *pFilePath)
+                           Get the file path relative to project directory.
+                   char *  GetFullPath (const char *pRelativePath)
+                           Get the full path of path relative to project directory.
+                   char *  GetFullFilePath (const char *pRelativeFilePath)
+                           Get the full file path of path relative to project directory.
+                   char *  GetTmpProjectName (const char *pName) const
+                           Get the temporary project name.
+                     bool  SwapFromTmpProject (const char *pName, char *pError=NULL, int pErrorSize=0)
+                           Swap from temporary project.
+   Read related functions used to get information of a field or a group of fields.
+
+   Can be used to get the field content data or to navigate from field to field.
+                     void  FieldReadResetPosition ()
+                           Reset the field read position.
+                      int  FieldGetCount () const
+                           Get the number of fields.
+             const char *  FieldGetName (int pFieldIndex) const
+                           Get the name of field indexed pFieldIndex.
+                      int  FieldGetInstanceCount (const char *pFieldName) const
+                           Get number of instance field pFieldName has.
+                     bool  FieldReadBegin (int pFieldIndex, int pInstance)
+                           Start to read field instance referred by field indexed pFieldIndex, instance indexed pInstance.
+                     bool  FieldReadBegin (const char *pFieldName)
+                           Start to read field pFieldName.
+                     bool  FieldReadBegin (const char *pFieldName, int pInstance)
+                           Start to read field instance referred field pFieldName, instance indexed pInstance.
+                     void  FieldReadEnd ()
+                           Stop to read the current field.
+                     bool  FieldReadIsBlock ()
+                           Return if current field is a block.
+                     bool  FieldReadBlockBegin ()
+                           Start to read a field block.
+                     void  FieldReadBlockEnd ()
+                           Stop to read a field block.
+                      int  FieldReadGetCount () const
+                           Return the number of read field.
+                      int  FieldReadGetRemain () const
+                           Return the number of field remaining to be read.
+                     char  FieldReadGetType () const
+                           Return current field value type.
+                     char  FieldReadCH ()
+                           Return current field value as a char.
+                     char  FieldReadCH (const char *pFieldName, char pDefault=0)
+                           Return field pFieldName's value as a char.
+             const char *  FieldReadC ()
+                           Return current field value as a char pointer.
+             const char *  FieldReadC (const char *pFieldName, const char *pDefault="")
+                           Return field pFieldName's value as a char pointer.
+             const char *  FieldReadS ()
+                           Return current field value as a string (a char pointer).
+             const char *  FieldReadS (const char *pFieldName, const char *pDefault="")
+                           Return field pFieldName's value as a char pointer.
+                     bool  FieldReadB ()
+                           Return current field value as an bool.
+                     bool  FieldReadB (const char *pFieldName, bool pDefault=false)
+                           Return field pFieldName's value as an integer.
+                      int  FieldReadI ()
+                           Return current field value as an integer.
+                      int  FieldReadI (const char *pFieldName, int pDefault=0)
+                           Return field pFieldName's value as an integer.
+              FbxLongLong  FieldReadLL ()
+                           Return current field value as an integer.
+              FbxLongLong  FieldReadLL (const char *pFieldName, FbxLongLong pDefault=0)
+                           Return field pFieldName's value as an integer.
+                    float  FieldReadF ()
+                           Return current field value as a float.
+                    float  FieldReadF (const char *pFieldName, float pDefault=0)
+                           Return field pFieldName's value as a float.
+                   double  FieldReadD ()
+                           Return current field value as a double.
+                   double  FieldReadD (const char *pFieldName, double pDefault=0)
+                           Return field pFieldName's value as a double.
+                  FbxTime  FieldReadT (const char *pFieldName)
+                           Return field pFieldName's value as a time value.
+                  FbxTime  FieldReadT ()
+                           Return field pFieldName's value as a time value.
+              FbxTimeSpan  FieldReadTS (const char *pFieldName)
+                           Return field pFieldName's value as a timespan value.
+              FbxTimeSpan  FieldReadTS ()
+                           Return field pFieldName's value as a timespan value.
+                     void  FieldReadFn (float *pValue, FbxUInt pn)
+                           Return current field value as a n floats array.
+                     void  FieldRead3F (float *pValue)
+                           Return current field value as a 3 floats array.
+                     void  FieldRead4F (float *pValue)
+                           Return current field value as a 4 floats array.
+                     void  FieldReadFn (const char *pFieldName, float *pValue, const float *pDefault, FbxUInt pn)
+                           Return field pFieldName's value as n floats array.
+                     void  FieldRead3F (const char *pFieldName, float *pValue, const float *pDefault=NULL)
+                           Return field pFieldName's value as 4 floats array.
+                     void  FieldRead4F (const char *pFieldName, float *pValue, const float *pDefault=NULL)
+                           Return field pFieldName's value as 3 floats array.
+                     void  FieldReadDn (double *pValue, FbxUInt pn)
+                           Return current field value as a n doubles array.
+                     void  FieldRead3D (double *pValue)
+                           Return current field value as a 3 doubles array.
+                     void  FieldRead4D (double *pValue)
+                           Return current field value as a 4 doubles array.
+                     void  FieldReadDn (const char *pFieldName, double *pValue, const double *pDefault, FbxUInt pn)
+                           Return field pFieldName's value as n doubles array.
+                     void  FieldRead3D (const char *pFieldName, double *pValue, const double *pDefault=NULL)
+                           Return field pFieldName's value as 4 doubles array.
+                     void  FieldRead4D (const char *pFieldName, double *pValue, const double *pDefault=NULL)
+                           Return field pFieldName's value as 3 doubles array.
+                   void *  FieldReadR (int *pByteSize)
+                           Return current field value as raw data.
+                   void *  FieldReadR (const char *pFieldName, int *pByteSize)
+                           Return field pFieldName's value as raw data.
+   FBX SDK 2009.3 and later
+                  FbxChar  FieldReadByte ()
+                           Return field pFieldName's value as byte.
+                  FbxChar  FieldReadByte (const char *pFieldName, FbxChar pDefault=0)
+                           Return field pFieldName's value as a byte value.
+                 FbxUChar  FieldReadUByte ()
+                           Return field pFieldName's value as unsigned byte.
+                 FbxUChar  FieldReadUByte (const char *pFieldName, FbxUChar pDefault=0)
+                           Return field pFieldName's value as an unsigned byte value.
+                 FbxShort  FieldReadShort ()
+                           Return field pFieldName's value as short.
+                 FbxShort  FieldReadShort (const char *pFieldName, FbxShort pDefault=0)
+                           Return field pFieldName's value as a short value.
+                FbxUShort  FieldReadUShort ()
+                           Return field pFieldName's value as unsigned short.
+                FbxUShort  FieldReadUShort (const char *pFieldName, FbxUShort pDefault=0)
+                           Return field pFieldName's value as an unsigned short value.
+             unsigned int  FieldReadUI ()
+                           Return field pFieldName's value as unsigned integer.
+             unsigned int  FieldReadUI (const char *pFieldName, unsigned int pDefault=0)
+                           Return field pFieldName's value as an unsigned int as a value.
+             FbxULongLong  FieldReadULL ()
+                           Return field pFieldName's value as 64 bit unsigned integer.
+             FbxULongLong  FieldReadULL (const char *pFieldName, FbxULongLong pDefault=0)
+                           Return field pFieldName's value as an 64 bit unsigned int as a value.
+          const FbxChar *  FieldReadArraySBytes (int &pCount)
+                           Read the whole array and return the pointer to it.
+         const FbxShort *  FieldReadArrayShort (int &pCount)
+                           Read the whole array and return the pointer to it.
+        const FbxUShort *  FieldReadArrayUShort (int &pCount)
+                           Read the whole array and return the pointer to it.
+     const unsigned int *  FieldReadArrayUI (int &pCount)
+                           Read the whole array and return the pointer to it.
+     const FbxULongLong *  FieldReadArrayULL (int &pCount)
+                           Read the whole array and return the pointer to it.
+          const FbxChar *  FieldReadArray (int &pCount, const FbxChar *)
+                           Read the whole array and return the pointer to it.
+         const FbxShort *  FieldReadArray (int &pCount, const FbxShort *)
+                           Read the whole array and return the pointer to it.
+        const FbxUShort *  FieldReadArray (int &pCount, const FbxUShort *)
+                           Read the whole array and return the pointer to it.
+     const unsigned int *  FieldReadArray (int &pCount, const unsigned int *)
+                           Read the whole array and return the pointer to it.
+     const FbxULongLong *  FieldReadArray (int &pCount, const FbxULongLong *)
+                           Read the whole array and return the pointer to it.
+                     void  FieldWriteByte (FbxChar pValue)
+                           Write field value as byte.
+                     void  FieldWriteByte (const char *pFieldName, FbxChar pValue)
+                           Write field pFieldName field with a byte value.
+                     void  FieldWriteUByte (FbxUChar pValue)
+                           Write field value as unsigned byte.
+                     void  FieldWriteUByte (const char *pFieldName, FbxUChar pValue)
+                           Write field pFieldName field with an unsigned byte value.
+                     void  FieldWriteShort (FbxShort pValue)
+                           Write field value as short.
+                     void  FieldWriteShort (const char *pFieldName, FbxShort pValue)
+                           Write field pFieldName field with a short value.
+                     void  FieldWriteUShort (FbxUShort pValue)
+                           Write field value as unsigned short.
+                     void  FieldWriteUShort (const char *pFieldName, FbxUShort pValue)
+                           Write field pFieldName field with an unsigned short value.
+                     void  FieldWriteUI (unsigned int pValue)
+                           Write field value as an unsigned integer.
+                     void  FieldWriteUI (const char *pFieldName, unsigned int pValue)
+                           Write field pFieldName field with an unsigned int as a value.
+                     void  FieldWriteULL (FbxULongLong pValue)
+                           Write field value as 64 bit unsigned integer.
+                     void  FieldWriteULL (const char *pFieldName, FbxULongLong pValue)
+                           Write field pFieldName field with an 64 bit unsigned int as a value.
+                     void  FieldWriteArraySBytes (int n, const FbxChar *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayShort (int n, const FbxShort *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayUShort (int n, const FbxUShort *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayUI (int n, const unsigned int *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayULL (int n, const FbxULongLong *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+   Write related functions used to write information of a field or a group of fields.
+
+   Can be used to write the field content data or to navigate from field to field.
+                     void  FieldWriteBegin (const char *pFieldName)
+                           Start to write a field called pFieldName.
+                     void  FieldWriteEnd ()
+                           Stop to write the current field.
+                     void  FieldWriteBlockBegin ()
+                           Start to write a field block.
+                     void  FieldWriteObjectBegin (const char *pObjectType, const char *pName, const char *pSubType=NULL)
+                           Start to write an object reference field.
+                     void  FieldWriteObjectEnd ()
+                           Stop to write an object reference field.
+                     void  FieldWriteBlockBegin (const char *pFileName)
+                           Start to write a field block in file pFileName.
+                     void  FieldWriteBlockEnd ()
+                           Stop to write a block of field.
+                     void  FieldWriteCH (char pValue)
+                           Write field value as a char.
+                     void  FieldWriteCH (const char *pFieldName, char pValue)
+                           Write field pFieldName field with a char as a value.
+                     void  FieldWriteC (const char *pValue)
+                           Write field value as char pointer pValue.
+                     void  FieldWriteC (const char *pFieldName, const char *pValue)
+                           Write field pFieldName with a char pointer as a value.
+                     void  FieldWriteS (const char *pValue)
+                           Write field value as FbxString pValue.
+                     void  FieldWriteS (const FbxString &pValue)
+                           Write field value as FbxString pValue.
+                     void  FieldWriteS (const char *pFieldName, const char *pValue)
+                           Write field pFieldName field with a FbxString as a value.
+                     void  FieldWriteS (const char *pFieldName, const FbxString &pValue)
+                           Write field pFieldName field with a FbxString as a value.
+                     void  FieldWriteB (bool pValue)
+                           Write field value as bool.
+                     void  FieldWriteB (const char *pFieldName, bool pValue)
+                           Write field pFieldName field with a bool value.
+                     void  FieldWriteI (int pValue)
+                           Write field value as integer.
+                     void  FieldWriteI (const char *pFieldName, int pValue)
+                           Write field pFieldName field with an int as a value.
+                     void  FieldWriteLL (FbxLongLong pValue)
+                           Write field value as 64 bit integer.
+                     void  FieldWriteLL (const char *pFieldName, FbxLongLong pValue)
+                           Write field pFieldName field with an 64 bit int as a value.
+                     void  FieldWriteF (float pValue)
+                           Write field value as float.
+                     void  FieldWriteF (const char *pFieldName, float pValue)
+                           Write field pFieldName field with a float as a value.
+                     void  FieldWriteD (double pValue)
+                           Write field value as double.
+                     void  FieldWriteD (const char *pFieldName, double pValue)
+                           Write field pFieldName field with a double as a value.
+                     void  FieldWriteT (FbxTime pTime)
+                           Write field value as time value.
+                     void  FieldWriteT (const char *pFieldName, FbxTime pValue)
+                           Write field pFieldName field with a time as a value.
+                     void  FieldWriteTS (FbxTimeSpan pTimeSpan)
+                           Write field value as timespan value.
+                     void  FieldWriteTS (const char *pFieldName, FbxTimeSpan pValue)
+                           Write field pFieldName field with a timespan as a value.
+                     void  FieldWriteFn (const float *pValue, FbxUInt pn)
+                           Write field value as an array of n floats (nF vector).
+                     void  FieldWriteFn (const char *pFieldName, const float *pValue, FbxUInt pn)
+                           Write field pFieldName field with a array of n floats as a value.
+                     void  FieldWrite3F (const float *pValue)
+                           Write field value as an array of 3 floats (3F vector).
+                     void  FieldWrite3F (const char *pFieldName, const float *pValue)
+                           Write field pFieldName field with a array of 3 floats as a value.
+                     void  FieldWrite4F (const float *pValue)
+                           Write field value as an array of 4 floats (4F vector).
+                     void  FieldWrite4F (const char *pFieldName, const float *pValue)
+                           Write field pFieldName field with a array of 4 floats as a value.
+                     void  FieldWriteDn (const double *pValue, FbxUInt pn)
+                           Write field value as an array of n doubles (nD vector).
+                     void  FieldWriteDn (const char *pFieldName, const double *pValue, FbxUInt pn)
+                           Write field pFieldName field with a array of n doubles as a value.
+                     void  FieldWrite3D (const double *pValue)
+                           Write field value as an array of 3 doubles (3D vector).
+                     void  FieldWrite3D (const char *pFieldName, const double *pValue)
+                           Write field pFieldName field with a array of 3 doubles as a value.
+                     void  FieldWrite4D (const double *pValue)
+                           Write field value as an array of 4 doubles (4D vector).
+                     void  FieldWrite4D (const char *pFieldName, const double *pValue)
+                           Write field pFieldName field with a array of 4 doubles as a value.
+                     void  FieldWriteArrayD (int n, const double *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayF (int n, const float *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayI (int n, const int *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayLL (int n, const FbxLongLong *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayB (int n, const bool *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteArrayBytes (int n, const FbxUChar *pValue, int pSize=1, int pStride=0)
+                           Write array to file.
+                     void  FieldWriteR (const void *pRawData, int pByteSize)
+                           Write field value as a raw data.
+                     void  FieldWriteR (const char *pFieldName, const void *pRawData, int pByteSize)
+                           Write field pFieldName field with raw data as a value.
+
+Static Public Member Functions
+
+           static FbxIO *  Create (FbxStatus &pStatus)
+                           Creation function for this FbxIO class.
+
+Project related functions used to navigate on particular
+
+   sections.
+              static void  ProjectConvertVersionNumber (int pVersion, int &pMajor, int &pMinor, int &pRevision)
+                           Split a version number into major, minor and revision numbers.
+                     bool  ProjectOpenMainSection ()
+                           Open the main section of a project.
+                      int  ProjectGetExtensionSectionCount () const
+                           Get the number of extension sections of a project.
+                     bool  ProjectOpenExtensionSection (int pExtensionSectionIndex)
+                           Open an extension section of a project.
+                     bool  ProjectCreateExtensionSection (bool pOverwriteLastExtensionSection=false)
+                           Create an extension section in a project, not allowed in ASCII and encrypted modes.
+                     void  ProjectCloseSection ()
+                           Close current section.
+                      int  ProjectGetCurrentSection () const
+                           Get current section.
+                      int  ProjectGetCurrentSectionMode () const
+                           Get current section mode.
+                      int  ProjectGetCurrentSectionVersion () const
+                           Get current section version.
+                      int  ProjectGetSectionVersion (int pSection) const
+                           Get the version number of a section.
+                     bool  IsPasswordProtected () const
+                           Check the password protection flag.
+                     bool  CheckPassword (const char *pPassword)
+                           Set password protection flag to false if the argument matches the password stored in the section.
+                     bool  WritePassword (const char *pPassword)
+                           Encrypt and store password in a section.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxIO ( FbxStatus &  pStatus )
+
+   Default constructor.
+   virtual ~FbxIO ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxIO* Create ( FbxStatus &  pStatus ) [inline, static]
+   Search for all occurrences
+
+   Creation function for this FbxIO class.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          a new FbxIO object pointer
+
+   Definition at line 355 of file fbxio.h.
+{ return FbxNew< FbxIO >(pStatus); }
+
+   bool ProjectOpen ( void *                 pAddress,
+                      FbxULong               pMaxLength,
+                      FbxReader *            pReader,
+                      bool                   pCheckCRC = false,
+                      bool                   pOpenMainSection = true,
+                      FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                    )
+   Search for all occurrences
+
+   Open a project already in Memory.
+
+   Parameters:
+
+          pAddress
+          pMaxLength
+          pReader
+          pCheckCRC
+          pOpenMainSection
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectOpen ( const char *           pName,
+                      FbxReader *            pReader,
+                      bool                   pCheckCRC = false,
+                      bool                   pOpenMainSection = true,
+                      FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                    )
+   Search for all occurrences
+
+   Open a project.
+
+   Parameters:
+
+          pName
+          pReader
+          pCheckCRC
+          pOpenMainSection
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectOpen ( FbxStream *            pStream,
+                      void *                 pStreamData,
+                      FbxReader *            pReader,
+                      bool                   pCheckCRC = false,
+                      bool                   pOpenMainSection = true,
+                      FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                    )
+   Search for all occurrences
+
+   Open a project.
+
+   Parameters:
+
+          pStream
+          pStreamData
+          pReader
+          pCheckCRC
+          pOpenMainSection
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectOpenDirect ( const char *           pName,
+                            FbxReader *            pReader,
+                            bool                   pCheckCRC = false,
+                            bool                   pOpenMainSection = true,
+                            FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                          )
+   Search for all occurrences
+
+   Open project file without necessarily an .fbx extension.
+
+   Parameters:
+
+          pName
+          pReader
+          pCheckCRC
+          pOpenMainSection
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreate ( void *                 pAddress,
+                        FbxUInt                pSize,
+                        FbxWriter *            pWriter,
+                        bool                   pBinary,
+                        bool                   pEncrypted,
+                        FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                      )
+   Search for all occurrences
+
+   Create a project in Memory.
+
+   Parameters:
+
+          pAddress
+          pSize
+          pWriter
+          pBinary
+          pEncrypted
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreate ( const char *           pName,
+                        FbxWriter *            pWriter,
+                        bool                   pBinary,
+                        bool                   pEncrypted,
+                        FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                      )
+   Search for all occurrences
+
+   Create a project.
+
+   Parameters:
+
+          pName
+          pWriter
+          pBinary
+          pEncrypted
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreate ( FbxStream *            pStream,
+                        void *                 pStreamData,
+                        FbxWriter *            pWriter,
+                        bool                   pBinary,
+                        bool                   pEncrypted,
+                        FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                      )
+   Search for all occurrences
+
+   Create a project.
+
+   Parameters:
+
+          pStream
+          pStreamData
+          pWriter
+          pBinary
+          pEncrypted
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreateDirect ( const char *           pName,
+                              FbxWriter *            pWriter,
+                              bool                   pBinary,
+                              bool                   pEncrypted,
+                              FbxIOFileHeaderInfo *  pFileHeaderInfo = NULL
+                            )
+   Search for all occurrences
+
+   Create a project without necessary an .fbx extension.
+
+   Parameters:
+
+          pName
+          pWriter
+          pBinary
+          pEncrypted
+          pFileHeaderInfo
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreateEmpty ( const char *  pName,
+                             FbxWriter *   pWriter,
+                             int           pVersion,
+                             bool          pBinary,
+                             bool          pEncrypted
+                           )
+   Search for all occurrences
+
+   Create a project, without writing out the header (yet)
+
+   Parameters:
+
+          pName
+          pWriter
+          pVersion
+          pBinary
+          pEncrypted
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreateEmpty ( FbxStream *  pStream,
+                             void *       pStreamData,
+                             FbxWriter *  pWriter,
+                             int          pVersion,
+                             bool         pBinary,
+                             bool         pEncrypted
+                           )
+   Search for all occurrences
+
+   Create a project, without writing out the header (yet)
+
+   Parameters:
+
+          pStream
+          pStreamData
+          pWriter
+          pVersion
+          pBinary
+          pEncrypted
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectWrite_BeginFileHeader ( )
+   Search for all occurrences
+
+   Write FBX signature at the top of the file, prepare file for writing header information.
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectWrite_BeginExtendedHeader ( )
+   Search for all occurrences
+
+   Open up the 'extended header'.
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectWrite_WriteExtendedHeader ( const FbxIOFileHeaderInfo *  pExtendedHeader )
+   Search for all occurrences
+
+   Write the contents of the extended header.
+
+   Parameters:
+
+          pExtendedHeader
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectWrite_EndExtendedHeader ( )
+   Search for all occurrences
+
+   Close the extended header.
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectWrite_EndFileHeader ( )
+   Search for all occurrences
+
+   Close up the header, prepare file for payload write.
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectClose ( void **   pData = 0,
+                       size_t *  pSize = 0
+                     )
+   Search for all occurrences
+
+   Close the project.
+
+   Parameters:
+
+          pData
+          pSize
+
+   Returns:
+          true on success, false otherwise.
+
+   void ProjectSetXRefManager ( const FbxXRefManager *  )
+   Search for all occurrences
+
+   Provide the XRef Manager to use to create the .fbm folder.
+
+   Remarks:
+          If NULL is used, the old behavior (using the .fbx's folder) is used instead.
+
+   const FbxXRefManager* ProjectGetXRefManager ( ) const
+   Search for all occurrences
+
+   Get the XRef Manager to use.
+
+   Returns:
+          NULL if no XRef manager has been set.
+
+   bool ProjectCreateEmbeddedFolder ( const FbxXRefManager &  pXRefManager,
+                                      FbxString &             pCreatedFolder,
+                                      const char *            pUserDefinedFolder = NULL
+                                    )
+   Search for all occurrences
+
+   Select (and create) a folder to store embedded files (the .fbm file folder).
+
+   Takes into account the settings from the XRef Manager.
+
+   Parameters:
+
+          pXRefManager
+          pCreatedFolder
+          pUserDefinedFolder User defined "working folder"
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          If this already been called successfully, uses the path previously created.
+
+   Client application is responsible for cleaning up this folder.
+
+   This will be automatically called if ProjectSetXRefManager() has been called before the .fbm folder needs to be created.
+   void SetEmbedded ( bool  pValue )
+   Search for all occurrences
+
+   On store event, use this function to tell if we are embedding.
+
+   Parameters:
+
+          pValue
+
+   void SetEmbeddingExtractionFolder ( const char *  pExtractionFolder )
+   Search for all occurrences
+
+   Explicitly set the embedding extraction folder.
+
+   If this is never called, the FBX SDK will determine the best folder to extract embedded files.
+
+   Parameters:
+
+          pExtractionFolder The file path name where the embedded files should be extracted.
+
+   const char* GetEmbeddingExtractionFolder ( )
+   Search for all occurrences
+
+   Retrieve the current folder destination where the embedded files will be extracted.
+
+   This might not be initialized until file I/O is performed.
+   bool IsEmbedded ( ) const
+   Search for all occurrences
+
+   Check if file is embedded or not.
+
+   Returns:
+          true if file is embedded, false otherwise.
+
+   bool IsBinary ( ) const
+   Search for all occurrences
+
+   Check if file is binary or ASCII.
+
+   Returns:
+          true if file is binary, false otherwise.
+
+   bool IsEncrypted ( ) const
+   Search for all occurrences
+
+   Return if binary file is encrypted.
+
+   Returns:
+          true if file is encrypted, false otherwise.
+
+   bool CheckCRC ( )
+   Search for all occurrences
+
+   Check CRC code.
+
+   File must be open, binary and encrypted.
+
+   Returns:
+          true if CRC code is valid or file is not open, binary and encrypted.
+
+   FbxUInt32 GetFileVersionNumber ( ) const
+   Search for all occurrences
+
+   Return the file version number.
+
+   Returns:
+          the file version number
+
+   void CacheSize ( FbxUInt32  pCacheSize )
+   Search for all occurrences
+
+   Set the cache size for accelerated IO.
+
+   Parameters:
+
+          pCacheSize cache size to set (Kilo Byte)
+
+   FbxUInt32 CacheSize ( ) const
+   Search for all occurrences
+
+   Return the current cache size.
+
+   Returns:
+          the current cache size
+
+   bool Fbx7Support ( ) const
+   Search for all occurrences
+
+   Returns:
+          Current state of the flag.
+
+   void Fbx7Support ( bool  pSupport )
+   Search for all occurrences
+
+   Set the flag state to tell the parser to handle FBX7 files.
+
+   Parameters:
+
+          pSupport New flag state.
+
+   bool CompressArrays ( ) const
+   Search for all occurrences
+
+   Returns:
+          Current State of the flag.
+
+   void CompressArrays ( bool  pCompress )
+   Search for all occurrences
+
+   Set the flag state.
+
+   Parameters:
+
+          pCompress New flag state.
+
+   int CompressMinimumSize ( ) const
+   Search for all occurrences
+
+   Returns:
+          Current compression minimum size.
+
+   void CompressMinimumSize ( int  pSize )
+   Search for all occurrences
+
+   Set the compression minimum size.
+
+   Parameters:
+
+          pSize Threshold at which compression may embark.
+
+   int CompressLevel ( ) const
+   Search for all occurrences
+
+   Returns:
+          Current compression level.
+
+   void CompressLevel ( int  pLevel )
+   Search for all occurrences
+
+   Set the compression level.
+
+   Parameters:
+
+          pLevel Value of the desired compression.
+
+   Remarks:
+          The allowed range for pLevel is [0-9] where 0 equals no compression and 9 is as-much-as-we-can.
+
+   bool ProjectOpenMainSection ( )
+   Search for all occurrences
+
+   Open the main section of a project.
+
+   Returns:
+          true on success, false otherwise.
+
+   int ProjectGetExtensionSectionCount ( ) const
+   Search for all occurrences
+
+   Get the number of extension sections of a project.
+
+   Returns:
+          the number of extension sections of a project.
+
+   bool ProjectOpenExtensionSection ( int  pExtensionSectionIndex )
+   Search for all occurrences
+
+   Open an extension section of a project.
+
+   Parameters:
+
+          pExtensionSectionIndex
+
+   Returns:
+          true on success, false otherwise.
+
+   bool ProjectCreateExtensionSection ( bool  pOverwriteLastExtensionSection = false )
+   Search for all occurrences
+
+   Create an extension section in a project, not allowed in ASCII and encrypted modes.
+
+   Parameters:
+
+          pOverwriteLastExtensionSection
+
+   Returns:
+          true on success, false otherwise.
+
+   void ProjectCloseSection ( )
+   Search for all occurrences
+
+   Close current section.
+   int ProjectGetCurrentSection ( ) const
+   Search for all occurrences
+
+   Get current section.
+
+   Returns:
+          the current section.
+
+   int ProjectGetCurrentSectionMode ( ) const
+   Search for all occurrences
+
+   Get current section mode.
+
+   Returns:
+          the current section mode.
+
+   int ProjectGetCurrentSectionVersion ( ) const
+   Search for all occurrences
+
+   Get current section version.
+
+   Returns:
+          the current section version.
+
+   int ProjectGetSectionVersion ( int  pSection ) const
+   Search for all occurrences
+
+   Get the version number of a section.
+
+   Parameters:
+
+          pSection
+
+   Returns:
+          the version number of a section.
+
+   Remarks:
+          For main section it can be either 1000, 2000, 2001, 3000, 3001, 4000, 4001 or 4050. For the extension section it can be either 4000, 4001 or 4050. Returns 0 if section number does not exist.
+
+   static void ProjectConvertVersionNumber ( int    pVersion,
+                                             int &  pMajor,
+                                             int &  pMinor,
+                                             int &  pRevision
+                                           )        [static]
+   Search for all occurrences
+
+   Split a version number into major, minor and revision numbers.
+
+   Parameters:
+
+          pVersion  Version number to split.
+          pMajor    Integer to receive major version number.
+          pMinor    Integer to receive minor version number.
+          pRevision Integer to receive revision version number.
+
+   bool IsPasswordProtected ( ) const
+   Search for all occurrences
+
+   Check the password protection flag.
+
+   Returns:
+          true if the current section has a password, false otherwise.
+
+   bool CheckPassword ( const char *  pPassword )
+   Search for all occurrences
+
+   Set password protection flag to false if the argument matches the password stored in the section.
+
+   Parameters:
+
+          pPassword
+
+   Returns:
+          true if the argument matches the password stored in the section, false otherwise.
+
+   Remarks:
+          This function only works in read mode.
+
+   bool WritePassword ( const char *  pPassword )
+   Search for all occurrences
+
+   Encrypt and store password in a section.
+
+   Parameters:
+
+          pPassword
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          This function only works in write mode and out of any enclosing block.
+          This function must not be called more than once per section.
+
+   const char* GetFilename ( ) const
+   Search for all occurrences
+
+   Get project file name.
+
+   Returns:
+          project file name.
+
+   FbxString GetDataDirectory ( bool  pAutoCreate = true )
+   Search for all occurrences
+
+   Get project data directory name.
+
+   Parameters:
+
+          pAutoCreate
+
+   Returns:
+          project data directory name.
+
+   FbxString GetMediaDirectory ( bool          pCreate = false,
+                                 const char *  pUserDefinedFolder = NULL
+                               )
+   Search for all occurrences
+
+   Get the current embedded folder used by this object.
+
+   Parameters:
+
+          pCreate            Whether create the media or not if no such folder is found
+          pUserDefinedFolder User define working folder
+
+   Returns:
+          the current embedded folder used by this object.
+
+   Remarks:
+          If ProjectCreateEmbeddedFolder has never been called this will return an empty string, unless we're explicitly asked to create it.
+
+   FbxString GetContainerTemplateDirectory ( const char *  pTemplateName,
+                                             bool          pCreate
+                                           )
+   Search for all occurrences
+
+   Get the full path of the directory to extract the template file.
+
+   Parameters:
+
+          pTemplateName
+          pCreate
+
+   Returns:
+          the full path of the directory to extract the template file.
+
+   char* GetRelativePath ( const char *  pPath )
+   Search for all occurrences
+
+   Get the path relative to project directory.
+
+   Parameters:
+
+          pPath
+
+   Returns:
+          the path relative to project directory.
+
+   char* GetRelativeFilePath ( const char *  pFilePath )
+   Search for all occurrences
+
+   Get the file path relative to project directory.
+
+   Parameters:
+
+          pFilePath
+
+   Returns:
+          the file path relative to project directory.
+
+   char* GetFullPath ( const char *  pRelativePath )
+   Search for all occurrences
+
+   Get the full path of path relative to project directory.
+
+   Parameters:
+
+          pRelativePath
+
+   Returns:
+          the full path of path relative to project directory.
+
+   char* GetFullFilePath ( const char *  pRelativeFilePath )
+   Search for all occurrences
+
+   Get the full file path of path relative to project directory.
+
+   Parameters:
+
+          pRelativeFilePath
+
+   Returns:
+          the full file path of path relative to project directory.
+
+   char* GetTmpProjectName ( const char *  pName ) const
+   Search for all occurrences
+
+   Get the temporary project name.
+
+   Parameters:
+
+          pName
+
+   Returns:
+          the temporary project name.
+
+   bool SwapFromTmpProject ( const char *  pName,
+                             char *        pError = NULL,
+                             int           pErrorSize = 0
+                           )
+   Search for all occurrences
+
+   Swap from temporary project.
+
+   Parameters:
+
+          pName
+          pError
+          pErrorSize
+
+   Returns:
+          true on success, false otherwise.
+
+   void FieldReadResetPosition ( )
+   Search for all occurrences
+
+   Reset the field read position.
+   int FieldGetCount ( ) const
+   Search for all occurrences
+
+   Get the number of fields.
+
+   Returns:
+          the number of fields.
+
+   const char* FieldGetName ( int  pFieldIndex ) const
+   Search for all occurrences
+
+   Get the name of field indexed pFieldIndex.
+
+   Parameters:
+
+          pFieldIndex
+
+   Returns:
+          the name of field indexed pFieldIndex.
+
+   int FieldGetInstanceCount ( const char *  pFieldName ) const
+   Search for all occurrences
+
+   Get number of instance field pFieldName has.
+
+   Parameters:
+
+          pFieldName
+
+   Returns:
+          the number of instance field pFieldName has.
+
+   bool FieldReadBegin ( int  pFieldIndex,
+                         int  pInstance
+                       )
+   Search for all occurrences
+
+   Start to read field instance referred by field indexed pFieldIndex, instance indexed pInstance.
+
+   Parameters:
+
+          pFieldIndex
+          pInstance
+
+   Returns:
+          true on success, false otherwise.
+
+   bool FieldReadBegin ( const char *  pFieldName )
+   Search for all occurrences
+
+   Start to read field pFieldName.
+
+   Parameters:
+
+          pFieldName
+
+   Returns:
+          true on success, false otherwise.
+
+   bool FieldReadBegin ( const char *  pFieldName,
+                         int           pInstance
+                       )
+   Search for all occurrences
+
+   Start to read field instance referred field pFieldName, instance indexed pInstance.
+
+   Parameters:
+
+          pFieldName
+          pInstance
+
+   Returns:
+          true on success, false otherwise.
+
+   void FieldReadEnd ( )
+   Search for all occurrences
+
+   Stop to read the current field.
+   bool FieldReadIsBlock ( )
+   Search for all occurrences
+
+   Return if current field is a block.
+   bool FieldReadBlockBegin ( )
+   Search for all occurrences
+
+   Start to read a field block.
+   void FieldReadBlockEnd ( )
+   Search for all occurrences
+
+   Stop to read a field block.
+   int FieldReadGetCount ( ) const
+   Search for all occurrences
+
+   Return the number of read field.
+   int FieldReadGetRemain ( ) const
+   Search for all occurrences
+
+   Return the number of field remaining to be read.
+   char FieldReadGetType ( ) const
+   Search for all occurrences
+
+   Return current field value type.
+   char FieldReadCH ( )
+   Search for all occurrences
+
+   Return current field value as a char.
+   char FieldReadCH ( const char *  pFieldName,
+                      char          pDefault = 0
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as a char.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   const char* FieldReadC ( )
+   Search for all occurrences
+
+   Return current field value as a char pointer.
+   const char* FieldReadC ( const char *  pFieldName,
+                            const char *  pDefault = ""
+                          )
+   Search for all occurrences
+
+   Return field pFieldName's value as a char pointer.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   const char* FieldReadS ( )
+   Search for all occurrences
+
+   Return current field value as a string (a char pointer).
+   const char* FieldReadS ( const char *  pFieldName,
+                            const char *  pDefault = ""
+                          )
+   Search for all occurrences
+
+   Return field pFieldName's value as a char pointer.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   bool FieldReadB ( )
+   Search for all occurrences
+
+   Return current field value as an bool.
+   bool FieldReadB ( const char *  pFieldName,
+                     bool          pDefault = false
+                   )
+   Search for all occurrences
+
+   Return field pFieldName's value as an integer.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   int FieldReadI ( )
+   Search for all occurrences
+
+   Return current field value as an integer.
+   int FieldReadI ( const char *  pFieldName,
+                    int           pDefault = 0
+                  )
+   Search for all occurrences
+
+   Return field pFieldName's value as an integer.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxLongLong FieldReadLL ( )
+   Search for all occurrences
+
+   Return current field value as an integer.
+   FbxLongLong FieldReadLL ( const char *  pFieldName,
+                             FbxLongLong   pDefault = 0
+                           )
+   Search for all occurrences
+
+   Return field pFieldName's value as an integer.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   float FieldReadF ( )
+   Search for all occurrences
+
+   Return current field value as a float.
+   float FieldReadF ( const char *  pFieldName,
+                      float         pDefault = 0
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as a float.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   double FieldReadD ( )
+   Search for all occurrences
+
+   Return current field value as a double.
+   double FieldReadD ( const char *  pFieldName,
+                       double        pDefault = 0
+                     )
+   Search for all occurrences
+
+   Return field pFieldName's value as a double.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxTime FieldReadT ( const char *  pFieldName )
+   Search for all occurrences
+
+   Return field pFieldName's value as a time value.
+
+   Parameters:
+
+          pFieldName
+
+   FbxTime FieldReadT ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as a time value.
+   FbxTimeSpan FieldReadTS ( const char *  pFieldName )
+   Search for all occurrences
+
+   Return field pFieldName's value as a timespan value.
+
+   Parameters:
+
+          pFieldName
+
+   FbxTimeSpan FieldReadTS ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as a timespan value.
+   void FieldReadFn ( float *  pValue,
+                      FbxUInt  pn
+                    )
+   Search for all occurrences
+
+   Return current field value as a n floats array.
+
+   Parameters:
+
+          pValue
+          pn
+
+   void FieldRead3F ( float *  pValue )
+   Search for all occurrences
+
+   Return current field value as a 3 floats array.
+
+   Parameters:
+
+          pValue
+
+   void FieldRead4F ( float *  pValue )
+   Search for all occurrences
+
+   Return current field value as a 4 floats array.
+
+   Parameters:
+
+          pValue
+
+   void FieldReadFn ( const char *   pFieldName,
+                      float *        pValue,
+                      const float *  pDefault,
+                      FbxUInt        pn
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as n floats array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+          pn
+
+   void FieldRead3F ( const char *   pFieldName,
+                      float *        pValue,
+                      const float *  pDefault = NULL
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as 4 floats array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+
+   void FieldRead4F ( const char *   pFieldName,
+                      float *        pValue,
+                      const float *  pDefault = NULL
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as 3 floats array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+
+   void FieldReadDn ( double *  pValue,
+                      FbxUInt   pn
+                    )
+   Search for all occurrences
+
+   Return current field value as a n doubles array.
+
+   Parameters:
+
+          pValue
+          pn
+
+   void FieldRead3D ( double *  pValue )
+   Search for all occurrences
+
+   Return current field value as a 3 doubles array.
+
+   Parameters:
+
+          pValue
+
+   void FieldRead4D ( double *  pValue )
+   Search for all occurrences
+
+   Return current field value as a 4 doubles array.
+
+   Parameters:
+
+          pValue
+
+   void FieldReadDn ( const char *    pFieldName,
+                      double *        pValue,
+                      const double *  pDefault,
+                      FbxUInt         pn
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as n doubles array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+          pn
+
+   void FieldRead3D ( const char *    pFieldName,
+                      double *        pValue,
+                      const double *  pDefault = NULL
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as 4 doubles array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+
+   void FieldRead4D ( const char *    pFieldName,
+                      double *        pValue,
+                      const double *  pDefault = NULL
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as 3 doubles array.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pDefault
+
+   void* FieldReadR ( int *  pByteSize )
+   Search for all occurrences
+
+   Return current field value as raw data.
+
+   Parameters:
+
+          pByteSize
+
+   void* FieldReadR ( const char *  pFieldName,
+                      int *         pByteSize
+                    )
+   Search for all occurrences
+
+   Return field pFieldName's value as raw data.
+
+   Parameters:
+
+          pFieldName
+          pByteSize
+
+   FbxChar FieldReadByte ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as byte.
+   FbxChar FieldReadByte ( const char *  pFieldName,
+                           FbxChar       pDefault = 0
+                         )
+   Search for all occurrences
+
+   Return field pFieldName's value as a byte value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxUChar FieldReadUByte ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as unsigned byte.
+   FbxUChar FieldReadUByte ( const char *  pFieldName,
+                             FbxUChar      pDefault = 0
+                           )
+   Search for all occurrences
+
+   Return field pFieldName's value as an unsigned byte value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxShort FieldReadShort ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as short.
+   FbxShort FieldReadShort ( const char *  pFieldName,
+                             FbxShort      pDefault = 0
+                           )
+   Search for all occurrences
+
+   Return field pFieldName's value as a short value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxUShort FieldReadUShort ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as unsigned short.
+   FbxUShort FieldReadUShort ( const char *  pFieldName,
+                               FbxUShort     pDefault = 0
+                             )
+   Search for all occurrences
+
+   Return field pFieldName's value as an unsigned short value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   unsigned int FieldReadUI ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as unsigned integer.
+   unsigned int FieldReadUI ( const char *  pFieldName,
+                              unsigned int  pDefault = 0
+                            )
+   Search for all occurrences
+
+   Return field pFieldName's value as an unsigned int as a value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   FbxULongLong FieldReadULL ( )
+   Search for all occurrences
+
+   Return field pFieldName's value as 64 bit unsigned integer.
+   FbxULongLong FieldReadULL ( const char *  pFieldName,
+                               FbxULongLong  pDefault = 0
+                             )
+   Search for all occurrences
+
+   Return field pFieldName's value as an 64 bit unsigned int as a value.
+
+   Parameters:
+
+          pFieldName
+          pDefault
+
+   const FbxChar* FieldReadArraySBytes ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxShort* FieldReadArrayShort ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxUShort* FieldReadArrayUShort ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const unsigned int* FieldReadArrayUI ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxULongLong* FieldReadArrayULL ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxChar* FieldReadArray ( int &            pCount,
+                                   const FbxChar *
+                                 )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxShort* FieldReadArray ( int &             pCount,
+                                    const FbxShort *
+                                  )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array. Read the whole array and return the pointer to it.
+          pCount Nb of items in the array.
+
+   const FbxUShort* FieldReadArray ( int &              pCount,
+                                     const FbxUShort *
+                                   )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const unsigned int* FieldReadArray ( int &                 pCount,
+                                        const unsigned int *
+                                      )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxULongLong* FieldReadArray ( int &                 pCount,
+                                        const FbxULongLong *
+                                      )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   virtual bool FieldReadEmbeddedFile ( FbxString &   pFileName,
+                                        FbxString &   pRelativeFileName,
+                                        const char *  pEmbeddedMediaDirectory = "",
+                                        bool *        pIsFileCreated = NULL
+                                      )               [virtual]
+   Search for all occurrences
+
+   Read field and copy it into a file.
+
+   Parameters:
+
+          pFileName               Embedded file full path+name.
+          pRelativeFileName       Relative path+name of the embedded file.
+          pEmbeddedMediaDirectory Directory of the embedded media.
+          pIsFileCreated          Status of the extraction of the embedded data. Set to true if the embedded media is correctly extracted in the media directory.
+
+   Remarks:
+          Only works when file is binary. This function is not related to flag mEmbedded.
+
+   Returns:
+          false if operation failed.
+
+   const double* FieldReadArrayD ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const float* FieldReadArrayF ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const int* FieldReadArrayI ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxLongLong* FieldReadArrayLL ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const bool* FieldReadArrayB ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxUChar* FieldReadArrayBytes ( int &  pCount )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const int* FieldReadArray ( int &        pCount,
+                               const int *
+                             )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const float* FieldReadArray ( int &          pCount,
+                                 const float *
+                               )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const double* FieldReadArray ( int &           pCount,
+                                  const double *
+                                )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxLongLong* FieldReadArray ( int &                pCount,
+                                       const FbxLongLong *
+                                     )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const bool* FieldReadArray ( int &         pCount,
+                                const bool *
+                              )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   const FbxUChar* FieldReadArray ( int &             pCount,
+                                    const FbxUChar *
+                                  )
+   Search for all occurrences
+
+   Read the whole array and return the pointer to it.
+
+   Parameters:
+
+          pCount Nb of items in the array.
+
+   void FieldWriteBegin ( const char *  pFieldName )
+   Search for all occurrences
+
+   Start to write a field called pFieldName.
+
+   Parameters:
+
+          pFieldName
+
+   void FieldWriteEnd ( )
+   Search for all occurrences
+
+   Stop to write the current field.
+   void FieldWriteBlockBegin ( )
+   Search for all occurrences
+
+   Start to write a field block.
+   void FieldWriteObjectBegin ( const char *  pObjectType,
+                                const char *  pName,
+                                const char *  pSubType = NULL
+                              )
+   Search for all occurrences
+
+   Start to write an object reference field.
+
+   Parameters:
+
+          pObjectType
+          pName
+          pSubType
+
+   void FieldWriteObjectEnd ( )
+   Search for all occurrences
+
+   Stop to write an object reference field.
+   void FieldWriteBlockBegin ( const char *  pFileName )
+   Search for all occurrences
+
+   Start to write a field block in file pFileName.
+
+   Parameters:
+
+          pFileName
+
+   Remarks:
+          This function is disabled but kept accessible for the FBX SDK.
+
+   void FieldWriteBlockEnd ( )
+   Search for all occurrences
+
+   Stop to write a block of field.
+   void FieldWriteCH ( char  pValue )
+   Search for all occurrences
+
+   Write field value as a char.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteCH ( const char *  pFieldName,
+                       char          pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a char as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteC ( const char *  pValue )
+   Search for all occurrences
+
+   Write field value as char pointer pValue.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteC ( const char *  pFieldName,
+                      const char *  pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName with a char pointer as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteS ( const char *  pValue )
+   Search for all occurrences
+
+   Write field value as FbxString pValue.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteS ( const FbxString &  pValue )
+   Search for all occurrences
+
+   Write field value as FbxString pValue.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteS ( const char *  pFieldName,
+                      const char *  pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a FbxString as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteS ( const char *       pFieldName,
+                      const FbxString &  pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a FbxString as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteB ( bool  pValue )
+   Search for all occurrences
+
+   Write field value as bool.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteB ( const char *  pFieldName,
+                      bool          pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a bool value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteI ( int  pValue )
+   Search for all occurrences
+
+   Write field value as integer.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteI ( const char *  pFieldName,
+                      int           pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with an int as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteLL ( FbxLongLong  pValue )
+   Search for all occurrences
+
+   Write field value as 64 bit integer.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteLL ( const char *  pFieldName,
+                       FbxLongLong   pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with an 64 bit int as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteF ( float  pValue )
+   Search for all occurrences
+
+   Write field value as float.
+
+   Parameters:
+
+          pValue
+
+   Remarks:
+          Only compatible with 1) MotionBuilder 4.0 and later 2) FBX SDK 3.6.1 and later.
+
+   void FieldWriteF ( const char *  pFieldName,
+                      float         pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a float as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   Remarks:
+          Only compatible with 1) MotionBuilder 4.0 and later 2) FBX SDK 3.6.1 and later.
+
+   void FieldWriteD ( double  pValue )
+   Search for all occurrences
+
+   Write field value as double.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteD ( const char *  pFieldName,
+                      double        pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a double as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteT ( FbxTime  pTime )
+   Search for all occurrences
+
+   Write field value as time value.
+
+   Parameters:
+
+          pTime
+
+   void FieldWriteT ( const char *  pFieldName,
+                      FbxTime       pValue
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with a time as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteTS ( FbxTimeSpan  pTimeSpan )
+   Search for all occurrences
+
+   Write field value as timespan value.
+
+   Parameters:
+
+          pTimeSpan
+
+   void FieldWriteTS ( const char *  pFieldName,
+                       FbxTimeSpan   pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a timespan as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteFn ( const float *  pValue,
+                       FbxUInt        pn
+                     )
+   Search for all occurrences
+
+   Write field value as an array of n floats (nF vector).
+
+   Parameters:
+
+          pValue
+          pn
+
+   void FieldWriteFn ( const char *   pFieldName,
+                       const float *  pValue,
+                       FbxUInt        pn
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of n floats as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pn
+
+   void FieldWrite3F ( const float *  pValue )
+   Search for all occurrences
+
+   Write field value as an array of 3 floats (3F vector).
+
+   Parameters:
+
+          pValue
+
+   void FieldWrite3F ( const char *   pFieldName,
+                       const float *  pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of 3 floats as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWrite4F ( const float *  pValue )
+   Search for all occurrences
+
+   Write field value as an array of 4 floats (4F vector).
+
+   Parameters:
+
+          pValue
+
+   void FieldWrite4F ( const char *   pFieldName,
+                       const float *  pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of 4 floats as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteDn ( const double *  pValue,
+                       FbxUInt         pn
+                     )
+   Search for all occurrences
+
+   Write field value as an array of n doubles (nD vector).
+
+   Parameters:
+
+          pValue
+          pn
+
+   void FieldWriteDn ( const char *    pFieldName,
+                       const double *  pValue,
+                       FbxUInt         pn
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of n doubles as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+          pn
+
+   void FieldWrite3D ( const double *  pValue )
+   Search for all occurrences
+
+   Write field value as an array of 3 doubles (3D vector).
+
+   Parameters:
+
+          pValue
+
+   void FieldWrite3D ( const char *    pFieldName,
+                       const double *  pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of 3 doubles as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWrite4D ( const double *  pValue )
+   Search for all occurrences
+
+   Write field value as an array of 4 doubles (4D vector).
+
+   Parameters:
+
+          pValue
+
+   void FieldWrite4D ( const char *    pFieldName,
+                       const double *  pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with a array of 4 doubles as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteArrayD ( int             n,
+                           const double *  pValue,
+                           int             pSize = 1,
+                           int             pStride = 0
+                         )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayF ( int            n,
+                           const float *  pValue,
+                           int            pSize = 1,
+                           int            pStride = 0
+                         )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayI ( int          n,
+                           const int *  pValue,
+                           int          pSize = 1,
+                           int          pStride = 0
+                         )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayLL ( int                  n,
+                            const FbxLongLong *  pValue,
+                            int                  pSize = 1,
+                            int                  pStride = 0
+                          )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayB ( int           n,
+                           const bool *  pValue,
+                           int           pSize = 1,
+                           int           pStride = 0
+                         )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayBytes ( int               n,
+                               const FbxUChar *  pValue,
+                               int               pSize = 1,
+                               int               pStride = 0
+                             )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteR ( const void *  pRawData,
+                      int           pByteSize
+                    )
+   Search for all occurrences
+
+   Write field value as a raw data.
+
+   Parameters:
+
+          pRawData
+          pByteSize
+
+   void FieldWriteR ( const char *  pFieldName,
+                      const void *  pRawData,
+                      int           pByteSize
+                    )
+   Search for all occurrences
+
+   Write field pFieldName field with raw data as a value.
+
+   Parameters:
+
+          pFieldName
+          pRawData
+          pByteSize
+
+   void FieldWriteByte ( FbxChar  pValue )
+   Search for all occurrences
+
+   Write field value as byte.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteByte ( const char *  pFieldName,
+                         FbxChar       pValue
+                       )
+   Search for all occurrences
+
+   Write field pFieldName field with a byte value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteUByte ( FbxUChar  pValue )
+   Search for all occurrences
+
+   Write field value as unsigned byte.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteUByte ( const char *  pFieldName,
+                          FbxUChar      pValue
+                        )
+   Search for all occurrences
+
+   Write field pFieldName field with an unsigned byte value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteShort ( FbxShort  pValue )
+   Search for all occurrences
+
+   Write field value as short.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteShort ( const char *  pFieldName,
+                          FbxShort      pValue
+                        )
+   Search for all occurrences
+
+   Write field pFieldName field with a short value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteUShort ( FbxUShort  pValue )
+   Search for all occurrences
+
+   Write field value as unsigned short.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteUShort ( const char *  pFieldName,
+                           FbxUShort     pValue
+                         )
+   Search for all occurrences
+
+   Write field pFieldName field with an unsigned short value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteUI ( unsigned int  pValue )
+   Search for all occurrences
+
+   Write field value as an unsigned integer.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteUI ( const char *  pFieldName,
+                       unsigned int  pValue
+                     )
+   Search for all occurrences
+
+   Write field pFieldName field with an unsigned int as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   void FieldWriteULL ( FbxULongLong  pValue )
+   Search for all occurrences
+
+   Write field value as 64 bit unsigned integer.
+
+   Parameters:
+
+          pValue
+
+   void FieldWriteULL ( const char *  pFieldName,
+                        FbxULongLong  pValue
+                      )
+   Search for all occurrences
+
+   Write field pFieldName field with an 64 bit unsigned int as a value.
+
+   Parameters:
+
+          pFieldName
+          pValue
+
+   Returns:
+          void
+
+   void FieldWriteArraySBytes ( int              n,
+                                const FbxChar *  pValue,
+                                int              pSize = 1,
+                                int              pStride = 0
+                              )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayShort ( int               n,
+                               const FbxShort *  pValue,
+                               int               pSize = 1,
+                               int               pStride = 0
+                             )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayUShort ( int                n,
+                                const FbxUShort *  pValue,
+                                int                pSize = 1,
+                                int                pStride = 0
+                              )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayUI ( int                   n,
+                            const unsigned int *  pValue,
+                            int                   pSize = 1,
+                            int                   pStride = 0
+                          )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   void FieldWriteArrayULL ( int                   n,
+                             const FbxULongLong *  pValue,
+                             int                   pSize = 1,
+                             int                   pStride = 0
+                           )
+   Search for all occurrences
+
+   Write array to file.
+
+   Parameters:
+
+          n       Nb of items in the array.
+          pValue  Pointer to the data.
+          pSize   Size of each item in the array.
+          pStride Array stride.
+
+   int GetFieldRMaxChunkSize ( ) const
+   Search for all occurrences
+
+   ASCII files may limit how big you can write your raw data, forcing you to break it down into chunks.
+
+   Returns:
+          int
+
+   void FieldWriteObjectReference ( const char *  pName )
+   Search for all occurrences
+
+   Write object reference pName in the current field.
+
+   Parameters:
+
+          pName
+
+   void FieldWriteObjectReference ( const char *  pFieldName,
+                                    const char *  pName
+                                  )
+   Search for all occurrences
+
+   Write object reference pName in field pFieldName.
+
+   Parameters:
+
+          pFieldName
+          pName
+
+   bool FieldWriteEmbeddedFile ( FbxString  pFileName,
+                                 FbxString  pRelativeFileName
+                               )
+   Search for all occurrences
+
+   Write field with file content as a value.
+
+   Parameters:
+
+          pFileName
+          pRelativeFileName
+
+   Remarks:
+          Only works when file is binary. This function is not related to flag mEmbedded.
+
+   Returns:
+          false if operation failed.
+
+   void WriteComments ( const char *  pFieldName )
+   Search for all occurrences
+
+   Write comments, only effective in ASCII mode.
+
+   Parameters:
+
+          pFieldName
+
+   bool GetHaveLoadedEmbededFile ( ) const
+   Search for all occurrences
+
+   Get if the embedded file is currently loaded.
+
+   Returns:
+          true if loaded, false otherwise
+
+   Remarks:
+          An embedded file is a file like a JPEG image used for texture or an AVI file for video. When files are embedded, the size of the FBX file can be very large since other files are embedded in it. FBX Version 6 and lower cannot embed files when saved in ASCII. FBX Version 7 and over can embed files even when saved in ASCII mode.
+
+   void GetMemoryFileInfo ( void **   pMemPtr,
+                            size_t &  pSize
+                          )           const
+   Search for all occurrences
+
+   Get the maximum byte count written.
+
+   Parameters:
+
+                pMemPtr The address of the memory file
+          [out] pSize   Stores the maximum byte count written
+
+   bool IsBeforeVersion6 ( ) const
+   Search for all occurrences
+
+   Get a internal flag to manage pre FBX version 6 data format Used for backwards compatibility.
+   void SetIsBeforeVersion6 ( bool  pIsBeforeVersion6 )
+   Search for all occurrences
+
+   Set a internal flag to manage pre FBX version 6 data format Used for backwards compatibility.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxio.h
+
+   Please send us your comment about this page

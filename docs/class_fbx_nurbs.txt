@@ -1,0 +1,502 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNurbs Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxNurbs Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxnurbs.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A NURBS surface is a type of parametric geometry.
+
+   A NURBS surface is defined by the order, form, knot vector and control points in the U and V coordinates.
+
+   For more information on the meaning of form, knot vectors and control points, see the FbxNurbsCurve documentation. The same rules apply for the NURBS curves and NURBS surfaces, but NURBS surfaces have two dimensions (U and V).
+
+   Examples:
+          ExportScene02/main.cxx, and ImportScene/DisplayNurb.cxx.
+
+   Definition at line 31 of file fbxnurbs.h.
+   Inheritance diagram for FbxNurbs:
+   [USEMAP:class_fbx_nurbs.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the FbxNodeAttribute::EType::eNurbs node attribute type.
+                              void  Reset ()
+                                    Resets the NURBS surface its default values.
+
+NURBS surface properties
+
+                             enum   EType { ePeriodic, eClosed, eOpen }
+                                    NURBS types. More...
+                              void  SetSurfaceMode (FbxGeometry::ESurfaceMode pMode)
+                                    Sets the surface mode.
+                      ESurfaceMode  GetSurfaceMode () const
+                                    Returns the surface mode.
+                              void  InitControlPoints (int pUCount, EType pUType, int pVCount, EType pVType)
+                                    Allocates memory space for an array of control points as well as knot and multiplicity vectors.
+                               int  GetUCount () const
+                                    Returns the number of U-dimension control points.
+                               int  GetVCount () const
+                                    Returns the number of V-dimension control points.
+                             EType  GetNurbsUType () const
+                                    Returns the U-dimension NURBS type.
+                             EType  GetNurbsVType () const
+                                    Returns the V-dimension NURBS type.
+                               int  GetUKnotCount () const
+                                    Returns the number of elements in the U-dimension knot vector.
+                          double *  GetUKnotVector () const
+                                    Returns the U-dimension knot vector.
+                               int  GetVKnotCount () const
+                                    Returns the number of elements in the V-dimension knot vector.
+                          double *  GetVKnotVector () const
+                                    Returns the V-dimension knot vector.
+                             int *  GetUMultiplicityVector () const
+                                    Returns multiplicity of U-dimension control points.
+                             int *  GetVMultiplicityVector () const
+                                    Returns multiplicity of V-dimension control points.
+                              void  SetOrder (FbxUInt pUOrder, FbxUInt pVOrder)
+                                    Sets the order of the NURBS surface.
+                               int  GetUOrder () const
+                                    Returns the NURBS order in U dimension.
+                               int  GetVOrder () const
+                                    Returns the NURBS order in V dimension.
+                              void  SetStep (int pUStep, int pVStep)
+                                    Sets the NURBS step.
+                               int  GetUStep () const
+                                    Returns the number of divisions between adjacent control points in U dimension.
+                               int  GetVStep () const
+                                    Returns the number of divisions between adjacent control points in V dimension.
+                               int  GetUSpanCount () const
+                                    Calculates the number of surface spans in the U dimension.
+                               int  GetVSpanCount () const
+                                    Calculates the number of surface spans in the V dimension.
+
+NURBS export flags
+
+                              void  SetApplyFlipUV (bool pFlag)
+                                    Sets the flag that induces UV flipping at export.
+                              bool  GetApplyFlipUV () const
+                                    Returns the flag that induces UV flipping at export.
+                              void  SetApplyFlipLinks (bool pFlag)
+                                    Sets the flag that induces link flipping at export.
+                              bool  GetApplyFlipLinks () const
+                                    Returns the flag that induces link flipping at export.
+                              bool  GetApplyFlip () const
+                                    Returns flip flags state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   NURBS types.
+
+   Enumerator:
+
+          ePeriodic
+
+   Periodic.
+   Search for all occurrences
+          eClosed
+
+   Closed.
+   Search for all occurrences
+          eOpen
+
+   Open.
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 59 of file fbxnurbs.h.
+    {
+        ePeriodic,
+        eClosed,
+        eOpen
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the FbxNodeAttribute::EType::eNurbs node attribute type.
+
+   Reimplemented from FbxGeometry.
+   void Reset ( )
+   Search for all occurrences
+
+   Resets the NURBS surface its default values.
+   void SetSurfaceMode ( FbxGeometry::ESurfaceMode  pMode )
+   Search for all occurrences
+
+   Sets the surface mode.
+
+   Parameters:
+
+          pMode Surface mode identifier (see class FbxGeometry)
+
+   ESurfaceMode GetSurfaceMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the surface mode.
+
+   Returns:
+          The surface mode identifier that is currently set.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 55 of file fbxnurbs.h.
+{return mSurfaceMode;}
+
+   void InitControlPoints ( int    pUCount,
+                            EType  pUType,
+                            int    pVCount,
+                            EType  pVType
+                          )
+   Search for all occurrences
+
+   Allocates memory space for an array of control points as well as knot and multiplicity vectors.
+
+   Parameters:
+
+          pUCount Number of U-dimension control points.
+          pUType  U-dimension NURBS type.
+          pVCount Number of V-dimension control points.
+          pVType  V-dimension NURBS type.
+
+   Remarks:
+          Always call this function after FbxNurbs::SetOrder().
+
+   Examples:
+          ExportScene02/main.cxx.
+
+   int GetUCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of U-dimension control points.
+
+   Returns:
+          Number of U-dimension control points.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 79 of file fbxnurbs.h.
+{return mUCount;}
+
+   int GetVCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of V-dimension control points.
+
+   Returns:
+          Number of V-dimension control points.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 84 of file fbxnurbs.h.
+{return mVCount;}
+
+   EType GetNurbsUType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the U-dimension NURBS type.
+
+   Returns:
+          NURBS type identifier.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 89 of file fbxnurbs.h.
+{return mUType;}
+
+   EType GetNurbsVType ( ) const [inline]
+   Search for all occurrences
+
+   Returns the V-dimension NURBS type.
+
+   Returns:
+          NURBS type identifier.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 94 of file fbxnurbs.h.
+{return mVType;}
+
+   int GetUKnotCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the U-dimension knot vector.
+
+   See FbxNurbsCurve for more information.
+
+   Returns:
+          The number of elements in the U-dimension knot vector.
+
+   Examples:
+          ExportScene02/main.cxx, and ImportScene/DisplayNurb.cxx.
+
+   double* GetUKnotVector ( ) const
+   Search for all occurrences
+
+   Returns the U-dimension knot vector.
+
+   Returns:
+          Pointer to the U-dimension knot vector.
+
+   Examples:
+          ExportScene02/main.cxx, and ImportScene/DisplayNurb.cxx.
+
+   int GetVKnotCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the V-dimension knot vector.
+
+   See FbxNurbsCurve for more information.
+
+   Returns:
+          The number of elements in the V-dimension knot vector.
+
+   Examples:
+          ExportScene02/main.cxx, and ImportScene/DisplayNurb.cxx.
+
+   double* GetVKnotVector ( ) const
+   Search for all occurrences
+
+   Returns the V-dimension knot vector.
+
+   Returns:
+          Pointer to the V-dimension knot vector.
+
+   Examples:
+          ExportScene02/main.cxx, and ImportScene/DisplayNurb.cxx.
+
+   int* GetUMultiplicityVector ( ) const
+   Search for all occurrences
+
+   Returns multiplicity of U-dimension control points.
+
+   Returns:
+          Pointer to the array of multiplicity values.
+
+   Remarks:
+          The length of this vector is equal to the U count. Its elements are set to 1 by default.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   int* GetVMultiplicityVector ( ) const
+   Search for all occurrences
+
+   Returns multiplicity of V-dimension control points.
+
+   Returns:
+          Pointer to the array of multiplicity values.
+
+   Remarks:
+          The length of this vector is equal to the V count. Its elements are set to 1 by default.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   void SetOrder ( FbxUInt  pUOrder,
+                   FbxUInt  pVOrder
+                 )
+   Search for all occurrences
+
+   Sets the order of the NURBS surface.
+
+   Parameters:
+
+          pUOrder NURBS order in U dimension.
+          pVOrder NURBS order in V dimension.
+
+   Examples:
+          ExportScene02/main.cxx.
+
+   int GetUOrder ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS order in U dimension.
+
+   Returns:
+          NURBS order in U dimension.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 139 of file fbxnurbs.h.
+{return mUOrder;}
+
+   int GetVOrder ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS order in V dimension.
+
+   Returns:
+          NURBS order in V dimension.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 144 of file fbxnurbs.h.
+{return mVOrder;}
+
+   void SetStep ( int  pUStep,
+                  int  pVStep
+                )
+   Search for all occurrences
+
+   Sets the NURBS step.
+
+   The step value is the number of divisions between adjacent control points.
+
+   Parameters:
+
+          pUStep Steps in U dimension.
+          pVStep Steps in V dimension.
+
+   Examples:
+          ExportScene02/main.cxx.
+
+   int GetUStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in U dimension.
+
+   Returns:
+          Steps in U dimension.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 156 of file fbxnurbs.h.
+{return mUStep;}
+
+   int GetVStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the number of divisions between adjacent control points in V dimension.
+
+   Returns:
+          Steps in V dimension.
+
+   Examples:
+          ImportScene/DisplayNurb.cxx.
+
+   Definition at line 161 of file fbxnurbs.h.
+{return mVStep;}
+
+   int GetUSpanCount ( ) const
+   Search for all occurrences
+
+   Calculates the number of surface spans in the U dimension.
+
+   See FbxNurbsCurve::GetSpanCount() for more information.
+
+   Returns:
+          The number of spans in the U dimension if the surface has been initialized. If the spans have not been initialized, returns -1.
+
+   int GetVSpanCount ( ) const
+   Search for all occurrences
+
+   Calculates the number of surface spans in the V dimension.
+
+   See FbxNurbsCurve::GetSpanCount() for more information.
+
+   Returns:
+          The number of spans in the V dimension if the surface has been initialized. If the spans have not been initialized, returns -1.
+
+   void SetApplyFlipUV ( bool  pFlag )
+   Search for all occurrences
+
+   Sets the flag that induces UV flipping at export.
+
+   Parameters:
+
+          pFlag If true, UV flipping occurs.
+
+   bool GetApplyFlipUV ( ) const
+   Search for all occurrences
+
+   Returns the flag that induces UV flipping at export.
+
+   Returns:
+          The current state of the UV flip flag.
+
+   void SetApplyFlipLinks ( bool  pFlag )
+   Search for all occurrences
+
+   Sets the flag that induces link flipping at export.
+
+   Parameters:
+
+          pFlag If true, the links control points indices are flipped.
+
+   bool GetApplyFlipLinks ( ) const
+   Search for all occurrences
+
+   Returns the flag that induces link flipping at export.
+
+   Returns:
+          The current state of the link flip flag.
+
+   bool GetApplyFlip ( ) const [inline]
+   Search for all occurrences
+
+   Returns flip flags state.
+
+   Returns:
+          True if we need to flip either the UV or the links.
+
+   Definition at line 207 of file fbxnurbs.h.
+{ return GetApplyFlipUV() || GetApplyFlipLinks(); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxnurbs.h
+
+   Please send us your comment about this page

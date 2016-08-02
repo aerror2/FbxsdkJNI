@@ -1,0 +1,159 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRenamingStrategyUtils Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxRenamingStrategyUtils Class Reference
+   Search for all occurrences
+
+   #include <fbxrenamingstrategyutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains a set of utilities, which are used by the FBX renaming strategy.
+
+   Definition at line 31 of file fbxrenamingstrategyutilities.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static bool  EncodeNonAlpha (FbxString &pString, bool pFirstCharMustBeAlphaOnly=false, FbxString pPermittedChars="", bool p8bitCharsOnly=true)
+                Check if the string has non alphanumeric characters and replace them with a special string containing a prefix and the character code.
+   static bool  DecodeNonAlpha (FbxString &pString)
+                Take a string that has been encoded by EncodeNonAlpha and re-extract the non-alphanumeric values.
+   static bool  EncodeDuplicate (FbxString &pString, int pInstanceNumber=0)
+                This method will add the _ncl1_ with the provided pInstanceNumber to the string.
+   static bool  DecodeDuplicate (FbxString &pString)
+                This method will remove the _ncl1_xxx from the given string.
+   static bool  EncodeCaseInsensitive (FbxString &pString, const FbxString pString2)
+                This method will compare pString and pString2, set pString to pString2 and append the ncl2 suffix to it.
+   static bool  DecodeCaseInsensitive (FbxString &pString)
+                This method will decode a string that has a ncl2 to it.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static bool EncodeNonAlpha ( FbxString &  pString,
+                                bool         pFirstCharMustBeAlphaOnly = false,
+                                FbxString    pPermittedChars = "",
+                                bool         p8bitCharsOnly = true
+                              )              [static]
+   Search for all occurrences
+
+   Check if the string has non alphanumeric characters and replace them with a special string containing a prefix and the character code.
+
+   Parameters:
+
+          pString                   String to be processed. The result of the conversion is also returned in this string.
+          pFirstCharMustBeAlphaOnly This flag tells whether the first char of the string must be alpha only. Its default value is false.
+          pPermittedChars           List of non alphanumeric characters that do not require to be converted because already supported by the destination application. When encountered, these characters are simply skipped and left as is.
+          p8bitCharsOnly            When true, this flag tells the routine that only 8 bit coded characters can be represented by the encoding format (see note below). If set to false, the range of supported character is increased and the memory usage may be less. But the routine will perform slower because of the internal conversions required.
+
+   Returns:
+          Returns true if at least one character in pString has been encoded.
+
+   Note:
+          The encoding string depends on the value of p8bitCharsOnly argument. When this parameter value is true, each non-alphanumeric character is replaced with FBXASC### (where ### is the decimal code of the character). Inversely, when the value is false, each non-alphanumeric characters is replaced with FBXCHR##### (where ##### is the hexadecimal representation of the character code).
+
+   static bool DecodeNonAlpha ( FbxString &  pString ) [static]
+   Search for all occurrences
+
+   Take a string that has been encoded by EncodeNonAlpha and re-extract the non-alphanumeric values.
+
+   Parameters:
+
+          pString String to be processed. The result of the conversion is also returned in this string.
+
+   Returns:
+          Returns true if the pString argument has been decoded.
+
+   static bool EncodeDuplicate ( FbxString &  pString,
+                                 int          pInstanceNumber = 0
+                               )              [static]
+   Search for all occurrences
+
+   This method will add the _ncl1_ with the provided pInstanceNumber to the string.
+
+   Parameters:
+
+          pString
+          pInstanceNumber Its default value is 0.
+
+   Returns:
+          Always returns true.
+
+   Remarks:
+          please ALWAYS call Encode Duplicate BEFORE Encode Case Insensitive.
+
+   static bool DecodeDuplicate ( FbxString &  pString ) [static]
+   Search for all occurrences
+
+   This method will remove the _ncl1_xxx from the given string.
+
+   Parameters:
+
+          pString
+
+   Returns:
+          Returns true if the pString has been modified
+
+   static bool EncodeCaseInsensitive ( FbxString &      pString,
+                                       const FbxString  pString2
+                                     )                  [static]
+   Search for all occurrences
+
+   This method will compare pString and pString2, set pString to pString2 and append the ncl2 suffix to it.
+
+   Parameters:
+
+          pString
+          pString2
+
+   Returns:
+          Returns true if the pString has been modified
+
+   Remarks:
+          pString and pString2 must be identical except for casing.
+
+   static bool DecodeCaseInsensitive ( FbxString &  pString ) [static]
+   Search for all occurrences
+
+   This method will decode a string that has a ncl2 to it.
+
+   Parameters:
+
+          pString
+
+   Returns:
+          Returns true if the pString has been modified
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrenamingstrategyutilities.h
+
+   Please send us your comment about this page

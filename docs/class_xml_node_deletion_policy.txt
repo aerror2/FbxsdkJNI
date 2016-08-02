@@ -1,0 +1,64 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   XmlNodeDeletionPolicy Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   XmlNodeDeletionPolicy Class Reference
+   Search for all occurrences
+
+   #include <fbxcolladautils.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 48 of file fbxcolladautils.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static void  DeleteIt (xmlNode **ptr)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static void DeleteIt ( xmlNode **  ptr ) [inline, static]
+   Search for all occurrences
+
+   Definition at line 51 of file fbxcolladautils.h.
+    {
+        if (*ptr != NULL)
+        {
+            xmlFreeNode(*ptr);
+            *ptr = NULL;
+        }
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladautils.h
+
+   Please send us your comment about this page

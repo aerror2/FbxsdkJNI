@@ -1,0 +1,281 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxTrimNurbsSurface Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxTrimNurbsSurface Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtrimnurbssurface.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxTrimNurbsSurface describes a NURBS surface with regions trimmed or cut away with trimming boundaries.
+
+   Definition at line 109 of file fbxtrimnurbssurface.h.
+   Inheritance diagram for FbxTrimNurbsSurface:
+   [USEMAP:class_fbx_trim_nurbs_surface.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the type of node attribute.
+                               int  GetTrimRegionCount () const
+                                    Returns the number of regions on this trimmed NURBS surface.
+                              void  BeginTrimRegion ()
+                                    Calls this function before adding boundaries to a new trim region.
+                              void  EndTrimRegion ()
+                                    Calls this function after the last boundary for a given region is added.
+                              bool  AddBoundary (FbxBoundary *pBoundary)
+                                    Appends a trimming boundary to the set of trimming boundaries.
+                     FbxBoundary *  GetBoundary (int pIndex, int pRegionIndex=0)
+                                    Returns the boundary at a given index for the specified region.
+               const FbxBoundary *  GetBoundary (int pIndex, int pRegionIndex=0) const
+                                    Returns the boundary at a given index for the specified region.
+                               int  GetBoundaryCount (int pRegionIndex=0) const
+                                    Returns the number of boundaries for a given region.
+                              void  SetNurbsSurface (const FbxNurbsSurface *pNurbs)
+                                    Sets the NURBS surface that is trimmed by the trimming boundaries.
+                 FbxNurbsSurface *  GetNurbsSurface ()
+                                    Returns the NURBS surface that is trimmed by the trim boundaries.
+           const FbxNurbsSurface *  GetNurbsSurface () const
+                                    Returns the NURBS surface that is trimmed by the trim boundaries.
+                              void  SetFlipNormals (bool pFlip)
+                                    Sets the flag which indicates whether the surface normals are flipped.
+                              bool  GetFlipNormals () const
+                                    Checks if the normals are flipped.
+                       virtual int  GetControlPointsCount () const
+                                    Returns the number of control points.
+                      virtual void  SetControlPointAt (const FbxVector4 &pCtrlPoint, const FbxVector4 &pNormal, int pIndex, bool pI2DSearch=false)
+                                    Sets the control point and the normal values for a specified index.
+                      virtual void  SetControlPointAt (const FbxVector4 &pCtrlPoint, int pIndex)
+                                    Sets the control point for a specified index.
+              virtual FbxVector4 *  GetControlPoints (FbxStatus *pStatus=NULL) const
+                                    Returns the NURBS surface's control points.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the type of node attribute.
+
+   Reimplemented from FbxGeometry.
+   int GetTrimRegionCount ( ) const
+   Search for all occurrences
+
+   Returns the number of regions on this trimmed NURBS surface.
+
+   Note: There is always at least one region.
+
+   Returns:
+          The number of regions
+
+   void BeginTrimRegion ( )
+   Search for all occurrences
+
+   Calls this function before adding boundaries to a new trim region.
+
+   The number of regions is incremented on this call.
+   void EndTrimRegion ( )
+   Search for all occurrences
+
+   Calls this function after the last boundary for a given region is added.
+
+   If no boundaries are added between the calls to BeginTrimRegion and EndTrimRegion, the last region is removed.
+   bool AddBoundary ( FbxBoundary *  pBoundary )
+   Search for all occurrences
+
+   Appends a trimming boundary to the set of trimming boundaries.
+
+   The first boundary specified for a given trim region should be the outer boundary. All other boundaries are inner boundaries. This must be called after a call to BeginTrimRegion(). Boundaries cannot be shared among regions. Duplicate the boundary if necessary.
+
+   Parameters:
+
+          pBoundary The boundary to add.
+
+   Returns:
+          True if the boundary is added successfully. If the boundary is not added successfully, returns false.
+
+   FbxBoundary* GetBoundary ( int  pIndex,
+                              int  pRegionIndex = 0
+                            )
+   Search for all occurrences
+
+   Returns the boundary at a given index for the specified region.
+
+   Parameters:
+
+          pIndex       The index of the boundary to retrieve, no bound checking is done.
+          pRegionIndex The index of the region which is bordered by the boundary.
+
+   Returns:
+          The trimming boundary at index pIndex, if pIndex is in the range [0, GetBoundaryCount() ), otherwise the result is undefined.
+
+   const FbxBoundary* GetBoundary ( int  pIndex,
+                                    int  pRegionIndex = 0
+                                  )      const
+   Search for all occurrences
+
+   Returns the boundary at a given index for the specified region.
+
+   Parameters:
+
+          pIndex       The index of the boundary to retrieve, no bound checking is done.
+          pRegionIndex The index of the region which is bordered by the boundary.
+
+   Returns:
+          The trimming boundary at index pIndex, if pIndex is in the range [0, GetBoundaryCount() ), otherwise the result is undefined.
+
+   int GetBoundaryCount ( int  pRegionIndex = 0 ) const
+   Search for all occurrences
+
+   Returns the number of boundaries for a given region.
+
+   Parameters:
+
+          pRegionIndex The index of the region.
+
+   Returns:
+          The number of trim boundaries for the given region.
+
+   void SetNurbsSurface ( const FbxNurbsSurface *  pNurbs )
+   Search for all occurrences
+
+   Sets the NURBS surface that is trimmed by the trimming boundaries.
+
+   Parameters:
+
+          pNurbs The NURBS surface to be trimmed.
+
+   FbxNurbsSurface* GetNurbsSurface ( )
+   Search for all occurrences
+
+   Returns the NURBS surface that is trimmed by the trim boundaries.
+
+   Returns:
+          A pointer to the (untrimmed) NURBS surface.
+
+   const FbxNurbsSurface* GetNurbsSurface ( ) const
+   Search for all occurrences
+
+   Returns the NURBS surface that is trimmed by the trim boundaries.
+
+   Returns:
+          A pointer to the (untrimmed) NURBS surface.
+
+   void SetFlipNormals ( bool  pFlip ) [inline]
+   Search for all occurrences
+
+   Sets the flag which indicates whether the surface normals are flipped.
+
+   You can flip the normals of the surface to reverse the surface.
+
+   Parameters:
+
+          pFlip If true, the surface is reversed. If it is false, the surface is not reversed.
+
+   Definition at line 188 of file fbxtrimnurbssurface.h.
+{ mFlipNormals = pFlip; }
+
+   bool GetFlipNormals ( ) const [inline]
+   Search for all occurrences
+
+   Checks if the normals are flipped.
+
+   Returns:
+          True if normals are flipped, returns false if they are not flipped.
+
+   Definition at line 193 of file fbxtrimnurbssurface.h.
+{ return  mFlipNormals; }
+
+   virtual int GetControlPointsCount ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the number of control points.
+
+   Returns:
+          The number of control points allocated in the geometry.
+
+   Reimplemented from FbxGeometryBase.
+   virtual void SetControlPointAt ( const FbxVector4 &  pCtrlPoint,
+                                    const FbxVector4 &  pNormal,
+                                    int                 pIndex,
+                                    bool                pI2DSearch = false
+                                  )                     [virtual]
+   Search for all occurrences
+
+   Sets the control point and the normal values for a specified index.
+
+   Parameters:
+
+          pCtrlPoint The value of the control point.
+          pNormal    The value of the normal.
+          pIndex     The specified index.
+          pI2DSearch Unused in this implementation.
+
+   Reimplemented from FbxGeometryBase.
+   virtual void SetControlPointAt ( const FbxVector4 &  pCtrlPoint,
+                                    int                 pIndex
+                                  )                     [inline, virtual]
+   Search for all occurrences
+
+   Sets the control point for a specified index.
+
+   Parameters:
+
+          pCtrlPoint The value of the control point.
+          pIndex     The specified index.
+
+   Reimplemented from FbxGeometryBase.
+
+   Definition at line 209 of file fbxtrimnurbssurface.h.
+{ ParentClass::SetControlPointAt(pCtrlPoint, pIndex); }
+
+   virtual FbxVector4* GetControlPoints ( FbxStatus *  pStatus = NULL ) const [virtual]
+   Search for all occurrences
+
+   Returns the NURBS surface's control points.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Reimplemented from FbxGeometryBase.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxtrimnurbssurface.h
+
+   Please send us your comment about this page

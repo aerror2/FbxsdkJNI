@@ -1,0 +1,1329 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyHandle Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxPropertyHandle Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertyhandle.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to manage property handle.
+
+   Definition at line 29 of file fbxpropertyhandle.h.
+
+   List of all members.
+
+Public Member Functions
+
+   Assignment and basic info
+             FbxPropertyHandle &  operator= (const FbxPropertyHandle &pHandle)
+                                  FbxPropertyHandle assignment operator.
+                            bool  operator== (const FbxPropertyHandle &pHandle) const
+                                  Equality operator.
+                            bool  operator!= (const FbxPropertyHandle &pHandle) const
+                                  Inequality operator.
+                            bool  Is (const FbxPropertyHandle &pHandle) const
+                                  Compare type info together.
+                            bool  Valid () const
+                                  Judge validity.
+                    const char *  GetName () const
+                                  Get the property name.
+                    const char *  GetLabel () const
+                                  Get the property label.
+                            bool  SetLabel (const char *pLabel)
+                                  Set a label to the property.
+                        EFbxType  GetType () const
+                                  Get the property type.
+               FbxPropertyHandle  GetTypeInfo () const
+                                  Get the property type info.
+         FbxPropertyFlags::EFlags  GetFlags () const
+                                  Get the property attribute state.
+   FbxPropertyFlags::EInheritType  GetFlagsInheritType (FbxPropertyFlags::EFlags pFlags, bool pCheckReferences) const
+                                  Gets the inheritance type for the given flag.
+                            bool  ModifyFlags (FbxPropertyFlags::EFlags pFlags, bool pValue)
+                                  According the given parameter Change the attributes of the property.
+                            bool  SetFlagsInheritType (FbxPropertyFlags::EFlags pFlags, FbxPropertyFlags::EInheritType pType)
+                                  Sets the inheritance type for the given flag.
+                          void *  GetUserData () const
+                                  Get the property user data.
+                            bool  SetUserData (const void *pUserData)
+                                  Set user data to the property.
+                             int  GetUserTag () const
+                                  Get the property user tag.
+                            bool  SetUserTag (int pUserData)
+                                  Set user tag to the property.
+   Enum management
+                             int  AddEnumValue (const char *pStringValue)
+                                  Add new value at the end of the enum list in the property.
+                            void  InsertEnumValue (int pIndex, const char *pStringValue)
+                                  Insert new value at the given index of the enum list in property.
+                             int  GetEnumCount ()
+                                  Get the enum count of enum list in property.
+                            void  SetEnumValue (int pIndex, const char *pStringValue)
+                                  Set value at the given index of the enum list in the property.
+                            void  RemoveEnumValue (int pIndex)
+                                  Remove the value at the index of the enum list in the property.
+                          char *  GetEnumValue (int pIndex)
+                                  Get the value at the index of enum list in the property.
+   Child and Struct management
+                            void  BeginCreateOrFindProperty ()
+                                  Create the map for find property in the property page.
+                            void  EndCreateOrFindProperty ()
+                                  Clear the map which created for find property.
+                            bool  IsRoot () const
+                                  Judge if the property is the root property.
+                            bool  IsChildOf (const FbxPropertyHandle &pParent) const
+                                  Judge if the property is the child property of the given parent property.
+                            bool  IsDescendentOf (const FbxPropertyHandle &pParent) const
+                                  Judge if the property is descendent property of the given property.
+                            bool  SetParent (const FbxPropertyHandle &pOther)
+                                  Set parent property handle.No matter what enters,the result is always false.
+               FbxPropertyHandle  Add (const char *pName, const FbxPropertyHandle &pTypeInfo)
+                                  Add a property to the property page.
+               FbxPropertyHandle  GetParent () const
+                                  Get parent property.
+               FbxPropertyHandle  GetChild () const
+                                  Get child property.
+               FbxPropertyHandle  GetSibling () const
+                                  Get sibling property.
+               FbxPropertyHandle  GetFirstDescendent () const
+                                  Get first descendent property.
+               FbxPropertyHandle  GetNextDescendent (const FbxPropertyHandle &pHandle) const
+                                  Get first descendent property which after the given property.
+               FbxPropertyHandle  Find (const char *pName, bool pCaseSensitive) const
+                                  Find the property with given name.
+               FbxPropertyHandle  Find (const char *pName, const FbxPropertyHandle &pTypeInfo, bool pCaseSensitive) const
+                                  Find the property with given name and type info.
+               FbxPropertyHandle  Find (const char *pName, const char *pChildrenSeparator, bool pCaseSensitive) const
+                                  Separate the given name by children separator string and then find the property.The step is strip the first part of the name and search, if the property can be found, strip the second part of the name and continue search, until no property be found,then return the last found property.
+               FbxPropertyHandle  Find (const char *pName, const char *pChildrenSeparator, const FbxPropertyHandle &pTypeInfo, bool pCaseSensitive) const
+                                  Separate the given name by children separator string and then find the property.The step is strip the first part of the name and search, if the property can be found, strip the second part of the name and continue search, until no property be found,then return the last found property.
+   Connection management
+                            bool  ConnectSrc (const FbxPropertyHandle &pSrc, const FbxConnection::EType pType=FbxConnection::eDefault)
+                                  Connect source property.
+                             int  GetSrcCount (FbxConnectionPointFilter *pFilter=0) const
+                                  Get source properties' count.
+               FbxPropertyHandle  GetSrc (FbxConnectionPointFilter *pFilter=0, int pIndex=0) const
+                                  Get source property with the given index.
+                            bool  DisconnectSrc (const FbxPropertyHandle &pSrc)
+                                  Disconnect source property.
+                            bool  IsConnectedSrc (const FbxPropertyHandle &pSrc)
+                                  Judge if it is connected with the given source property.
+                            bool  ConnectDst (const FbxPropertyHandle &pDst, const FbxConnection::EType pType=FbxConnection::eDefault)
+                                  Connect destination property.
+                             int  GetDstCount (FbxConnectionPointFilter *pFilter=0) const
+                                  Get destination properties' count.
+               FbxPropertyHandle  GetDst (FbxConnectionPointFilter *pFilter=0, int pIndex=0) const
+                                  Get destination property with the given index.
+                            bool  DisconnectDst (const FbxPropertyHandle &pDst)
+                                  Disconnect destination property.
+                            bool  IsConnectedDst (const FbxPropertyHandle &pDst)
+                                  Judge if it is connected with the given destination property.
+                            void  ClearConnectCache ()
+                                  Clear connect cache.
+                            void  WipeAllConnections ()
+                                  Clear all connect without sending any notification (Internal use ONLY)
+   Limits Functions
+
+   Minimum and maximum value limits can be associated with properties, but FBX will not verify that these limits are respected.
+
+   FBX however will store and retrieve limits from files, and will assure that they are persistent in memory while the property handle object exists.
+
+   Soft minimums and maximums values are specifying a second set of limits that can be used for UI objects such as sliders. FBX will handle them the same way it does with the normal limits.
+                            bool  HasMin () const
+                                  Judge if this property has a minimum value.
+                            bool  GetMin (void *pValue, EFbxType pValueType) const
+                                  Get the minimum value and value type of this property.
+                            bool  SetMin (const void *pValue, EFbxType pValueType)
+                                  Set the minimum value and value type for this property.
+   template<class T >
+                            bool  SetMin (const T &pValue)
+                                  According the given value and its value type, set the minimum value and value type for this property.
+   template<class T >
+                               T  GetMin (const T *pFBX_TYPE) const
+                                  Get the minimum value of this property.
+                            bool  HasSoftMin () const
+                                  Judge if this property has soft minimum value.
+                            bool  GetSoftMin (void *pValue, EFbxType pValueType) const
+                                  Get the soft minimum value and value type of this property.
+                            bool  SetSoftMin (const void *pValue, EFbxType pValueType)
+                                  Set the soft minimum value and value type for this property.
+   template<class T >
+                            bool  SetSoftMin (const T &pValue)
+                                  According the given value and its value type, set the soft minimum value and value type for this property.
+   template<class T >
+                               T  GetSoftMin (const T *pFBX_TYPE) const
+                                  Get the soft minimum value of this property.
+                            bool  HasMax () const
+                                  Judge if this property has maximum value.
+                            bool  GetMax (void *pValue, EFbxType pValueType) const
+                                  Get the maximum value and value type of this property.
+                            bool  SetMax (const void *pValue, EFbxType pValueType)
+                                  Set the maximum value and value type for this property.
+   template<class T >
+                            bool  SetMax (const T &pValue)
+                                  According the given value and its value type, set the maximum value and value type for this property.
+   template<class T >
+                               T  GetMax (const T *pFBX_TYPE) const
+                                  Get the maximum value of this property.
+                            bool  HasSoftMax () const
+                                  Judge if this property has soft maximum value.
+                            bool  GetSoftMax (void *pValue, EFbxType pValueType) const
+                                  Get the soft maximum value and value type of this property.
+                            bool  SetSoftMax (const void *pValue, EFbxType pValueType)
+                                  Set the soft maximum value and value type for this property.
+   template<class T >
+                            bool  SetSoftMax (const T &pValue)
+                                  According the given value and its value type, set the soft maximum value and value type for this property.
+   template<class T >
+                               T  GetSoftMax (const T *pFBX_TYPE) const
+                                  Get the soft maximum value of this property.
+   Value
+   FbxPropertyFlags::EInheritType  GetValueInheritType (bool pCheckReferences) const
+                                  Get value inherit type of this property.
+                            bool  SetValueInheritType (FbxPropertyFlags::EInheritType pType)
+                                  Set value inherit type for this property .
+                            bool  GetDefaultValue (void *pValue, EFbxType pValueType) const
+                                  Get default value and value type of this property .
+                            bool  Get (void *pValue, EFbxType pValueType) const
+                                  Get value and value type of this property .
+                            bool  Set (const void *pValue, EFbxType pValueType, bool pCheckValueEquality)
+                                  Set property value and value type for this property.
+   template<class T >
+                            bool  Set (const T &pValue)
+                                  Set property value with the given value .
+   template<class T >
+                               T  Get (const T *pFBX_TYPE) const
+                                  get property value.
+   Page settings
+                            void  SetPageDataPtr (void *pData)
+                                  Set the property page data pointer.
+                          void *  GetPageDataPtr () const
+                                  Get property page data pointer.
+   Page Internal Entry Management
+                            bool  PushPropertiesToParentInstance ()
+                                  Push properties to parent instance.
+   Reference Management
+                            bool  IsAReferenceTo (void) const
+                                  Judge if this property page is a instance of other page.
+                          void *  GetReferenceTo (void) const
+                                  Get the property page which this property page make reference to.
+                            bool  IsReferencedBy (void) const
+                                  Judge if this property page is referenced by other pages.
+                             int  GetReferencedByCount (void) const
+                                  Get the count of property pages which make reference to this property page.
+                          void *  GetReferencedBy (int pIndex) const
+                                  According the given index,get the property page which make reference to this property page.
+
+Constructor and Destructor
+
+        static FbxPropertyHandle  Create ()
+                                  Create an instance.
+        static FbxPropertyHandle  Create (const FbxPropertyHandle &pInstanceOf)
+                                  Create an instance with given instance.
+        static FbxPropertyHandle  Create (const char *pName, EFbxType pType=eFbxUndefined)
+                                  Create an instance with given name and type.
+        static FbxPropertyHandle  Create (const char *pName, FbxPropertyHandle pTypeInfo)
+                                  Create an instance with given name and type info.
+                            bool  Destroy ()
+                                  If this property is root property, delete the property page, otherwise delete the property.
+                                  FbxPropertyHandle ()
+                                  Default constructor.
+                                  FbxPropertyHandle (const FbxPropertyHandle &pAddress)
+                                  Copy constructor.
+                                  ~FbxPropertyHandle ()
+                                  Destructor.
+                                  FbxPropertyHandle (FbxPropertyPage *pPage, FbxInt pId=FBXSDK_PROPERTY_ID_ROOT)
+                                  Character constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPropertyHandle ( )
+
+   Default constructor.
+   FbxPropertyHandle ( const FbxPropertyHandle &  pAddress )
+
+   Copy constructor.
+
+   Parameters:
+
+          pAddress FbxPropertyHandle copied to this one.
+
+   ~FbxPropertyHandle ( )
+
+   Destructor.
+   FbxPropertyHandle ( FbxPropertyPage *  pPage,
+                       FbxInt             pId = FBXSDK_PROPERTY_ID_ROOT
+                     )
+
+   Character constructor.
+
+   Parameters:
+
+          pPage
+          pId
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxPropertyHandle Create ( ) [static]
+   Search for all occurrences
+
+   Create an instance.
+   static FbxPropertyHandle Create ( const FbxPropertyHandle &  pInstanceOf ) [static]
+   Search for all occurrences
+
+   Create an instance with given instance.
+
+   Parameters:
+
+          pInstanceOf The given instance.
+
+   static FbxPropertyHandle Create ( const char *  pName,
+                                     EFbxType      pType = eFbxUndefined
+                                   )               [static]
+   Search for all occurrences
+
+   Create an instance with given name and type.
+
+   Parameters:
+
+          pName Property name.
+          pType Property type.
+
+   static FbxPropertyHandle Create ( const char *       pName,
+                                     FbxPropertyHandle  pTypeInfo
+                                   )                    [static]
+   Search for all occurrences
+
+   Create an instance with given name and type info.
+
+   Parameters:
+
+          pName
+          pTypeInfo
+
+   bool Destroy ( )
+   Search for all occurrences
+
+   If this property is root property, delete the property page, otherwise delete the property.
+
+   Returns:
+          If succeed, return true.
+
+   FbxPropertyHandle& operator= ( const FbxPropertyHandle &  pHandle )
+
+   FbxPropertyHandle assignment operator.
+
+   Parameters:
+
+          pHandle FbxPropertyHandle assigned to this one.
+
+   bool operator== ( const FbxPropertyHandle &  pHandle ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pHandle FbxPropertyHandle compared with this one.
+
+   Returns:
+          True if equal, false otherwise.
+
+   bool operator!= ( const FbxPropertyHandle &  pHandle ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pHandle FbxPropertyHandle compared with this one.
+
+   Returns:
+          True if unequal, false otherwise.
+
+   bool Is ( const FbxPropertyHandle &  pHandle ) const
+   Search for all occurrences
+
+   Compare type info together.
+
+   Parameters:
+
+          pHandle FbxPropertyHandle compared with this one.
+
+   Returns:
+          True if equal, false otherwise.
+
+   bool Valid ( ) const
+   Search for all occurrences
+
+   Judge validity.
+   const char* GetName ( ) const
+   Search for all occurrences
+
+   Get the property name.
+   const char* GetLabel ( ) const
+   Search for all occurrences
+
+   Get the property label.
+   bool SetLabel ( const char *  pLabel )
+   Search for all occurrences
+
+   Set a label to the property.
+
+   Parameters:
+
+          pLabel The given label string
+
+   Returns:
+          true if successful.
+
+   EFbxType GetType ( ) const
+   Search for all occurrences
+
+   Get the property type.
+   FbxPropertyHandle GetTypeInfo ( ) const
+   Search for all occurrences
+
+   Get the property type info.
+   FbxPropertyFlags::EFlags GetFlags ( ) const
+   Search for all occurrences
+
+   Get the property attribute state.
+   FbxPropertyFlags::EInheritType GetFlagsInheritType ( FbxPropertyFlags::EFlags  pFlags,
+                                                       bool                     pCheckReferences
+                                                     )                          const
+   Search for all occurrences
+
+   Gets the inheritance type for the given flag.
+
+   Parameters:
+
+          pFlags           The flag to query
+          pCheckReferences Decide whether check instance. If it is true, check instance.
+
+   Returns:
+          The inheritance type
+
+   bool ModifyFlags ( FbxPropertyFlags::EFlags  pFlags,
+                      bool                     pValue
+                    )
+   Search for all occurrences
+
+   According the given parameter Change the attributes of the property.
+
+   Parameters:
+
+          pFlags The given flags used as mask.
+          pValue If pValue is true, set mask with given flags, otherwise unset mask with given flags.
+
+   Returns:
+          If succeed, return true.
+
+   bool SetFlagsInheritType ( FbxPropertyFlags::EFlags        pFlags,
+                              FbxPropertyFlags::EInheritType  pType
+                            )
+   Search for all occurrences
+
+   Sets the inheritance type for the given flag.
+
+   Parameters:
+
+          pFlags The flag to set
+          pType  The inheritance type to set
+
+   Returns:
+          If succeed, return true.
+
+   void* GetUserData ( ) const
+   Search for all occurrences
+
+   Get the property user data.
+   bool SetUserData ( const void *  pUserData )
+   Search for all occurrences
+
+   Set user data to the property.
+
+   Parameters:
+
+          pUserData The given user data
+
+   Returns:
+          If succeed, return true.
+
+   int GetUserTag ( ) const
+   Search for all occurrences
+
+   Get the property user tag.
+   bool SetUserTag ( int  pUserData )
+   Search for all occurrences
+
+   Set user tag to the property.
+
+   Parameters:
+
+          pUserData The given user tag
+
+   Returns:
+          If succeed, return true.
+
+   int AddEnumValue ( const char *  pStringValue )
+   Search for all occurrences
+
+   Add new value at the end of the enum list in the property.
+
+   Parameters:
+
+          pStringValue The given new value
+
+   Returns:
+          The index of the value.
+
+   void InsertEnumValue ( int           pIndex,
+                          const char *  pStringValue
+                        )
+   Search for all occurrences
+
+   Insert new value at the given index of the enum list in property.
+
+   Parameters:
+
+          pIndex       The given index
+          pStringValue The given new value
+
+   int GetEnumCount ( )
+   Search for all occurrences
+
+   Get the enum count of enum list in property.
+
+   Returns:
+          The enum count of enum list in property
+
+   void SetEnumValue ( int           pIndex,
+                       const char *  pStringValue
+                     )
+   Search for all occurrences
+
+   Set value at the given index of the enum list in the property.
+
+   Parameters:
+
+          pIndex       The given index
+          pStringValue The given new value used to instead the old value.
+
+   void RemoveEnumValue ( int  pIndex )
+   Search for all occurrences
+
+   Remove the value at the index of the enum list in the property.
+
+   Parameters:
+
+          pIndex The given index
+
+   char* GetEnumValue ( int  pIndex )
+   Search for all occurrences
+
+   Get the value at the index of enum list in the property.
+
+   Parameters:
+
+          pIndex The given index
+
+   Returns:
+          The value at the given index
+
+   void BeginCreateOrFindProperty ( )
+   Search for all occurrences
+
+   Create the map for find property in the property page.
+   void EndCreateOrFindProperty ( )
+   Search for all occurrences
+
+   Clear the map which created for find property.
+   bool IsRoot ( ) const [inline]
+   Search for all occurrences
+
+   Judge if the property is the root property.
+
+   Returns:
+          Return true if this property is root property.
+
+   Definition at line 199 of file fbxpropertyhandle.h.
+{ return ( mPage && mId == 0 ) ? true : false; }
+
+   bool IsChildOf ( const FbxPropertyHandle &  pParent ) const
+   Search for all occurrences
+
+   Judge if the property is the child property of the given parent property.
+
+   Parameters:
+
+          pParent The given parent property handle
+
+   Returns:
+          Return true if this property is child of given property.
+
+   bool IsDescendentOf ( const FbxPropertyHandle &  pParent ) const
+   Search for all occurrences
+
+   Judge if the property is descendent property of the given property.
+
+   Parameters:
+
+          pParent The given parent property handle
+
+   Returns:
+          Return true if this property is descendant of given property.
+
+   bool SetParent ( const FbxPropertyHandle &  pOther )
+   Search for all occurrences
+
+   Set parent property handle.No matter what enters,the result is always false.
+
+   Parameters:
+
+          pOther
+
+   Returns:
+          False
+
+   FbxPropertyHandle Add ( const char *               pName,
+                           const FbxPropertyHandle &  pTypeInfo
+                         )
+   Search for all occurrences
+
+   Add a property to the property page.
+
+   Parameters:
+
+          pName     The name of property.
+          pTypeInfo The added property's type info.
+
+   Returns:
+          The handle of the new added property
+
+   FbxPropertyHandle GetParent ( ) const
+   Search for all occurrences
+
+   Get parent property.
+
+   Returns:
+          If the parent property exists, return the property handle,otherwise return -1.
+
+   FbxPropertyHandle GetChild ( ) const
+   Search for all occurrences
+
+   Get child property.
+
+   Returns:
+          If the child property is exist, return the property handle,otherwise return -1.
+
+   FbxPropertyHandle GetSibling ( ) const
+   Search for all occurrences
+
+   Get sibling property.
+
+   Returns:
+          If the sibling property is exist, return the property handle,otherwise return -1.
+
+   FbxPropertyHandle GetFirstDescendent ( ) const
+   Search for all occurrences
+
+   Get first descendent property.
+
+   Returns:
+          If the descendent property is exist, return the first descendent property handle,otherwise return -1.
+
+   FbxPropertyHandle GetNextDescendent ( const FbxPropertyHandle &  pHandle ) const
+   Search for all occurrences
+
+   Get first descendent property which after the given property.
+
+   Parameters:
+
+          pHandle The given property handle
+
+   Returns:
+          If the descendent property can be found after the given property, return the first found property handle,otherwise return -1.
+
+   FbxPropertyHandle Find ( const char *  pName,
+                            bool          pCaseSensitive
+                          )               const
+   Search for all occurrences
+
+   Find the property with given name.
+
+   Parameters:
+
+          pName          The given property name
+          pCaseSensitive Decide if the given property name is case sensitive
+
+   Returns:
+          Return a property handle which be created with the found property.
+
+   FbxPropertyHandle Find ( const char *               pName,
+                            const FbxPropertyHandle &  pTypeInfo,
+                            bool                       pCaseSensitive
+                          )                            const
+   Search for all occurrences
+
+   Find the property with given name and type info.
+
+   Parameters:
+
+          pName          The given property name
+          pTypeInfo      The given property type info
+          pCaseSensitive Decide if the given property name is case sensitive
+
+   Returns:
+          Return a property handle which be created with the found property.
+
+   FbxPropertyHandle Find ( const char *  pName,
+                            const char *  pChildrenSeparator,
+                            bool          pCaseSensitive
+                          )               const
+   Search for all occurrences
+
+   Separate the given name by children separator string and then find the property.The step is strip the first part of the name and search, if the property can be found, strip the second part of the name and continue search, until no property be found,then return the last found property.
+
+   Parameters:
+
+          pName              The given property name
+          pChildrenSeparator The given children separator string
+          pCaseSensitive     Decide if the given property name is case sensitive
+
+   Returns:
+          Return a property handle which be created with the found property.
+
+   FbxPropertyHandle Find ( const char *               pName,
+                            const char *               pChildrenSeparator,
+                            const FbxPropertyHandle &  pTypeInfo,
+                            bool                       pCaseSensitive
+                          )                            const
+   Search for all occurrences
+
+   Separate the given name by children separator string and then find the property.The step is strip the first part of the name and search, if the property can be found, strip the second part of the name and continue search, until no property be found,then return the last found property.
+
+   Parameters:
+
+          pName              The given property name
+          pChildrenSeparator The given children separator string
+          pTypeInfo          The given property type info
+          pCaseSensitive     Decide if the given property name is case sensitive
+
+   Returns:
+          Return a property handle which be created with the found property.
+
+   bool ConnectSrc ( const FbxPropertyHandle &   pSrc,
+                     const FbxConnection::EType  pType = FbxConnection::eDefault
+                   )
+   Search for all occurrences
+
+   Connect source property.
+
+   Parameters:
+
+          pSrc  The given source property
+          pType The given property type
+
+   Returns:
+          If connect successfully, return true,otherwise, return false.
+
+   int GetSrcCount ( FbxConnectionPointFilter *  pFilter = 0 ) const
+   Search for all occurrences
+
+   Get source properties' count.
+
+   Parameters:
+
+          pFilter The filter used to get sub connection point. If it is not zero, return the source count of the sub connection point. Otherwise, return the src count of this property.
+
+   Returns:
+          The count of source properties
+
+   FbxPropertyHandle GetSrc ( FbxConnectionPointFilter *  pFilter = 0,
+                              int                         pIndex = 0
+                            )                             const
+   Search for all occurrences
+
+   Get source property with the given index.
+
+   Parameters:
+
+          pFilter The filter used to get sub connection point. If it is not zero, return the source property of the sub connection point. Otherwise, return the source property of this property.
+          pIndex  The given index
+
+   Returns:
+          The source property handle.
+
+   bool DisconnectSrc ( const FbxPropertyHandle &  pSrc )
+   Search for all occurrences
+
+   Disconnect source property.
+
+   Parameters:
+
+          pSrc The given source property
+
+   Returns:
+          If disconnect successfully, return true, otherwise return false.
+
+   bool IsConnectedSrc ( const FbxPropertyHandle &  pSrc )
+   Search for all occurrences
+
+   Judge if it is connected with the given source property.
+
+   Parameters:
+
+          pSrc The given source property
+
+   Returns:
+          If it is connected, return true, otherwise return false.
+
+   bool ConnectDst ( const FbxPropertyHandle &   pDst,
+                     const FbxConnection::EType  pType = FbxConnection::eDefault
+                   )
+   Search for all occurrences
+
+   Connect destination property.
+
+   Parameters:
+
+          pDst  The given destination property
+          pType The given property type
+
+   Returns:
+          If connect successfully, return true,otherwise, return false.
+
+   int GetDstCount ( FbxConnectionPointFilter *  pFilter = 0 ) const
+   Search for all occurrences
+
+   Get destination properties' count.
+
+   Parameters:
+
+          pFilter The filter used to get sub connection point.If it is not zero,return the destination count of the sub connection point. Otherwise, return the destination count of this property.
+
+   Returns:
+          The count of destination properties
+
+   FbxPropertyHandle GetDst ( FbxConnectionPointFilter *  pFilter = 0,
+                              int                         pIndex = 0
+                            )                             const
+   Search for all occurrences
+
+   Get destination property with the given index.
+
+   Parameters:
+
+          pFilter The filter used to get sub connection point.If it is not zero,return the destination property of the sub connection point. Otherwise, return the destination property of this property.
+          pIndex  The given index
+
+   Returns:
+          The destination property handle.
+
+   bool DisconnectDst ( const FbxPropertyHandle &  pDst )
+   Search for all occurrences
+
+   Disconnect destination property.
+
+   Parameters:
+
+          pDst The given destination property
+
+   Returns:
+          If disconnect successfully, return true,otherwise, return false.
+
+   bool IsConnectedDst ( const FbxPropertyHandle &  pDst )
+   Search for all occurrences
+
+   Judge if it is connected with the given destination property.
+
+   Parameters:
+
+          pDst The given destination property
+
+   Returns:
+          If it is connected, return true,otherwise, return false.
+
+   void ClearConnectCache ( )
+   Search for all occurrences
+
+   Clear connect cache.
+   void WipeAllConnections ( )
+   Search for all occurrences
+
+   Clear all connect without sending any notification (Internal use ONLY)
+   bool HasMin ( ) const
+   Search for all occurrences
+
+   Judge if this property has a minimum value.
+
+   Returns:
+          If the minimum value exist, return true,otherwise, return false.
+
+   bool GetMin ( void *    pValue,
+                 EFbxType  pValueType
+               )           const
+   Search for all occurrences
+
+   Get the minimum value and value type of this property.
+
+   Parameters:
+
+          pValue     The minimum value of this property.
+          pValueType The value type of this property.
+
+   Returns:
+          If the minimum value exist, return true,otherwise, return false.
+
+   bool SetMin ( const void *  pValue,
+                 EFbxType      pValueType
+               )
+   Search for all occurrences
+
+   Set the minimum value and value type for this property.
+
+   Parameters:
+
+          pValue     The given minimum value .
+          pValueType The given value type .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   bool SetMin ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   According the given value and its value type, set the minimum value and value type for this property.
+
+   Parameters:
+
+          pValue The given value .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   Definition at line 376 of file fbxpropertyhandle.h.
+{ return SetMin(&pValue, FbxTypeOf(pValue)); }
+
+   T GetMin ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Get the minimum value of this property.
+
+   Parameters:
+
+          pFBX_TYPE Not used in this function. This is a dummy argument for the correct instantiation of the templated function.
+
+   Returns:
+          The minimum value of this property
+
+   Definition at line 382 of file fbxpropertyhandle.h.
+{ T lValue; GetMin(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   bool HasSoftMin ( ) const
+   Search for all occurrences
+
+   Judge if this property has soft minimum value.
+
+   Returns:
+          If the soft minimum value exist, return true,otherwise, return false.
+
+   bool GetSoftMin ( void *    pValue,
+                     EFbxType  pValueType
+                   )           const
+   Search for all occurrences
+
+   Get the soft minimum value and value type of this property.
+
+   Parameters:
+
+          pValue     The soft minimum value of this property.
+          pValueType The value type of this property.
+
+   Returns:
+          If the soft minimum value exist, return true,otherwise, return false.
+
+   bool SetSoftMin ( const void *  pValue,
+                     EFbxType      pValueType
+                   )
+   Search for all occurrences
+
+   Set the soft minimum value and value type for this property.
+
+   Parameters:
+
+          pValue     The given soft minimum value .
+          pValueType The given value type .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   bool SetSoftMin ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   According the given value and its value type, set the soft minimum value and value type for this property.
+
+   Parameters:
+
+          pValue The given value .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   Definition at line 403 of file fbxpropertyhandle.h.
+{ return SetSoftMin(&pValue, FbxTypeOf(pValue)); }
+
+   T GetSoftMin ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Get the soft minimum value of this property.
+
+   Parameters:
+
+          pFBX_TYPE Not used in this function. This is a dummy argument for the correct instantiation of the templated function.
+
+   Returns:
+          The soft minimum value of this property
+
+   Definition at line 409 of file fbxpropertyhandle.h.
+{ T lValue; GetSoftMin(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   bool HasMax ( ) const
+   Search for all occurrences
+
+   Judge if this property has maximum value.
+
+   Returns:
+          If the maximum value exist, return true,otherwise, return false.
+
+   bool GetMax ( void *    pValue,
+                 EFbxType  pValueType
+               )           const
+   Search for all occurrences
+
+   Get the maximum value and value type of this property.
+
+   Parameters:
+
+          pValue     The maximum value of this property.
+          pValueType The value type of this property.
+
+   Returns:
+          If the maximum value exist, return true,otherwise, return false.
+
+   bool SetMax ( const void *  pValue,
+                 EFbxType      pValueType
+               )
+   Search for all occurrences
+
+   Set the maximum value and value type for this property.
+
+   Parameters:
+
+          pValue     The given maximum value .
+          pValueType The given value type .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   bool SetMax ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   According the given value and its value type, set the maximum value and value type for this property.
+
+   Parameters:
+
+          pValue The given value .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   Definition at line 430 of file fbxpropertyhandle.h.
+{ return SetMax(&pValue, FbxTypeOf(pValue)); }
+
+   T GetMax ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Get the maximum value of this property.
+
+   Parameters:
+
+          pFBX_TYPE Not used in this function. This is a dummy argument for the correct instantiation of the templated function.
+
+   Returns:
+          The maximum value of this property
+
+   Definition at line 436 of file fbxpropertyhandle.h.
+{ T lValue; GetMax(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   bool HasSoftMax ( ) const
+   Search for all occurrences
+
+   Judge if this property has soft maximum value.
+
+   Returns:
+          If the soft maximum value exist, return true,otherwise, return false.
+
+   bool GetSoftMax ( void *    pValue,
+                     EFbxType  pValueType
+                   )           const
+   Search for all occurrences
+
+   Get the soft maximum value and value type of this property.
+
+   Parameters:
+
+          pValue     The soft maximum value of this property.
+          pValueType The value type of this property.
+
+   Returns:
+          If the soft maximum value exist, return true,otherwise, return false.
+
+   bool SetSoftMax ( const void *  pValue,
+                     EFbxType      pValueType
+                   )
+   Search for all occurrences
+
+   Set the soft maximum value and value type for this property.
+
+   Parameters:
+
+          pValue     The given soft maximum value .
+          pValueType The given value type .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   bool SetSoftMax ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   According the given value and its value type, set the soft maximum value and value type for this property.
+
+   Parameters:
+
+          pValue The given value .
+
+   Returns:
+          If it be set successfully, return true,otherwise, return false.
+
+   Definition at line 457 of file fbxpropertyhandle.h.
+{ return SetSoftMax(&pValue, FbxTypeOf(pValue)); }
+
+   T GetSoftMax ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   Get the soft maximum value of this property.
+
+   Parameters:
+
+          pFBX_TYPE Not used in this function. This is a dummy argument for the correct instantiation of the templated function.
+
+   Returns:
+          The soft maximum value of this property
+
+   Definition at line 463 of file fbxpropertyhandle.h.
+{ T lValue; GetSoftMax(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   FbxPropertyFlags::EInheritType GetValueInheritType ( bool  pCheckReferences ) const
+   Search for all occurrences
+
+   Get value inherit type of this property.
+
+   Parameters:
+
+          pCheckReferences If it is true,check instance of this property page,otherwise,only check this page.
+
+   Returns:
+          The value inherit type of this property
+
+   bool SetValueInheritType ( FbxPropertyFlags::EInheritType  pType )
+   Search for all occurrences
+
+   Set value inherit type for this property .
+
+   Parameters:
+
+          pType The given value inherit type.
+
+   Returns:
+          If set successfully, return true,otherwise, return false.
+
+   bool GetDefaultValue ( void *    pValue,
+                          EFbxType  pValueType
+                        )           const
+   Search for all occurrences
+
+   Get default value and value type of this property .
+
+   Parameters:
+
+          pValue     The gotten default value of this property.
+          pValueType The gotten default value type of this property.
+
+   Returns:
+          If default value be gotten successfully, return true,otherwise, return false.
+
+   bool Get ( void *    pValue,
+              EFbxType  pValueType
+            )           const
+   Search for all occurrences
+
+   Get value and value type of this property .
+
+   Parameters:
+
+          pValue     The gotten value of this property.
+          pValueType The gotten value type of this property.
+
+   Returns:
+          If value be gotten successfully, return true,otherwise, return false.
+
+   bool Set ( const void *  pValue,
+              EFbxType      pValueType,
+              bool          pCheckValueEquality
+            )
+   Search for all occurrences
+
+   Set property value and value type for this property.
+
+   Parameters:
+
+          pValue              The given property value .
+          pValueType          The given property value type
+          pCheckValueEquality If it is true, when the given value is equal with the property value, the property value will not be set.
+
+   Returns:
+          If the property value be set successfully, return true,otherwise, return false.
+
+   bool Set ( const T &  pValue ) [inline]
+   Search for all occurrences
+
+   Set property value with the given value .
+
+   Parameters:
+
+          pValue The given value .
+
+   Returns:
+          If set successfully, return true,otherwise, return false.
+
+   Definition at line 503 of file fbxpropertyhandle.h.
+{ return Set(&pValue, FbxTypeOf(pValue)); }
+
+   T Get ( const T *  pFBX_TYPE ) const [inline]
+   Search for all occurrences
+
+   get property value.
+
+   Parameters:
+
+          pFBX_TYPE Not be used.
+
+   Returns:
+          The gotten property value.
+
+   Definition at line 508 of file fbxpropertyhandle.h.
+{ T lValue; Get(&lValue, FbxTypeOf(lValue)); return lValue; }
+
+   void SetPageDataPtr ( void *  pData )
+   Search for all occurrences
+
+   Set the property page data pointer.
+
+   Parameters:
+
+          pData The given page data pointer.
+
+   void* GetPageDataPtr ( ) const
+   Search for all occurrences
+
+   Get property page data pointer.
+
+   Returns:
+          The gotten property page data pointer.
+
+   bool PushPropertiesToParentInstance ( )
+   Search for all occurrences
+
+   Push properties to parent instance.
+
+   Returns:
+          If push successful return true,otherwise,return false.
+
+   bool IsAReferenceTo ( void  ) const
+   Search for all occurrences
+
+   Judge if this property page is a instance of other page.
+
+   Returns:
+          If this property page is a instance of other page, return true,otherwise,return false.
+
+   void* GetReferenceTo ( void  ) const
+   Search for all occurrences
+
+   Get the property page which this property page make reference to.
+
+   Returns:
+          The property page which this property page make reference to
+
+   bool IsReferencedBy ( void  ) const
+   Search for all occurrences
+
+   Judge if this property page is referenced by other pages.
+
+   Returns:
+          If this property page is referenced by other pages, return true,otherwise,return false.
+
+   int GetReferencedByCount ( void  ) const
+   Search for all occurrences
+
+   Get the count of property pages which make reference to this property page.
+
+   Returns:
+          The count of property pages which make reference to this property page.
+
+   void* GetReferencedBy ( int  pIndex ) const
+   Search for all occurrences
+
+   According the given index,get the property page which make reference to this property page.
+
+   Parameters:
+
+          pIndex The given index
+
+   Returns:
+          The pointer to the property page which reference to this property page and be found by index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertyhandle.h
+
+   Please send us your comment about this page

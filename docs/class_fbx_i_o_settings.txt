@@ -1,0 +1,743 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIOSettings Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxIOSettings Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, Your First FBX SDK Program, Importing a Scene, Exporting a Scene, Customizing File Formats with FBX SDK I/O Plug-ins, Merging Two Scenes, Importing and Exporting a Scene, List of Python Fbx classes, FBX Properties, Connections.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxiosettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxIOSettings is a collection of properties, arranged as a tree, that can be used by FBX file readers and writers to represent import and export options.
+
+   It is primarily used by FBX importers (FbxImporter) and FBX exporter (FbxExporter) when reading or writing data from or to a disk. The FBX plugins of some Autodesk products expose a UI representing the content of those options to let users see and choose options when an import or export operation is about to be done. The tree of options is extensible.
+
+   Options can be saved or loaded from an XML file using the functions: ReadXMLFile(), WriteXMLFile(), WriteXmlPropToFile(). This functionality can be useful for plugins that use preset files.
+
+   An instance of FbxIOSettings must be created to be used before an import/export operation. When a new FbxIOSettings instance is created, all options are created with default values. The new instance of FbxIOSettings can be passed to the FbxManager, this way that instance will be used by all import/export operations.
+
+   Ex: to set an instance of FbxIOSettings to the FbxManager
+ // First create a new instance of FbxIOSettings
+ FbxIOSettings * ios = FbxIOSettings::Create((FbxManager *) mManager, IOSROOT);
+ // then set the FbxManager
+ mManager->SetIOSettings(ios);
+
+   It's also possible for a developer to create another instance of FbxIOSettings, set particular options and use it for import/export operation.
+
+   Ex: to set an instance of FbxIOSettings to a FbxImporter/FbxExporter
+ mImporter->SetIOSettings(ios); / mExporter->SetIOSettings(ios);
+
+   A schematic view of the FbxIOSettings tree :
+
+                                         OPTION_GROUP_ROOT (IOSROOT)
+                                         |
+                                         |
+                     ________________________________________
+                     |                                      |
+                     -OPTION_GROUP_EXPORT (IOSN_EXPORT)     -OPTION_GROUP_IMPORT (IOSN_IMPORT)
+                          |                                      |
+                          -OPTION_GROUP_A                        -OPTION_GROUP_A
+                          |     |                                |     |
+                          |     -OPTION_A                        |     -OPTION_A
+                          |     -OPTION_B                        |     -OPTION_B
+                          |                                      |
+                          -OPTION_GROUP_B                        -OPTION_GROUP_B
+                          |     |                                |     |
+                          |     -OPTION_GROUP_A                  |     -OPTION_GROUP_A
+                          |     |     |                          |     |     |
+                          |     |     -OPTION_A                  |     |     -OPTION_A
+                          |     |     -OPTION_B                  |     |     -OPTION_B
+                          |     |                                |     |
+                          |     -OPTION_GROUP_B                  |     -OPTION_GROUP_B
+                          |           |                          |           |
+                          |           -OPTION_A                  |           -OPTION_A
+                          |           -OPTION_B                  |           -OPTION_B
+                          |                                      |
+                          -OPTION_GROUP_C                        -OPTION_GROUP_C
+                                |                                      |
+                                -OPTION_A                              -OPTION_A
+
+
+
+   Any group of options can contain sub options, or group of sub options. To access an option value, we must pass the full path to the Get/Set functions Ex:
+ ios->GetBoolProp("Import|IncludeGrp|Animation", true); // the root node name is not required
+
+   All options path are defined in the file kfbxiosettingspath.h to ease the access of any options. Then "Import|IncludeGrp|Animation" == IMP_ANIMATION since IMP_ANIMATION is defined in kfbxiosettingspath.h All options defined path start with "IMP_" for import branch or "EXP_" for export branch.
+
+   We strongly encourage to use the defined path in kfbxiosettingspath.h, this way if the parent group of an option is changed the change occur only in kfbxiosettingspath.h not in the code elsewhere.
+
+   Ex: to get the boolean import "Animation" option
+ bool anim = ios->GetBoolProp(IMP_ANIMATION, true); // will return true if not found, since we pass true as second param
+
+   Ex: to set the boolean import "Animation" option to false
+ ios->SetBoolProp(IMP_ANIMATION, false);
+
+   Ex: to create a new option group under the "Import" branch
+ // get the parent "Import" property
+ FbxProperty import_Group = ios->GetProperty( IOSN_IMPORT ); // IOSN_IMPORT is defined as "Import" in kfbxiosettingspath.h
+ if(import_Group.IsValid()) // check if we have found the IOSN_IMPORT parent option
+ {
+     // add a new group of options "myOptionGroup"
+                FbxProperty myOptionGrp = ios->AddPropertyGroup(import_Group, "myOptionGroup", FbxStringDT, "My Option Group UI Label");
+ }
+
+   Ex: to create a new boolean option under the "myOptionGroup"
+ FbxProperty myOptionGrp = ios->GetProperty( "Import|myOptionGroup" ); // can also use IOSN_IMPORT|"myOptionGroup"
+ if(myOptionGrp.IsValid()) // check if we have found the "myOptionGroup"
+ {
+     bool defaultValue = true;
+                FbxProperty myOption = ios->AddProperty(myOptionGrp, "myOptionName", FbxBoolDT, "My Option UI label" , &defaultValue, eFbxBool);
+ }
+
+   Ex: to set some flags to myOption
+ FbxProperty myOption = ios->GetProperty( "Import|myOptionGroup|myOptionName" );
+ if(myOption.IsValid())
+ {
+                myOPtion.ModifyFlag(FbxPropertyFlags::eUIHidden, true);   // to make that option not visible to the UI
+                myOPtion.ModifyFlag(FbxPropertyFlags::eNotSavable, true); // to avoid the read/save of that option in XML file
+ }
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, FileStream/main.cxx, MyOwnWriterReader/MyOwnWriterReader.cxx, MyOwnWriterReader/MyOwnWriterReader.h, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   Definition at line 207 of file fbxiosettings.h.
+   Inheritance diagram for FbxIOSettings:
+   [USEMAP:class_fbx_i_o_settings.png]
+
+   List of all members.
+
+Public Types
+
+   enum   ELanguage {
+     eENU, eDEU, eFRA, eJPN,
+     eKOR, eCHS, eLanguageCount
+   }
+     Supported languages enumeration list. More...
+
+Public Member Functions
+
+   FbxProperty  AddPropertyGroup (const char *pName, const FbxDataType &pDataType=FbxDataType(), const char *pLabel="")
+     Add a property group under the root prop to be a direct child of IOSROOT.
+   FbxProperty  AddPropertyGroup (const FbxProperty &pParentProperty, const char *pName, const FbxDataType &pDataType=FbxDataType(), const char *pLabel="", bool pVisible=true, bool pSavable=true, bool pEnabled=true)
+     Add a property group under another parent property.
+   FbxProperty  AddProperty (const FbxProperty &pParentProperty, const char *pName, const FbxDataType &pDataType=FbxDataType(), const char *pLabel="", const void *pValue=NULL, bool pVisible=true, bool pSavable=true, bool pEnabled=true)
+     Add a property under another parent property with a value to set.
+   FbxProperty  AddPropertyMinMax (const FbxProperty &pParentProperty, const char *pName, const FbxDataType &pDataType=FbxDataType(), const char *pLabel="", const void *pValue=NULL, const double *pMinValue=NULL, const double *pMaxValue=NULL, bool pVisible=true, bool pSavable=true, bool pEnabled=true)
+     Add a property under another parent property with a value to set and a min max values.
+   FbxProperty  GetProperty (const char *pName) const
+     Get a property using the full path in the tree ex: "Export|IncludeGrp|Animation".
+   FbxProperty  GetProperty (const FbxProperty &pParentProperty, const char *pName) const
+     Get a property using a short path found under the parent property.
+   bool  GetBoolProp (const char *pName, bool pDefValue) const
+     Get a bool property value using the full path.
+   void  SetBoolProp (const char *pName, bool pValue)
+     set a bool property value using the full path
+   double  GetDoubleProp (const char *pName, double pDefValue) const
+     Get a double property value using the full path.
+   void  SetDoubleProp (const char *pName, double pValue)
+     Set a double property using the full path.
+   int  GetIntProp (const char *pName, int pDefValue) const
+     Get a int property value using the full path.
+   void  SetIntProp (const char *pName, int pValue)
+     Set a int property value using the full path.
+   FbxTime  GetTimeProp (const char *pName, FbxTime pDefValue) const
+     Get a FbxTime property value using the full path.
+   void  SetTimeProp (const char *pName, FbxTime pValue)
+     Set a FbxTime property value using the full path.
+   bool  SetFlag (const char *pName, FbxPropertyFlags::EFlags propFlag, bool pValue)
+     Set a specific flag value on a property using the full path.
+   FbxString  GetStringProp (const char *pName, FbxString pDefValue) const
+     Get a FbxString property value using the full path.
+   void  SetStringProp (const char *pName, FbxString pValue)
+     Set a FbxString property value using the full path.
+   Enum Properties
+
+   An enum property is a list of FbxString and integer pairs.
+
+   A current index value is available to get the selected pair of FbxString+integer
+
+   Ex: Content of an enum property
+    0 -> (14, "Bird")
+    1 -> (17, "Horse")
+    2 -> (93, "Cat")
+    3 -> (45, "Dog")
+
+   If current index is 2: the current int value is 93, and the current FbxString value is "Cat"
+   FbxString  GetEnumProp (const char *pName, FbxString pDefValue) const
+     Get the FbxString at current index of an enum property using the full path.
+   int  GetEnumProp (const char *pName, int pDefValue) const
+     Get the integer at current index of an enum property using the full path.
+   int  GetEnumIndex (const char *pName, FbxString pValue) const
+     Get the index of a FbxString from the enum property using the full path.
+   void  SetEnumProp (const char *pName, FbxString pValue)
+     Set the current index using an existing FbxString of an enum property using the full path.
+   void  SetEnumProp (const char *pName, int pValue)
+     Set the current index of an enum property using the full path.
+   void  RemoveEnumPropValue (const char *pName, FbxString pValue)
+     Remove a pair of FbxString+integer from an enum property.
+   void  EmptyEnumProp (const char *pName)
+     Empty all the FbxString+integer pair of the enum property.
+   bool  IsEnumExist (FbxProperty &pProp, const FbxString &enumString) const
+     Check if a FbxString is present in the enum property.
+   int  GetEnumIndex (FbxProperty &pProp, const FbxString &enumString, bool pNoCase=false) const
+     Get the enum index of a FbxString.
+   XML Serialization Functions
+   virtual bool  ReadXMLFile (const FbxString &path)
+     Load the settings values from an XML file.
+   virtual bool  WriteXMLFile (const FbxString &path)
+     Write the settings values to an XML file.
+   bool  WriteXmlPropToFile (const FbxString &pFullPath, const FbxString &propPath)
+     Write the settings values to an XML file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ELanguage
+   Search for all occurrences
+
+   Supported languages enumeration list.
+
+   Enumerator:
+
+          eENU
+
+   409 English - United States
+   Search for all occurrences
+          eDEU
+
+   407 German - Germany
+   Search for all occurrences
+          eFRA
+
+   40c French - France
+   Search for all occurrences
+          eJPN
+
+   411 Japanese - Japan
+   Search for all occurrences
+          eKOR
+
+   412 Korean(Extended Wansung) - Korea
+   Search for all occurrences
+          eCHS
+
+   804 Chinese - PRC
+   Search for all occurrences
+          eLanguageCount
+
+   Total language count.
+   Search for all occurrences
+
+   Definition at line 213 of file fbxiosettings.h.
+        {
+                eENU,
+                eDEU,
+                eFRA,
+                eJPN,
+                eKOR,
+                eCHS,
+                eLanguageCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxProperty AddPropertyGroup ( const char *         pName,
+                                  const FbxDataType &  pDataType = FbxDataType(),
+                                  const char *         pLabel = ""
+                                )
+   Search for all occurrences
+
+   Add a property group under the root prop to be a direct child of IOSROOT.
+
+   Parameters:
+
+          pName
+          pDataType
+          pLabel
+
+   Returns:
+          a new FbxProperty created
+
+   FbxProperty AddPropertyGroup ( const FbxProperty &  pParentProperty,
+                                  const char *         pName,
+                                  const FbxDataType &  pDataType = FbxDataType(),
+                                  const char *         pLabel = "",
+                                  bool                 pVisible = true,
+                                  bool                 pSavable = true,
+                                  bool                 pEnabled = true
+                                )
+   Search for all occurrences
+
+   Add a property group under another parent property.
+
+   Parameters:
+
+          pParentProperty
+          pName
+          pDataType
+          pLabel          (optional, used by the UI as widget label)
+          pVisible        (used by the UI to show or not that property)
+          pSavable        (to enable a read & write to an XML file)
+          pEnabled        (used by the widget UI to show enabled or disabled)
+
+   Returns:
+          a new FbxProperty created
+
+   FbxProperty AddProperty ( const FbxProperty &  pParentProperty,
+                             const char *         pName,
+                             const FbxDataType &  pDataType = FbxDataType(),
+                             const char *         pLabel = "",
+                             const void *         pValue = NULL,
+                             bool                 pVisible = true,
+                             bool                 pSavable = true,
+                             bool                 pEnabled = true
+                           )
+   Search for all occurrences
+
+   Add a property under another parent property with a value to set.
+
+   Parameters:
+
+          pParentProperty
+          pName
+          pDataType
+          pLabel          (optional, used by the UI as widget label)
+          pValue
+          pVisible        (used by the UI to show or not that property)
+          pSavable        (to enable a read & write to an XML file)
+          pEnabled        (used by the widget UI to show enabled or disabled)
+
+   Returns:
+          a new FbxProperty created
+
+   FbxProperty AddPropertyMinMax ( const FbxProperty &  pParentProperty,
+                                   const char *         pName,
+                                   const FbxDataType &  pDataType = FbxDataType(),
+                                   const char *         pLabel = "",
+                                   const void *         pValue = NULL,
+                                   const double *       pMinValue = NULL,
+                                   const double *       pMaxValue = NULL,
+                                   bool                 pVisible = true,
+                                   bool                 pSavable = true,
+                                   bool                 pEnabled = true
+                                 )
+   Search for all occurrences
+
+   Add a property under another parent property with a value to set and a min max values.
+
+   Parameters:
+
+          pParentProperty
+          pName
+          pDataType
+          pLabel          (optional, used by the UI as widget label)
+          pValue
+          pMinValue
+          pMaxValue
+          pVisible        (used by the UI to show or not that property)
+          pSavable        (to enable a read & write to an XML file)
+          pEnabled        (used by the widget UI to show enabled or disabled)
+
+   Returns:
+          a new FbxProperty created
+
+   Remarks:
+          Normally used with numeric properties Ex: integer, float, double, etc.
+
+   FbxProperty GetProperty ( const char *  pName ) const
+   Search for all occurrences
+
+   Get a property using the full path in the tree ex: "Export|IncludeGrp|Animation".
+
+   Parameters:
+
+          pName
+
+   Returns:
+          a FbxProperty found
+
+   Remarks:
+          We strongly encourage to use the defined path in kfbxiosettingspath.h ex: EXP_ANIMATION == "Export|IncludeGrp|Animation"
+
+   FbxProperty GetProperty ( const FbxProperty &  pParentProperty,
+                             const char *         pName
+                           )                      const
+   Search for all occurrences
+
+   Get a property using a short path found under the parent property.
+
+   Parameters:
+
+          pParentProperty
+          pName
+
+   Returns:
+          a FbxProperty found
+
+   Remarks:
+          This is a faster way to access a property when the parent is known
+
+   bool GetBoolProp ( const char *  pName,
+                      bool          pDefValue
+                    )               const
+   Search for all occurrences
+
+   Get a bool property value using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          true or false
+
+   void SetBoolProp ( const char *  pName,
+                      bool          pValue
+                    )
+   Search for all occurrences
+
+   set a bool property value using the full path
+
+   Parameters:
+
+          pName
+          pValue
+
+   double GetDoubleProp ( const char *  pName,
+                          double        pDefValue
+                        )               const
+   Search for all occurrences
+
+   Get a double property value using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          a double
+
+   void SetDoubleProp ( const char *  pName,
+                        double        pValue
+                      )
+   Search for all occurrences
+
+   Set a double property using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   int GetIntProp ( const char *  pName,
+                    int           pDefValue
+                  )               const
+   Search for all occurrences
+
+   Get a int property value using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          a int
+
+   void SetIntProp ( const char *  pName,
+                     int           pValue
+                   )
+   Search for all occurrences
+
+   Set a int property value using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   FbxTime GetTimeProp ( const char *  pName,
+                         FbxTime       pDefValue
+                       )               const
+   Search for all occurrences
+
+   Get a FbxTime property value using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   void SetTimeProp ( const char *  pName,
+                      FbxTime       pValue
+                    )
+   Search for all occurrences
+
+   Set a FbxTime property value using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   Returns:
+          a FbxTime
+
+   FbxString GetEnumProp ( const char *  pName,
+                           FbxString     pDefValue
+                         )               const
+   Search for all occurrences
+
+   Get the FbxString at current index of an enum property using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          a FbxString
+
+   int GetEnumProp ( const char *  pName,
+                     int           pDefValue
+                   )               const
+   Search for all occurrences
+
+   Get the integer at current index of an enum property using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          a int
+
+   int GetEnumIndex ( const char *  pName,
+                      FbxString     pValue
+                    )               const
+   Search for all occurrences
+
+   Get the index of a FbxString from the enum property using the full path.
+
+   Parameters:
+
+          pName
+          pValue Return -1 if the FbxString is not found
+
+   Returns:
+          a int
+
+   void SetEnumProp ( const char *  pName,
+                      FbxString     pValue
+                    )
+   Search for all occurrences
+
+   Set the current index using an existing FbxString of an enum property using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   Remarks:
+          The current index will not change if the FbxString is not found
+
+   void SetEnumProp ( const char *  pName,
+                      int           pValue
+                    )
+   Search for all occurrences
+
+   Set the current index of an enum property using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   Remarks:
+          The current index will not change if the pValue is out of bound
+
+   void RemoveEnumPropValue ( const char *  pName,
+                              FbxString     pValue
+                            )
+   Search for all occurrences
+
+   Remove a pair of FbxString+integer from an enum property.
+
+   Parameters:
+
+          pName
+          pValue The FbxString to find
+
+   Remarks:
+          The first FbxString found from 0 index will be removed only even if the same FbxString exist in other index, if the current index was on the FbxString found the current index will be set to 0
+
+   void EmptyEnumProp ( const char *  pName )
+   Search for all occurrences
+
+   Empty all the FbxString+integer pair of the enum property.
+
+   Parameters:
+
+          pName
+
+   bool IsEnumExist ( FbxProperty &      pProp,
+                      const FbxString &  enumString
+                    )                    const
+   Search for all occurrences
+
+   Check if a FbxString is present in the enum property.
+
+   Parameters:
+
+          &pProp      a ref to an enum prop
+          &enumString ref to a FbxString to find
+
+   Returns:
+          true if found, false otherwise.
+
+   int GetEnumIndex ( FbxProperty &      pProp,
+                      const FbxString &  enumString,
+                      bool               pNoCase = false
+                    )                    const
+   Search for all occurrences
+
+   Get the enum index of a FbxString.
+
+   Parameters:
+
+          &pProp      a ref to an enum prop
+          &enumString ref to string to find
+          pNoCase     To match case sensitive or not
+
+   Returns:
+          the index found or -1 if not found
+
+   bool SetFlag ( const char *             pName,
+                  FbxPropertyFlags::EFlags  propFlag,
+                  bool                     pValue
+                )
+   Search for all occurrences
+
+   Set a specific flag value on a property using the full path.
+
+   Parameters:
+
+          pName
+          propFlag
+          pValue
+
+   Returns:
+          Always true
+
+   FbxString GetStringProp ( const char *  pName,
+                             FbxString     pDefValue
+                           )               const
+   Search for all occurrences
+
+   Get a FbxString property value using the full path.
+
+   Parameters:
+
+          pName
+          pDefValue Value returned if the property is not found
+
+   Returns:
+          The FbxString value
+
+   void SetStringProp ( const char *  pName,
+                        FbxString     pValue
+                      )
+   Search for all occurrences
+
+   Set a FbxString property value using the full path.
+
+   Parameters:
+
+          pName
+          pValue
+
+   virtual bool ReadXMLFile ( const FbxString &  path ) [virtual]
+   Search for all occurrences
+
+   Load the settings values from an XML file.
+
+   Parameters:
+
+          path The path of the XML file.
+
+   Returns:
+          True on success, false otherwise.
+
+   virtual bool WriteXMLFile ( const FbxString &  path ) [virtual]
+   Search for all occurrences
+
+   Write the settings values to an XML file.
+
+   Parameters:
+
+          path The path of the XML file.
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          The flag of the property must be FbxPropertyFlags::eNotSavable == false
+
+   bool WriteXmlPropToFile ( const FbxString &  pFullPath,
+                             const FbxString &  propPath
+                           )
+   Search for all occurrences
+
+   Write the settings values to an XML file.
+
+   Parameters:
+
+          pFullPath The path of the XML file.
+          propPath  a prop Path
+
+   Returns:
+          True on success, false otherwise.
+
+   Remarks:
+          To save only a branch of the settings ex: Import branch only
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxiosettings.h
+
+   Please send us your comment about this page

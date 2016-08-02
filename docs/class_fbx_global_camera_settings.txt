@@ -1,0 +1,314 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGlobalCameraSettings Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxGlobalCameraSettings Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxglobalcamerasettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains the global camera settings.
+
+   Remarks:
+          This class exists for FBX version 6.x and earlier. The new FBX v7.x file format that is now the default no longer uses it. The relevant data (a subset of this class) has been moved to the FbxGlobalSettings object and should be used instead.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   Definition at line 43 of file fbxglobalcamerasettings.h.
+
+   List of all members.
+
+Public Member Functions
+
+   const FbxGlobalCameraSettings &  operator= (const FbxGlobalCameraSettings &pGlobalCameraSettings)
+                                    Assignment operator.
+
+Default Camera Settings
+
+                             enum   EViewingMode { eStandard, eXRay, eModelsOnly }
+                                    Viewing modes. More...
+                              bool  SetDefaultCamera (const char *pCameraName, FbxStatus *pStatus=NULL)
+                                    Sets the default camera.
+                      const char *  GetDefaultCamera () const
+                                    Returns the default camera name.
+                              void  RestoreDefaultSettings ()
+                                    Restores the default settings.
+                              void  SetDefaultViewingMode (EViewingMode pViewingMode)
+                                    Sets the default viewing mode.
+                      EViewingMode  GetDefaultViewingMode () const
+                                    Returns the default viewing mode.
+
+Producer Cameras
+
+   Producer cameras are global cameras in MotionBuilder you use to view the scene.
+
+   You cannot animate Producer cameras but you can specify their default positions.
+                              void  CreateProducerCameras ()
+                                    Creates the default Producer cameras.
+                              void  DestroyProducerCameras ()
+                                    Destroys the default Producer cameras.
+                              bool  IsProducerCamera (FbxCamera *pCamera) const
+                                    Checks if the camera is a Producer camera.
+                       FbxCamera *  GetCameraProducerPerspective () const
+                                    Returns a reference to the Producer perspective camera.
+                       FbxCamera *  GetCameraProducerFront () const
+                                    Returns a reference to the Producer front camera.
+                       FbxCamera *  GetCameraProducerBack () const
+                                    Returns a reference to the Producer back camera.
+                       FbxCamera *  GetCameraProducerLeft () const
+                                    Returns a reference to the Producer left camera.
+                       FbxCamera *  GetCameraProducerRight () const
+                                    Returns a reference to the Producer right camera.
+                       FbxCamera *  GetCameraProducerTop () const
+                                    Returns a reference to the Producer top camera.
+                       FbxCamera *  GetCameraProducerBottom () const
+                                    Returns a reference to the Producer bottom camera.
+               FbxCameraSwitcher *  GetCameraSwitcher () const
+                                    Returns the Camera Switcher.
+                              void  SetCameraSwitcher (FbxCameraSwitcher *pSwitcher)
+                                    Sets the Camera Switcher.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EViewingMode
+   Search for all occurrences
+
+   Viewing modes.
+
+   Enumerator:
+
+          eStandard
+
+   Search for all occurrences
+          eXRay
+
+   Search for all occurrences
+          eModelsOnly
+
+   Search for all occurrences
+
+   Definition at line 51 of file fbxglobalcamerasettings.h.
+                {
+                        eStandard,      //<! Standard view mode.
+                        eXRay,          //<! X ray view mode.
+                        eModelsOnly     //<! Model only view mode.
+                };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool SetDefaultCamera ( const char *  pCameraName,
+                           FbxStatus *   pStatus = NULL
+                         )
+   Search for all occurrences
+
+   Sets the default camera.
+
+   Parameters:
+
+          pCameraName Name of the default camera.
+          pStatus     The FbxStatus object to hold error codes.
+
+   Returns:
+          True if camera name is valid, returns false if it is not valid.
+
+   Remarks:
+          A valid camera name must be either one of the defined tokens (FBXSDK_CAMERA_PERSPECTIVE, FBXSDK_CAMERA_TOP, FBXSDK_CAMERA_BOTTOM, FBXSDK_CAMERA_FRONT, FBXSDK_CAMERA_BACK, FBXSDK_CAMERA_RIGHT, FBXSDK_CAMERA_LEFT and FBXSDK_CAMERA_SWITCHER) or the name of a camera that is inserted in the node tree under the scene's root node.
+
+   const char* GetDefaultCamera ( ) const
+   Search for all occurrences
+
+   Returns the default camera name.
+
+   Returns:
+          The default camera name, or returns an empty string if no camera name has been specified.
+
+   void RestoreDefaultSettings ( )
+   Search for all occurrences
+
+   Restores the default settings.
+   void SetDefaultViewingMode ( EViewingMode  pViewingMode )
+   Search for all occurrences
+
+   Sets the default viewing mode.
+
+   Parameters:
+
+          pViewingMode Viewing mode to set(eStandard, eXRay or eModelsOnly).
+
+   EViewingMode GetDefaultViewingMode ( ) const
+   Search for all occurrences
+
+   Returns the default viewing mode.
+
+   Returns:
+          The currently set Viewing mode.
+
+   void CreateProducerCameras ( )
+   Search for all occurrences
+
+   Creates the default Producer cameras.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   void DestroyProducerCameras ( )
+   Search for all occurrences
+
+   Destroys the default Producer cameras.
+   bool IsProducerCamera ( FbxCamera *  pCamera ) const
+   Search for all occurrences
+
+   Checks if the camera is a Producer camera.
+
+   Parameters:
+
+          pCamera The camera to check.
+
+   Returns:
+          True if it is a producer camera, returns false if it is not a producer camera.
+
+   FbxCamera* GetCameraProducerPerspective ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer perspective camera.
+
+   Returns:
+          The reference to the internal Perspective camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerFront ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer front camera.
+
+   Returns:
+          The reference to the internal Front camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerBack ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer back camera.
+
+   Returns:
+          The reference to the internal Back camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerLeft ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer left camera.
+
+   Returns:
+          The reference to the internal Left camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerRight ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer right camera.
+
+   Returns:
+          The reference to the internal Right camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerTop ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer top camera.
+
+   Returns:
+          The reference to the internal Top camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCamera* GetCameraProducerBottom ( ) const
+   Search for all occurrences
+
+   Returns a reference to the Producer bottom camera.
+
+   Returns:
+          The reference to the internal Bottom camera.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   FbxCameraSwitcher* GetCameraSwitcher ( ) const
+   Search for all occurrences
+
+   Returns the Camera Switcher.
+
+   Returns:
+          A pointer to the Camera Switcher.
+
+   Remarks:
+          This node has a FbxNodeAttribute::eCameraSwitcher node attribute type. This node is not saved when there is no camera in the scene. Nodes inserted below are never saved. Camera indices start at 1. Out of range indices are clamped between 1 and the number of cameras in the scene. The index of a camera refers to its order of appearance when searching the node tree depth first. If a camera is added or removed after camera indices have been set, the camera indices must be updated. It is easier
+          to set camera indices once every camera have been set. Camera index keys must be set using constant interpolation to ensure that camera switches occur exactly at key time.
+
+   void SetCameraSwitcher ( FbxCameraSwitcher *  pSwitcher )
+   Search for all occurrences
+
+   Sets the Camera Switcher.
+
+   Parameters:
+
+          pSwitcher The Camera Switcher to be set.
+
+   const FbxGlobalCameraSettings& operator= ( const FbxGlobalCameraSettings &  pGlobalCameraSettings )
+
+   Assignment operator.
+
+   Parameters:
+
+          pGlobalCameraSettings FbxGlobalCameraSettings object assigned to this one.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxglobalcamerasettings.h
+
+   Please send us your comment about this page

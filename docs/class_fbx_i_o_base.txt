@@ -1,0 +1,101 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIOBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxIOBase Class Reference
+   Search for all occurrences
+
+   #include <fbxiobase.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for FBX file importer and exporter.
+
+   Definition at line 28 of file fbxiobase.h.
+   Inheritance diagram for FbxIOBase:
+   [USEMAP:class_fbx_i_o_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+        virtual bool  Initialize (const char *pFileName, int pFileFormat=-1, FbxIOSettings *pIOSettings=NULL)
+                      Initializes the object.
+   virtual FbxString  GetFileName ()
+                      Returns the file name.
+         FbxStatus &  GetStatus ()
+                      Get the status object containing the success or failure state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Initialize ( const char *     pFileName,
+                             int              pFileFormat = -1,
+                             FbxIOSettings *  pIOSettings = NULL
+                           )                  [virtual]
+   Search for all occurrences
+
+   Initializes the object.
+
+   Parameters:
+
+          pFileName   The name of the file to access.
+          pFileFormat Unused in this class implementation.
+          pIOSettings Unused in this class implementation.
+
+   Returns:
+          True if successful, returns False otherwise.
+
+   Remarks:
+          To identify the error, inspect mStatus.
+
+   Reimplemented in FbxExporter, and FbxImporter.
+   virtual FbxString GetFileName ( ) [virtual]
+   Search for all occurrences
+
+   Returns the file name.
+
+   Returns:
+          The file name or an empty string if no filename has been set.
+
+   FbxStatus& GetStatus ( ) [inline]
+   Search for all occurrences
+
+   Get the status object containing the success or failure state.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 48 of file fbxiobase.h.
+{ return mStatus; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxiobase.h
+
+   Please send us your comment about this page

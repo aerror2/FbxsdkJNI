@@ -1,0 +1,345 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDocumentInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxDocumentInfo Class Reference
+
+   This reference page is linked to from the following overview topics: Merging Two Scenes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxdocumentinfo.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains scene thumbnails and user-defined summary data.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 26 of file fbxdocumentinfo.h.
+   Inheritance diagram for FbxDocumentInfo:
+   [USEMAP:class_fbx_document_info.png]
+
+   List of all members.
+
+Public Member Functions
+
+                          void  Clear ()
+                                Clears the content.
+   Scene Thumbnail.
+
+   Comment.
+                FbxThumbnail *  GetSceneThumbnail ()
+                                Returns the thumbnail for the scene.
+                          void  SetSceneThumbnail (FbxThumbnail *pSceneThumbnail)
+                                Sets the thumbnail for the scene.
+
+Public Attributes
+
+   Public properties
+     FbxPropertyT< FbxString >  LastSavedUrl
+                                This property contains the last saved URL.
+     FbxPropertyT< FbxString >  Url
+                                This property contains the URL.
+                   FbxProperty  Original
+                                Parent property for all properties related to creation.
+     FbxPropertyT< FbxString >  Original_ApplicationVendor
+                                This property contains the name of the original application vendor.
+     FbxPropertyT< FbxString >  Original_ApplicationName
+                                This property contains the original application name.
+     FbxPropertyT< FbxString >  Original_ApplicationVersion
+                                This property contains the version of the original application.
+     FbxPropertyT< FbxString >  Original_FileName
+                                This property contains the original file name.
+   FbxPropertyT< FbxDateTime >  Original_DateTime_GMT
+                                This property contains the original date and time.
+                   FbxProperty  LastSaved
+                                The parent property for all last saved-related properties.
+     FbxPropertyT< FbxString >  LastSaved_ApplicationVendor
+                                This property contains the last saved application vendor.
+     FbxPropertyT< FbxString >  LastSaved_ApplicationName
+                                This property contains the last saved application name.
+     FbxPropertyT< FbxString >  LastSaved_ApplicationVersion
+                                This property contains the last saved application version.
+   FbxPropertyT< FbxDateTime >  LastSaved_DateTime_GMT
+                                This property contains the last saved date and time.
+     FbxPropertyT< FbxString >  EmbeddedUrl
+                                This property points at the ".fbm" folder that is created when reading a FBX file that has embedded data.
+   User-defined summary data.
+
+   These are user-completed fields that identify or classify the files.
+                     FbxString  mTitle
+                     FbxString  mSubject
+                                Title.
+                     FbxString  mAuthor
+                                Subject.
+                     FbxString  mKeywords
+                                Author.
+                     FbxString  mRevision
+                                Keywords.
+                     FbxString  mComment
+                                Revision.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxThumbnail* GetSceneThumbnail ( )
+   Search for all occurrences
+
+   Returns the thumbnail for the scene.
+
+   Returns:
+          Pointer to the thumbnail.
+
+   Examples:
+          ImportScene/main.cxx.
+
+   void SetSceneThumbnail ( FbxThumbnail *  pSceneThumbnail )
+   Search for all occurrences
+
+   Sets the thumbnail for the scene.
+
+   Parameters:
+
+          pSceneThumbnail Pointer to the thumbnail.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   void Clear ( )
+   Search for all occurrences
+
+   Clears the content.
+
+   Resets all the strings to an empty string and clears the pointer to the thumbnail.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> LastSavedUrl
+   Search for all occurrences
+
+   This property contains the last saved URL.
+
+   To retrieve the value of this property, use LastSavedUrl.Get(). To set the value of this property, use LastSavedUrl.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 42 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> Url
+   Search for all occurrences
+
+   This property contains the URL.
+
+   To retrieve the value of this property, use Url.Get(). To set the value of this property, use Url.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 51 of file fbxdocumentinfo.h.
+   FbxProperty Original
+   Search for all occurrences
+
+   Parent property for all properties related to creation.
+
+   These properties should be set once when the file is created, and you should not change them during subsequent save or reload operations. The default properties are listed below, but application vendors can add new properties under this parent property.
+
+   Definition at line 59 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> Original_ApplicationVendor
+   Search for all occurrences
+
+   This property contains the name of the original application vendor.
+
+   To retrieve the value of this property, use Original_ApplicationVendor.Get(). To set the value of this property, use Original_ApplicationVendor.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 68 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> Original_ApplicationName
+   Search for all occurrences
+
+   This property contains the original application name.
+
+   To retrieve the value of this property, use Original_ApplicationName.Get(). To set the value of this property, use Original_ApplicationName.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 77 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> Original_ApplicationVersion
+   Search for all occurrences
+
+   This property contains the version of the original application.
+
+   To retrieve the value of this property, use Original_ApplicationVersion.Get(). To set the value of this property, use Original_ApplicationVersion.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 86 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> Original_FileName
+   Search for all occurrences
+
+   This property contains the original file name.
+
+   To retrieve the value of this property, use Original_FileName.Get(). To set the value of this property, use Original_FileName.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 95 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxDateTime> Original_DateTime_GMT
+   Search for all occurrences
+
+   This property contains the original date and time.
+
+   To retrieve the value of this property, use Original_DateTime_GMT.Get(). To set the value of this property, use Original_DateTime_GMT.Set(FbxString).
+
+   The default value is 0.
+
+   Remarks:
+          The date/time should use GMT time format.
+
+   Definition at line 105 of file fbxdocumentinfo.h.
+   FbxProperty LastSaved
+   Search for all occurrences
+
+   The parent property for all last saved-related properties.
+
+   These properties update every time a file is saved. The default properties are below, but application vendors can add new properties under this parent property. The file creator must set both the original and last saved properties.
+
+   Definition at line 113 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> LastSaved_ApplicationVendor
+   Search for all occurrences
+
+   This property contains the last saved application vendor.
+
+   To retrieve the value of this property, use LastSaved_ApplicationVendor.Get(). To set the value of this property, use LastSaved_ApplicationVendor.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 122 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> LastSaved_ApplicationName
+   Search for all occurrences
+
+   This property contains the last saved application name.
+
+   To retrieve the value of this property, use LastSaved_ApplicationName.Get(). To set the value of this property, use LastSaved_ApplicationName.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 131 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> LastSaved_ApplicationVersion
+   Search for all occurrences
+
+   This property contains the last saved application version.
+
+   To retrieve the value of this property, use LastSaved_ApplicationVersion.Get(). To set the value of this property, use LastSaved_ApplicationVersion.Set(FbxString).
+
+   The default value is empty.
+
+   Definition at line 140 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxDateTime> LastSaved_DateTime_GMT
+   Search for all occurrences
+
+   This property contains the last saved date and time.
+
+   To retrieve the value of this property, use LastSaved_DateTime_GMT.Get(). To set the value of this property, use LastSaved_DateTime_GMT.Set(FbxString).
+
+   The default value is 0.
+
+   Remarks:
+          The date/time should use GMT time format.
+
+   Definition at line 151 of file fbxdocumentinfo.h.
+   FbxPropertyT<FbxString> EmbeddedUrl
+   Search for all occurrences
+
+   This property points at the ".fbm" folder that is created when reading a FBX file that has embedded data.
+
+   The embedded data is not saved in the FBX file.
+
+   The default value is empty.
+
+   Definition at line 159 of file fbxdocumentinfo.h.
+   FbxString mTitle
+   Search for all occurrences
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 166 of file fbxdocumentinfo.h.
+   FbxString mSubject
+   Search for all occurrences
+
+   Title.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 167 of file fbxdocumentinfo.h.
+   FbxString mAuthor
+   Search for all occurrences
+
+   Subject.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 168 of file fbxdocumentinfo.h.
+   FbxString mKeywords
+   Search for all occurrences
+
+   Author.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 169 of file fbxdocumentinfo.h.
+   FbxString mRevision
+   Search for all occurrences
+
+   Keywords.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 170 of file fbxdocumentinfo.h.
+   FbxString mComment
+   Search for all occurrences
+
+   Revision.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene01/main.cxx, ExportShader/main.cxx, and ImportScene/main.cxx.
+
+   Definition at line 171 of file fbxdocumentinfo.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxdocumentinfo.h
+
+   Please send us your comment about this page

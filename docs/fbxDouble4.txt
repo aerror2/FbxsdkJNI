@@ -1,0 +1,12 @@
+  * Main Page
+
+   FbxDouble4 Class Reference
+
+                FbxDouble4(double x, double y, double z, double w)
+                ~FbxDouble4()
+          double GetAt(int idx) 
+          void   SetAt(int idx, double v)
+
+Member Enumeration Documentation
+
+   enum EClass

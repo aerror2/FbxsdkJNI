@@ -1,0 +1,398 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEffector Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxEffector Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcontrolset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An effector wraps a character node (FbxNode) used to animate its control rig (FbxControlSet) via inverse kinematics.
+
+   Definition at line 62 of file fbxcontrolset.h.
+
+   List of all members.
+
+Public Types
+
+   enum   ESetId {
+     eDefaultSet, eAux1Set, eAux2Set, eAux3Set,
+     eAux4Set, eAux5Set, eAux6Set, eAux7Set,
+     eAux8Set, eAux9Set, eAux10Set, eAux11Set,
+     eAux12Set, eAux13Set, eAux14Set, eSetIdCount
+   }
+   enum   ENodeId {
+     eHips, eLeftAnkle, eRightAnkle, eLeftWrist,
+     eRightWrist, eLeftKnee, eRightKnee, eLeftElbow,
+     eRightElbow, eChestOrigin, eChestEnd, eLeftFoot,
+     eRightFoot, eLeftShoulder, eRightShoulder, eHead,
+     eLeftHip, eRightHip, eLeftHand, eRightHand,
+     eLeftHandThumb, eLeftHandIndex, eLeftHandMiddle, eLeftHandRing,
+     eLeftHandPinky, eLeftHandExtraFinger, eRightHandThumb, eRightHandIndex,
+     eRightHandMiddle, eRightHandRing, eRightHandPinky, eRightHandExtraFinger,
+     eLeftFootThumb, eLeftFootIndex, eLeftFootMiddle, eLeftFootRing,
+     eLeftFootPinky, eLeftFootExtraFinger, eRightFootThumb, eRightFootIndex,
+     eRightFootMiddle, eRightFootRing, eRightFootPinky, eRightFootExtraFinger,
+     eNodeIdCount
+   }
+
+Public Member Functions
+
+     FbxEffector ()
+     Default constructor with uninitialized character node.
+   FbxEffector &  operator= (const FbxEffector &pEffector)
+     Assignment operator.
+   void  Reset ()
+     Reset to default values.
+
+Public Attributes
+
+   FbxNode *  mNode
+     The character's node in a hierarchy linked to this effector.
+   bool  mShow
+     true if the effector is visible, false if hidden
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESetId
+   Search for all occurrences
+
+   Enumerator:
+
+          eDefaultSet
+
+   Search for all occurrences
+          eAux1Set
+
+   Search for all occurrences
+          eAux2Set
+
+   Search for all occurrences
+          eAux3Set
+
+   Search for all occurrences
+          eAux4Set
+
+   Search for all occurrences
+          eAux5Set
+
+   Search for all occurrences
+          eAux6Set
+
+   Search for all occurrences
+          eAux7Set
+
+   Search for all occurrences
+          eAux8Set
+
+   Search for all occurrences
+          eAux9Set
+
+   Search for all occurrences
+          eAux10Set
+
+   Search for all occurrences
+          eAux11Set
+
+   Search for all occurrences
+          eAux12Set
+
+   Search for all occurrences
+          eAux13Set
+
+   Search for all occurrences
+          eAux14Set
+
+   Search for all occurrences
+          eSetIdCount
+
+   Search for all occurrences
+
+   Definition at line 65 of file fbxcontrolset.h.
+        {
+                eDefaultSet,
+                eAux1Set,
+                eAux2Set,
+                eAux3Set,
+                eAux4Set,
+                eAux5Set,
+                eAux6Set,
+                eAux7Set,
+                eAux8Set,
+                eAux9Set,
+                eAux10Set,
+                eAux11Set,
+                eAux12Set,
+                eAux13Set,
+                eAux14Set,
+                eSetIdCount
+        };
+
+   enum ENodeId
+   Search for all occurrences
+
+   Enumerator:
+
+          eHips
+
+   Search for all occurrences
+          eLeftAnkle
+
+   Search for all occurrences
+          eRightAnkle
+
+   Search for all occurrences
+          eLeftWrist
+
+   Search for all occurrences
+          eRightWrist
+
+   Search for all occurrences
+          eLeftKnee
+
+   Search for all occurrences
+          eRightKnee
+
+   Search for all occurrences
+          eLeftElbow
+
+   Search for all occurrences
+          eRightElbow
+
+   Search for all occurrences
+          eChestOrigin
+
+   Search for all occurrences
+          eChestEnd
+
+   Search for all occurrences
+          eLeftFoot
+
+   Search for all occurrences
+          eRightFoot
+
+   Search for all occurrences
+          eLeftShoulder
+
+   Search for all occurrences
+          eRightShoulder
+
+   Search for all occurrences
+          eHead
+
+   Search for all occurrences
+          eLeftHip
+
+   Search for all occurrences
+          eRightHip
+
+   Search for all occurrences
+          eLeftHand
+
+   Search for all occurrences
+          eRightHand
+
+   Search for all occurrences
+          eLeftHandThumb
+
+   Search for all occurrences
+          eLeftHandIndex
+
+   Search for all occurrences
+          eLeftHandMiddle
+
+   Search for all occurrences
+          eLeftHandRing
+
+   Search for all occurrences
+          eLeftHandPinky
+
+   Search for all occurrences
+          eLeftHandExtraFinger
+
+   Search for all occurrences
+          eRightHandThumb
+
+   Search for all occurrences
+          eRightHandIndex
+
+   Search for all occurrences
+          eRightHandMiddle
+
+   Search for all occurrences
+          eRightHandRing
+
+   Search for all occurrences
+          eRightHandPinky
+
+   Search for all occurrences
+          eRightHandExtraFinger
+
+   Search for all occurrences
+          eLeftFootThumb
+
+   Search for all occurrences
+          eLeftFootIndex
+
+   Search for all occurrences
+          eLeftFootMiddle
+
+   Search for all occurrences
+          eLeftFootRing
+
+   Search for all occurrences
+          eLeftFootPinky
+
+   Search for all occurrences
+          eLeftFootExtraFinger
+
+   Search for all occurrences
+          eRightFootThumb
+
+   Search for all occurrences
+          eRightFootIndex
+
+   Search for all occurrences
+          eRightFootMiddle
+
+   Search for all occurrences
+          eRightFootRing
+
+   Search for all occurrences
+          eRightFootPinky
+
+   Search for all occurrences
+          eRightFootExtraFinger
+
+   Search for all occurrences
+          eNodeIdCount
+
+   Search for all occurrences
+
+   Definition at line 85 of file fbxcontrolset.h.
+        {
+                eHips,
+                eLeftAnkle,
+                eRightAnkle,
+                eLeftWrist,
+                eRightWrist,
+                eLeftKnee,
+                eRightKnee,
+                eLeftElbow,
+                eRightElbow,
+                eChestOrigin,
+                eChestEnd,
+                eLeftFoot,
+                eRightFoot,
+                eLeftShoulder,
+                eRightShoulder,
+                eHead,
+                eLeftHip,
+                eRightHip,
+                eLeftHand,
+                eRightHand,
+                eLeftHandThumb,
+                eLeftHandIndex,
+                eLeftHandMiddle,
+                eLeftHandRing,
+                eLeftHandPinky,
+                eLeftHandExtraFinger,
+                eRightHandThumb,
+                eRightHandIndex,
+                eRightHandMiddle,
+                eRightHandRing,
+                eRightHandPinky,
+                eRightHandExtraFinger,
+                eLeftFootThumb,
+                eLeftFootIndex,
+                eLeftFootMiddle,
+                eLeftFootRing,
+                eLeftFootPinky,
+                eLeftFootExtraFinger,
+                eRightFootThumb,
+                eRightFootIndex,
+                eRightFootMiddle,
+                eRightFootRing,
+                eRightFootPinky,
+                eRightFootExtraFinger,
+                eNodeIdCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEffector ( )
+
+   Default constructor with uninitialized character node.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxEffector& operator= ( const FbxEffector &  pEffector )
+
+   Assignment operator.
+
+   Parameters:
+
+          pEffector Another FbxEffector assigned to this one.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset to default values.
+     * mNode is set to NULL.
+     * mShow is set to true.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxNode* mNode
+   Search for all occurrences
+
+   The character's node in a hierarchy linked to this effector.
+
+   Definition at line 149 of file fbxcontrolset.h.
+   bool mShow
+   Search for all occurrences
+
+   true if the effector is visible, false if hidden
+
+   Definition at line 152 of file fbxcontrolset.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcontrolset.h
+
+   Please send us your comment about this page

@@ -1,0 +1,374 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNurbsCurve Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxNurbsCurve Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxnurbscurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A Non-Uniform Rational B-Spline (NURBS) curve is a type of parametric geometry.
+
+   A NURBS curve is defined by the order, form, knot vector and control points.
+
+   Let M be the order of the curve. Let N be the number of control points of the curve.
+
+   The form of the curve can be open, closed or periodic. A curve with end points that do not meet is defined as an open curve. The number of knots in an open curve is defined as N+(M+1).
+
+   A closed curve simply has its last control point equal to its first control point. Note that this does not imply tangent continuity at the end point. The curve may have a kink at this point. In FBX the last control point is not specified by the user in the InitControlPoints() method. For example, if there are to be 10 control points in total, and the curve is to be closed, than only 9 control points need to be passed into the InitControlPoints() method. The last control point is implied to be equal
+   to the first control point. Thus N represents the number of unique CVs.
+
+   A periodic curve has its last M control points equal to its first M control points. A periodic curve is tangent continuous at the ends. Similar to a closed curve, when creating a periodic curve, only the unique control points need to be set. For example a periodic curve of order 3 with 10 control points requires only 7 CVs to be specified in the InitControlPoints() method. The last 3 CVs, which are the same as the first 3, are not included.
+
+   The calculation of the number of knots in closed and periodic curves is more complex. Since we have excluded one CV in N in a closed curve, the number of knots is N+(M+1)+1. Similarly, we excluded M CVs in periodic curves so the number of knots is N+(M+1)+M.
+
+   Note that FBX stores one extra knot at the beginning and and end of the knot vector, compared to some other graphics applications such as Maya. The two knots are not used in calculation, but they are included so that no data is lost when converting from file formats that do store the extra knots.
+
+   Definition at line 60 of file fbxnurbscurve.h.
+   Inheritance diagram for FbxNurbsCurve:
+   [USEMAP:class_fbx_nurbs_curve.png]
+
+   List of all members.
+
+Public Types
+
+                             enum   EDimension { e2D = 2, e3D }
+                                    The dimension of the CVs. More...
+                             enum   EType { eOpen, eClosed, ePeriodic }
+                                    The curve's form. More...
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the EType::eNurbsCurve node attribute type.
+                              void  InitControlPoints (int pCount, EType pVType)
+                                    Allocates memory space for the control points array as well as for the knot vector.
+                          double *  GetKnotVector () const
+                                    Returns the knot vector.
+                               int  GetKnotCount () const
+                                    Returns the number of elements in the knot vector.
+                              void  SetOrder (int pOrder)
+                                    Sets the order of the curve.
+                               int  GetOrder () const
+                                    Returns the NURBS curve order.
+                              void  SetStep (int pStep)
+                                    Sets the step of the curve.
+                               int  GetStep () const
+                                    Returns the NURBS curve step.
+                              void  SetDimension (EDimension pDimension)
+                                    Sets the dimension of the CVs.
+                        EDimension  GetDimension () const
+                                    Returns the control points dimension.
+                              bool  IsRational ()
+                                    Determines if the curve is rational or not.
+                               int  GetSpanCount () const
+                                    Calculates the number of curve spans with the following: Where S = Number of spans N = Number of CVs M = Order of the curve.
+                             EType  GetType () const
+                                    Returns NURBS type.
+                              bool  IsPolyline () const
+                                    Checks if the curve is a poly line.
+                              bool  IsBezier () const
+                                    This function determines if this NURBS curve is a Bezier curve.
+                               int  TessellateCurve (FbxArray< FbxVector4 > &pPointArray, int pStep=16)
+                                    Evaluate the point on the curve.
+                         FbxLine *  TessellateCurve (int pStep=16)
+                                    Evaluate the point on the curve.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDimension
+   Search for all occurrences
+
+   The dimension of the CVs.
+     * e2D The CVs are two dimensional points.
+     * e3D The CVs are three dimensional points.
+
+   Enumerator:
+
+          e2D
+
+   Search for all occurrences
+          e3D
+
+   Search for all occurrences
+
+   Definition at line 72 of file fbxnurbscurve.h.
+        {
+                e2D = 2,
+                e3D
+        };
+
+   enum EType
+   Search for all occurrences
+
+   The curve's form.
+     * eOpen
+     * eClosed
+     * ePeriodic
+
+   Enumerator:
+
+          eOpen
+
+   Search for all occurrences
+          eClosed
+
+   Search for all occurrences
+          ePeriodic
+
+   Search for all occurrences
+
+   Reimplemented from FbxNodeAttribute.
+
+   Definition at line 83 of file fbxnurbscurve.h.
+        {
+                eOpen,
+                eClosed,
+                ePeriodic
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the EType::eNurbsCurve node attribute type.
+
+   Reimplemented from FbxGeometry.
+   void InitControlPoints ( int    pCount,
+                            EType  pVType
+                          )
+   Search for all occurrences
+
+   Allocates memory space for the control points array as well as for the knot vector.
+
+   Parameters:
+
+          pCount Number of control points.
+          pVType NURBS type.
+
+   Remarks:
+          This function should always be called after FbxNurbsCurve::SetOrder().
+
+   double* GetKnotVector ( ) const [inline]
+   Search for all occurrences
+
+   Returns the knot vector.
+
+   Returns:
+          Pointer to the knots array.
+
+   Definition at line 101 of file fbxnurbscurve.h.
+{ return mKnotVector; }
+
+   int GetKnotCount ( ) const
+   Search for all occurrences
+
+   Returns the number of elements in the knot vector.
+
+   Returns:
+          The number of knots.
+
+   void SetOrder ( int  pOrder ) [inline]
+   Search for all occurrences
+
+   Sets the order of the curve.
+
+   Parameters:
+
+          pOrder The curve order.
+
+   Remarks:
+          The curve order must be set before InitControlPoints() is called.
+
+   Definition at line 112 of file fbxnurbscurve.h.
+{ mOrder = pOrder; }
+
+   int GetOrder ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS curve order.
+
+   Returns:
+          The NURBS curve order.
+
+   Definition at line 117 of file fbxnurbscurve.h.
+{ return mOrder; }
+
+   void SetStep ( int  pStep ) [inline]
+   Search for all occurrences
+
+   Sets the step of the curve.
+
+   Parameters:
+
+          pStep The curve step.
+
+   Remarks:
+          To tessellate curve, it denotes the evaluation frequency between two neighbor knots.
+
+   Definition at line 123 of file fbxnurbscurve.h.
+{ mStep = pStep; }
+
+   int GetStep ( ) const [inline]
+   Search for all occurrences
+
+   Returns the NURBS curve step.
+
+   Returns:
+          The NURBS curve step.
+
+   Remarks:
+          To tessellate curve, it denotes the evaluation frequency between two neighbor knots.
+
+   Definition at line 129 of file fbxnurbscurve.h.
+{ return mStep; }
+
+   void SetDimension ( EDimension  pDimension ) [inline]
+   Search for all occurrences
+
+   Sets the dimension of the CVs.
+
+   For 3D curves: control point = ( x, y, z, w ), where w is the weight. For 2D curves: control point = ( x, y, 0, w ), where the z component is unused, and w is the weight.
+
+   Parameters:
+
+          pDimension The control points dimension(3D or 2D).
+
+   Definition at line 136 of file fbxnurbscurve.h.
+{ mDimension = pDimension; }
+
+   EDimension GetDimension ( ) const [inline]
+   Search for all occurrences
+
+   Returns the control points dimension.
+
+   Returns:
+          The curve dimension.
+
+   Definition at line 141 of file fbxnurbscurve.h.
+{ return mDimension; }
+
+   bool IsRational ( )
+   Search for all occurrences
+
+   Determines if the curve is rational or not.
+
+   Returns:
+          True if the curve is rational, return false if not.
+
+   int GetSpanCount ( ) const
+   Search for all occurrences
+
+   Calculates the number of curve spans with the following: Where S = Number of spans N = Number of CVs M = Order of the curve.
+
+   S = N - M + 1;
+
+   In this calculation N includes the duplicate CVs for closed and periodic curves.
+
+   Returns:
+          The number of curve spans if the curve has been initialized, returns -1 if the curve has not been initialized.
+
+   EType GetType ( ) const [inline]
+   Search for all occurrences
+
+   Returns NURBS type.
+
+   Returns:
+          NURBS type identifier.
+
+   Definition at line 165 of file fbxnurbscurve.h.
+{ return mNurbsType; }
+
+   bool IsPolyline ( ) const [inline]
+   Search for all occurrences
+
+   Checks if the curve is a poly line.
+
+   (A poly line is a linear NURBS curve )
+
+   Returns:
+          True if curve is a poly line, return false if it is not a poly line.
+
+   Definition at line 172 of file fbxnurbscurve.h.
+{ return ( GetOrder() == 2 ); }
+
+   bool IsBezier ( ) const
+   Search for all occurrences
+
+   This function determines if this NURBS curve is a Bezier curve.
+
+   Bezier curves are a special case of NURBS curve.
+
+   Returns:
+          True if curve is a Bezier curve. If it is not a Bezier curve return false.
+
+   int TessellateCurve ( FbxArray< FbxVector4 > &  pPointArray,
+                         int                       pStep = 16
+                       )
+   Search for all occurrences
+
+   Evaluate the point on the curve.
+
+   Save the result as a point array. Meanwhile, return the length of the point array.
+
+   Parameters:
+
+          pPointArray Save the evaluate result as a point array.
+          pStep       The evaluation frequency between two neighbor knots. Its default value is 16, which is same as Maya.
+
+   Returns:
+          The length of the point array.
+
+   FbxLine* TessellateCurve ( int  pStep = 16 )
+   Search for all occurrences
+
+   Evaluate the point on the curve.
+
+   Per the evaluation result, create a FbxLine and return the pointer to the line.
+
+   Parameters:
+
+          pStep The evaluation frequency between two neighbor knots. Its default value is 16, which is same as Maya.
+
+   Returns:
+          A line to hold the tessellate points.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxnurbscurve.h
+
+   Please send us your comment about this page

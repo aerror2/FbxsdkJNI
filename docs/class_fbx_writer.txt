@@ -1,0 +1,476 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxWriter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Protected Member Functions
+   FbxWriter Class Reference
+
+   This reference page is linked to from the following overview topics: Customizing the FBX SDK, Customizing File Formats with FBX SDK I/O Plug-ins, Customizing File Formats.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxwriter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class of other writers used internally.
+
+   This class provides the interfaces for writing files.
+
+   The role of the writer is to effectively "write" specific file data vs the role of the exporter is to select a specific writer and launch the writing of a file through that writer.
+
+   See also:
+          FbxExporter
+
+   ex:
+     * FbxWriterFbx5 can write FBX 5 format files
+     * FbxWriterFbx6 can write FBX 6 format files
+     * FbxWriterFbx7 can write FBX 7 format files
+     * FbxWriterCollada can write Collada files
+     * FbxWriterDxf can write Dxf files
+     * ... etc.
+
+   A SDK user should - normally - not use this class, except if a custom writer must be created for plug-in extension, then FbxWriter must be the base class for the new custom writer in that particular situation.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.cxx, MyOwnWriterReader/MyOwnWriter.h, MyOwnWriterReader/MyOwnWriterReader.cxx, and MyOwnWriterReader/MyOwnWriterReader.h.
+
+   Definition at line 58 of file fbxwriter.h.
+   Inheritance diagram for FbxWriter:
+   [USEMAP:class_fbx_writer.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EInfoRequest {
+     eInfoExtension, eInfoDescriptions, eInfoVersions, eInfoCompatibleDesc,
+     eInfoUILabel, eReserved1 = 0xFBFB
+   }
+     Information type to request. More...
+   typedef FbxWriter *(*  CreateFuncType )(FbxManager &pManager, FbxExporter &pExporter, int pSubID, int pPluginID)
+     Helper typedef for passing FbxWriter creator function as argument (used internally).
+   typedef void(*  IOSettingsFillerFuncType )(FbxIOSettings &pIOS)
+     Helper typedef for passing FbxIOSettings creator function as argument (used internally).
+   typedef void *(*  GetInfoFuncType )(EInfoRequest pRequest, int pWriterTypeId)
+     Helper typedef for passing EInfoRequest function as argument (used internally).
+
+Public Member Functions
+
+     FbxWriter (FbxManager &pManager, int pID, FbxStatus &pStatus)
+     Constructor.
+   virtual  ~FbxWriter ()
+     Destructor.
+   virtual bool  FileCreate (char *pFileName)=0
+     Creates a new file.
+   virtual bool  FileCreate (FbxStream *pStream, void *pStreamData)
+     Creates a new file via a stream.
+   virtual bool  FileClose ()=0
+     Closes the file.
+   virtual bool  IsFileOpen ()=0
+     Test if the file is open.
+   virtual void  GetWriteOptions ()=0
+     Setup write options.
+   virtual bool  Write (FbxDocument *pDocument)=0
+     Writes content to the specified file with given stream options.
+   virtual bool  PreprocessScene (FbxScene &pScene)=0
+     Pre-processes the scene.
+   virtual bool  PostprocessScene (FbxScene &pScene)=0
+     Post-processes the scene.
+   virtual void  PluginWriteParameters (FbxObject &pParams)
+     Writes extension plug-ins name, version and parameters, so that we can remember if a plug-in was used during export.
+   virtual FbxNode *  FindRootNode (FbxScene &pScene)
+     Finds the selected root node in the specified scene.
+   virtual bool  CheckSpaceInNodeNameRecursive (FbxNode *pNode, FbxString &pNodeNameList)
+     Checks if there are spaces in the names of specified node (and its children nodes), and writes the returned node's name in the specified string list.
+   bool  SetFileExportVersion (FbxString pVersion)
+     Sets the file export version as specified.
+   void  SetRenamingMode (FbxSceneRenamer::ERenamingMode pRenamingMode)
+     Sets the renaming mode as specified.
+   void  SetResamplingRate (double pResamplingRate)
+     Sets the resampling rate as specified.
+   bool  IsGenuine ()
+     Test if file format is an internal plug-in .
+   virtual FbxIOSettings *  GetIOSettings ()
+     Access to a IOSettings object.
+   virtual void  SetIOSettings (FbxIOSettings *pIOSettings)
+     Set the IOSettings pointer to be used for this writer instance.
+   virtual void  SetProgressHandler (FbxProgress *pProgress)
+     Pass a progress handler to the writer.
+   virtual bool  SupportsStreams () const
+     Returns true if this writer supports FbxStream I/O.
+
+Protected Member Functions
+
+ //  void  PluginsWriteBegin (FbxScene &pScene)
+ //    Function called by FBX before writing out the scene (FbxScene).
+ //  void  PluginsWrite (FbxIO &pFbx, bool pWriteObjectId)
+ //    Function called by FBX before writing out any FBX object.
+ //  void  PluginsWriteEnd (FbxScene &pScene)
+ //    Function called by FBX after writing out the scene (FbxScene).
+
+Member Typedef Documentation
+
+   typedef FbxWriter*(* CreateFuncType)(FbxManager &pManager, FbxExporter &pExporter, int pSubID, int pPluginID)
+   Search for all occurrences
+
+   Helper typedef for passing FbxWriter creator function as argument (used internally).
+
+   Definition at line 85 of file fbxwriter.h.
+   typedef void(* IOSettingsFillerFuncType)(FbxIOSettings &pIOS)
+   Search for all occurrences
+
+   Helper typedef for passing FbxIOSettings creator function as argument (used internally).
+
+   Definition at line 88 of file fbxwriter.h.
+   typedef void*(* GetInfoFuncType)(EInfoRequest pRequest, int pWriterTypeId)
+   Search for all occurrences
+
+   Helper typedef for passing EInfoRequest function as argument (used internally).
+
+   Definition at line 91 of file fbxwriter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EInfoRequest
+   Search for all occurrences
+
+   Information type to request.
+
+   Remarks:
+          Used internally to get writer file information.
+
+   Enumerator:
+
+          eInfoExtension
+
+   To get the file ext for a writer ex: "FBX".
+   Search for all occurrences
+          eInfoDescriptions
+
+   To get the file description for a writer ex:"Autodesk FBX (*.fbx)".
+   Search for all occurrences
+          eInfoVersions
+
+   To get the file version for a writer ex: 7100.
+   Search for all occurrences
+          eInfoCompatibleDesc
+
+   To get the file compatible description for a writer.
+   Search for all occurrences
+          eInfoUILabel
+
+   To get the file UI label to show for a writer ex: file labels shown in "Open file dialog".
+   Search for all occurrences
+          eReserved1
+
+   Search for all occurrences
+
+   Definition at line 74 of file fbxwriter.h.
+        {
+        eInfoExtension,
+        eInfoDescriptions,
+        eInfoVersions,
+                eInfoCompatibleDesc,
+                eInfoUILabel,
+        eReserved1 = 0xFBFB,
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxWriter ( FbxManager &  pManager,
+               int           pID,
+               FbxStatus &   pStatus
+             )
+
+   Constructor.
+
+   Parameters:
+
+          pManager The FbxManager Object.
+          pID      Id for current writer.
+          pStatus  The FbxStatus object to hold error codes.
+
+   virtual ~FbxWriter ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool FileCreate ( char *  pFileName ) [pure virtual]
+   Search for all occurrences
+
+   Creates a new file.
+
+   Parameters:
+
+          pFileName The name of the newly created file.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual bool FileCreate ( FbxStream *  pStream,
+                             void *       pStreamData
+                           )              [virtual]
+   Search for all occurrences
+
+   Creates a new file via a stream.
+
+   Parameters:
+
+          pStream     The stream to write to.
+          pStreamData the user-defined stream data to be written.
+
+   Reimplemented in FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+   virtual bool FileClose ( ) [pure virtual]
+   Search for all occurrences
+
+   Closes the file.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual bool IsFileOpen ( ) [pure virtual]
+   Search for all occurrences
+
+   Test if the file is open.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual void GetWriteOptions ( ) [pure virtual]
+   Search for all occurrences
+
+   Setup write options.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual bool Write ( FbxDocument *  pDocument ) [pure virtual]
+   Search for all occurrences
+
+   Writes content to the specified file with given stream options.
+
+   Parameters:
+
+          pDocument FbxDocument to write file data to.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual bool PreprocessScene ( FbxScene &  pScene ) [pure virtual]
+   Search for all occurrences
+
+   Pre-processes the scene.
+
+   Parameters:
+
+          pScene The scene needs to be pre-processed.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual bool PostprocessScene ( FbxScene &  pScene ) [pure virtual]
+   Search for all occurrences
+
+   Post-processes the scene.
+
+   Parameters:
+
+          pScene The scene needs to be post-processed.
+
+   Implemented in FbxWriterCollada, FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+
+   Examples:
+          MyOwnWriterReader/MyOwnWriter.h.
+
+   virtual void PluginWriteParameters ( FbxObject &  pParams ) [virtual]
+   Search for all occurrences
+
+   Writes extension plug-ins name, version and parameters, so that we can remember if a plug-in was used during export.
+
+   This is especially useful for extension plug-ins that modify the scene and also to warn users during import if an extension plug-in was used that could be missing.
+
+   Parameters:
+
+          pParams The parameters of the extension plug-in. The properties of the objects are used as the parameters of the extension plug-in.
+
+   Remarks:
+          This function has no implementation in this class. Only sub-class should implement it as needed. For example, FBX 6 and FBX 7 does implement it.
+
+   Reimplemented in FbxWriterFbx6, and FbxWriterFbx7.
+   virtual FbxNode* FindRootNode ( FbxScene &  pScene ) [virtual]
+   Search for all occurrences
+
+   Finds the selected root node in the specified scene.
+
+   Parameters:
+
+          pScene The scene in which the selected root node is found.
+
+   Returns:
+          The located root node.NULL if the selected root node cannot be found.
+
+   virtual bool CheckSpaceInNodeNameRecursive ( FbxNode *    pNode,
+                                                FbxString &  pNodeNameList
+                                              )              [virtual]
+   Search for all occurrences
+
+   Checks if there are spaces in the names of specified node (and its children nodes), and writes the returned node's name in the specified string list.
+
+   Parameters:
+
+          pNode         Specifies the node to check.
+          pNodeNameList Specifies the string list where the node name that has spaces in it is recorded.
+
+   Returns:
+          true If there are no spaces in the name of specified node (and its children nodes), false If spaces are found.
+
+   bool SetFileExportVersion ( FbxString  pVersion )
+   Search for all occurrences
+
+   Sets the file export version as specified.
+
+   Parameters:
+
+          pVersion The specified file export version.
+
+   void SetRenamingMode ( FbxSceneRenamer::ERenamingMode  pRenamingMode ) [inline]
+   Search for all occurrences
+
+   Sets the renaming mode as specified.
+
+   Parameters:
+
+          pRenamingMode The specified renaming mode.
+
+   Definition at line 166 of file fbxwriter.h.
+{mRenamingMode = pRenamingMode;}
+
+   void SetResamplingRate ( double  pResamplingRate ) [inline]
+   Search for all occurrences
+
+   Sets the resampling rate as specified.
+
+   Parameters:
+
+          pResamplingRate The specified resampling rate.
+
+   Definition at line 171 of file fbxwriter.h.
+{mResamplingRate = pResamplingRate;}
+
+   bool IsGenuine ( )
+   Search for all occurrences
+
+   Test if file format is an internal plug-in .
+
+   A non genuine plug-in is a plug-in made by someone external to Autodesk FBX SDK group.
+
+   Returns:
+          true If the file format is an internal plug-in ,false Otherwise .
+
+   virtual FbxIOSettings* GetIOSettings ( ) [virtual]
+   Search for all occurrences
+
+   Access to a IOSettings object.
+
+   Returns:
+          The pointer to IOSettings or NULL if the object has not been allocated.
+
+   virtual void SetIOSettings ( FbxIOSettings *  pIOSettings ) [virtual]
+   Search for all occurrences
+
+   Set the IOSettings pointer to be used for this writer instance.
+
+   Parameters:
+
+          pIOSettings
+
+   virtual void SetProgressHandler ( FbxProgress *  pProgress ) [inline, virtual]
+   Search for all occurrences
+
+   Pass a progress handler to the writer.
+
+   Parameters:
+
+          pProgress FbxProgress to store the progress information.
+
+   Reimplemented in FbxWriterFbx6, and FbxWriterFbx7.
+
+   Definition at line 193 of file fbxwriter.h.
+{}
+
+   virtual bool SupportsStreams ( ) const [virtual]
+   Search for all occurrences
+
+   Returns true if this writer supports FbxStream I/O.
+
+   Default value is false.
+
+   Reimplemented in FbxWriterFbx5, FbxWriterFbx6, and FbxWriterFbx7.
+   void PluginsWriteBegin ( FbxScene &  pScene ) [protected]
+   Search for all occurrences
+
+   Function called by FBX before writing out the scene (FbxScene).
+   void PluginsWrite ( FbxIO &  pFbx,
+                       bool     pWriteObjectId
+                     )          [protected]
+   Search for all occurrences
+
+   Function called by FBX before writing out any FBX object.
+
+   Parameters:
+
+          pFbx           File object.
+          pWriteObjectId Flag to write out object id.
+
+   void PluginsWriteEnd ( FbxScene &  pScene ) [protected]
+   Search for all occurrences
+
+   Function called by FBX after writing out the scene (FbxScene).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxwriter.h
+
+   Please send us your comment about this page

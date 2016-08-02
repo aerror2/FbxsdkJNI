@@ -1,0 +1,64 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxTakeLayerInfo Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxTakeLayerInfo Struct Reference
+   Search for all occurrences
+
+   #include <fbxtakeinfo.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This FbxTakeLayerInfo structure is used to identify a layer by name and id number.
+
+   Definition at line 28 of file fbxtakeinfo.h.
+
+   List of all members.
+
+Public Attributes
+
+   FbxString  mName
+         int  mId
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   Definition at line 30 of file fbxtakeinfo.h.
+   int mId
+   Search for all occurrences
+
+   Definition at line 31 of file fbxtakeinfo.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/scene/fbxtakeinfo.h
+
+   Please send us your comment about this page

@@ -1,0 +1,159 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   AnimationElement Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   AnimationElement Class Reference
+   Search for all occurrences
+
+   #include <fbxcolladaanimationelement.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Representing a COLLADA animation element.
+
+   Definition at line 26 of file fbxcolladaanimationelement.h.
+   Inheritance diagram for AnimationElement:
+   [USEMAP:class_animation_element.png]
+
+   List of all members.
+
+Public Types
+
+   typedef ElementBase  base_type
+
+Public Member Functions
+
+                        AnimationElement ()
+               virtual  ~AnimationElement ()
+                   int  GetChannelCount () const
+                        Get the count of animation channels in the element.
+                  void  FromCOLLADA (xmlNode *pElement, const SourceElementMapType &pSourceElements)
+                        Initialize with the content of a COLLADA element.
+                  void  FromFBX (const FbxAnimCurve *pCurve, double pUnitConversion=1.0)
+                        Initialize with an animation curve.
+                  void  ToFBX (FbxAnimCurve *pFBXCurve, int pChannelIndex, double pUnitConversion=1.0) const
+                        Copy the channel with specific index to the FBX animation curve.
+                  void  ToFBX (FbxNode *pFBXNode, FbxAnimLayer *pAnimLayer, double pUnitConversion=1.0) const
+                        Copy the matrix animation to the FBX node TRS properties.
+                  void  ToCOLLADA (xmlNode *pAnimationLibrary, const char *pNodeID, const char *pAttributeSID)
+                        Add the content to COLLADA animation library.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef ElementBase base_type
+   Search for all occurrences
+
+   Definition at line 29 of file fbxcolladaanimationelement.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   AnimationElement ( )
+   virtual ~AnimationElement ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int GetChannelCount ( ) const
+   Search for all occurrences
+
+   Get the count of animation channels in the element.
+
+   Returns:
+          Return the channel count.
+
+   void FromCOLLADA ( xmlNode *                     pElement,
+                      const SourceElementMapType &  pSourceElements
+                    )
+   Search for all occurrences
+
+   Initialize with the content of a COLLADA element.
+
+   This method should be called before ToFBX.
+   void FromFBX ( const FbxAnimCurve *  pCurve,
+                  double                pUnitConversion = 1.0
+                )
+   Search for all occurrences
+
+   Initialize with an animation curve.
+
+   This method should be called before ToCOLLADA.
+
+   Parameters:
+
+          pCurve          The specific animation curve.
+          pUnitConversion The unit conversion for key value.
+
+   void ToFBX ( FbxAnimCurve *  pFBXCurve,
+                int             pChannelIndex,
+                double          pUnitConversion = 1.0
+              )                 const
+   Search for all occurrences
+
+   Copy the channel with specific index to the FBX animation curve.
+
+   Parameters:
+
+          pFBXCurve       The destination FBX animation curve.
+          pChannelIndex   The index of the source channel.
+          pUnitConversion The unit conversion from local element to global.
+
+   void ToFBX ( FbxNode *       pFBXNode,
+                FbxAnimLayer *  pAnimLayer,
+                double          pUnitConversion = 1.0
+              )                 const
+   Search for all occurrences
+
+   Copy the matrix animation to the FBX node TRS properties.
+
+   Parameters:
+
+          pFBXNode        The destination FBX node.
+          pAnimLayer      The animation layer whose X, Y and Z curves will be set up.
+          pUnitConversion The unit conversion from local element to global.
+
+   void ToCOLLADA ( xmlNode *     pAnimationLibrary,
+                    const char *  pNodeID,
+                    const char *  pAttributeSID
+                  )
+   Search for all occurrences
+
+   Add the content to COLLADA animation library.
+
+   Parameters:
+
+          pAnimationLibrary The COLLADA animation library element.
+          pNodeID           The ID of the element to who this curve is belong.
+          pAttributeSID     The ID the attribute to who this curve is belong.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladaanimationelement.h
+
+   Please send us your comment about this page

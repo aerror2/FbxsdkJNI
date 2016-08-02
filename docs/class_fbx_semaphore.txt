@@ -1,0 +1,100 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSemaphore Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxSemaphore Class Reference
+   Search for all occurrences
+
+   #include <fbxsync.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Mutually excluding thread waiting mechanism with a counter.
+
+   Semaphore are generally used in situations when the current thread needs to wait for other threads before proceeding to the next step. In other words, that thread waits a number of signals from other threads. This is the best mechanism to use to synchronize threads since it doesn't require an heavy critical section.
+
+   Definition at line 96 of file fbxsync.h.
+
+   List of all members.
+
+Public Member Functions
+
+            FbxSemaphore ()
+            Constructor.
+   virtual  ~FbxSemaphore ()
+            Destructor.
+      bool  Wait (unsigned int pCount=1)
+            Wait indefinitely until the semaphore as been signaled as many times as specified.
+      bool  Signal (unsigned int pCount=1)
+            Signal the semaphore as many times as specified.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSemaphore ( )
+
+   Constructor.
+   virtual ~FbxSemaphore ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool Wait ( unsigned int  pCount = 1 )
+   Search for all occurrences
+
+   Wait indefinitely until the semaphore as been signaled as many times as specified.
+
+   Parameters:
+
+          pCount Number of signal to wait before this function returns.
+
+   Returns:
+          True if the wait exit without errors.
+
+   Remarks:
+          If pCount is set to zero, this function returns immediately without waiting.
+
+   bool Signal ( unsigned int  pCount = 1 )
+   Search for all occurrences
+
+   Signal the semaphore as many times as specified.
+
+   Parameters:
+
+          pCount The number of signal to send to the semaphore.
+
+   Returns:
+          True if the semaphore was signaled without errors.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxsync.h
+
+   Please send us your comment about this page

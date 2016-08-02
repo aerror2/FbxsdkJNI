@@ -1,0 +1,171 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxImplementationFilter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes | Static Public Attributes
+   FbxImplementationFilter Class Reference
+   Search for all occurrences
+
+   #include <fbximplementationfilter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This object represents a shading node filter criteria based on the shading node implementation.
+
+   Definition at line 28 of file fbximplementationfilter.h.
+   Inheritance diagram for FbxImplementationFilter:
+   [USEMAP:class_fbx_implementation_filter.png]
+
+   List of all members.
+
+Public Member Functions
+
+                        FbxImplementationFilter (const char *pShadingAPI=sCHR_ANY_SHADING_API, const char *pShadingAPIVersion=sCHR_ANY_SHADING_API_VERSION, const char *pShadingLanguage=sCHR_ANY_SHADING_LANGUAGE, const char *pShadingLanguageVersion=sCHR_ANY_SHADING_LANGUAGE_VERSION)
+                        Constructor.
+               virtual  ~FbxImplementationFilter ()
+                        Destructor.
+          virtual bool  Match (const FbxObject *pObjectPtr) const
+                        Tells if this filter matches the given shading node implementation.
+
+Public Attributes
+
+             FbxString  mShadingAPI
+                        Stores the shading API.
+             FbxString  mShadingAPIVersion
+                        Stores the shading API Version.
+             FbxString  mShadingLanguage
+                        Stores the shading language.
+             FbxString  mShadingLanguageVersion
+                        Stores the shading language version.
+
+Static Public Attributes
+
+   static const char *  sCHR_ANY_SHADING_API
+                        The default shading API.
+   static const char *  sCHR_ANY_SHADING_API_VERSION
+                        The default shading API version.
+   static const char *  sCHR_ANY_SHADING_LANGUAGE
+                        The default shading language.
+   static const char *  sCHR_ANY_SHADING_LANGUAGE_VERSION
+                        The default shading language version.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxImplementationFilter ( const char *  pShadingAPI = sCHR_ANY_SHADING_API,
+                             const char *  pShadingAPIVersion = sCHR_ANY_SHADING_API_VERSION,
+                             const char *  pShadingLanguage = sCHR_ANY_SHADING_LANGUAGE,
+                             const char *  pShadingLanguageVersion = sCHR_ANY_SHADING_LANGUAGE_VERSION
+                           )
+
+   Constructor.
+
+   Parameters:
+
+          pShadingAPI             a string containing the implementation API name: MentalRay OpenGL DirectX
+          pShadingAPIVersion      a string containing the implementation API version: eg. 1.0
+          pShadingLanguage        a string identifying the implementation language name: GLSL = GL Shading Language HLSL = High Level Shading Language CGFX = CG effect(NVidia) RIB = RenderMan (RIB) etc...
+          pShadingLanguageVersion a string identifying the implementation language version: eg. 1.0
+
+   Remarks:
+          by default the created criteria correspond to any shader
+
+   virtual ~FbxImplementationFilter ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Match ( const FbxObject *  pObjectPtr ) const [virtual]
+   Search for all occurrences
+
+   Tells if this filter matches the given shading node implementation.
+
+   Parameters:
+
+          pObjectPtr The given shading node implementation
+
+   Implements FbxObjectFilter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sCHR_ANY_SHADING_API [static]
+   Search for all occurrences
+
+   The default shading API.
+
+   Definition at line 35 of file fbximplementationfilter.h.
+   const char* sCHR_ANY_SHADING_API_VERSION [static]
+   Search for all occurrences
+
+   The default shading API version.
+
+   Definition at line 39 of file fbximplementationfilter.h.
+   const char* sCHR_ANY_SHADING_LANGUAGE [static]
+   Search for all occurrences
+
+   The default shading language.
+
+   Definition at line 43 of file fbximplementationfilter.h.
+   const char* sCHR_ANY_SHADING_LANGUAGE_VERSION [static]
+   Search for all occurrences
+
+   The default shading language version.
+
+   Definition at line 47 of file fbximplementationfilter.h.
+   FbxString mShadingAPI
+   Search for all occurrences
+
+   Stores the shading API.
+
+   Definition at line 87 of file fbximplementationfilter.h.
+   FbxString mShadingAPIVersion
+   Search for all occurrences
+
+   Stores the shading API Version.
+
+   Definition at line 90 of file fbximplementationfilter.h.
+   FbxString mShadingLanguage
+   Search for all occurrences
+
+   Stores the shading language.
+
+   Definition at line 93 of file fbximplementationfilter.h.
+   FbxString mShadingLanguageVersion
+   Search for all occurrences
+
+   Stores the shading language version.
+
+   Definition at line 96 of file fbximplementationfilter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbximplementationfilter.h
+
+   Please send us your comment about this page

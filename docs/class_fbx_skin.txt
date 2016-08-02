@@ -1,0 +1,337 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSkin Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxSkin Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxskin.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Skin deformer class.
+
+   A skin deformer contains clusters (FbxCluster). Each cluster acts on a subset of the geometry's control points, with different weights. For example, a mesh of humanoid shape can have a skin attached, that describes the way the humanoid mesh is deformed by bones. When the bones are animated, the clusters act on the geometry to animate it too.
+
+   The corresponding deformer types are FbxDeformer::eSkin.
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayLink.cxx, SwitchBinding/main.cxx, and ViewScene/DrawScene.cxx.
+
+   Definition at line 37 of file fbxskin.h.
+   Inheritance diagram for FbxSkin:
+   [USEMAP:class_fbx_skin.png]
+
+   List of all members.
+
+Public Types
+
+                enum   EType { eRigid, eLinear, eDualQuaternion, eBlend }
+                       Skinning type. More...
+
+Public Member Functions
+
+                 void  SetDeformAccuracy (double pDeformAccuracy)
+                       Set deformation accuracy.
+               double  GetDeformAccuracy () const
+                       Get deformation accuracy.
+                 bool  SetGeometry (FbxGeometry *pGeometry)
+                       Set the geometry affected by this skin deformer.
+        FbxGeometry *  GetGeometry ()
+                       Get the geometry affected by this skin deformer.
+                 bool  AddCluster (FbxCluster *pCluster)
+                       Add a cluster.
+         FbxCluster *  RemoveCluster (FbxCluster *pCluster)
+                       Remove cluster at given index.
+                  int  GetClusterCount () const
+                       Get the number of clusters.
+         FbxCluster *  GetCluster (int pIndex)
+                       Get cluster at given index.
+   const FbxCluster *  GetCluster (int pIndex) const
+                       Get cluster at given index.
+        EDeformerType  GetDeformerType () const
+                       Get the type of the deformer.
+                 void  SetSkinningType (EType pType)
+                       Set the skinning type.
+                EType  GetSkinningType () const
+                       Get the skinning type.
+
+Control Points
+
+   A skin has an array of indices to control points and associated blend weights.
+
+   The indices refer to the control points in the instance of class FbxGeometry. The blend weights are the influence of the different skinning type over the deformation effect of the indexed control points.
+                 void  AddControlPointIndex (int pIndex, double pBlendWeight=0)
+                       Add an element in both arrays of control point indices and blendWeights.
+                  int  GetControlPointIndicesCount () const
+                       Get the length of the arrays of control point indices and blend weights.
+                int *  GetControlPointIndices () const
+                       Get the array of control point indices.
+             double *  GetControlPointBlendWeights () const
+                       Get the array of control point blend weights.
+                 void  SetControlPointIWCount (int pCount)
+                       Set the array size for the three arrays: the array of control point indices, the array of weights and the array of blend weights.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Skinning type.
+
+   The skinning type decides which method will be used to do the skinning.
+     * eRigid Type eRigid means rigid skinning, which means only one joint can influence each control point.
+     * eLinear Type eLinear means the classic linear smooth skinning.
+     * eDualQuaternion Type eDualQuaternion means the dual quaternion smooth skinning.
+     * eBlend Type eBlend means to blend classic linear and dual quaternion smooth skinning according to blend weights.
+
+   Enumerator:
+
+          eRigid
+
+   Search for all occurrences
+          eLinear
+
+   Search for all occurrences
+          eDualQuaternion
+
+   Search for all occurrences
+          eBlend
+
+   Search for all occurrences
+
+   Definition at line 106 of file fbxskin.h.
+        {
+                eRigid,
+                eLinear,
+                eDualQuaternion,
+                eBlend
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetDeformAccuracy ( double  pDeformAccuracy )
+   Search for all occurrences
+
+   Set deformation accuracy.
+
+   Remarks:
+          Use the Accuracy option to set the accuracy of skin deformations. 100% is full accuracy and 1% is a rough estimation of the envelope deformation.
+
+   Parameters:
+
+          pDeformAccuracy value for deformation accuracy.
+
+   double GetDeformAccuracy ( ) const
+   Search for all occurrences
+
+   Get deformation accuracy.
+
+   Returns:
+          deformation accuracy value.
+
+   bool SetGeometry ( FbxGeometry *  pGeometry )
+   Search for all occurrences
+
+   Set the geometry affected by this skin deformer.
+
+   Parameters:
+
+          pGeometry Pointer to the geometry object to set.
+
+   Returns:
+          true on success, false otherwise.
+
+   FbxGeometry* GetGeometry ( )
+   Search for all occurrences
+
+   Get the geometry affected by this skin deformer.
+
+   Returns:
+          a pointer to the geometry if set or NULL.
+
+   bool AddCluster ( FbxCluster *  pCluster )
+   Search for all occurrences
+
+   Add a cluster.
+
+   Parameters:
+
+          pCluster Pointer to the cluster object to add.
+
+   Returns:
+          true on success, false otherwise.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   FbxCluster* RemoveCluster ( FbxCluster *  pCluster )
+   Search for all occurrences
+
+   Remove cluster at given index.
+
+   Parameters:
+
+          pCluster Pointer to the cluster to remove from this skin deformer.
+
+   Returns:
+          Pointer to cluster or NULL if pCluster is not owned by this skin deformer.
+
+   int GetClusterCount ( ) const
+   Search for all occurrences
+
+   Get the number of clusters.
+
+   Returns:
+          Number of clusters that have been added to this object.
+
+   Examples:
+          ExportScene01/main.cxx, and ViewScene/DrawScene.cxx.
+
+   FbxCluster* GetCluster ( int  pIndex )
+   Search for all occurrences
+
+   Get cluster at given index.
+
+   Parameters:
+
+          pIndex Index of cluster.
+
+   Returns:
+          Pointer to cluster or NULL if index is out of range.
+
+   Examples:
+          ExportScene01/main.cxx, and ViewScene/DrawScene.cxx.
+
+   const FbxCluster* GetCluster ( int  pIndex ) const
+   Search for all occurrences
+
+   Get cluster at given index.
+
+   Parameters:
+
+          pIndex Index of cluster.
+
+   Returns:
+          Pointer to cluster or NULL if index is out of range.
+
+   EDeformerType GetDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the type of the deformer.
+
+   Returns:
+          Deformer type identifier.
+
+   Reimplemented from FbxDeformer.
+
+   Definition at line 97 of file fbxskin.h.
+{return eSkin; };
+
+   void SetSkinningType ( EType  pType )
+   Search for all occurrences
+
+   Set the skinning type.
+
+   Parameters:
+
+          pType The skinning type.
+
+   EType GetSkinningType ( ) const
+   Search for all occurrences
+
+   Get the skinning type.
+
+   Returns:
+          The skinning type.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void AddControlPointIndex ( int     pIndex,
+                               double  pBlendWeight = 0
+                             )
+   Search for all occurrences
+
+   Add an element in both arrays of control point indices and blendWeights.
+
+   Parameters:
+
+          pIndex       The index of the control point.
+          pBlendWeight The blend weight for this control point. The value should between 0 and 1. Any value that is less than 0 will be set to 0, any value that is greater than 1 will be set to 1. 0 means completely linear skinning, 1 means completely dual quaternion skinning, a value between 0 and 1 means the weighted blending of the above two skinning methods.
+
+   int GetControlPointIndicesCount ( ) const
+   Search for all occurrences
+
+   Get the length of the arrays of control point indices and blend weights.
+
+   Returns:
+          Length of the arrays of control point indices and blend weights. Returns 0 if no control point indices have been added or the arrays have been reset.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   int* GetControlPointIndices ( ) const
+   Search for all occurrences
+
+   Get the array of control point indices.
+
+   Returns:
+          Pointer to the array of control point indices. NULL if no control point indices have been added or the array has been reset.
+
+   double* GetControlPointBlendWeights ( ) const
+   Search for all occurrences
+
+   Get the array of control point blend weights.
+
+   Returns:
+          Pointer to the array of control point blend weights. NULL if no control point indices have been added or the array has been reset.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   void SetControlPointIWCount ( int  pCount )
+   Search for all occurrences
+
+   Set the array size for the three arrays: the array of control point indices, the array of weights and the array of blend weights.
+
+   Parameters:
+
+          pCount The new count.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxskin.h
+
+   Please send us your comment about this page

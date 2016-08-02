@@ -1,0 +1,89 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStringList Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxStringList Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxstringlist.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Array that stores pairs of FbxString and a pointer.
+
+   Examples:
+          UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 338 of file fbxstringlist.h.
+   Inheritance diagram for FbxStringList:
+   [USEMAP:class_fbx_string_list.png]
+
+   List of all members.
+
+Public Member Functions
+
+   Constructors
+                    FbxStringList ()
+                    Default constructor.
+                    FbxStringList (const FbxStringList &pOriginal)
+                    Copy constructor.
+   Assignment Operators
+              void  CopyFrom (const FbxStringList *pOriginal)
+                    FbxStringList assignment function.
+   FbxStringList &  operator= (const FbxStringList &pOriginal)
+                    FbxStringList assignment operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStringList ( )
+
+   Default constructor.
+   FbxStringList ( const FbxStringList &  pOriginal )
+
+   Copy constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void CopyFrom ( const FbxStringList *  pOriginal )
+   Search for all occurrences
+
+   FbxStringList assignment function.
+   FbxStringList& operator= ( const FbxStringList &  pOriginal )
+
+   FbxStringList assignment operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstringlist.h
+
+   Please send us your comment about this page

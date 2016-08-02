@@ -1,0 +1,76 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEventPostImport Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxEventPostImport Class Reference
+   Search for all occurrences
+
+   #include <fbximporter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Event that is emitted to plugins after a FBX file has been imported.
+
+   Definition at line 380 of file fbximporter.h.
+   Inheritance diagram for FbxEventPostImport:
+   [USEMAP:class_fbx_event_post_import.png]
+
+   List of all members.
+
+Public Member Functions
+
+                  FbxEventPostImport (FbxDocument *pDocument)
+
+Public Attributes
+
+   FbxDocument *  mDocument
+                  The imported document.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEventPostImport ( FbxDocument *  pDocument ) [inline]
+
+   Definition at line 384 of file fbximporter.h.
+: mDocument(pDocument) {};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxDocument* mDocument
+   Search for all occurrences
+
+   The imported document.
+
+   Definition at line 384 of file fbximporter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbximporter.h
+
+   Please send us your comment about this page

@@ -1,0 +1,115 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMemoryPool Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxMemoryPool Class Reference
+   Search for all occurrences
+
+   #include <fbxmemorypool.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to create a simple fixed-size-blocks memory pool to allocate memory dynamically.
+
+   Definition at line 23 of file fbxmemorypool.h.
+
+   List of all members.
+
+Public Member Functions
+
+           FbxMemoryPool (size_t pBlockSize, FbxInt64 pBlockCount=0, bool pResizable=true, bool pConcurrent=true)
+           Memory pool constructor.
+           ~FbxMemoryPool ()
+           Memory pool destructor.
+     void  Reset ()
+           Free memory of all memory blocks from this memory pool, also effectively resetting the block count to zero.
+   void *  Allocate ()
+           Allocate or lock a memory block for usage.
+     void  Release (void *pMemBlock)
+           Dispose or unlock a memory block.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxMemoryPool ( size_t    pBlockSize,
+                   FbxInt64  pBlockCount = 0,
+                   bool      pResizable = true,
+                   bool      pConcurrent = true
+                 )
+
+   Memory pool constructor.
+
+   Parameters:
+
+          pBlockSize  The size of one memory block.
+          pBlockCount The count of block that should be pre-allocated.
+          pResizable  Whether memory pool can grow if no block are availalbe upon calling Allocate.
+          pConcurrent Whether the pool supports concurrent allocation and release operations.
+
+   Remarks:
+          All memory blocks must be released before the memory pool is destroyed, otherwise a memory leak will occur.
+
+   ~FbxMemoryPool ( )
+
+   Memory pool destructor.
+
+   Upon destruction, all memory blocks of the pool will be de-allocated.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Free memory of all memory blocks from this memory pool, also effectively resetting the block count to zero.
+
+   Remarks:
+          The block size and alignment/resize/concurrent support will remain unchanged.
+
+   void* Allocate ( )
+   Search for all occurrences
+
+   Allocate or lock a memory block for usage.
+
+   Returns:
+          An memory block pointer that can be NULL if the memory pool cannot grow in size and no blocks are available.
+
+   void Release ( void *  pMemBlock )
+   Search for all occurrences
+
+   Dispose or unlock a memory block.
+
+   Parameters:
+
+          pMemBlock A pointer to the memory block to release. This will not free the block's memory, instead simply putting it back in the available stack.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxmemorypool.h
+
+   Please send us your comment about this page

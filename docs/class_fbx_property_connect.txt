@@ -1,0 +1,265 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyConnect Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions | Public Attributes
+   FbxPropertyConnect Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertypage.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 239 of file fbxpropertypage.h.
+
+   List of all members.
+
+Public Member Functions
+
+                                FBXSDK_FRIEND_NEW ()
+                          void  Destroy ()
+          FbxPropertyConnect *  Clone (FbxPropertyPage *pPage)
+                          void  IncRef ()
+                          void  DecRef ()
+                           int  GetRef ()
+             FbxPropertyPage *  GetPage ()
+                        FbxInt  GetPropertyId ()
+                          void  ClearConnectCache ()
+                          void  WipeAllConnections ()
+                                Clear all connect without sending any notification (Internal use ONLY)
+                          bool  ConnectSrc (FbxPropertyConnect *pSrc, FbxConnection::EType pType)
+                          bool  DisconnectSrc (FbxPropertyConnect *pSrc)
+                          bool  IsConnectedSrc (FbxPropertyConnect *pSrc)
+                           int  GetSrcCount (FbxConnectionPointFilter *pFilter)
+          FbxPropertyConnect *  GetSrc (FbxConnectionPointFilter *pFilter, int pIndex)
+                          bool  ConnectDst (FbxPropertyConnect *pDst, FbxConnection::EType pType)
+                          bool  IsConnectedDst (FbxPropertyConnect *pSrc)
+                          bool  DisconnectDst (FbxPropertyConnect *pDst)
+                           int  GetDstCount (FbxConnectionPointFilter *pFilter)
+          FbxPropertyConnect *  GetDst (FbxConnectionPointFilter *pFilter, int pIndex)
+
+Static Public Member Functions
+
+   static FbxPropertyConnect *  Create (FbxPropertyPage *pPage, FbxInt pId)
+
+Public Attributes
+
+                           int  mRef
+            FbxConnectionPoint  mConnectionPoint
+             FbxPropertyPage *  mPage
+                        FbxInt  mId
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   static FbxPropertyConnect* Create ( FbxPropertyPage *  pPage,
+                                       FbxInt             pId
+                                     )                    [inline, static]
+   Search for all occurrences
+
+   Definition at line 243 of file fbxpropertypage.h.
+{ return FbxNew< FbxPropertyConnect >(pPage,pId); }
+
+   void Destroy ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 244 of file fbxpropertypage.h.
+{ FbxDelete(this); }
+
+   FbxPropertyConnect* Clone ( FbxPropertyPage *  pPage ) [inline]
+   Search for all occurrences
+
+   Definition at line 245 of file fbxpropertypage.h.
+    {
+        return FbxNew< FbxPropertyConnect >(pPage,mId);
+    }
+
+   void IncRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 250 of file fbxpropertypage.h.
+{ mRef++; }
+
+   void DecRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 251 of file fbxpropertypage.h.
+{ mRef--; if (mRef==0) FbxDelete(this); }
+
+   int GetRef ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 252 of file fbxpropertypage.h.
+{ return mRef; }
+
+   FbxPropertyPage* GetPage ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 255 of file fbxpropertypage.h.
+{ return mPage; }
+
+   FbxInt GetPropertyId ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 256 of file fbxpropertypage.h.
+{ return mId; }
+
+   void ClearConnectCache ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 260 of file fbxpropertypage.h.
+    {
+        mConnectionPoint.SubConnectRemoveAll();
+    }
+
+   void WipeAllConnections ( ) [inline]
+   Search for all occurrences
+
+   Clear all connect without sending any notification (Internal use ONLY)
+
+   Definition at line 266 of file fbxpropertypage.h.
+        {
+                mConnectionPoint.WipeConnectionList();
+        }
+
+   bool ConnectSrc ( FbxPropertyConnect *  pSrc,
+                     FbxConnection::EType  pType
+                   )                       [inline]
+   Search for all occurrences
+
+   Definition at line 272 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.ConnectSrc(&pSrc->mConnectionPoint,pType);
+    }
+
+   bool DisconnectSrc ( FbxPropertyConnect *  pSrc ) [inline]
+   Search for all occurrences
+
+   Definition at line 276 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.DisconnectSrc(&pSrc->mConnectionPoint);
+    }
+
+   bool IsConnectedSrc ( FbxPropertyConnect *  pSrc ) [inline]
+   Search for all occurrences
+
+   Definition at line 280 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.IsConnectedSrc(&pSrc->mConnectionPoint);
+    }
+
+   int GetSrcCount ( FbxConnectionPointFilter *  pFilter ) [inline]
+   Search for all occurrences
+
+   Definition at line 284 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.GetSrcCount(pFilter);
+    }
+
+   FbxPropertyConnect* GetSrc ( FbxConnectionPointFilter *  pFilter,
+                                int                         pIndex
+                              )                             [inline]
+   Search for all occurrences
+
+   Definition at line 288 of file fbxpropertypage.h.
+    {
+                FbxConnectionPoint *lCP = mConnectionPoint.GetSrc(pIndex,pFilter);
+        return lCP ? (FbxPropertyConnect * )lCP->GetData() : 0;
+    }
+
+   bool ConnectDst ( FbxPropertyConnect *  pDst,
+                     FbxConnection::EType  pType
+                   )                       [inline]
+   Search for all occurrences
+
+   Definition at line 293 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.ConnectDst(&pDst->mConnectionPoint,pType);
+    }
+
+   bool IsConnectedDst ( FbxPropertyConnect *  pSrc ) [inline]
+   Search for all occurrences
+
+   Definition at line 297 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.IsConnectedSrc(&pSrc->mConnectionPoint);
+    }
+
+   bool DisconnectDst ( FbxPropertyConnect *  pDst ) [inline]
+   Search for all occurrences
+
+   Definition at line 301 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.DisconnectDst(&pDst->mConnectionPoint);
+    }
+
+   int GetDstCount ( FbxConnectionPointFilter *  pFilter ) [inline]
+   Search for all occurrences
+
+   Definition at line 305 of file fbxpropertypage.h.
+    {
+        return mConnectionPoint.GetDstCount(pFilter);
+    }
+
+   FbxPropertyConnect* GetDst ( FbxConnectionPointFilter *  pFilter,
+                                int                         pIndex
+                              )                             [inline]
+   Search for all occurrences
+
+   Definition at line 309 of file fbxpropertypage.h.
+    {
+                FbxConnectionPoint *lCP = mConnectionPoint.GetDst(pIndex,pFilter);
+        return lCP ? (FbxPropertyConnect * )lCP->GetData() : 0;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int mRef
+   Search for all occurrences
+
+   Definition at line 315 of file fbxpropertypage.h.
+   FbxConnectionPoint mConnectionPoint
+   Search for all occurrences
+
+   Definition at line 316 of file fbxpropertypage.h.
+   FbxPropertyPage* mPage
+   Search for all occurrences
+
+   Definition at line 317 of file fbxpropertypage.h.
+   FbxInt mId
+   Search for all occurrences
+
+   Definition at line 318 of file fbxpropertypage.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertypage.h
+
+   Please send us your comment about this page

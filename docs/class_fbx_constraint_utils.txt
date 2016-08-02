@@ -1,0 +1,67 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintUtils Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxConstraintUtils Class Reference
+   Search for all occurrences
+
+   #include <fbxconstraintutils.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Utility class for constraints.
+
+   Definition at line 25 of file fbxconstraintutils.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+   static bool  IsNodeSingleChainIKEffector (FbxNode *pNode)
+                Test if the given node is Single Chain IK Effector.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static bool IsNodeSingleChainIKEffector ( FbxNode *  pNode ) [static]
+   Search for all occurrences
+
+   Test if the given node is Single Chain IK Effector.
+
+   Parameters:
+
+          pNode The given node
+
+   Returns:
+          true if it is, false otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintutils.h
+
+   Please send us your comment about this page

@@ -1,0 +1,246 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSurfaceMaterial Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxSurfaceMaterial Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, FBX Scenes, Materials, List of Python Fbx classes, Connections, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxsurfacematerial.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains material settings.
+
+   Examples:
+          ExportShader/main.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, ViewScene/SceneCache.h, and ViewScene/SceneContext.cxx.
+
+   Definition at line 25 of file fbxsurfacematerial.h.
+   Inheritance diagram for FbxSurfaceMaterial:
+   [USEMAP:class_fbx_surface_material.png]
+
+   List of all members.
+
+Standard Material Property Names
+
+         static const char *  sShadingModel
+         static const char *  sMultiLayer
+         static const char *  sEmissive
+         static const char *  sEmissiveFactor
+         static const char *  sAmbient
+         static const char *  sAmbientFactor
+         static const char *  sDiffuse
+         static const char *  sDiffuseFactor
+         static const char *  sSpecular
+         static const char *  sSpecularFactor
+         static const char *  sShininess
+         static const char *  sBump
+         static const char *  sNormalMap
+         static const char *  sBumpFactor
+         static const char *  sTransparentColor
+         static const char *  sTransparencyFactor
+         static const char *  sReflection
+         static const char *  sReflectionFactor
+         static const char *  sDisplacementColor
+         static const char *  sDisplacementFactor
+         static const char *  sVectorDisplacementColor
+         static const char *  sVectorDisplacementFactor
+
+Material Properties
+
+   FbxPropertyT< FbxString >  ShadingModel
+     FbxPropertyT< FbxBool >  MultiLayer
+
+Default property values
+
+        static const FbxBool  sMultiLayerDefault
+         static const char *  sShadingModelDefault
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sShadingModel [static]
+   Search for all occurrences
+
+   Definition at line 35 of file fbxsurfacematerial.h.
+   const char* sMultiLayer [static]
+   Search for all occurrences
+
+   Definition at line 36 of file fbxsurfacematerial.h.
+   const char* sEmissive [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 38 of file fbxsurfacematerial.h.
+   const char* sEmissiveFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 39 of file fbxsurfacematerial.h.
+   const char* sAmbient [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 41 of file fbxsurfacematerial.h.
+   const char* sAmbientFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 42 of file fbxsurfacematerial.h.
+   const char* sDiffuse [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 44 of file fbxsurfacematerial.h.
+   const char* sDiffuseFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 45 of file fbxsurfacematerial.h.
+   const char* sSpecular [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 47 of file fbxsurfacematerial.h.
+   const char* sSpecularFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 48 of file fbxsurfacematerial.h.
+   const char* sShininess [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 49 of file fbxsurfacematerial.h.
+   const char* sBump [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 51 of file fbxsurfacematerial.h.
+   const char* sNormalMap [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 52 of file fbxsurfacematerial.h.
+   const char* sBumpFactor [static]
+   Search for all occurrences
+
+   Definition at line 53 of file fbxsurfacematerial.h.
+   const char* sTransparentColor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 55 of file fbxsurfacematerial.h.
+   const char* sTransparencyFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 56 of file fbxsurfacematerial.h.
+   const char* sReflection [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 58 of file fbxsurfacematerial.h.
+   const char* sReflectionFactor [static]
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayMesh.cxx.
+
+   Definition at line 59 of file fbxsurfacematerial.h.
+   const char* sDisplacementColor [static]
+   Search for all occurrences
+
+   Definition at line 61 of file fbxsurfacematerial.h.
+   const char* sDisplacementFactor [static]
+   Search for all occurrences
+
+   Definition at line 62 of file fbxsurfacematerial.h.
+   const char* sVectorDisplacementColor [static]
+   Search for all occurrences
+
+   Definition at line 64 of file fbxsurfacematerial.h.
+   const char* sVectorDisplacementFactor [static]
+   Search for all occurrences
+
+   Definition at line 65 of file fbxsurfacematerial.h.
+   FbxPropertyT<FbxString> ShadingModel
+   Search for all occurrences
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayMaterial.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 72 of file fbxsurfacematerial.h.
+   FbxPropertyT<FbxBool> MultiLayer
+   Search for all occurrences
+
+   Definition at line 73 of file fbxsurfacematerial.h.
+   const FbxBool sMultiLayerDefault [static]
+   Search for all occurrences
+
+   Definition at line 85 of file fbxsurfacematerial.h.
+   const char* sShadingModelDefault [static]
+   Search for all occurrences
+
+   Definition at line 86 of file fbxsurfacematerial.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxsurfacematerial.h
+
+   Please send us your comment about this page

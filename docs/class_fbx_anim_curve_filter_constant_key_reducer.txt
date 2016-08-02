@@ -1,0 +1,304 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveFilterConstantKeyReducer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimCurveFilterConstantKeyReducer Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvefilters.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Constant key reducing filter.
+
+   Filter to test if each key is really necessary to define the curve at a definite degree of precision. It filters recursively from the strongest difference first. All useless keys are eliminated.
+
+   Definition at line 241 of file fbxanimcurvefilters.h.
+   Inheritance diagram for FbxAnimCurveFilterConstantKeyReducer:
+   [USEMAP:class_fbx_anim_curve_filter_constant_key_reducer.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxAnimCurveFilterConstantKeyReducer ()
+                         Constructor.
+                virtual  ~FbxAnimCurveFilterConstantKeyReducer ()
+                         Destructor.
+   virtual const char *  GetName () const
+                         Get the name of the filter.
+           virtual bool  Apply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Apply filter on all the curves of an animation curve node.
+           virtual bool  Apply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         Apply filter on an animation curve.
+           virtual void  Reset ()
+                         Reset the filter to its default parameters.
+                 double  GetDerivativeTolerance () const
+                         Get the current derivative tolerance.
+                   void  SetDerivativeTolerance (double pValue)
+                         Set the derivative tolerance.
+                 double  GetValueTolerance () const
+                         Get the tolerance value.
+                   void  SetValueTolerance (double pValue)
+                         Set the tolerance value.
+                   bool  GetKeepFirstAndLastKeys () const
+                         Get the state of the KeepFirstAndLastKeys flag.
+                   void  SetKeepFirstAndLastKeys (bool pKeepFirstAndLastKeys)
+                         Set the state of the KeepFirstAndLastKeys flag.
+                   bool  GetKeepOneKey () const
+                         Get the state of the KeepOneKey flag.
+                   void  SetKeepOneKey (bool pKeepOneKey)
+                         Set the state of the KeepOneKey flag.
+                   void  SetKeepNotPureAutoKeys (bool pKeep)
+                         Tell the filter to keep CUBIC curve keys which are not pure AUTO.
+
+Exposed parent class methods.
+
+           virtual bool  Apply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         Apply filter to all the curves stored in the animation stack.
+           virtual bool  Apply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         Apply filter to all the animated properties of the object.
+           virtual bool  Apply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Apply filter on an array of animation curves.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveFilterConstantKeyReducer ( )
+
+   Constructor.
+   virtual ~FbxAnimCurveFilterConstantKeyReducer ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 248 of file fbxanimcurvefilters.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetName ( ) const [virtual]
+   Search for all occurrences
+
+   Get the name of the filter.
+
+   Returns:
+          Pointer to name.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   Apply filter to all the curves stored in the animation stack.
+
+   Parameters:
+
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 259 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pAnimStack, pStatus); }
+
+   virtual bool Apply ( FbxObject *     pObj,
+                        FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   Apply filter to all the animated properties of the object.
+
+   Parameters:
+
+          pObj       Object containing the animated properties to which the filter is applied.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 260 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pObj, pAnimStack, pStatus); }
+
+   virtual bool Apply ( FbxAnimCurve **  pCurve,
+                        int              pCount,
+                        FbxStatus *      pStatus = NULL
+                      )                  [inline, virtual]
+   Search for all occurrences
+
+   Apply filter on an array of animation curves.
+
+   Parameters:
+
+          pCurve  Array of curves to which the filter is applied.
+          pCount  Number of curves in the array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 261 of file fbxanimcurvefilters.h.
+{ return FbxAnimCurveFilter::Apply(pCurve, pCount, pStatus); }
+
+   virtual bool Apply ( FbxAnimCurveNode &  pCurveNode,
+                        FbxStatus *         pStatus = NULL
+                      )                     [virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of an animation curve node.
+
+   Parameters:
+
+          pCurveNode Curve node to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method collects all the FbxAnimCurve objects connected to the curve node and calls Apply(FbxAnimCurve**, int)
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve &  pCurve,
+                        FbxStatus *     pStatus = NULL
+                      )                 [virtual]
+   Search for all occurrences
+
+   Apply filter on an animation curve.
+
+   Parameters:
+
+          pCurve  Curve to which the filter is applied.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Implements FbxAnimCurveFilter.
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset the filter to its default parameters.
+
+   Reimplemented from FbxAnimCurveFilter.
+   double GetDerivativeTolerance ( ) const
+   Search for all occurrences
+
+   Get the current derivative tolerance.
+
+   Returns:
+          The value of the current derivative tolerance.
+
+   void SetDerivativeTolerance ( double  pValue )
+   Search for all occurrences
+
+   Set the derivative tolerance.
+
+   Parameters:
+
+          pValue Value derivative tolerance.
+
+   double GetValueTolerance ( ) const
+   Search for all occurrences
+
+   Get the tolerance value.
+
+   Returns:
+          The tolerance value.
+
+   void SetValueTolerance ( double  pValue )
+   Search for all occurrences
+
+   Set the tolerance value.
+
+   Parameters:
+
+          pValue Tolerance value.
+
+   bool GetKeepFirstAndLastKeys ( ) const
+   Search for all occurrences
+
+   Get the state of the KeepFirstAndLastKeys flag.
+
+   Returns:
+          true if the filter keeps the first and last keys.
+
+   void SetKeepFirstAndLastKeys ( bool  pKeepFirstAndLastKeys )
+   Search for all occurrences
+
+   Set the state of the KeepFirstAndLastKeys flag.
+
+   Parameters:
+
+          pKeepFirstAndLastKeys Set to true if you want the filter to keep the first and last keys.
+
+   bool GetKeepOneKey ( ) const
+   Search for all occurrences
+
+   Get the state of the KeepOneKey flag.
+
+   If all the keys are constant and this flag is c\ true, the filter will keep the first key. If all the keys are constant and this flag is c\ false, the filter will delete all the keys.
+
+   Returns:
+          true if the filter keeps the first key when all keys are constant.
+
+   void SetKeepOneKey ( bool  pKeepOneKey )
+   Search for all occurrences
+
+   Set the state of the KeepOneKey flag.
+
+   If all the keys are constant and this flag is c\ true, the filter will keep the first key. If all the keys are constant and this flag is c\ false, the filter will delete all the keys.
+
+   Parameters:
+
+          pKeepOneKey Set to true if you want the filter to keep the first key when all keys are constant.
+
+   void SetKeepNotPureAutoKeys ( bool  pKeep )
+   Search for all occurrences
+
+   Tell the filter to keep CUBIC curve keys which are not pure AUTO.
+
+   Parameters:
+
+          pKeep KeepNotPureAutoKeys flag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvefilters.h
+
+   Please send us your comment about this page

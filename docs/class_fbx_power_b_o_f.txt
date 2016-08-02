@@ -1,0 +1,119 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPowerBOF Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxPowerBOF Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingoperator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 653 of file fbxbindingoperator.h.
+   Inheritance diagram for FbxPowerBOF:
+   [USEMAP:class_fbx_power_b_o_f.png]
+
+   List of all members.
+
+Public Member Functions
+
+          virtual bool  Evaluate (const FbxBindingOperator *pOperator, const FbxObject *pObject, EFbxType *pResultType, void **pResult) const
+                        Evaluates the object properties specified by "X" and "Y" return X^Y as a float.
+          virtual bool  ReverseEvaluate (const FbxBindingOperator *pOperator, const FbxObject *pTarget, const void *pIn, void **pOut, EFbxType *pOutType, bool setObj, int index) const
+                        Run the inverse operator on the given object, assigning the result directly to the object.
+
+Static Public Attributes
+
+   static const char *  FunctionName
+                        Name of the operation function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Evaluate ( const FbxBindingOperator *  pOperator,
+                           const FbxObject *           pObject,
+                           EFbxType *                  pResultType,
+                           void **                     pResult
+                         )                             const [virtual]
+   Search for all occurrences
+
+   Evaluates the object properties specified by "X" and "Y" return X^Y as a float.
+
+   Parameters:
+
+          pOperator   Operator running on the object.
+          pObject     The object that will be evaluated.
+          pResultType The type of the result to be returned.
+          pResult     A pointer to a buffer that can hold the result.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implements FbxBindingOperator::Function.
+   virtual bool ReverseEvaluate ( const FbxBindingOperator *  pOperator,
+                                  const FbxObject *           pTarget,
+                                  const void *                pIn,
+                                  void **                     pOut,
+                                  EFbxType *                  pOutType,
+                                  bool                        setObj,
+                                  int                         index
+                                )                             const [virtual]
+   Search for all occurrences
+
+   Run the inverse operator on the given object, assigning the result directly to the object.
+
+   Parameters:
+
+          pOperator The operator that will be applied.
+          pTarget   The object that will be evaluated.
+          pIn
+          pOut
+          pOutType  Type of value being reversed.
+          setObj    Control to set the property (only to query by the default ).
+          index     Used only in FbxMultiplyDistBOF.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implements FbxBindingOperator::Function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* FunctionName [static]
+   Search for all occurrences
+
+   Name of the operation function.
+
+   Definition at line 657 of file fbxbindingoperator.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingoperator.h
+
+   Please send us your comment about this page

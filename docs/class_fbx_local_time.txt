@@ -1,0 +1,96 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLocalTime Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxLocalTime Class Reference
+   Search for all occurrences
+
+   #include <fbxtime.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 621 of file fbxtime.h.
+
+   List of all members.
+
+Public Member Functions
+
+        FbxLocalTime ()
+
+Public Attributes
+
+   int  mYear
+   int  mMonth
+   int  mDay
+   int  mHour
+   int  mMinute
+   int  mSecond
+   int  mMillisecond
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLocalTime ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int mYear
+   Search for all occurrences
+
+   Definition at line 626 of file fbxtime.h.
+   int mMonth
+   Search for all occurrences
+
+   Definition at line 627 of file fbxtime.h.
+   int mDay
+   Search for all occurrences
+
+   Definition at line 628 of file fbxtime.h.
+   int mHour
+   Search for all occurrences
+
+   Definition at line 629 of file fbxtime.h.
+   int mMinute
+   Search for all occurrences
+
+   Definition at line 630 of file fbxtime.h.
+   int mSecond
+   Search for all occurrences
+
+   Definition at line 631 of file fbxtime.h.
+   int mMillisecond
+   Search for all occurrences
+
+   Definition at line 632 of file fbxtime.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxtime.h
+
+   Please send us your comment about this page

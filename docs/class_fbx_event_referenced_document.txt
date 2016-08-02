@@ -1,0 +1,61 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEventReferencedDocument Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxEventReferencedDocument Class Reference
+   Search for all occurrences
+
+   #include <fbxexternaldocreflistener.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Event that is emitted on loading document when a referenced document is encountered while loading external references.
+
+   Definition at line 36 of file fbxexternaldocreflistener.h.
+   Inheritance diagram for FbxEventReferencedDocument:
+   [USEMAP:class_fbx_event_referenced_document.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FbxEventReferencedDocument ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxEventReferencedDocument ( ) [inline]
+
+   Definition at line 40 of file fbxexternaldocreflistener.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxexternaldocreflistener.h
+
+   Please send us your comment about this page

@@ -1,0 +1,337 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveFilterGimbleKiller Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAnimCurveFilterGimbleKiller Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvefilters.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   GimbleKiller filter.
+
+   This filter try to minimize gimble locks on rotation curves.
+
+   Remarks:
+          The current implementation of this filter expects to process 3 curves at the same time.
+          This filter has been superseded by the Unroll filter. It is strongly advised to use the latter.
+
+   Definition at line 410 of file fbxanimcurvefilters.h.
+   Inheritance diagram for FbxAnimCurveFilterGimbleKiller:
+   [USEMAP:class_fbx_anim_curve_filter_gimble_killer.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxAnimCurveFilterGimbleKiller ()
+                         Constructor.
+                virtual  ~FbxAnimCurveFilterGimbleKiller ()
+                         Destructor.
+   virtual const char *  GetName () const
+                         Get the name of the filter.
+           virtual bool  NeedApply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  NeedApply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  NeedApply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Check if the animation curve node needs an application of the filter.
+           virtual bool  NeedApply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Check if the given animation curve need an application of the filter.
+           virtual bool  NeedApply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         This filter expects to work with interdependent curves.
+           virtual bool  Apply (FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  Apply (FbxObject *pObj, FbxAnimStack *pAnimStack, FbxStatus *pStatus=NULL)
+                         This filter expects to work with 3 interdependent curves.
+           virtual bool  Apply (FbxAnimCurveNode &pCurveNode, FbxStatus *pStatus=NULL)
+                         Apply filter on all the curves of an animation curve node.
+           virtual bool  Apply (FbxAnimCurve **pCurve, int pCount, FbxStatus *pStatus=NULL)
+                         Apply filter on the given animation curve.
+           virtual bool  Apply (FbxAnimCurve &pCurve, FbxStatus *pStatus=NULL)
+                         This filter expects to work with interdependent curves.
+           virtual void  Reset ()
+                         Reset the filter to its default parameters.
+                   bool  GetApplyKeySyncFilter () const
+                         Return true if key sync filter is enabled.
+                   void  SetApplyKeySyncFilter (bool pFlag)
+                         Set to true to enable key sync filter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveFilterGimbleKiller ( )
+
+   Constructor.
+   virtual ~FbxAnimCurveFilterGimbleKiller ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetName ( ) const [virtual]
+   Search for all occurrences
+
+   Get the name of the filter.
+
+   Returns:
+          Pointer to name.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Passing the animation stack makes no sense. since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 430 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool NeedApply ( FbxObject *     pObj,
+                            FbxAnimStack *  pAnimStack,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 3 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 439 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool NeedApply ( FbxAnimCurveNode &  pCurveNode,
+                            FbxStatus *         pStatus = NULL
+                          )                     [virtual]
+   Search for all occurrences
+
+   Check if the animation curve node needs an application of the filter.
+
+   Parameters:
+
+          pCurveNode Curve node to test.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the animation curve node needs an application of the filter, false otherwise.
+
+   Remarks:
+          This method checks that the pCurveNode is representing an Euler rotation. It will validate that 3 animation curves are defined. If the condition is not met, the method will return false.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimCurve **  pCurve,
+                            int              pCount,
+                            FbxStatus *      pStatus = NULL
+                          )                  [virtual]
+   Search for all occurrences
+
+   Check if the given animation curve need an application of the filter.
+
+   Parameters:
+
+          pCurve  Array of curves to test if they need the and application of the filter.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if at least one animation curve in the array needs an application of the filter.
+
+   Remarks:
+          Because this method only receives an array of interdependent curves, this filter assumes that they are all coming from an Euler rotation anim curve node. Therefore, it expects pCount to be equal to 3.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool NeedApply ( FbxAnimCurve &  pCurve,
+                            FbxStatus *     pStatus = NULL
+                          )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 465 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Passing the animation stack makes no sense since this object would not know which curves to handle.
+
+   Parameters:
+
+          pAnimStack Animation stack
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false.
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 473 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxObject *     pObj,
+                        FbxAnimStack *  pAnimStack,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with 3 interdependent curves.
+
+   Collecting all the animation curves from the properties defined in pObj could not guarantee that we are manipulating 3 interdependent curves.
+
+   Parameters:
+
+          pObj       Object containing the properties to test.
+          pAnimStack Animation stack where to retrieve the animation curves
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          false
+
+   Reimplemented from FbxAnimCurveFilter.
+
+   Definition at line 482 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual bool Apply ( FbxAnimCurveNode &  pCurveNode,
+                        FbxStatus *         pStatus = NULL
+                      )                     [virtual]
+   Search for all occurrences
+
+   Apply filter on all the curves of an animation curve node.
+
+   Parameters:
+
+          pCurveNode Curve node to which the filter is applied.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          This method collects all the FbxAnimCurve objects connected to the curve node and calls Apply(FbxAnimCurve**, int)
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve **  pCurve,
+                        int              pCount,
+                        FbxStatus *      pStatus = NULL
+                      )                  [virtual]
+   Search for all occurrences
+
+   Apply filter on the given animation curve.
+
+   Parameters:
+
+          pCurve  Array of curve to which the filter is applied.
+          pCount  Number of curves in array.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the curve filtering operation was successful, false otherwise.
+
+   Remarks:
+          Because this method only receives an array of interdependent curves, this filter assumes that they are all coming from an Euler rotation anim curve node. Therefore, it expects pCount to be equal to 3.
+
+   Reimplemented from FbxAnimCurveFilter.
+   virtual bool Apply ( FbxAnimCurve &  pCurve,
+                        FbxStatus *     pStatus = NULL
+                      )                 [inline, virtual]
+   Search for all occurrences
+
+   This filter expects to work with interdependent curves.
+
+   Receiving one single curve is useless.
+
+   Returns:
+          false
+
+   Implements FbxAnimCurveFilter.
+
+   Definition at line 507 of file fbxanimcurvefilters.h.
+{ FBX_UNUSED(pStatus); return false; }
+
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset the filter to its default parameters.
+
+   Reimplemented from FbxAnimCurveFilter.
+   bool GetApplyKeySyncFilter ( ) const
+   Search for all occurrences
+
+   Return true if key sync filter is enabled.
+   void SetApplyKeySyncFilter ( bool  pFlag )
+   Search for all occurrences
+
+   Set to true to enable key sync filter.
+
+   Parameters:
+
+          pFlag Key sync filter flag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvefilters.h
+
+   Please send us your comment about this page

@@ -1,0 +1,111 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMutex Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxMutex Class Reference
+   Search for all occurrences
+
+   #include <fbxsync.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Mutually excluding thread lock mechanism.
+
+   While the mutex is a much heavier implementation than a spinlock, it supports recursive locking; the same thread can safely lock the same mutex more than once without blocking. But it will have to be released as many times as it as been acquired before other threads can acquire the context. It is sometimes referred as a critical section. This is the heaviest thread lock implementation, but also the most secure.
+
+   Definition at line 59 of file fbxsync.h.
+
+   List of all members.
+
+Public Member Functions
+
+            FbxMutex (bool pInitialOwnership=false)
+            Constructor.
+   virtual  ~FbxMutex ()
+            Destructor.
+      void  Acquire ()
+            Acquire the lock; thread will wait indefinitely until it is available.
+      bool  TryAcquire (unsigned int pRetryCount)
+            Try acquiring the lock; thread will not wait if it is not available.
+      void  Release ()
+            Release the lock; this will allow other threads to acquire the lock if they are waiting.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxMutex ( bool  pInitialOwnership = false )
+
+   Constructor.
+
+   Parameters:
+
+          pInitialOwnership If pInitialOwnership is true, the lock will be initialized as being locked by the current thread.
+
+   virtual ~FbxMutex ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Acquire ( )
+   Search for all occurrences
+
+   Acquire the lock; thread will wait indefinitely until it is available.
+
+   Remarks:
+          The same thread can acquire the lock multiple times without blocking.
+
+   bool TryAcquire ( unsigned int  pRetryCount )
+   Search for all occurrences
+
+   Try acquiring the lock; thread will not wait if it is not available.
+
+   Parameters:
+
+          pRetryCount The number of retries in case the lock is not available.
+
+   Returns:
+          True if the lock is acquired, false otherwise.
+
+   Remarks:
+          The same thread can acquire the lock multiple times without blocking.
+
+   void Release ( )
+   Search for all occurrences
+
+   Release the lock; this will allow other threads to acquire the lock if they are waiting.
+
+   Remarks:
+          Only the owner thread should call Release(), and it needs to be released as many times as it was acquired.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxsync.h
+
+   Please send us your comment about this page

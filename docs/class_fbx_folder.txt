@@ -1,0 +1,157 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxFolder Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxFolder Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxfolder.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for iterating into file system folders and the items contained.
+
+   Definition at line 25 of file fbxfolder.h.
+
+   List of all members.
+
+Public Types
+
+        enum   EEntryType { eRegularEntry, eFolderEntry }
+               The different entry type that can be found in folders. More...
+
+Public Member Functions
+
+         bool  Open (const char *pFolderPath_UTF8)
+               Open the specified folder for browsing its content.
+         bool  Next ()
+               Get the next item in the folder.
+   EEntryType  GetEntryType () const
+               Get the type of the current entry in the folder.
+    FbxString  GetEntryName () const
+               Retrieve the name of the current entry in the folder.
+       char *  GetEntryExtension () const
+               Retrieve the extension name of the current entry.
+         void  Close ()
+               Close the folder when done browsing its content.
+         bool  IsOpen () const
+               Find out if the folder was successfully opened the last time Open was called.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EEntryType
+   Search for all occurrences
+
+   The different entry type that can be found in folders.
+
+   Enumerator:
+
+          eRegularEntry
+
+   Regular entry, such as file.
+   Search for all occurrences
+          eFolderEntry
+
+   Folder entry that potentially contain more files.
+   Search for all occurrences
+
+   Definition at line 29 of file fbxfolder.h.
+        {
+                eRegularEntry,
+                eFolderEntry
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool Open ( const char *  pFolderPath_UTF8 )
+   Search for all occurrences
+
+   Open the specified folder for browsing its content.
+
+   Parameters:
+
+          pFolderPath_UTF8 The folder path to open.
+
+   Returns:
+          True if the folder path was successfully open, false otherwise.
+
+   bool Next ( )
+   Search for all occurrences
+
+   Get the next item in the folder.
+
+   Returns:
+          True if another item was found after the current one.
+
+   EEntryType GetEntryType ( ) const
+   Search for all occurrences
+
+   Get the type of the current entry in the folder.
+
+   Returns:
+          The entry type.
+
+   FbxString GetEntryName ( ) const
+   Search for all occurrences
+
+   Retrieve the name of the current entry in the folder.
+
+   Returns:
+          The name of the current entry.
+
+   char* GetEntryExtension ( ) const
+   Search for all occurrences
+
+   Retrieve the extension name of the current entry.
+
+   Returns:
+          The extension name of the current entry.
+
+   void Close ( )
+   Search for all occurrences
+
+   Close the folder when done browsing its content.
+   bool IsOpen ( ) const
+   Search for all occurrences
+
+   Find out if the folder was successfully opened the last time Open was called.
+
+   Returns:
+          True if the folder is currently open.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxfolder.h
+
+   Please send us your comment about this page

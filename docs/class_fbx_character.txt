@@ -1,0 +1,2838 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharacter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Member Functions | Public Attributes
+   FbxCharacter Class Reference
+
+   This reference page is linked to from the following overview topics: FBX Scenes, Merging Two Scenes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcharacter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A Character is a person or animal with pre-defined skeleton system.
+
+   The skeleton system is composed of multiple named node (skeleton). This class contains all methods to setup an exported character or query information on an imported character. This class also contains some methods for manipulating the FbxCharacterLink, FbxControlSet
+
+   The most important part of a FbxCharacter is the FbxCharacterLink. There is one FbxCharacterLink for each characterized node. For more information see FbxCharacterLink class documentation.
+
+   See also:
+          FbxCharacterLink, FbxControlSet
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   Definition at line 91 of file fbxcharacter.h.
+   Inheritance diagram for FbxCharacter:
+   [USEMAP:class_fbx_character.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EInputType {
+     eInputActor, eInputCharacter, eInputMarkerSet, eOutputMarkerSet,
+     eInputStancePose
+   }
+     Character input type. More...
+   enum   EGroupId {
+     eGroupBase, eGroupAuxiliary, eGroupSpine, eGroupRoll,
+     eGroupSpecial, eGroupLeftHand, eGroupRightHand, eGroupProps,
+     eGroupGameModeParent, eGroupNeck, eGroupLeftFoot, eGroupRightFoot,
+     eGroupFloorContact, eGroupIdCount
+   }
+     Define ID for character groups that contains multiple character nodes. More...
+   enum   ENodeId {
+     eHips, eLeftHip, eLeftKnee, eLeftAnkle,
+     eLeftFoot, eRightHip, eRightKnee, eRightAnkle,
+     eRightFoot, eWaist, eChest, eLeftCollar,
+     eLeftShoulder, eLeftElbow, eLeftWrist, eRightCollar,
+     eRightShoulder, eRightElbow, eRightWrist, eNeck,
+     eHead, eLeftHipRoll, eLeftKneeRoll, eRightHipRoll,
+     eRightKneeRoll, eLeftShoulderRoll, eLeftElbowRoll, eRightShoulderRoll,
+     eRightElbowRoll, eSpine2, eSpine3, eSpine4,
+     eSpine5, eSpine6, eSpine7, eSpine8,
+     eSpine9, eLeftThumbA, eLeftThumbB, eLeftThumbC,
+     eLeftIndexA, eLeftIndexB, eLeftIndexC, eLeftMiddleA,
+     eLeftMiddleB, eLeftMiddleC, eLeftRingA, eLeftRingB,
+     eLeftRingC, eLeftPinkyA, eLeftPinkyB, eLeftPinkyC,
+     eRightThumbA, eRightThumbB, eRightThumbC, eRightIndexA,
+     eRightIndexB, eRightIndexC, eRightMiddleA, eRightMiddleB,
+     eRightMiddleC, eRightRingA, eRightRingB, eRightRingC,
+     eRightPinkyA, eRightPinkyB, eRightPinkyC, eReference,
+     eLeftFloor, eRightFloor, eHipsTranslation, eProps0,
+     eProps1, eProps2, eProps3, eProps4,
+     eGameModeParentLeftHipRoll, eGameModeParentLeftKnee, eGameModeParentLeftKneeRoll, eGameModeParentRightHipRoll,
+     eGameModeParentRightKnee, eGameModeParentRightKneeRoll, eGameModeParentLeftShoulderRoll, eGameModeParentLeftElbow,
+     eGameModeParentLeftElbowRoll, eGameModeParentRightShoulderRoll, eGameModeParentRightElbow, eGameModeParentRightElbowRoll,
+     eLeftUpLegRoll, eLeftLegRoll, eRightUpLegRoll, eRightLegRoll,
+     eLeftArmRoll, eLeftForeArmRoll, eRightArmRoll, eRightForeArmRoll,
+     eLeftHandFloor, eRightHandFloor, eLeftHand, eRightHand,
+     eNeck1, eNeck2, eNeck3, eNeck4,
+     eNeck5, eNeck6, eNeck7, eNeck8,
+     eNeck9, eLeftInHandThumb, eLeftThumbD, eLeftInHandIndex,
+     eLeftIndexD, eLeftInHandMiddle, eLeftMiddleD, eLeftInHandRing,
+     eLeftRingD, eLeftInHandPinky, eLeftPinkyD, eLeftInHandExtraFinger,
+     eLeftExtraFingerA, eLeftExtraFingerB, eLeftExtraFingerC, eLeftExtraFingerD,
+     eRightInHandThumb, eRightThumbD, eRightInHandIndex, eRightIndexD,
+     eRightInHandMiddle, eRightMiddleD, eRightInHandRing, eRightRingD,
+     eRightInHandPinky, eRightPinkyD, eRightInHandExtraFinger, eRightExtraFingerA,
+     eRightExtraFingerB, eRightExtraFingerC, eRightExtraFingerD, eLeftInFootThumb,
+     eLeftFootThumbA, eLeftFootThumbB, eLeftFootThumbC, eLeftFootThumbD,
+     eLeftInFootIndex, eLeftFootIndexA, eLeftFootIndexB, eLeftFootIndexC,
+     eLeftFootIndexD, eLeftInFootMiddle, eLeftFootMiddleA, eLeftFootMiddleB,
+     eLeftFootMiddleC, eLeftFootMiddleD, eLeftInFootRing, eLeftFootRingA,
+     eLeftFootRingB, eLeftFootRingC, eLeftFootRingD, eLeftInFootPinky,
+     eLeftFootPinkyA, eLeftFootPinkyB, eLeftFootPinkyC, eLeftFootPinkyD,
+     eLeftInFootExtraFinger, eLeftFootExtraFingerA, eLeftFootExtraFingerB, eLeftFootExtraFingerC,
+     eLeftFootExtraFingerD, eRightInFootThumb, eRightFootThumbA, eRightFootThumbB,
+     eRightFootThumbC, eRightFootThumbD, eRightInFootIndex, eRightFootIndexA,
+     eRightFootIndexB, eRightFootIndexC, eRightFootIndexD, eRightInFootMiddle,
+     eRightFootMiddleA, eRightFootMiddleB, eRightFootMiddleC, eRightFootMiddleD,
+     eRightInFootRing, eRightFootRingA, eRightFootRingB, eRightFootRingC,
+     eRightFootRingD, eRightInFootPinky, eRightFootPinkyA, eRightFootPinkyB,
+     eRightFootPinkyC, eRightFootPinkyD, eRightInFootExtraFinger, eRightFootExtraFingerA,
+     eRightFootExtraFingerB, eRightFootExtraFingerC, eRightFootExtraFingerD, eLeftCollarExtra,
+     eRightCollarExtra, eNodeIdCount
+   }
+     Define ID for each character node. More...
+   enum   EOffAutoUser { eParamModeOff, eParamModeAuto, eParamModeUser }
+   enum   EAutoUser { eParamModeAuto2, eParamModeUser2 }
+   enum   EPostureMode { ePostureBiped, ePostureQuadriped, ePostureCount }
+   enum   EFloorPivot { eFloorPivotAuto, eFloorPivotAnkle, eFloorPivotToes, eFloorPivotCount }
+   enum   ERollExtractionMode { eRelativeRollExtraction, eAbsoluteRollExtraction, eRollExtractionTypeCount }
+   enum   EHipsTranslationMode { eHipsTranslationWorldRigid, eHipsTranslationBodyRigid, eHipsTranslationTypeCount }
+   enum   EFootContactType {
+     eFootTypeNormal, eFootTypeAnkle, eFootTypeToeBase, eFootTypeHoof,
+     eFootContactModeCount
+   }
+   enum   EHandContactType {
+     eHandTypeNormal, eHandTypeWrist, eHandTypeFingerBase, eHandTypeHoof,
+     eHandContactModeCount
+   }
+   enum   EFingerContactMode { eFingerContactModeSticky, eFingerContactModeSpread, eFingerContactModeStickySpread, eFingerContactModeCount }
+   enum   EContactBehaviour { eContactNeverSync, eContactSyncOnKey, eContactAlwaysSync, eContactBehaviorCount }
+   enum   EPropertyUnit {
+     ePropertyNoUnit, ePropertyPercent, ePropertySecond, ePropertyCentimeter,
+     ePropertyDegree, ePropertyEnum, ePropertyReal
+   }
+   enum   EErrorCode { eInternalError, eErrorCount }
+
+Public Member Functions
+
+   void  Reset ()
+     Reset to default values.
+   void  SetInput (EInputType pInputType, FbxObject *pInputObject=NULL)
+     Set input type and index.
+   EInputType  GetInputType () const
+     Get input type.
+   FbxObject *  GetInputObject () const
+     Get input actor or character.
+   bool  SetCharacterLink (ENodeId pCharacterNodeId, const FbxCharacterLink &pCharacterLink, bool pUpdateObjectList=true)
+     Associate a character link to a given character node ID.
+   bool  GetCharacterLink (ENodeId pCharacterNodeId, FbxCharacterLink *pCharacterLink=NULL) const
+     Get a character link associated with a given character node ID.
+   FbxControlSet &  GetControlSet () const
+     Get control set associated with the character.
+
+Static Public Member Functions
+
+   static int  GetCharacterGroupCount (EGroupId pCharacterGroupId)
+     Get number of elements in a given character group.
+   static ENodeId  GetCharacterGroupElementByIndex (EGroupId pCharacterGroupId, int pIndex)
+     Get character node ID of an element in a given character group.
+   static char *  GetCharacterGroupNameByIndex (EGroupId pCharacterGroupId, int pIndex)
+     Get character node name of an element in a given character group.
+   static int  GetCharacterGroupVersionByIndex (EGroupId pCharacterGroupId, int pIndex)
+     Get character node version of an element in a given character group.
+   static bool  FindCharacterGroupIndexByName (const char *pName, bool pForceGroupId, EGroupId &pCharacterGroupId, int &pIndex)
+     Find the character group index associated with a given character node name.
+   static bool  GetCharacterGroupIndexByElement (ENodeId pCharacterNodeId, EGroupId &pCharacterGroupId, int &pIndex)
+     Get character node group and index of a given character node ID.
+   static bool  GetCharacterGroupVersionByElement (ENodeId pCharacterNodeId, int &pVersion)
+     Get character node version of a given character node ID.
+   static bool  GetCharacterNodeNameFromNodeId (ENodeId pCharacterNodeId, char *&pName)
+     Get character node name associated with a given character node ID.
+   static bool  GetCharacterNodeIdFromNodeName (const char *pName, ENodeId &pCharacterNodeId)
+     Get the character node ID associated with a given character node name.
+
+Public Attributes
+
+   FbxPropertyT< FbxInt >  PullIterationCount
+   FbxPropertyT< EPostureMode >  Posture
+   FbxPropertyT< FbxBool >  ForceActorSpace
+   FbxPropertyT< FbxDouble >  ScaleCompensation
+   FbxPropertyT< EOffAutoUser >  ScaleCompensationMode
+   FbxPropertyT< FbxDouble >  HipsHeightCompensation
+   FbxPropertyT< EOffAutoUser >  HipsHeightCompensationMode
+   FbxPropertyT< FbxDouble >  AnkleHeightCompensation
+   FbxPropertyT< EOffAutoUser >  AnkleHeightCompensationMode
+   FbxPropertyT< FbxDouble >  AnkleProximityCompensation
+   FbxPropertyT< EOffAutoUser >  AnkleProximityCompensationMode
+   FbxPropertyT< FbxDouble >  MassCenterCompensation
+   FbxPropertyT< FbxBool >  ApplyLimits
+   FbxPropertyT< FbxDouble >  ChestReduction
+   FbxPropertyT< FbxDouble >  CollarReduction
+   FbxPropertyT< FbxDouble >  NeckReduction
+   FbxPropertyT< FbxDouble >  HeadReduction
+   FbxPropertyT< FbxDouble >  ReachActorLeftAnkle
+   FbxPropertyT< FbxDouble >  ReachActorRightAnkle
+   FbxPropertyT< FbxDouble >  ReachActorLeftKnee
+   FbxPropertyT< FbxDouble >  ReachActorRightKnee
+   FbxPropertyT< FbxDouble >  ReachActorChest
+   FbxPropertyT< FbxDouble >  ReachActorHead
+   FbxPropertyT< FbxDouble >  ReachActorLeftWrist
+   FbxPropertyT< FbxDouble >  ReachActorRightWrist
+   FbxPropertyT< FbxDouble >  ReachActorLeftElbow
+   FbxPropertyT< FbxDouble >  ReachActorRightElbow
+   FbxPropertyT< FbxDouble >  ReachActorLeftFingerBase
+   FbxPropertyT< FbxDouble >  ReachActorRightFingerBase
+   FbxPropertyT< FbxDouble >  ReachActorLeftToesBase
+   FbxPropertyT< FbxDouble >  ReachActorRightToesBase
+   FbxPropertyT< FbxDouble >  ReachActorLeftFingerBaseRotation
+   FbxPropertyT< FbxDouble >  ReachActorRightFingerBaseRotation
+   FbxPropertyT< FbxDouble >  ReachActorLeftToesBaseRotation
+   FbxPropertyT< FbxDouble >  ReachActorRightToesBaseRotation
+   FbxPropertyT< FbxDouble >  ReachActorLeftAnkleRotation
+   FbxPropertyT< FbxDouble >  ReachActorRightAnkleRotation
+   FbxPropertyT< FbxDouble >  ReachActorHeadRotation
+   FbxPropertyT< FbxDouble >  ReachActorLeftWristRotation
+   FbxPropertyT< FbxDouble >  ReachActorRightWristRotation
+   FbxPropertyT< FbxDouble >  ReachActorChestRotation
+   FbxPropertyT< FbxDouble >  ReachActorLowerChestRotation
+   FbxPropertyT< FbxDouble3 >  HipsTOffset
+   FbxPropertyT< FbxDouble3 >  ChestTOffset
+   FbxPropertyT< ERollExtractionMode >  RollExtractionMode
+   FbxPropertyT< FbxDouble >  LeftUpLegRoll
+   FbxPropertyT< FbxBool >  LeftUpLegRollMode
+   FbxPropertyT< FbxDouble >  LeftLegRoll
+   FbxPropertyT< FbxBool >  LeftLegRollMode
+   FbxPropertyT< FbxDouble >  RightUpLegRoll
+   FbxPropertyT< FbxBool >  RightUpLegRollMode
+   FbxPropertyT< FbxDouble >  RightLegRoll
+   FbxPropertyT< FbxBool >  RightLegRollMode
+   FbxPropertyT< FbxDouble >  LeftArmRoll
+   FbxPropertyT< FbxBool >  LeftArmRollMode
+   FbxPropertyT< FbxDouble >  LeftForeArmRoll
+   FbxPropertyT< FbxBool >  LeftForeArmRollMode
+   FbxPropertyT< FbxDouble >  RightArmRoll
+   FbxPropertyT< FbxBool >  RightArmRollMode
+   FbxPropertyT< FbxDouble >  RightForeArmRoll
+   FbxPropertyT< FbxBool >  RightForeArmRollMode
+   FbxPropertyT< FbxDouble >  LeftUpLegRollEx
+   FbxPropertyT< FbxBool >  LeftUpLegRollExMode
+   FbxPropertyT< FbxDouble >  LeftLegRollEx
+   FbxPropertyT< FbxBool >  LeftLegRollExMode
+   FbxPropertyT< FbxDouble >  RightUpLegRollEx
+   FbxPropertyT< FbxBool >  RightUpLegRollExMode
+   FbxPropertyT< FbxDouble >  RightLegRollEx
+   FbxPropertyT< FbxBool >  RightLegRollExMode
+   FbxPropertyT< FbxDouble >  LeftArmRollEx
+   FbxPropertyT< FbxBool >  LeftArmRollExMode
+   FbxPropertyT< FbxDouble >  LeftForeArmRollEx
+   FbxPropertyT< FbxBool >  LeftForeArmRollExMode
+   FbxPropertyT< FbxDouble >  RightArmRollEx
+   FbxPropertyT< FbxBool >  RightArmRollExMode
+   FbxPropertyT< FbxDouble >  RightForeArmExRoll
+   FbxPropertyT< FbxBool >  RightForeArmRollExMode
+   FbxPropertyT< EContactBehaviour >  ContactBehaviour
+   FbxPropertyT< FbxBool >  FootFloorContact
+   FbxPropertyT< FbxBool >  FootAutomaticToes
+   FbxPropertyT< EFloorPivot >  FootFloorPivot
+   FbxPropertyT< FbxDouble >  FootBottomToAnkle
+   FbxPropertyT< FbxDouble >  FootBackToAnkle
+   FbxPropertyT< FbxDouble >  FootMiddleToAnkle
+   FbxPropertyT< FbxDouble >  FootFrontToMiddle
+   FbxPropertyT< FbxDouble >  FootInToAnkle
+   FbxPropertyT< FbxDouble >  FootOutToAnkle
+   FbxPropertyT< FbxDouble >  FootContactSize
+   FbxPropertyT< FbxBool >  FootFingerContact
+   FbxPropertyT< EFootContactType >  FootContactType
+   FbxPropertyT< EFingerContactMode >  FootFingerContactMode
+   FbxPropertyT< FbxDouble >  FootContactStiffness
+   FbxPropertyT< FbxDouble >  FootFingerContactRollStiffness
+   FbxPropertyT< FbxBool >  HandFloorContact
+   FbxPropertyT< FbxBool >  HandAutomaticFingers
+   FbxPropertyT< EFloorPivot >  HandFloorPivot
+   FbxPropertyT< FbxDouble >  HandBottomToWrist
+   FbxPropertyT< FbxDouble >  HandBackToWrist
+   FbxPropertyT< FbxDouble >  HandMiddleToWrist
+   FbxPropertyT< FbxDouble >  HandFrontToMiddle
+   FbxPropertyT< FbxDouble >  HandInToWrist
+   FbxPropertyT< FbxDouble >  HandOutToWrist
+   FbxPropertyT< FbxDouble >  HandContactSize
+   FbxPropertyT< FbxBool >  HandFingerContact
+   FbxPropertyT< EHandContactType >  HandContactType
+   FbxPropertyT< EFingerContactMode >  HandFingerContactMode
+   FbxPropertyT< FbxDouble >  HandContactStiffness
+   FbxPropertyT< FbxDouble >  HandFingerContactRollStiffness
+   FbxPropertyT< FbxDouble >  LeftHandThumbTip
+   FbxPropertyT< FbxDouble >  LeftHandIndexTip
+   FbxPropertyT< FbxDouble >  LeftHandMiddleTip
+   FbxPropertyT< FbxDouble >  LeftHandRingTip
+   FbxPropertyT< FbxDouble >  LeftHandPinkyTip
+   FbxPropertyT< FbxDouble >  LeftHandExtraFingerTip
+   FbxPropertyT< FbxDouble >  RightHandThumbTip
+   FbxPropertyT< FbxDouble >  RightHandIndexTip
+   FbxPropertyT< FbxDouble >  RightHandMiddleTip
+   FbxPropertyT< FbxDouble >  RightHandRingTip
+   FbxPropertyT< FbxDouble >  RightHandPinkyTip
+   FbxPropertyT< FbxDouble >  RightHandExtraFingerTip
+   FbxPropertyT< FbxDouble >  LeftFootThumbTip
+   FbxPropertyT< FbxDouble >  LeftFootIndexTip
+   FbxPropertyT< FbxDouble >  LeftFootMiddleTip
+   FbxPropertyT< FbxDouble >  LeftFootRingTip
+   FbxPropertyT< FbxDouble >  LeftFootPinkyTip
+   FbxPropertyT< FbxDouble >  LeftFootExtraFingerTip
+   FbxPropertyT< FbxDouble >  RightFootThumbTip
+   FbxPropertyT< FbxDouble >  RightFootIndexTip
+   FbxPropertyT< FbxDouble >  RightFootMiddleTip
+   FbxPropertyT< FbxDouble >  RightFootRingTip
+   FbxPropertyT< FbxDouble >  RightFootPinkyTip
+   FbxPropertyT< FbxDouble >  RightFootExtraFingerTip
+   FbxPropertyT< FbxBool >  FingerSolving
+   FbxPropertyT< FbxDouble >  CtrlPullLeftToeBase
+   FbxPropertyT< FbxDouble >  CtrlPullLeftFoot
+   FbxPropertyT< FbxDouble >  CtrlPullLeftKnee
+   FbxPropertyT< FbxDouble >  CtrlPullRightToeBase
+   FbxPropertyT< FbxDouble >  CtrlPullRightFoot
+   FbxPropertyT< FbxDouble >  CtrlPullRightKnee
+   FbxPropertyT< FbxDouble >  CtrlPullLeftFingerBase
+   FbxPropertyT< FbxDouble >  CtrlPullLeftHand
+   FbxPropertyT< FbxDouble >  CtrlPullLeftElbow
+   FbxPropertyT< FbxDouble >  CtrlPullRightFingerBase
+   FbxPropertyT< FbxDouble >  CtrlPullRightHand
+   FbxPropertyT< FbxDouble >  CtrlPullRightElbow
+   FbxPropertyT< FbxDouble >  CtrlChestPullLeftHand
+   FbxPropertyT< FbxDouble >  CtrlChestPullRightHand
+   FbxPropertyT< FbxDouble >  CtrlPullHead
+   FbxPropertyT< FbxDouble >  CtrlResistHipsPosition
+   FbxPropertyT< FbxDouble >  CtrlEnforceGravity
+   FbxPropertyT< FbxDouble >  CtrlResistHipsOrientation
+   FbxPropertyT< FbxDouble >  CtrlResistChestPosition
+   FbxPropertyT< FbxDouble >  CtrlResistChestOrientation
+   FbxPropertyT< FbxDouble >  CtrlResistLeftCollar
+   FbxPropertyT< FbxDouble >  CtrlResistRightCollar
+   FbxPropertyT< FbxDouble >  CtrlResistLeftKnee
+   FbxPropertyT< FbxDouble >  CtrlResistMaximumExtensionLeftKnee
+   FbxPropertyT< FbxDouble >  CtrlResistCompressionFactorLeftKnee
+   FbxPropertyT< FbxDouble >  CtrlResistRightKnee
+   FbxPropertyT< FbxDouble >  CtrlResistMaximumExtensionRightKnee
+   FbxPropertyT< FbxDouble >  CtrlResistCompressionFactorRightKnee
+   FbxPropertyT< FbxDouble >  CtrlResistLeftElbow
+   FbxPropertyT< FbxDouble >  CtrlResistMaximumExtensionLeftElbow
+   FbxPropertyT< FbxDouble >  CtrlResistCompressionFactorLeftElbow
+   FbxPropertyT< FbxDouble >  CtrlResistRightElbow
+   FbxPropertyT< FbxDouble >  CtrlResistMaximumExtensionRightElbow
+   FbxPropertyT< FbxDouble >  CtrlResistCompressionFactorRightElbow
+   FbxPropertyT< FbxDouble >  CtrlSpineStiffness
+   FbxPropertyT< FbxDouble >  CtrlNeckStiffness
+   FbxPropertyT< FbxBool >  MirrorMode
+   FbxPropertyT< FbxDouble >  ShoulderCorrection
+   FbxPropertyT< FbxBool >  LeftKneeKillPitch
+   FbxPropertyT< FbxBool >  RightKneeKillPitch
+   FbxPropertyT< FbxBool >  LeftElbowKillPitch
+   FbxPropertyT< FbxBool >  RightElbowKillPitch
+   FbxPropertyT
+   < EHipsTranslationMode >  HipsTranslationMode
+   FbxPropertyT< FbxBool >  WriteReference
+   FbxPropertyT< FbxBool >  SyncMode
+   FbxPropertyT< FbxDouble >  Damping
+   FbxPropertyT< FbxDouble >  OrientationDamping
+   FbxPropertyT< EOffAutoUser >  OrientationDampingMode
+   FbxPropertyT< FbxDouble >  DisplacementDamping
+   FbxPropertyT< EOffAutoUser >  DisplacementDampingMode
+   FbxPropertyT< FbxDouble >  DisplacementMemory
+   FbxPropertyT< EAutoUser >  DisplacementMemoryMode
+   FbxPropertyT< FbxDouble >  HipsDisplacementDamping
+   FbxPropertyT< EAutoUser >  HipsDisplacementDampingMode
+   FbxPropertyT< FbxDouble >  AnkleDisplacementDamping
+   FbxPropertyT< EAutoUser >  AnkleDisplacementDampingMode
+   FbxPropertyT< FbxDouble >  WristDisplacementDamping
+   FbxPropertyT< EAutoUser >  WristDisplacementDampingMode
+   FbxPropertyT< FbxDouble >  Stabilization
+   FbxPropertyT< FbxDouble >  AnkleStabilizationTime
+   FbxPropertyT< EAutoUser >  AnkleStabilizationTimeMode
+   FbxPropertyT< FbxDouble >  AnkleStabilizationPerimeter
+   FbxPropertyT< EAutoUser >  AnkleStabilizationPerimeterMode
+   FbxPropertyT< FbxDouble >  AnkleStabilizationAngularPerimeter
+   FbxPropertyT< EOffAutoUser >  AnkleStabilizationAngularPerimeterMode
+   FbxPropertyT< FbxDouble >  AnkleStabilizationFloorProximity
+   FbxPropertyT< EOffAutoUser >  AnkleStabilizationFloorProximityMode
+   FbxPropertyT< FbxDouble >  AnkleStabilizationDamping
+   FbxPropertyT< EOffAutoUser >  AnkleStabilizationDampingMode
+   FbxPropertyT< FbxDouble >  AnkleStabilizationRecoveryTime
+   FbxPropertyT< EOffAutoUser >  AnkleStabilizationRecoveryTimeMode
+   FbxPropertyT< FbxReference >  SourceObject
+   FbxPropertyT< FbxReference >  DestinationObject
+   FbxPropertyT< FbxReference >  Actor
+   FbxPropertyT< FbxReference >  Character
+   FbxPropertyT< FbxReference >  ControlSet
+   FbxPropertyT< FbxDouble >  HikVersion
+   FbxPropertyT< FbxBool >  Characterize
+   FbxPropertyT< FbxBool >  LockXForm
+   FbxPropertyT< FbxBool >  LockPick
+   FbxPropertyT< FbxDouble >  RealisticShoulder
+   FbxPropertyT< FbxDouble >  CollarStiffnessX
+   FbxPropertyT< FbxDouble >  CollarStiffnessY
+   FbxPropertyT< FbxDouble >  CollarStiffnessZ
+   FbxPropertyT< FbxDouble >  ExtraCollarRatio
+   FbxPropertyT< FbxDouble >  LeftLegMaxExtensionAngle
+   FbxPropertyT< FbxDouble >  RightLegMaxExtensionAngle
+   FbxPropertyT< FbxDouble >  LeftArmMaxExtensionAngle
+   FbxPropertyT< FbxDouble >  RightArmMaxExtensionAngle
+   FbxPropertyT< FbxDouble >  StretchStartArmsAndLegs
+   FbxPropertyT< FbxDouble >  StretchStopArmsAndLegs
+   FbxPropertyT< FbxDouble >  SnSScaleArmsAndLegs
+   FbxPropertyT< FbxDouble >  SnSReachLeftWrist
+   FbxPropertyT< FbxDouble >  SnSReachRightWrist
+   FbxPropertyT< FbxDouble >  SnSReachLeftAnkle
+   FbxPropertyT< FbxDouble >  SnSReachRightAnkle
+   FbxPropertyT< FbxDouble >  SnSScaleSpine
+   FbxPropertyT< FbxDouble >  SnSScaleSpineChildren
+   FbxPropertyT< FbxDouble >  SnSSpineFreedom
+   FbxPropertyT< FbxDouble >  SnSReachChestEnd
+   FbxPropertyT< FbxDouble >  SnSScaleNeck
+   FbxPropertyT< FbxDouble >  SnSNeckFreedom
+   FbxPropertyT< FbxDouble >  SnSReachHead
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EInputType
+   Search for all occurrences
+
+   Character input type.
+     * eInputActor Not supported.
+     * eInputCharacter The character's input is another character.
+     * eInputMarkerSet The character's input is a control rig.
+     * eOutputMarkerSet Not supported.
+     * eInputStancePose The character's input is the stance pose.
+
+   Enumerator:
+
+          eInputActor
+
+   Search for all occurrences
+          eInputCharacter
+
+   Search for all occurrences
+          eInputMarkerSet
+
+   Search for all occurrences
+          eOutputMarkerSet
+
+   Search for all occurrences
+          eInputStancePose
+
+   Search for all occurrences
+
+   Definition at line 103 of file fbxcharacter.h.
+        {
+                eInputActor,
+                eInputCharacter,
+                eInputMarkerSet,
+                eOutputMarkerSet,
+                eInputStancePose
+        };
+
+   enum EGroupId
+   Search for all occurrences
+
+   Define ID for character groups that contains multiple character nodes.
+
+   Enumerator:
+
+          eGroupBase
+
+   Search for all occurrences
+          eGroupAuxiliary
+
+   Search for all occurrences
+          eGroupSpine
+
+   Search for all occurrences
+          eGroupRoll
+
+   Search for all occurrences
+          eGroupSpecial
+
+   Search for all occurrences
+          eGroupLeftHand
+
+   Search for all occurrences
+          eGroupRightHand
+
+   Search for all occurrences
+          eGroupProps
+
+   Search for all occurrences
+          eGroupGameModeParent
+
+   Search for all occurrences
+          eGroupNeck
+
+   Search for all occurrences
+          eGroupLeftFoot
+
+   Search for all occurrences
+          eGroupRightFoot
+
+   Search for all occurrences
+          eGroupFloorContact
+
+   Search for all occurrences
+          eGroupIdCount
+
+   Search for all occurrences
+
+   Definition at line 113 of file fbxcharacter.h.
+        {
+                eGroupBase,
+                eGroupAuxiliary,
+                eGroupSpine,
+                eGroupRoll,
+                eGroupSpecial,
+                eGroupLeftHand,
+                eGroupRightHand,
+                eGroupProps,
+                eGroupGameModeParent,
+                eGroupNeck,
+                eGroupLeftFoot,
+                eGroupRightFoot,
+                eGroupFloorContact,
+                eGroupIdCount
+        };
+
+   enum ENodeId
+   Search for all occurrences
+
+   Define ID for each character node.
+
+   Enumerator:
+
+          eHips
+
+   Search for all occurrences
+          eLeftHip
+
+   Search for all occurrences
+          eLeftKnee
+
+   Search for all occurrences
+          eLeftAnkle
+
+   Search for all occurrences
+          eLeftFoot
+
+   Search for all occurrences
+          eRightHip
+
+   Search for all occurrences
+          eRightKnee
+
+   Search for all occurrences
+          eRightAnkle
+
+   Search for all occurrences
+          eRightFoot
+
+   Search for all occurrences
+          eWaist
+
+   Search for all occurrences
+          eChest
+
+   Search for all occurrences
+          eLeftCollar
+
+   Search for all occurrences
+          eLeftShoulder
+
+   Search for all occurrences
+          eLeftElbow
+
+   Search for all occurrences
+          eLeftWrist
+
+   Search for all occurrences
+          eRightCollar
+
+   Search for all occurrences
+          eRightShoulder
+
+   Search for all occurrences
+          eRightElbow
+
+   Search for all occurrences
+          eRightWrist
+
+   Search for all occurrences
+          eNeck
+
+   Search for all occurrences
+          eHead
+
+   Search for all occurrences
+          eLeftHipRoll
+
+   Search for all occurrences
+          eLeftKneeRoll
+
+   Search for all occurrences
+          eRightHipRoll
+
+   Search for all occurrences
+          eRightKneeRoll
+
+   Search for all occurrences
+          eLeftShoulderRoll
+
+   Search for all occurrences
+          eLeftElbowRoll
+
+   Search for all occurrences
+          eRightShoulderRoll
+
+   Search for all occurrences
+          eRightElbowRoll
+
+   Search for all occurrences
+          eSpine2
+
+   Search for all occurrences
+          eSpine3
+
+   Search for all occurrences
+          eSpine4
+
+   Search for all occurrences
+          eSpine5
+
+   Search for all occurrences
+          eSpine6
+
+   Search for all occurrences
+          eSpine7
+
+   Search for all occurrences
+          eSpine8
+
+   Search for all occurrences
+          eSpine9
+
+   Search for all occurrences
+          eLeftThumbA
+
+   Search for all occurrences
+          eLeftThumbB
+
+   Search for all occurrences
+          eLeftThumbC
+
+   Search for all occurrences
+          eLeftIndexA
+
+   Search for all occurrences
+          eLeftIndexB
+
+   Search for all occurrences
+          eLeftIndexC
+
+   Search for all occurrences
+          eLeftMiddleA
+
+   Search for all occurrences
+          eLeftMiddleB
+
+   Search for all occurrences
+          eLeftMiddleC
+
+   Search for all occurrences
+          eLeftRingA
+
+   Search for all occurrences
+          eLeftRingB
+
+   Search for all occurrences
+          eLeftRingC
+
+   Search for all occurrences
+          eLeftPinkyA
+
+   Search for all occurrences
+          eLeftPinkyB
+
+   Search for all occurrences
+          eLeftPinkyC
+
+   Search for all occurrences
+          eRightThumbA
+
+   Search for all occurrences
+          eRightThumbB
+
+   Search for all occurrences
+          eRightThumbC
+
+   Search for all occurrences
+          eRightIndexA
+
+   Search for all occurrences
+          eRightIndexB
+
+   Search for all occurrences
+          eRightIndexC
+
+   Search for all occurrences
+          eRightMiddleA
+
+   Search for all occurrences
+          eRightMiddleB
+
+   Search for all occurrences
+          eRightMiddleC
+
+   Search for all occurrences
+          eRightRingA
+
+   Search for all occurrences
+          eRightRingB
+
+   Search for all occurrences
+          eRightRingC
+
+   Search for all occurrences
+          eRightPinkyA
+
+   Search for all occurrences
+          eRightPinkyB
+
+   Search for all occurrences
+          eRightPinkyC
+
+   Search for all occurrences
+          eReference
+
+   Search for all occurrences
+          eLeftFloor
+
+   Search for all occurrences
+          eRightFloor
+
+   Search for all occurrences
+          eHipsTranslation
+
+   Search for all occurrences
+          eProps0
+
+   Search for all occurrences
+          eProps1
+
+   Search for all occurrences
+          eProps2
+
+   Search for all occurrences
+          eProps3
+
+   Search for all occurrences
+          eProps4
+
+   Search for all occurrences
+          eGameModeParentLeftHipRoll
+
+   Search for all occurrences
+          eGameModeParentLeftKnee
+
+   Search for all occurrences
+          eGameModeParentLeftKneeRoll
+
+   Search for all occurrences
+          eGameModeParentRightHipRoll
+
+   Search for all occurrences
+          eGameModeParentRightKnee
+
+   Search for all occurrences
+          eGameModeParentRightKneeRoll
+
+   Search for all occurrences
+          eGameModeParentLeftShoulderRoll
+
+   Search for all occurrences
+          eGameModeParentLeftElbow
+
+   Search for all occurrences
+          eGameModeParentLeftElbowRoll
+
+   Search for all occurrences
+          eGameModeParentRightShoulderRoll
+
+   Search for all occurrences
+          eGameModeParentRightElbow
+
+   Search for all occurrences
+          eGameModeParentRightElbowRoll
+
+   Search for all occurrences
+          eLeftUpLegRoll
+
+   Search for all occurrences
+          eLeftLegRoll
+
+   Search for all occurrences
+          eRightUpLegRoll
+
+   Search for all occurrences
+          eRightLegRoll
+
+   Search for all occurrences
+          eLeftArmRoll
+
+   Search for all occurrences
+          eLeftForeArmRoll
+
+   Search for all occurrences
+          eRightArmRoll
+
+   Search for all occurrences
+          eRightForeArmRoll
+
+   Search for all occurrences
+          eLeftHandFloor
+
+   Search for all occurrences
+          eRightHandFloor
+
+   Search for all occurrences
+          eLeftHand
+
+   Search for all occurrences
+          eRightHand
+
+   Search for all occurrences
+          eNeck1
+
+   Search for all occurrences
+          eNeck2
+
+   Search for all occurrences
+          eNeck3
+
+   Search for all occurrences
+          eNeck4
+
+   Search for all occurrences
+          eNeck5
+
+   Search for all occurrences
+          eNeck6
+
+   Search for all occurrences
+          eNeck7
+
+   Search for all occurrences
+          eNeck8
+
+   Search for all occurrences
+          eNeck9
+
+   Search for all occurrences
+          eLeftInHandThumb
+
+   Search for all occurrences
+          eLeftThumbD
+
+   Search for all occurrences
+          eLeftInHandIndex
+
+   Search for all occurrences
+          eLeftIndexD
+
+   Search for all occurrences
+          eLeftInHandMiddle
+
+   Search for all occurrences
+          eLeftMiddleD
+
+   Search for all occurrences
+          eLeftInHandRing
+
+   Search for all occurrences
+          eLeftRingD
+
+   Search for all occurrences
+          eLeftInHandPinky
+
+   Search for all occurrences
+          eLeftPinkyD
+
+   Search for all occurrences
+          eLeftInHandExtraFinger
+
+   Search for all occurrences
+          eLeftExtraFingerA
+
+   Search for all occurrences
+          eLeftExtraFingerB
+
+   Search for all occurrences
+          eLeftExtraFingerC
+
+   Search for all occurrences
+          eLeftExtraFingerD
+
+   Search for all occurrences
+          eRightInHandThumb
+
+   Search for all occurrences
+          eRightThumbD
+
+   Search for all occurrences
+          eRightInHandIndex
+
+   Search for all occurrences
+          eRightIndexD
+
+   Search for all occurrences
+          eRightInHandMiddle
+
+   Search for all occurrences
+          eRightMiddleD
+
+   Search for all occurrences
+          eRightInHandRing
+
+   Search for all occurrences
+          eRightRingD
+
+   Search for all occurrences
+          eRightInHandPinky
+
+   Search for all occurrences
+          eRightPinkyD
+
+   Search for all occurrences
+          eRightInHandExtraFinger
+
+   Search for all occurrences
+          eRightExtraFingerA
+
+   Search for all occurrences
+          eRightExtraFingerB
+
+   Search for all occurrences
+          eRightExtraFingerC
+
+   Search for all occurrences
+          eRightExtraFingerD
+
+   Search for all occurrences
+          eLeftInFootThumb
+
+   Search for all occurrences
+          eLeftFootThumbA
+
+   Search for all occurrences
+          eLeftFootThumbB
+
+   Search for all occurrences
+          eLeftFootThumbC
+
+   Search for all occurrences
+          eLeftFootThumbD
+
+   Search for all occurrences
+          eLeftInFootIndex
+
+   Search for all occurrences
+          eLeftFootIndexA
+
+   Search for all occurrences
+          eLeftFootIndexB
+
+   Search for all occurrences
+          eLeftFootIndexC
+
+   Search for all occurrences
+          eLeftFootIndexD
+
+   Search for all occurrences
+          eLeftInFootMiddle
+
+   Search for all occurrences
+          eLeftFootMiddleA
+
+   Search for all occurrences
+          eLeftFootMiddleB
+
+   Search for all occurrences
+          eLeftFootMiddleC
+
+   Search for all occurrences
+          eLeftFootMiddleD
+
+   Search for all occurrences
+          eLeftInFootRing
+
+   Search for all occurrences
+          eLeftFootRingA
+
+   Search for all occurrences
+          eLeftFootRingB
+
+   Search for all occurrences
+          eLeftFootRingC
+
+   Search for all occurrences
+          eLeftFootRingD
+
+   Search for all occurrences
+          eLeftInFootPinky
+
+   Search for all occurrences
+          eLeftFootPinkyA
+
+   Search for all occurrences
+          eLeftFootPinkyB
+
+   Search for all occurrences
+          eLeftFootPinkyC
+
+   Search for all occurrences
+          eLeftFootPinkyD
+
+   Search for all occurrences
+          eLeftInFootExtraFinger
+
+   Search for all occurrences
+          eLeftFootExtraFingerA
+
+   Search for all occurrences
+          eLeftFootExtraFingerB
+
+   Search for all occurrences
+          eLeftFootExtraFingerC
+
+   Search for all occurrences
+          eLeftFootExtraFingerD
+
+   Search for all occurrences
+          eRightInFootThumb
+
+   Search for all occurrences
+          eRightFootThumbA
+
+   Search for all occurrences
+          eRightFootThumbB
+
+   Search for all occurrences
+          eRightFootThumbC
+
+   Search for all occurrences
+          eRightFootThumbD
+
+   Search for all occurrences
+          eRightInFootIndex
+
+   Search for all occurrences
+          eRightFootIndexA
+
+   Search for all occurrences
+          eRightFootIndexB
+
+   Search for all occurrences
+          eRightFootIndexC
+
+   Search for all occurrences
+          eRightFootIndexD
+
+   Search for all occurrences
+          eRightInFootMiddle
+
+   Search for all occurrences
+          eRightFootMiddleA
+
+   Search for all occurrences
+          eRightFootMiddleB
+
+   Search for all occurrences
+          eRightFootMiddleC
+
+   Search for all occurrences
+          eRightFootMiddleD
+
+   Search for all occurrences
+          eRightInFootRing
+
+   Search for all occurrences
+          eRightFootRingA
+
+   Search for all occurrences
+          eRightFootRingB
+
+   Search for all occurrences
+          eRightFootRingC
+
+   Search for all occurrences
+          eRightFootRingD
+
+   Search for all occurrences
+          eRightInFootPinky
+
+   Search for all occurrences
+          eRightFootPinkyA
+
+   Search for all occurrences
+          eRightFootPinkyB
+
+   Search for all occurrences
+          eRightFootPinkyC
+
+   Search for all occurrences
+          eRightFootPinkyD
+
+   Search for all occurrences
+          eRightInFootExtraFinger
+
+   Search for all occurrences
+          eRightFootExtraFingerA
+
+   Search for all occurrences
+          eRightFootExtraFingerB
+
+   Search for all occurrences
+          eRightFootExtraFingerC
+
+   Search for all occurrences
+          eRightFootExtraFingerD
+
+   Search for all occurrences
+          eLeftCollarExtra
+
+   Search for all occurrences
+          eRightCollarExtra
+
+   Search for all occurrences
+          eNodeIdCount
+
+   Search for all occurrences
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   Definition at line 133 of file fbxcharacter.h.
+        {
+                eHips,
+                eLeftHip,
+                eLeftKnee,
+                eLeftAnkle,
+                eLeftFoot,
+                eRightHip,
+                eRightKnee,
+                eRightAnkle,
+                eRightFoot,
+                eWaist,
+                eChest,
+                eLeftCollar,
+                eLeftShoulder,
+                eLeftElbow,
+                eLeftWrist,
+                eRightCollar,
+                eRightShoulder,
+                eRightElbow,
+                eRightWrist,
+                eNeck,
+                eHead,
+                eLeftHipRoll,
+                eLeftKneeRoll,
+                eRightHipRoll,
+                eRightKneeRoll,
+                eLeftShoulderRoll,
+                eLeftElbowRoll,
+                eRightShoulderRoll,
+                eRightElbowRoll,
+                eSpine2,
+                eSpine3,
+                eSpine4,
+                eSpine5,
+                eSpine6,
+                eSpine7,
+                eSpine8,
+                eSpine9,
+                eLeftThumbA,
+                eLeftThumbB,
+                eLeftThumbC,
+                eLeftIndexA,
+                eLeftIndexB,
+                eLeftIndexC,
+                eLeftMiddleA,
+                eLeftMiddleB,
+                eLeftMiddleC,
+                eLeftRingA,
+                eLeftRingB,
+                eLeftRingC,
+                eLeftPinkyA,
+                eLeftPinkyB,
+                eLeftPinkyC,
+                eRightThumbA,
+                eRightThumbB,
+                eRightThumbC,
+                eRightIndexA,
+                eRightIndexB,
+                eRightIndexC,
+                eRightMiddleA,
+                eRightMiddleB,
+                eRightMiddleC,
+                eRightRingA,
+                eRightRingB,
+                eRightRingC,
+                eRightPinkyA,
+                eRightPinkyB,
+                eRightPinkyC,
+                eReference,
+                eLeftFloor,
+                eRightFloor,
+                eHipsTranslation,
+                eProps0,
+                eProps1,
+                eProps2,
+                eProps3,
+                eProps4,
+                eGameModeParentLeftHipRoll,
+                eGameModeParentLeftKnee,
+                eGameModeParentLeftKneeRoll,
+                eGameModeParentRightHipRoll,
+                eGameModeParentRightKnee,
+                eGameModeParentRightKneeRoll,
+                eGameModeParentLeftShoulderRoll,
+                eGameModeParentLeftElbow,
+                eGameModeParentLeftElbowRoll,
+                eGameModeParentRightShoulderRoll,
+                eGameModeParentRightElbow,
+                eGameModeParentRightElbowRoll,
+                eLeftUpLegRoll,
+                eLeftLegRoll,
+                eRightUpLegRoll,
+                eRightLegRoll,
+                eLeftArmRoll,
+                eLeftForeArmRoll,
+                eRightArmRoll,
+                eRightForeArmRoll,
+                eLeftHandFloor,
+                eRightHandFloor,
+                eLeftHand,
+                eRightHand,
+                eNeck1,
+                eNeck2,
+                eNeck3,
+                eNeck4,
+                eNeck5,
+                eNeck6,
+                eNeck7,
+                eNeck8,
+                eNeck9,
+                eLeftInHandThumb,
+                eLeftThumbD,
+                eLeftInHandIndex,
+                eLeftIndexD,
+                eLeftInHandMiddle,
+                eLeftMiddleD,
+                eLeftInHandRing,
+                eLeftRingD,
+                eLeftInHandPinky,
+                eLeftPinkyD,
+                eLeftInHandExtraFinger,
+                eLeftExtraFingerA,
+                eLeftExtraFingerB,
+                eLeftExtraFingerC,
+                eLeftExtraFingerD,
+                eRightInHandThumb,
+                eRightThumbD,
+                eRightInHandIndex,
+                eRightIndexD,
+                eRightInHandMiddle,
+                eRightMiddleD,
+                eRightInHandRing,
+                eRightRingD,
+                eRightInHandPinky,
+                eRightPinkyD,
+                eRightInHandExtraFinger,
+                eRightExtraFingerA,
+                eRightExtraFingerB,
+                eRightExtraFingerC,
+                eRightExtraFingerD,
+                eLeftInFootThumb,
+                eLeftFootThumbA,
+                eLeftFootThumbB,
+                eLeftFootThumbC,
+                eLeftFootThumbD,
+                eLeftInFootIndex,
+                eLeftFootIndexA,
+                eLeftFootIndexB,
+                eLeftFootIndexC,
+                eLeftFootIndexD,
+                eLeftInFootMiddle,
+                eLeftFootMiddleA,
+                eLeftFootMiddleB,
+                eLeftFootMiddleC,
+                eLeftFootMiddleD,
+                eLeftInFootRing,
+                eLeftFootRingA,
+                eLeftFootRingB,
+                eLeftFootRingC,
+                eLeftFootRingD,
+                eLeftInFootPinky,
+                eLeftFootPinkyA,
+                eLeftFootPinkyB,
+                eLeftFootPinkyC,
+                eLeftFootPinkyD,
+                eLeftInFootExtraFinger,
+                eLeftFootExtraFingerA,
+                eLeftFootExtraFingerB,
+                eLeftFootExtraFingerC,
+                eLeftFootExtraFingerD,
+                eRightInFootThumb,
+                eRightFootThumbA,
+                eRightFootThumbB,
+                eRightFootThumbC,
+                eRightFootThumbD,
+                eRightInFootIndex,
+                eRightFootIndexA,
+                eRightFootIndexB,
+                eRightFootIndexC,
+                eRightFootIndexD,
+                eRightInFootMiddle,
+                eRightFootMiddleA,
+                eRightFootMiddleB,
+                eRightFootMiddleC,
+                eRightFootMiddleD,
+                eRightInFootRing,
+                eRightFootRingA,
+                eRightFootRingB,
+                eRightFootRingC,
+                eRightFootRingD,
+                eRightInFootPinky,
+                eRightFootPinkyA,
+                eRightFootPinkyB,
+                eRightFootPinkyC,
+                eRightFootPinkyD,
+                eRightInFootExtraFinger,
+                eRightFootExtraFingerA,
+                eRightFootExtraFingerB,
+                eRightFootExtraFingerC,
+                eRightFootExtraFingerD,
+                eLeftCollarExtra,
+                eRightCollarExtra,
+                eNodeIdCount
+        };
+
+   enum EOffAutoUser
+   Search for all occurrences
+
+   Enumerator:
+
+          eParamModeOff
+
+   Search for all occurrences
+          eParamModeAuto
+
+   Search for all occurrences
+          eParamModeUser
+
+   Search for all occurrences
+
+   Definition at line 339 of file fbxcharacter.h.
+        {
+                eParamModeOff,
+                eParamModeAuto,
+                eParamModeUser
+        };
+
+   enum EAutoUser
+   Search for all occurrences
+
+   Enumerator:
+
+          eParamModeAuto2
+
+   Search for all occurrences
+          eParamModeUser2
+
+   Search for all occurrences
+
+   Definition at line 346 of file fbxcharacter.h.
+        {
+                eParamModeAuto2,
+                eParamModeUser2
+        };
+
+   enum EPostureMode
+   Search for all occurrences
+
+   Enumerator:
+
+          ePostureBiped
+
+   Search for all occurrences
+          ePostureQuadriped
+
+   Search for all occurrences
+          ePostureCount
+
+   Search for all occurrences
+
+   Definition at line 352 of file fbxcharacter.h.
+        {
+                ePostureBiped,
+                ePostureQuadriped,
+                ePostureCount
+        };
+
+   enum EFloorPivot
+   Search for all occurrences
+
+   Enumerator:
+
+          eFloorPivotAuto
+
+   Search for all occurrences
+          eFloorPivotAnkle
+
+   Search for all occurrences
+          eFloorPivotToes
+
+   Search for all occurrences
+          eFloorPivotCount
+
+   Search for all occurrences
+
+   Definition at line 359 of file fbxcharacter.h.
+        {
+                eFloorPivotAuto,
+                eFloorPivotAnkle,
+                eFloorPivotToes,
+                eFloorPivotCount
+        };
+
+   enum ERollExtractionMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eRelativeRollExtraction
+
+   Search for all occurrences
+          eAbsoluteRollExtraction
+
+   Search for all occurrences
+          eRollExtractionTypeCount
+
+   Search for all occurrences
+
+   Definition at line 367 of file fbxcharacter.h.
+        {
+                eRelativeRollExtraction,
+                eAbsoluteRollExtraction,
+                eRollExtractionTypeCount
+        };
+
+   enum EHipsTranslationMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eHipsTranslationWorldRigid
+
+   Search for all occurrences
+          eHipsTranslationBodyRigid
+
+   Search for all occurrences
+          eHipsTranslationTypeCount
+
+   Search for all occurrences
+
+   Definition at line 374 of file fbxcharacter.h.
+        {
+                eHipsTranslationWorldRigid,
+                eHipsTranslationBodyRigid,
+                eHipsTranslationTypeCount
+        };
+
+   enum EFootContactType
+   Search for all occurrences
+
+   Enumerator:
+
+          eFootTypeNormal
+
+   Search for all occurrences
+          eFootTypeAnkle
+
+   Search for all occurrences
+          eFootTypeToeBase
+
+   Search for all occurrences
+          eFootTypeHoof
+
+   Search for all occurrences
+          eFootContactModeCount
+
+   Search for all occurrences
+
+   Definition at line 381 of file fbxcharacter.h.
+        {
+                eFootTypeNormal,
+                eFootTypeAnkle,
+                eFootTypeToeBase,
+                eFootTypeHoof,
+                eFootContactModeCount
+        };
+
+   enum EHandContactType
+   Search for all occurrences
+
+   Enumerator:
+
+          eHandTypeNormal
+
+   Search for all occurrences
+          eHandTypeWrist
+
+   Search for all occurrences
+          eHandTypeFingerBase
+
+   Search for all occurrences
+          eHandTypeHoof
+
+   Search for all occurrences
+          eHandContactModeCount
+
+   Search for all occurrences
+
+   Definition at line 390 of file fbxcharacter.h.
+        {
+                eHandTypeNormal,
+                eHandTypeWrist,
+                eHandTypeFingerBase,
+                eHandTypeHoof,
+                eHandContactModeCount
+        };
+
+   enum EFingerContactMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eFingerContactModeSticky
+
+   Search for all occurrences
+          eFingerContactModeSpread
+
+   Search for all occurrences
+          eFingerContactModeStickySpread
+
+   Search for all occurrences
+          eFingerContactModeCount
+
+   Search for all occurrences
+
+   Definition at line 399 of file fbxcharacter.h.
+        {
+                eFingerContactModeSticky,
+                eFingerContactModeSpread,
+                eFingerContactModeStickySpread,
+                eFingerContactModeCount
+        };
+
+   enum EContactBehaviour
+   Search for all occurrences
+
+   Enumerator:
+
+          eContactNeverSync
+
+   Search for all occurrences
+          eContactSyncOnKey
+
+   Search for all occurrences
+          eContactAlwaysSync
+
+   Search for all occurrences
+          eContactBehaviorCount
+
+   Search for all occurrences
+
+   Definition at line 407 of file fbxcharacter.h.
+        {
+                eContactNeverSync,
+                eContactSyncOnKey,
+                eContactAlwaysSync,
+                eContactBehaviorCount
+        };
+
+   enum EPropertyUnit
+   Search for all occurrences
+
+   Enumerator:
+
+          ePropertyNoUnit
+
+   Search for all occurrences
+          ePropertyPercent
+
+   Search for all occurrences
+          ePropertySecond
+
+   Search for all occurrences
+          ePropertyCentimeter
+
+   Search for all occurrences
+          ePropertyDegree
+
+   Search for all occurrences
+          ePropertyEnum
+
+   Search for all occurrences
+          ePropertyReal
+
+   Search for all occurrences
+
+   Definition at line 415 of file fbxcharacter.h.
+        {
+                ePropertyNoUnit,
+                ePropertyPercent,
+                ePropertySecond,
+                ePropertyCentimeter,
+                ePropertyDegree,
+                ePropertyEnum,
+                ePropertyReal
+        };
+
+   enum EErrorCode
+   Search for all occurrences
+
+   Enumerator:
+
+          eInternalError
+
+   Search for all occurrences
+          eErrorCount
+
+   Search for all occurrences
+
+   Definition at line 426 of file fbxcharacter.h.
+        {
+                eInternalError,
+                eErrorCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset to default values.
+     * Input type will be set to eInputStancePose.
+     * Input object will be set to NULL.
+     * Each Character link will be reset.
+     * The control set will be reset.
+
+   void SetInput ( EInputType   pInputType,
+                   FbxObject *  pInputObject = NULL
+                 )
+   Search for all occurrences
+
+   Set input type and index.
+
+   Parameters:
+
+          pInputType   Input type.
+          pInputObject Pointer to input character if input type equals eInputCharacter, otherwise NULL.
+
+   EInputType GetInputType ( ) const
+   Search for all occurrences
+
+   Get input type.
+   FbxObject* GetInputObject ( ) const
+   Search for all occurrences
+
+   Get input actor or character.
+
+   Returns:
+          Pointer or Null, depending on the input type.
+
+          + If the input type is set to eInputCharacter. The returned pointer can be casted to a pointer of type FbxCharacter.
+          + Null pointer if the input object has not been set, or if the input type is not set to eInputCharacter.
+
+   bool SetCharacterLink ( ENodeId                   pCharacterNodeId,
+                           const FbxCharacterLink &  pCharacterLink,
+                           bool                      pUpdateObjectList = true
+                         )
+   Search for all occurrences
+
+   Associate a character link to a given character node ID.
+
+   If a character link already exists for this character node ID, the character link will be removed.
+
+   Parameters:
+
+          pCharacterNodeId  Character node ID.
+          pCharacterLink    Character link.
+          pUpdateObjectList Set to true to update the object list (default value).
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool GetCharacterLink ( ENodeId             pCharacterNodeId,
+                           FbxCharacterLink *  pCharacterLink = NULL
+                         )                     const
+   Search for all occurrences
+
+   Get a character link associated with a given character node ID.
+
+   Parameters:
+
+          pCharacterNodeId ID of character node requested.
+          pCharacterLink   Optional pointer to receive the character link if function succeeds.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   FbxControlSet& GetControlSet ( ) const
+   Search for all occurrences
+
+   Get control set associated with the character.
+
+   Returns:
+          Return the control set associated with the character.
+
+   static int GetCharacterGroupCount ( EGroupId  pCharacterGroupId ) [static]
+   Search for all occurrences
+
+   Get number of elements in a given character group.
+
+   Parameters:
+
+          pCharacterGroupId Character group ID.
+
+   Returns:
+          The number of elements in the pCharacterGroupId character group.
+
+   static ENodeId GetCharacterGroupElementByIndex ( EGroupId  pCharacterGroupId,
+                                                    int       pIndex
+                                                  )           [static]
+   Search for all occurrences
+
+   Get character node ID of an element in a given character group.
+
+   Parameters:
+
+          pCharacterGroupId Character group ID.
+          pIndex            Character index ID.
+
+   Returns:
+          Character node ID.
+
+   static char* GetCharacterGroupNameByIndex ( EGroupId  pCharacterGroupId,
+                                               int       pIndex
+                                             )           [static]
+   Search for all occurrences
+
+   Get character node name of an element in a given character group.
+
+   Parameters:
+
+          pCharacterGroupId Character group ID.
+          pIndex            Character index ID.
+
+   Returns:
+          Character node name.
+
+   static int GetCharacterGroupVersionByIndex ( EGroupId  pCharacterGroupId,
+                                                int       pIndex
+                                              )           [static]
+   Search for all occurrences
+
+   Get character node version of an element in a given character group.
+
+   Parameters:
+
+          pCharacterGroupId Character group ID.
+          pIndex            Character index ID.
+
+   Returns:
+          Character node version.
+
+   static bool FindCharacterGroupIndexByName ( const char *  pName,
+                                               bool          pForceGroupId,
+                                               EGroupId &    pCharacterGroupId,
+                                               int &         pIndex
+                                             )               [static]
+   Search for all occurrences
+
+   Find the character group index associated with a given character node name.
+
+   Parameters:
+
+          pName             Character node name.
+          pForceGroupId     Set to true to force the character group ID.
+          pCharacterGroupId Receives character group ID.
+          pIndex            Receives character index ID.
+
+   Returns:
+          true if successful, otherwise false.
+
+   static bool GetCharacterGroupIndexByElement ( ENodeId     pCharacterNodeId,
+                                                 EGroupId &  pCharacterGroupId,
+                                                 int &       pIndex
+                                               )             [static]
+   Search for all occurrences
+
+   Get character node group and index of a given character node ID.
+
+   Parameters:
+
+          pCharacterNodeId  Character node ID.
+          pCharacterGroupId if the Character node ID is found, the method returns the group ID through this parameter
+          pIndex            if the Character node ID is found, the method returns the index through this parameter
+
+   Remarks:
+          Only works for a character node ID that is part of a group.
+
+   Returns:
+          true if successful, false otherwise.
+
+   static bool GetCharacterGroupVersionByElement ( ENodeId  pCharacterNodeId,
+                                                   int &    pVersion
+                                                 )          [static]
+   Search for all occurrences
+
+   Get character node version of a given character node ID.
+
+   Parameters:
+
+          pCharacterNodeId Character node ID to get version.
+          pVersion         if the node ID is found, the method returns the version through this parameter
+
+   Remarks:
+          Only works for a character node ID is part of a group.
+
+   Returns:
+          true if successful, false otherwise.
+
+   static bool GetCharacterNodeNameFromNodeId ( ENodeId  pCharacterNodeId,
+                                                char *&  pName
+                                              )          [static]
+   Search for all occurrences
+
+   Get character node name associated with a given character node ID.
+
+   Parameters:
+
+          pCharacterNodeId Character node ID to get name.
+          pName            if the node ID is found, the method returns the node name through this parameter Since the Pointer points to internal data, it is not necessary to allocate a string buffer before calling this function.
+
+   Returns:
+          true if a name exists for the given node ID.
+
+   static bool GetCharacterNodeIdFromNodeName ( const char *  pName,
+                                                ENodeId &     pCharacterNodeId
+                                              )               [static]
+   Search for all occurrences
+
+   Get the character node ID associated with a given character node name.
+
+   Parameters:
+
+          pName            Character node name to get node ID.
+          pCharacterNodeId if the node name is found, this method returns the node ID through this parameter
+
+   Returns:
+          true if a node ID exists for the given node name.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxInt> PullIterationCount
+   Search for all occurrences
+
+   Definition at line 548 of file fbxcharacter.h.
+   FbxPropertyT<EPostureMode> Posture
+   Search for all occurrences
+
+   Definition at line 549 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> ForceActorSpace
+   Search for all occurrences
+
+   Definition at line 550 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ScaleCompensation
+   Search for all occurrences
+
+   Definition at line 551 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> ScaleCompensationMode
+   Search for all occurrences
+
+   Definition at line 552 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HipsHeightCompensation
+   Search for all occurrences
+
+   Definition at line 553 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> HipsHeightCompensationMode
+   Search for all occurrences
+
+   Definition at line 554 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleHeightCompensation
+   Search for all occurrences
+
+   Definition at line 555 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleHeightCompensationMode
+   Search for all occurrences
+
+   Definition at line 556 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleProximityCompensation
+   Search for all occurrences
+
+   Definition at line 557 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleProximityCompensationMode
+   Search for all occurrences
+
+   Definition at line 558 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> MassCenterCompensation
+   Search for all occurrences
+
+   Definition at line 559 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> ApplyLimits
+   Search for all occurrences
+
+   Definition at line 560 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ChestReduction
+   Search for all occurrences
+
+   Definition at line 561 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CollarReduction
+   Search for all occurrences
+
+   Definition at line 562 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> NeckReduction
+   Search for all occurrences
+
+   Definition at line 563 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HeadReduction
+   Search for all occurrences
+
+   Definition at line 564 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftAnkle
+   Search for all occurrences
+
+   Definition at line 565 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightAnkle
+   Search for all occurrences
+
+   Definition at line 566 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftKnee
+   Search for all occurrences
+
+   Definition at line 567 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightKnee
+   Search for all occurrences
+
+   Definition at line 568 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorChest
+   Search for all occurrences
+
+   Definition at line 569 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorHead
+   Search for all occurrences
+
+   Definition at line 570 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftWrist
+   Search for all occurrences
+
+   Definition at line 571 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightWrist
+   Search for all occurrences
+
+   Definition at line 572 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftElbow
+   Search for all occurrences
+
+   Definition at line 573 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightElbow
+   Search for all occurrences
+
+   Definition at line 574 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftFingerBase
+   Search for all occurrences
+
+   Definition at line 575 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightFingerBase
+   Search for all occurrences
+
+   Definition at line 576 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftToesBase
+   Search for all occurrences
+
+   Definition at line 577 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightToesBase
+   Search for all occurrences
+
+   Definition at line 578 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftFingerBaseRotation
+   Search for all occurrences
+
+   Definition at line 579 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightFingerBaseRotation
+   Search for all occurrences
+
+   Definition at line 580 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftToesBaseRotation
+   Search for all occurrences
+
+   Definition at line 581 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightToesBaseRotation
+   Search for all occurrences
+
+   Definition at line 582 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftAnkleRotation
+   Search for all occurrences
+
+   Definition at line 583 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightAnkleRotation
+   Search for all occurrences
+
+   Definition at line 584 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorHeadRotation
+   Search for all occurrences
+
+   Definition at line 585 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLeftWristRotation
+   Search for all occurrences
+
+   Definition at line 586 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorRightWristRotation
+   Search for all occurrences
+
+   Definition at line 587 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorChestRotation
+   Search for all occurrences
+
+   Definition at line 588 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ReachActorLowerChestRotation
+   Search for all occurrences
+
+   Definition at line 589 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble3> HipsTOffset
+   Search for all occurrences
+
+   Definition at line 590 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble3> ChestTOffset
+   Search for all occurrences
+
+   Definition at line 591 of file fbxcharacter.h.
+   FbxPropertyT<ERollExtractionMode> RollExtractionMode
+   Search for all occurrences
+
+   Definition at line 592 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftUpLegRoll
+   Search for all occurrences
+
+   Definition at line 593 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftUpLegRollMode
+   Search for all occurrences
+
+   Definition at line 594 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftLegRoll
+   Search for all occurrences
+
+   Definition at line 595 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftLegRollMode
+   Search for all occurrences
+
+   Definition at line 596 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightUpLegRoll
+   Search for all occurrences
+
+   Definition at line 597 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightUpLegRollMode
+   Search for all occurrences
+
+   Definition at line 598 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightLegRoll
+   Search for all occurrences
+
+   Definition at line 599 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightLegRollMode
+   Search for all occurrences
+
+   Definition at line 600 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftArmRoll
+   Search for all occurrences
+
+   Definition at line 601 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftArmRollMode
+   Search for all occurrences
+
+   Definition at line 602 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftForeArmRoll
+   Search for all occurrences
+
+   Definition at line 603 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftForeArmRollMode
+   Search for all occurrences
+
+   Definition at line 604 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightArmRoll
+   Search for all occurrences
+
+   Definition at line 605 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightArmRollMode
+   Search for all occurrences
+
+   Definition at line 606 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightForeArmRoll
+   Search for all occurrences
+
+   Definition at line 607 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightForeArmRollMode
+   Search for all occurrences
+
+   Definition at line 608 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftUpLegRollEx
+   Search for all occurrences
+
+   Definition at line 609 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftUpLegRollExMode
+   Search for all occurrences
+
+   Definition at line 610 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftLegRollEx
+   Search for all occurrences
+
+   Definition at line 611 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftLegRollExMode
+   Search for all occurrences
+
+   Definition at line 612 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightUpLegRollEx
+   Search for all occurrences
+
+   Definition at line 613 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightUpLegRollExMode
+   Search for all occurrences
+
+   Definition at line 614 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightLegRollEx
+   Search for all occurrences
+
+   Definition at line 615 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightLegRollExMode
+   Search for all occurrences
+
+   Definition at line 616 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftArmRollEx
+   Search for all occurrences
+
+   Definition at line 617 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftArmRollExMode
+   Search for all occurrences
+
+   Definition at line 618 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftForeArmRollEx
+   Search for all occurrences
+
+   Definition at line 619 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftForeArmRollExMode
+   Search for all occurrences
+
+   Definition at line 620 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightArmRollEx
+   Search for all occurrences
+
+   Definition at line 621 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightArmRollExMode
+   Search for all occurrences
+
+   Definition at line 622 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightForeArmExRoll
+   Search for all occurrences
+
+   Definition at line 623 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightForeArmRollExMode
+   Search for all occurrences
+
+   Definition at line 624 of file fbxcharacter.h.
+   FbxPropertyT<EContactBehaviour> ContactBehaviour
+   Search for all occurrences
+
+   Definition at line 625 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> FootFloorContact
+   Search for all occurrences
+
+   Definition at line 626 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> FootAutomaticToes
+   Search for all occurrences
+
+   Definition at line 627 of file fbxcharacter.h.
+   FbxPropertyT<EFloorPivot> FootFloorPivot
+   Search for all occurrences
+
+   Definition at line 628 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootBottomToAnkle
+   Search for all occurrences
+
+   Definition at line 629 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootBackToAnkle
+   Search for all occurrences
+
+   Definition at line 630 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootMiddleToAnkle
+   Search for all occurrences
+
+   Definition at line 631 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootFrontToMiddle
+   Search for all occurrences
+
+   Definition at line 632 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootInToAnkle
+   Search for all occurrences
+
+   Definition at line 633 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootOutToAnkle
+   Search for all occurrences
+
+   Definition at line 634 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootContactSize
+   Search for all occurrences
+
+   Definition at line 635 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> FootFingerContact
+   Search for all occurrences
+
+   Definition at line 636 of file fbxcharacter.h.
+   FbxPropertyT<EFootContactType> FootContactType
+   Search for all occurrences
+
+   Definition at line 637 of file fbxcharacter.h.
+   FbxPropertyT<EFingerContactMode> FootFingerContactMode
+   Search for all occurrences
+
+   Definition at line 638 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootContactStiffness
+   Search for all occurrences
+
+   Definition at line 639 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> FootFingerContactRollStiffness
+   Search for all occurrences
+
+   Definition at line 640 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> HandFloorContact
+   Search for all occurrences
+
+   Definition at line 641 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> HandAutomaticFingers
+   Search for all occurrences
+
+   Definition at line 642 of file fbxcharacter.h.
+   FbxPropertyT<EFloorPivot> HandFloorPivot
+   Search for all occurrences
+
+   Definition at line 643 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandBottomToWrist
+   Search for all occurrences
+
+   Definition at line 644 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandBackToWrist
+   Search for all occurrences
+
+   Definition at line 645 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandMiddleToWrist
+   Search for all occurrences
+
+   Definition at line 646 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandFrontToMiddle
+   Search for all occurrences
+
+   Definition at line 647 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandInToWrist
+   Search for all occurrences
+
+   Definition at line 648 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandOutToWrist
+   Search for all occurrences
+
+   Definition at line 649 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandContactSize
+   Search for all occurrences
+
+   Definition at line 650 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> HandFingerContact
+   Search for all occurrences
+
+   Definition at line 651 of file fbxcharacter.h.
+   FbxPropertyT<EHandContactType> HandContactType
+   Search for all occurrences
+
+   Definition at line 652 of file fbxcharacter.h.
+   FbxPropertyT<EFingerContactMode> HandFingerContactMode
+   Search for all occurrences
+
+   Definition at line 653 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandContactStiffness
+   Search for all occurrences
+
+   Definition at line 654 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HandFingerContactRollStiffness
+   Search for all occurrences
+
+   Definition at line 655 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandThumbTip
+   Search for all occurrences
+
+   Definition at line 656 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandIndexTip
+   Search for all occurrences
+
+   Definition at line 657 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandMiddleTip
+   Search for all occurrences
+
+   Definition at line 658 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandRingTip
+   Search for all occurrences
+
+   Definition at line 659 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandPinkyTip
+   Search for all occurrences
+
+   Definition at line 660 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftHandExtraFingerTip
+   Search for all occurrences
+
+   Definition at line 661 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandThumbTip
+   Search for all occurrences
+
+   Definition at line 662 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandIndexTip
+   Search for all occurrences
+
+   Definition at line 663 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandMiddleTip
+   Search for all occurrences
+
+   Definition at line 664 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandRingTip
+   Search for all occurrences
+
+   Definition at line 665 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandPinkyTip
+   Search for all occurrences
+
+   Definition at line 666 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightHandExtraFingerTip
+   Search for all occurrences
+
+   Definition at line 667 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootThumbTip
+   Search for all occurrences
+
+   Definition at line 668 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootIndexTip
+   Search for all occurrences
+
+   Definition at line 669 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootMiddleTip
+   Search for all occurrences
+
+   Definition at line 670 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootRingTip
+   Search for all occurrences
+
+   Definition at line 671 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootPinkyTip
+   Search for all occurrences
+
+   Definition at line 672 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftFootExtraFingerTip
+   Search for all occurrences
+
+   Definition at line 673 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootThumbTip
+   Search for all occurrences
+
+   Definition at line 674 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootIndexTip
+   Search for all occurrences
+
+   Definition at line 675 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootMiddleTip
+   Search for all occurrences
+
+   Definition at line 676 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootRingTip
+   Search for all occurrences
+
+   Definition at line 677 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootPinkyTip
+   Search for all occurrences
+
+   Definition at line 678 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightFootExtraFingerTip
+   Search for all occurrences
+
+   Definition at line 679 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> FingerSolving
+   Search for all occurrences
+
+   Definition at line 680 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftToeBase
+   Search for all occurrences
+
+   Definition at line 681 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftFoot
+   Search for all occurrences
+
+   Definition at line 682 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftKnee
+   Search for all occurrences
+
+   Definition at line 683 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightToeBase
+   Search for all occurrences
+
+   Definition at line 684 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightFoot
+   Search for all occurrences
+
+   Definition at line 685 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightKnee
+   Search for all occurrences
+
+   Definition at line 686 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftFingerBase
+   Search for all occurrences
+
+   Definition at line 687 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftHand
+   Search for all occurrences
+
+   Definition at line 688 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullLeftElbow
+   Search for all occurrences
+
+   Definition at line 689 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightFingerBase
+   Search for all occurrences
+
+   Definition at line 690 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightHand
+   Search for all occurrences
+
+   Definition at line 691 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullRightElbow
+   Search for all occurrences
+
+   Definition at line 692 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlChestPullLeftHand
+   Search for all occurrences
+
+   Definition at line 693 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlChestPullRightHand
+   Search for all occurrences
+
+   Definition at line 694 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlPullHead
+   Search for all occurrences
+
+   Definition at line 695 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistHipsPosition
+   Search for all occurrences
+
+   Definition at line 696 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlEnforceGravity
+   Search for all occurrences
+
+   Definition at line 697 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistHipsOrientation
+   Search for all occurrences
+
+   Definition at line 698 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistChestPosition
+   Search for all occurrences
+
+   Definition at line 699 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistChestOrientation
+   Search for all occurrences
+
+   Definition at line 700 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistLeftCollar
+   Search for all occurrences
+
+   Definition at line 701 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistRightCollar
+   Search for all occurrences
+
+   Definition at line 702 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistLeftKnee
+   Search for all occurrences
+
+   Definition at line 703 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistMaximumExtensionLeftKnee
+   Search for all occurrences
+
+   Definition at line 704 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistCompressionFactorLeftKnee
+   Search for all occurrences
+
+   Definition at line 705 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistRightKnee
+   Search for all occurrences
+
+   Definition at line 706 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistMaximumExtensionRightKnee
+   Search for all occurrences
+
+   Definition at line 707 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistCompressionFactorRightKnee
+   Search for all occurrences
+
+   Definition at line 708 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistLeftElbow
+   Search for all occurrences
+
+   Definition at line 709 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistMaximumExtensionLeftElbow
+   Search for all occurrences
+
+   Definition at line 710 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistCompressionFactorLeftElbow
+   Search for all occurrences
+
+   Definition at line 711 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistRightElbow
+   Search for all occurrences
+
+   Definition at line 712 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistMaximumExtensionRightElbow
+   Search for all occurrences
+
+   Definition at line 713 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlResistCompressionFactorRightElbow
+   Search for all occurrences
+
+   Definition at line 714 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlSpineStiffness
+   Search for all occurrences
+
+   Definition at line 715 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CtrlNeckStiffness
+   Search for all occurrences
+
+   Definition at line 716 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> MirrorMode
+   Search for all occurrences
+
+   Definition at line 717 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ShoulderCorrection
+   Search for all occurrences
+
+   Definition at line 718 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftKneeKillPitch
+   Search for all occurrences
+
+   Definition at line 719 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightKneeKillPitch
+   Search for all occurrences
+
+   Definition at line 720 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LeftElbowKillPitch
+   Search for all occurrences
+
+   Definition at line 721 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> RightElbowKillPitch
+   Search for all occurrences
+
+   Definition at line 722 of file fbxcharacter.h.
+   FbxPropertyT<EHipsTranslationMode> HipsTranslationMode
+   Search for all occurrences
+
+   Definition at line 723 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> WriteReference
+   Search for all occurrences
+
+   Definition at line 724 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> SyncMode
+   Search for all occurrences
+
+   Definition at line 725 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> Damping
+   Search for all occurrences
+
+   Definition at line 726 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> OrientationDamping
+   Search for all occurrences
+
+   Definition at line 727 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> OrientationDampingMode
+   Search for all occurrences
+
+   Definition at line 728 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> DisplacementDamping
+   Search for all occurrences
+
+   Definition at line 729 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> DisplacementDampingMode
+   Search for all occurrences
+
+   Definition at line 730 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> DisplacementMemory
+   Search for all occurrences
+
+   Definition at line 731 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> DisplacementMemoryMode
+   Search for all occurrences
+
+   Definition at line 732 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HipsDisplacementDamping
+   Search for all occurrences
+
+   Definition at line 733 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> HipsDisplacementDampingMode
+   Search for all occurrences
+
+   Definition at line 734 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleDisplacementDamping
+   Search for all occurrences
+
+   Definition at line 735 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> AnkleDisplacementDampingMode
+   Search for all occurrences
+
+   Definition at line 736 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> WristDisplacementDamping
+   Search for all occurrences
+
+   Definition at line 737 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> WristDisplacementDampingMode
+   Search for all occurrences
+
+   Definition at line 738 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> Stabilization
+   Search for all occurrences
+
+   Definition at line 739 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationTime
+   Search for all occurrences
+
+   Definition at line 740 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> AnkleStabilizationTimeMode
+   Search for all occurrences
+
+   Definition at line 741 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationPerimeter
+   Search for all occurrences
+
+   Definition at line 742 of file fbxcharacter.h.
+   FbxPropertyT<EAutoUser> AnkleStabilizationPerimeterMode
+   Search for all occurrences
+
+   Definition at line 743 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationAngularPerimeter
+   Search for all occurrences
+
+   Definition at line 744 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleStabilizationAngularPerimeterMode
+   Search for all occurrences
+
+   Definition at line 745 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationFloorProximity
+   Search for all occurrences
+
+   Definition at line 746 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleStabilizationFloorProximityMode
+   Search for all occurrences
+
+   Definition at line 747 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationDamping
+   Search for all occurrences
+
+   Definition at line 748 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleStabilizationDampingMode
+   Search for all occurrences
+
+   Definition at line 749 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> AnkleStabilizationRecoveryTime
+   Search for all occurrences
+
+   Definition at line 750 of file fbxcharacter.h.
+   FbxPropertyT<EOffAutoUser> AnkleStabilizationRecoveryTimeMode
+   Search for all occurrences
+
+   Definition at line 751 of file fbxcharacter.h.
+   FbxPropertyT<FbxReference> SourceObject
+   Search for all occurrences
+
+   Definition at line 752 of file fbxcharacter.h.
+   FbxPropertyT<FbxReference> DestinationObject
+   Search for all occurrences
+
+   Definition at line 753 of file fbxcharacter.h.
+   FbxPropertyT<FbxReference> Actor
+   Search for all occurrences
+
+   Definition at line 754 of file fbxcharacter.h.
+   FbxPropertyT<FbxReference> Character
+   Search for all occurrences
+
+   Definition at line 755 of file fbxcharacter.h.
+   FbxPropertyT<FbxReference> ControlSet
+   Search for all occurrences
+
+   Definition at line 756 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> HikVersion
+   Search for all occurrences
+
+   Definition at line 757 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> Characterize
+   Search for all occurrences
+
+   Definition at line 758 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LockXForm
+   Search for all occurrences
+
+   Definition at line 759 of file fbxcharacter.h.
+   FbxPropertyT<FbxBool> LockPick
+   Search for all occurrences
+
+   Definition at line 760 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RealisticShoulder
+   Search for all occurrences
+
+   Definition at line 763 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CollarStiffnessX
+   Search for all occurrences
+
+   Definition at line 764 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CollarStiffnessY
+   Search for all occurrences
+
+   Definition at line 765 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> CollarStiffnessZ
+   Search for all occurrences
+
+   Definition at line 766 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> ExtraCollarRatio
+   Search for all occurrences
+
+   Definition at line 767 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftLegMaxExtensionAngle
+   Search for all occurrences
+
+   Definition at line 769 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightLegMaxExtensionAngle
+   Search for all occurrences
+
+   Definition at line 770 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> LeftArmMaxExtensionAngle
+   Search for all occurrences
+
+   Definition at line 771 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> RightArmMaxExtensionAngle
+   Search for all occurrences
+
+   Definition at line 772 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> StretchStartArmsAndLegs
+   Search for all occurrences
+
+   Definition at line 774 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> StretchStopArmsAndLegs
+   Search for all occurrences
+
+   Definition at line 775 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSScaleArmsAndLegs
+   Search for all occurrences
+
+   Definition at line 776 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachLeftWrist
+   Search for all occurrences
+
+   Definition at line 777 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachRightWrist
+   Search for all occurrences
+
+   Definition at line 778 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachLeftAnkle
+   Search for all occurrences
+
+   Definition at line 779 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachRightAnkle
+   Search for all occurrences
+
+   Definition at line 780 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSScaleSpine
+   Search for all occurrences
+
+   Definition at line 781 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSScaleSpineChildren
+   Search for all occurrences
+
+   Definition at line 782 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSSpineFreedom
+   Search for all occurrences
+
+   Definition at line 783 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachChestEnd
+   Search for all occurrences
+
+   Definition at line 784 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSScaleNeck
+   Search for all occurrences
+
+   Definition at line 785 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSNeckFreedom
+   Search for all occurrences
+
+   Definition at line 786 of file fbxcharacter.h.
+   FbxPropertyT<FbxDouble> SnSReachHead
+   Search for all occurrences
+
+   Definition at line 787 of file fbxcharacter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcharacter.h
+
+   Please send us your comment about this page

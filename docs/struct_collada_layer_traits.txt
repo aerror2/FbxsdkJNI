@@ -1,0 +1,102 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   ColladaLayerTraits Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions | Public Attributes
+   ColladaLayerTraits Struct Reference
+   Search for all occurrences
+
+   #include <fbxcolladautils.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 94 of file fbxcolladautils.h.
+
+   List of all members.
+
+Public Member Functions
+
+                                    ColladaLayerTraits ()
+                                    ColladaLayerTraits (FbxLayerElement::EType pType, int pLength)
+
+Static Public Member Functions
+
+   static const ColladaLayerTraits  GetLayerTraits (const FbxString &pLabel)
+                                    Construct traits according to COLLADA layer string.
+
+Public Attributes
+
+            FbxLayerElement::EType  mLayerType
+                               int  mLayerElementLength
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   ColladaLayerTraits ( ) [inline]
+
+   Definition at line 96 of file fbxcolladautils.h.
+                : mLayerType(FbxLayerElement::eUnknown), mLayerElementLength(0) {}
+
+   ColladaLayerTraits ( FbxLayerElement::EType  pType,
+                        int                     pLength
+                      )                         [inline]
+
+   Definition at line 99 of file fbxcolladautils.h.
+        : mLayerType(pType), mLayerElementLength(pLength) {}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static const ColladaLayerTraits GetLayerTraits ( const FbxString &  pLabel ) [static]
+   Search for all occurrences
+
+   Construct traits according to COLLADA layer string.
+
+   Parameters:
+
+          pLabel COLLADA layer string.
+
+   Returns:
+          Return created traits.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxLayerElement::EType mLayerType
+   Search for all occurrences
+
+   Definition at line 103 of file fbxcolladautils.h.
+   int mLayerElementLength
+   Search for all occurrences
+
+   Definition at line 105 of file fbxcolladautils.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/collada/fbxcolladautils.h
+
+   Please send us your comment about this page

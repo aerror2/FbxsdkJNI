@@ -1,0 +1,133 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConnectionPointFilter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxConnectionPointFilter Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconnectionpoint.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to manage Connect Filter.
+
+   Definition at line 279 of file fbxconnectionpoint.h.
+
+   List of all members.
+
+Public Member Functions
+
+                              virtual  ~FbxConnectionPointFilter ()
+   virtual FbxConnectionPointFilter *  Ref ()
+                                       Return reference ConnectionPoint filter.
+                         virtual void  Unref ()
+                                       Cancel reference.
+                       virtual FbxInt  GetUniqueId () const
+                                       Get unique filter ID.
+                         virtual bool  IsValid (FbxConnectionPoint *pConnect) const
+                                       Judge if the given Connection Point is valid.
+                         virtual bool  IsValidConnection (FbxConnectionPoint *pConnect, FbxConnection::EType pType) const
+                                       Judge if the given Connection Point is a valid connection.
+                         virtual bool  IsEqual (FbxConnectionPointFilter *pConnectFilter) const
+                                       Judge if it is equal with the given ConnectionPoint filter.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~FbxConnectionPointFilter ( ) [inline, virtual]
+
+   Definition at line 282 of file fbxconnectionpoint.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxConnectionPointFilter* Ref ( ) [virtual]
+   Search for all occurrences
+
+   Return reference ConnectionPoint filter.
+   virtual void Unref ( ) [virtual]
+   Search for all occurrences
+
+   Cancel reference.
+   virtual FbxInt GetUniqueId ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get unique filter ID.
+
+   Definition at line 291 of file fbxconnectionpoint.h.
+{ return 0; }
+
+   virtual bool IsValid ( FbxConnectionPoint *  pConnect ) const [virtual]
+   Search for all occurrences
+
+   Judge if the given Connection Point is valid.
+
+   Parameters:
+
+          pConnect The given Connection Point.
+
+   Returns:
+          True if valid, false if not valid.
+
+   virtual bool IsValidConnection ( FbxConnectionPoint *  pConnect,
+                                    FbxConnection::EType  pType
+                                  )                       const [virtual]
+   Search for all occurrences
+
+   Judge if the given Connection Point is a valid connection.
+
+   Parameters:
+
+          pConnect The given Connection Point.
+          pType    Connection type.
+
+   Returns:
+          True if valid, false if not valid.
+
+   virtual bool IsEqual ( FbxConnectionPointFilter *  pConnectFilter ) const [virtual]
+   Search for all occurrences
+
+   Judge if it is equal with the given ConnectionPoint filter.
+
+   Parameters:
+
+          pConnectFilter The given ConnectionPoint filter.
+
+   Returns:
+          True if equal, false if unequal.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxconnectionpoint.h
+
+   Please send us your comment about this page

@@ -1,0 +1,109 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxQuery Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxQuery Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxquery.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class to manage query.
+
+   A query contains a filter and reference ID, which will be used to search and retrieve objects. The derived query classes are used to create FbxCriteria.
+
+   Definition at line 32 of file fbxquery.h.
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxInt  GetUniqueId () const
+                   Get unique filter Id.
+     virtual bool  IsValid (const FbxProperty &pProperty) const
+                   Judge if the given property is valid.
+     virtual bool  IsEqual (FbxQuery *pOtherQuery) const
+                   This compares whether two FbxQuery are the same, NOT whether the query matches or not.
+             void  Ref ()
+                   Add one to ref count.
+             void  Unref ()
+                   Minus one to ref count, if ref count is zero, delete this query object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxInt GetUniqueId ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get unique filter Id.
+
+   Definition at line 36 of file fbxquery.h.
+{ return FBXSDK_QUERY_UNIQUE_ID; }
+
+   virtual bool IsValid ( const FbxProperty &  pProperty ) const [virtual]
+   Search for all occurrences
+
+   Judge if the given property is valid.
+
+   Parameters:
+
+          pProperty The given property.
+
+   Returns:
+          true always, not implemented.
+
+   virtual bool IsEqual ( FbxQuery *  pOtherQuery ) const [virtual]
+   Search for all occurrences
+
+   This compares whether two FbxQuery are the same, NOT whether the query matches or not.
+
+   It's strictly the equivalent of an operator==, but virtual.
+
+   Parameters:
+
+          pOtherQuery The given FbxQuery
+
+   void Ref ( )
+   Search for all occurrences
+
+   Add one to ref count.
+   void Unref ( )
+   Search for all occurrences
+
+   Minus one to ref count, if ref count is zero, delete this query object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxquery.h
+
+   Please send us your comment about this page

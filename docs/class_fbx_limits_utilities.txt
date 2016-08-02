@@ -1,0 +1,233 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLimitsUtilities Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxLimitsUtilities Class Reference
+   Search for all occurrences
+
+   #include <fbxlimitsutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class represent a utility of limits for transforms.
+
+   Definition at line 27 of file fbxlimitsutilities.h.
+
+   List of all members.
+
+Public Types
+
+                enum   EType { eTranslation, eRotation, eScaling }
+                       Limit Type. More...
+                enum   ERotationType { eQuaternion, eEuler }
+                       Rotation type. More...
+                enum   ERotationClampType { eRectangular, eEllipsoid }
+                       Rotation clamp type. More...
+
+Public Member Functions
+
+                       FbxLimitsUtilities (FbxNode *pNode)
+
+Public Attributes
+
+            FbxNode *  mNode
+               double  mAxisLength
+
+Getter/Setter functions
+
+                 void  SetAuto (EType pType, bool pAuto)
+                 bool  GetAuto (EType pType) const
+                 void  SetEnable (EType pType, bool pEnable)
+                 bool  GetEnable (EType pType) const
+                 void  SetDefault (EType pType, FbxVector4 pDefault)
+           FbxVector4  GetDefault (EType pType) const
+                 void  SetMin (EType pType, FbxVector4 pMin)
+           FbxVector4  GetMin (EType pType) const
+                 void  SetMax (EType pType, FbxVector4 pMax)
+           FbxVector4  GetMax (EType pType) const
+                 void  SetRotationType (ERotationType pType)
+        ERotationType  GetRotationType () const
+   ERotationClampType  GetRotationClampType () const
+                 void  SetRotationAxis (FbxVector4 pRotationAxis)
+           FbxVector4  GetRotationAxis () const
+                 void  SetAxisLength (double pLength)
+               double  GetAxisLength () const
+                 void  UpdateAutomatic (FbxNode *pNode)
+           FbxVector4  GetEndPointTranslation (FbxNode *pNode) const
+           FbxVector4  GetEndSite (FbxNode *pNode) const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Limit Type.
+     * eTranslation Translation type
+     * eRotation Rotation type
+     * eScaling Scale type
+
+   Enumerator:
+
+          eTranslation
+
+   Search for all occurrences
+          eRotation
+
+   Search for all occurrences
+          eScaling
+
+   Search for all occurrences
+
+   Definition at line 35 of file fbxlimitsutilities.h.
+        {
+                eTranslation,
+                eRotation,
+                eScaling
+        };
+
+   enum ERotationType
+   Search for all occurrences
+
+   Rotation type.
+     * eQuaternion Quaternion rotation type
+     * eEuler Euler rotation type
+
+   Enumerator:
+
+          eQuaternion
+
+   Search for all occurrences
+          eEuler
+
+   Search for all occurrences
+
+   Definition at line 46 of file fbxlimitsutilities.h.
+        {
+                eQuaternion,
+                eEuler
+        };
+
+   enum ERotationClampType
+   Search for all occurrences
+
+   Rotation clamp type.
+     * eRectangular Rectangular clamp type
+     * eEllipsoid Ellipsoid clamp type
+
+   Enumerator:
+
+          eRectangular
+
+   Search for all occurrences
+          eEllipsoid
+
+   Search for all occurrences
+
+   Definition at line 56 of file fbxlimitsutilities.h.
+        {
+                eRectangular,
+                eEllipsoid
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLimitsUtilities ( FbxNode *  pNode )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetAuto ( EType  pType,
+                  bool   pAuto
+                )
+   Search for all occurrences
+   bool GetAuto ( EType  pType ) const
+   Search for all occurrences
+   void SetEnable ( EType  pType,
+                    bool   pEnable
+                  )
+   Search for all occurrences
+   bool GetEnable ( EType  pType ) const
+   Search for all occurrences
+   void SetDefault ( EType       pType,
+                     FbxVector4  pDefault
+                   )
+   Search for all occurrences
+   FbxVector4 GetDefault ( EType  pType ) const
+   Search for all occurrences
+   void SetMin ( EType       pType,
+                 FbxVector4  pMin
+               )
+   Search for all occurrences
+   FbxVector4 GetMin ( EType  pType ) const
+   Search for all occurrences
+   void SetMax ( EType       pType,
+                 FbxVector4  pMax
+               )
+   Search for all occurrences
+   FbxVector4 GetMax ( EType  pType ) const
+   Search for all occurrences
+   void SetRotationType ( ERotationType  pType )
+   Search for all occurrences
+   ERotationType GetRotationType ( ) const
+   Search for all occurrences
+   ERotationClampType GetRotationClampType ( ) const
+   Search for all occurrences
+   void SetRotationAxis ( FbxVector4  pRotationAxis )
+   Search for all occurrences
+   FbxVector4 GetRotationAxis ( ) const
+   Search for all occurrences
+   void SetAxisLength ( double  pLength )
+   Search for all occurrences
+   double GetAxisLength ( ) const
+   Search for all occurrences
+   void UpdateAutomatic ( FbxNode *  pNode )
+   Search for all occurrences
+   FbxVector4 GetEndPointTranslation ( FbxNode *  pNode ) const
+   Search for all occurrences
+   FbxVector4 GetEndSite ( FbxNode *  pNode ) const
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxNode* mNode
+   Search for all occurrences
+
+   Definition at line 100 of file fbxlimitsutilities.h.
+   double mAxisLength
+   Search for all occurrences
+
+   Definition at line 101 of file fbxlimitsutilities.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlimitsutilities.h
+
+   Please send us your comment about this page

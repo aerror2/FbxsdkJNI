@@ -1,0 +1,66 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharCompare Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCharCompare Class Reference
+   Search for all occurrences
+
+   #include <fbxstring.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Functor class to compare "C" strings.
+
+   Definition at line 491 of file fbxstring.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (const char *pKeyA, const char *pKeyB) const
+        Compare two strings like "C" strcmp().
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( const char *  pKeyA,
+                    const char *  pKeyB
+                  )               const [inline]
+
+   Compare two strings like "C" strcmp().
+
+   Definition at line 495 of file fbxstring.h.
+        {
+                return strcmp(pKeyA, pKeyB);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstring.h
+
+   Please send us your comment about this page

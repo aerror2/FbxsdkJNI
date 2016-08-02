@@ -1,0 +1,292 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCloneManager Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions | Static Public Member Functions | Static Public Attributes
+   FbxCloneManager Class Reference
+   Search for all occurrences
+
+   #include <fbxclonemanager.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The clone manager is a utility for cloning entire networks of FbxObject.
+
+   Options are available for specifying how the clones inherit the connections of the original.
+
+   Networks of FbxObject (inter-connected objects by OO, OP, PO or PP connections) can be cloned. How the connections of clones are handled depends on mSrcPolicy and mExternalDstPolicy.
+
+   To clone FbxObject instances and their dependents, put them into a CloneSet and pass the CloneSet to this class:
+ FbxCloneManager                  cloneManager;
+ FbxCloneManager::CloneSet        cloneSet;
+ FbxCloneManager::CloneSetElement defaultCloneOptions(FbxCloneManager::sConnectToClone,
+                                                      FbxCloneManager::sConnectToOriginal,
+                                                      FbxObject::eDeepClone);
+ cloneSet.Insert(someObject, defaultCloneOptions);
+ cloneManager.AddDependents(cloneSet, someObject, defaultCloneOptions);
+ cloneManager.Clone(cloneSet, scene)
+
+   Remarks:
+          If cloning occurs on the same scene as the original objects, the system will contain duplicated names. Although this is acceptable in FBX, some applications may not behave correctly with duplicated names. It is the responsability of the caller to resolve any conflicts.
+
+   See also:
+          FbxCloneManager::CloneSetElement
+          FbxCloneManager::CloneSet
+
+   Definition at line 50 of file fbxclonemanager.h.
+
+   List of all members.
+
+Classes
+
+                                     struct   CloneSetElement
+                                             This represents an element in FbxCloneManager::CloneSet to be cloned. More...
+                                      class   ObjectCompare
+                                             Functor to compare object pointers. More...
+
+Public Types
+
+   typedef FbxMap< FbxObject
+   *, CloneSetElement,
+   ObjectCompare >  CloneSet
+                                             The CloneSet is a collection of pointers to objects that will be cloned in Clone() Attached to each object is a CloneSetElement.
+
+Public Member Functions
+
+                                              FbxCloneManager ()
+                                             Constructor.
+                                     virtual  ~FbxCloneManager ()
+                                             Destructor.
+                                virtual bool  Clone (CloneSet &pSet, FbxObject *pContainer=NULL) const
+                                             Clone all objects in the set using the given policies for duplication of connections.
+                                virtual void  AddDependents (CloneSet &pSet, const FbxObject *pObject, const CloneSetElement &pCloneOptions=CloneSetElement(), FbxCriteria pTypes=FbxCriteria::ObjectType(FbxObject::ClassId), int pDepth=sMaximumCloneDepth) const
+                                             Add all dependents of the given object to the CloneSet.
+
+Static Public Member Functions
+
+                          static FbxObject *  Clone (const FbxObject *pObject, FbxObject *pContainer=NULL)
+                                             This function simplifies the process of cloning one object and all its depedency graph by automatically preparing the CloneSet and calling the Clone method using the code below.
+
+Static Public Attributes
+
+                            static const int  sMaximumCloneDepth
+                                             Maximum depth to clone dependents.
+                            static const int  sConnectToOriginal
+                                             Connect to objects that are connected to original object.
+                            static const int  sConnectToClone
+                                             Connect to clones of objects that are connected to original object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxMap<FbxObject*,CloneSetElement,ObjectCompare> CloneSet
+   Search for all occurrences
+
+   The CloneSet is a collection of pointers to objects that will be cloned in Clone() Attached to each object is a CloneSetElement.
+
+   Its member variables dictate how the corresponding object will be cloned, and how it will inherit connections on the original object.
+
+   Definition at line 128 of file fbxclonemanager.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxCloneManager ( )
+
+   Constructor.
+   virtual ~FbxCloneManager ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxObject* Clone ( const FbxObject *  pObject,
+                             FbxObject *        pContainer = NULL
+                           )                    [static]
+   Search for all occurrences
+
+   This function simplifies the process of cloning one object and all its depedency graph by automatically preparing the CloneSet and calling the Clone method using the code below.
+ FbxCloneManager                  cloneManager;
+ FbxCloneManager::CloneSet        cloneSet;
+ FbxCloneManager::CloneSetElement defaultCloneOptions(FbxCloneManager::sConnectToClone,
+                                                      FbxCloneManager::sConnectToOriginal,
+                                                      FbxObject::eDeepClone);
+ FbxObject* lReturnObj = (FbxObject*)pObject;
+
+ cloneManager.AddDependents(cloneSet, pObject, defaultCloneOptions, FbxCriteria::ObjectType(FbxObject::ClassId));
+ cloneSet.Insert((FbxObject*)pObject, defaultCloneOptions);
+
+ // collect all the FbxCharacters, if any (these are indirect dependencies not visible by the AddDependents recursion)
+ FbxArray<FbxObject*> lExtras;
+ FbxCloneManager::CloneSet::RecordType* lIterator = cloneSet.Minimum();
+ while( lIterator )
+ {
+     FbxObject* lObj = lIterator->GetKey();
+     cloneManager.LookForIndirectDependent(lObj, cloneSet, lExtras);
+     lIterator = lIterator->Successor();
+ }
+
+ // and add them to cloneSet
+ for (int i = 0, c = lExtras.GetCount(); i < c; i++)
+ {
+     FbxObject* lObj = lExtras[i];
+     cloneManager.AddDependents(cloneSet, lObj, defaultCloneOptions);
+     cloneSet.Insert(lObj, defaultCloneOptions);
+ }
+
+ // clone everything
+ if (cloneManager.Clone(cloneSet, pContainer))
+ {
+     // get the clone of pObject
+     CloneSet::RecordType* lIterator = cloneSet.Find((FbxObject* const)pObject);
+     if( lIterator )
+     {
+         lReturnObj = lIterator->GetValue().mObjectClone;
+     }
+ }
+ return lReturnObj;
+
+   Parameters:
+
+          pObject    Object to clone.
+          pContainer This object (typically a scene or document) will contain the new clones.
+
+   Returns:
+          The clone of pObject if all its depedency graph have been cloned successfully, NULL otherwise.
+
+   Remarks:
+          It is advised not to use an FbxNode object for pContainer to group the cloned dependency graph. Some objects of the FBX SDK are not meant to be connected to FbxNode objects and if they are, the final scene will not comply to the FBX standard and its behavior cannot be guaranteed.
+          If pContainer is left NULL the cloned objects only exists in the FbxSdkManager and need to be manually connected to the scene in order to be saved to disk.
+
+   Example:
+     FbxObject* lObj2BCloned = ...
+     FbxNode* myNewParent = FbxNode::Create(lNewScene, "Clone");
+     lNewScene->GetRootNode()->AddChild(lN);
+
+     FbxCloneManager cloneManager;
+     FbxNode *lClone = (FbxNode*)cloneManager.Clone(lObj2BCloned);
+
+     // make sure the cloned object is connected to the scene
+     lClone->ConnectDstObject(lNewScene);
+
+   virtual bool Clone ( CloneSet &   pSet,
+                        FbxObject *  pContainer = NULL
+                      )              const [virtual]
+   Search for all occurrences
+
+   Clone all objects in the set using the given policies for duplication of connections.
+
+   Each CloneSetElement in the set will have its mObjectClone pointer set to the newly created clone. The following code shows how to access the cloned objects:
+     if (cloneManager.Clone(cloneSet, pContainer))
+     {
+         // access the clones
+         FbxCloneManager::CloneSet::RecordType* lIterator = cloneSet.Minimum();
+         while( lIterator )
+         {
+             FbxObject* lOriginalObject = lIterator->GetKey();
+             FbxObject* lClonedObject   = lIterator->GetValue().mObjectClone;
+             lIterator = lIterator->Successor();
+         }
+     }
+
+   Parameters:
+
+          pSet       Set of objects to clone
+          pContainer This object (typically a scene or document) will contain the new clones
+
+   Returns:
+          true if all objects were cloned, false otherwise.
+
+   Remarks:
+          It is advised not to use an FbxNode object for pContainer to group the cloned dependency graph. Some objects of the FBX SDK are not meant to be connected to FbxNode objects and if they are, the final scene will not comply to the FBX standard and its behavior cannot be guaranteed.
+          If pContainer is left NULL the cloned objects only exists in the FbxSdkManager and need to be manually connected to the scene in order to be saved to disk.
+
+   virtual void AddDependents ( CloneSet &               pSet,
+                                const FbxObject *        pObject,
+                                const CloneSetElement &  pCloneOptions = CloneSetElement(),
+                                FbxCriteria              pTypes = FbxCriteria::ObjectType(FbxObject::ClassId),
+                                int                      pDepth = sMaximumCloneDepth
+                              )                          const [virtual]
+   Search for all occurrences
+
+   Add all dependents of the given object to the CloneSet.
+
+   Dependents of items already in the set are ignored to prevent infinite recursion on cyclic dependencies.
+
+   Parameters:
+
+          pSet          The set to add items.
+          pObject       Object to add dependents to
+          pCloneOptions
+          pTypes        Types of dependent objects to consider
+          pDepth        Maximum recursive depth. Valid range is [0,sMaximumCloneDepth]
+
+   The following example shows how to perform multiple calls to AddDependents() to collect several subgraphs to be cloned:
+         FbxObject* lRoot = ...           // initialized with the root of the graph to be cloned
+         FbxCharacter* lCharacter = ...   // points to the FbxCharacter driving the character defined by "lRoot" graph
+
+         FbxCloneManager                  cloneManager;
+         FbxCloneManager::CloneSet        cloneSet;
+
+         cloneManager.AddDependents(cloneSet, lRoot);
+         cloneSet.Insert(lRoot, defaultCloneOptions);
+
+         cloneManager.AddDependents(cloneSet, lCharacter);
+         cloneSet.Insert(lCharacter, defaultCloneOptions);
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const int sMaximumCloneDepth [static]
+   Search for all occurrences
+
+   Maximum depth to clone dependents.
+
+   Definition at line 55 of file fbxclonemanager.h.
+   const int sConnectToOriginal [static]
+   Search for all occurrences
+
+   Connect to objects that are connected to original object.
+
+   This is a flag to mSrcPolicy or mExternalDstPolicy.
+
+   Definition at line 60 of file fbxclonemanager.h.
+   const int sConnectToClone [static]
+   Search for all occurrences
+
+   Connect to clones of objects that are connected to original object.
+
+   (only if those original objects are also in the clone set) This is a flag to mSrcPolicy.
+
+   Definition at line 66 of file fbxclonemanager.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxclonemanager.h
+
+   Please send us your comment about this page

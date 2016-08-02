@@ -1,0 +1,288 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxNodeAttribute Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes | Static Public Attributes
+   FbxNodeAttribute Class Reference
+
+   This reference page is linked to from the following overview topics: Your First FBX SDK Program, Nodes and the Scene Graph, Instancing - Sharing a Mesh, FBX Scenes, FBX SDK Object Model, Transformation Data, Managing Memory with the FBX SDK Manager, List of Python Fbx classes, Extracting the Animation Data from a FBX File, FBX Node Attributes, Connections, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxnodeattribute.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class is the base class to all types of node attributes.
+
+   A node attribute is the content of a node. A NULL node attribute is set by calling function FbxNode::SetNodeAttribute() with a NULL pointer.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, MyOwnWriterReader/MyOwnReader.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 29 of file fbxnodeattribute.h.
+   Inheritance diagram for FbxNodeAttribute:
+   [USEMAP:class_fbx_node_attribute.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EType {
+     eUnknown, eNull, eMarker, eSkeleton,
+     eMesh, eNurbs, ePatch, eCamera,
+     eCameraStereo, eCameraSwitcher, eLight, eOpticalReference,
+     eOpticalMarker, eNurbsCurve, eTrimNurbsSurface, eBoundary,
+     eNurbsSurface, eShape, eLODGroup, eSubDiv,
+     eCachedEffect, eLine
+   }
+     Node attribute types. More...
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+     Return the type of node attribute.
+   int  GetNodeCount () const
+     Return the node count using this attribute.
+   FbxNode *  GetNode (int pIndex=0) const
+     Return the node this attribute is set to.
+
+Public Attributes
+
+   FbxPropertyT< FbxDouble3 >  Color
+     This property handles the color.
+
+Static Public Attributes
+
+   static const char *  sColor
+     Property Names.
+   static const FbxDouble3  sDefaultColor
+     Property Default Values.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Node attribute types.
+     * eUnknown
+     * eNull
+     * eMarker
+     * eSkeleton
+     * eMesh
+     * eNurbs
+     * ePatch
+     * eCamera
+     * eCameraStereo,
+     * eCameraSwitcher
+     * eLight
+     * eOpticalReference
+     * eOpticalMarker
+     * eNurbsCurve
+     * eTrimNurbsSurface
+     * eBoundary
+     * eNurbsSurface
+     * eShape
+     * eLODGroup
+     * eSubDiv
+     * eCachedEffect
+     * eLine
+
+   Enumerator:
+
+          eUnknown
+
+   Search for all occurrences
+          eNull
+
+   Search for all occurrences
+          eMarker
+
+   Search for all occurrences
+          eSkeleton
+
+   Search for all occurrences
+          eMesh
+
+   Search for all occurrences
+          eNurbs
+
+   Search for all occurrences
+          ePatch
+
+   Search for all occurrences
+          eCamera
+
+   Search for all occurrences
+          eCameraStereo
+
+   Search for all occurrences
+          eCameraSwitcher
+
+   Search for all occurrences
+          eLight
+
+   Search for all occurrences
+          eOpticalReference
+
+   Search for all occurrences
+          eOpticalMarker
+
+   Search for all occurrences
+          eNurbsCurve
+
+   Search for all occurrences
+          eTrimNurbsSurface
+
+   Search for all occurrences
+          eBoundary
+
+   Search for all occurrences
+          eNurbsSurface
+
+   Search for all occurrences
+          eShape
+
+   Search for all occurrences
+          eLODGroup
+
+   Search for all occurrences
+          eSubDiv
+
+   Search for all occurrences
+          eCachedEffect
+
+   Search for all occurrences
+          eLine
+
+   Search for all occurrences
+
+   Reimplemented in FbxLight, FbxMarker, FbxNurbs, FbxNurbsCurve, FbxNurbsSurface, FbxPatch, and FbxSkeleton.
+
+   Definition at line 70 of file fbxnodeattribute.h.
+    {
+        eUnknown,
+        eNull,
+        eMarker,
+        eSkeleton,
+        eMesh,
+        eNurbs,
+        ePatch,
+        eCamera,
+        eCameraStereo,
+        eCameraSwitcher,
+        eLight,
+        eOpticalReference,
+        eOpticalMarker,
+        eNurbsCurve,
+        eTrimNurbsSurface,
+        eBoundary,
+        eNurbsSurface,
+        eShape,
+        eLODGroup,
+        eSubDiv,
+        eCachedEffect,
+        eLine
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute.
+
+   This class is pure virtual.
+
+   Reimplemented in FbxCachedEffect, FbxCamera, FbxCameraStereo, FbxCameraSwitcher, FbxGeometry, FbxLayerContainer, FbxLine, FbxLODGroup, FbxMarker, FbxMesh, FbxNull, FbxNurbs, FbxNurbsCurve, FbxNurbsSurface, FbxOpticalReference, FbxPatch, FbxSkeleton, FbxBoundary, and FbxTrimNurbsSurface.
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/main.cxx, StereoCamera/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   int GetNodeCount ( ) const
+   Search for all occurrences
+
+   Return the node count using this attribute.
+
+   Returns:
+          The count of nodes with this attribute set.
+
+   Examples:
+          Instances/main.cxx.
+
+   FbxNode* GetNode ( int  pIndex = 0 ) const
+   Search for all occurrences
+
+   Return the node this attribute is set to.
+
+   Parameters:
+
+          pIndex The index of the node to retrieve
+
+   Returns:
+          Pointer to the node, or NULL if the current attribute is not set to a node.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneCache.cxx, and ViewScene/SetCamera.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sColor [static]
+   Search for all occurrences
+
+   Property Names.
+
+   Definition at line 35 of file fbxnodeattribute.h.
+   const FbxDouble3 sDefaultColor [static]
+   Search for all occurrences
+
+   Property Default Values.
+
+   Definition at line 38 of file fbxnodeattribute.h.
+   FbxPropertyT<FbxDouble3> Color
+   Search for all occurrences
+
+   This property handles the color.
+
+   Default value is (0.8, 0.8, 0.8)
+
+   Reimplemented in FbxLight.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayMarker.cxx.
+
+   Definition at line 44 of file fbxnodeattribute.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxnodeattribute.h
+
+   Please send us your comment about this page

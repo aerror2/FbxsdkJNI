@@ -1,0 +1,111 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEventBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Protected Member Functions
+   FbxEventBase Class Reference
+   Search for all occurrences
+
+   #include <fbxevent.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK event base class.
+
+   An event is something that is emitted by an emitter, with the goal of being filled by the listener that listen to it. You can see that like a form that you send to some people. If those people know how to fill the form, they fill it and return it to you with the right information in it. FBX object could be used as emitter, since FbxObject is derived from FbxEmitter. Meanwhile, plug-in could be used as listener, since FbxPlugin is derived from FbxListener. The derived class of FbxEventBase contains
+   a type ID to distinguish different types of events. FBX object can emit different types of FBX events at different conditions.
+
+   The whole process of event is:
+
+          + 1. Create an emitter and a listener, then bind them together via the same event handler.
+          + 2. Emitter can emit an event at certain conditions. The event could be handled by event handler.
+          + 3. Once an event is emitted, the listener to this event will receive a signal.
+          + 4. And then the listener could process the event data according to the types of event, by calling event handler.
+
+   Note:
+          The event data is process by the callback function of event handler. For example, if a certain property of a FBX object is changed, the FBX object(emitter) can emit an event which type is FbxObjectPropertyChanged. The plug-in(listener) who are listening to FbxObjectPropertyChanged, will receive a signal and take action to process the event data.
+
+   See also:
+          FbxEvent FbxEventHandler FbxListener FbxEmitter
+
+   Definition at line 40 of file fbxevent.h.
+   Inheritance diagram for FbxEventBase:
+   [USEMAP:class_fbx_event_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+            virtual int  GetTypeId () const =0
+                         Retrieve the event type ID.
+   virtual const char *  GetEventName () const =0
+                         Force events to give us a name.
+
+Static Protected Member Functions
+
+             static int  GetStaticTypeId (const char *)
+
+Constructor and Destructor
+
+                virtual  ~FbxEventBase ()
+                         Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~FbxEventBase ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual int GetTypeId ( ) const [pure virtual]
+   Search for all occurrences
+
+   Retrieve the event type ID.
+
+   Returns:
+          type id
+
+   Implemented in FbxEvent< T >, FbxEvent< FbxEventPostExport >, FbxEvent< FbxEventPreExport >, FbxEvent< FbxEventReferencedDocument >, FbxEvent< FbxQueryEvent< QueryT > >, FbxEvent< FbxEventPreImport >, and FbxEvent< FbxEventPostImport >.
+   virtual const char* GetEventName ( ) const [pure virtual]
+   Search for all occurrences
+
+   Force events to give us a name.
+
+   Returns:
+          event name
+
+   static int GetStaticTypeId ( const char *  ) [static, protected]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxevent.h
+
+   Please send us your comment about this page

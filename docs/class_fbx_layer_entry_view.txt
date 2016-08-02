@@ -1,0 +1,164 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxLayerEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxlayerentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxLayerEntryView encodes a layer element representation (the index of the layer, the type of the layer element and whether the layer element is a UVSet layer element) to a string stored in FbxBindingTableEntry and decodes the string back to a layer element representation.
+
+   This class is used in combination with FbxBindingTableEntry to represent a source or a destination FbxLayerElement.
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Definition at line 33 of file fbxlayerentryview.h.
+   Inheritance diagram for FbxLayerEntryView:
+   [USEMAP:class_fbx_layer_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxLayerEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                virtual  ~FbxLayerEntryView ()
+                         Destructor.
+                   void  SetLayerElement (int pLayerIndex, FbxLayerElement::EType pType, bool pUVSet)
+                         Set the layer element for the binding entry.
+                   void  GetLayerElement (int &pLayerIndex, FbxLayerElement::EType &pType, bool &pUVSet) const
+                         Get the layer element for binding entry.
+      FbxLayerElement *  GetLayerElement (FbxLayerContainer *pContainer) const
+                         Get the layer element for binding entry.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLayerEntryView ( FbxBindingTableEntry *  pEntry,
+                       bool                    pAsSource,
+                       bool                    pCreate = false
+                     )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   virtual ~FbxLayerEntryView ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetLayerElement ( int                     pLayerIndex,
+                          FbxLayerElement::EType  pType,
+                          bool                    pUVSet
+                        )
+   Search for all occurrences
+
+   Set the layer element for the binding entry.
+
+   Parameters:
+
+          pLayerIndex LayerElement index.
+          pType       LayerElement type.
+          pUVSet      Whether this is a UVSet LayerElement.
+
+   void GetLayerElement ( int &                     pLayerIndex,
+                          FbxLayerElement::EType &  pType,
+                          bool &                    pUVSet
+                        )                           const
+   Search for all occurrences
+
+   Get the layer element for binding entry.
+
+   Parameters:
+
+          pLayerIndex LayerElement index.
+          pType       LayerElement type.
+          pUVSet      Whether this is a UVSet LayerElement.
+
+   FbxLayerElement* GetLayerElement ( FbxLayerContainer *  pContainer ) const
+   Search for all occurrences
+
+   Get the layer element for binding entry.
+
+   Parameters:
+
+          pContainer FbxLayerContainer to get the layer element from.
+
+   Returns:
+          The layer element for binding entry.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxLayerEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxLayerEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Definition at line 40 of file fbxlayerentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxlayerentryview.h
+
+   Please send us your comment about this page

@@ -1,0 +1,661 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConnectionPoint Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Member Functions
+   FbxConnectionPoint Class Reference
+   Search for all occurrences
+
+   #include <fbxconnectionpoint.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 44 of file fbxconnectionpoint.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EDirection {
+     eDirSrc = 1 << 0, eDirDst = 1 << 1, eDirUni = 1 << 2, eDirBoth = eDirSrc | eDirDst,
+     eDirMask = eDirSrc | eDirDst | eDirUni
+   }
+   enum   EType { eStandard = 0, eSubConnection = 1 << 3, eTypeMask = eSubConnection }
+   enum   EAttribute { eDefault = 0, eCache = 1 << 4, eAttributeMask = eCache }
+   enum   EAllocFlag { eNotAllocated = 0, eAllocated = 1 << 5, eAllocFlagMask = eAllocated }
+   enum   ECleanedFlag { eNotCleaned = 0, eCleaned = 1 << 6, eCleanedFlagMask = eCleaned }
+   enum   EEvent {
+     eSrcConnectRequest, eDstConnectRequest, eSrcConnect, eDstConnect,
+     eSrcConnected, eDstConnected, eSrcDisconnect, eDstDisconnect,
+     eSrcDisconnected, eDstDisconnected, eSrcReplaceBegin, eSrcReplaceEnd,
+     eDstReplaceBegin, eDstReplaceEnd, eSrcReorder, eSrcReordered
+   }
+
+Public Member Functions
+
+     FbxConnectionPoint (void *pData=0)
+   virtual  ~FbxConnectionPoint ()
+   void  SetFilter (FbxConnectionPointFilter *pConnectFilter, EType pType=eStandard)
+   void  InternalClear ()
+   void  WipeConnectionList ()
+     Clear the ConnectList without any regards to what is connected.
+   void  Destroy ()
+   void  SubConnectRemoveAll ()
+   FbxConnectionPoint *  GetSubOwnerConnect ()
+   FbxConnectionPointFilter *  GetFilter ()
+   virtual bool  IsInReplace (FbxConnectionPoint *p1, FbxConnectionPoint *p2)
+   void  SetConnectType (EType pType)
+   EType  GetConnectType ()
+   void  SetDirection (int pDirections)
+   EDirection  GetDirection ()
+   void  SetAttribute (int pAttributes)
+   EAttribute  GetAttribute ()
+   void  SetAllocatedFlag (bool pBool)
+   bool  GetAllocatedFlag ()
+   void  SetCleanedFlag (bool pBool)
+   bool  GetCleanedFlag ()
+   bool  IsValidSrc (FbxConnectionPoint *pConnect)
+   bool  IsValidDst (FbxConnectionPoint *pConnect)
+   bool  IsValidSrcConnection (FbxConnectionPoint *pConnect, FbxConnection::EType pConnectionType)
+   bool  IsValidDstConnection (FbxConnectionPoint *pConnect, FbxConnection::EType pConnectionType)
+   bool  RequestValidSrcConnection (FbxConnectionPoint *pConnect, FbxConnection::EType pConnectionType)
+   bool  RequestValidDstConnection (FbxConnectionPoint *pConnect, FbxConnection::EType pConnectionType)
+   bool  ConnectSrc (FbxConnectionPoint *pSrc, FbxConnection::EType pConnectionType=FbxConnection::eNone)
+   bool  ConnectDst (FbxConnectionPoint *pDst, FbxConnection::EType pConnectionType=FbxConnection::eNone)
+   bool  ConnectSrcAt (int pDst_SrcIndex, FbxConnectionPoint *pSrc, FbxConnection::EType pConnectionType=FbxConnection::eNone)
+   bool  ConnectDstAt (int pSrc_DstIndex, FbxConnectionPoint *pDst, FbxConnection::EType pConnectionType=FbxConnection::eNone)
+   bool  DisconnectDst (FbxConnectionPoint *pSrc)
+   bool  DisconnectSrc (FbxConnectionPoint *pSrc)
+   void  DisconnectAllSrc ()
+   void  DisconnectAllDst ()
+   bool  DisconnectDstAt (int pIndex)
+   bool  DisconnectSrcAt (int pIndex)
+   bool  ReplaceInDst (FbxConnectionPoint *pDstOld, FbxConnectionPoint *pDstNew, int pIndexInNew)
+   bool  ReplaceInSrc (FbxConnectionPoint *pSrcOld, FbxConnectionPoint *pSrcNew, int pIndexInNew)
+   bool  ReplaceDstAt (int pIndex, FbxConnectionPoint *pDst)
+   bool  ReplaceSrcAt (int pIndex, FbxConnectionPoint *pSrc)
+   bool  SwapSrc (int pIndexA, int pIndexB)
+   bool  MoveSrcAt (int pIndex, int pAtIndex)
+     Change the position of a source Connect.
+   bool  MoveSrcAt (FbxConnectionPoint *pSrc, FbxConnectionPoint *pAtSrc)
+     Change the position of a source Connect.
+   bool  IsConnectedSrc (FbxConnectionPoint *)
+   bool  IsConnectedDst (FbxConnectionPoint *)
+   bool  IsConnected (FbxConnectionPoint *pConnect)
+   int  GetSrcCount () const
+   FbxConnectionPoint *  GetSrc (int pIndex) const
+   FbxConnection::EType  GetSrcType (int pIndex) const
+   int  GetDstCount () const
+   FbxConnectionPoint *  GetDst (int pIndex) const
+   FbxConnection::EType  GetDstType (int pIndex) const
+   int  FindSrc (FbxConnectionPoint *pConnect)
+   int  FindDst (FbxConnectionPoint *pConnect)
+   int  GetSrcCount (FbxConnectionPointFilter *pFilter)
+   FbxConnectionPoint *  GetSrc (int pIndex, FbxConnectionPointFilter *pFilter)
+   FbxConnection::EType  GetSrcType (int pIndex, FbxConnectionPointFilter *pFilter)
+   int  GetDstCount (FbxConnectionPointFilter *pFilter)
+   FbxConnectionPoint *  GetDst (int pIndex, FbxConnectionPointFilter *pFilter)
+   FbxConnection::EType  GetDstType (int pIndex, FbxConnectionPointFilter *pFilter)
+   void *  GetData ()
+
+Static Public Member Functions
+
+   static bool  ConnectConnect (FbxConnectionPoint *pSrc, FbxConnectionPoint *pDst, FbxConnection::EType pConnectionType)
+   static bool  ConnectAt (FbxConnectionPoint *pSrc, int pSrc_DstIndex, FbxConnectionPoint *pDst, int pDst_SrcIndex, FbxConnection::EType pConnectionType)
+   static bool  DisconnectConnect (FbxConnectionPoint *pSrc, FbxConnectionPoint *pDst)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDirection
+   Search for all occurrences
+
+   Enumerator:
+
+          eDirSrc
+
+   Search for all occurrences
+          eDirDst
+
+   Search for all occurrences
+          eDirUni
+
+   Search for all occurrences
+          eDirBoth
+
+   Search for all occurrences
+          eDirMask
+
+   Search for all occurrences
+
+   Definition at line 47 of file fbxconnectionpoint.h.
+        {
+                eDirSrc = 1 << 0,       // Contains sources
+                eDirDst = 1 << 1,       // Contains destinations
+                eDirUni = 1 << 2,       // Connection is not 2 ways
+                eDirBoth = eDirSrc | eDirDst,
+                eDirMask = eDirSrc | eDirDst | eDirUni
+        };
+
+   enum EType
+   Search for all occurrences
+
+   Enumerator:
+
+          eStandard
+
+   Search for all occurrences
+          eSubConnection
+
+   Search for all occurrences
+          eTypeMask
+
+   Search for all occurrences
+
+   Definition at line 56 of file fbxconnectionpoint.h.
+        {
+                eStandard = 0,
+                eSubConnection = 1 << 3,                // Connect is a sub Connect of another
+                eTypeMask = eSubConnection
+        };
+
+   enum EAttribute
+   Search for all occurrences
+
+   Enumerator:
+
+          eDefault
+
+   Search for all occurrences
+          eCache
+
+   Search for all occurrences
+          eAttributeMask
+
+   Search for all occurrences
+
+   Definition at line 63 of file fbxconnectionpoint.h.
+        {
+                eDefault = 0,
+                eCache = 1 << 4,
+                eAttributeMask = eCache
+        };
+
+   enum EAllocFlag
+   Search for all occurrences
+
+   Enumerator:
+
+          eNotAllocated
+
+   Search for all occurrences
+          eAllocated
+
+   Search for all occurrences
+          eAllocFlagMask
+
+   Search for all occurrences
+
+   Definition at line 70 of file fbxconnectionpoint.h.
+        {
+                eNotAllocated = 0,
+                eAllocated = 1 << 5,
+                eAllocFlagMask = eAllocated
+        };
+
+   enum ECleanedFlag
+   Search for all occurrences
+
+   Enumerator:
+
+          eNotCleaned
+
+   Search for all occurrences
+          eCleaned
+
+   Search for all occurrences
+          eCleanedFlagMask
+
+   Search for all occurrences
+
+   Definition at line 77 of file fbxconnectionpoint.h.
+        {
+                eNotCleaned = 0,
+                eCleaned = 1 << 6,
+                eCleanedFlagMask = eCleaned
+        };
+
+   enum EEvent
+   Search for all occurrences
+
+   Enumerator:
+
+          eSrcConnectRequest
+
+   Search for all occurrences
+          eDstConnectRequest
+
+   Search for all occurrences
+          eSrcConnect
+
+   Search for all occurrences
+          eDstConnect
+
+   Search for all occurrences
+          eSrcConnected
+
+   Search for all occurrences
+          eDstConnected
+
+   Search for all occurrences
+          eSrcDisconnect
+
+   Search for all occurrences
+          eDstDisconnect
+
+   Search for all occurrences
+          eSrcDisconnected
+
+   Search for all occurrences
+          eDstDisconnected
+
+   Search for all occurrences
+          eSrcReplaceBegin
+
+   Search for all occurrences
+          eSrcReplaceEnd
+
+   Search for all occurrences
+          eDstReplaceBegin
+
+   Search for all occurrences
+          eDstReplaceEnd
+
+   Search for all occurrences
+          eSrcReorder
+
+   Search for all occurrences
+          eSrcReordered
+
+   Search for all occurrences
+
+   Definition at line 84 of file fbxconnectionpoint.h.
+        {
+                eSrcConnectRequest,
+                eDstConnectRequest,
+                eSrcConnect,
+                eDstConnect,
+                eSrcConnected,
+                eDstConnected,
+                eSrcDisconnect,
+                eDstDisconnect,
+                eSrcDisconnected,
+                eDstDisconnected,
+                eSrcReplaceBegin,
+                eSrcReplaceEnd,
+                eDstReplaceBegin,
+                eDstReplaceEnd,
+                eSrcReorder,
+                eSrcReordered
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxConnectionPoint ( void *  pData = 0 )
+   virtual ~FbxConnectionPoint ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetFilter ( FbxConnectionPointFilter *  pConnectFilter,
+                    EType                       pType = eStandard
+                  )
+   Search for all occurrences
+   void InternalClear ( )
+   Search for all occurrences
+   void WipeConnectionList ( )
+   Search for all occurrences
+
+   Clear the ConnectList without any regards to what is connected.
+   void Destroy ( )
+   Search for all occurrences
+   void SubConnectRemoveAll ( )
+   Search for all occurrences
+   FbxConnectionPoint* GetSubOwnerConnect ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 116 of file fbxconnectionpoint.h.
+{ return GetConnectType() == eSubConnection ? mOwner : NULL; }
+
+   FbxConnectionPointFilter* GetFilter ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 117 of file fbxconnectionpoint.h.
+{ return mFilter; }
+
+   virtual bool IsInReplace ( FbxConnectionPoint *  p1,
+                              FbxConnectionPoint *  p2
+                            )                       [virtual]
+   Search for all occurrences
+   void SetConnectType ( EType  pType ) [inline]
+   Search for all occurrences
+
+   Definition at line 121 of file fbxconnectionpoint.h.
+{ mFlags = (mFlags & ~eTypeMask) | pType; }
+
+   EType GetConnectType ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 122 of file fbxconnectionpoint.h.
+{ return EType(mFlags & eTypeMask); }
+
+   void SetDirection ( int  pDirections ) [inline]
+   Search for all occurrences
+
+   Definition at line 123 of file fbxconnectionpoint.h.
+{ mFlags = (mFlags & ~eDirMask) | pDirections; }
+
+   EDirection GetDirection ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 124 of file fbxconnectionpoint.h.
+{ return EDirection(mFlags & eDirMask); }
+
+   void SetAttribute ( int  pAttributes ) [inline]
+   Search for all occurrences
+
+   Definition at line 125 of file fbxconnectionpoint.h.
+{ mFlags = (mFlags & ~eAttributeMask) | pAttributes; }
+
+   EAttribute GetAttribute ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 126 of file fbxconnectionpoint.h.
+{ return EAttribute(mFlags & eAttributeMask); }
+
+   void SetAllocatedFlag ( bool  pBool ) [inline]
+   Search for all occurrences
+
+   Definition at line 127 of file fbxconnectionpoint.h.
+{ mFlags = ( pBool ) ? mFlags | eAllocated : mFlags & ~eAllocFlagMask; }
+
+   bool GetAllocatedFlag ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 128 of file fbxconnectionpoint.h.
+{ return ( mFlags & eAllocFlagMask ) ? true : false; }
+
+   void SetCleanedFlag ( bool  pBool ) [inline]
+   Search for all occurrences
+
+   Definition at line 129 of file fbxconnectionpoint.h.
+{ mFlags = ( pBool ) ? mFlags | eCleaned : mFlags & ~eCleanedFlagMask; }
+
+   bool GetCleanedFlag ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 130 of file fbxconnectionpoint.h.
+{ return ( mFlags & eCleanedFlagMask ) ? true : false; }
+
+   bool IsValidSrc ( FbxConnectionPoint *  pConnect )
+   Search for all occurrences
+   bool IsValidDst ( FbxConnectionPoint *  pConnect )
+   Search for all occurrences
+   bool IsValidSrcConnection ( FbxConnectionPoint *  pConnect,
+                               FbxConnection::EType  pConnectionType
+                             )
+   Search for all occurrences
+   bool IsValidDstConnection ( FbxConnectionPoint *  pConnect,
+                               FbxConnection::EType  pConnectionType
+                             )
+   Search for all occurrences
+   bool RequestValidSrcConnection ( FbxConnectionPoint *  pConnect,
+                                    FbxConnection::EType  pConnectionType
+                                  )
+   Search for all occurrences
+   bool RequestValidDstConnection ( FbxConnectionPoint *  pConnect,
+                                    FbxConnection::EType  pConnectionType
+                                  )
+   Search for all occurrences
+   bool ConnectSrc ( FbxConnectionPoint *  pSrc,
+                     FbxConnection::EType  pConnectionType = FbxConnection::eNone
+                   )
+   Search for all occurrences
+   bool ConnectDst ( FbxConnectionPoint *  pDst,
+                     FbxConnection::EType  pConnectionType = FbxConnection::eNone
+                   )
+   Search for all occurrences
+   bool ConnectSrcAt ( int                   pDst_SrcIndex,
+                       FbxConnectionPoint *  pSrc,
+                       FbxConnection::EType  pConnectionType = FbxConnection::eNone
+                     )
+   Search for all occurrences
+   bool ConnectDstAt ( int                   pSrc_DstIndex,
+                       FbxConnectionPoint *  pDst,
+                       FbxConnection::EType  pConnectionType = FbxConnection::eNone
+                     )
+   Search for all occurrences
+   static bool ConnectConnect ( FbxConnectionPoint *  pSrc,
+                                FbxConnectionPoint *  pDst,
+                                FbxConnection::EType  pConnectionType
+                              )                       [static]
+   Search for all occurrences
+   static bool ConnectAt ( FbxConnectionPoint *  pSrc,
+                           int                   pSrc_DstIndex,
+                           FbxConnectionPoint *  pDst,
+                           int                   pDst_SrcIndex,
+                           FbxConnection::EType  pConnectionType
+                         )                       [static]
+   Search for all occurrences
+   bool DisconnectDst ( FbxConnectionPoint *  pSrc )
+   Search for all occurrences
+   bool DisconnectSrc ( FbxConnectionPoint *  pSrc )
+   Search for all occurrences
+   void DisconnectAllSrc ( )
+   Search for all occurrences
+   void DisconnectAllDst ( )
+   Search for all occurrences
+   static bool DisconnectConnect ( FbxConnectionPoint *  pSrc,
+                                   FbxConnectionPoint *  pDst
+                                 )                       [static]
+   Search for all occurrences
+   bool DisconnectDstAt ( int  pIndex )
+   Search for all occurrences
+   bool DisconnectSrcAt ( int  pIndex )
+   Search for all occurrences
+   bool ReplaceInDst ( FbxConnectionPoint *  pDstOld,
+                       FbxConnectionPoint *  pDstNew,
+                       int                   pIndexInNew
+                     )
+   Search for all occurrences
+   bool ReplaceInSrc ( FbxConnectionPoint *  pSrcOld,
+                       FbxConnectionPoint *  pSrcNew,
+                       int                   pIndexInNew
+                     )
+   Search for all occurrences
+   bool ReplaceDstAt ( int                   pIndex,
+                       FbxConnectionPoint *  pDst
+                     )
+   Search for all occurrences
+   bool ReplaceSrcAt ( int                   pIndex,
+                       FbxConnectionPoint *  pSrc
+                     )
+   Search for all occurrences
+   bool SwapSrc ( int  pIndexA,
+                  int  pIndexB
+                )
+   Search for all occurrences
+   bool MoveSrcAt ( int  pIndex,
+                    int  pAtIndex
+                  )
+   Search for all occurrences
+
+   Change the position of a source Connect.
+
+   Parameters:
+
+          pIndex   Position of the Connect to move.
+          pAtIndex Position where to move the Connect.
+
+   Returns:
+          True if the Connect was moved.
+
+   Remarks:
+          After the move, the Connect will be precisely at position pAtIndex.
+
+   bool MoveSrcAt ( FbxConnectionPoint *  pSrc,
+                    FbxConnectionPoint *  pAtSrc
+                  )
+   Search for all occurrences
+
+   Change the position of a source Connect.
+
+   Parameters:
+
+          pSrc   Connect to move.
+          pAtSrc Connect at which position to move.
+
+   Returns:
+          True if the Connect was moved.
+
+   Remarks:
+          After the move, the Connect will be precisely at the position where pAtSrc was before the move.
+
+   bool IsConnectedSrc ( FbxConnectionPoint *  )
+   Search for all occurrences
+   bool IsConnectedDst ( FbxConnectionPoint *  )
+   Search for all occurrences
+   bool IsConnected ( FbxConnectionPoint *  pConnect ) [inline]
+   Search for all occurrences
+
+   Definition at line 179 of file fbxconnectionpoint.h.
+{ return IsConnectedSrc(pConnect) || IsConnectedDst(pConnect); }
+
+   int GetSrcCount ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 181 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetSrcCount(); }
+
+   FbxConnectionPoint* GetSrc ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Definition at line 182 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetSrc(pIndex);}
+
+   FbxConnection::EType GetSrcType ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Definition at line 183 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetSrcType(pIndex);}
+
+   int GetDstCount ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 184 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetDstCount(); }
+
+   FbxConnectionPoint* GetDst ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Definition at line 185 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetDst(pIndex);}
+
+   FbxConnection::EType GetDstType ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Definition at line 186 of file fbxconnectionpoint.h.
+{ return mConnectionList.GetDstType(pIndex);}
+
+   int FindSrc ( FbxConnectionPoint *  pConnect ) [inline]
+   Search for all occurrences
+
+   Definition at line 188 of file fbxconnectionpoint.h.
+{ return mConnectionList.FindSrc(pConnect); }
+
+   int FindDst ( FbxConnectionPoint *  pConnect ) [inline]
+   Search for all occurrences
+
+   Definition at line 189 of file fbxconnectionpoint.h.
+{ return mConnectionList.FindDst(pConnect); }
+
+   int GetSrcCount ( FbxConnectionPointFilter *  pFilter ) [inline]
+   Search for all occurrences
+
+   Definition at line 192 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetSrcCount() : GetSrcCount(); }
+
+   FbxConnectionPoint* GetSrc ( int                         pIndex,
+                                FbxConnectionPointFilter *  pFilter
+                              )                             [inline]
+   Search for all occurrences
+
+   Definition at line 193 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetSrc(pIndex) : GetSrc(pIndex); }
+
+   FbxConnection::EType GetSrcType ( int                         pIndex,
+                                     FbxConnectionPointFilter *  pFilter
+                                   )                             [inline]
+   Search for all occurrences
+
+   Definition at line 194 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetSrcType(pIndex) : GetSrcType(pIndex); }
+
+   int GetDstCount ( FbxConnectionPointFilter *  pFilter ) [inline]
+   Search for all occurrences
+
+   Definition at line 195 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetDstCount() : GetDstCount(); }
+
+   FbxConnectionPoint* GetDst ( int                         pIndex,
+                                FbxConnectionPointFilter *  pFilter
+                              )                             [inline]
+   Search for all occurrences
+
+   Definition at line 196 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetDst(pIndex): GetDst(pIndex); }
+
+   FbxConnection::EType GetDstType ( int                         pIndex,
+                                     FbxConnectionPointFilter *  pFilter
+                                   )                             [inline]
+   Search for all occurrences
+
+   Definition at line 197 of file fbxconnectionpoint.h.
+{ return (pFilter) ? SubConnectGetOrCreate(pFilter)->GetDstType(pIndex) : GetDstType(pIndex); }
+
+   void* GetData ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 199 of file fbxconnectionpoint.h.
+{ return mData; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxconnectionpoint.h
+
+   Please send us your comment about this page

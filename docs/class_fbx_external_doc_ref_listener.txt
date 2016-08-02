@@ -1,0 +1,177 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxExternalDocRefListener Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Member Functions
+   FbxExternalDocRefListener Class Reference
+   Search for all occurrences
+
+   #include <fbxexternaldocreflistener.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Typical handler for the referenced document events.
+
+   Register it like so: FbxExternalDocRefListener lRefDocListener( sdkManager, fileName ); FbxEventHandler * lHandler = lRefDocListener.Bind(scene, &FbxExternalDocRefListener::HandleEvent);
+
+   And later unregister it like so: lRefDocListener.Unbind(lHandler);
+
+   Definition at line 56 of file fbxexternaldocreflistener.h.
+   Inheritance diagram for FbxExternalDocRefListener:
+   [USEMAP:class_fbx_external_doc_ref_listener.png]
+
+   List of all members.
+
+Public Member Functions
+
+                          FbxExternalDocRefListener (FbxManager &pManager, const FbxString &pDocFilePath)
+                          Constructor.
+                 virtual  ~FbxExternalDocRefListener ()
+            virtual void  SetDocumentFilePath (const FbxString &pDocFilePath)
+                          Set the document file path used to resolve documents.
+            virtual bool  AreAllExternalDocumentsStillValid () const
+                          Verify that all documents that were previously loaded in a previous load session are still valid.
+            virtual bool  WereAllExternalDocumentsValid () const
+                          Verify that all documents that were referred to didn't change.
+            virtual void  UnloadExternalDocuments ()
+                          Unload all documents that were loaded through this event handler.
+            virtual void  HandleEvent (const FbxEventReferencedDocument *pEvent)
+                          External document reference event handler.
+
+Protected Member Functions
+
+       virtual FbxString  MakeFilenameAbsolute (const FbxString &pFilename) const
+                          Turn a relative path to an absolute path using the file path of the original document being loaded.
+   virtual FbxDocument *  FindDocument (const FbxString &pPathToDoc)
+                          Locate a document by its document path.
+   virtual FbxDocument *  LoadDocument (FbxObject *pParent, const FbxString &pClassName, const FbxString &pFilename)
+                          Load a library, potentially under another library.
+            virtual bool  ConnectToParentLibrary (const FbxExternalDocumentInfo &)
+                          Try to connect a library to its parent given its document path.
+            virtual void  TryConnectingDanglingLibraries ()
+                          Try to reconnect dangling libraries that didn't find their parent.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxExternalDocRefListener ( FbxManager &       pManager,
+                               const FbxString &  pDocFilePath
+                             )
+
+   Constructor.
+
+   Parameters:
+
+          pManager
+          pDocFilePath
+
+   Remarks:
+          Keep a reference to the SDK and the path of the document to be able to resolve relative paths.
+
+   virtual ~FbxExternalDocRefListener ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void SetDocumentFilePath ( const FbxString &  pDocFilePath ) [virtual]
+   Search for all occurrences
+
+   Set the document file path used to resolve documents.
+
+   Parameters:
+
+          pDocFilePath
+
+   Remarks:
+          Allows re-using the same instance for multiple document loadings.
+
+   virtual bool AreAllExternalDocumentsStillValid ( ) const [virtual]
+   Search for all occurrences
+
+   Verify that all documents that were previously loaded in a previous load session are still valid.
+
+   Returns:
+          true if all documents are still valid, false otherwise.
+
+   virtual bool WereAllExternalDocumentsValid ( ) const [virtual]
+   Search for all occurrences
+
+   Verify that all documents that were referred to didn't change.
+
+   Returns:
+          true if all documents didn't change, false otherwise.
+
+   Remarks:
+          This function should be called if at posteriori check is desired.
+
+   virtual void UnloadExternalDocuments ( ) [virtual]
+   Search for all occurrences
+
+   Unload all documents that were loaded through this event handler.
+   virtual void HandleEvent ( const FbxEventReferencedDocument *  pEvent ) [virtual]
+   Search for all occurrences
+
+   External document reference event handler.
+
+   Parameters:
+
+          pEvent
+
+   Remarks:
+          Operation: calls FindDocument() to find the specified external document and if not found calls LoadDocument() either directly, if it has not parent, or via ConnectToParentLibrary(). If its parent cannot be found, it's added to the dangling document list (and it is not loaded until it's parent is found). After, it tries to resolve dangling documents by calling TryConnectingDanglingLibraries().
+
+   virtual FbxString MakeFilenameAbsolute ( const FbxString &  pFilename ) const [protected, virtual]
+   Search for all occurrences
+
+   Turn a relative path to an absolute path using the file path of the original document being loaded.
+
+   If the path is already is absolute, it is returned as is.
+   virtual FbxDocument* FindDocument ( const FbxString &  pPathToDoc ) [protected, virtual]
+   Search for all occurrences
+
+   Locate a document by its document path.
+   virtual FbxDocument* LoadDocument ( FbxObject *        pParent,
+                                       const FbxString &  pClassName,
+                                       const FbxString &  pFilename
+                                     )                    [protected, virtual]
+   Search for all occurrences
+
+   Load a library, potentially under another library.
+   virtual bool ConnectToParentLibrary ( const FbxExternalDocumentInfo &  ) [protected, virtual]
+   Search for all occurrences
+
+   Try to connect a library to its parent given its document path.
+   virtual void TryConnectingDanglingLibraries ( ) [protected, virtual]
+   Search for all occurrences
+
+   Try to reconnect dangling libraries that didn't find their parent.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxexternaldocreflistener.h
+
+   Please send us your comment about this page

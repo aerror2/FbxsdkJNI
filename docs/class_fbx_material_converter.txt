@@ -1,0 +1,114 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMaterialConverter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxMaterialConverter Class Reference
+   Search for all occurrences
+
+   #include <fbxmaterialconverter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class provides functions to restructure the material and textures applied to geometries from FBX v5 material system to v6-and-up or the other way around.
+
+   See also:
+          FbxSurfaceMaterial, FbxTexture
+
+   Definition at line 31 of file fbxmaterialconverter.h.
+
+   List of all members.
+
+Public Member Functions
+
+         FbxMaterialConverter (FbxManager &mManager, FbxSurfaceMaterial *pDefaultMaterial=NULL)
+         ~FbxMaterialConverter ()
+   bool  ConnectTexturesToMaterials (FbxScene &pScene)
+         Moves textures in texture layer elements to connections on the corresponding material's color properties, for all geometries in the scene.
+   bool  ConnectTexturesToMaterials (FbxNode *pNode)
+         Moves textures in texture layer elements to connections on the corresponding material's color properties, for the given geometry in the scene.
+   bool  AssignTexturesToLayerElements (FbxScene &pScene)
+         This is the reverse operation of ConnectTexturesToMaterials() Textures connected to Materials' color properties are stored in layer elements, and their connections to the color properties are broken.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxMaterialConverter ( FbxManager &          mManager,
+                          FbxSurfaceMaterial *  pDefaultMaterial = NULL
+                        )
+   ~FbxMaterialConverter ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool ConnectTexturesToMaterials ( FbxScene &  pScene )
+   Search for all occurrences
+
+   Moves textures in texture layer elements to connections on the corresponding material's color properties, for all geometries in the scene.
+
+   (Convert scene from FBX v5 material system to v6-and-up)
+
+   Parameters:
+
+          pScene The scene whose geometries should be converted.
+
+   Returns:
+          true on success, false otherwise
+
+   bool ConnectTexturesToMaterials ( FbxNode *  pNode )
+   Search for all occurrences
+
+   Moves textures in texture layer elements to connections on the corresponding material's color properties, for the given geometry in the scene.
+
+   (Convert scene from FBX v5 material system to v6-and-up)
+
+   Parameters:
+
+          pNode The geometry node to be converted.
+
+   Returns:
+          true on success, false otherwise
+
+   bool AssignTexturesToLayerElements ( FbxScene &  pScene )
+   Search for all occurrences
+
+   This is the reverse operation of ConnectTexturesToMaterials() Textures connected to Materials' color properties are stored in layer elements, and their connections to the color properties are broken.
+
+   (Convert scene from FBX v6-and-up material system to v5)
+
+   Parameters:
+
+          pScene The scene whose geometries should be converted.
+
+   Returns:
+          true if all geometries were converted, false otherwise
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxmaterialconverter.h
+
+   Please send us your comment about this page

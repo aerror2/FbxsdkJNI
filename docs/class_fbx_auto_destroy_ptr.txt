@@ -1,0 +1,67 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAutoDestroyPtr< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAutoDestroyPtr< Type > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxalloc.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxAutoDestroyPtr< Type >
+
+   Scoped pointer for FbxObject derived classes, which call Destroy() to deallocate.
+
+   Definition at line 267 of file fbxalloc.h.
+   Inheritance diagram for FbxAutoDestroyPtr< Type >:
+   [USEMAP:class_fbx_auto_destroy_ptr.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FbxAutoDestroyPtr (Type *pPtr=0)
+     Construct from a pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAutoDestroyPtr ( Type *  pPtr = 0 ) [inline, explicit]
+
+   Construct from a pointer.
+
+   Definition at line 271 of file fbxalloc.h.
+: FbxAutoPtr<Type, FbxDeletionPolicyObject<Type> >(pPtr){}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxalloc.h
+
+   Please send us your comment about this page

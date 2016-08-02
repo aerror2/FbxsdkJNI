@@ -1,0 +1,90 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxExternalDocumentInfo Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxExternalDocumentInfo Struct Reference
+   Search for all occurrences
+
+   #include <fbxexternaldocreflistener.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Contains data about an external document.
+
+   The document is a FbxDocument object.
+
+   Definition at line 25 of file fbxexternaldocreflistener.h.
+   Inheritance diagram for FbxExternalDocumentInfo:
+   [USEMAP:struct_fbx_external_document_info.png]
+
+   List of all members.
+
+Public Attributes
+
+   FbxString  mDocumentName
+              Bare name of external document in document hierarchy.
+   FbxString  mClassName
+              Class name of the document (FbxDocument, FbxLibrary...).
+   FbxString  mParentFullName
+              Full name of the parent document in document hierarchy.
+   FbxString  mFilePathUrl
+              File path of the external document.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mDocumentName
+   Search for all occurrences
+
+   Bare name of external document in document hierarchy.
+
+   Definition at line 27 of file fbxexternaldocreflistener.h.
+   FbxString mClassName
+   Search for all occurrences
+
+   Class name of the document (FbxDocument, FbxLibrary...).
+
+   Definition at line 28 of file fbxexternaldocreflistener.h.
+   FbxString mParentFullName
+   Search for all occurrences
+
+   Full name of the parent document in document hierarchy.
+
+   Definition at line 29 of file fbxexternaldocreflistener.h.
+   FbxString mFilePathUrl
+   Search for all occurrences
+
+   File path of the external document.
+
+   Definition at line 30 of file fbxexternaldocreflistener.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/fbxexternaldocreflistener.h
+
+   Please send us your comment about this page

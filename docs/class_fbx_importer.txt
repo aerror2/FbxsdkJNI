@@ -1,0 +1,498 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxImporter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxImporter Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, Your First FBX SDK Program, Importing a Scene, Customizing File Formats with FBX SDK I/O Plug-ins, FBX SDK Object Model, FBX Objects, Merging Two Scenes, Importing and Exporting a Scene, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbximporter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class to import an FBX file into SDK objects.
+
+   Normally this class is used as is. But for very special needs a user can override Initialize() for special purpose.
+
+   An importer will select the appropriate reader to a particular file. Ex: When an importer must import an FBX 7 file, the importer will ask for all registered readers if an FBX 7 file reader is available, then if a reader is found, the importer will create the specialized FBX 7 reader and read the file. This way, an importer can "read" many different type of files like FBX 5/6/7, 3DS, Obj, Dxf, Collada, etc.
+
+   See also:
+          FbxReader
+
+   Typical workflow for using the FbxImporter class:
+    1. create a SDKManager
+    2. create an IOSettings object
+    3. create an empty scene
+    4. create an importer
+    5. initialize the importer with a file name and IOSettings
+    6. set numerous states, take information, defining how the importer will behave
+    7. call FbxImporter::Import() with an empty scene
+ ex:
+ // create a SdkManager
+ FbxManager *lSdkManager = FbxManager::Create();
+
+ // create an IOSettings object
+ FbxIOSettings * ios = FbxIOSettings::Create(lSdkManager, IOSROOT );
+
+ // set some IOSettings options
+ ios->SetBoolProp(IMP_FBX_MATERIAL, true);
+ ios->SetBoolProp(IMP_FBX_TEXTURE,  true);
+
+ // create an empty scene
+ FbxScene* lScene = FbxScene::Create(lSdkManager,"");
+
+ // Create an importer.
+ FbxImporter* lImporter = FbxImporter::Create(lSdkManager, "");
+
+ // Initialize the importer by providing a filename and the IOSettings to use
+ lImporter->Initialize("C:\\myfile.fbx", -1, ios);
+
+ // Import the scene.
+ lImporter->Import(lScene);
+
+ // Destroy the importer.
+ lImporter->Destroy();
+
+   Remarks:
+          According to the file suffix, a specialized reader will be created internally. Ex: for .fbx files a FBX Reader, for .3ds files, a 3ds reader, etc. Supported files formats: FBX 5/6/7 Binary & ASCII, Collada, DXF, OBJ, 3DS
+
+   Examples:
+          Common/Common.cxx, ExportScene05/main.cxx, FileStream/main.cxx, MyOwnWriterReader/MyOwnWriterReader.cxx, MyOwnWriterReader/MyOwnWriterReader.h, UI_Examples/Common/ImportExport.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, and ViewScene/SceneContext.h.
+
+   Definition at line 90 of file fbximporter.h.
+   Inheritance diagram for FbxImporter:
+   [USEMAP:class_fbx_importer.png]
+
+   List of all members.
+
+Import Functions
+
+                   enum   EStreamOptionsGeneration { eParseFile, eDoNotParseFile }
+                          Stream options identifiers. More...
+            virtual bool  Initialize (const char *pFileName, int pFileFormat=-1, FbxIOSettings *pIOSettings=NULL)
+                          Initialize object.
+            virtual bool  Initialize (FbxStream *pStream, void *pStreamData=NULL, const int pFileFormat=-1, FbxIOSettings *pIOSettings=NULL)
+                          Initialize object.
+                    void  GetFileVersion (int &pMajor, int &pMinor, int &pRevision)
+                          Get the FBX version number of the FBX file.
+                    bool  GetDefaultRenderResolution (FbxString &pCamName, FbxString &pResolutionMode, double &pW, double &pH)
+                          Get the default rendering resolution if present in the file header.
+   FbxIOFileHeaderInfo *  GetFileHeaderInfo ()
+                          Get the complete file header information.
+                    bool  GetImportOptions (EStreamOptionsGeneration pStreamOptionsGeneration=eParseFile)
+                          Read the currently opened file header to retrieve information related to takes.
+                    bool  GetImportOptions (FbxIO *pFbxObject)
+                          Read the currently opened file header to retrieve information related to takes.
+                    bool  Import (FbxDocument *pDocument, bool pNonBlocking=false)
+                          Import the currently opened file into a scene.
+                    bool  IsImporting (bool &pImportResult)
+                          Check if the importer is currently importing.
+                   float  GetProgress (FbxString *pStatus=NULL)
+                          Get the progress status in non-blocking mode.
+                    void  SetProgressCallback (FbxProgressCallback pCallback, void *pArgs=NULL)
+                          Register a callback function for progress reporting in single thread mode.
+                    void  SetEmbeddingExtractionFolder (const char *pExtractFolder)
+                          Explicitly set the embedding extraction folder.
+            const char *  GetEmbeddingExtractionFolder ()
+                          Retrieve the current folder destination where the embedded files will be extracted.
+         FbxIOSettings *  GetIOSettings ()
+                          Access to a IOSettings object.
+                    void  SetIOSettings (FbxIOSettings *pIOSettings)
+                          Set the IOSettings pointer.
+//                    void  SetPassword (char *pPassword)
+ //                         Set the password.
+
+Animation Stack Description Access
+
+   See also:
+          FbxAnimStack
+
+                     int  GetAnimStackCount ()
+                          Get the number of available animation stacks in the file.
+           FbxTakeInfo *  GetTakeInfo (int pIndex)
+                          Get the take information about an available take.
+               FbxString  GetActiveAnimStackName ()
+                          Return the active animation stack name.
+
+Scene Description Access
+
+       FbxDocumentInfo *  GetSceneInfo ()
+                          Get the scene info.
+
+File Format
+
+                     int  GetFileFormat ()
+                          Returns the index of the reader (FbxReader) associated with the file format.
+                    bool  IsFBX ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EStreamOptionsGeneration
+   Search for all occurrences
+
+   Stream options identifiers.
+     * eParseFile Parse the file
+     * eDoNotParseFile Do not parse the file.
+
+   Enumerator:
+
+          eParseFile
+
+   Search for all occurrences
+          eDoNotParseFile
+
+   Search for all occurrences
+
+   Definition at line 153 of file fbximporter.h.
+        {
+                eParseFile,             // Parse the file
+                eDoNotParseFile // Do not parse the file (fast)
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Initialize ( const char *     pFileName,
+                             int              pFileFormat = -1,
+                             FbxIOSettings *  pIOSettings = NULL
+                           )                  [virtual]
+   Search for all occurrences
+
+   Initialize object.
+
+   Parameters:
+
+          pFileName   Name of file to access.
+          pFileFormat file format identifier User does not need to specify it by default. if not specified, plugin will detect the file format according to file suffix automatically.
+          pIOSettings client IOSettings, if not specified, a default IOSettings will be created
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function.
+          You do not need to give the pFileFormat if the suffix of pFileName is recognized
+
+   Reimplemented from FbxIOBase.
+
+   Examples:
+          Common/Common.cxx, ExportScene05/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   virtual bool Initialize ( FbxStream *      pStream,
+                             void *           pStreamData = NULL,
+                             const int        pFileFormat = -1,
+                             FbxIOSettings *  pIOSettings = NULL
+                           )                  [virtual]
+   Search for all occurrences
+
+   Initialize object.
+
+   Parameters:
+
+          pStream     stream to access.
+          pStreamData user-defined stream data.
+          pFileFormat file format identifier User does not need to specify it by default. if not specified, plugin will request the file format from the stream automatically.
+          pIOSettings client IOSettings, if not specified, a default IOSettings will be created
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function.
+          You do not need to give the pFileFormat if the suffix of pFileName is recognized
+
+   void GetFileVersion ( int &  pMajor,
+                         int &  pMinor,
+                         int &  pRevision
+                       )
+   Search for all occurrences
+
+   Get the FBX version number of the FBX file.
+
+   FBX version numbers start at 5.0.0.
+
+   Parameters:
+
+          pMajor    Version major number.
+          pMinor    Version minor number.
+          pRevision Version revision number.
+
+   Remarks:
+          This function must be called after FbxImporter::Initialize().
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   bool GetDefaultRenderResolution ( FbxString &  pCamName,
+                                     FbxString &  pResolutionMode,
+                                     double &     pW,
+                                     double &     pH
+                                   )
+   Search for all occurrences
+
+   Get the default rendering resolution if present in the file header.
+
+   Parameters:
+
+          pCamName        Returned name of the camera.
+          pResolutionMode Returned resolution mode.
+          pW              Returned width.
+          pH              Returned height.
+
+   Returns:
+          true if the default rendering settings are defined in the file, otherwise returns false with empty parameters.
+
+   FbxIOFileHeaderInfo* GetFileHeaderInfo ( )
+   Search for all occurrences
+
+   Get the complete file header information.
+
+   Returns:
+          valid pointer to the complete header information
+
+   bool GetImportOptions ( EStreamOptionsGeneration  pStreamOptionsGeneration = eParseFile )
+   Search for all occurrences
+
+   Read the currently opened file header to retrieve information related to takes.
+
+   Parameters:
+
+          pStreamOptionsGeneration Stream options identifier.
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          Caller gets ownership of the returned structure.
+
+   bool GetImportOptions ( FbxIO *  pFbxObject )
+   Search for all occurrences
+
+   Read the currently opened file header to retrieve information related to takes.
+
+   Parameters:
+
+          pFbxObject Target FBX file.
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          Caller gets ownership of the returned structure.
+
+   bool Import ( FbxDocument *  pDocument,
+                 bool           pNonBlocking = false
+               )
+   Search for all occurrences
+
+   Import the currently opened file into a scene.
+
+   Parameters:
+
+          pDocument    Document to fill with file content.
+          pNonBlocking If true, the import process will be executed in a new thread, allowing it to be non-blocking. To determine if the import finished, refer to the function IsImporting().
+
+   Returns:
+          true on success, false otherwise.
+
+   Remarks:
+          To identify the error that occurred, inspect the status object accessed using the GetStatus() function. If the imported file is password protected and the password is not set or wrong, the FbxStatus object access with GetStatus() will be set with FbxStatus::ePasswordError.
+
+   Examples:
+          Common/Common.cxx, ExportScene05/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   bool IsImporting ( bool &  pImportResult )
+   Search for all occurrences
+
+   Check if the importer is currently importing.
+
+   Parameters:
+
+          pImportResult This parameter, after the import finished, will contain the result of the import success or failure.
+
+   Returns:
+          Return true if the importer is currently importing.
+
+   Remarks:
+          This function will always return false if Import() was called with pNonBlocking set to false. This function should be used only in the context of pNonBlocking set to true. It is very important to periodically check if the import finished using this function, since it will also free up the thread's allocations when its done.
+
+   float GetProgress ( FbxString *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the progress status in non-blocking mode.
+
+   Parameters:
+
+          pStatus Optional current status string.
+
+   Returns:
+          Percentage of the finished workload
+
+   void SetProgressCallback ( FbxProgressCallback  pCallback,
+                              void *               pArgs = NULL
+                            )
+   Search for all occurrences
+
+   Register a callback function for progress reporting in single thread mode.
+
+   Parameters:
+
+          pCallback Pointer of the callback function.
+          pArgs     pointer to the arguments passed to the callback function.
+
+   void SetEmbeddingExtractionFolder ( const char *  pExtractFolder )
+   Search for all occurrences
+
+   Explicitly set the embedding extraction folder.
+
+   If this is never called, the FBX SDK will determine the best folder to extract embedded files.
+
+   Parameters:
+
+          pExtractFolder The file path name where the embedded files should be extracted.
+
+   const char* GetEmbeddingExtractionFolder ( )
+   Search for all occurrences
+
+   Retrieve the current folder destination where the embedded files will be extracted.
+
+   This might not be initialized until file I/O is performed.
+   FbxIOSettings* GetIOSettings ( )
+   Search for all occurrences
+
+   Access to a IOSettings object.
+
+   Returns:
+          The pointer to IOSettings or NULL if the object has not been allocated.
+
+   void SetIOSettings ( FbxIOSettings *  pIOSettings )
+   Search for all occurrences
+
+   Set the IOSettings pointer.
+
+   Parameters:
+
+          pIOSettings Point to a FbxIOSettings object.
+
+   void SetPassword ( char *  pPassword )
+   Search for all occurrences
+
+   Set the password.
+
+   All subsequently imported files are opened with the given password.
+
+   Parameters:
+
+          pPassword Password string.
+
+   int GetAnimStackCount ( )
+   Search for all occurrences
+
+   Get the number of available animation stacks in the file.
+
+   Returns:
+          Number of animation stacks.
+
+   Remarks:
+          This function must be called after FbxImporter::Initialize().
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   FbxTakeInfo* GetTakeInfo ( int  pIndex )
+   Search for all occurrences
+
+   Get the take information about an available take.
+
+   Use the returned reference to a FbxTakeInfo object to set whether the indexed take is imported.
+
+   Parameters:
+
+          pIndex Index of the requested take.
+
+   Returns:
+          Take information or NULL if function failed.
+
+   Remarks:
+          This function must be called after FbxImporter::Initialize().
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   FbxString GetActiveAnimStackName ( )
+   Search for all occurrences
+
+   Return the active animation stack name.
+
+   Returns:
+          Active animation stack name if there is one, otherwise returns an empty string.
+
+   Remarks:
+          This function must be called after FbxImporter::Initialize().
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   FbxDocumentInfo* GetSceneInfo ( )
+   Search for all occurrences
+
+   Get the scene info.
+
+   Returns:
+          Pointer to the scene info or NULL if no scene information is available in the file.
+
+   int GetFileFormat ( )
+   Search for all occurrences
+
+   Returns the index of the reader (FbxReader) associated with the file format.
+
+   This index is considered the identifier of the file format. The array of registered readers can't be retrieved.
+
+   Returns:
+          Index of the registered FbxReader associated with the file format. If no reader found return -1.
+
+   Remarks:
+          According to the number of readers registered this value can change for the same reader between SDK Manager instantiations.
+
+   bool IsFBX ( )
+   Search for all occurrences
+
+   Returns:
+          true if the file format is a recognized FBX format.
+
+   Examples:
+          Common/Common.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbximporter.h
+
+   Please send us your comment about this page

@@ -1,0 +1,228 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSimpleMap< Key, Type, Compare > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxSimpleMap< Key, Type, Compare > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Key, class Type, class Compare>
+class FbxSimpleMap< Key, Type, Compare >
+
+   A simple map class representing a dictionary-like data structure.
+
+   Definition at line 255 of file fbxmap.h.
+
+   List of all members.
+
+Public Types
+
+   typedef FbxMap< Key, Type,
+   Compare >::RecordType *  Iterator
+
+Public Member Functions
+
+                                                 void  Add (const Key &pKey, const Type &pValue)
+                                                      Add a key-value pair as an element.
+                                             Iterator  Find (const Key &pKey) const
+                                                      Find an element with a given key.
+                                             Iterator  Find (const Type &pValue) const
+                                                      Find an element with a given value.
+                                                 void  Remove (Iterator pIterator)
+                                                      Remove an element from the map.
+                                             Iterator  GetFirst () const
+                                                      Get the first element.
+                                             Iterator  GetNext (Iterator pIterator) const
+                                                      Get the next element of a given element.
+                                                 void  Clear ()
+                                                      Remove all of the elements.
+                                                 void  Reserve (int pSize)
+                                                      Reserve the space for given number elements.
+                                                  int  GetCount () const
+                                                      Query the count of elements in the map.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxMap<Key, Type, Compare>::RecordType* Iterator
+   Search for all occurrences
+
+   Definition at line 258 of file fbxmap.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Add ( const Key &   pKey,
+              const Type &  pValue
+            )               [inline]
+   Search for all occurrences
+
+   Add a key-value pair as an element.
+
+   Parameters:
+
+          pKey   The new key.
+          pValue The new value.
+
+   Definition at line 263 of file fbxmap.h.
+        {
+                mMap.Insert(pKey, pValue);
+        }
+
+   Iterator Find ( const Key &  pKey ) const [inline]
+   Search for all occurrences
+
+   Find an element with a given key.
+
+   Parameters:
+
+          pKey The given key.
+
+   Returns:
+          The iterator pointing to the found element or NULL if fails.
+
+   Definition at line 271 of file fbxmap.h.
+        {
+                return (Iterator)mMap.Find(pKey);
+        }
+
+   Iterator Find ( const Type &  pValue ) const [inline]
+   Search for all occurrences
+
+   Find an element with a given value.
+
+   Parameters:
+
+          pValue The given value.
+
+   Returns:
+          The iterator pointing to the found element or NULL if fails.
+
+   Definition at line 279 of file fbxmap.h.
+        {
+                Iterator lIterator = GetFirst();
+                while( lIterator )
+                {
+                        if( lIterator->GetValue() == pValue )
+                        {
+                                return lIterator;
+                        }
+                        lIterator = GetNext(lIterator);
+                }
+                return 0;
+        }
+
+   void Remove ( Iterator  pIterator ) [inline]
+   Search for all occurrences
+
+   Remove an element from the map.
+
+   Parameters:
+
+          pIterator The given element.
+
+   Definition at line 295 of file fbxmap.h.
+        {
+                if( pIterator ) mMap.Remove(pIterator->GetKey());
+        }
+
+   Iterator GetFirst ( ) const [inline]
+   Search for all occurrences
+
+   Get the first element.
+
+   Returns:
+          The the heading element.
+
+   Definition at line 302 of file fbxmap.h.
+        {
+                return (Iterator)mMap.Minimum();
+        }
+
+   Iterator GetNext ( Iterator  pIterator ) const [inline]
+   Search for all occurrences
+
+   Get the next element of a given element.
+
+   Parameters:
+
+          pIterator The given element.
+
+   Returns:
+          The next element.
+
+   Definition at line 310 of file fbxmap.h.
+        {
+                return (Iterator)pIterator ? pIterator->Successor() : 0;
+        }
+
+   void Clear ( ) [inline]
+   Search for all occurrences
+
+   Remove all of the elements.
+
+   Definition at line 316 of file fbxmap.h.
+        {
+                mMap.Clear();
+        }
+
+   void Reserve ( int  pSize ) [inline]
+   Search for all occurrences
+
+   Reserve the space for given number elements.
+
+   Parameters:
+
+          pSize The given number.
+
+   Definition at line 323 of file fbxmap.h.
+        {
+                mMap.Reserve(pSize);
+        }
+
+   int GetCount ( ) const [inline]
+   Search for all occurrences
+
+   Query the count of elements in the map.
+
+   Returns:
+          The count of elements.
+
+   Definition at line 330 of file fbxmap.h.
+        {
+                return mMap.GetSize();
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxmap.h
+
+   Please send us your comment about this page

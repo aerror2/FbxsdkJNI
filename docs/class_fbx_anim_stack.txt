@@ -1,0 +1,245 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimStack Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxAnimStack Class Reference
+
+   This reference page is linked to from the following overview topics: Animating a Node, Animation Classes and their Interrelationships, Migrating to the New Data Structures for Animation, FBX Objects, List of Python Fbx classes, Extracting the Animation Data from a FBX File, Animation Data Structures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimstack.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The Animation stack is a collection of animation layers.
+
+   The Fbx document can have one or more animation stacks. Each stack can be viewed as one "take" in the previous versions of the FBX SDK. The "stack" terminology comes from the fact that the object contains 1 to n animation layers that are evaluated according to their blending modes to produce a resulting animation for a given attribute.
+
+   Examples:
+          Animation/main.cxx, Common/AnimationUtility.cxx, Common/AnimationUtility.h, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, Instances/main.cxx, Pivot/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UserProperties/main.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 38 of file fbxanimstack.h.
+   Inheritance diagram for FbxAnimStack:
+   [USEMAP:class_fbx_anim_stack.png]
+
+   List of all members.
+
+Public Member Functions
+
+                            void  Reset (const FbxTakeInfo *pTakeInfo=NULL)
+                                  Reset the object time spans either to their default values or from the pTakeInfo structure, if provided.
+
+Public Attributes
+
+       FbxPropertyT< FbxString >  Description
+                                  This property stores a description string of this animation stack.
+         FbxPropertyT< FbxTime >  LocalStart
+                                  This property stores the local time span "Start" time.
+         FbxPropertyT< FbxTime >  LocalStop
+                                  This property stores the local time span "Stop" time.
+         FbxPropertyT< FbxTime >  ReferenceStart
+                                  This property stores the reference time span "Start" time.
+         FbxPropertyT< FbxTime >  ReferenceStop
+                                  This property stores the reference time span "Stop" time.
+
+Utility functions.
+
+                     FbxTimeSpan  GetLocalTimeSpan () const
+                                  Get the LocalStart and LocalStop time properties as a FbxTimeSpan.
+                            void  SetLocalTimeSpan (FbxTimeSpan &pTimeSpan)
+                                  Set the LocalStart and LocalStop time properties from a FbxTimeSpan.
+                     FbxTimeSpan  GetReferenceTimeSpan () const
+                                  Get the ReferenceStart and ReferenceStop time properties as a FbxTimeSpan.
+                            void  SetReferenceTimeSpan (FbxTimeSpan &pTimeSpan)
+                                  Set the ReferenceStart and ReferenceStop time properties from a FbxTimeSpan.
+   FBX_DEPRECATED FbxThumbnail *  GetTakeThumbnail ()
+                                  Get the thumbnail image associated to this animation stack.
+             FBX_DEPRECATED void  SetTakeThumbnail (FbxThumbnail *pTakeThumbnail)
+                                  Does nothing.
+                            bool  BakeLayers (FbxAnimEvaluator *pEvaluator, FbxTime pStart, FbxTime pStop, FbxTime pPeriod)
+                                  Bake all the animation layers on the base layer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( const FbxTakeInfo *  pTakeInfo = NULL )
+   Search for all occurrences
+
+   Reset the object time spans either to their default values or from the pTakeInfo structure, if provided.
+
+   Parameters:
+
+          pTakeInfo The take info to be used during reset.
+
+   FbxTimeSpan GetLocalTimeSpan ( ) const
+   Search for all occurrences
+
+   Get the LocalStart and LocalStop time properties as a FbxTimeSpan.
+
+   Returns:
+          The current local time span.
+
+   void SetLocalTimeSpan ( FbxTimeSpan &  pTimeSpan )
+   Search for all occurrences
+
+   Set the LocalStart and LocalStop time properties from a FbxTimeSpan.
+
+   Parameters:
+
+          pTimeSpan The new local time span.
+
+   FbxTimeSpan GetReferenceTimeSpan ( ) const
+   Search for all occurrences
+
+   Get the ReferenceStart and ReferenceStop time properties as a FbxTimeSpan.
+
+   Returns:
+          The current reference time span.
+
+   void SetReferenceTimeSpan ( FbxTimeSpan &  pTimeSpan )
+   Search for all occurrences
+
+   Set the ReferenceStart and ReferenceStop time properties from a FbxTimeSpan.
+
+   Parameters:
+
+          pTimeSpan The new reference time span.
+
+   FBX_DEPRECATED FbxThumbnail* GetTakeThumbnail ( )
+   Search for all occurrences
+
+   Get the thumbnail image associated to this animation stack.
+
+   This method exists for legacy reasons. In the newer FBX files, there can only be one thumbnail image and it belongs to the FbxDocument.
+
+   Returns:
+          Pointer to the document thumbnail.
+
+   FBX_DEPRECATED void SetTakeThumbnail ( FbxThumbnail *  pTakeThumbnail )
+   Search for all occurrences
+
+   Does nothing.
+
+   This method exists for legacy reasons. In the newer FBX files, there can only be one thumbnail image and it belongs to the FbxDocument.
+
+   Parameters:
+
+          pTakeThumbnail The referenced thumbnail object.
+
+   bool BakeLayers ( FbxAnimEvaluator *  pEvaluator,
+                     FbxTime             pStart,
+                     FbxTime             pStop,
+                     FbxTime             pPeriod
+                   )
+   Search for all occurrences
+
+   Bake all the animation layers on the base layer.
+
+   This function will process all the properties on every animation layer and generate a re-sampled set of animation keys (representing the layers' evaluated result) on the base layer. Once this operation is completed successfully, all the layers (except the base one) are destroyed. Properties that are only defined on the base layer will remain unaffected by the re-sampling. The stack local timespan is updated with the overall animation range.
+
+   Parameters:
+
+          pEvaluator The layer evaluator. This is the engine that evaluates the overall result of any given property according to the layers flags.
+          pStart     The start time of the re-sampling range.
+          pStop      The stop time of the re-sampling range.
+          pPeriod    The time increment for the re-sampling.
+
+   Returns:
+          true if the operation was successful and false in case of errors.
+
+   Remarks:
+          If this AnimStack contains only one AnimLayer, the function will return false and do nothing.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> Description
+   Search for all occurrences
+
+   This property stores a description string of this animation stack.
+
+   This string can be used to display, in a human readable format, information relative to this animation stack object. Default value is "".
+
+   Remarks:
+          The applications using the FBX SDK are not required to manipulate this information.
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 54 of file fbxanimstack.h.
+   FbxPropertyT<FbxTime> LocalStart
+   Search for all occurrences
+
+   This property stores the local time span "Start" time.
+
+   This "start" time should be seen as a time marker. Typically it would represent the whole animation starting time but its use (and update) is left to the calling application (with one exception occurring in the BakeLayers). The FBX SDK does not use this value internally and only guarantees that it will be stored to the FBX file and retrieved from it.
+
+   Default value is 0.
+
+   Definition at line 64 of file fbxanimstack.h.
+   FbxPropertyT<FbxTime> LocalStop
+   Search for all occurrences
+
+   This property stores the local time span "Stop" time.
+
+   This "stop" time should be seen as a time marker. Typically it would represent the whole animation ending time but its use (and update) is left to the calling application (with one exception occurring in the BakeLayers). The FBX SDK does not use this value internally and only guarantees that it will be stored to the FBX file and retrieved from it.
+
+   Default value is 0
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 74 of file fbxanimstack.h.
+   FbxPropertyT<FbxTime> ReferenceStart
+   Search for all occurrences
+
+   This property stores the reference time span "Start" time.
+
+   This reference start time is another time marker that can be used by the calling application. The FBX SDK never uses it and only guarantees that this value is stored in the FBX file and retrieved from it.
+
+   Default value is 0
+
+   Definition at line 82 of file fbxanimstack.h.
+   FbxPropertyT<FbxTime> ReferenceStop
+   Search for all occurrences
+
+   This property stores the reference time span "Stop" time.
+
+   This reference stop time is another time marker that can be used by the calling application. The FBX SDK never uses it and only guarantees that this value is stored in the FBX file and retrieved from it.
+
+   Default value is 0
+
+   Definition at line 90 of file fbxanimstack.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimstack.h
+
+   Please send us your comment about this page

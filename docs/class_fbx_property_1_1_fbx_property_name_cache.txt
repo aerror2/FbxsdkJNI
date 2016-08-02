@@ -1,0 +1,78 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProperty::FbxPropertyNameCache Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxProperty
+     * FbxPropertyNameCache
+
+   Public Member Functions
+   FbxProperty::FbxPropertyNameCache Class Reference
+   Search for all occurrences
+
+   #include <fbxproperty.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is an internal class that you can use to build and clear the name map of properties. You can use the name map to speed up searching for property names.
+
+   Definition at line 530 of file fbxproperty.h.
+
+   List of all members.
+
+Public Member Functions
+
+     FbxPropertyNameCache (const FbxProperty &prop)
+     Constructor, the name map is created in the constructor.
+     ~FbxPropertyNameCache ()
+     Destructor, the name map is destroyed in destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPropertyNameCache ( const FbxProperty &  prop ) [inline]
+
+   Constructor, the name map is created in the constructor.
+
+   Parameters:
+
+          prop Property for building and clearing the name map.
+
+   Definition at line 536 of file fbxproperty.h.
+: mProp(const_cast<FbxProperty&>(prop)){ mProp.BeginCreateOrFindProperty(); }
+
+   ~FbxPropertyNameCache ( ) [inline]
+
+   Destructor, the name map is destroyed in destructor.
+
+   Definition at line 539 of file fbxproperty.h.
+{ mProp.EndCreateOrFindProperty(); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxproperty.h
+
+   Please send us your comment about this page

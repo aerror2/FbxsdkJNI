@@ -1,0 +1,111 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   Fbx6ClassTemplateMap Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   Fbx6ClassTemplateMap Class Reference
+   Search for all occurrences
+
+   #include <fbxreaderfbx6.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Helper class to merge Class root property templates.
+
+   Add class id and object to the template and search object by class id.
+
+   Definition at line 30 of file fbxreaderfbx6.h.
+
+   List of all members.
+
+Classes
+
+   class   FbxClassIdCompare
+
+Public Member Functions
+
+           Fbx6ClassTemplateMap ()
+           Constructor.
+           ~Fbx6ClassTemplateMap ()
+           Destructor.
+     bool  AddClassId (FbxClassId pId, FbxObject *pTemplateObject)
+           Add the template object to template map.
+     bool  MergeWithTemplate (FbxObject *pObject) const
+           Merge the properties of FbxObject with the object with the same class id.
+     void  Clear ()
+           Delete all FbxObject in template map.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   Fbx6ClassTemplateMap ( )
+
+   Constructor.
+   ~Fbx6ClassTemplateMap ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool AddClassId ( FbxClassId   pId,
+                     FbxObject *  pTemplateObject
+                   )
+   Search for all occurrences
+
+   Add the template object to template map.
+
+   Parameters:
+
+          pId             Class Id
+          pTemplateObject template object
+
+   Returns:
+          if the object is successfully added return true, otherwise return false.
+
+   bool MergeWithTemplate ( FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Merge the properties of FbxObject with the object with the same class id.
+
+   Parameters:
+
+          pObject The FbxObject to merge
+
+   Returns:
+          if the object is merged return true, otherwise return false.
+
+   void Clear ( )
+   Search for all occurrences
+
+   Delete all FbxObject in template map.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxreaderfbx6.h
+
+   Please send us your comment about this page

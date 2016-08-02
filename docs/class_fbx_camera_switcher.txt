@@ -1,0 +1,125 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCameraSwitcher Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCameraSwitcher Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes, FBX Node Attributes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcameraswitcher.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This node attribute contains methods for accessing the properties of a camera switcher.
+
+   The camera switcher is a concept of Motion Builder. The camera switcher lets you switch between the custom cameras placed in your scene so you can create an animation using multiple camera angles. Custom cameras are cameras which created by users, while the default cameras are top, bottom, left, right, front, back and perspective camera. The Camera switcher contains the custom cameras you have created. If you have no custom cameras created in your scene, the Camera switcher is empty. Please read
+   Motion Builder documentation for more details.
+
+   See also:
+          FbxCamera and FbxCameraStereo.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   Definition at line 32 of file fbxcameraswitcher.h.
+   Inheritance diagram for FbxCameraSwitcher:
+   [USEMAP:class_fbx_camera_switcher.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Return the type of node attribute which is EType::eCameraSwitcher.
+
+Properties
+
+            FbxPropertyT< FbxInt >  CameraIndex
+                                    This property handles the index of camera.
+
+Default Animation Values.
+
+   These functions provides direct access to default animation values specific to a camera switcher.
+
+   The default animation values are found in the default take node of the associated node. These functions only work if the camera switcher has been associated with a node.
+
+   Camera indices start at 1. Out of range indices are clamped between 1 and the number of cameras in the scene. The index of a camera refers to its order of appearance when searching the node tree depth first.
+                               int  GetDefaultCameraIndex () const
+                                    Get default camera index.
+                              void  SetDefaultCameraIndex (int pIndex)
+                                    Set default camera index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute which is EType::eCameraSwitcher.
+
+   Reimplemented from FbxNodeAttribute.
+   int GetDefaultCameraIndex ( ) const
+   Search for all occurrences
+
+   Get default camera index.
+
+   Returns:
+          Camera index. The return value is an integer between 1 and the number of cameras in the scene, or 0 if there are no default camera set in the camera switcher.
+
+   void SetDefaultCameraIndex ( int  pIndex )
+   Search for all occurrences
+
+   Set default camera index.
+
+   Parameters:
+
+          pIndex The index of the camera to set as default. This parameter has an integer scale from 1 to the number of cameras in the scene. Its default value is 1 if there is at least one camera in the camera switcher, 0 if there are none. No validation checks are made.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxInt> CameraIndex
+   Search for all occurrences
+
+   This property handles the index of camera.
+
+   Default value is 1.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   Definition at line 45 of file fbxcameraswitcher.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxcameraswitcher.h
+
+   Please send us your comment about this page

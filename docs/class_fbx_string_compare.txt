@@ -1,0 +1,74 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStringCompare Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxStringCompare Class Reference
+   Search for all occurrences
+
+   #include <fbxstring.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Functor class to compare FbxString, and is suitable for use in FbxMap.
+
+   Definition at line 476 of file fbxstring.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (const FbxString &pKeyA, const FbxString &pKeyB) const
+        Compare two KStrings.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( const FbxString &  pKeyA,
+                    const FbxString &  pKeyB
+                  )                    const [inline]
+
+   Compare two KStrings.
+
+   Parameters:
+
+          pKeyA The first FbxString to compare.
+          pKeyB The second FbxString to compare.
+
+   Returns:
+          -1 indicates pKeyA is greater than pKeyB, 1 indicates pKeyB is greater than pKeyA, zero indicates they are equal.
+
+   Definition at line 484 of file fbxstring.h.
+        {
+                return (pKeyA < pKeyB) ? -1 : ((pKeyB < pKeyA) ? 1 : 0);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstring.h
+
+   Please send us your comment about this page

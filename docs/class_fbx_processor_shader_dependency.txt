@@ -1,0 +1,88 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessorShaderDependency Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxProcessorShaderDependency Class Reference
+   Search for all occurrences
+
+   #include <fbxprocessorshaderdependency.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Crawls CgFx and HLSL shader files, copies them, and all dependent shader files into the location specified by RootProcessPath.
+
+   Definition at line 27 of file fbxprocessorshaderdependency.h.
+   Inheritance diagram for FbxProcessorShaderDependency:
+   [USEMAP:class_fbx_processor_shader_dependency.png]
+
+   List of all members.
+
+Public Member Functions
+
+                        void  ClearProcessedFiles ()
+
+Public Attributes
+
+   FbxPropertyT< FbxString >  RootProcessPath
+     FbxPropertyT< FbxBool >  CleanupOnDestroy
+   FbxPropertyT< FbxString >  AdditionalIncludePaths
+
+Protected Member Functions
+
+   Overridable internal function
+                virtual bool  internal_ProcessObject (FbxObject *pObject)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void ClearProcessedFiles ( )
+   Search for all occurrences
+   virtual bool internal_ProcessObject ( FbxObject *  pObject ) [protected, virtual]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> RootProcessPath
+   Search for all occurrences
+
+   Definition at line 32 of file fbxprocessorshaderdependency.h.
+   FbxPropertyT<FbxBool> CleanupOnDestroy
+   Search for all occurrences
+
+   Definition at line 34 of file fbxprocessorshaderdependency.h.
+   FbxPropertyT<FbxString> AdditionalIncludePaths
+   Search for all occurrences
+
+   Definition at line 36 of file fbxprocessorshaderdependency.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxprocessorshaderdependency.h
+
+   Please send us your comment about this page

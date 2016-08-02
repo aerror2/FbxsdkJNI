@@ -1,0 +1,292 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSurfaceLambert Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxSurfaceLambert Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Materials and Textures, Materials, Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxsurfacelambert.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains settings for Lambert Materials.
+
+   Examples:
+          ExportScene03/main.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 25 of file fbxsurfacelambert.h.
+   Inheritance diagram for FbxSurfaceLambert:
+   [USEMAP:class_fbx_surface_lambert.png]
+
+   List of all members.
+
+Material properties
+
+   FbxPropertyT< FbxDouble3 >  Emissive
+                               Emissive color property.
+    FbxPropertyT< FbxDouble >  EmissiveFactor
+                               Emissive factor property.
+   FbxPropertyT< FbxDouble3 >  Ambient
+                               Ambient color property.
+    FbxPropertyT< FbxDouble >  AmbientFactor
+                               Ambient factor property.
+   FbxPropertyT< FbxDouble3 >  Diffuse
+                               Diffuse color property.
+    FbxPropertyT< FbxDouble >  DiffuseFactor
+                               Diffuse factor property.
+   FbxPropertyT< FbxDouble3 >  NormalMap
+                               NormalMap property.
+   FbxPropertyT< FbxDouble3 >  Bump
+                               Bump property.
+    FbxPropertyT< FbxDouble >  BumpFactor
+                               Bump factor property.
+   FbxPropertyT< FbxDouble3 >  TransparentColor
+                               Transparent color property.
+    FbxPropertyT< FbxDouble >  TransparencyFactor
+                               Transparency factor property.
+   FbxPropertyT< FbxDouble3 >  DisplacementColor
+                               Displacement color property.
+    FbxPropertyT< FbxDouble >  DisplacementFactor
+                               Displacement factor property.
+   FbxPropertyT< FbxDouble3 >  VectorDisplacementColor
+                               Vector displacement color property.
+    FbxPropertyT< FbxDouble >  VectorDisplacementFactor
+                               Vector displacement factor property.
+
+Default property values
+
+      static const FbxDouble3  sEmissiveDefault
+       static const FbxDouble  sEmissiveFactorDefault
+      static const FbxDouble3  sAmbientDefault
+       static const FbxDouble  sAmbientFactorDefault
+      static const FbxDouble3  sDiffuseDefault
+       static const FbxDouble  sDiffuseFactorDefault
+      static const FbxDouble3  sBumpDefault
+      static const FbxDouble3  sNormalMapDefault
+       static const FbxDouble  sBumpFactorDefault
+      static const FbxDouble3  sTransparentDefault
+       static const FbxDouble  sTransparencyFactorDefault
+      static const FbxDouble3  sDisplacementDefault
+       static const FbxDouble  sDisplacementFactorDefault
+      static const FbxDouble3  sVectorDisplacementDefault
+       static const FbxDouble  sVectorDisplacementFactorDefault
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble3> Emissive
+   Search for all occurrences
+
+   Emissive color property.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 36 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> EmissiveFactor
+   Search for all occurrences
+
+   Emissive factor property.
+
+   This factor is used to attenuate the emissive color.
+
+   Definition at line 41 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> Ambient
+   Search for all occurrences
+
+   Ambient color property.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 44 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> AmbientFactor
+   Search for all occurrences
+
+   Ambient factor property.
+
+   This factor is used to attenuate the ambient color.
+
+   Examples:
+          ExportDocument/main.cxx, and ExportScene03/main.cxx.
+
+   Definition at line 49 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> Diffuse
+   Search for all occurrences
+
+   Diffuse color property.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 52 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> DiffuseFactor
+   Search for all occurrences
+
+   Diffuse factor property.
+
+   This factor is used to attenuate the diffuse color.
+
+   Examples:
+          ExportDocument/main.cxx, and ExportScene03/main.cxx.
+
+   Definition at line 57 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> NormalMap
+   Search for all occurrences
+
+   NormalMap property.
+
+   This property can be used to specify the distortion of the surface normals and create the illusion of a bumpy surface.
+
+   Definition at line 62 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> Bump
+   Search for all occurrences
+
+   Bump property.
+
+   This property is used to distort the surface normal and create the illusion of a bumpy surface.
+
+   Definition at line 67 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> BumpFactor
+   Search for all occurrences
+
+   Bump factor property.
+
+   This factor is used to make a surface more or less bumpy.
+
+   Definition at line 72 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> TransparentColor
+   Search for all occurrences
+
+   Transparent color property.
+
+   Definition at line 75 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> TransparencyFactor
+   Search for all occurrences
+
+   Transparency factor property.
+
+   This property is used to make a surface more or less opaque (0 = opaque, 1 = transparent).
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 80 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> DisplacementColor
+   Search for all occurrences
+
+   Displacement color property.
+
+   Definition at line 83 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> DisplacementFactor
+   Search for all occurrences
+
+   Displacement factor property.
+
+   Definition at line 86 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble3> VectorDisplacementColor
+   Search for all occurrences
+
+   Vector displacement color property.
+
+   Definition at line 89 of file fbxsurfacelambert.h.
+   FbxPropertyT<FbxDouble> VectorDisplacementFactor
+   Search for all occurrences
+
+   Vector displacement factor property.
+
+   Definition at line 92 of file fbxsurfacelambert.h.
+   const FbxDouble3 sEmissiveDefault [static]
+   Search for all occurrences
+
+   Definition at line 105 of file fbxsurfacelambert.h.
+   const FbxDouble sEmissiveFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 106 of file fbxsurfacelambert.h.
+   const FbxDouble3 sAmbientDefault [static]
+   Search for all occurrences
+
+   Definition at line 108 of file fbxsurfacelambert.h.
+   const FbxDouble sAmbientFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 109 of file fbxsurfacelambert.h.
+   const FbxDouble3 sDiffuseDefault [static]
+   Search for all occurrences
+
+   Definition at line 111 of file fbxsurfacelambert.h.
+   const FbxDouble sDiffuseFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 112 of file fbxsurfacelambert.h.
+   const FbxDouble3 sBumpDefault [static]
+   Search for all occurrences
+
+   Definition at line 114 of file fbxsurfacelambert.h.
+   const FbxDouble3 sNormalMapDefault [static]
+   Search for all occurrences
+
+   Definition at line 115 of file fbxsurfacelambert.h.
+   const FbxDouble sBumpFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 116 of file fbxsurfacelambert.h.
+   const FbxDouble3 sTransparentDefault [static]
+   Search for all occurrences
+
+   Definition at line 118 of file fbxsurfacelambert.h.
+   const FbxDouble sTransparencyFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 119 of file fbxsurfacelambert.h.
+   const FbxDouble3 sDisplacementDefault [static]
+   Search for all occurrences
+
+   Definition at line 121 of file fbxsurfacelambert.h.
+   const FbxDouble sDisplacementFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 122 of file fbxsurfacelambert.h.
+   const FbxDouble3 sVectorDisplacementDefault [static]
+   Search for all occurrences
+
+   Definition at line 124 of file fbxsurfacelambert.h.
+   const FbxDouble sVectorDisplacementFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 125 of file fbxsurfacelambert.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxsurfacelambert.h
+
+   Please send us your comment about this page

@@ -1,0 +1,97 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObjectFilter Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxObjectFilter Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxobjectfilter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This object represents a filter criteria on an object.
+
+   Definition at line 25 of file fbxobjectfilter.h.
+   Inheritance diagram for FbxObjectFilter:
+   [USEMAP:class_fbx_object_filter.png]
+
+   List of all members.
+
+Public Member Functions
+
+        virtual  ~FbxObjectFilter ()
+                 Destructor.
+   virtual bool  Match (const FbxObject *pObjectPtr) const =0
+                 Tells if this filter match the given object.
+   virtual bool  NotMatch (const FbxObject *pObjectPtr) const
+                 Tells if this filter does NOT match the given object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~FbxObjectFilter ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 29 of file fbxobjectfilter.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Match ( const FbxObject *  pObjectPtr ) const [pure virtual]
+   Search for all occurrences
+
+   Tells if this filter match the given object.
+
+   Parameters:
+
+          pObjectPtr The given object.
+
+   Implemented in FbxNameFilter, and FbxImplementationFilter.
+   virtual bool NotMatch ( const FbxObject *  pObjectPtr ) const [inline, virtual]
+   Search for all occurrences
+
+   Tells if this filter does NOT match the given object.
+
+   Parameters:
+
+          pObjectPtr The given object.
+
+   Definition at line 39 of file fbxobjectfilter.h.
+{ return !Match(pObjectPtr); };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxobjectfilter.h
+
+   Please send us your comment about this page

@@ -1,0 +1,520 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVector2 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxVector2 Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxvector2.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A two double mathematic vector class.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayCommon.h, ImportScene/DisplayMaterial.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, Transformations/DisplayCommon.cxx, Transformations/DisplayCommon.h, UI_Examples/CubeCreator/SDK_Utility.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 23 of file fbxvector2.h.
+   Inheritance diagram for FbxVector2:
+   [USEMAP:class_fbx_vector2.png]
+
+   List of all members.
+
+Public Member Functions
+
+           bool  IsZero (int pSize=2) const
+                 Find out if the vector is equal to zero.
+           void  FixIncorrectValue ()
+
+Constructors and Destructor
+
+                 FbxVector2 ()
+                 Constructor.
+                 FbxVector2 (const FbxVector2 &pVector2)
+                 Copy constructor.
+                 FbxVector2 (double pX, double pY)
+                 Constructor.
+
+Access
+
+   FbxVector2 &  operator= (const FbxVector2 &pVector2)
+                 Assignment operation.
+           void  Set (double pX, double pY)
+                 Set vector.
+
+Scalar Operations
+
+     FbxVector2  operator+ (double pValue) const
+                 Add a value to all vector components.
+     FbxVector2  operator- (double pValue) const
+                 Subtract a value from all vector components.
+     FbxVector2  operator* (double pValue) const
+                 Multiply a value to all vector components.
+     FbxVector2  operator/ (double pValue) const
+                 Divide all vector components by a value.
+   FbxVector2 &  operator+= (double pValue)
+                 Add a value to all vector components.
+   FbxVector2 &  operator-= (double pValue)
+                 Subtract a value from all vector components.
+   FbxVector2 &  operator*= (double pValue)
+                 Multiply a value to all vector elements.
+   FbxVector2 &  operator/= (double pValue)
+                 Divide all vector elements by a value.
+
+Vector Operations
+
+     FbxVector2  operator- () const
+                 Unary minus operator.
+     FbxVector2  operator+ (const FbxVector2 &pVector) const
+                 Add two vectors together.
+     FbxVector2  operator- (const FbxVector2 &pVector) const
+                 Subtract a vector from another vector.
+     FbxVector2  operator* (const FbxVector2 &pVector) const
+                 Memberwise multiplication of two vectors.
+     FbxVector2  operator/ (const FbxVector2 &pVector) const
+                 Memberwise division of a vector with another vector.
+   FbxVector2 &  operator+= (const FbxVector2 &pVector)
+                 Add two vectors together.
+   FbxVector2 &  operator-= (const FbxVector2 &pVector)
+                 Subtract a vector from another vector.
+   FbxVector2 &  operator*= (const FbxVector2 &pVector)
+                 Memberwise multiplication of two vectors.
+   FbxVector2 &  operator/= (const FbxVector2 &pVector)
+                 Memberwise division of a vector with another vector.
+         double  DotProduct (const FbxVector2 &pVector) const
+                 Calculate the dot product of two vectors.
+
+Boolean Operations
+
+           bool  operator== (const FbxVector2 &pVector) const
+                 Equivalence operator.
+           bool  operator!= (const FbxVector2 &pVector) const
+                 Non-equivalence operator.
+
+Length
+
+         double  Length () const
+                 Get the vector's length.
+         double  SquareLength () const
+                 Get the vector's length squared.
+         double  Distance (const FbxVector2 &pVector) const
+                 Find the distance between 2 vectors.
+           void  Normalize ()
+                 Normalize the vector, length set to 1.
+
+Casting
+
+                 operator double * ()
+                 Cast the vector in a double pointer.
+                 operator const double * () const
+                 Cast the vector in a const double pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxVector2 ( )
+
+   Constructor.
+   FbxVector2 ( const FbxVector2 &  pVector2 )
+
+   Copy constructor.
+
+   Parameters:
+
+          pVector2 The vector copied to this one.
+
+   FbxVector2 ( double  pX,
+                double  pY
+              )
+
+   Constructor.
+
+   Parameters:
+
+          pX X component.
+          pY Y component.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxVector2& operator= ( const FbxVector2 &  pVector2 )
+
+   Assignment operation.
+
+   Parameters:
+
+          pVector2 The vector assigned to this one.
+
+   Returns:
+          This vector after assignment.
+
+   void Set ( double  pX,
+              double  pY
+            )
+   Search for all occurrences
+
+   Set vector.
+
+   Parameters:
+
+          pX The X component value.
+          pY The Y component value.
+
+   FbxVector2 operator+ ( double  pValue ) const
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          A new vector with the result of adding pValue to each component of this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2 operator- ( double  pValue ) const
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          A new vector with the result of subtracting pValue from each component of this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2 operator* ( double  pValue ) const
+
+   Multiply a value to all vector components.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          A new vector with the result of multiplying each component of this vector by pValue.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2 operator/ ( double  pValue ) const
+
+   Divide all vector components by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          A new vector with the result of dividing each component of this vector by pValue.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2& operator+= ( double  pValue )
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          The result of adding pValue to each component of this vector, replacing this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2& operator-= ( double  pValue )
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          The result of subtracting pValue from each component of this vector, replacing this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2& operator*= ( double  pValue )
+
+   Multiply a value to all vector elements.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          The result of multiplying each component of this vector by pValue, replacing this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2& operator/= ( double  pValue )
+
+   Divide all vector elements by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          The result of multiplying each component of this vector by pValue, replacing this vector.
+
+   Remarks:
+          The pValue parameter is not checked.
+
+   FbxVector2 operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          The vector that is the negation of this.
+
+   FbxVector2 operator+ ( const FbxVector2 &  pVector ) const
+
+   Add two vectors together.
+
+   Parameters:
+
+          pVector Vector to add.
+
+   Returns:
+          The result of this vector + pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2 operator- ( const FbxVector2 &  pVector ) const
+
+   Subtract a vector from another vector.
+
+   Parameters:
+
+          pVector Vector to subtract.
+
+   Returns:
+          The result of this vector - pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2 operator* ( const FbxVector2 &  pVector ) const
+
+   Memberwise multiplication of two vectors.
+
+   Parameters:
+
+          pVector Multiplying vector.
+
+   Returns:
+          The result of this vector * pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2 operator/ ( const FbxVector2 &  pVector ) const
+
+   Memberwise division of a vector with another vector.
+
+   Parameters:
+
+          pVector Dividing vector.
+
+   Returns:
+          The result of this vector / pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2& operator+= ( const FbxVector2 &  pVector )
+
+   Add two vectors together.
+
+   Parameters:
+
+          pVector Vector to add.
+
+   Returns:
+          The result of this vector + pVector, replacing this vector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2& operator-= ( const FbxVector2 &  pVector )
+
+   Subtract a vector from another vector.
+
+   Parameters:
+
+          pVector Vector to subtract.
+
+   Returns:
+          The result of this vector - pVector, replacing this vector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2& operator*= ( const FbxVector2 &  pVector )
+
+   Memberwise multiplication of two vectors.
+
+   Parameters:
+
+          pVector Multiplying vector.
+
+   Returns:
+          The result of this vector * pVector, replacing this vector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector2& operator/= ( const FbxVector2 &  pVector )
+
+   Memberwise division of a vector with another vector.
+
+   Parameters:
+
+          pVector Dividing vector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   Returns:
+          The result of this vector / pVector, replacing this vector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   double DotProduct ( const FbxVector2 &  pVector ) const
+   Search for all occurrences
+
+   Calculate the dot product of two vectors.
+
+   Parameters:
+
+          pVector The second vector.
+
+   Returns:
+          The dot product value.
+
+   Remarks:
+          pVector is considered a XYZ vector with fourth weight element, so only the first 3 elements are considered.
+
+   bool operator== ( const FbxVector2 &  pVector ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pVector The vector to be compared to this.
+
+   Returns:
+          true if the two vectors are equal (each element is within a FBXSDK_TOLERANCE tolerance), false otherwise.
+
+   bool operator!= ( const FbxVector2 &  pVector ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pVector The vector to be compared to this.
+
+   Returns:
+          false if the two vectors are equal (each element is within a FBXSDK_TOLERANCE tolerance), true otherwise.
+
+   double Length ( ) const
+   Search for all occurrences
+
+   Get the vector's length.
+
+   Returns:
+          The mathematical length of the vector.
+
+   double SquareLength ( ) const
+   Search for all occurrences
+
+   Get the vector's length squared.
+
+   Returns:
+          The mathematical square length of the vector.
+
+   double Distance ( const FbxVector2 &  pVector ) const
+   Search for all occurrences
+
+   Find the distance between 2 vectors.
+
+   Parameters:
+
+          pVector The second vector.
+
+   Returns:
+          The mathematical distance between the two vectors.
+
+   void Normalize ( )
+   Search for all occurrences
+
+   Normalize the vector, length set to 1.
+   operator double * ( )
+
+   Cast the vector in a double pointer.
+   operator const double * ( ) const
+
+   Cast the vector in a const double pointer.
+   bool IsZero ( int  pSize = 2 ) const
+   Search for all occurrences
+
+   Find out if the vector is equal to zero.
+
+   Parameters:
+
+          pSize The number of element to test, starting at beginning. Value must range between [1, 2].
+
+   Returns:
+          true if all elements of the vector are zero, false otherwise.
+
+   void FixIncorrectValue ( )
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxvector2.h
+
+   Please send us your comment about this page

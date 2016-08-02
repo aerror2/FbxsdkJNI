@@ -1,0 +1,154 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPropertyEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxPropertyEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertyentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxPropertyEntryView represents property entry in entry tables.
+
+   The property can be used as source or destination for the binding entry. Use this class to manipulate binding table's attributes.
+ Here is a code snippet to show how it used.
+ FbxProperty lProp;
+ FbxBindingTable lTable;
+ FbxBindingTableEntry& lEntry = lBindingTable.AddNewEntry();
+ FbxPropertyEntryView lView( lEntry, true, true);
+ lView.SetProperty( lProp.GetName());
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 39 of file fbxpropertyentryview.h.
+   Inheritance diagram for FbxPropertyEntryView:
+   [USEMAP:class_fbx_property_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+           const char *  GetProperty () const
+                         Get the property name from the binding entry.
+                   void  SetProperty (const char *pPropertyName)
+                         Set the property name to the binding entry.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+
+Constructor and Destructor.
+
+                         FbxPropertyEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                         ~FbxPropertyEntryView ()
+                         Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxPropertyEntryView ( FbxBindingTableEntry *  pEntry,
+                          bool                    pAsSource,
+                          bool                    pCreate = false
+                        )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   ~FbxPropertyEntryView ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const char* GetProperty ( ) const
+   Search for all occurrences
+
+   Get the property name from the binding entry.
+
+   Returns:
+          The property name.
+
+   void SetProperty ( const char *  pPropertyName )
+   Search for all occurrences
+
+   Set the property name to the binding entry.
+
+   Parameters:
+
+          pPropertyName The property name to set.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxPropertyEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxPropertyEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 46 of file fbxpropertyentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxpropertyentryview.h
+
+   Please send us your comment about this page

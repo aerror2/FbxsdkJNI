@@ -1,0 +1,114 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRenamingStrategyNumber Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxRenamingStrategyNumber Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxrenamingstrategy.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Implements a renaming strategy that resolves name clashes by adding number postfixes.
+
+   For example, when there are three objects with the same names "MyObject", and they will be renamed to "MyObject", "MyObject1" and "MyObject2".
+
+   See also:
+          FbxNameHandler FbxRenamingStrategyBase
+
+   Definition at line 64 of file fbxrenamingstrategy.h.
+   Inheritance diagram for FbxRenamingStrategyNumber:
+   [USEMAP:class_fbx_renaming_strategy_number.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                                 FbxRenamingStrategyNumber ()
+                                                 Constructor.
+                                        virtual  ~FbxRenamingStrategyNumber ()
+                                                 Destructor.
+                                   virtual void  Clear ()
+                                                 Resets internal state regarding assigned names.
+                                   virtual bool  Rename (FbxNameHandler &pName)
+                                                 Rename a name if necessary to avoid name-clash issues.
+   virtual
+   FbxRenamingStrategyInterface *  Clone ()
+                                                 Create a dynamic renaming strategy instance of the same type as the child class.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxRenamingStrategyNumber ( )
+
+   Constructor.
+   virtual ~FbxRenamingStrategyNumber ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Clear ( ) [virtual]
+   Search for all occurrences
+
+   Resets internal state regarding assigned names.
+
+   Implements FbxRenamingStrategyInterface.
+   virtual bool Rename ( FbxNameHandler &  pName ) [virtual]
+   Search for all occurrences
+
+   Rename a name if necessary to avoid name-clash issues.
+
+   Parameters:
+
+          pName The name to be renamed.
+
+   Returns:
+          Return true on success, false otherwise.
+
+   Implements FbxRenamingStrategyInterface.
+   virtual FbxRenamingStrategyInterface* Clone ( ) [virtual]
+   Search for all occurrences
+
+   Create a dynamic renaming strategy instance of the same type as the child class.
+
+   Returns:
+          New instance.
+
+   Implements FbxRenamingStrategyInterface.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrenamingstrategy.h
+
+   Please send us your comment about this page

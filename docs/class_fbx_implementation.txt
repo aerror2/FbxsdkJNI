@@ -1,0 +1,454 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxImplementation Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxImplementation Class Reference
+
+   This reference page is linked to from the following overview topics: Using hardware shaders to create materials.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbximplementation.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This object represents the shading node implementation.
+
+   It defines basic information about the shader and the binding table(FbxBindingTable). For example, you can create a new FbxImplementation like this:
+ FbxImplementation* lImpl = FbxImplementation::Create( &pMyScene, "MyImplementation" );
+ pMyObject.AddImplementation( lImpl );
+ pMyObject.SetDefaultImplementation( lImpl );
+ lImpl->RenderAPI = FBXSDK_RENDERING_API_DIRECTX; //FBXSDK_RENDERING_API_DIRECTX, FBXSDK_RENDERING_API_OPENGL, FBXSDK_RENDERING_API_MENTALRAY or FBXSDK_RENDERING_API_PREVIEW
+ lImpl->RenderAPIVersion = "9.0"; //API Version
+
+ lImpl->Language = FBXSDK_SHADING_LANGUAGE_HLSL; //FBXSDK_SHADING_LANGUAGE_HLSL, FBXSDK_SHADING_LANGUAGE_GLSL, FBXSDK_SHADING_LANGUAGE_CGFX or FBXSDK_SHADING_LANGUAGE_MRSL
+ lImpl->LanguageVersion = "1.0";  //Language Version
+
+   After the new FbxImplementation is created, you can access FbxBindingTable like this:
+ FbxBindingTable* lTable = lImpl->GetTableByTargetName("root");
+
+   Also, you can access the exist FbxImplementation in FbxObject by this:
+ const FbxImplementation* lImpl = GetImplementation( pMyObject, FBXSDK_IMPLEMENTATION_CGFX ); // FBXSDK_IMPLEMENTATION_PREVIEW, FBXSDK_IMPLEMENTATION_MENTALRAY, FBXSDK_IMPLEMENTATION_CGFX, FBXSDK_IMPLEMENTATION_HLSL, FBXSDK_IMPLEMENTATION_OGS or FBXSDK_IMPLEMENTATION_NONE
+
+   See also:
+          FbxImplementationFilter
+
+   Examples:
+          ExportShader/main.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 50 of file fbximplementation.h.
+   Inheritance diagram for FbxImplementation:
+   [USEMAP:class_fbx_implementation.png]
+
+   List of all members.
+
+Target Name.
+
+                    FbxString  RenderName
+
+Shader Language and API descriptions.
+
+    FbxPropertyT< FbxString >  Language
+                               Shader Language.
+    FbxPropertyT< FbxString >  LanguageVersion
+                               Shader Language version.
+    FbxPropertyT< FbxString >  RenderAPI
+                               Render API.
+    FbxPropertyT< FbxString >  RenderAPIVersion
+                               Render API version.
+
+Binding description
+
+    FbxPropertyT< FbxString >  RootBindingName
+                               Name of root binding table.
+                  FbxProperty  GetConstants () const
+                               Property to store the shader parameters(constants) values in this implementation.
+            FbxBindingTable *  AddNewTable (const char *pTargetName, const char *pTargetType)
+                               Add a new binding table to the table list.
+      const FbxBindingTable *  GetRootTable () const
+                               Retrieves a handle on the root binding table.
+            FbxBindingTable *  GetRootTable ()
+                               Retrieves a handle on the root binding table.
+                          int  GetTableCount () const
+                               Gets the number of binding tables.
+      const FbxBindingTable *  GetTable (int pIndex) const
+                               Retrieves a handle on the (pIndex)th binding table.
+            FbxBindingTable *  GetTable (int pIndex)
+                               Retrieves a handle on the (pIndex)th binding table.
+      const FbxBindingTable *  GetTableByTargetName (const char *pName) const
+                               Returns the binding table that has the given target name.
+            FbxBindingTable *  GetTableByTargetName (const char *pName)
+                               Returns the binding table that has the given target name.
+      const FbxBindingTable *  GetTableByTargetType (const char *pTargetName) const
+                               Returns the binding table that has the given target type.
+            FbxBindingTable *  GetTableByTargetType (const char *pTargetName)
+                               Returns the binding table that has the given target type.
+         FbxBindingOperator *  AddNewBindingOperator (const char *pTargetName, const char *pFunctionName)
+                               Add a new binding operator to the operator list.
+                          int  GetBindingOperatorCount () const
+                               Gets the number of binding operators.
+   const FbxBindingOperator *  GetOperatorByTargetName (const char *pTargetName) const
+                               Returns the binding operator that has the given name.
+
+Static values
+
+          static const char *  sLanguage
+                               Shader Language name.
+          static const char *  sLanguageVersion
+                               Shader Language version.
+          static const char *  sRenderAPI
+                               Shader render API.
+          static const char *  sRenderAPIVersion
+                               Shader render API version.
+          static const char *  sRootBindingName
+                               Name of root binding table.
+          static const char *  sConstants
+                               Name of property to store the shader parameters(constants) values in this implementation.
+          static const char *  sDefaultType
+                               default value for implementation type.
+          static const char *  sDefaultLanguage
+                               default value for shader language.
+          static const char *  sDefaultLanguageVersion
+                               default value for shader language version.
+          static const char *  sDefaultRenderAPI
+                               default value for shader render API.
+          static const char *  sDefaultRenderAPIVersion
+                               default value for shader render API version.
+          static const char *  sDefaultRootBindingName
+                               default value for root binding table name.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxProperty GetConstants ( ) const
+   Search for all occurrences
+
+   Property to store the shader parameters(constants) values in this implementation.
+   FbxBindingTable* AddNewTable ( const char *  pTargetName,
+                                  const char *  pTargetType
+                                )
+   Search for all occurrences
+
+   Add a new binding table to the table list.
+
+   Parameters:
+
+          pTargetName The target name for the binding table.
+          pTargetType The target type for the binding table.
+
+   Returns:
+          the new binding table.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   const FbxBindingTable* GetRootTable ( ) const
+   Search for all occurrences
+
+   Retrieves a handle on the root binding table.
+
+   Returns:
+          A const pointer to the root table or NULL if it does not exist.
+
+   FbxBindingTable* GetRootTable ( )
+   Search for all occurrences
+
+   Retrieves a handle on the root binding table.
+
+   Returns:
+          A pointer to the root table or NULL if it does not exist.
+
+   int GetTableCount ( ) const
+   Search for all occurrences
+
+   Gets the number of binding tables.
+
+   Returns:
+          the number of binding tables.
+
+   const FbxBindingTable* GetTable ( int  pIndex ) const
+   Search for all occurrences
+
+   Retrieves a handle on the (pIndex)th binding table.
+
+   Parameters:
+
+          pIndex The index of the table to retrieve. Valid values are [ 0, GetTableCount() ).
+
+   Returns:
+          A const pointer to the pIndex-th table or NULL if pIndex is out of range.
+
+   FbxBindingTable* GetTable ( int  pIndex )
+   Search for all occurrences
+
+   Retrieves a handle on the (pIndex)th binding table.
+
+   Parameters:
+
+          pIndex The index of the table to retrieve. Valid values are [ 0, GetTableCount() ).
+
+   Returns:
+          A const pointer to the pIndex-th table or NULL if pIndex is out of range.
+
+   const FbxBindingTable* GetTableByTargetName ( const char *  pName ) const
+   Search for all occurrences
+
+   Returns the binding table that has the given target name.
+
+   Parameters:
+
+          pName The target name of the table to look for.
+
+   Returns:
+          A const pointer to the binding table with the given target name, or NULL if there is no such binding table.
+
+   FbxBindingTable* GetTableByTargetName ( const char *  pName )
+   Search for all occurrences
+
+   Returns the binding table that has the given target name.
+
+   Parameters:
+
+          pName The target name of the table to look for.
+
+   Returns:
+          A pointer to the binding table with the given target name, or NULL if there is no such binding table.
+
+   const FbxBindingTable* GetTableByTargetType ( const char *  pTargetName ) const
+   Search for all occurrences
+
+   Returns the binding table that has the given target type.
+
+   Parameters:
+
+          pTargetName The target type to look for.
+
+   Returns:
+          A const pointer to the binding table with the given target type, or NULL if there is no such binding table.
+
+   FbxBindingTable* GetTableByTargetType ( const char *  pTargetName )
+   Search for all occurrences
+
+   Returns the binding table that has the given target type.
+
+   Parameters:
+
+          pTargetName The target type to look for.
+
+   Returns:
+          A pointer to the binding table with the given target type, or NULL if there is no such binding table.
+
+   FbxBindingOperator* AddNewBindingOperator ( const char *  pTargetName,
+                                               const char *  pFunctionName
+                                             )
+   Search for all occurrences
+
+   Add a new binding operator to the operator list.
+
+   Parameters:
+
+          pTargetName   The target name for the binding operator.
+          pFunctionName The function name for the binding operator.
+
+   Returns:
+          The new operator.
+
+   int GetBindingOperatorCount ( ) const
+   Search for all occurrences
+
+   Gets the number of binding operators.
+
+   Returns:
+          the number of binding operators.
+
+   const FbxBindingOperator* GetOperatorByTargetName ( const char *  pTargetName ) const
+   Search for all occurrences
+
+   Returns the binding operator that has the given name.
+
+   Parameters:
+
+          pTargetName The target name of the binding operator to look for.
+
+   Returns:
+          A const pointer to the binding operator with the given name, or NULL if there is no such binding table.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString RenderName
+   Search for all occurrences
+
+   Definition at line 59 of file fbximplementation.h.
+   FbxPropertyT<FbxString> Language
+   Search for all occurrences
+
+   Shader Language.
+
+   See also:
+          FBXSDK_SHADING_LANGUAGE_HLSL, FBXSDK_SHADING_LANGUAGE_GLSL, FBXSDK_SHADING_LANGUAGE_CGFX and FBXSDK_SHADING_LANGUAGE_MRSL in conventions.h
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 70 of file fbximplementation.h.
+   FbxPropertyT<FbxString> LanguageVersion
+   Search for all occurrences
+
+   Shader Language version.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 73 of file fbximplementation.h.
+   FbxPropertyT<FbxString> RenderAPI
+   Search for all occurrences
+
+   Render API.
+
+   See also:
+          FBXSDK_SHADING_LANGUAGE_HLSL, FBXSDK_SHADING_LANGUAGE_GLSL, FBXSDK_SHADING_LANGUAGE_CGFX and FBXSDK_SHADING_LANGUAGE_MRSL in conventions.h
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 78 of file fbximplementation.h.
+   FbxPropertyT<FbxString> RenderAPIVersion
+   Search for all occurrences
+
+   Render API version.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 81 of file fbximplementation.h.
+   FbxPropertyT<FbxString> RootBindingName
+   Search for all occurrences
+
+   Name of root binding table.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 91 of file fbximplementation.h.
+   const char* sLanguage [static]
+   Search for all occurrences
+
+   Shader Language name.
+
+   See also:
+          Language
+
+   Definition at line 184 of file fbximplementation.h.
+   const char* sLanguageVersion [static]
+   Search for all occurrences
+
+   Shader Language version.
+
+   See also:
+          LanguageVersion
+
+   Definition at line 189 of file fbximplementation.h.
+   const char* sRenderAPI [static]
+   Search for all occurrences
+
+   Shader render API.
+
+   See also:
+          RenderAPI
+
+   Definition at line 194 of file fbximplementation.h.
+   const char* sRenderAPIVersion [static]
+   Search for all occurrences
+
+   Shader render API version.
+
+   See also:
+          RenderAPIVersion
+
+   Definition at line 199 of file fbximplementation.h.
+   const char* sRootBindingName [static]
+   Search for all occurrences
+
+   Name of root binding table.
+
+   See also:
+          RootBindingName
+
+   Definition at line 204 of file fbximplementation.h.
+   const char* sConstants [static]
+   Search for all occurrences
+
+   Name of property to store the shader parameters(constants) values in this implementation.
+
+   See also:
+          GetConstants
+
+   Definition at line 209 of file fbximplementation.h.
+   const char* sDefaultType [static]
+   Search for all occurrences
+
+   default value for implementation type.
+
+   Definition at line 212 of file fbximplementation.h.
+   const char* sDefaultLanguage [static]
+   Search for all occurrences
+
+   default value for shader language.
+
+   Definition at line 215 of file fbximplementation.h.
+   const char* sDefaultLanguageVersion [static]
+   Search for all occurrences
+
+   default value for shader language version.
+
+   Definition at line 218 of file fbximplementation.h.
+   const char* sDefaultRenderAPI [static]
+   Search for all occurrences
+
+   default value for shader render API.
+
+   Definition at line 221 of file fbximplementation.h.
+   const char* sDefaultRenderAPIVersion [static]
+   Search for all occurrences
+
+   default value for shader render API version.
+
+   Definition at line 224 of file fbximplementation.h.
+   const char* sDefaultRootBindingName [static]
+   Search for all occurrences
+
+   default value for root binding table name.
+
+   Definition at line 227 of file fbximplementation.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbximplementation.h
+
+   Please send us your comment about this page

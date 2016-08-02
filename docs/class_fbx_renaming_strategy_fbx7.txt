@@ -1,0 +1,133 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRenamingStrategyFbx7 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxRenamingStrategyFbx7 Class Reference
+   Search for all occurrences
+
+   #include <fbxrenamingstrategyfbx7.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 22 of file fbxrenamingstrategyfbx7.h.
+   Inheritance diagram for FbxRenamingStrategyFbx7:
+   [USEMAP:class_fbx_renaming_strategy_fbx7.png]
+
+   List of all members.
+
+Public Member Functions
+
+                 FbxRenamingStrategyFbx7 ()
+        virtual  ~FbxRenamingStrategyFbx7 ()
+   virtual void  CleanUp ()
+                 clean up the name cells.
+   virtual bool  DecodeScene (FbxScene *pScene)
+                 This method put all the names in the scene back to the original values.
+   virtual bool  EncodeScene (FbxScene *pScene)
+                 This method renames all the names in the scene.
+   virtual bool  DecodeString (FbxNameHandler &pName)
+                 This method find the original name of a given string.
+   virtual bool  EncodeString (FbxNameHandler &pName, bool pIsPropertyName=false)
+                 This method find the renaming name of a given string.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxRenamingStrategyFbx7 ( )
+   virtual ~FbxRenamingStrategyFbx7 ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void CleanUp ( ) [virtual]
+   Search for all occurrences
+
+   clean up the name cells.
+
+   Reimplemented from FbxRenamingStrategyBase.
+   virtual bool DecodeScene ( FbxScene *  pScene ) [virtual]
+   Search for all occurrences
+
+   This method put all the names in the scene back to the original values.
+
+   Parameters:
+
+          pScene
+
+   Returns:
+          Returns true if some names have been modified.
+
+   Implements FbxRenamingStrategyBase.
+   virtual bool EncodeScene ( FbxScene *  pScene ) [virtual]
+   Search for all occurrences
+
+   This method renames all the names in the scene.
+
+   Parameters:
+
+          pScene
+
+   Returns:
+          Returns true if some names have been modified.
+
+   Implements FbxRenamingStrategyBase.
+   virtual bool DecodeString ( FbxNameHandler &  pString ) [virtual]
+   Search for all occurrences
+
+   This method find the original name of a given string.
+
+   Parameters:
+
+          pString
+
+   Returns:
+          Returns true if the name has been modified.
+
+   Implements FbxRenamingStrategyBase.
+   virtual bool EncodeString ( FbxNameHandler &  pString,
+                               bool              pIsPropertyName = false
+                             )                   [virtual]
+   Search for all occurrences
+
+   This method find the renaming name of a given string.
+
+   Parameters:
+
+          pString
+          pIsPropertyName
+
+   Returns:
+          Returns true if the name has been modified.
+
+   Implements FbxRenamingStrategyBase.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrenamingstrategyfbx7.h
+
+   Please send us your comment about this page

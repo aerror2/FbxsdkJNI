@@ -1,0 +1,108 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGate Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxGate Class Reference
+   Search for all occurrences
+
+   #include <fbxsync.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A gate thread locking mechanism is very similar to a semaphore, except that when it is opened, any further call to wait will not wait until it is closed.
+
+   It is generally used to block multiple threads until one of them open the gate to release them all.
+
+   Definition at line 123 of file fbxsync.h.
+
+   List of all members.
+
+Public Member Functions
+
+            FbxGate ()
+            Constructor.
+   virtual  ~FbxGate ()
+            Destructor.
+      void  Open ()
+            Open the gate to release all threads waiting.
+      void  Close ()
+            Close the gate so that the next time a thread call Wait() it will be blocked.
+      bool  IsOpen ()
+            Check if the gate is open.
+      bool  Wait ()
+            Wait indefinitely until the gate open.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxGate ( )
+
+   Constructor.
+   virtual ~FbxGate ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Open ( )
+   Search for all occurrences
+
+   Open the gate to release all threads waiting.
+
+   Remarks:
+          All waiting threads will unblock until the gate is closed.
+
+   void Close ( )
+   Search for all occurrences
+
+   Close the gate so that the next time a thread call Wait() it will be blocked.
+   bool IsOpen ( )
+   Search for all occurrences
+
+   Check if the gate is open.
+
+   Returns:
+          True if the gate is open, otherwise false.
+
+   bool Wait ( )
+   Search for all occurrences
+
+   Wait indefinitely until the gate open.
+
+   Returns:
+          True if the wait completed without errors.
+
+   Remarks:
+          If the gate is already open, this function returns immediately.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxsync.h
+
+   Please send us your comment about this page

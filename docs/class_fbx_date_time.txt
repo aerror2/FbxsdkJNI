@@ -1,0 +1,214 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDateTime Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxDateTime Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxpropertytypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK date&time class.
+
+   Property used to store date and time information; not related to a FbxTime, which is used for film-related operations. The date and time property does not make any provisions for UTC, GMT or local zones; this is entirely up to client code to know what they are dealing with.
+
+   Definition at line 331 of file fbxpropertytypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+                 void  Clear ()
+                       Set the attributes to 0.
+                 bool  isValid () const
+                       Validates each field is within a normal range (month is 1-12, etc).
+
+Static Public Member Functions
+
+   static FbxDateTime  currentDateTimeGMT ()
+                       Get date&time from current date&time of GMT.
+
+Constructors
+
+                       FbxDateTime ()
+                       Default constructor. Set attributes to 0.
+                       FbxDateTime (int pDay, int pMonth, int pYear, int pHour, int pMin, int pSec, int pMillisecond=0)
+                       Constructor.
+
+Boolean operation
+
+                 bool  operator== (const FbxDateTime &pRHS) const
+                       Equivalence operator.
+                 bool  operator!= (const FbxDateTime &pRHS) const
+                       Non-equivalence operator.
+
+Access
+
+                 void  setDate (int pDay, int pMonth, int pYear)
+                       Set the date.
+                 void  setTime (int pHour, int pMin, int pSec, int pMillisecond=0)
+                       Set the time.
+
+Operation with string
+
+            FbxString  toString () const
+                       Get the string format from this date&time.
+                 bool  fromString (const char *)
+                       Get date&time from the string format.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxDateTime ( )
+
+   Default constructor. Set attributes to 0.
+   FbxDateTime ( int  pDay,
+                 int  pMonth,
+                 int  pYear,
+                 int  pHour,
+                 int  pMin,
+                 int  pSec,
+                 int  pMillisecond = 0
+               )
+
+   Constructor.
+
+   Parameters:
+
+          pDay         Day
+          pMonth       Month
+          pYear        Year
+          pHour        Hour
+          pMin         Minute
+          pSec         Second
+          pMillisecond Millisecond
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool operator== ( const FbxDateTime &  pRHS ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pRHS The date&time to be compared with this date&time.
+
+   Returns:
+          True, if the two date&time are equal, false otherwise.
+
+   bool operator!= ( const FbxDateTime &  pRHS ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pRHS The date&time to be compared with this date&time.
+
+   Returns:
+          True, if the two date&time are not equal, false otherwise.
+
+   void Clear ( )
+   Search for all occurrences
+
+   Set the attributes to 0.
+   bool isValid ( ) const
+   Search for all occurrences
+
+   Validates each field is within a normal range (month is 1-12, etc).
+
+   Returns:
+          True, if each field is within a normal range, false otherwise.
+
+   void setDate ( int  pDay,
+                  int  pMonth,
+                  int  pYear
+                )
+   Search for all occurrences
+
+   Set the date.
+
+   Parameters:
+
+          pDay   Day to be set.
+          pMonth Month to be set.
+          pYear  Year to be set.
+
+   void setTime ( int  pHour,
+                  int  pMin,
+                  int  pSec,
+                  int  pMillisecond = 0
+                )
+   Search for all occurrences
+
+   Set the time.
+
+   Parameters:
+
+          pHour        Hour to be set.
+          pMin         Minute to be set.
+          pSec         Second to be set.
+          pMillisecond Millisecond to be set.
+
+   FbxString toString ( ) const
+   Search for all occurrences
+
+   Get the string format from this date&time.
+
+   Returns:
+          The string format got from this date&time.
+
+   bool fromString ( const char *  )
+   Search for all occurrences
+
+   Get date&time from the string format.
+
+   Returns:
+          True, if get date&time from the string format successfully, false otherwise.
+
+   Remarks:
+          ! This will only work with the format returned by toString(); if the format is not the same will return 'false' and the content of this object will remain unchanged.
+
+   static FbxDateTime currentDateTimeGMT ( ) [static]
+   Search for all occurrences
+
+   Get date&time from current date&time of GMT.
+
+   Returns:
+          The date&time equal to current date&time of GMT.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertytypes.h
+
+   Please send us your comment about this page

@@ -1,0 +1,574 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementUserData Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxLayerElementUserData Class Reference
+
+   This reference page is linked to from the following overview topics: Customizing the FBX SDK.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for mapping custom user data to a geometry.
+
+   This layer element is different from the other types of layer elements in that it has multiple direct arrays. There is one array for each user data attribute. Each array is indexed by the index array.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 1483 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementUserData:
+   [USEMAP:class_fbx_layer_element_user_data.png]
+
+   List of all members.
+
+Public Member Functions
+
+                                                                                  FBXSDK_FRIEND_NEW ()
+   FbxLayerElementArrayTemplate
+   < void * > *  GetDirectArrayVoid (int pIndex, bool *pStatus=NULL)
+                                                                                 Returns the direct array with the specified attribute index.
+   const
+   FbxLayerElementArrayTemplate
+   < void * > *  GetDirectArrayVoid (int pIndex, bool *pStatus=NULL) const
+                                                                                 Returns the direct array with the specified attribute index.
+   FbxLayerElementArrayTemplate
+   < void * > *  GetDirectArrayVoid (const char *pName, bool *pStatus=NULL)
+                                                                                 Returns the direct array with the specified attribute name.
+   const
+   FbxLayerElementArrayTemplate
+   < void * > *  GetDirectArrayVoid (const char *pName, bool *pStatus=NULL) const
+                                                                                 Returns the direct array with the specified attribute name.
+                                                                     FbxDataType  GetDataType (int pIndex) const
+                                                                                 Returns the data type for the specified index.
+                                                                     FbxDataType  GetDataType (const char *pName) const
+                                                                                 Returns the specified attribute data type.
+                                                                    const char *  GetDataName (int pIndex) const
+                                                                                 Returns the attribute name at the specified index.
+                                                                            void  ResizeAllDirectArrays (int pSize)
+                                                                                 Resizes all direct arrays to the specified size.
+                                                                            void  RemoveFromAllDirectArrays (int pIndex)
+                                                                                 Removes a single element at pIndex from every direct array.
+                                                                             int  GetArrayCount (int pIndex) const
+                                                                                 Returns the direct array count for the attribute at pIndex.
+                                                                             int  GetId () const
+                                                                                 Queries the this layer element's ID.
+                                                                             int  GetDirectArrayCount () const
+                                                                                 Returns this layer element's direct array count.
+                                                       FbxLayerElementUserData &  operator= (FbxLayerElementUserData const &pOther)
+                                                                                 Assignment operator which performs a deep copy.
+                                                                            bool  Clear ()
+                                                                                 Removes all data from this layer element.
+                                                                     virtual int  MemorySize () const
+                                                                                 Queries the amount of memory used by this object as well as its content.
+
+Static Public Member Functions
+
+                                                static FbxLayerElementUserData *  Create (FbxLayerContainer *pOwner, const char *pName, int pId, FbxArray< FbxDataType > &pDataTypes, FbxArray< const char * > &pDataNames)
+                                                                                 Allocation method.
+                                                static FbxLayerElementUserData *  Create (FbxLayerContainer *pOwner, FbxLayerElementUserData const &pOther)
+                                                                                 Allocation method.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_FRIEND_NEW ( )
+   Search for all occurrences
+   static FbxLayerElementUserData* Create ( FbxLayerContainer *         pOwner,
+                                            const char *                pName,
+                                            int                         pId,
+                                            FbxArray< FbxDataType > &   pDataTypes,
+                                            FbxArray< const char * > &  pDataNames
+                                          )                             [static]
+   Search for all occurrences
+
+   Allocation method.
+
+   Parameters:
+
+          pOwner     The owner of this layer element.
+          pName      The layer element name.
+          pId        The layer element ID.
+          pDataTypes Attribute data types of this layer element, one direct array is allocated for each Attribute data type.
+          pDataNames Attribute names of this layer element.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+
+   Remarks:
+          Only "bool", "int", "float" and "double" are supported.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   static FbxLayerElementUserData* Create ( FbxLayerContainer *              pOwner,
+                                            FbxLayerElementUserData const &  pOther
+                                          )                                  [static]
+   Search for all occurrences
+
+   Allocation method.
+
+   Parameters:
+
+          pOwner The owner of this layer element.
+          pOther Other layer element from which to copy.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+
+   FbxLayerElementArrayTemplate<void*>* GetDirectArrayVoid ( int     pIndex,
+                                                             bool *  pStatus = NULL
+                                                           )         [inline]
+   Search for all occurrences
+
+   Returns the direct array with the specified attribute index.
+
+   Parameters:
+
+          pIndex  Specified attribute index.
+          pStatus A flag to indicate whether the direct array is returned successfully or not.
+
+   Returns:
+          The specified attribute's direct array.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 1511 of file fbxlayer.h.
+        {
+                if( pIndex >= 0 || pIndex < GetDirectArray().GetCount() )
+                {
+                        if (pStatus) *pStatus = true;
+                        return (FbxLayerElementArrayTemplate<void*>*)GetDirectArray().AsReference(pIndex);
+                }
+                else
+                {
+                        if( pStatus ) *pStatus = false;
+                        FBX_ASSERT_NOW("Index out of bounds");
+                        return (FbxLayerElementArrayTemplate<void*>*)NULL;
+                }
+        }
+
+   const FbxLayerElementArrayTemplate<void*>* GetDirectArrayVoid ( int     pIndex,
+                                                                   bool *  pStatus = NULL
+                                                                 )         const [inline]
+   Search for all occurrences
+
+   Returns the direct array with the specified attribute index.
+
+   Parameters:
+
+          pIndex  Specified attribute index.
+          pStatus A flag to indicate whether the direct array is returned successfully or not.
+
+   Returns:
+          The specified attribute's direct array.
+
+   Definition at line 1531 of file fbxlayer.h.
+        {
+                if( pIndex >= 0 || pIndex < GetDirectArray().GetCount() )
+                {
+                        if (pStatus) *pStatus = true;
+                        return (FbxLayerElementArrayTemplate<void*>*)GetDirectArray().AsReference(pIndex);
+                }
+                else
+                {
+                        if( pStatus ) *pStatus = false;
+                        FBX_ASSERT_NOW("Index out of bounds");
+                        return (const FbxLayerElementArrayTemplate<void*>*)NULL;
+                }
+        }
+
+   FbxLayerElementArrayTemplate<void *>* GetDirectArrayVoid ( const char *  pName,
+                                                              bool *        pStatus = NULL
+                                                            )               [inline]
+   Search for all occurrences
+
+   Returns the direct array with the specified attribute name.
+
+   Parameters:
+
+          pName   Specified attribute name.
+          pStatus A flag to indicate whether the direct array is returned successfully or not.
+
+   Returns:
+          The specified attribute's direct array.
+
+   Definition at line 1552 of file fbxlayer.h.
+        {
+                FbxString lName( pName );
+                for( int i = 0; i < mDataNames.GetCount(); ++i )
+                {
+                        if( *mDataNames[i] == lName )
+                                return GetDirectArrayVoid(i, pStatus);
+                }
+
+                if (pStatus) *pStatus = false;
+                return (FbxLayerElementArrayTemplate<void *>*)NULL;
+        }
+
+   const FbxLayerElementArrayTemplate<void*>* GetDirectArrayVoid ( const char *  pName,
+                                                                   bool *        pStatus = NULL
+                                                                 )               const [inline]
+   Search for all occurrences
+
+   Returns the direct array with the specified attribute name.
+
+   Parameters:
+
+          pName   Specified attribute name.
+          pStatus A flag to indicate whether the direct array is returned successfully or not.
+
+   Returns:
+          The specified attribute's direct array.
+
+   Definition at line 1570 of file fbxlayer.h.
+        {
+                FbxString lName( pName );
+                for( int i = 0; i < mDataNames.GetCount(); ++i )
+                {
+                        if( *mDataNames[i] == lName )
+                                return GetDirectArrayVoid(i, pStatus);
+                }
+
+                if (pStatus) *pStatus = false;
+                return (const FbxLayerElementArrayTemplate<void*>*)NULL;
+        }
+
+   FbxDataType GetDataType ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Returns the data type for the specified index.
+
+   Parameters:
+
+          pIndex The index of the attribute being queried
+
+   Returns:
+          The data type, or FbxUndefinedDT if pIndex is out of range
+
+   Definition at line 1587 of file fbxlayer.h.
+        {
+                if( pIndex < 0 || pIndex >= mDataTypes.GetCount() )
+                        return FbxUndefinedDT;
+
+                return mDataTypes[pIndex];
+        }
+
+   FbxDataType GetDataType ( const char *  pName ) const [inline]
+   Search for all occurrences
+
+   Returns the specified attribute data type.
+
+   Parameters:
+
+          pName The name of the attribute being queried
+
+   Returns:
+          The data type, or FbxUndefinedDT if no attribute has the given name
+
+   Definition at line 1599 of file fbxlayer.h.
+        {
+                FbxString lName( pName );
+
+                for( int i = 0; i < mDataNames.GetCount(); ++i )
+                {
+                        if( *mDataNames[i] == lName )
+                                return mDataTypes[i];
+                }
+
+                return FbxUndefinedDT;
+        }
+
+   const char* GetDataName ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Returns the attribute name at the specified index.
+
+   Parameters:
+
+          pIndex Attribute index
+
+   Returns:
+          The name, or NULL if pIndex is out of range.
+
+   Definition at line 1616 of file fbxlayer.h.
+        {
+                if( pIndex >= 0 && pIndex < mDataNames.GetCount() )
+                        return mDataNames[pIndex]->Buffer();
+
+                return NULL;
+        }
+
+   void ResizeAllDirectArrays ( int  pSize ) [inline]
+   Search for all occurrences
+
+   Resizes all direct arrays to the specified size.
+
+   Parameters:
+
+          pSize The new size of the direct arrays.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 1627 of file fbxlayer.h.
+        {
+                for( int i = 0; i < GetDirectArray().GetCount(); ++i )
+                {
+                        switch( mDataTypes[i].GetType() )
+                        {
+                                case eFbxBool:  FbxGetDirectArray<bool>(this,i).Resize( pSize )  ; break;
+                                case eFbxInt:   FbxGetDirectArray<int>(this,i).Resize( pSize )   ;      break;
+                                case eFbxFloat: FbxGetDirectArray<float>(this,i).Resize( pSize ) ;      break;
+                                case eFbxDouble:        FbxGetDirectArray<double>(this,i).Resize( pSize );      break;
+                                //case eFbxDouble3:     GetDirectArray< FbxDouble3 >(i).Resize( pSize );        break;
+                                //case eFbxDouble4:     GetDirectArray< FbxDouble4 >(i).Resize( pSize );        break;
+                                //case eFbxDouble4x4:   GetDirectArray< FbxDouble4x4>(i).Resize( pSize );       break;
+                                default:
+                                        FBX_ASSERT_NOW("unknown type" ); break;
+                        }
+                }
+        }
+
+   void RemoveFromAllDirectArrays ( int  pIndex ) [inline]
+   Search for all occurrences
+
+   Removes a single element at pIndex from every direct array.
+
+   Parameters:
+
+          pIndex The index of the element to be removed.
+
+   Definition at line 1649 of file fbxlayer.h.
+        {
+                for( int i = 0; i < GetDirectArray().GetCount(); ++i )
+                {
+                        switch( mDataTypes[i].GetType() )
+                        {
+                                case eFbxBool:  FbxGetDirectArray<bool>(this,i).RemoveAt( pIndex )  ; break;
+                                case eFbxInt:   FbxGetDirectArray<int>(this,i).RemoveAt( pIndex )   ; break;
+                                case eFbxFloat: FbxGetDirectArray<float>(this,i).RemoveAt( pIndex ) ; break;
+                                case eFbxDouble:        FbxGetDirectArray<double>(this,i).RemoveAt( pIndex ); break;
+                                //case eFbxDouble3:     GetDirectArray< FbxDouble3 >(i).RemoveAt( pIndex );     break;
+                                //case eFbxDouble4:     GetDirectArray< FbxDouble4 >(i).RemoveAt( pIndex );     break;
+                                //case eFbxDouble4x4:   GetDirectArray< FbxDouble4x4>(i).RemoveAt( pIndex );    break;
+                                default:
+                                        FBX_ASSERT_NOW("unknown type" ); break;
+                        }
+                }
+        }
+
+   int GetArrayCount ( int  pIndex ) const [inline]
+   Search for all occurrences
+
+   Returns the direct array count for the attribute at pIndex.
+
+   Parameters:
+
+          pIndex The attribute index
+
+   Returns:
+          The specified attribute's direct array count.
+
+   Definition at line 1672 of file fbxlayer.h.
+        {
+                if( pIndex >= 0 && pIndex < GetDirectArray().GetCount() )
+                {
+                        switch( mDataTypes[pIndex].GetType() )
+                        {
+                                case eFbxBool:  return FbxGetDirectArray<bool>(this,pIndex).GetCount();
+                                case eFbxInt:   return FbxGetDirectArray<int>(this,pIndex).GetCount();
+                                case eFbxFloat: return FbxGetDirectArray<float>(this,pIndex).GetCount();
+                                case eFbxDouble:        return FbxGetDirectArray<double>(this,pIndex).GetCount();
+                                //case eFbxDouble3:     return GetDirectArray< FbxDouble3 >(pIndex).GetCount();
+                                //case eFbxDouble4:     return GetDirectArray< FbxDouble4 >(pIndex).GetCount();
+                                //case eFbxDouble4x4:   return GetDirectArray< FbxDouble4x4>(pIndex).GetCount();
+                                default:
+                                        FBX_ASSERT_NOW("Unknown type" ); break;
+                        }
+                }
+
+                return -1;
+        }
+
+   int GetId ( ) const [inline]
+   Search for all occurrences
+
+   Queries the this layer element's ID.
+
+   Returns:
+          The ID expressed as an int
+
+   Definition at line 1696 of file fbxlayer.h.
+{ return mId; }
+
+   int GetDirectArrayCount ( ) const [inline]
+   Search for all occurrences
+
+   Returns this layer element's direct array count.
+
+   Returns:
+          The direct array count expressed as an int.
+
+   Remarks:
+          This count should be equal to the count of user data attributes.
+
+   Definition at line 1702 of file fbxlayer.h.
+{ return GetDirectArray().GetCount(); }
+
+   FbxLayerElementUserData& operator= ( FbxLayerElementUserData const &  pOther ) [inline]
+
+   Assignment operator which performs a deep copy.
+
+   Parameters:
+
+          pOther Other FbxLayerElementUserData from which to perform a deep copy.
+
+   Returns:
+          This FbxLayerElementUserData.
+
+   Definition at line 1708 of file fbxlayer.h.
+    {
+        if (this == &pOther)
+            return *this;
+
+        Clear();
+
+        mId = pOther.mId;
+        mDataTypes = pOther.mDataTypes;
+        mDataNames.Resize(pOther.mDataNames.GetCount());
+        for(int i = 0; i < pOther.mDataNames.GetCount(); ++i)
+            mDataNames.SetAt(i,  FbxNew< FbxString >( *pOther.mDataNames[i] ) );
+
+        Init();
+        for(int i = 0; i < pOther.GetDirectArrayCount(); ++i)
+        {
+            switch (mDataTypes[i].GetType())
+            {
+            case eFbxBool:
+                FbxGetDirectArray<bool>(this, i) = FbxGetDirectArray<bool>(&pOther, i);
+                break;
+
+            case eFbxInt:
+                FbxGetDirectArray<int>(this, i) = FbxGetDirectArray<int>(&pOther, i);
+                break;
+
+            case eFbxFloat:
+                FbxGetDirectArray<float>(this, i) = FbxGetDirectArray<float>(&pOther, i);
+                break;
+
+            case eFbxDouble:
+                FbxGetDirectArray<double>(this, i) = FbxGetDirectArray<double>(&pOther, i);
+                break;
+
+            default:
+                FBX_ASSERT_NOW("Unknown type" );
+                break;
+            }
+        }
+
+        if ( ( mReferenceMode == FbxLayerElement::eIndex ||
+               mReferenceMode == FbxLayerElement::eIndexToDirect) &&
+             ( pOther.GetReferenceMode() == FbxLayerElement::eIndex ||
+               pOther.GetReferenceMode()  == FbxLayerElement::eIndexToDirect))
+        {
+            GetIndexArray() = pOther.GetIndexArray();
+        }
+
+        return *this;
+    }
+
+   bool Clear ( ) [inline, virtual]
+   Search for all occurrences
+
+   Removes all data from this layer element.
+
+   Returns:
+          True always
+
+   Reimplemented from FbxLayerElementTemplate< void * >.
+
+   Definition at line 1762 of file fbxlayer.h.
+        {
+                int i;
+                const int lCount = GetDirectArray().GetCount();
+                FbxLayerElementArray** directArray = NULL;
+                directArray = GetDirectArray().GetLocked(directArray);
+                for( i = 0; directArray != NULL && i < lCount; ++i )
+                {
+                        if( directArray[i] )
+                                FbxDelete(directArray[i]);
+                }
+                GetDirectArray().Release((void**)&directArray);
+
+                for( i = 0; i < mDataNames.GetCount(); ++i )
+                {
+                        FBX_SAFE_DELETE(mDataNames[i]);
+                }
+                mDataNames.Clear();
+                mDataTypes.Clear();
+
+                FbxLayerElementTemplate<void*>::Clear();
+
+        return true;
+        }
+
+   virtual int MemorySize ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Queries the amount of memory used by this object as well as its content.
+
+   It does not consider the content pointed.
+
+   Returns:
+          The amount of memory used.
+
+   Definition at line 1791 of file fbxlayer.h.
+        {
+                int size = FbxLayerElementTemplate<void*>::MemorySize();
+                size += sizeof(mId);
+
+        for(int i = 0; i < mDataTypes.GetCount(); i++)
+        {
+            size += sizeof(mDataTypes[i]);
+        }
+        size += (mDataNames.GetCount() * sizeof(FbxString*));
+
+                return size;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

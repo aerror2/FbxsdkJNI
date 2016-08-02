@@ -1,0 +1,362 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLibrary Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxLibrary Class Reference
+   Search for all occurrences
+
+   #include <fbxlibrary.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This library class represents libraries that store sub-libraries and shading objects.
+
+   Shading objects are objects of class FbxTexture, FbxSurfaceMaterial, and FbxLight.
+
+   Definition at line 30 of file fbxlibrary.h.
+   Inheritance diagram for FbxLibrary:
+   [USEMAP:class_fbx_library.png]
+
+   List of all members.
+
+Public Member Functions
+
+               FbxLibrary *  GetParentLibrary (void) const
+                             Returns a pointer to the parent library if one exists.
+                       void  SystemLibrary (bool pSystemLibrary)
+                             Sets whether not this library is a system library.
+                       bool  IsSystemLibrary () const
+                             Returns whether or not this library is a system library.
+                       void  LocalizationBaseNamePrefix (const char *pPrefix)
+                             The prefix must not include the dash and language code, nor can it contain the extension.
+                  FbxString  LocalizationBaseNamePrefix () const
+                             Retrieves the localization prefix.
+                       bool  AddSubLibrary (FbxLibrary *pSubLibrary)
+                             Adds a sub-library.
+                       bool  RemoveSubLibrary (FbxLibrary *pSubLibrary)
+                             Removes a sub-library.
+                        int  GetSubLibraryCount (void) const
+                             Returns the total number of sub-libraries.
+               FbxLibrary *  GetSubLibrary (int pIndex) const
+                             Returns the sub-library at the specified index.
+                FbxObject *  CloneAsset (FbxObject *pToClone, FbxObject *pOptionalDestinationContainer=NULL) const
+                             Clones the specified asset.
+                       bool  ImportAssets (FbxLibrary *pSrcLibrary)
+                             Transfers ownership from the source library to this library for any assets passing through the filter.
+                       bool  ImportAssets (FbxLibrary *pSrcLibrary, const FbxCriteria &pAssetFilter)
+                             Transfers ownership from the source library to this library for any assets passing through the filter.
+   template<class T >
+                        T *  InstantiateMember (const T *pFBX_TYPE, const FbxObjectFilter &pFilter, bool pRecurse=true, FbxObject *pOptContainer=NULL)
+                             Returns a new instance of a library member.
+   FbxLocalizationManager &  GetLocalizationManager () const
+                             Returns the localization manager for the library.
+       virtual const char *  Localize (const char *pID, const char *pDefault=NULL) const
+                             Localization helper function.
+                       bool  AddShadingObject (FbxObject *pShadingObject)
+                             Adds a shading object.
+                       bool  RemoveShadingObject (FbxObject *pShadingObject)
+                             Removes a shading object.
+                        int  GetShadingObjectCount (void) const
+                             Returns the total number of shading objects.
+                FbxObject *  GetShadingObject (int pIndex) const
+                             Returns the shading object at the specified index.
+                        int  GetShadingObjectCount (const FbxImplementationFilter &pCriteria) const
+                             Returns the number of shading objects according to their implementations.
+                FbxObject *  GetShadingObject (int pIndex, const FbxImplementationFilter &pCriteria) const
+                             Returns a handle on the shading object at the specified index that corresponds to the given filtering parameters.
+
+Static Public Member Functions
+
+         static FbxCriteria  GetAssetCriteriaFilter ()
+                             Returns a criteria filter which you can use to filter objects when iterating items in the library.
+         static FbxCriteria  GetAssetDependentsFilter ()
+                             Returns a filter which you should use when you clone / export objects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxLibrary* GetParentLibrary ( void  ) const
+   Search for all occurrences
+
+   Returns a pointer to the parent library if one exists.
+
+   Reimplemented from FbxObject.
+   void SystemLibrary ( bool  pSystemLibrary )
+   Search for all occurrences
+
+   Sets whether not this library is a system library.
+
+   Parameters:
+
+          pSystemLibrary A flag which indicates whether or not this library is a system library.
+
+   bool IsSystemLibrary ( ) const
+   Search for all occurrences
+
+   Returns whether or not this library is a system library.
+   void LocalizationBaseNamePrefix ( const char *  pPrefix )
+   Search for all occurrences
+
+   The prefix must not include the dash and language code, nor can it contain the extension.
+
+   But if you want, it can contain a folder or sub-folder, such as: locales/mydocloc. This is resolved using the XRef Manager, with priority given to the library's ".fbm" folder, if one exists.
+
+   Parameters:
+
+          pPrefix New prefix to be set.
+
+   FbxString LocalizationBaseNamePrefix ( ) const
+   Search for all occurrences
+
+   Retrieves the localization prefix.
+   bool AddSubLibrary ( FbxLibrary *  pSubLibrary )
+   Search for all occurrences
+
+   Adds a sub-library.
+
+   Parameters:
+
+          pSubLibrary The sub-library to be added.
+
+   Returns:
+          True if adding the sub-library is successful, returns false if not.
+
+   bool RemoveSubLibrary ( FbxLibrary *  pSubLibrary )
+   Search for all occurrences
+
+   Removes a sub-library.
+
+   Parameters:
+
+          pSubLibrary The sub-library to be removed.
+
+   Returns:
+          True if the sub-library is removed, false if not.
+
+   int GetSubLibraryCount ( void  ) const
+   Search for all occurrences
+
+   Returns the total number of sub-libraries.
+   FbxLibrary* GetSubLibrary ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the sub-library at the specified index.
+
+   Parameters:
+
+          pIndex The sub-library index.
+
+   FbxObject* CloneAsset ( FbxObject *  pToClone,
+                           FbxObject *  pOptionalDestinationContainer = NULL
+                         )              const
+   Search for all occurrences
+
+   Clones the specified asset.
+
+   Parameters:
+
+          pToClone                      The asset to be cloned.
+          pOptionalDestinationContainer The container for the asset copy.
+
+   Remarks:
+          The asset and all its dependents are cloned.
+
+   static FbxCriteria GetAssetCriteriaFilter ( ) [static]
+   Search for all occurrences
+
+   Returns a criteria filter which you can use to filter objects when iterating items in the library.
+
+   Only real 'assets' are returned, rather than FBX support objects. This currently includes lights, environments, materials and textures (maps). This is typically used to IMPORT from a library.
+   static FbxCriteria GetAssetDependentsFilter ( ) [static]
+   Search for all occurrences
+
+   Returns a filter which you should use when you clone / export objects.
+
+   This filters out objects that should remain in the asset library.
+
+   Use this to EXPORT from a library (or CLONE from a library).
+   bool ImportAssets ( FbxLibrary *  pSrcLibrary )
+   Search for all occurrences
+
+   Transfers ownership from the source library to this library for any assets passing through the filter.
+
+   It is assumed that name conflicts and other details have been resolved beforehand.
+
+   External asset files required by the assets are copied (not moved). It's up to the owner of the source library to clean up the files if the files are not on a read-only transport. If this document hasn't been committed yet, the assets will not be copied.
+
+   Returns true if no filtered assets were skipped. If no assets pass through the filter, it returns true, because nothing has been skipped.
+
+   This may leave the source library in an invalid state. For example, the source library would be in an invalid state if you had decided to transfer texture objects to the library, but materials were kept in the source library.
+
+   To safeguard against this, the transfer disconnects objects, and thus materials are left without textures.
+
+   When you transfer an object, all its dependents come with it. If you move a material, it takes the associated textures as well. Although if you moved a texture, the material would not be transferred with it.
+
+   Parameters:
+
+          pSrcLibrary The source library to be imported.
+
+   Returns:
+          True if no filtered assets are skipped.
+
+   bool ImportAssets ( FbxLibrary *         pSrcLibrary,
+                       const FbxCriteria &  pAssetFilter
+                     )
+   Search for all occurrences
+
+   Transfers ownership from the source library to this library for any assets passing through the filter.
+
+   It is assumed that name conflicts and other details have been resolved beforehand.
+
+   External asset files required by the assets are copied (not moved). It's up to the owner of the source library to clean up the files if the files are not on a read-only transport. If this document hasn't been committed yet, the assets will not be copied.
+
+   Returns true if no filtered assets were skipped. If no assets pass through the filter, it returns true, because nothing has been skipped.
+
+   This may leave the source library in an invalid state. For example, the source library would be in an invalid state if you had decided to transfer texture objects to the library, but materials were kept in the source library.
+
+   To safeguard against this, the transfer disconnects objects, and thus materials are left without textures.
+
+   When you transfer an object, all its dependents come with it. If you move a material, it takes the associated textures as well. Although if you moved a texture, the material would not be transferred with it.
+
+   Parameters:
+
+          pSrcLibrary  The source library to be imported.
+          pAssetFilter The asset filter.
+
+   Returns:
+          True if no filtered assets are skipped.
+
+   T* InstantiateMember ( const T *                pFBX_TYPE,
+                          const FbxObjectFilter &  pFilter,
+                          bool                     pRecurse = true,
+                          FbxObject *              pOptContainer = NULL
+                        )
+   Search for all occurrences
+
+   Returns a new instance of a library member.
+
+   This instantiates the first object found that matches the filter.
+
+   Parameters:
+
+          pFBX_TYPE     The type of member
+          pFilter       A user specified filter
+          pRecurse      A flag that indicates whether to check sub-libraries
+          pOptContainer Optional container for the cloned asset
+
+   Returns:
+          A new instance of the member. Note that the new member is not included with this library.
+
+   FbxLocalizationManager& GetLocalizationManager ( ) const
+   Search for all occurrences
+
+   Returns the localization manager for the library.
+   virtual const char* Localize ( const char *  pID,
+                                  const char *  pDefault = NULL
+                                )               const [virtual]
+   Search for all occurrences
+
+   Localization helper function.
+
+   Calls the FBX SDK manager implementation. Sub-classes that manage their own localization can over-ride this function.
+
+   Parameters:
+
+          pID      The identifier for the text to localize.
+          pDefault The default text. Uses pID if NULL.
+
+   Returns:
+          The potentially localized text. May return the parameter passed in.
+
+   Reimplemented from FbxObject.
+   bool AddShadingObject ( FbxObject *  pShadingObject )
+   Search for all occurrences
+
+   Adds a shading object.
+
+   Parameters:
+
+          pShadingObject The shading object to be added.
+
+   bool RemoveShadingObject ( FbxObject *  pShadingObject )
+   Search for all occurrences
+
+   Removes a shading object.
+
+   Parameters:
+
+          pShadingObject The shading object to be removed.
+
+   int GetShadingObjectCount ( void  ) const
+   Search for all occurrences
+
+   Returns the total number of shading objects.
+   FbxObject* GetShadingObject ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the shading object at the specified index.
+
+   Parameters:
+
+          pIndex Shading object index.
+
+   Returns:
+          The shading object located at the specified index.
+
+   int GetShadingObjectCount ( const FbxImplementationFilter &  pCriteria ) const
+   Search for all occurrences
+
+   Returns the number of shading objects according to their implementations.
+
+   Parameters:
+
+          pCriteria Filtering criteria that identifies what kind of implementations to consider.
+
+   Returns:
+          The number of shading objects corresponding to the filtering parameters
+
+   FbxObject* GetShadingObject ( int                              pIndex,
+                                 const FbxImplementationFilter &  pCriteria
+                               )                                  const
+   Search for all occurrences
+
+   Returns a handle on the shading object at the specified index that corresponds to the given filtering parameters.
+
+   Parameters:
+
+          pIndex    Shading object index.
+          pCriteria Filtering criteria that identifies what kind of implementations to consider.
+
+   Returns:
+          A handle on the shading object at the specified index that corresponds to the given filtering parameters.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxlibrary.h
+
+   Please send us your comment about this page

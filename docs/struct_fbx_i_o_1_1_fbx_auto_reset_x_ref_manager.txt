@@ -1,0 +1,106 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIO::FbxAutoResetXRefManager Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxIO
+     * FbxAutoResetXRefManager
+
+   Public Member Functions | Public Attributes
+   FbxIO::FbxAutoResetXRefManager Struct Reference
+   Search for all occurrences
+
+   #include <fbxio.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Exception-safe way of setting/resetting the xref manager in a FbxIO object.
+
+   Definition at line 324 of file fbxio.h.
+
+   List of all members.
+
+Public Member Functions
+
+                           FbxAutoResetXRefManager (FbxIO *pFbx, FbxXRefManager &pXRefManager)
+                           Default constructor.
+                           ~FbxAutoResetXRefManager ()
+                           Destructor.
+
+Public Attributes
+
+                  FbxIO *  mFbx
+   const FbxXRefManager *  mXRefManager
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAutoResetXRefManager ( FbxIO *           pFbx,
+                             FbxXRefManager &  pXRefManager
+                           )                   [inline]
+
+   Default constructor.
+
+   Definition at line 330 of file fbxio.h.
+        : mFbx(pFbx)
+        , mXRefManager(NULL)
+        {
+            if( mFbx )
+            {
+                mXRefManager = mFbx->ProjectGetXRefManager();
+                mFbx->ProjectSetXRefManager(&pXRefManager);
+            }
+        }
+
+   ~FbxAutoResetXRefManager ( ) [inline]
+
+   Destructor.
+
+   Definition at line 342 of file fbxio.h.
+        {
+            if( mFbx )
+            {
+                mFbx->ProjectSetXRefManager(mXRefManager);
+            }
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxIO* mFbx
+   Search for all occurrences
+
+   Definition at line 326 of file fbxio.h.
+   const FbxXRefManager* mXRefManager
+   Search for all occurrences
+
+   Definition at line 327 of file fbxio.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxio.h
+
+   Please send us your comment about this page

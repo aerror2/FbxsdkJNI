@@ -1,0 +1,154 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVectorTemplate2< T > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxVectorTemplate2< T > Class Template Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class T>
+class FbxVectorTemplate2< T >
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 191 of file fbxtypes.h.
+   Inheritance diagram for FbxVectorTemplate2< T >:
+   [USEMAP:class_fbx_vector_template2.png]
+
+   List of all members.
+
+Public Member Functions
+
+                              FbxVectorTemplate2 ()
+                              FbxVectorTemplate2 (T pValue)
+                              FbxVectorTemplate2 (T pData0, T pData1)
+                              ~FbxVectorTemplate2 ()
+                         T &  operator[] (int pIndex)
+                   const T &  operator[] (int pIndex) const
+   FbxVectorTemplate2< T > &  operator= (const T &pValue)
+   FbxVectorTemplate2< T > &  operator= (const FbxVectorTemplate2< T > &pVector)
+                        bool  operator== (const FbxVectorTemplate2< T > &pVector) const
+                        bool  operator!= (const FbxVectorTemplate2< T > &pVector) const
+                         T *  Buffer ()
+                   const T *  Buffer () const
+
+Public Attributes
+
+                           T  mData [2]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxVectorTemplate2 ( ) [inline]
+
+   Definition at line 194 of file fbxtypes.h.
+{ *this = T(0); }
+
+   FbxVectorTemplate2 ( T  pValue ) [inline, explicit]
+
+   Definition at line 195 of file fbxtypes.h.
+{ *this = pValue; }
+
+   FbxVectorTemplate2 ( T  pData0,
+                        T  pData1
+                      )    [inline]
+
+   Definition at line 196 of file fbxtypes.h.
+{ mData[0] = pData0; mData[1] = pData1; }
+
+   ~FbxVectorTemplate2 ( ) [inline]
+
+   Definition at line 197 of file fbxtypes.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   T& operator[] ( int  pIndex ) [inline]
+
+   Definition at line 198 of file fbxtypes.h.
+{ return mData[pIndex]; }
+
+   const T& operator[] ( int  pIndex ) const [inline]
+
+   Definition at line 199 of file fbxtypes.h.
+{ return mData[pIndex]; }
+
+   FbxVectorTemplate2<T>& operator= ( const T &  pValue ) [inline]
+
+   Definition at line 200 of file fbxtypes.h.
+{ mData[0] = pValue; mData[1] = pValue; return *this; }
+
+   FbxVectorTemplate2<T>& operator= ( const FbxVectorTemplate2< T > &  pVector ) [inline]
+
+   Definition at line 201 of file fbxtypes.h.
+{ mData[0] = pVector.mData[0]; mData[1] = pVector.mData[1]; return *this; }
+
+   bool operator== ( const FbxVectorTemplate2< T > &  pVector ) const [inline]
+
+   Definition at line 202 of file fbxtypes.h.
+{ return ((mData[0] == pVector.mData[0]) && (mData[1] == pVector.mData[1])); }
+
+   bool operator!= ( const FbxVectorTemplate2< T > &  pVector ) const [inline]
+
+   Definition at line 203 of file fbxtypes.h.
+{ return !operator==( pVector ); }
+
+   T* Buffer ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 204 of file fbxtypes.h.
+{ return mData; }
+
+   const T* Buffer ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 205 of file fbxtypes.h.
+{ return mData; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   T mData[2]
+   Search for all occurrences
+
+   Definition at line 206 of file fbxtypes.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxtypes.h
+
+   Please send us your comment about this page

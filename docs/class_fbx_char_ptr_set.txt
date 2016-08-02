@@ -1,0 +1,184 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharPtrSet Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCharPtrSet Class Reference
+   Search for all occurrences
+
+   #include <fbxcharptrset.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains the data structure support for char pointer set.
+
+   Definition at line 22 of file fbxcharptrset.h.
+
+   List of all members.
+
+Public Member Functions
+
+                FbxCharPtrSet (int pItemPerBlock=20)
+                Class constructor.
+                ~FbxCharPtrSet ()
+                Class destructor.
+          void  Add (const char *pReference, FbxHandle pItem)
+                Add a new item.
+          bool  Remove (const char *pReference)
+                Removes an item.
+     FbxHandle  Get (const char *pReference, int *PIndex=NULL)
+                Get an item's reference.
+   FbxHandle &  operator[] (int pIndex)
+                Get an item's reference from index.
+     FbxHandle  GetFromIndex (int pIndex, const char **pReference=NULL)
+                Get an item's reference from index.
+          void  RemoveFromIndex (int pIndex)
+                Removes an item by index.
+           int  GetCount () const
+                Get the number of item in the array.
+          void  Sort ()
+                Sorts the array.
+          void  Clear ()
+                Clears the array.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxCharPtrSet ( int  pItemPerBlock = 20 )
+
+   Class constructor.
+
+   Parameters:
+
+          pItemPerBlock Number of item per block. Default is 20.
+
+   ~FbxCharPtrSet ( )
+
+   Class destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Add ( const char *  pReference,
+              FbxHandle     pItem
+            )
+   Search for all occurrences
+
+   Add a new item.
+
+   Parameters:
+
+          pReference char pointer reference to the item.
+          pItem      FbxHandle to the item.
+
+   bool Remove ( const char *  pReference )
+   Search for all occurrences
+
+   Removes an item.
+
+   Parameters:
+
+          pReference char reference to the item.
+
+   Returns:
+          true if successful.
+
+   FbxHandle Get ( const char *  pReference,
+                   int *         PIndex = NULL
+                 )
+   Search for all occurrences
+
+   Get an item's reference.
+
+   Parameters:
+
+          pReference char reference to the item.
+          PIndex     index to the item.
+
+   Returns:
+          FbxHandle to the item, NULL if fails.
+
+   FbxHandle& operator[] ( int  pIndex )
+
+   Get an item's reference from index.
+
+   Parameters:
+
+          pIndex index to the item.
+
+   Returns:
+          FbxHandle to the item, NULL if fails.
+
+   FbxHandle GetFromIndex ( int            pIndex,
+                            const char **  pReference = NULL
+                          )
+   Search for all occurrences
+
+   Get an item's reference from index.
+
+   Parameters:
+
+          pIndex     index to the item.
+          pReference char reference to the item.
+
+   Returns:
+          FbxHandle to the item, NULL if fails.
+
+   void RemoveFromIndex ( int  pIndex )
+   Search for all occurrences
+
+   Removes an item by index.
+
+   Parameters:
+
+          pIndex index to the item.
+
+   int GetCount ( ) const [inline]
+   Search for all occurrences
+
+   Get the number of item in the array.
+
+   Returns:
+          the number of element in the set.
+
+   Definition at line 65 of file fbxcharptrset.h.
+{ return mCharPtrSetCount; }
+
+   void Sort ( )
+   Search for all occurrences
+
+   Sorts the array.
+   void Clear ( )
+   Search for all occurrences
+
+   Clears the array.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxcharptrset.h
+
+   Please send us your comment about this page

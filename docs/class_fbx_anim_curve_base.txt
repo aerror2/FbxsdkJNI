@@ -1,0 +1,395 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxAnimCurveBase Class Reference
+   Search for all occurrences
+
+   #include <fbxanimcurvebase.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is the base class for implementing animation curves.
+
+   It is a pure virtual class that defines the general interface to animation key management and manipulation.
+
+   See also:
+          FbxAnimCurve for fully implemented class.
+
+   Definition at line 70 of file fbxanimcurvebase.h.
+   Inheritance diagram for FbxAnimCurveBase:
+   [USEMAP:class_fbx_anim_curve_base.png]
+
+   List of all members.
+
+Key management.
+
+         virtual void  KeyClear ()=0
+                       Remove all the keys and free buffer memory.
+          virtual int  KeyGetCount () const =0
+                       Get the number of keys.
+          virtual int  KeyAdd (FbxTime pTime, FbxAnimCurveKeyBase &pKey, int *pLast=NULL)=0
+                       Add a key at given time.
+         virtual bool  KeySet (int pIndex, FbxAnimCurveKeyBase &pKey)=0
+                       Set key at given index.
+         virtual bool  KeyRemove (int pIndex)=0
+                       Remove key at given index.
+         virtual bool  KeyRemove (int pStartIndex, int pEndIndex)=0
+                       Remove all the keys in the given range.
+
+Key Time Manipulation
+
+      virtual FbxTime  KeyGetTime (int pKeyIndex) const
+                       Get key time.
+         virtual void  KeySetTime (int pKeyIndex, FbxTime pTime)=0
+                       Set key time.
+
+Extrapolation
+
+   Extrapolation defines the function curve value before and after the keys.
+
+   Pre-extrapolation defines the function curve value before first key. Post-extrapolation defines the function curve value after last key.
+     * CONSTANT means a constant value matching the first/last key.
+     * REPETITION means the entire function curve is looped.
+     * MIRROR_REPETITION means the entire function curve is looped once backward, once forward and so on.
+     * KEEP_SLOPE means a linear function with a slope matching the first/last key.
+
+                enum   EExtrapolationType { eConstant = 1, eRepetition = 2, eMirrorRepetition = 3, eKeepSlope = 4 }
+                 void  SetPreExtrapolation (EExtrapolationType pExtrapolation)
+                       Set pre-extrapolation mode.
+   EExtrapolationType  GetPreExtrapolation () const
+                       Get pre-extrapolation mode.
+                 void  SetPreExtrapolationCount (unsigned long pCount)
+                       Set pre-extrapolation count.
+        unsigned long  GetPreExtrapolationCount () const
+                       Get pre-extrapolation count.
+                 void  SetPostExtrapolation (EExtrapolationType pExtrapolation)
+                       Set post-extrapolation mode.
+   EExtrapolationType  GetPostExtrapolation () const
+                       Get post-extrapolation mode.
+                 void  SetPostExtrapolationCount (unsigned long pCount)
+                       Set post-extrapolation count.
+        unsigned long  GetPostExtrapolationCount () const
+                       Get post-extrapolation count.
+
+Evaluation and Analysis
+
+        virtual float  Evaluate (FbxTime pTime, int *pLast=NULL)=0
+                       Evaluate curve value at a given time.
+        virtual float  EvaluateIndex (double pIndex)=0
+                       Evaluate curve value at the given key index.
+
+Utility functions.
+
+         virtual bool  GetTimeInterval (FbxTimeSpan &pTimeInterval)
+                       Find out start and end time of the animation curve.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EExtrapolationType
+   Search for all occurrences
+
+   Enumerator:
+
+          eConstant
+
+   Search for all occurrences
+          eRepetition
+
+   Search for all occurrences
+          eMirrorRepetition
+
+   Search for all occurrences
+          eKeepSlope
+
+   Search for all occurrences
+
+   Definition at line 151 of file fbxanimcurvebase.h.
+                {
+            eConstant = 1,
+            eRepetition = 2,
+            eMirrorRepetition = 3,
+            eKeepSlope = 4
+        } ;
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void KeyClear ( ) [pure virtual]
+   Search for all occurrences
+
+   Remove all the keys and free buffer memory.
+
+   Implemented in FbxAnimCurve.
+   virtual int KeyGetCount ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get the number of keys.
+
+   Implemented in FbxAnimCurve.
+   virtual int KeyAdd ( FbxTime                pTime,
+                        FbxAnimCurveKeyBase &  pKey,
+                        int *                  pLast = NULL
+                      )                        [pure virtual]
+   Search for all occurrences
+
+   Add a key at given time.
+
+   Parameters:
+
+          pTime Time to add the key.
+          pKey  Key to add.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Index of the key at given time, no matter if it was added or already present.
+
+   Implemented in FbxAnimCurve.
+   virtual bool KeySet ( int                    pIndex,
+                         FbxAnimCurveKeyBase &  pKey
+                       )                        [pure virtual]
+   Search for all occurrences
+
+   Set key at given index.
+
+   Parameters:
+
+          pIndex Index of where the key should be set.
+          pKey   The key to set.
+
+   Returns:
+          true if key time is superior to previous key and inferior to next key, false otherwise.
+
+   Remarks:
+          Result is undetermined if function curve has no key or index is out of bounds.
+
+   Implemented in FbxAnimCurve.
+   virtual bool KeyRemove ( int  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Remove key at given index.
+
+   Parameters:
+
+          pIndex Index of key to remove.
+
+   Returns:
+          true on success, false otherwise.
+
+   Implemented in FbxAnimCurve.
+   virtual bool KeyRemove ( int  pStartIndex,
+                            int  pEndIndex
+                          )      [pure virtual]
+   Search for all occurrences
+
+   Remove all the keys in the given range.
+
+   Parameters:
+
+          pStartIndex Index of the first key to remove (inclusive).
+          pEndIndex   Index of the last key to remove (inclusive).
+
+   Returns:
+          true on success, false otherwise.
+
+   Implemented in FbxAnimCurve.
+   virtual FbxTime KeyGetTime ( int  pKeyIndex ) const [inline, virtual]
+   Search for all occurrences
+
+   Get key time.
+
+   Parameters:
+
+          pKeyIndex Key index.
+
+   Returns:
+          Key time (time at which this key is occurring).
+
+   Reimplemented in FbxAnimCurve.
+
+   Definition at line 130 of file fbxanimcurvebase.h.
+{ return FBXSDK_TIME_INFINITE; }
+
+   virtual void KeySetTime ( int      pKeyIndex,
+                             FbxTime  pTime
+                           )          [pure virtual]
+   Search for all occurrences
+
+   Set key time.
+
+   Parameters:
+
+          pKeyIndex Key index.
+          pTime     Key time (time at which this key is occurring).
+
+   Implemented in FbxAnimCurve.
+   void SetPreExtrapolation ( EExtrapolationType  pExtrapolation ) [inline]
+   Search for all occurrences
+
+   Set pre-extrapolation mode.
+
+   Parameters:
+
+          pExtrapolation The pre-extrapolation mode to set.
+
+   Definition at line 162 of file fbxanimcurvebase.h.
+{ mPreExtrapolation = pExtrapolation; }
+
+   EExtrapolationType GetPreExtrapolation ( ) const [inline]
+   Search for all occurrences
+
+   Get pre-extrapolation mode.
+
+   Returns:
+          The current pre-extrapolation mode.
+
+   Definition at line 167 of file fbxanimcurvebase.h.
+{ return mPreExtrapolation; }
+
+   void SetPreExtrapolationCount ( unsigned long  pCount ) [inline]
+   Search for all occurrences
+
+   Set pre-extrapolation count.
+
+   Parameters:
+
+          pCount Number of repetitions if pre-extrapolation mode is REPETITION or MIRROR_REPETITION.
+
+   Definition at line 173 of file fbxanimcurvebase.h.
+{ mPreExtrapolationCount = pCount; }
+
+   unsigned long GetPreExtrapolationCount ( ) const [inline]
+   Search for all occurrences
+
+   Get pre-extrapolation count.
+
+   Returns:
+          Number of repetitions if pre-extrapolation mode is REPETITION or MIRROR_REPETITION.
+
+   Definition at line 179 of file fbxanimcurvebase.h.
+{ return mPreExtrapolationCount; }
+
+   void SetPostExtrapolation ( EExtrapolationType  pExtrapolation ) [inline]
+   Search for all occurrences
+
+   Set post-extrapolation mode.
+
+   Parameters:
+
+          pExtrapolation The post-extrapolation mode to set.
+
+   Definition at line 184 of file fbxanimcurvebase.h.
+{ mPostExtrapolation = pExtrapolation; }
+
+   EExtrapolationType GetPostExtrapolation ( ) const [inline]
+   Search for all occurrences
+
+   Get post-extrapolation mode.
+
+   Returns:
+          The current post-extrapolation mode.
+
+   Definition at line 189 of file fbxanimcurvebase.h.
+{ return mPostExtrapolation; }
+
+   void SetPostExtrapolationCount ( unsigned long  pCount ) [inline]
+   Search for all occurrences
+
+   Set post-extrapolation count.
+
+   Parameters:
+
+          pCount Number of repetitions if post-extrapolation mode is REPETITION or MIRROR_REPETITION.
+
+   Definition at line 195 of file fbxanimcurvebase.h.
+{ mPostExtrapolationCount = pCount; }
+
+   unsigned long GetPostExtrapolationCount ( ) const [inline]
+   Search for all occurrences
+
+   Get post-extrapolation count.
+
+   Returns:
+          Number of repetitions if post-extrapolation mode is REPETITION or MIRROR_REPETITION.
+
+   Definition at line 201 of file fbxanimcurvebase.h.
+{ return mPostExtrapolationCount; }
+
+   virtual float Evaluate ( FbxTime  pTime,
+                            int *    pLast = NULL
+                          )          [pure virtual]
+   Search for all occurrences
+
+   Evaluate curve value at a given time.
+
+   Parameters:
+
+          pTime Time of evaluation.
+          pLast Index of the last processed key to speed up search. If this function is called in a loop, initialize this value to 0 and let it be updated by each call.
+
+   Returns:
+          Evaluated curve value.
+
+   Remarks:
+          This function take extrapolation into account.
+
+   Implemented in FbxAnimCurve.
+   virtual float EvaluateIndex ( double  pIndex ) [pure virtual]
+   Search for all occurrences
+
+   Evaluate curve value at the given key index.
+
+   Parameters:
+
+          pIndex Any value from 0 to KeyGetCount() - 1. If this index falls between keys, the curve value will be interpolated based on the surrounding keys.
+
+   Returns:
+          Evaluated curve value.
+
+   Implemented in FbxAnimCurve.
+   virtual bool GetTimeInterval ( FbxTimeSpan &  pTimeInterval ) [virtual]
+   Search for all occurrences
+
+   Find out start and end time of the animation curve.
+
+   This function retrieves the Curve's time span.
+
+   Parameters:
+
+          pTimeInterval Reference to receive start time and end time.
+
+   Returns:
+          true on success, false otherwise.
+
+   Reimplemented in FbxAnimCurve.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurvebase.h
+
+   Please send us your comment about this page

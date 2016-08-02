@@ -1,0 +1,116 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRootNodeUtility Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions | Static Public Attributes
+   FbxRootNodeUtility Class Reference
+   Search for all occurrences
+
+   #include <fbxrootnodeutility.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class collects static functions for manipulating Fbx_Root nodes.
+
+   Fbx_Root nodes were used to orient and scale scenes from other graphics applications. They have been replaced by the conversion routines in FbxAxisSystem and FbxSystemUnit. These methods are provided for backward compatibility only and will eventually be removed. Use the conversion routines in FbxSystemUnit and FbxAxisSystem when possible.
+
+   Definition at line 31 of file fbxrootnodeutility.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+           static bool  RemoveAllFbxRoots (FbxScene *pScene)
+                        This method strips the scene of all Fbx_Root nodes.
+           static bool  InsertFbxRoot (FbxScene *pScene, const FbxAxisSystem &pDstAxis, const FbxSystemUnit &pDstUnit, const FbxSystemUnit::ConversionOptions &pUnitOptions=FbxSystemUnit::DefaultConversionOptions)
+                        Inserts an Fbx_Root node into the scene to orient the scene from its axis and unit systems to the specified ones.
+           static bool  IsFbxRootNode (FbxNode *pNode)
+                        Check if a node is an Fbx_Root node.
+
+Static Public Attributes
+
+   static const char *  sFbxRootNodePrefix
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static bool RemoveAllFbxRoots ( FbxScene *  pScene ) [static]
+   Search for all occurrences
+
+   This method strips the scene of all Fbx_Root nodes.
+
+   Parameters:
+
+          pScene The scene to convert
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          Converts the children of any Fbx_Roots to the orientation and units that the Fbx_Root transformation represented. The scene should look unchanged.
+
+   static bool InsertFbxRoot ( FbxScene *                                pScene,
+                               const FbxAxisSystem &                     pDstAxis,
+                               const FbxSystemUnit &                     pDstUnit,
+                               const FbxSystemUnit::ConversionOptions &  pUnitOptions = FbxSystemUnit::DefaultConversionOptions
+                             )                                           [static]
+   Search for all occurrences
+
+   Inserts an Fbx_Root node into the scene to orient the scene from its axis and unit systems to the specified ones.
+
+   Parameters:
+
+          pScene       The scene to convert
+          pDstAxis     Destination axis.
+          pDstUnit     Destination unit
+          pUnitOptions Unit conversion options
+
+   static bool IsFbxRootNode ( FbxNode *  pNode ) [static]
+   Search for all occurrences
+
+   Check if a node is an Fbx_Root node.
+
+   Parameters:
+
+          pNode The node to query
+
+   Returns:
+          true if pNode is a Fbx_Root node, false otherwise
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sFbxRootNodePrefix [static]
+   Search for all occurrences
+
+   Definition at line 35 of file fbxrootnodeutility.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrootnodeutility.h
+
+   Please send us your comment about this page

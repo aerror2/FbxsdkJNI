@@ -1,0 +1,141 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSceneReference Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxSceneReference Class Reference
+   Search for all occurrences
+
+   #include <fbxreference.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Contains information about a referenced file.
+
+   Definition at line 25 of file fbxreference.h.
+   Inheritance diagram for FbxSceneReference:
+   [USEMAP:class_fbx_scene_reference.png]
+
+   List of all members.
+
+Basic properties
+
+   FbxPropertyT< FbxString >  ReferenceFilePath
+                              Path to the referenced file.
+   FbxPropertyT< FbxString >  ReferenceNameSpace
+                              Referenced file's namespace.
+   FbxPropertyT< FbxString >  ReferenceNodeName
+                              Referenced file's node name.
+      FbxPropertyT< FbxInt >  ReferenceDepth
+                              Referenced file's node depth.
+     FbxPropertyT< FbxBool >  IsLoaded
+                              True if referenced file is loaded.
+     FbxPropertyT< FbxBool >  IsLocked
+                              True if referenced file is locked.
+
+Proxy related properties.
+
+     FbxPropertyT< FbxBool >  IsOriginalProxy
+                              True if referenced file is the original proxy.
+     FbxPropertyT< FbxBool >  IsActiveProxy
+                              True if referenced file is active.
+   FbxPropertyT< FbxString >  ProxyManagerName
+                              The name of proxy manager where the referenced file's proxy can be found.
+   FbxPropertyT< FbxString >  ProxyTag
+                              Referenced file's proxy tag.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT< FbxString > ReferenceFilePath
+   Search for all occurrences
+
+   Path to the referenced file.
+
+   Definition at line 33 of file fbxreference.h.
+   FbxPropertyT< FbxString > ReferenceNameSpace
+   Search for all occurrences
+
+   Referenced file's namespace.
+
+   Definition at line 35 of file fbxreference.h.
+   FbxPropertyT< FbxString > ReferenceNodeName
+   Search for all occurrences
+
+   Referenced file's node name.
+
+   Definition at line 37 of file fbxreference.h.
+   FbxPropertyT< FbxInt> ReferenceDepth
+   Search for all occurrences
+
+   Referenced file's node depth.
+
+   Definition at line 39 of file fbxreference.h.
+   FbxPropertyT< FbxBool > IsLoaded
+   Search for all occurrences
+
+   True if referenced file is loaded.
+
+   Definition at line 41 of file fbxreference.h.
+   FbxPropertyT< FbxBool > IsLocked
+   Search for all occurrences
+
+   True if referenced file is locked.
+
+   Definition at line 43 of file fbxreference.h.
+   FbxPropertyT< FbxBool > IsOriginalProxy
+   Search for all occurrences
+
+   True if referenced file is the original proxy.
+
+   Definition at line 49 of file fbxreference.h.
+   FbxPropertyT< FbxBool > IsActiveProxy
+   Search for all occurrences
+
+   True if referenced file is active.
+
+   Definition at line 52 of file fbxreference.h.
+   FbxPropertyT< FbxString > ProxyManagerName
+   Search for all occurrences
+
+   The name of proxy manager where the referenced file's proxy can be found.
+
+   Definition at line 55 of file fbxreference.h.
+   FbxPropertyT< FbxString > ProxyTag
+   Search for all occurrences
+
+   Referenced file's proxy tag.
+
+   Remarks:
+          Proxy tags are unique names assigned to proxy references to more easily manage those references in Maya.
+
+   Definition at line 59 of file fbxreference.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxreference.h
+
+   Please send us your comment about this page

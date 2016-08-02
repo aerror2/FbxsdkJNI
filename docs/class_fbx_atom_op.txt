@@ -1,0 +1,174 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAtomOp Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxAtomOp Class Reference
+   Search for all occurrences
+
+   #include <fbxatomic.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 22 of file fbxatomic.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+        static void  Inc (volatile FbxAtomic *pPtr)
+        static void  Dec (volatile FbxAtomic *pPtr)
+        static bool  Add (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  Sub (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  And (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  Or (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  Nand (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  Xor (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+        static bool  CompareAndSwap (volatile FbxAtomic *pPtr, FbxAtomic pOld, FbxAtomic pSwap)
+   static FbxAtomic  TestAndSet (volatile FbxAtomic *pPtr)
+   static FbxAtomic  FetchAndSwap (volatile FbxAtomic *pPtr, FbxAtomic pSwap)
+   static FbxAtomic  FetchAndInc (volatile FbxAtomic *pPtr)
+   static FbxAtomic  FetchAndDec (volatile FbxAtomic *pPtr)
+   static FbxAtomic  FetchAndAdd (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  FetchAndSub (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  FetchAndOr (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  FetchAndAnd (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  FetchAndXor (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  FetchAndNand (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  IncAndFetch (volatile FbxAtomic *pPtr)
+   static FbxAtomic  DecAndFetch (volatile FbxAtomic *pPtr)
+   static FbxAtomic  AddAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  SubAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  OrAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  AndAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  XorAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+   static FbxAtomic  NandAndFetch (volatile FbxAtomic *pPtr, FbxAtomic pVal)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static void Inc ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static void Dec ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static bool Add ( volatile FbxAtomic *  pPtr,
+                     FbxAtomic             pVal
+                   )                       [static]
+   Search for all occurrences
+   static bool Sub ( volatile FbxAtomic *  pPtr,
+                     FbxAtomic             pVal
+                   )                       [static]
+   Search for all occurrences
+   static bool And ( volatile FbxAtomic *  pPtr,
+                     FbxAtomic             pVal
+                   )                       [static]
+   Search for all occurrences
+   static bool Or ( volatile FbxAtomic *  pPtr,
+                    FbxAtomic             pVal
+                  )                       [static]
+   Search for all occurrences
+   static bool Nand ( volatile FbxAtomic *  pPtr,
+                      FbxAtomic             pVal
+                    )                       [static]
+   Search for all occurrences
+   static bool Xor ( volatile FbxAtomic *  pPtr,
+                     FbxAtomic             pVal
+                   )                       [static]
+   Search for all occurrences
+   static bool CompareAndSwap ( volatile FbxAtomic *  pPtr,
+                                FbxAtomic             pOld,
+                                FbxAtomic             pSwap
+                              )                       [static]
+   Search for all occurrences
+   static FbxAtomic TestAndSet ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndSwap ( volatile FbxAtomic *  pPtr,
+                                   FbxAtomic             pSwap
+                                 )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndInc ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndDec ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndAdd ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndSub ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndOr ( volatile FbxAtomic *  pPtr,
+                                 FbxAtomic             pVal
+                               )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndAnd ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndXor ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic FetchAndNand ( volatile FbxAtomic *  pPtr,
+                                   FbxAtomic             pVal
+                                 )                       [static]
+   Search for all occurrences
+   static FbxAtomic IncAndFetch ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static FbxAtomic DecAndFetch ( volatile FbxAtomic *  pPtr ) [static]
+   Search for all occurrences
+   static FbxAtomic AddAndFetch ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic SubAndFetch ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic OrAndFetch ( volatile FbxAtomic *  pPtr,
+                                 FbxAtomic             pVal
+                               )                       [static]
+   Search for all occurrences
+   static FbxAtomic AndAndFetch ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic XorAndFetch ( volatile FbxAtomic *  pPtr,
+                                  FbxAtomic             pVal
+                                )                       [static]
+   Search for all occurrences
+   static FbxAtomic NandAndFetch ( volatile FbxAtomic *  pPtr,
+                                   FbxAtomic             pVal
+                                 )                       [static]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxatomic.h
+
+   Please send us your comment about this page

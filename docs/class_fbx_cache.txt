@@ -1,0 +1,1128 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCache Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxCache Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcache.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This object contains methods for accessing point animation in a cache file.
+
+   The FBX SDK supports two point cache file formats :
+     * eMaxPointCacheV2: the 3ds Max Point Cache 2 file format.
+     * eMayaCache: the Maya Cache file format.
+
+   Accessing cache data using these formats differs significantly. To address this difference, two sets of methods have been created. Use the GetCacheFileFormat() function to determine which set of methods to use.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 37 of file fbxcache.h.
+   Inheritance diagram for FbxCache:
+   [USEMAP:class_fbx_cache.png]
+
+   List of all members.
+
+Public Member Functions
+
+   eMaxPointCacheV2 Format Specific Functions.
+   bool  OpenFileForWrite (double pFrameStartOffset, double pSamplingFrameRate, unsigned int pSampleCount, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Open a cache file for writing.
+   unsigned int  GetSampleCount (FbxStatus *pStatus=NULL)
+     Get the number of frames of animation found in the point cache file.
+   unsigned int  GetPointCount (FbxStatus *pStatus=NULL)
+     Get the number of points animated in the cache file.
+   double  GetFrameStartOffset (FbxStatus *pStatus=NULL)
+     Get the start time of the animation.
+   bool  Read (unsigned int pFrameIndex, double *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Read a sample at a given frame index.
+   bool  Write (unsigned int pFrameIndex, double *pBuffer, FbxStatus *pStatus=NULL)
+     Write a sample at a given frame index.
+   File conversion Functions.
+   bool  ConvertFromPC2ToMC (EMCFileCount pFileCount, double pSamplingFrameRate, EMCBinaryFormat pBinaryFormat, FbxStatus *pStatus=NULL)
+     Create an MC cache file from an PC2 cache file.
+   bool  ConvertFromMCToPC2 (double pSamplingFrameRate, unsigned int pChannelIndex, FbxStatus *pStatus=NULL)
+     Create a PC2 cache file from an MC cache file.
+
+Format Independent Functions.
+
+   enum   EFileFormat { eUnknownFileFormat, eMaxPointCacheV2, eMayaCache }
+     Supported cache file formats. More...
+   void  SetCacheFileFormat (EFileFormat pFileFormat, FbxStatus *pStatus=NULL)
+     Set the cache file format.
+   EFileFormat  GetCacheFileFormat () const
+     Get the cache file format.
+   void  SetCacheFileName (const char *pRelativeFileName_UTF8, const char *pAbsoluteFileName_UTF8, FbxStatus *pStatus=NULL)
+     Set the cache file name.
+   void  GetCacheFileName (FbxString &pRelativeFileName_UTF8, FbxString &pAbsoluteFileName_UTF8) const
+     Get the cache file name.
+   bool  OpenFileForRead (FbxStatus *pStatus=NULL)
+     Open the cache file for reading.
+   bool  IsOpen (FbxStatus *pStatus=NULL) const
+     Get the open state of the cache file.
+   bool  CloseFile (FbxStatus *pStatus=NULL)
+     Close the cache file.
+   double  GetSamplingFrameRate (FbxStatus *pStatus=NULL)
+     Get the sampling frame rate of the cache file.
+   FbxTime  GetCacheTimePerFrame (FbxStatus *pStatus=NULL)
+     Get the sampling frame rate of the cache file, as a FbxTime object.
+
+eMayaCache Format Specific Functions.
+
+   enum   EMCFileCount { eMCOneFile, eMCOneFilePerFrame }
+     Number of files used to store the animation. More...
+   enum   EMCDataType {
+     eUnknownData, eDouble, eDoubleArray, eDoubleVectorArray,
+     eInt32Array, eFloatArray, eFloatVectorArray
+   }
+     Data types in the MC cache file. More...
+   enum   EMCBinaryFormat { eMCC, eMCX }
+     Binary cache format. More...
+   enum   EMCSamplingType { eSamplingRegular, eSamplingIrregular }
+     Cache channel sampling types. More...
+   bool  OpenFileForWrite (EMCFileCount pFileCount, double pSamplingFrameRate, const char *pChannelName, EMCBinaryFormat pBinaryFormat, EMCDataType pMCDataType=eDoubleVectorArray, const char *pInterpretation="Points", FbxStatus *pStatus=NULL)
+     Open a cache file for writing.
+   bool  AddChannel (const char *pChannelName, EMCDataType pMCDataType, const char *pInterpretation, unsigned int &pChannelIndex, FbxStatus *pStatus=NULL)
+     Creates a new channel in the cache.
+   int  GetChannelCount (FbxStatus *pStatus=NULL)
+     Get the number of channels in the cache file.
+   bool  GetChannelName (int pChannelIndex, FbxString &pChannelName, FbxStatus *pStatus=NULL)
+     Get the channel name for a specific channel index.
+   bool  GetChannelDataType (int pChannelIndex, EMCDataType &pChannelType, FbxStatus *pStatus=NULL)
+     Get the data type of the specified channel.
+   int  GetChannelIndex (const char *pChannelName, FbxStatus *pStatus=NULL)
+     Get the index of the specified channel.
+   bool  Read (int pChannelIndex, FbxTime &pTime, double *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Read a sample at a given time.
+   bool  Read (int pChannelIndex, FbxTime &pTime, float *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Read a sample at a given time.
+   bool  Read (int pChannelIndex, FbxTime &pTime, int *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Read a sample at a given time.
+   bool  BeginWriteAt (FbxTime &pTime, FbxStatus *pStatus=NULL)
+     Instruct the cache system that data is about to be written to it.
+   bool  Write (int pChannelIndex, FbxTime &pTime, double *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Write a sample at a given time.
+   bool  Write (int pChannelIndex, FbxTime &pTime, float *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Write a sample at a given time.
+   bool  Write (int pChannelIndex, FbxTime &pTime, int *pBuffer, unsigned int pPointCount, FbxStatus *pStatus=NULL)
+     Write a sample at a given time.
+   bool  EndWriteAt (FbxStatus *pStatus=NULL)
+     Instruct the cache system that all the data on all the channels has been written to it for the given time (specified by the BeginWriteAt() call).
+   bool  GetAnimationRange (int pChannelIndex, FbxTime &pTimeStart, FbxTime &pTimeEnd, FbxStatus *pStatus=NULL)
+     Get the Animation Range of the specified channel.
+   bool  GetCacheType (EMCFileCount &pFileCount, FbxStatus *pStatus=NULL)
+     Get the cache type.
+   bool  GetChannelInterpretation (int pChannelIndex, FbxString &pInterpretation, FbxStatus *pStatus=NULL)
+     Get the cache channel interpretation.
+   bool  GetChannelSamplingType (int pChannelIndex, EMCSamplingType &pSamplingType, FbxStatus *pStatus=NULL)
+     Get the cache channel sampling type.
+   bool  GetChannelSamplingRate (int pChannelIndex, FbxTime &pSamplingRate, FbxStatus *pStatus=NULL)
+     Get the cache channel sampling rate, in frames per second.
+   bool  GetChannelSampleCount (int pChannelIndex, unsigned int &pSampleCount, FbxStatus *pStatus=NULL)
+     Get the number of data points for a channel.
+   bool  GetChannelPointCount (int pChannelIndex, FbxTime pTime, unsigned int &pPointCount, FbxStatus *pStatus=NULL)
+     Get the number of points animated in the cache file, for a channel, for a given time.
+   int  GetCacheDataFileCount (FbxStatus *pStatus=NULL) const
+     Returns the number of cache data files.
+   bool  GetCacheDataFileName (int pIndex, FbxString &pRelativeFileName, FbxString &pAbsoluteFileName, FbxStatus *pStatus=NULL)
+     Get the nth cache file name.
+   bool  EnableMultiChannelFetching (bool pMultiChannelFetching, FbxStatus *pStatus=NULL)
+     Enable multi-channel fetching.
+   bool  GetNextTimeWithData (FbxTime pCurTime, FbxTime &pNextTime, int pChannelIndex=-1, FbxStatus *pStatus=NULL)
+     Get the next time where data is stored.
+   int  GetDataCount (int pChannelIndex, FbxStatus *pStatus=NULL)
+     Get the number of data points the channel contains.
+   bool  GetDataTime (int pChannelIndex, unsigned int pDataIndex, FbxTime &pTime, FbxStatus *pStatus=NULL)
+     Get the time of the specified data point.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EFileFormat
+   Search for all occurrences
+
+   Supported cache file formats.
+
+   Enumerator:
+
+          eUnknownFileFormat
+
+   Unknown cache file format.
+   Search for all occurrences
+          eMaxPointCacheV2
+
+   3ds Max Point Cache 2 file format.
+   Search for all occurrences
+          eMayaCache
+
+   Maya Cache file format.
+   Search for all occurrences
+
+   Definition at line 49 of file fbxcache.h.
+        {
+            eUnknownFileFormat,
+            eMaxPointCacheV2,
+            eMayaCache
+        };
+
+   enum EMCFileCount
+   Search for all occurrences
+
+   Number of files used to store the animation.
+
+   Enumerator:
+
+          eMCOneFile
+
+   One file is used for all the frames of animation.
+   Search for all occurrences
+   eMCOneFilePerFrame
+
+   For every frame of animation, a cache file is used.
+   The number of the frames is the number of the cache files.
+   Search for all occurrences
+
+   Definition at line 119 of file fbxcache.h.
+        {
+                        eMCOneFile,
+            eMCOneFilePerFrame
+        };
+
+   enum EMCDataType
+   Search for all occurrences
+
+   Data types in the MC cache file.
+
+   Enumerator:
+
+          eUnknownData
+
+   Unknown data.
+   Search for all occurrences
+          eDouble
+
+   No use but has to be defined for consistency reasons.
+   Search for all occurrences
+          eDoubleArray
+
+   double*
+   Search for all occurrences
+          eDoubleVectorArray
+
+   double* [3]
+   Search for all occurrences
+          eInt32Array
+
+   int*
+   Search for all occurrences
+          eFloatArray
+
+   float*
+   Search for all occurrences
+          eFloatVectorArray
+
+   float* [3]
+   Search for all occurrences
+
+   Definition at line 127 of file fbxcache.h.
+        {
+            eUnknownData,
+            eDouble,
+            eDoubleArray,
+            eDoubleVectorArray,
+            eInt32Array,
+            eFloatArray,
+            eFloatVectorArray
+        };
+
+   enum EMCBinaryFormat
+   Search for all occurrences
+
+   Binary cache format.
+
+   Enumerator:
+
+          eMCC
+
+   MCC cache file format, 32bit (older format)
+   Search for all occurrences
+          eMCX
+
+   MCX cache file format, 64bit (newer format)
+   Search for all occurrences
+
+   Definition at line 139 of file fbxcache.h.
+        {
+            eMCC,
+            eMCX
+        };
+
+   enum EMCSamplingType
+   Search for all occurrences
+
+   Cache channel sampling types.
+
+   Enumerator:
+
+          eSamplingRegular
+
+   Regular sampling.
+   Search for all occurrences
+          eSamplingIrregular
+
+   Irregular sampling.
+   Search for all occurrences
+
+   Definition at line 322 of file fbxcache.h.
+        {
+            eSamplingRegular,
+            eSamplingIrregular
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetCacheFileFormat ( EFileFormat  pFileFormat,
+                             FbxStatus *  pStatus = NULL
+                           )
+   Search for all occurrences
+
+   Set the cache file format.
+
+   Parameters:
+
+          pFileFormat Valid values are eMaxPointCacheV2 or eMayaCache.
+          pStatus     The FbxStatus object to hold error codes.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   EFileFormat GetCacheFileFormat ( ) const
+   Search for all occurrences
+
+   Get the cache file format.
+
+   Returns:
+          The current cache file format, or eUnknown if it is not set.
+
+   Examples:
+          ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   void SetCacheFileName ( const char *  pRelativeFileName_UTF8,
+                           const char *  pAbsoluteFileName_UTF8,
+                           FbxStatus *   pStatus = NULL
+                         )
+   Search for all occurrences
+
+   Set the cache file name.
+
+   Parameters:
+
+          pRelativeFileName_UTF8 The point cache file, relative to the FBX file name.
+          pAbsoluteFileName_UTF8 The point cache file absolute path.
+          pStatus                The FbxStatus object to hold error codes.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   void GetCacheFileName ( FbxString &  pRelativeFileName_UTF8,
+                           FbxString &  pAbsoluteFileName_UTF8
+                         )              const
+   Search for all occurrences
+
+   Get the cache file name.
+
+   Parameters:
+
+          pRelativeFileName_UTF8 Return the point cache file name, relative to the FBX File name.
+          pAbsoluteFileName_UTF8 Return the point cache file absolute path.
+
+   bool OpenFileForRead ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Open the cache file for reading.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the file is successfully opened, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, and ViewScene/SceneContext.cxx.
+
+   bool IsOpen ( FbxStatus *  pStatus = NULL ) const
+   Search for all occurrences
+
+   Get the open state of the cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the cache file is currently open, false otherwise.
+
+   bool CloseFile ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Close the cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if the cache file is closed successfully, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx, and ImportScene/DisplayCache.cxx.
+
+   double GetSamplingFrameRate ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the sampling frame rate of the cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The sampling frame rate of the cache file, in frames per second.
+
+   FbxTime GetCacheTimePerFrame ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the sampling frame rate of the cache file, as a FbxTime object.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The sampling frame rate of the cache file.
+
+   bool OpenFileForWrite ( EMCFileCount     pFileCount,
+                           double           pSamplingFrameRate,
+                           const char *     pChannelName,
+                           EMCBinaryFormat  pBinaryFormat,
+                           EMCDataType      pMCDataType = eDoubleVectorArray,
+                           const char *     pInterpretation = "Points",
+                           FbxStatus *      pStatus = NULL
+                         )
+   Search for all occurrences
+
+   Open a cache file for writing.
+
+   Parameters:
+
+          pFileCount         Create one file for each frame of animation, or one file for all the frames.
+          pSamplingFrameRate Number of frames per second.
+          pChannelName       The name of the channel of animation to create.
+          pBinaryFormat      Binary format type (32 bit=eMCC or 64bit=eMCX)
+          pMCDataType        The data type of the MC cache file.
+          pInterpretation    A piece of meta data to help users of the cache understand how to interpret the data.
+          pStatus            The FbxStatus object to hold error codes.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   bool AddChannel ( const char *    pChannelName,
+                     EMCDataType     pMCDataType,
+                     const char *    pInterpretation,
+                     unsigned int &  pChannelIndex,
+                     FbxStatus *     pStatus = NULL
+                   )
+   Search for all occurrences
+
+   Creates a new channel in the cache.
+
+   Parameters:
+
+          pChannelName    The name of the channel of animation to create.
+          pMCDataType     The MC DataType of the cache.
+          pInterpretation A piece of meta data to help users of the cache understand how to interpret the data.
+          pChannelIndex   The index of the new animation channel.
+          pStatus         The FbxStatus object to hold error codes.
+
+   Remarks:
+          pChannelName must be unique within the cache.
+          pChannelName and pInterpretation cannot be NULL pointers.
+          This method must be called before adding any data to the cache but after the OpenFileForWrite.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   int GetChannelCount ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the number of channels in the cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of animation channels in the cache file.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   bool GetChannelName ( int          pChannelIndex,
+                         FbxString &  pChannelName,
+                         FbxStatus *  pStatus = NULL
+                       )
+   Search for all occurrences
+
+   Get the channel name for a specific channel index.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pChannelName  Returns the name of the requested channel.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise. functions for error details.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   bool GetChannelDataType ( int            pChannelIndex,
+                             EMCDataType &  pChannelType,
+                             FbxStatus *    pStatus = NULL
+                           )
+   Search for all occurrences
+
+   Get the data type of the specified channel.
+
+   Parameters:
+
+          pChannelIndex The index of the channel.
+          pChannelType  The channel's data type.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise. functions for error details.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   int GetChannelIndex ( const char *  pChannelName,
+                         FbxStatus *   pStatus = NULL
+                       )
+   Search for all occurrences
+
+   Get the index of the specified channel.
+
+   Parameters:
+
+          pChannelName The name of the channel.
+          pStatus      The FbxStatus object to hold error codes.
+
+   Returns:
+          The index of the channel in the cache file, or -1 if an error occurred.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, and ViewScene/DrawScene.cxx.
+
+   bool Read ( int           pChannelIndex,
+               FbxTime &     pTime,
+               double *      pBuffer,
+               unsigned int  pPointCount,
+               FbxStatus *   pStatus = NULL
+             )
+   Search for all occurrences
+
+   Read a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be evaluated.
+          pBuffer       The place where the point value will be copied. If the channel's data type is DoubleVectorArray this buffer must be of size 3*pPointCount.
+          pPointCount   The number of points to read from the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayCache.cxx, and ViewScene/DrawScene.cxx.
+
+   bool Read ( int           pChannelIndex,
+               FbxTime &     pTime,
+               float *       pBuffer,
+               unsigned int  pPointCount,
+               FbxStatus *   pStatus = NULL
+             )
+   Search for all occurrences
+
+   Read a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be evaluated.
+          pBuffer       The place where the point value will be copied. If the channel's data type is FloatVectorArray this buffer must be of size 3*pPointCount.
+          pPointCount   The number of points to read from the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool Read ( int           pChannelIndex,
+               FbxTime &     pTime,
+               int *         pBuffer,
+               unsigned int  pPointCount,
+               FbxStatus *   pStatus = NULL
+             )
+   Search for all occurrences
+
+   Read a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be evaluated.
+          pBuffer       The place where the point value will be copied. This buffer must be of size pPointCount.
+          pPointCount   The number of points to read from the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool BeginWriteAt ( FbxTime &    pTime,
+                       FbxStatus *  pStatus = NULL
+                     )
+   Search for all occurrences
+
+   Instruct the cache system that data is about to be written to it.
+
+   This call must appear before any calls to the Write() methods on any channel and terminated by a call to EndWriteAt().
+
+   Parameters:
+
+          pTime   Time at which the point animation must be inserted.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   bool Write ( int           pChannelIndex,
+                FbxTime &     pTime,
+                double *      pBuffer,
+                unsigned int  pPointCount,
+                FbxStatus *   pStatus = NULL
+              )
+   Search for all occurrences
+
+   Write a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be inserted.
+          pBuffer       Point to the values to be copied. If the channel's data type is DoubleVectorArray this buffer must be of size 3*pPointCount.
+          pPointCount   The number of points to write in the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          This method will fail if the time pTime is different from the time set using the call BeginWriteAt().
+          For backward compatibility reasons you can still call this method without the prior call to BeginWriteAt() only if this cached system has been defined with one channel. Any other configuration will result in a failure.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   bool Write ( int           pChannelIndex,
+                FbxTime &     pTime,
+                float *       pBuffer,
+                unsigned int  pPointCount,
+                FbxStatus *   pStatus = NULL
+              )
+   Search for all occurrences
+
+   Write a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be inserted.
+          pBuffer       Point to the values to be copied. If the channel's data type is FloatVectorArray this buffer must be of size 3*pPointCount.
+          pPointCount   The number of points to write in the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          This method will fail if the time pTime is different from the time set using the call BeginWriteAt().
+          For backward compatibility reasons you can still call this method without the prior call to BeginWriteAt() only if this cached system has been defined with one channel. Any other configuration will result in a failure.
+
+   bool Write ( int           pChannelIndex,
+                FbxTime &     pTime,
+                int *         pBuffer,
+                unsigned int  pPointCount,
+                FbxStatus *   pStatus = NULL
+              )
+   Search for all occurrences
+
+   Write a sample at a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Time at which the point animation must be inserted.
+          pBuffer       Point to the values to be copied. This buffer must be of size pPointCount.
+          pPointCount   The number of points to write in the point cache file.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          This method will fail if the time pTime is different from the time set using the call BeginWriteAt().
+          For backward compatibility reasons you can still call this method without the prior call to BeginWriteAt() only if this cached system has been defined with one channel. Any other configuration will result in a failure.
+
+   bool EndWriteAt ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Instruct the cache system that all the data on all the channels has been written to it for the given time (specified by the BeginWriteAt() call).
+
+   The call to this method must be made after all the Write() for every channel defined.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   bool GetAnimationRange ( int          pChannelIndex,
+                            FbxTime &    pTimeStart,
+                            FbxTime &    pTimeEnd,
+                            FbxStatus *  pStatus = NULL
+                          )
+   Search for all occurrences
+
+   Get the Animation Range of the specified channel.
+
+   Parameters:
+
+          pChannelIndex The index of the channel.
+          pTimeStart    The start time of the channel's animation.
+          pTimeEnd      The end time of the channel's animation.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx, and ViewScene/SceneContext.cxx.
+
+   bool GetCacheType ( EMCFileCount &  pFileCount,
+                       FbxStatus *     pStatus = NULL
+                     )
+   Search for all occurrences
+
+   Get the cache type.
+
+   Parameters:
+
+          pFileCount The cache type.
+          pStatus    The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool GetChannelInterpretation ( int          pChannelIndex,
+                                   FbxString &  pInterpretation,
+                                   FbxStatus *  pStatus = NULL
+                                 )
+   Search for all occurrences
+
+   Get the cache channel interpretation.
+
+   Parameters:
+
+          pChannelIndex   The index of the animation channel, between 0 and GetChannelCount().
+          pInterpretation The channel interpretation, user-defined.
+          pStatus         The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   bool GetChannelSamplingType ( int                pChannelIndex,
+                                 EMCSamplingType &  pSamplingType,
+                                 FbxStatus *        pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Get the cache channel sampling type.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pSamplingType The sampling type of the channel.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   bool GetChannelSamplingRate ( int          pChannelIndex,
+                                 FbxTime &    pSamplingRate,
+                                 FbxStatus *  pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Get the cache channel sampling rate, in frames per second.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pSamplingRate The sampling rate of the channel. The channel must have a regular sampling type.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   bool GetChannelSampleCount ( int             pChannelIndex,
+                                unsigned int &  pSampleCount,
+                                FbxStatus *     pStatus = NULL
+                              )
+   Search for all occurrences
+
+   Get the number of data points for a channel.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pSampleCount  Number of available samples.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   bool GetChannelPointCount ( int             pChannelIndex,
+                               FbxTime         pTime,
+                               unsigned int &  pPointCount,
+                               FbxStatus *     pStatus = NULL
+                             )
+   Search for all occurrences
+
+   Get the number of points animated in the cache file, for a channel, for a given time.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pTime         Reference time; must be within the boundaries of the animation.
+          pPointCount   Number of available points.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Examples:
+          ImportScene/DisplayCache.cxx.
+
+   int GetCacheDataFileCount ( FbxStatus *  pStatus = NULL ) const
+   Search for all occurrences
+
+   Returns the number of cache data files.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The count returned does not include the main cache file, and depends on the cache type. Will return -1 if point cache support is not enabled.
+
+   bool GetCacheDataFileName ( int          pIndex,
+                               FbxString &  pRelativeFileName,
+                               FbxString &  pAbsoluteFileName,
+                               FbxStatus *  pStatus = NULL
+                             )
+   Search for all occurrences
+
+   Get the nth cache file name.
+
+   Parameters:
+
+          pIndex            Index of the cache file to return; index is zero-based, and must be less than GetCacheDataFileCount().
+          pRelativeFileName Return the point cache file name, relative to the FBX File name.
+          pAbsoluteFileName Return the point cache file absolute path.
+          pStatus           The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise. See the error management functions for error details.
+
+   bool EnableMultiChannelFetching ( bool         pMultiChannelFetching,
+                                     FbxStatus *  pStatus = NULL
+                                   )
+   Search for all occurrences
+
+   Enable multi-channel fetching.
+
+   Parameters:
+
+          pMultiChannelFetching Enable/disable multi-channel fetching. When multi-channel is enabled, any load of data on a channel at a specific time will pre-fetch data from all channels, for that specific time. This can reduce disk access, and increase performance (but requires more memory).
+          pStatus               The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool GetNextTimeWithData ( FbxTime      pCurTime,
+                              FbxTime &    pNextTime,
+                              int          pChannelIndex = -1,
+                              FbxStatus *  pStatus = NULL
+                            )
+   Search for all occurrences
+
+   Get the next time where data is stored.
+
+   Parameters:
+
+          pCurTime      Current time; must be within the boundaries of the animation time.
+          pNextTime     Next time (filled if the function is successful).
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount(). If pChannel is left at -1, get the next time for any channel.
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   int GetDataCount ( int          pChannelIndex,
+                      FbxStatus *  pStatus = NULL
+                    )
+   Search for all occurrences
+
+   Get the number of data points the channel contains.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of the channel's data points.
+
+   bool GetDataTime ( int           pChannelIndex,
+                      unsigned int  pDataIndex,
+                      FbxTime &     pTime,
+                      FbxStatus *   pStatus = NULL
+                    )
+   Search for all occurrences
+
+   Get the time of the specified data point.
+
+   Parameters:
+
+          pChannelIndex The index of the animation channel, between 0 and GetChannelCount().
+          pDataIndex    Index of the data point.
+          pTime         Time of the data point (filled if the function is successful).
+          pStatus       The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool OpenFileForWrite ( double        pFrameStartOffset,
+                           double        pSamplingFrameRate,
+                           unsigned int  pSampleCount,
+                           unsigned int  pPointCount,
+                           FbxStatus *   pStatus = NULL
+                         )
+   Search for all occurrences
+
+   Open a cache file for writing.
+
+   Parameters:
+
+          pFrameStartOffset  Start time of the animation, in frames.
+          pSamplingFrameRate Number of frames per second.
+          pSampleCount       The number of samples to write to the file.
+          pPointCount        The number of points to write in the point cache file.
+          pStatus            The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise. See the error management functions for error details.
+
+   unsigned int GetSampleCount ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the number of frames of animation found in the point cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of frames of animation.
+
+   unsigned int GetPointCount ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the number of points animated in the cache file.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of points.
+
+   double GetFrameStartOffset ( FbxStatus *  pStatus = NULL )
+   Search for all occurrences
+
+   Get the start time of the animation.
+
+   Parameters:
+
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          The start time of the animation, in frames.
+
+   bool Read ( unsigned int  pFrameIndex,
+               double *      pBuffer,
+               unsigned int  pPointCount,
+               FbxStatus *   pStatus = NULL
+             )
+   Search for all occurrences
+
+   Read a sample at a given frame index.
+
+   Parameters:
+
+          pFrameIndex The index of the animation frame, between 0 and GetSampleCount().
+          pBuffer     The place where the point value will be copied. This buffer must be of size 3*pPointCount.
+          pPointCount The number of points to read from the point cache file.
+          pStatus     The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   bool Write ( unsigned int  pFrameIndex,
+                double *      pBuffer,
+                FbxStatus *   pStatus = NULL
+              )
+   Search for all occurrences
+
+   Write a sample at a given frame index.
+
+   Parameters:
+
+          pFrameIndex The index of the animation frame.
+          pBuffer     Point to the values to be copied. This buffer must be of size 3*pPointCount, as passed to the function OpenFileForWrite().
+          pStatus     The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          Successive calls to Write() must use successive index.
+
+   bool ConvertFromPC2ToMC ( EMCFileCount     pFileCount,
+                             double           pSamplingFrameRate,
+                             EMCBinaryFormat  pBinaryFormat,
+                             FbxStatus *      pStatus = NULL
+                           )
+   Search for all occurrences
+
+   Create an MC cache file from an PC2 cache file.
+
+   Parameters:
+
+          pFileCount         Create one file for each frame of animation, or one file for all the frames.
+          pSamplingFrameRate Number of frames per second used to re-sample the point animation.
+          pBinaryFormat      Binary format type (32 bit=eMCC or 64bit=eMCX)
+          pStatus            The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          The created point cache file will be located in the _fpc folder associate with the FBX file.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   bool ConvertFromMCToPC2 ( double        pSamplingFrameRate,
+                             unsigned int  pChannelIndex,
+                             FbxStatus *   pStatus = NULL
+                           )
+   Search for all occurrences
+
+   Create a PC2 cache file from an MC cache file.
+
+   Parameters:
+
+          pSamplingFrameRate Number of frames per second to re-sample the point animation.
+          pChannelIndex      Index of the channel of animation to read from.
+          pStatus            The FbxStatus object to hold error codes.
+
+   Returns:
+          true if successful, false otherwise.
+
+   Remarks:
+          The created point cache file will be located in the _fpc folder associate with the FBX file.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxcache.h
+
+   Please send us your comment about this page

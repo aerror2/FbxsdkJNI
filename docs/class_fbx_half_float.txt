@@ -1,0 +1,126 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxHalfFloat Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxHalfFloat Class Reference
+   Search for all occurrences
+
+   #include <fbxpropertytypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK half-float class.
+
+   Property used to store half-float (16 bit float) number. This class only holds the value in 2 byte buffer (unsigned short). There is no direct math manipulation of this type except for the conversion to/from float. On disk, this type is also saved as an unsigned short.
+
+   Definition at line 155 of file fbxpropertytypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+         FbxHalfFloat &  operator= (const FbxHalfFloat &pValue)
+                         Assign operator.
+
+Constructors
+
+                         FbxHalfFloat ()
+                         FbxHalfFloat (float pVal)
+                         FbxHalfFloat (const FbxHalfFloat &pVal)
+
+boolean operation
+
+                   bool  operator== (const FbxHalfFloat &pRHS) const
+                         Equivalence operator.
+                   bool  operator!= (const FbxHalfFloat &pRHS) const
+                         Non-equivalence operator.
+
+Access
+
+            const float  value () const
+                         Retrieve the value as a float.
+   unsigned const short  internal_value () const
+                         Retrieve the value as it is stored.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxHalfFloat ( )
+   FbxHalfFloat ( float  pVal )
+   FbxHalfFloat ( const FbxHalfFloat &  pVal )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxHalfFloat& operator= ( const FbxHalfFloat &  pValue )
+
+   Assign operator.
+
+   Parameters:
+
+          pValue The half-float to be assigned to this distance.
+
+   Returns:
+          This half-float.
+
+   bool operator== ( const FbxHalfFloat &  pRHS ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pRHS The half-float to be compared with this one.
+
+   Returns:
+          True, if the two values are equal, false otherwise.
+
+   bool operator!= ( const FbxHalfFloat &  pRHS ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pRHS The half-float to be compared with this one
+
+   Returns:
+          True, if the two values are unequal, false otherwise.
+
+   const float value ( ) const
+   Search for all occurrences
+
+   Retrieve the value as a float.
+   unsigned const short internal_value ( ) const
+   Search for all occurrences
+
+   Retrieve the value as it is stored.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxpropertytypes.h
+
+   Please send us your comment about this page

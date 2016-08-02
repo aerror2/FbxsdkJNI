@@ -1,0 +1,150 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSurfacePhong Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxSurfacePhong Class Reference
+
+   This reference page is linked to from the following overview topics: What is Autodesk FBX Technology?, Meshes, Materials and Textures, Materials, Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxsurfacephong.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class contains settings for Phong Materials.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayMaterial.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 25 of file fbxsurfacephong.h.
+   Inheritance diagram for FbxSurfacePhong:
+   [USEMAP:class_fbx_surface_phong.png]
+
+   List of all members.
+
+Material properties
+
+   FbxPropertyT< FbxDouble3 >  Specular
+                               Specular property.
+    FbxPropertyT< FbxDouble >  SpecularFactor
+                               Specular factor property.
+    FbxPropertyT< FbxDouble >  Shininess
+                               Shininess property.
+   FbxPropertyT< FbxDouble3 >  Reflection
+                               Reflection color property.
+    FbxPropertyT< FbxDouble >  ReflectionFactor
+                               Reflection factor property.
+
+Default property values
+
+      static const FbxDouble3  sSpecularDefault
+       static const FbxDouble  sSpecularFactorDefault
+       static const FbxDouble  sShininessDefault
+      static const FbxDouble3  sReflectionDefault
+       static const FbxDouble  sReflectionFactorDefault
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble3> Specular
+   Search for all occurrences
+
+   Specular property.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, and Layers/main.cxx.
+
+   Definition at line 35 of file fbxsurfacephong.h.
+   FbxPropertyT<FbxDouble> SpecularFactor
+   Search for all occurrences
+
+   Specular factor property.
+
+   This factor is used to attenuate the specular color.
+
+   Examples:
+          ExportDocument/main.cxx, and ExportScene03/main.cxx.
+
+   Definition at line 40 of file fbxsurfacephong.h.
+   FbxPropertyT<FbxDouble> Shininess
+   Search for all occurrences
+
+   Shininess property.
+
+   This property controls the aspect of the shiny spot. It is the specular exponent in the Phong illumination model.
+
+   Examples:
+          ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Layers/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 46 of file fbxsurfacephong.h.
+   FbxPropertyT<FbxDouble3> Reflection
+   Search for all occurrences
+
+   Reflection color property.
+
+   This property is used to implement reflection mapping.
+
+   Definition at line 51 of file fbxsurfacephong.h.
+   FbxPropertyT<FbxDouble> ReflectionFactor
+   Search for all occurrences
+
+   Reflection factor property.
+
+   This property is used to attenuate the reflection color.
+
+   Examples:
+          ExportScene02/main.cxx.
+
+   Definition at line 56 of file fbxsurfacephong.h.
+   const FbxDouble3 sSpecularDefault [static]
+   Search for all occurrences
+
+   Definition at line 68 of file fbxsurfacephong.h.
+   const FbxDouble sSpecularFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 69 of file fbxsurfacephong.h.
+   const FbxDouble sShininessDefault [static]
+   Search for all occurrences
+
+   Definition at line 71 of file fbxsurfacephong.h.
+   const FbxDouble3 sReflectionDefault [static]
+   Search for all occurrences
+
+   Definition at line 73 of file fbxsurfacephong.h.
+   const FbxDouble sReflectionFactorDefault [static]
+   Search for all occurrences
+
+   Definition at line 74 of file fbxsurfacephong.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxsurfacephong.h
+
+   Please send us your comment about this page

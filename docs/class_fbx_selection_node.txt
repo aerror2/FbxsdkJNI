@@ -1,0 +1,191 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSelectionNode Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxSelectionNode Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxselectionnode.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxSelectionNode is an auxiliary class for Selection Set.
+
+   Used to group objects with their components (e.g. vertex, edge, and face), when adding it to a selection set (FbxSelectionSet).
+
+   See also:
+          FbxSelectionSet
+
+   Definition at line 27 of file fbxselectionnode.h.
+   Inheritance diagram for FbxSelectionNode:
+   [USEMAP:class_fbx_selection_node.png]
+
+   List of all members.
+
+Public Types
+
+   enum   ESelectType {
+     eVertexLevel, eEdgeLevel, eFaceLevel, eObjectLevel,
+     eSelectTypeCount
+   }
+     SelectionNode type identifier. More...
+
+Public Member Functions
+
+   bool  SetSelectionObject (FbxObject *pObject)
+     Set an object whose components or itself is contained in the SelectionNode.
+   FbxObject *  GetSelectionObject () const
+     Get the object whose components or itself or both are contained in the SelectionNode.
+   bool  IsValid () const
+     To detect if the SelectionNode is valid.
+
+Public Attributes
+
+   bool  mIsTheNodeInSet
+     true means the object itself is also in the selection set; false means only the object's components are in the selection set, the object is not.
+   FbxArray< int >  mVertexIndexArray
+     Index array for selected vertices.
+   FbxArray< int >  mEdgeIndexArray
+     Index array for selected edges.
+   FbxArray< int >  mPolygonIndexArray
+     Index array for selected faces.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESelectType
+   Search for all occurrences
+
+   SelectionNode type identifier.
+     * eVertexLevel Vertex level selection.
+     * eEdgeLevel Edge level selection.
+     * eFaceLevel Face level selection.
+     * eObjectLevel Object level selection.
+     * eSelectTypeCount Number of Select Types.
+
+   Enumerator:
+
+          eVertexLevel
+
+   Search for all occurrences
+          eEdgeLevel
+
+   Search for all occurrences
+          eFaceLevel
+
+   Search for all occurrences
+          eObjectLevel
+
+   Search for all occurrences
+          eSelectTypeCount
+
+   Search for all occurrences
+
+   Definition at line 39 of file fbxselectionnode.h.
+    {
+        eVertexLevel,
+        eEdgeLevel,
+        eFaceLevel,
+        eObjectLevel,
+        eSelectTypeCount
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool SetSelectionObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set an object whose components or itself is contained in the SelectionNode.
+
+   Parameters:
+
+          pObject The object whose components or itself is contained in the SelectionNode.
+
+   Returns:
+          true if the object is set successfully. false otherwise.
+
+   Remarks:
+          It is possible a SDK user will try to set multiple objects to one SelectionNode, but only the last one will be kept.
+
+   FbxObject* GetSelectionObject ( ) const
+   Search for all occurrences
+
+   Get the object whose components or itself or both are contained in the SelectionNode.
+
+   Returns:
+          The object whose components or itself or both are contained in the SelectionNode.
+
+   bool IsValid ( ) const
+   Search for all occurrences
+
+   To detect if the SelectionNode is valid.
+
+   Returns:
+          true if this is a valid SelectionNode. false otherwise.
+
+   Remarks:
+          SelectionNode is valid if selection object is set. SelectionNode is not valid if no selection object is set.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   bool mIsTheNodeInSet
+   Search for all occurrences
+
+   true means the object itself is also in the selection set; false means only the object's components are in the selection set, the object is not.
+
+   Definition at line 70 of file fbxselectionnode.h.
+   FbxArray<int> mVertexIndexArray
+   Search for all occurrences
+
+   Index array for selected vertices.
+
+   Definition at line 74 of file fbxselectionnode.h.
+   FbxArray<int> mEdgeIndexArray
+   Search for all occurrences
+
+   Index array for selected edges.
+
+   Definition at line 78 of file fbxselectionnode.h.
+   FbxArray<int> mPolygonIndexArray
+   Search for all occurrences
+
+   Index array for selected faces.
+
+   Definition at line 82 of file fbxselectionnode.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxselectionnode.h
+
+   Please send us your comment about this page

@@ -1,0 +1,204 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingTableEntry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBindingTableEntry Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingtableentry.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A binding table entry stores a binding between a source and a destination.
+
+   Users should not instantiate this class directly, but always call FbxBindingTableBase::AddNewEntry() to create a new entry in the binding table.
+
+   Examples:
+          ExportShader/main.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 28 of file fbxbindingtableentry.h.
+
+   List of all members.
+
+Public Member Functions
+
+   FbxBindingTableEntry &  operator= (const FbxBindingTableEntry &pEntry)
+                           Assignment operator.
+
+Constructor and Destructor
+
+                           FbxBindingTableEntry ()
+                           Constructor.
+                           FbxBindingTableEntry (const FbxBindingTableEntry &pEntry)
+                           Copy constructor.
+                           ~FbxBindingTableEntry ()
+                           Destructor.
+
+Access
+
+                     void  SetSource (const char *pSource)
+                           Set the source.
+             const char *  GetSource () const
+                           Retrieve the source.
+                     void  SetDestination (const char *pDestination)
+                           Set the destination.
+             const char *  GetDestination () const
+                           Retrieve the destination.
+                     void  SetEntryType (const char *pType, bool pAsSource)
+                           Set the source type or destination type.
+             const char *  GetEntryType (bool pAsSource) const
+                           Get the source type or destination type.
+                   void *  GetUserDataPtr ()
+                           Retrieve user data pointer.
+             const void *  GetUserDataPtr () const
+                           Retrieve user data pointer.
+                     void  SetUserDataPtr (void *pData)
+                           Set user data pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxBindingTableEntry ( )
+
+   Constructor.
+   FbxBindingTableEntry ( const FbxBindingTableEntry &  pEntry )
+
+   Copy constructor.
+
+   Parameters:
+
+          pEntry FbxBindingTableEntry to be copied.
+
+   Remarks:
+          the UserDataPtr is a shared pointer.
+
+   ~FbxBindingTableEntry ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetSource ( const char *  pSource )
+   Search for all occurrences
+
+   Set the source.
+
+   Parameters:
+
+          pSource The source to set.
+
+   const char* GetSource ( ) const
+   Search for all occurrences
+
+   Retrieve the source.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   void SetDestination ( const char *  pDestination )
+   Search for all occurrences
+
+   Set the destination.
+
+   Parameters:
+
+          pDestination The destination to set.
+
+   const char* GetDestination ( ) const
+   Search for all occurrences
+
+   Retrieve the destination.
+   void SetEntryType ( const char *  pType,
+                       bool          pAsSource
+                     )
+   Search for all occurrences
+
+   Set the source type or destination type.
+
+   Parameters:
+
+          pType     The source type or destination type to set.
+          pAsSource Flag indicates source type or destination type to set.
+
+   const char* GetEntryType ( bool  pAsSource ) const
+   Search for all occurrences
+
+   Get the source type or destination type.
+
+   Parameters:
+
+          pAsSource Flag indicates source type or destination type to get.
+
+   Returns:
+          Source type or destination type.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   void* GetUserDataPtr ( )
+   Search for all occurrences
+
+   Retrieve user data pointer.
+
+   Returns:
+          User data pointer.
+
+   const void* GetUserDataPtr ( ) const
+   Search for all occurrences
+
+   Retrieve user data pointer.
+
+   Returns:
+          User data pointer.
+
+   void SetUserDataPtr ( void *  pData )
+   Search for all occurrences
+
+   Set user data pointer.
+
+   Parameters:
+
+          pData user data pointer.
+
+   FbxBindingTableEntry& operator= ( const FbxBindingTableEntry &  pEntry )
+
+   Assignment operator.
+
+   Parameters:
+
+          pEntry FbxBindingTableEntry assigned to this one.
+
+   Remarks:
+          the UserDataPtr is a shared pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingtableentry.h
+
+   Please send us your comment about this page

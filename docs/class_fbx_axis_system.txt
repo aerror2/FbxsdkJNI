@@ -1,0 +1,483 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAxisSystem Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxAxisSystem Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements, List of Python Fbx classes, Scene Axis and Unit Conversion.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxaxissystem.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class represents the coordinate system of the scene and can convert scenes to other coordinate systems.
+
+   By default the FbxScene uses a Y-Up axis system. If the calling application wishes to change the default axis it will need to define the new axis system and call the convert method with the scene as argument. The appropriate transforms will be applied to the first level objects of the scene only (objects whose parent is the scene itself). Child objects do not need to be transformed since they inherit from their parents. The adjustment will affect the translation animation curves and the objects
+   pivots values (the rotation transformation is applied as a pre-rotation transform therefore the rotation animation curves do not need to be transformed). Once converted, the scene will have its axis definition changed to the new system.
+
+   For example:
+        FbxScene* lScene = FbxScene::Create(sdkmanager, "MyScene");
+        ...
+        // the scene is filled with objects
+
+        int dir;
+        lScene->GetGlobalSettings().GetAxisSystem().GetUpVector(dir); // this returns the equivalent of FbxAxisSystem::eYAxis
+
+        FbxAxisSystem max; // we desire to convert the scene from Y-Up to Z-Up
+        max.ConvertScene(lScene);
+
+        lScene->GetGlobalSettings().GetAxisSystem().GetUpVector(dir); // this will now return the equivalent of FbxAxisSystem::eZAxis
+
+   No conversion will take place if the scene current axis system is equal to the new one.
+
+   The EUpVector specifies which axis has the up and down direction in the system (typically this is the Y or Z axis). The sign of the EUpVector is applied to represent the direction (1 is up and -1 is down relative to the observer).
+
+   The EFrontVector specifies which axis has the front and back direction in the system. It is not an independent variable, which means it depends on EUpVector. The enum values ParityEven and ParityOdd denote the first one and the second one of the remain two axes in addition to the up axis.
+
+   For example if the up axis is X, the remain two axes will be Y And Z, so the ParityEven is Y, and the ParityOdd is Z ; If the up axis is Y, the remain two axes will X And Z, so the ParityEven is X, and the ParityOdd is Z; If the up axis is Z, the remain two axes will X And Y, so the ParityEven is X, and the ParityOdd is Y.
+
+   There still needs a parameter to denote the direction of the EFrontVector just as the EUpVector. And the sign of the EFrontVector represents the direction (1 is front and -1 is back relative to observer).
+
+   If the front axis and the up axis are determined, the third axis will be automatically determined as the left one. The ECoordSystem enum is a parameter to determine the direction of the third axis just as the EUpVector sign. It determines if the axis system is right-handed or left-handed just as the enum values.
+
+   Some code for reconstructing a FbxAxisSystem object from reference scene.
+        //the reference scene
+        FbxScene* lSceneReference = FbxScene::Create(sdkmanager, "ReferenceScene");
+        ...
+        // the scene is filled with objects
+
+        FbxAxisSystem lAxisSytemReference = lSceneReference->GetGlobalSettings().GetAxisSystem();
+
+        int lUpVectorSign = 1;
+        int lFrontVectorSign = 1;
+
+        //get upVector and its sign.
+        EUpVector lUpVector = lAxisSsytemReference.getUpVector( lUpVectorSign );
+
+        //get FrontVector and its sign.
+        EFrontVector lFrontVector = lAxisSsytemReference.getFrontVector( lFrontVectorSign );
+
+        //get uCoorSystem.
+        ECoordSystem lCoorSystem = lAxisSsytemReference.GetCoorSystem();
+
+        //The FbxAxisSystem object to reconstruct back by saved parameter
+        FbxAxisSystem lAxisSytemReconstruct( lUpVectorSign * lUpVector,
+                                                                              lFrontVectorSign * lFrontVector,
+                                                                              lCoorSystem);
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   Definition at line 97 of file fbxaxissystem.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EUpVector { eXAxis = 1, eYAxis = 2, eZAxis = 3 }
+     Specifies which canonical axis represents up in the system (typically Y or Z). More...
+   enum   EFrontVector { eParityEven = 1, eParityOdd = 2 }
+     Vector with origin at the screen pointing toward the camera. More...
+   enum   ECoordSystem { eRightHanded, eLeftHanded }
+     Specifies the third vector of the system. More...
+   enum   EPreDefinedAxisSystem {
+     eMayaZUp, eMayaYUp, eMax, eMotionBuilder,
+     eOpenGL, eDirectX, eLightwave
+   }
+     Enumeration that can be used to initialize a new instance of this class with predefined configurations (see the "Predefined axis systems" section). More...
+
+Public Member Functions
+
+   FbxAxisSystem &  operator= (const FbxAxisSystem &pAxisSystem)
+     Assignment operation.
+   void  ConvertScene (FbxScene *pScene) const
+     Convert a scene to this axis system.
+   void  ConvertScene (FbxScene *pScene, FbxNode *pFbxRoot) const
+     Convert a scene to this axis system by using the specified node as an Fbx_Root.
+   EFrontVector  GetFrontVector (int &pSign) const
+     Get the EFrontVector and its sign of this axis system.
+   EUpVector  GetUpVector (int &pSign) const
+     Get the EUpVector and its sign of this axis system.
+   ECoordSystem  GetCoorSystem () const
+     Accessor to the ECoordSystem of this object.
+   void  ConvertChildren (FbxNode *pRoot, const FbxAxisSystem &pSrcSystem) const
+     Converts the children of the given node to this axis system.
+
+Constructor and Destructor
+
+     FbxAxisSystem ()
+     FbxAxisSystem (EUpVector pUpVector, EFrontVector pFrontVector, ECoordSystem pCoorSystem)
+     Constructor!
+     FbxAxisSystem (const FbxAxisSystem &pAxisSystem)
+     Copy constructor!
+     FbxAxisSystem (const EPreDefinedAxisSystem pAxisSystem)
+     Constructor!
+   virtual  ~FbxAxisSystem ()
+     Destructor.
+
+Boolean operation.
+
+   bool  operator== (const FbxAxisSystem &pAxisSystem) const
+     Equivalence operator.
+   bool  operator!= (const FbxAxisSystem &pAxisSystem) const
+     Non-equivalence operator.
+
+Predefined axis systems.
+
+   These static members define the axis system of the most popular applications.
+   static const FbxAxisSystem  MayaZUp
+     Predefined axis system: MayaZUp (UpVector = +Z, FrontVector = -Y, CoordSystem = +X (RightHanded))
+   static const FbxAxisSystem  MayaYUp
+     Predefined axis system: MayaYUp (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+   static const FbxAxisSystem  Max
+     Predefined axis system: Max (UpVector = +Z, FrontVector = -Y, CoordSystem = +X (RightHanded))
+   static const FbxAxisSystem  Motionbuilder
+     Predefined axis system: Motionbuilder (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+   static const FbxAxisSystem  OpenGL
+     Predefined axis system: OpenGL (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+   static const FbxAxisSystem  DirectX
+     Predefined axis system: DirectX (UpVector = +Y, FrontVector = +Z, CoordSystem = -X (LeftHanded))
+   static const FbxAxisSystem  Lightwave
+     Predefined axis system: Lightwave (UpVector = +Y, FrontVector = +Z, CoordSystem = -X (LeftHanded))
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EUpVector
+   Search for all occurrences
+
+   Specifies which canonical axis represents up in the system (typically Y or Z).
+
+   Enumerator:
+
+          eXAxis
+
+   Search for all occurrences
+          eYAxis
+
+   Search for all occurrences
+          eZAxis
+
+   Search for all occurrences
+
+   Definition at line 103 of file fbxaxissystem.h.
+        {
+        eXAxis = 1,
+        eYAxis = 2,
+        eZAxis = 3
+    };
+
+   enum EFrontVector
+   Search for all occurrences
+
+   Vector with origin at the screen pointing toward the camera.
+
+   This is a subset of enum EUpVector because axis cannot be repeated. We use the system of "parity" to define this vector because its value (X,Y or Z axis) really depends on the up-vector. The EPreDefinedAxisSystem list the up-vector, parity and coordinate system values for the predefined systems.
+
+   See also:
+          Detailed description of FbxAxisSystem.
+
+   Enumerator:
+
+          eParityEven
+
+   Search for all occurrences
+          eParityOdd
+
+   Search for all occurrences
+
+   Definition at line 117 of file fbxaxissystem.h.
+        {
+        eParityEven = 1,
+        eParityOdd = 2
+    };
+
+   enum ECoordSystem
+   Search for all occurrences
+
+   Specifies the third vector of the system.
+
+   The FbxAxisSystem deduces the correct vector and direction based on this flag and the relationship with the up and front vectors. The EPreDefinedAxisSystem list the up-vector, parity and coordinate system values for the predefined systems.
+
+   Enumerator:
+
+          eRightHanded
+
+   Search for all occurrences
+          eLeftHanded
+
+   Search for all occurrences
+
+   Definition at line 128 of file fbxaxissystem.h.
+        {
+        eRightHanded,
+        eLeftHanded
+    };
+
+   enum EPreDefinedAxisSystem
+   Search for all occurrences
+
+   Enumeration that can be used to initialize a new instance of this class with predefined configurations (see the "Predefined axis systems" section).
+
+   Enumerator:
+
+          eMayaZUp
+
+   UpVector = ZAxis, FrontVector = -ParityOdd, CoordSystem = RightHanded.
+   Search for all occurrences
+          eMayaYUp
+
+   UpVector = YAxis, FrontVector = ParityOdd, CoordSystem = RightHanded.
+   Search for all occurrences
+          eMax
+
+   UpVector = ZAxis, FrontVector = -ParityOdd, CoordSystem = RightHanded.
+   Search for all occurrences
+          eMotionBuilder
+
+   UpVector = YAxis, FrontVector = ParityOdd, CoordSystem = RightHanded.
+   Search for all occurrences
+          eOpenGL
+
+   UpVector = YAxis, FrontVector = ParityOdd, CoordSystem = RightHanded.
+   Search for all occurrences
+          eDirectX
+
+   UpVector = YAxis, FrontVector = ParityOdd, CoordSystem = LeftHanded.
+   Search for all occurrences
+          eLightwave
+
+   UpVector = YAxis, FrontVector = ParityOdd, CoordSystem = LeftHanded.
+   Search for all occurrences
+
+   Definition at line 137 of file fbxaxissystem.h.
+        {
+        eMayaZUp,
+        eMayaYUp,
+        eMax,
+        eMotionBuilder,
+        eOpenGL,
+        eDirectX,
+        eLightwave
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAxisSystem ( )
+   FbxAxisSystem ( EUpVector     pUpVector,
+                   EFrontVector  pFrontVector,
+                   ECoordSystem  pCoorSystem
+                 )
+
+   Constructor!
+
+   Parameters:
+
+          pUpVector    Specify the up vector.
+          pFrontVector Specify the front vector.
+          pCoorSystem  Specify RightHanded coordinate system or LeftHanded coordinate system.
+
+   FbxAxisSystem ( const FbxAxisSystem &  pAxisSystem )
+
+   Copy constructor!
+
+   Parameters:
+
+          pAxisSystem Another FbxAxisSystem object copied to this one.
+
+   FbxAxisSystem ( const EPreDefinedAxisSystem  pAxisSystem )
+
+   Constructor!
+
+   Parameters:
+
+          pAxisSystem Specify which predefined axis system to copy.
+
+   virtual ~FbxAxisSystem ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool operator== ( const FbxAxisSystem &  pAxisSystem ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pAxisSystem The axis system to compare against this one.
+
+   Returns:
+          true if these two axis systems are equal, false otherwise.
+
+   bool operator!= ( const FbxAxisSystem &  pAxisSystem ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pAxisSystem The axis system to compare against this one.
+
+   Returns:
+          true if these two axis systems are unequal, false otherwise.
+
+   FbxAxisSystem& operator= ( const FbxAxisSystem &  pAxisSystem )
+
+   Assignment operation.
+
+   Parameters:
+
+          pAxisSystem Axis system assigned to this one.
+
+   void ConvertScene ( FbxScene *  pScene ) const
+   Search for all occurrences
+
+   Convert a scene to this axis system.
+
+   Sets the axis system of the scene to this system unit.
+
+   Parameters:
+
+          pScene The scene to convert
+
+   void ConvertScene ( FbxScene *  pScene,
+                       FbxNode *   pFbxRoot
+                     )             const
+   Search for all occurrences
+
+   Convert a scene to this axis system by using the specified node as an Fbx_Root.
+
+   This is provided for backwards compatibility only and ConvertScene(FbxScene* pScene) should be used instead when possible.
+
+   Parameters:
+
+          pScene   The scene to convert
+          pFbxRoot The Fbx_Root node that will be transformed.
+
+   EFrontVector GetFrontVector ( int &  pSign ) const
+   Search for all occurrences
+
+   Get the EFrontVector and its sign of this axis system.
+
+   Parameters:
+
+          pSign The sign of the axis, 1 for front, -1 for back (relative to observer).
+
+   Returns:
+          The EFrontVector of this axis system.
+
+   EUpVector GetUpVector ( int &  pSign ) const
+   Search for all occurrences
+
+   Get the EUpVector and its sign of this axis system.
+
+   Parameters:
+
+          pSign The sign of the axis, 1 for up, -1 for down (relative to observer).
+
+   Returns:
+          The EUpVector of this axis system.
+
+   ECoordSystem GetCoorSystem ( ) const
+   Search for all occurrences
+
+   Accessor to the ECoordSystem of this object.
+
+   Returns:
+          The current coordinate axis system of this object.
+
+   void ConvertChildren ( FbxNode *              pRoot,
+                          const FbxAxisSystem &  pSrcSystem
+                        )                        const
+   Search for all occurrences
+
+   Converts the children of the given node to this axis system.
+
+   Unlike the ConvertScene() method, this method does not set the axis system of the scene that the pRoot node belongs, nor does it adjust FbxPose as they are not stored under the scene, and not under a particular node.
+
+   Parameters:
+
+          pRoot      The node whose children are converted.
+          pSrcSystem The source axis system.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const FbxAxisSystem MayaZUp [static]
+   Search for all occurrences
+
+   Predefined axis system: MayaZUp (UpVector = +Z, FrontVector = -Y, CoordSystem = +X (RightHanded))
+
+   Definition at line 205 of file fbxaxissystem.h.
+   const FbxAxisSystem MayaYUp [static]
+   Search for all occurrences
+
+   Predefined axis system: MayaYUp (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+
+   Definition at line 208 of file fbxaxissystem.h.
+   const FbxAxisSystem Max [static]
+   Search for all occurrences
+
+   Predefined axis system: Max (UpVector = +Z, FrontVector = -Y, CoordSystem = +X (RightHanded))
+
+   Definition at line 211 of file fbxaxissystem.h.
+   const FbxAxisSystem Motionbuilder [static]
+   Search for all occurrences
+
+   Predefined axis system: Motionbuilder (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+
+   Definition at line 214 of file fbxaxissystem.h.
+   const FbxAxisSystem OpenGL [static]
+   Search for all occurrences
+
+   Predefined axis system: OpenGL (UpVector = +Y, FrontVector = +Z, CoordSystem = +X (RightHanded))
+
+   Definition at line 217 of file fbxaxissystem.h.
+   const FbxAxisSystem DirectX [static]
+   Search for all occurrences
+
+   Predefined axis system: DirectX (UpVector = +Y, FrontVector = +Z, CoordSystem = -X (LeftHanded))
+
+   Definition at line 220 of file fbxaxissystem.h.
+   const FbxAxisSystem Lightwave [static]
+   Search for all occurrences
+
+   Predefined axis system: Lightwave (UpVector = +Y, FrontVector = +Z, CoordSystem = -X (LeftHanded))
+
+   Definition at line 223 of file fbxaxissystem.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxaxissystem.h
+
+   Please send us your comment about this page

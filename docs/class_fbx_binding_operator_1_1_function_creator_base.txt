@@ -1,0 +1,90 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingOperator::FunctionCreatorBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxBindingOperator
+     * FunctionCreatorBase
+
+   Public Member Functions
+   FbxBindingOperator::FunctionCreatorBase Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingoperator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The abstract factory class for binding function.
+
+   Definition at line 216 of file fbxbindingoperator.h.
+   Inheritance diagram for FbxBindingOperator::FunctionCreatorBase:
+   [USEMAP:class_fbx_binding_operator_1_1_function_creator_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+                virtual  ~FunctionCreatorBase ()
+                         Destructor.
+   virtual const char *  GetFunctionName () const =0
+                         Get name of the function.
+     virtual Function *  CreateFunction () const =0
+                         Create the function.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   virtual ~FunctionCreatorBase ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 220 of file fbxbindingoperator.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual const char* GetFunctionName ( ) const [pure virtual]
+   Search for all occurrences
+
+   Get name of the function.
+
+   Returns:
+          The name of the function.
+
+   Implemented in FbxBindingOperator::FunctionCreator< FUNCTION >.
+   virtual Function* CreateFunction ( ) const [pure virtual]
+   Search for all occurrences
+
+   Create the function.
+
+   Implemented in FbxBindingOperator::FunctionCreator< FUNCTION >.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingoperator.h
+
+   Please send us your comment about this page

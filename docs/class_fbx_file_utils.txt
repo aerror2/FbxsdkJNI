@@ -1,0 +1,170 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxFileUtils Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Static Public Member Functions
+   FbxFileUtils Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2013.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxfile.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 161 of file fbxfile.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+      static bool  Delete (const char *pFileName_UTF8)
+                   Delete a file from disk.
+      static bool  Rename (const char *pFileName_UTF8, const char *pNewName_UTF8)
+                   Rename a file on disk.
+      static bool  Copy (const char *pDestination_UTF8, const char *pSource_UTF8)
+                   Copy one file's content to another file (if the destination file not exist, it will be created).
+   static FbxLong  Size (const char *pFilePath_UTF8)
+                   Get given file's size.
+      static bool  Exist (const char *pFilePath_UTF8)
+                   Find if the specified file exist.
+      static bool  IsReadOnly (const char *pFilePath_UTF8)
+                   Find if the specified file is in read-only mode.
+   static FbxLong  GetLastDate (const char *pPath_UTF8)
+                   Get given file's last date.
+      static bool  SetLastDate (const char *pPath_UTF8, FbxLong pTime)
+                   Set the given file's last date as the given date.
+    static char *  FGets (char *pStr, int pSize, FILE *pStream)
+                   Get some content of a file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static bool Delete ( const char *  pFileName_UTF8 ) [static]
+   Search for all occurrences
+
+   Delete a file from disk.
+
+   Parameters:
+
+          pFileName_UTF8 The file to be deleted.
+
+   Returns:
+          True if delete is successful.
+
+   static bool Rename ( const char *  pFileName_UTF8,
+                        const char *  pNewName_UTF8
+                      )               [static]
+   Search for all occurrences
+
+   Rename a file on disk.
+
+   Parameters:
+
+          pFileName_UTF8 The file to be renamed.
+          pNewName_UTF8  The new file name upon rename.
+
+   Returns:
+          True if rename is successful.
+
+   static bool Copy ( const char *  pDestination_UTF8,
+                      const char *  pSource_UTF8
+                    )               [static]
+   Search for all occurrences
+
+   Copy one file's content to another file (if the destination file not exist, it will be created).
+
+   Parameters:
+
+          pDestination_UTF8 The destination file path
+          pSource_UTF8      The source file path
+
+   Returns:
+          Return true if copy is successfully.
+
+   static FbxLong Size ( const char *  pFilePath_UTF8 ) [static]
+   Search for all occurrences
+
+   Get given file's size.
+   static bool Exist ( const char *  pFilePath_UTF8 ) [static]
+   Search for all occurrences
+
+   Find if the specified file exist.
+
+   Parameters:
+
+          pFilePath_UTF8 The file path to test against.
+
+   Returns:
+          Returns true if the file exist.
+
+   Examples:
+          ProceduralTexture/main.cxx, and UI_Examples/ImportExport/UI.cxx.
+
+   static bool IsReadOnly ( const char *  pFilePath_UTF8 ) [static]
+   Search for all occurrences
+
+   Find if the specified file is in read-only mode.
+
+   Parameters:
+
+          pFilePath_UTF8 The file path to test against.
+
+   Returns:
+          Returns true if the file is in read-only mode.
+
+   static FbxLong GetLastDate ( const char *  pPath_UTF8 ) [static]
+   Search for all occurrences
+
+   Get given file's last date.
+   static bool SetLastDate ( const char *  pPath_UTF8,
+                             FbxLong       pTime
+                           )               [static]
+   Search for all occurrences
+
+   Set the given file's last date as the given date.
+   static char* FGets ( char *  pStr,
+                        int     pSize,
+                        FILE *  pStream
+                      )         [static]
+   Search for all occurrences
+
+   Get some content of a file.
+
+   Parameters:
+
+          pStr    The content get from file.
+          pSize   The size of content.
+          pStream The opened stream of file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxfile.h
+
+   Please send us your comment about this page

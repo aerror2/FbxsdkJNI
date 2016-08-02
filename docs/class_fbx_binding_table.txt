@@ -1,0 +1,285 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingTable Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes | Static Public Attributes
+   FbxBindingTable Class Reference
+
+   This reference page is linked to from the following overview topics: Using hardware shaders to create materials.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxbindingtable.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A binding table represents a collection of bindings from source types such as FbxObject, or FbxLayerElements to corresponding destinations, usually a third party shader parameters.
+
+   Binding represents a link between internal object(e.g. FbxObject) and external object(e.g. HLSL shader parameters).
+
+   See also:
+          FbxBindingOperator, FbxBindingTableBase
+
+   Examples:
+          ExportShader/main.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 30 of file fbxbindingtable.h.
+   Inheritance diagram for FbxBindingTable:
+   [USEMAP:class_fbx_binding_table.png]
+
+   List of all members.
+
+Public Attributes
+
+   FbxPropertyT< FbxString >  TargetName
+                              This property stores the name of target.
+   FbxPropertyT< FbxString >  TargetType
+                              This property stores the type of target.
+   FbxPropertyT< FbxString >  DescRelativeURL
+                              Relative URL of file containing the shader implementation description.
+   FbxPropertyT< FbxString >  DescAbsoluteURL
+                              Absolute URL of file containing the shader implementation description.
+   FbxPropertyT< FbxString >  DescTAG
+                              Identify the shader to use in previous description's URL.
+   FbxPropertyT< FbxString >  CodeRelativeURL
+                              Relative URL of file containing the shader implementation code.
+   FbxPropertyT< FbxString >  CodeAbsoluteURL
+                              Absolute URL of file containing the shader implementation code.
+   FbxPropertyT< FbxString >  CodeTAG
+                              Identify the shader function entry to use in previous code's URL.
+
+Static Public Attributes
+
+         static const char *  sTargetName
+                              Target name.
+         static const char *  sTargetType
+                              Target type.
+         static const char *  sDescRelativeURL
+                              Relative URL for shader description.
+         static const char *  sDescAbsoluteURL
+                              Absolute URL for shader description.
+         static const char *  sDescTAG
+                              Identify the shader to use in previous description's URL.
+         static const char *  sCodeRelativeURL
+                              Relative URL for shader code.
+         static const char *  sCodeAbsoluteURL
+                              Absolute URL for shader code.
+         static const char *  sCodeTAG
+                              Identify the shader function entry to use in previous code's URL.
+         static const char *  sDefaultTargetName
+                              Default value for target name.
+         static const char *  sDefaultTargetType
+                              Default value for target type.
+         static const char *  sDefaultDescRelativeURL
+                              Default value for relative URL for shader description.
+         static const char *  sDefaultDescAbsoluteURL
+                              Default value for absolute URL for shader description.
+         static const char *  sDefaultDescTAG
+                              Default value for identifying the shader to use in previous description's URL.
+         static const char *  sDefaultCodeRelativeURL
+                              Default value for relative URL for shader code.
+         static const char *  sDefaultCodeAbsoluteURL
+                              Default value for absolute URL for shader code.
+         static const char *  sDefaultCodeTAG
+                              Default value for identifying the shader function entry to use in previous code's URL.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> TargetName
+   Search for all occurrences
+
+   This property stores the name of target.
+
+   Default value is "".
+
+   Definition at line 39 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> TargetType
+   Search for all occurrences
+
+   This property stores the type of target.
+
+   Default value is "".
+
+   Definition at line 45 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> DescRelativeURL
+   Search for all occurrences
+
+   Relative URL of file containing the shader implementation description.
+
+   e.g.: ./shader.mi Default value is "".
+
+   Definition at line 51 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> DescAbsoluteURL
+   Search for all occurrences
+
+   Absolute URL of file containing the shader implementation description.
+
+   e.g.: file:///usr/tmp/shader.mi Default value is "".
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 57 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> DescTAG
+   Search for all occurrences
+
+   Identify the shader to use in previous description's URL.
+
+   e.g.: MyOwnShader Default value is "".
+
+   Examples:
+          ExportShader/main.cxx.
+
+   Definition at line 63 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> CodeRelativeURL
+   Search for all occurrences
+
+   Relative URL of file containing the shader implementation code.
+
+   e.g.: ./bin/shader.dll Default value is "".
+
+   Definition at line 69 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> CodeAbsoluteURL
+   Search for all occurrences
+
+   Absolute URL of file containing the shader implementation code.
+
+   e.g.: file:///usr/tmp/bin/shader.dll Default value is "".
+
+   Definition at line 75 of file fbxbindingtable.h.
+   FbxPropertyT<FbxString> CodeTAG
+   Search for all occurrences
+
+   Identify the shader function entry to use in previous code's URL.
+
+   e.g.: MyOwnShaderFunc Default value is "".
+
+   Definition at line 81 of file fbxbindingtable.h.
+   const char* sTargetName [static]
+   Search for all occurrences
+
+   Target name.
+
+   Definition at line 88 of file fbxbindingtable.h.
+   const char* sTargetType [static]
+   Search for all occurrences
+
+   Target type.
+
+   Definition at line 91 of file fbxbindingtable.h.
+   const char* sDescRelativeURL [static]
+   Search for all occurrences
+
+   Relative URL for shader description.
+
+   Definition at line 94 of file fbxbindingtable.h.
+   const char* sDescAbsoluteURL [static]
+   Search for all occurrences
+
+   Absolute URL for shader description.
+
+   Definition at line 97 of file fbxbindingtable.h.
+   const char* sDescTAG [static]
+   Search for all occurrences
+
+   Identify the shader to use in previous description's URL.
+
+   Definition at line 100 of file fbxbindingtable.h.
+   const char* sCodeRelativeURL [static]
+   Search for all occurrences
+
+   Relative URL for shader code.
+
+   Definition at line 103 of file fbxbindingtable.h.
+   const char* sCodeAbsoluteURL [static]
+   Search for all occurrences
+
+   Absolute URL for shader code.
+
+   Definition at line 106 of file fbxbindingtable.h.
+   const char* sCodeTAG [static]
+   Search for all occurrences
+
+   Identify the shader function entry to use in previous code's URL.
+
+   Definition at line 109 of file fbxbindingtable.h.
+   const char* sDefaultTargetName [static]
+   Search for all occurrences
+
+   Default value for target name.
+
+   Definition at line 113 of file fbxbindingtable.h.
+   const char* sDefaultTargetType [static]
+   Search for all occurrences
+
+   Default value for target type.
+
+   Definition at line 116 of file fbxbindingtable.h.
+   const char* sDefaultDescRelativeURL [static]
+   Search for all occurrences
+
+   Default value for relative URL for shader description.
+
+   Definition at line 119 of file fbxbindingtable.h.
+   const char* sDefaultDescAbsoluteURL [static]
+   Search for all occurrences
+
+   Default value for absolute URL for shader description.
+
+   Definition at line 122 of file fbxbindingtable.h.
+   const char* sDefaultDescTAG [static]
+   Search for all occurrences
+
+   Default value for identifying the shader to use in previous description's URL.
+
+   Definition at line 125 of file fbxbindingtable.h.
+   const char* sDefaultCodeRelativeURL [static]
+   Search for all occurrences
+
+   Default value for relative URL for shader code.
+
+   Definition at line 128 of file fbxbindingtable.h.
+   const char* sDefaultCodeAbsoluteURL [static]
+   Search for all occurrences
+
+   Default value for absolute URL for shader code.
+
+   Definition at line 131 of file fbxbindingtable.h.
+   const char* sDefaultCodeTAG [static]
+   Search for all occurrences
+
+   Default value for identifying the shader function entry to use in previous code's URL.
+
+   Definition at line 134 of file fbxbindingtable.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingtable.h
+
+   Please send us your comment about this page

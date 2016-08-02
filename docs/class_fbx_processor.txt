@@ -1,0 +1,79 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessor Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxProcessor Class Reference
+   Search for all occurrences
+
+   #include <fbxprocessor.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The class and its derived classes(e.g.
+
+   FbxProcessorXRefCopy, FbxProcessorXRefCopyUserLibrary, etc.) are used to process shader, library, asset, etc. For example, you could update object property and its value via FbxProcessor::ProcessObject(), FbxProcessor::internal_ProcessObject(), etc.
+
+   Definition at line 27 of file fbxprocessor.h.
+   Inheritance diagram for FbxProcessor:
+   [USEMAP:class_fbx_processor.png]
+
+   List of all members.
+
+Public Member Functions
+
+   Processor management
+   bool  ProcessCollection (FbxCollection *pCollection=0)
+         Process the specified collection.
+   bool  ProcessObject (FbxObject *pCollection=0)
+         Process the specified object.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool ProcessCollection ( FbxCollection *  pCollection = 0 )
+   Search for all occurrences
+
+   Process the specified collection.
+
+   Parameters:
+
+          pCollection
+
+   bool ProcessObject ( FbxObject *  pCollection = 0 )
+   Search for all occurrences
+
+   Process the specified object.
+
+   Parameters:
+
+          pCollection FbxObject to process
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxprocessor.h
+
+   Please send us your comment about this page

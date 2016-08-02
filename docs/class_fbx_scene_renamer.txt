@@ -1,0 +1,218 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSceneRenamer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxSceneRenamer Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxrenamingstrategy.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The FbxSceneRenamer provides a way to easily rename objects in a scene without using the FbxRenamingStrategy class.
+
+   FbxSceneRenamer can remove name clashing and illegal characters. It also manages namespaces.
+
+   Example: Maya only accepts names with letters, digits, or underscores, and we want to convert all the names of a scene from FBX format to Maya format.
+ FbxSceneRenamer lSceneRenamer(pScene);
+ lSceneRenamer.RenameFor(FbxSceneRenamer::eFBX_TO_MAYA);
+
+   See also:
+          FbxRenamingStrategy
+
+   Definition at line 284 of file fbxrenamingstrategy.h.
+
+   List of all members.
+
+Public Types
+
+   enum   ERenamingMode {
+     eNone, eMAYA_TO_FBX5, eMAYA_TO_FBX_MB75, eMAYA_TO_FBX_MB70,
+     eFBXMB75_TO_FBXMB70, eFBX_TO_FBX, eMAYA_TO_FBX, eFBX_TO_MAYA,
+     eLW_TO_FBX, eFBX_TO_LW, eXSI_TO_FBX, eFBX_TO_XSI,
+     eMAX_TO_FBX, eFBX_TO_MAX, eMB_TO_FBX, eFBX_TO_MB,
+     eDAE_TO_FBX, eFBX_TO_DAE
+   }
+     The Mode describing from which format to which format. More...
+
+Public Member Functions
+
+     FbxSceneRenamer (FbxScene *pScene)
+     Constructor.
+   virtual  ~FbxSceneRenamer ()
+     Destructor.
+   void  RenameFor (ERenamingMode pMode)
+     Rename the objects of the scene according the specific mode.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ERenamingMode
+   Search for all occurrences
+
+   The Mode describing from which format to which format.
+     * eNone
+     * eMAYA_TO_FBX5
+     * eMAYA_TO_FBX_MB75
+     * eMAYA_TO_FBX_MB70
+     * eFBXMB75_TO_FBXMB70
+     * eFBX_TO_FBX
+     * eMAYA_TO_FBX
+     * eFBX_TO_MAYA
+     * eLW_TO_FBX
+     * eFBX_TO_LW
+     * eXSI_TO_FBX
+     * eFBX_TO_XSI
+     * eMAX_TO_FBX
+     * eFBX_TO_MAX
+     * eMB_TO_FBX
+     * eFBX_TO_MB
+     * eDAE_TO_FBX
+     * eFBX_TO_DAE
+
+   Enumerator:
+
+          eNone
+
+   Search for all occurrences
+          eMAYA_TO_FBX5
+
+   Search for all occurrences
+          eMAYA_TO_FBX_MB75
+
+   Search for all occurrences
+          eMAYA_TO_FBX_MB70
+
+   Search for all occurrences
+          eFBXMB75_TO_FBXMB70
+
+   Search for all occurrences
+          eFBX_TO_FBX
+
+   Search for all occurrences
+          eMAYA_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_MAYA
+
+   Search for all occurrences
+          eLW_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_LW
+
+   Search for all occurrences
+          eXSI_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_XSI
+
+   Search for all occurrences
+          eMAX_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_MAX
+
+   Search for all occurrences
+          eMB_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_MB
+
+   Search for all occurrences
+          eDAE_TO_FBX
+
+   Search for all occurrences
+          eFBX_TO_DAE
+
+   Search for all occurrences
+
+   Definition at line 315 of file fbxrenamingstrategy.h.
+    {
+        eNone,
+        eMAYA_TO_FBX5,
+        eMAYA_TO_FBX_MB75,
+        eMAYA_TO_FBX_MB70,
+        eFBXMB75_TO_FBXMB70,
+        eFBX_TO_FBX,
+        eMAYA_TO_FBX,
+        eFBX_TO_MAYA,
+        eLW_TO_FBX,
+        eFBX_TO_LW,
+        eXSI_TO_FBX,
+        eFBX_TO_XSI,
+        eMAX_TO_FBX,
+        eFBX_TO_MAX,
+        eMB_TO_FBX,
+        eFBX_TO_MB,
+        eDAE_TO_FBX,
+        eFBX_TO_DAE
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSceneRenamer ( FbxScene *  pScene ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pScene A scene which contains objects to be renamed.
+
+   Definition at line 290 of file fbxrenamingstrategy.h.
+{mScene = pScene;};
+
+   virtual ~FbxSceneRenamer ( ) [inline, virtual]
+
+   Destructor.
+
+   Definition at line 293 of file fbxrenamingstrategy.h.
+{};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void RenameFor ( ERenamingMode  pMode )
+   Search for all occurrences
+
+   Rename the objects of the scene according the specific mode.
+
+   Parameters:
+
+          pMode A mode describing from which format to which format.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrenamingstrategy.h
+
+   Please send us your comment about this page

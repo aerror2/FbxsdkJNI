@@ -1,0 +1,104 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxQueryEvent< QueryT > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Friends
+   FbxQueryEvent< QueryT > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxqueryevent.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename QueryT>
+class FbxQueryEvent< QueryT >
+
+   A query event is something that is emitted by an entity, with the goal of being filled by someone that listen to it.
+
+   You can see that like a form that you send to some people. If those people know how to fill the form, they fill it and return it to you with the right information in it. A query event is emitted, and plug-in who are listening to that type of query, fill the data that can be accessed by the query emitter.
+
+   Definition at line 27 of file fbxqueryevent.h.
+   Inheritance diagram for FbxQueryEvent< QueryT >:
+   [USEMAP:class_fbx_query_event.png]
+
+   List of all members.
+
+Public Member Functions
+
+   Public interface
+             FbxQueryEvent (QueryT *pData)
+             Constructor.
+   QueryT &  GetData () const
+             Accessor to a mutable reference to the data.
+
+Friends
+
+      class  FbxEvent< FbxQueryEvent< QueryT > >
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxQueryEvent ( QueryT *  pData ) [inline, explicit]
+
+   Constructor.
+
+   Parameters:
+
+          pData The requested data.
+
+   Definition at line 37 of file fbxqueryevent.h.
+:mData(pData){}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   QueryT& GetData ( ) const [inline]
+   Search for all occurrences
+
+   Accessor to a mutable reference to the data.
+
+   Event are usually const and can't be modified by listener. This special type of event can have is content modified via this accessor.
+
+   Returns:
+          A mutable reference the requested data.
+
+   Definition at line 43 of file fbxqueryevent.h.
+{ return *mData; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxEvent< FbxQueryEvent< QueryT > > [friend]
+   Search for all occurrences
+
+   Definition at line 52 of file fbxqueryevent.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxqueryevent.h
+
+   Please send us your comment about this page

@@ -1,0 +1,251 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDataType Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions | Friends
+   FbxDataType Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxdatatypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK data type class.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayMaterial.cxx, and ImportScene/DisplayUserProperties.cxx.
+
+   Definition at line 26 of file fbxdatatypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+               FbxDataType &  operator= (const FbxDataType &pDataType)
+                              Assignment operator.
+                        bool  Valid () const
+                              Test whether this datatype is a valid datatype.
+                        bool  Is (const FbxDataType &pDataType) const
+                              Test if this datatype is the specified datatype.
+                    EFbxType  GetType () const
+                              Retrieve this data type.
+                const char *  GetName () const
+                              Retrieve data type name.
+   const FbxPropertyHandle &  GetTypeInfoHandle () const
+                              Retrieve the information handle of this data type.
+
+Static Public Member Functions
+
+          static FbxDataType  Create (const char *pName, const EFbxType pType)
+          static FbxDataType  Create (const char *pName, const FbxDataType &pDataType)
+
+Friends
+
+                       class  FbxManager
+
+Constructor and Destructor.
+
+                              FbxDataType ()
+                              Constructor.
+                              FbxDataType (const FbxDataType &pDataType)
+                              Copy constructor.
+                        void  Destroy ()
+                              Destroy this datatype.
+                              FbxDataType (const FbxPropertyHandle &pTypeInfoHandle)
+                              Constructor.
+                              ~FbxDataType ()
+                              Destructor.
+
+boolean operation
+
+                        bool  operator== (const FbxDataType &pDataType) const
+                              Equality operator.
+                        bool  operator!= (const FbxDataType &pDataType) const
+                              Non-equality operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxDataType ( )
+
+   Constructor.
+   FbxDataType ( const FbxDataType &  pDataType )
+
+   Copy constructor.
+
+   Parameters:
+
+          pDataType Another FbxDataType object copied to this one.
+
+   FbxDataType ( const FbxPropertyHandle &  pTypeInfoHandle )
+
+   Constructor.
+
+   Parameters:
+
+          pTypeInfoHandle Type information handle
+
+   ~FbxDataType ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxDataType Create ( const char *    pName,
+                               const EFbxType  pType
+                             )                 [static]
+   Search for all occurrences
+   static FbxDataType Create ( const char *         pName,
+                               const FbxDataType &  pDataType
+                             )                      [static]
+   Search for all occurrences
+   void Destroy ( )
+   Search for all occurrences
+
+   Destroy this datatype.
+   FbxDataType& operator= ( const FbxDataType &  pDataType ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pDataType Datatype whose value is assigned to this datatype.
+
+   Returns:
+          This datatype
+
+   Definition at line 60 of file fbxdatatypes.h.
+{ mTypeInfoHandle=pDataType.mTypeInfoHandle; return *this; }
+
+   bool operator== ( const FbxDataType &  pDataType ) const [inline]
+
+   Equality operator.
+
+   Parameters:
+
+          pDataType Datatype to compare to.
+
+   Returns:
+          true if equal,false otherwise.
+
+   Definition at line 70 of file fbxdatatypes.h.
+{ return mTypeInfoHandle==pDataType.mTypeInfoHandle; }
+
+   bool operator!= ( const FbxDataType &  pDataType ) const [inline]
+
+   Non-equality operator.
+
+   Parameters:
+
+          pDataType Datatype to compare to.
+
+   Returns:
+          true if unequal,false otherwise.
+
+   Definition at line 76 of file fbxdatatypes.h.
+{ return mTypeInfoHandle!=pDataType.mTypeInfoHandle; }
+
+   bool Valid ( ) const [inline]
+   Search for all occurrences
+
+   Test whether this datatype is a valid datatype.
+
+   Returns:
+          true if valid, false otherwise.
+
+   Definition at line 82 of file fbxdatatypes.h.
+{ return mTypeInfoHandle.Valid(); }
+
+   bool Is ( const FbxDataType &  pDataType ) const [inline]
+   Search for all occurrences
+
+   Test if this datatype is the specified datatype.
+
+   Parameters:
+
+          pDataType Datatype to compare to.
+
+   Returns:
+          true if this datatype is the specified datatype, false otherwise.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx.
+
+   Definition at line 88 of file fbxdatatypes.h.
+{ return mTypeInfoHandle.Is(pDataType.mTypeInfoHandle); }
+
+   EFbxType GetType ( ) const
+   Search for all occurrences
+
+   Retrieve this data type.
+
+   Returns:
+          This data type.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayGenericInfo.cxx.
+
+   const char* GetName ( ) const
+   Search for all occurrences
+
+   Retrieve data type name.
+
+   Returns:
+          Data type name.
+
+   Examples:
+          ImportScene/DisplayGenericInfo.cxx, and ImportScene/DisplayMaterial.cxx.
+
+   const FbxPropertyHandle& GetTypeInfoHandle ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the information handle of this data type.
+
+   Returns:
+          Information handle of this data type.
+
+   Definition at line 103 of file fbxdatatypes.h.
+{ return mTypeInfoHandle; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   friend class FbxManager [friend]
+   Search for all occurrences
+
+   Definition at line 107 of file fbxdatatypes.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxdatatypes.h
+
+   Please send us your comment about this page

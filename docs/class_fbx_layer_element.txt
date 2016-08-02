@@ -1,0 +1,594 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElement Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Attributes
+   FbxLayerElement Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Materials and Textures, Meshes, Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for elements of layers (FbxLayer).
+
+   A layer element type is identified by EType. A FbxLayerElement describes how the layer element is mapped to a geometry surface and how the mapping information is arranged in memory. A FbxLayerElement contains Normals, UVs or other kind of information.
+
+   See also:
+          FbxLayer
+          FbxLayerElement::EMappingMode
+          FbxLayerElement::EReferenceMode
+
+   Definition at line 38 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElement:
+   [USEMAP:class_fbx_layer_element.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EType {
+     eUnknown, eNormal, eBiNormal, eTangent,
+     eMaterial, ePolygonGroup, eUV, eVertexColor,
+     eSmoothing, eVertexCrease, eEdgeCrease, eHole,
+     eUserData, eVisibility, eTextureDiffuse, eTextureDiffuseFactor,
+     eTextureEmissive, eTextureEmissiveFactor, eTextureAmbient, eTextureAmbientFactor,
+     eTextureSpecular, eTextureSpecularFactor, eTextureShininess, eTextureNormalMap,
+     eTextureBump, eTextureTransparency, eTextureTransparencyFactor, eTextureReflection,
+     eTextureReflectionFactor, eTextureDisplacement, eTextureDisplacementVector, eTypeCount
+   }
+     Layer Element type identifier. More...
+   enum   EMappingMode {
+     eNone, eByControlPoint, eByPolygonVertex, eByPolygon,
+     eByEdge, eAllSame
+   }
+     Determines how the element is mapped to a surface. More...
+   enum   EReferenceMode { eDirect, eIndex, eIndexToDirect }
+     Determines how the mapping information is stored in the array of coordinates. More...
+
+Public Member Functions
+
+   void  SetMappingMode (EMappingMode pMappingMode)
+     Sets the Mapping Mode.
+   void  SetReferenceMode (EReferenceMode pReferenceMode)
+     Sets the Reference Mode.
+   EMappingMode  GetMappingMode () const
+     Returns the Mapping Mode.
+   EReferenceMode  GetReferenceMode () const
+     Returns the Reference Mode.
+   void  SetName (const char *pName)
+     Sets the name of this object.
+   const char *  GetName () const
+     Returns the name of this object.
+   bool  operator== (const FbxLayerElement &pOther) const
+     Equivalence operator.
+   FbxLayerElement &  operator= (FbxLayerElement const &pOther)
+     Assignment operator.
+   void  Destroy ()
+     Removes this layer element from its owner and delete it.
+   virtual bool  Clear ()
+     Clears all the data from this layer element.
+
+Static Public Attributes
+
+   static const int  sTypeTextureStartIndex = int(eTextureDiffuse)
+     The start index of texture type layer elements.
+   static const int  sTypeTextureEndIndex = int(eTypeCount) - 1
+     The end index of texture type layer elements.
+   static const int  sTypeTextureCount = sTypeTextureEndIndex - sTypeTextureStartIndex + 1
+     The count of texture type layer elements.
+   static const int  sTypeNonTextureStartIndex = int(eNormal)
+     The start index of non-texture type layer elements.
+   static const int  sTypeNonTextureEndIndex = int(eVisibility)
+     The end index of non-texture type layer elements.
+   static const int  sTypeNonTextureCount = sTypeNonTextureEndIndex - sTypeNonTextureStartIndex + 1
+     The count of non-texture type layer elements.
+   static const char *const  sTextureNames []
+     Array of names of texture type layer elements.
+   static const char *const  sTextureUVNames []
+     Array of names of UV layer elements.
+   static const char *const  sNonTextureNames []
+     Array of names of non-texture type layer elements.
+   static const FbxDataType  sTextureDataTypes []
+     Array of texture types.
+   static const char *const  sTextureChannelNames []
+     Array of texture channels.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Layer Element type identifier.
+     * eUnknown Undefined Layer Element class.
+     * eNormal Layer Element of type FbxLayerElementNormal.
+     * eBiNormal Layer Element of type FbxLayerElementBinormal.
+     * eTangent Layer Element of type FbxLayerElementTangent.
+     * eMaterial Layer Element of type FbxLayerElementMaterial.
+     * eTextureDiffuse Layer Element of type FbxLayerElementTexture.
+     * ePolygonGroup Layer Element of type FbxLayerElementPolygonGroup.
+     * eUV Layer Element of type FbxLayerElementUV.
+     * eVertexColor Layer Element of type FbxLayerElementVertexColor.
+     * eSmoothing Layer Element of type FbxLayerElementSmoothing.
+     * eVertexCrease Layer Element of type FbxLayerElementCrease.
+     * eEdgeCrease Layer Element of type FbxLayerElementCrease.
+     * eHole Layer Element of type FbxLayerElementHole.
+     * eUserData Layer Element of type FbxLayerElementUserData.
+     * eVisibility Layer Element of type FbxLayerElementVisibility.
+     * eTextureEmissive Layer Element of type FbxLayerElementTexture.
+     * eTextureEmissiveFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureAmbient Layer Element of type FbxLayerElementTexture.
+     * eTextureAmbientFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureDiffuseFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureSpecular Layer Element of type FbxLayerElementTexture.
+     * eTextureNormalMap Layer Element of type FbxLayerElementTexture.
+     * eTextureSpecularFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureShininess Layer Element of type FbxLayerElementTexture.
+     * eTextureBump Layer Element of type FbxLayerElementTexture.
+     * eTextureTransparency Layer Element of type FbxLayerElementTexture.
+     * eTextureTransparencyFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureReflection Layer Element of type FbxLayerElementTexture.
+     * eTextureReflectionFactor Layer Element of type FbxLayerElementTexture.
+     * eTextureDisplacement Layer Element of type FbxLayerElementTexture.
+     * eTextureDisplacementVector Layer Element of type FbxLayerElementTexture.
+     * eTypeCount
+
+   Enumerator:
+
+          eUnknown
+
+   Search for all occurrences
+          eNormal
+
+   Search for all occurrences
+          eBiNormal
+
+   Search for all occurrences
+          eTangent
+
+   Search for all occurrences
+          eMaterial
+
+   Search for all occurrences
+          ePolygonGroup
+
+   Search for all occurrences
+          eUV
+
+   Search for all occurrences
+          eVertexColor
+
+   Search for all occurrences
+          eSmoothing
+
+   Search for all occurrences
+          eVertexCrease
+
+   Search for all occurrences
+          eEdgeCrease
+
+   Search for all occurrences
+          eHole
+
+   Search for all occurrences
+          eUserData
+
+   Search for all occurrences
+          eVisibility
+
+   Search for all occurrences
+          eTextureDiffuse
+
+   Search for all occurrences
+          eTextureDiffuseFactor
+
+   Search for all occurrences
+          eTextureEmissive
+
+   Search for all occurrences
+          eTextureEmissiveFactor
+
+   Search for all occurrences
+          eTextureAmbient
+
+   Search for all occurrences
+          eTextureAmbientFactor
+
+   Search for all occurrences
+          eTextureSpecular
+
+   Search for all occurrences
+          eTextureSpecularFactor
+
+   Search for all occurrences
+          eTextureShininess
+
+   Search for all occurrences
+          eTextureNormalMap
+
+   Search for all occurrences
+          eTextureBump
+
+   Search for all occurrences
+          eTextureTransparency
+
+   Search for all occurrences
+          eTextureTransparencyFactor
+
+   Search for all occurrences
+          eTextureReflection
+
+   Search for all occurrences
+          eTextureReflectionFactor
+
+   Search for all occurrences
+          eTextureDisplacement
+
+   Search for all occurrences
+          eTextureDisplacementVector
+
+   Search for all occurrences
+          eTypeCount
+
+   Search for all occurrences
+
+   Definition at line 75 of file fbxlayer.h.
+        {
+                eUnknown,
+
+        //Non-Texture layer element types
+                //Note: Make sure to update static index below if you change this enum!
+                eNormal,
+        eBiNormal,
+        eTangent,
+                eMaterial,
+                ePolygonGroup,
+                eUV,
+                eVertexColor,
+                eSmoothing,
+        eVertexCrease,
+        eEdgeCrease,
+        eHole,
+                eUserData,
+                eVisibility,
+
+        //Texture layer element types
+                //Note: Make sure to update static index below if you change this enum!
+        eTextureDiffuse,
+        eTextureDiffuseFactor,
+                eTextureEmissive,
+                eTextureEmissiveFactor,
+                eTextureAmbient,
+                eTextureAmbientFactor,
+                eTextureSpecular,
+        eTextureSpecularFactor,
+        eTextureShininess,
+                eTextureNormalMap,
+                eTextureBump,
+                eTextureTransparency,
+                eTextureTransparencyFactor,
+                eTextureReflection,
+                eTextureReflectionFactor,
+        eTextureDisplacement,
+        eTextureDisplacementVector,
+
+                eTypeCount
+        };
+
+   enum EMappingMode
+   Search for all occurrences
+
+   Determines how the element is mapped to a surface.
+     * eNone The mapping is undetermined.
+     * eByControlPoint There will be one mapping coordinate for each surface control point/vertex.
+     * eByPolygonVertex There will be one mapping coordinate for each vertex, for every polygon of which it is a part. This means that a vertex will have as many mapping coordinates as polygons of which it is a part.
+     * eByPolygon There can be only one mapping coordinate for the whole polygon.
+     * eByEdge There will be one mapping coordinate for each unique edge in the mesh. This is meant to be used with smoothing layer elements.
+     * eAllSame There can be only one mapping coordinate for the whole surface.
+
+   Enumerator:
+
+          eNone
+
+   Search for all occurrences
+          eByControlPoint
+
+   Search for all occurrences
+          eByPolygonVertex
+
+   Search for all occurrences
+          eByPolygon
+
+   Search for all occurrences
+          eByEdge
+
+   Search for all occurrences
+          eAllSame
+
+   Search for all occurrences
+
+   Definition at line 140 of file fbxlayer.h.
+        {
+                eNone,
+                eByControlPoint,
+                eByPolygonVertex,
+                eByPolygon,
+                eByEdge,
+                eAllSame
+        };
+
+   enum EReferenceMode
+   Search for all occurrences
+
+   Determines how the mapping information is stored in the array of coordinates.
+     * eDirect This indicates that the mapping information for the n'th element is found in the n'th place of FbxLayerElementTemplate::mDirectArray.
+     * eIndex, This symbol is kept for backward compatibility with FBX v5.0 files. In FBX v6.0 and higher, this symbol is replaced with eIndexToDirect.
+     * eIndexToDirect This indicates that the FbxLayerElementTemplate::mIndexArray contains, for the n'th element, an index in the FbxLayerElementTemplate::mDirectArray array of mapping elements. eIndexToDirect is usually useful for storing eByPolygonVertex mapping mode elements coordinates. Since the same coordinates are usually repeated many times, this saves spaces by storing the coordinate only one time and then referring to them with an index. Materials and Textures are also referenced with this
+       mode and the actual Material/Texture can be accessed via the FbxLayerElementTemplate::mDirectArray
+
+   Enumerator:
+
+          eDirect
+
+   Search for all occurrences
+          eIndex
+
+   Search for all occurrences
+          eIndexToDirect
+
+   Search for all occurrences
+
+   Definition at line 163 of file fbxlayer.h.
+        {
+                eDirect,
+                eIndex,
+                eIndexToDirect
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetMappingMode ( EMappingMode  pMappingMode ) [inline]
+   Search for all occurrences
+
+   Sets the Mapping Mode.
+
+   Parameters:
+
+          pMappingMode Specifies the way that layer element is mapped to a surface.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   Definition at line 174 of file fbxlayer.h.
+{ mMappingMode = pMappingMode; }
+
+   void SetReferenceMode ( EReferenceMode  pReferenceMode ) [inline]
+   Search for all occurrences
+
+   Sets the Reference Mode.
+
+   Parameters:
+
+          pReferenceMode Specifies the reference mode.
+
+   Reimplemented in FbxLayerElementSmoothing, FbxLayerElementCrease, and FbxLayerElementHole.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   Definition at line 179 of file fbxlayer.h.
+{ mReferenceMode = pReferenceMode; }
+
+   EMappingMode GetMappingMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the Mapping Mode.
+
+   Returns:
+          The current Mapping Mode.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, Normals/main.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 184 of file fbxlayer.h.
+{ return mMappingMode; }
+
+   EReferenceMode GetReferenceMode ( ) const [inline]
+   Search for all occurrences
+
+   Returns the Reference Mode.
+
+   Returns:
+          The current Reference Mode.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, Normals/main.cxx, UVSample/main.cxx, and ViewScene/SceneCache.cxx.
+
+   Definition at line 189 of file fbxlayer.h.
+{ return mReferenceMode; }
+
+   void SetName ( const char *  pName ) [inline]
+   Search for all occurrences
+
+   Sets the name of this object.
+
+   Parameters:
+
+          pName Specifies the name of this LayerElement object.
+
+   Definition at line 194 of file fbxlayer.h.
+{ mName = FbxString(pName); }
+
+   const char* GetName ( ) const [inline]
+   Search for all occurrences
+
+   Returns the name of this object.
+
+   Returns:
+          The current name of this LayerElement object.
+
+   Definition at line 199 of file fbxlayer.h.
+{ return ((FbxLayerElement*)this)->mName.Buffer(); }
+
+   bool operator== ( const FbxLayerElement &  pOther ) const [inline]
+
+   Equivalence operator.
+
+   Parameters:
+
+          pOther Layer element to be compared.
+
+   Returns:
+          True if equal, false otherwise.
+
+   Definition at line 205 of file fbxlayer.h.
+        {
+                return (mName == pOther.mName) &&
+                           (mMappingMode == pOther.mMappingMode) &&
+                           (mReferenceMode == pOther.mReferenceMode);
+        }
+
+   FbxLayerElement& operator= ( FbxLayerElement const &  pOther ) [inline]
+
+   Assignment operator.
+
+   Parameters:
+
+          pOther Layer element assigned to this one.
+
+   Returns:
+          This layer element after assignment.
+
+   Definition at line 216 of file fbxlayer.h.
+        {
+                mMappingMode = pOther.mMappingMode;
+                mReferenceMode = pOther.mReferenceMode;
+                // name, type and owner should not be copied because they are
+                // initialized when this object is created
+                return *this;
+        }
+
+   void Destroy ( )
+   Search for all occurrences
+
+   Removes this layer element from its owner and delete it.
+   virtual bool Clear ( ) [inline, virtual]
+   Search for all occurrences
+
+   Clears all the data from this layer element.
+
+   Reimplemented in FbxLayerElementTemplate< Type >, FbxLayerElementUserData, FbxLayerElementTemplate< double >, FbxLayerElementTemplate< int >, FbxLayerElementTemplate< FbxSurfaceMaterial * >, FbxLayerElementTemplate< FbxColor >, FbxLayerElementTemplate< void * >, FbxLayerElementTemplate< bool >, FbxLayerElementTemplate< FbxTexture * >, FbxLayerElementTemplate< FbxVector4 >, and FbxLayerElementTemplate< FbxVector2 >.
+
+   Definition at line 229 of file fbxlayer.h.
+    {
+        return true;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const int sTypeTextureStartIndex = int(eTextureDiffuse) [static]
+   Search for all occurrences
+
+   The start index of texture type layer elements.
+
+   Definition at line 118 of file fbxlayer.h.
+   const int sTypeTextureEndIndex = int(eTypeCount) - 1 [static]
+   Search for all occurrences
+
+   The end index of texture type layer elements.
+
+   Definition at line 119 of file fbxlayer.h.
+   const int sTypeTextureCount = sTypeTextureEndIndex - sTypeTextureStartIndex + 1 [static]
+   Search for all occurrences
+
+   The count of texture type layer elements.
+
+   Definition at line 120 of file fbxlayer.h.
+   const int sTypeNonTextureStartIndex = int(eNormal) [static]
+   Search for all occurrences
+
+   The start index of non-texture type layer elements.
+
+   Definition at line 121 of file fbxlayer.h.
+   const int sTypeNonTextureEndIndex = int(eVisibility) [static]
+   Search for all occurrences
+
+   The end index of non-texture type layer elements.
+
+   Definition at line 122 of file fbxlayer.h.
+   const int sTypeNonTextureCount = sTypeNonTextureEndIndex - sTypeNonTextureStartIndex + 1 [static]
+   Search for all occurrences
+
+   The count of non-texture type layer elements.
+
+   Definition at line 123 of file fbxlayer.h.
+   const char* const sTextureNames[] [static]
+   Search for all occurrences
+
+   Array of names of texture type layer elements.
+
+   Definition at line 124 of file fbxlayer.h.
+   const char* const sTextureUVNames[] [static]
+   Search for all occurrences
+
+   Array of names of UV layer elements.
+
+   Definition at line 125 of file fbxlayer.h.
+   const char* const sNonTextureNames[] [static]
+   Search for all occurrences
+
+   Array of names of non-texture type layer elements.
+
+   Definition at line 126 of file fbxlayer.h.
+   const FbxDataType sTextureDataTypes[] [static]
+   Search for all occurrences
+
+   Array of texture types.
+
+   Definition at line 127 of file fbxlayer.h.
+   const char* const sTextureChannelNames[] [static]
+   Search for all occurrences
+
+   Array of texture channels.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   Definition at line 128 of file fbxlayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

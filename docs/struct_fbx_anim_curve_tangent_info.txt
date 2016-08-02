@@ -1,0 +1,101 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveTangentInfo Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxAnimCurveTangentInfo Struct Reference
+   Search for all occurrences
+
+   #include <fbxanimcurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 107 of file fbxanimcurve.h.
+
+   List of all members.
+
+Public Member Functions
+
+          FbxAnimCurveTangentInfo ()
+
+Public Attributes
+
+   float  mDerivative
+   float  mWeight
+   float  mVelocity
+   float  mAuto
+    bool  mWeighted
+    bool  mHasVelocity
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimCurveTangentInfo ( ) [inline]
+
+   Definition at line 109 of file fbxanimcurve.h.
+        {
+                mDerivative = 0;
+                mWeight = FbxAnimCurveDef::sDEFAULT_WEIGHT;
+                mWeighted = false;
+                mVelocity = FbxAnimCurveDef::sDEFAULT_VELOCITY;
+                mHasVelocity = false;
+                mAuto = 0;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   float mDerivative
+   Search for all occurrences
+
+   Definition at line 119 of file fbxanimcurve.h.
+   float mWeight
+   Search for all occurrences
+
+   Definition at line 120 of file fbxanimcurve.h.
+   float mVelocity
+   Search for all occurrences
+
+   Definition at line 121 of file fbxanimcurve.h.
+   float mAuto
+   Search for all occurrences
+
+   Definition at line 122 of file fbxanimcurve.h.
+   bool mWeighted
+   Search for all occurrences
+
+   Definition at line 123 of file fbxanimcurve.h.
+   bool mHasVelocity
+   Search for all occurrences
+
+   Definition at line 124 of file fbxanimcurve.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurve.h
+
+   Please send us your comment about this page

@@ -1,0 +1,94 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementArrayReadLock< T > Struct Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxLayerElementArrayReadLock< T > Struct Template Reference
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename T>
+struct FbxLayerElementArrayReadLock< T >
+
+   This class provides simple RAII-style read locking of a FbxLayerElementArray object.
+
+   Definition at line 783 of file fbxlayer.h.
+
+   List of all members.
+
+Public Member Functions
+
+              FbxLayerElementArrayReadLock (FbxLayerElementArray &pArray)
+              ~FbxLayerElementArrayReadLock ()
+   const T *  GetData () const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLayerElementArrayReadLock ( FbxLayerElementArray &  pArray ) [inline]
+
+   On construction, this class requires the read lock.
+
+   Definition at line 788 of file fbxlayer.h.
+                                                               : mArray(pArray)
+    {
+        mLockedData = mArray.GetLocked((T*)NULL, FbxLayerElementArray::eReadLock);
+    }
+
+   ~FbxLayerElementArrayReadLock ( ) [inline]
+
+   On destruction, this class releases the read lock.
+
+   Definition at line 796 of file fbxlayer.h.
+    {
+        if( mLockedData )
+        {
+            mArray.Release((void **) &mLockedData);
+        }
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const T* GetData ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the locked array data.
+
+   Definition at line 807 of file fbxlayer.h.
+    {
+        return mLockedData;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

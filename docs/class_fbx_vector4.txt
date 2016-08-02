@@ -1,0 +1,659 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVector4 Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxVector4 Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Instancing - Sharing a Mesh, Transformation Data, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxvector4.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A four double mathematic vector class.
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportScene05/main.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayCommon.h, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayNurb.cxx, ImportScene/DisplayPatch.cxx, ImportScene/DisplayPivotsAndLimits.cxx, ImportScene/DisplayPose.cxx, ImportScene/DisplayShape.cxx,
+          ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, Normals/main.cxx, Pivot/main.cxx, ProceduralTexture/main.cxx, Transformations/DisplayCommon.cxx, Transformations/DisplayCommon.h, Transformations/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, UserProperties/main.cxx, ViewScene/DrawScene.cxx, ViewScene/GetPosition.cxx, ViewScene/GlFunctions.cxx, ViewScene/GlFunctions.h, ViewScene/SceneCache.cxx, ViewScene/SceneCache.h,
+          ViewScene/SceneContext.h, ViewScene/SetCamera.cxx, and ViewScene/SetCamera.h.
+
+   Definition at line 25 of file fbxvector4.h.
+   Inheritance diagram for FbxVector4:
+   [USEMAP:class_fbx_vector4.png]
+
+   List of all members.
+
+Public Member Functions
+
+           bool  IsZero (int pSize=4) const
+                 Find out if the vector is equal to zero.
+           void  FixIncorrectValue ()
+
+Constructors and Destructor
+
+                 FbxVector4 ()
+                 Constructor.
+                 FbxVector4 (const FbxVector4 &pVector4)
+                 Copy constructor.
+                 FbxVector4 (double pX, double pY, double pZ, double pW=1.0)
+                 Constructor.
+                 FbxVector4 (const double pValue[4])
+                 Constructor.
+                 FbxVector4 (const FbxDouble3 &pValue)
+                 Constructor.
+
+Access
+
+   FbxVector4 &  operator= (const FbxVector4 &pVector4)
+                 Assignment operation.
+   FbxVector4 &  operator= (const double *pValue)
+                 Assignment operation.
+   FbxVector4 &  operator= (const FbxDouble3 &pValue)
+                 Assignment operation.
+           void  Set (double pX, double pY, double pZ, double pW=1.0)
+                 Set vector.
+
+Scalar Operations
+
+     FbxVector4  operator+ (double pValue) const
+                 Add a value to all vector components.
+     FbxVector4  operator- (double pValue) const
+                 Subtract a value from all vector components.
+     FbxVector4  operator* (double pValue) const
+                 Multiply a value to all vector components.
+     FbxVector4  operator/ (double pValue) const
+                 Divide all vector components by a value.
+   FbxVector4 &  operator+= (double pValue)
+                 Add a value to all vector components.
+   FbxVector4 &  operator-= (double pValue)
+                 Subtract a value from all vector components.
+   FbxVector4 &  operator*= (double pValue)
+                 Multiply a value to all vector elements.
+   FbxVector4 &  operator/= (double pValue)
+                 Divide all vector elements by a value.
+
+Vector Operations
+
+     FbxVector4  operator- () const
+                 Unary minus operator.
+     FbxVector4  operator+ (const FbxVector4 &pVector) const
+                 Add two vectors together.
+     FbxVector4  operator- (const FbxVector4 &pVector) const
+                 Subtract a vector from another vector.
+     FbxVector4  operator* (const FbxVector4 &pVector) const
+                 Memberwise multiplication of two vectors.
+     FbxVector4  operator/ (const FbxVector4 &pVector) const
+                 Memberwise division of a vector with another vector.
+   FbxVector4 &  operator+= (const FbxVector4 &pVector)
+                 Add two vectors together.
+   FbxVector4 &  operator-= (const FbxVector4 &pVector)
+                 Subtract a vector from another vector.
+   FbxVector4 &  operator*= (const FbxVector4 &pVector)
+                 Memberwise multiplication of two vectors.
+   FbxVector4 &  operator/= (const FbxVector4 &pVector)
+                 Memberwise division of a vector with another vector.
+         double  DotProduct (const FbxVector4 &pVector) const
+                 Calculate the dot product of two vectors.
+     FbxVector4  CrossProduct (const FbxVector4 &pVector) const
+                 Calculate the cross product of two vectors.
+    static bool  AxisAlignmentInEulerAngle (const FbxVector4 &pAB, const FbxVector4 &pA, const FbxVector4 &pB, FbxVector4 &pAngles)
+                 Calculate the Euler rotation required to align axis pAB-pA on pAB-pB.
+
+Boolean Operations
+
+           bool  operator== (const FbxVector4 &pVector) const
+                 Equivalence operator.
+           bool  operator!= (const FbxVector4 &pVector) const
+                 Non equivalence operator.
+
+Length
+
+         double  Length () const
+                 Get the vector's length.
+         double  SquareLength () const
+                 Get the vector's length squared.
+         double  Distance (const FbxVector4 &pVector) const
+                 Find the distance between 2 vectors.
+           void  Normalize ()
+                 Normalize the vector, length set to 1.
+           void  SetXYZ (const FbxQuaternion pQuat)
+                 Set the Euler XYZ from a Quaternion.
+
+Casting
+
+                 operator double * ()
+                 Cast the vector in a double pointer.
+                 operator const double * () const
+                 Cast the vector in a const double pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxVector4 ( )
+
+   Constructor.
+   FbxVector4 ( const FbxVector4 &  pVector4 )
+
+   Copy constructor.
+
+   Parameters:
+
+          pVector4 The vector copied to this one.
+
+   FbxVector4 ( double  pX,
+                double  pY,
+                double  pZ,
+                double  pW = 1.0
+              )
+
+   Constructor.
+
+   Parameters:
+
+          pX X component.
+          pY Y component.
+          pZ Z component.
+          pW W component.
+
+   FbxVector4 ( const double  pValue[4] )
+
+   Constructor.
+
+   Parameters:
+
+          pValue X,Y,Z,W components.
+
+   FbxVector4 ( const FbxDouble3 &  pValue )
+
+   Constructor.
+
+   Parameters:
+
+          pValue X,Y,Z components.
+
+   Remarks:
+          The fourth component of this object is assigned 1.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxVector4& operator= ( const FbxVector4 &  pVector4 )
+
+   Assignment operation.
+
+   Parameters:
+
+          pVector4 The vector assigned to this one.
+
+   Returns:
+          This vector after assignment.
+
+   FbxVector4& operator= ( const double *  pValue )
+
+   Assignment operation.
+
+   Parameters:
+
+          pValue The pointer to an array whose elements are assigned to this vector.
+
+   Returns:
+          This vector after assignment.
+
+   FbxVector4& operator= ( const FbxDouble3 &  pValue )
+
+   Assignment operation.
+
+   Parameters:
+
+          pValue The vector with 3 elements assigned to this vector.
+
+   Returns:
+          This vector after assignment.
+
+   Remarks:
+          The first three elements are assigned with pValue. The fourth element is set as 1.0
+
+   void Set ( double  pX,
+              double  pY,
+              double  pZ,
+              double  pW = 1.0
+            )
+   Search for all occurrences
+
+   Set vector.
+
+   Parameters:
+
+          pX The X component value.
+          pY The Y component value.
+          pZ The Z component value.
+          pW The W component value.
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene02/main.cxx, and ExportScene05/main.cxx.
+
+   FbxVector4 operator+ ( double  pValue ) const
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4 operator- ( double  pValue ) const
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4 operator* ( double  pValue ) const
+
+   Multiply a value to all vector components.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4 operator/ ( double  pValue ) const
+
+   Divide all vector components by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          New vector.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4& operator+= ( double  pValue )
+
+   Add a value to all vector components.
+
+   Parameters:
+
+          pValue The value to add to each component of the vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4& operator-= ( double  pValue )
+
+   Subtract a value from all vector components.
+
+   Parameters:
+
+          pValue The value to subtract from each component of the vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4& operator*= ( double  pValue )
+
+   Multiply a value to all vector elements.
+
+   Parameters:
+
+          pValue The value multiplying each component of the vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4& operator/= ( double  pValue )
+
+   Divide all vector elements by a value.
+
+   Parameters:
+
+          pValue The value dividing each component of the vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The passed value is not checked.
+
+   FbxVector4 operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          The vector that is the negation of this.
+
+   FbxVector4 operator+ ( const FbxVector4 &  pVector ) const
+
+   Add two vectors together.
+
+   Parameters:
+
+          pVector Vector to add.
+
+   Returns:
+          The vector v' = this + pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4 operator- ( const FbxVector4 &  pVector ) const
+
+   Subtract a vector from another vector.
+
+   Parameters:
+
+          pVector Vector to subtract.
+
+   Returns:
+          The vector v' = this - pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4 operator* ( const FbxVector4 &  pVector ) const
+
+   Memberwise multiplication of two vectors.
+
+   Parameters:
+
+          pVector Multiplying vector.
+
+   Returns:
+          The vector v' = this * pVector.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4 operator/ ( const FbxVector4 &  pVector ) const
+
+   Memberwise division of a vector with another vector.
+
+   Parameters:
+
+          pVector Dividing vector.
+
+   Returns:
+          The vector v[i]' = this[i] / pVector[i].
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4& operator+= ( const FbxVector4 &  pVector )
+
+   Add two vectors together.
+
+   Parameters:
+
+          pVector Vector to add.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4& operator-= ( const FbxVector4 &  pVector )
+
+   Subtract a vector from another vector.
+
+   Parameters:
+
+          pVector Vector to subtract.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4& operator*= ( const FbxVector4 &  pVector )
+
+   Memberwise multiplication of two vectors.
+
+   Parameters:
+
+          pVector Multiplying vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   FbxVector4& operator/= ( const FbxVector4 &  pVector )
+
+   Memberwise division of a vector with another vector.
+
+   Parameters:
+
+          pVector Dividing vector.
+
+   Returns:
+          this updated with the operation result.
+
+   Remarks:
+          The values in pVector are not checked.
+
+   double DotProduct ( const FbxVector4 &  pVector ) const
+   Search for all occurrences
+
+   Calculate the dot product of two vectors.
+
+   Parameters:
+
+          pVector The second vector.
+
+   Returns:
+          The dot product value.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the 3 first elements are considered in this operation.
+
+   FbxVector4 CrossProduct ( const FbxVector4 &  pVector ) const
+   Search for all occurrences
+
+   Calculate the cross product of two vectors.
+
+   Parameters:
+
+          pVector The second vector.
+
+   Returns:
+          The cross product vector.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the first 3 elements are considered in this operation.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   static bool AxisAlignmentInEulerAngle ( const FbxVector4 &  pAB,
+                                           const FbxVector4 &  pA,
+                                           const FbxVector4 &  pB,
+                                           FbxVector4 &        pAngles
+                                         )                     [static]
+   Search for all occurrences
+
+   Calculate the Euler rotation required to align axis pAB-pA on pAB-pB.
+
+   Parameters:
+
+          pAB     The intersection of the 2 axis.
+          pA      A point on axis to be aligned.
+          pB      A point on reference axis.
+          pAngles Resulting euler angles.
+
+   Returns:
+          true on success.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the first 3 elements are considered in this operation.
+
+   Examples:
+          ExportScene04/main.cxx, and ViewScene/DrawScene.cxx.
+
+   bool operator== ( const FbxVector4 &  pVector ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pVector The vector to be compared to this.
+
+   Returns:
+          true if the two vectors are equal (each element is within a FBXSDK_TOLERANCE tolerance) and false otherwise.
+
+   bool operator!= ( const FbxVector4 &  pVector ) const
+
+   Non equivalence operator.
+
+   Parameters:
+
+          pVector The vector to be compared to this.
+
+   Returns:
+          false if the two vectors are equal (each element is within a FBXSDK_TOLERANCE tolerance) and true otherwise.
+
+   double Length ( ) const
+   Search for all occurrences
+
+   Get the vector's length.
+
+   Returns:
+          The mathematical length of the vector.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the first 3 elements are considered in this operation.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   double SquareLength ( ) const
+   Search for all occurrences
+
+   Get the vector's length squared.
+
+   Returns:
+          The mathematical square length of the vector.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the first 3 elements are considered in this operation.
+
+   double Distance ( const FbxVector4 &  pVector ) const
+   Search for all occurrences
+
+   Find the distance between 2 vectors.
+
+   Parameters:
+
+          pVector The second vector.
+
+   Returns:
+          The mathematical distance between the two vectors.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the 3 first elements are considered in this operation.
+
+   void Normalize ( )
+   Search for all occurrences
+
+   Normalize the vector, length set to 1.
+
+   Remarks:
+          Being considered as a XYZ vector with a weight, only the first 3 elements are considered in this operation.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   void SetXYZ ( const FbxQuaternion  pQuat )
+   Search for all occurrences
+
+   Set the Euler XYZ from a Quaternion.
+
+   Parameters:
+
+          pQuat Quaternion from which Euler XYZ information is got.
+
+   operator double * ( )
+
+   Cast the vector in a double pointer.
+   operator const double * ( ) const
+
+   Cast the vector in a const double pointer.
+   bool IsZero ( int  pSize = 4 ) const
+   Search for all occurrences
+
+   Find out if the vector is equal to zero.
+
+   Parameters:
+
+          pSize The number of element to test, starting at beginning. Value must range between [1, 4].
+
+   Returns:
+          true if all elements of the vector are zero, false otherwise.
+
+   void FixIncorrectValue ( )
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxvector4.h
+
+   Please send us your comment about this page

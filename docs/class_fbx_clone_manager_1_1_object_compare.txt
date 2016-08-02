@@ -1,0 +1,76 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCloneManager::ObjectCompare Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxCloneManager
+     * ObjectCompare
+
+   Public Member Functions
+   FbxCloneManager::ObjectCompare Class Reference
+   Search for all occurrences
+
+   #include <fbxclonemanager.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Functor to compare object pointers.
+
+   This class is used internally in FbxCloneManager.
+
+   Definition at line 110 of file fbxclonemanager.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (FbxObject *const &pKeyA, FbxObject *const &pKeyB) const
+        Operator converting instance to int type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( FbxObject *const &  pKeyA,
+                    FbxObject *const &  pKeyB
+                  )                     const [inline]
+
+   Operator converting instance to int type.
+
+   Parameters:
+
+          pKeyA Left key to be compared.
+          pKeyB Right key to be compared.
+
+   Definition at line 117 of file fbxclonemanager.h.
+        {
+            return (pKeyA < pKeyB) ? -1 : ((pKeyB < pKeyA) ? 1 : 0);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxclonemanager.h
+
+   Please send us your comment about this page

@@ -1,0 +1,116 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   HIK2FbxCharacterPropertyBridge Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Static Public Member Functions
+   HIK2FbxCharacterPropertyBridge Class Reference
+   Search for all occurrences
+
+   #include <fbxhik2fbxcharacter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 235 of file fbxhik2fbxcharacter.h.
+
+   List of all members.
+
+Public Types
+
+                                                                                                     enum   { mParamCount = sizeof(gHIK2FbxCharacterPropertyBridge) / sizeof(FbxCharacterPropertyInfo) }
+
+Static Public Member Functions
+
+   static const
+   FbxCharacterPropertyInfo &  GetAt (int i)
+   static const
+   FbxCharacterPropertyInfo *  GetPropertyInfoFromFbxCharacterProperty (const char *pCharacterPropertyName)
+   static const
+   FbxCharacterPropertyInfo *  GetPropertyInfoFromHIKProperty (const char *pHIKPropertyName)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   anonymous enum
+   Search for all occurrences
+
+   Enumerator:
+
+          mParamCount
+
+   Search for all occurrences
+
+   Definition at line 238 of file fbxhik2fbxcharacter.h.
+        {
+                mParamCount = sizeof(gHIK2FbxCharacterPropertyBridge) / sizeof(FbxCharacterPropertyInfo)
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static const FbxCharacterPropertyInfo& GetAt ( int  i ) [inline, static]
+   Search for all occurrences
+
+   Definition at line 242 of file fbxhik2fbxcharacter.h.
+{ return gHIK2FbxCharacterPropertyBridge[i] ;}
+
+   static const FbxCharacterPropertyInfo* GetPropertyInfoFromFbxCharacterProperty ( const char *  pCharacterPropertyName ) [inline, static]
+   Search for all occurrences
+
+   Definition at line 244 of file fbxhik2fbxcharacter.h.
+        {
+                int lCounter = 0;
+                for( lCounter = 0 ; lCounter < mParamCount; lCounter++ )
+                {
+                        if(GetAt(lCounter).mFbxCharacterPropertyName && !strcmp(GetAt(lCounter).mFbxCharacterPropertyName, pCharacterPropertyName))
+                        {
+                                return &GetAt(lCounter);
+                        }
+                }
+                return NULL;
+        }
+
+   static const FbxCharacterPropertyInfo* GetPropertyInfoFromHIKProperty ( const char *  pHIKPropertyName ) [inline, static]
+   Search for all occurrences
+
+   Definition at line 257 of file fbxhik2fbxcharacter.h.
+        {
+                int lCounter = 0;
+                for( lCounter = 0 ; lCounter < mParamCount; lCounter++ )
+                {
+                        if(!strcmp(GetAt(lCounter).mHIKPropertyName, pHIKPropertyName))
+                        {
+                                return &GetAt(lCounter);
+                        }
+                }
+                return NULL;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxhik2fbxcharacter.h
+
+   Please send us your comment about this page

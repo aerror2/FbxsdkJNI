@@ -1,0 +1,283 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxStatus Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxStatus Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxstatus.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class facilitates the testing/reporting of errors.
+
+   It encapsulates the status code and the internal FBXSDK error code as returned by the API functions.
+
+   Examples:
+          ExportScene03/main.cxx, and ViewScene/SceneContext.cxx.
+
+   Definition at line 26 of file fbxstatus.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EStatusCode {
+     eSuccess = 0, eFailure, eInsufficientMemory, eInvalidParameter,
+     eIndexOutOfRange, ePasswordError, eInvalidFileVersion, eInvalidFile
+   }
+     Available status codes. More...
+
+Public Member Functions
+
+     FbxStatus ()
+     Default constructor.
+     FbxStatus (EStatusCode pCode)
+     FbxStatus (const FbxStatus &rhs)
+   FbxStatus &  operator= (const FbxStatus &rhs)
+   bool  operator== (const FbxStatus &rhs) const
+     Equivalence operator.
+   bool  operator== (const EStatusCode pCode) const
+     Equivalence operator.
+   bool  operator!= (const FbxStatus &rhs) const
+     Non-Equivalence operator.
+   bool  operator!= (const EStatusCode rhs) const
+     Non-Equivalence operator.
+     operator bool () const
+     The conversion operator that converts a FbxStatus object to bool.
+   bool  Error () const
+     Determines whether there is an error.
+   void  Clear ()
+     Clear error code and message from the instance. After this call, it will behave as if it contained eSuccess.
+   EStatusCode  GetCode () const
+     Retrieve the type of error that occurred, as specified in the enumeration.
+   void  SetCode (const EStatusCode rhs)
+     Change the current code of the instance.
+   void  SetCode (const EStatusCode rhs, const char *pErrorMsg,...)
+     Change the current code of the instance.
+   const char *  GetErrorString () const
+     Get the error message string corresponding to the current code.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EStatusCode
+   Search for all occurrences
+
+   Available status codes.
+
+   Enumerator:
+
+          eSuccess
+
+   Operation was successful.
+   Search for all occurrences
+          eFailure
+
+   Operation failed.
+   Search for all occurrences
+          eInsufficientMemory
+
+   Operation failed due to insufficient memory.
+   Search for all occurrences
+          eInvalidParameter
+
+   An invalid parameter was provided.
+   Search for all occurrences
+          eIndexOutOfRange
+
+   Index value outside the valid range.
+   Search for all occurrences
+          ePasswordError
+
+   Operation on FBX file password failed.
+   Search for all occurrences
+          eInvalidFileVersion
+
+   File version not supported (anymore or yet)
+   Search for all occurrences
+          eInvalidFile
+
+   Operation on the file access failed.
+   Search for all occurrences
+
+   Definition at line 32 of file fbxstatus.h.
+                     {
+        eSuccess = 0,
+        eFailure,
+        eInsufficientMemory,
+        eInvalidParameter,
+        eIndexOutOfRange,
+        ePasswordError,
+        eInvalidFileVersion,
+        eInvalidFile
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxStatus ( )
+
+   Default constructor.
+   FbxStatus ( EStatusCode  pCode )
+   FbxStatus ( const FbxStatus &  rhs )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxStatus& operator= ( const FbxStatus &  rhs )
+   bool operator== ( const FbxStatus &  rhs ) const [inline]
+
+   Equivalence operator.
+
+   Parameters:
+
+          rhs Status object to compare.
+
+   Returns:
+          True if all the members of rhs are equal to this instance members and False otherwise.
+
+   Definition at line 55 of file fbxstatus.h.
+{ return (mCode == rhs.mCode); }
+
+   bool operator== ( const EStatusCode  pCode ) const [inline]
+
+   Equivalence operator.
+
+   Parameters:
+
+          pCode Status code to compare.
+
+   Returns:
+          True if the code member of this instance equals pCode and False otherwise.
+
+   Definition at line 60 of file fbxstatus.h.
+{ return (mCode == pCode); }
+
+   bool operator!= ( const FbxStatus &  rhs ) const [inline]
+
+   Non-Equivalence operator.
+
+   Parameters:
+
+          rhs Status object to compare.
+
+   Returns:
+          True if at least one member of rhs is not equal to this instance member and True otherwise.
+
+   Definition at line 65 of file fbxstatus.h.
+{ return (mCode != rhs.mCode); }
+
+   bool operator!= ( const EStatusCode  rhs ) const [inline]
+
+   Non-Equivalence operator.
+
+   Parameters:
+
+          rhs Status code to compare.
+
+   Returns:
+          True if the code member of this instance equals rhs and False otherwise.
+
+   Definition at line 70 of file fbxstatus.h.
+{ return (mCode != rhs); }
+
+   operator bool ( ) const [inline]
+
+   The conversion operator that converts a FbxStatus object to bool.
+
+   The result it returns will be True if the FbxStatus does not contain an error, and False if it does.
+
+   Definition at line 76 of file fbxstatus.h.
+{ return mCode==eSuccess; }
+
+   bool Error ( ) const [inline]
+   Search for all occurrences
+
+   Determines whether there is an error.
+
+   Returns:
+          True if an error occured and False if the operation was sucessful.
+
+   Definition at line 81 of file fbxstatus.h.
+{ return !this->operator bool(); }
+
+   void Clear ( )
+   Search for all occurrences
+
+   Clear error code and message from the instance. After this call, it will behave as if it contained eSuccess.
+   EStatusCode GetCode ( ) const [inline]
+   Search for all occurrences
+
+   Retrieve the type of error that occurred, as specified in the enumeration.
+
+   Examples:
+          Common/Common.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   Definition at line 87 of file fbxstatus.h.
+{ return mCode; }
+
+   void SetCode ( const EStatusCode  rhs )
+   Search for all occurrences
+
+   Change the current code of the instance.
+
+   Parameters:
+
+          rhs New code value.
+
+   void SetCode ( const EStatusCode  rhs,
+                  const char *       pErrorMsg,
+                                     ...
+                )
+   Search for all occurrences
+
+   Change the current code of the instance.
+
+   Parameters:
+
+          rhs       New code value.
+          pErrorMsg Optional error description string. This string can have formatting characters The function will use the vsnprintf function to assemble the final string using an internal buffer of 4096 characters.
+
+   const char* GetErrorString ( ) const
+   Search for all occurrences
+
+   Get the error message string corresponding to the current code.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, ExportScene05/main.cxx, and UI_Examples/Common/ImportExport.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstatus.h
+
+   Please send us your comment about this page

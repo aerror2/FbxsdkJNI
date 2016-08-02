@@ -1,0 +1,229 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCharacterLink Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxCharacterLink Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcharacter.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class represents a link between a given FBX node and the associated node in the character hierarchy.
+
+   It also contains the transform matrix (offset) for the linked character's node.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   Definition at line 30 of file fbxcharacter.h.
+
+   List of all members.
+
+Public Types
+
+                enum   EType { eCharacterLink, eControlSetLink, eControlSetEffector, eControlSetEffectorAux }
+                       Character link type. More...
+
+Public Member Functions
+
+                       FbxCharacterLink ()
+                       Default Constructor.
+                       FbxCharacterLink (const FbxCharacterLink &pCharacterLink)
+                       Copy Constructor.
+   FbxCharacterLink &  operator= (const FbxCharacterLink &pCharacterLink)
+                       Assignment operation.
+                 void  Reset ()
+                       Reset to default values.
+
+Public Attributes
+
+            FbxNode *  mNode
+            FbxString  mTemplateName
+                       The character's node in hierarchy linked to this character link.
+           FbxVector4  mOffsetT
+                       A template name is a naming convention that is used to automatically map the nodes of other skeletons that use the same naming convention.
+           FbxVector4  mOffsetR
+                       Get offset position of this character link.
+           FbxVector4  mOffsetS
+                       Get offset rotation of this character link.
+           FbxVector4  mParentROffset
+                       Get offset scale of this character link.
+                 bool  mHasRotSpace
+                       Get the parent offset rotation of this character link.
+            FbxLimits  mRLimits
+                       true if this character link has a defined rotation space
+           FbxVector4  mPreRotation
+                       Get the rotation limits of this character link.
+           FbxVector4  mPostRotation
+                       Get the PreRotation of this character link.
+                  int  mRotOrder
+                       Get the PostRotation of this character link.
+               double  mAxisLen
+                       Get the rotation order of this character link.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Character link type.
+
+   Enumerator:
+
+          eCharacterLink
+
+   Search for all occurrences
+          eControlSetLink
+
+   Search for all occurrences
+          eControlSetEffector
+
+   Search for all occurrences
+          eControlSetEffectorAux
+
+   Search for all occurrences
+
+   Definition at line 34 of file fbxcharacter.h.
+        {
+                eCharacterLink,
+                eControlSetLink,
+                eControlSetEffector,
+                eControlSetEffectorAux
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxCharacterLink ( )
+
+   Default Constructor.
+   FbxCharacterLink ( const FbxCharacterLink &  pCharacterLink )
+
+   Copy Constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxCharacterLink& operator= ( const FbxCharacterLink &  pCharacterLink )
+
+   Assignment operation.
+
+   Parameters:
+
+          pCharacterLink Another FbxCharacterLink object assigned to this one.
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset to default values.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxNode* mNode
+   Search for all occurrences
+
+   Definition at line 56 of file fbxcharacter.h.
+   FbxString mTemplateName
+   Search for all occurrences
+
+   The character's node in hierarchy linked to this character link.
+
+   Definition at line 57 of file fbxcharacter.h.
+   FbxVector4 mOffsetT
+   Search for all occurrences
+
+   A template name is a naming convention that is used to automatically map the nodes of other skeletons that use the same naming convention.
+
+   Definition at line 58 of file fbxcharacter.h.
+   FbxVector4 mOffsetR
+   Search for all occurrences
+
+   Get offset position of this character link.
+
+   Definition at line 59 of file fbxcharacter.h.
+   FbxVector4 mOffsetS
+   Search for all occurrences
+
+   Get offset rotation of this character link.
+
+   Definition at line 60 of file fbxcharacter.h.
+   FbxVector4 mParentROffset
+   Search for all occurrences
+
+   Get offset scale of this character link.
+
+   Definition at line 61 of file fbxcharacter.h.
+   bool mHasRotSpace
+   Search for all occurrences
+
+   Get the parent offset rotation of this character link.
+
+   Definition at line 62 of file fbxcharacter.h.
+   FbxLimits mRLimits
+   Search for all occurrences
+
+   true if this character link has a defined rotation space
+
+   Definition at line 63 of file fbxcharacter.h.
+   FbxVector4 mPreRotation
+   Search for all occurrences
+
+   Get the rotation limits of this character link.
+
+   Definition at line 64 of file fbxcharacter.h.
+   FbxVector4 mPostRotation
+   Search for all occurrences
+
+   Get the PreRotation of this character link.
+
+   Definition at line 65 of file fbxcharacter.h.
+   int mRotOrder
+   Search for all occurrences
+
+   Get the PostRotation of this character link.
+
+   Definition at line 66 of file fbxcharacter.h.
+   double mAxisLen
+   Search for all occurrences
+
+   Get the rotation order of this character link.
+
+   Definition at line 67 of file fbxcharacter.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxcharacter.h
+
+   Please send us your comment about this page

@@ -1,0 +1,162 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLoadingStrategy Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Protected Attributes
+   FbxLoadingStrategy Class Reference
+   Search for all occurrences
+
+   #include <fbxloadingstrategy.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Abstract class used to implemented some plug-in loading strategy.
+
+   A loading strategy dictate how some plug-ins will be loaded for instance. We could have a simple strategy that loads only a single dll on PC. We could also implement a strategy that load multiple dlls from a directory.
+
+   Definition at line 31 of file fbxloadingstrategy.h.
+   Inheritance diagram for FbxLoadingStrategy:
+   [USEMAP:class_fbx_loading_strategy.png]
+
+   List of all members.
+
+Public Types
+
+          enum   EState { eAllLoaded, eNoneLoaded, eAllFailed, eSomeFailed }
+                 Result state of loading plug-in. More...
+
+Public Member Functions
+
+   Public interface
+         EState  Load (FbxPluginData &pData)
+                 Execute the operation of loading the plug-in(s).
+           void  Unload ()
+                 Execute the operation of unloading the plug-in(s).
+
+Protected Member Functions
+
+   User implementation
+   virtual bool  SpecificLoad (FbxPluginData &pData)=0
+                 Called by the Load method, it contains the specific user implementation strategy to load the desired plug-in(s).
+   virtual void  SpecificUnload (FbxPluginData &pData)=0
+                 Called by the Unload method, it contains the specific user implementation strategy to unload the desired plug-in(s).
+
+Protected Attributes
+
+         EState  mPluginsLoadedState
+                 Whether the plugin is loaded or not.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EState
+   Search for all occurrences
+
+   Result state of loading plug-in.
+
+   Enumerator:
+
+          eAllLoaded
+
+   All plug-in are loaded.
+   Search for all occurrences
+          eNoneLoaded
+
+   No plug-in is loaded, i.e., there is not plug-in to load.
+   Search for all occurrences
+          eAllFailed
+
+   All plug-in are failed to load.
+   Search for all occurrences
+          eSomeFailed
+
+   Some plug-ins are loaded but some are failed.
+   Search for all occurrences
+
+   Definition at line 36 of file fbxloadingstrategy.h.
+        {
+        eAllLoaded,
+        eNoneLoaded,
+        eAllFailed,
+        eSomeFailed
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   EState Load ( FbxPluginData &  pData )
+   Search for all occurrences
+
+   Execute the operation of loading the plug-in(s).
+
+   The way it is executed is determined by the specific implementations.
+
+   Parameters:
+
+          pData Plug in data that can be access inside the plug-ins.
+
+   Returns:
+          If the plugin loading is successful return true, otherwise return false.
+
+   void Unload ( )
+   Search for all occurrences
+
+   Execute the operation of unloading the plug-in(s).
+
+   The way it is executed is determined by the specific implementations.
+   virtual bool SpecificLoad ( FbxPluginData &  pData ) [protected, pure virtual]
+   Search for all occurrences
+
+   Called by the Load method, it contains the specific user implementation strategy to load the desired plug-in(s).
+
+   Parameters:
+
+          pData Plug in data that can be access inside the plug-ins.
+
+   Returns:
+          If the plugin loading is successful return true, otherwise return false
+
+   virtual void SpecificUnload ( FbxPluginData &  pData ) [protected, pure virtual]
+   Search for all occurrences
+
+   Called by the Unload method, it contains the specific user implementation strategy to unload the desired plug-in(s).
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   EState mPluginsLoadedState [protected]
+   Search for all occurrences
+
+   Whether the plugin is loaded or not.
+
+   Definition at line 76 of file fbxloadingstrategy.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxloadingstrategy.h
+
+   Please send us your comment about this page

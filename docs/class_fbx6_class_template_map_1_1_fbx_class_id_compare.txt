@@ -1,0 +1,67 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   Fbx6ClassTemplateMap::FbxClassIdCompare Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * Fbx6ClassTemplateMap
+     * FbxClassIdCompare
+
+   Public Member Functions
+   Fbx6ClassTemplateMap::FbxClassIdCompare Class Reference
+   Search for all occurrences
+
+   #include <fbxreaderfbx6.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 59 of file fbxreaderfbx6.h.
+
+   List of all members.
+
+Public Member Functions
+
+   int  operator() (const FbxClassId &pKeyA, const FbxClassId &pKeyB) const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int operator() ( const FbxClassId &  pKeyA,
+                    const FbxClassId &  pKeyB
+                  )                     const [inline]
+
+   Definition at line 61 of file fbxreaderfbx6.h.
+        {
+            FbxHandle lA = reinterpret_cast<FbxHandle>( pKeyA.GetClassIdInfo() );
+            FbxHandle lB = reinterpret_cast<FbxHandle>( pKeyB.GetClassIdInfo() );
+
+            return (lA < lB) ? -1 : ((lB < lA) ? 1 : 0);
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxreaderfbx6.h
+
+   Please send us your comment about this page

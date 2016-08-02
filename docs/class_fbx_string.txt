@@ -1,0 +1,962 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxString Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxString Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, Your First FBX SDK Program, FBX SDK 2014, Referencing Media, Customizing File Formats with FBX SDK I/O Plug-ins, FBX SDK 2013, Merging Two Scenes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxstring.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Utility class to manipulate strings.
+
+   Examples:
+          Camera/main.cxx, Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayHierarchy.cxx, ImportScene/DisplayLink.cxx, ImportScene/DisplayMarker.cxx,
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayNurb.cxx, ImportScene/DisplayPose.cxx, ImportScene/DisplayUserProperties.cxx, ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, Normals/main.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, Transformations/DisplayCommon.cxx, Transformations/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx,
+          UI_Examples/CubeCreator/SDK_Utility.h, UI_Examples/CubeCreator/UI.cxx, UI_Examples/ImportExport/UI.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.h, UI_Examples/SceneTreeView/UI.cxx, ViewScene/main.cxx, ViewScene/SceneContext.cxx, ViewScene/SceneContext.h, and ViewScene/SetCamera.cxx.
+
+   Definition at line 66 of file fbxstring.h.
+
+   List of all members.
+
+Constructors and Destructor
+
+                         FbxString ()
+                         Default constructor.
+                         FbxString (const FbxString &pString)
+                         Copy constructor.
+                         FbxString (const char *pString)
+                         String constructor.
+                         FbxString (char pChar, size_t pNbRepeat=1)
+                         Character constructor.
+                         FbxString (const char *pCharPtr, size_t pLength)
+                         String constructor with maximum length.
+                         FbxString (const int pValue)
+                         Integer constructor.
+                         FbxString (const float pValue)
+                         Float constructor.
+                         FbxString (const double pValue)
+                         Double constructor.
+                         ~FbxString ()
+                         Destructor.
+
+Buffer Access and Validation
+
+                 size_t  GetLen () const
+                         Get string length like "C" strlen().
+                 size_t  Size () const
+                         Get string length like "C" strlen().
+                   bool  IsEmpty () const
+                         Return true if string length equal zero.
+            FbxString &  Clear ()
+                         Discard the content of the string.
+                 char &  operator[] (int pIndex)
+                         Access by reference.
+                   char  operator[] (int pIndex) const
+                         Access by copy.
+                 char *  Buffer ()
+                         Non-const buffer access.
+           const char *  Buffer () const
+                         Const buffer access.
+
+String Operations
+
+      const FbxString &  operator= (const FbxString &pString)
+                         FbxString assignment operator.
+      const FbxString &  operator= (char pChar)
+                         Character assignment operator.
+      const FbxString &  operator= (const char *pString)
+                         String assignment operator.
+      const FbxString &  operator= (int pValue)
+                         Int assignment operator.
+      const FbxString &  operator= (float pValue)
+                         Float assignment operator.
+      const FbxString &  operator= (double pValue)
+                         Double assignment operator.
+      const FbxString &  operator+= (const FbxString &pString)
+                         FbxString append.
+      const FbxString &  operator+= (char pChar)
+                         Character append.
+      const FbxString &  operator+= (const char *pString)
+                         String append.
+      const FbxString &  operator+= (int pValue)
+                         Integer append.
+      const FbxString &  operator+= (float pValue)
+                         Float append.
+      const FbxString &  operator+= (double pValue)
+                         Double append.
+                   bool  operator== (const FbxString &pString) const
+                         Equality operator.
+                   bool  operator!= (const FbxString &pString) const
+                         Inequality operator.
+                   bool  operator< (const FbxString &pString) const
+                         Inferior to operator.
+                   bool  operator<= (const FbxString &pString) const
+                         Inferior or equal to operator.
+                   bool  operator>= (const FbxString &pString) const
+                         Superior or equal to operator.
+                   bool  operator> (const FbxString &pString) const
+                         Superior to operator.
+                   bool  operator== (const char *pString) const
+                         Equality operator.
+                   bool  operator!= (const char *pString) const
+                         Inequality operator.
+                   bool  operator< (const char *pString) const
+                         Inferior to operator.
+                   bool  operator<= (const char *pString) const
+                         Inferior or equal to operator.
+                   bool  operator>= (const char *pString) const
+                         Superior or equal to operator.
+                   bool  operator> (const char *pString) const
+                         Superior to operator.
+                         operator const char * () const
+                         Cast operator.
+      const FbxString &  Copy (const char *pString, size_t pLength)
+                         String assignment function with maximum length.
+      const FbxString &  Append (const char *pString, size_t pLength)
+                         Append as "C" strncat().
+                    int  Compare (const char *pString) const
+                         Compare as "C" strcmp().
+                    int  CompareNoCase (const char *pString) const
+                         Compare as "C" stricmp().
+                   void  Swap (FbxString &pString)
+                         Swap the contents of two strings.
+              FbxString  Upper () const
+                         Uppercase conversion.
+              FbxString  Lower () const
+                         Lowercase conversion.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString1, const FbxString &pString2)
+                         FbxString concatenation.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString, char pChar)
+                         Character concatenation.
+   FBXSDK_DLL FbxString  operator+ (char pChar, const FbxString &pString)
+                         Character concatenation.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString1, const char *pString2)
+                         String concatenation.
+   FBXSDK_DLL FbxString  operator+ (const char *pString1, const FbxString &pString2)
+                         String concatenation.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString, int pValue)
+                         Integer concatenation.
+   FBXSDK_DLL FbxString  operator+ (int pValue, const FbxString &pString)
+                         Integer concatenation.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString, float pValue)
+                         Float concatenation.
+   FBXSDK_DLL FbxString  operator+ (float pValue, const FbxString &pString)
+                         Float concatenation.
+   FBXSDK_DLL FbxString  operator+ (const FbxString &pString, double pValue)
+                         Double concatenation.
+
+Substring Extraction
+
+              FbxString  Mid (size_t pFirst, size_t pCount) const
+                         Extract middle string for a given length.
+              FbxString  Mid (size_t pFirst) const
+                         Extract middle string up to the end.
+              FbxString  Left (size_t pCount) const
+                         Extract left string.
+              FbxString  Right (size_t pCount) const
+                         Extract right string.
+
+Padding
+
+                  enum   EPaddingType { eRight, eLeft, eBoth }
+                         Padding types. More...
+              FbxString  Pad (EPaddingType pPadding, size_t pLen, char pCar=' ') const
+                         Add padding characters.
+              FbxString  UnPad (EPaddingType pPadding) const
+                         Remove padding characters.
+
+Search
+
+                    int  Find (char pChar, size_t pStartPosition=0) const
+                         Look for a single character match, like "C" strchr().
+                    int  Find (const char *pStrSub, size_t pStartPosition=0) const
+                         Look for a substring match, like "C" strstr().
+                    int  ReverseFind (char pChar) const
+                         Look for the last occurrence of character in string, like "C" strrchr().
+                    int  FindOneOf (const char *pStrCharSet, size_t pStartPosition=0) const
+                         Look for a single character match, like "C" strpbrk().
+                   bool  FindAndReplace (const char *pFind, const char *pReplaceBy, size_t pStartPosition=0)
+                         Replace a substring.
+                   bool  ReplaceAll (const char *pFind, const char *pReplaceBy)
+                         Replace all occurrence of a substring.
+                   bool  ReplaceAll (char pFind, char pReplaceBy)
+                         Replace all occurrence of character to find by replacement character.
+
+Token Extraction
+
+                    int  GetTokenCount (const char *pSpans) const
+                         Get number of tokens.
+              FbxString  GetToken (int pTokenIndex, const char *pSpans) const
+                         Get token at given index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EPaddingType
+   Search for all occurrences
+
+   Padding types.
+     * eRight
+     * eLeft
+     * eBoth
+
+   Enumerator:
+
+          eRight
+
+   Search for all occurrences
+          eLeft
+
+   Search for all occurrences
+          eBoth
+
+   Search for all occurrences
+
+   Definition at line 355 of file fbxstring.h.
+{eRight, eLeft, eBoth};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxString ( )
+
+   Default constructor.
+   FbxString ( const FbxString &  pString )
+
+   Copy constructor.
+
+   Parameters:
+
+          pString The FbxString to be copied.
+
+   FbxString ( const char *  pString )
+
+   String constructor.
+
+   Parameters:
+
+          pString The string used to construct FbxString.
+
+   FbxString ( char    pChar,
+               size_t  pNbRepeat = 1
+             )
+
+   Character constructor.
+
+   Parameters:
+
+          pChar     The character used to construct FbxString.
+          pNbRepeat The number of times to repeat the character. Default value is 1
+
+   FbxString ( const char *  pCharPtr,
+               size_t        pLength
+             )
+
+   String constructor with maximum length.
+
+   Parameters:
+
+          pCharPtr The string used to construct FbxString.
+          pLength  Maximum length.
+
+   FbxString ( const int  pValue )
+
+   Integer constructor.
+
+   Parameters:
+
+          pValue The int value used to construct FbxString.
+
+   FbxString ( const float  pValue )
+
+   Float constructor.
+
+   Parameters:
+
+          pValue The float value used to construct FbxString.
+
+   FbxString ( const double  pValue )
+
+   Double constructor.
+
+   Parameters:
+
+          pValue The double value used to construct FbxString.
+
+   ~FbxString ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   size_t GetLen ( ) const
+   Search for all occurrences
+
+   Get string length like "C" strlen().
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayMesh.cxx, and ViewScene/SceneContext.cxx.
+
+   size_t Size ( ) const
+   Search for all occurrences
+
+   Get string length like "C" strlen().
+   bool IsEmpty ( ) const
+   Search for all occurrences
+
+   Return true if string length equal zero.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, and ImportScene/DisplayLight.cxx.
+
+   FbxString& Clear ( )
+   Search for all occurrences
+
+   Discard the content of the string.
+   char& operator[] ( int  pIndex )
+
+   Access by reference.
+
+   Parameters:
+
+          pIndex The index.
+
+   Returns:
+          The reference of the char at pIndex.
+
+   char operator[] ( int  pIndex ) const
+
+   Access by copy.
+
+   Parameters:
+
+          pIndex The index.
+
+   Returns:
+          The char at pIndex.
+
+   char* Buffer ( )
+   Search for all occurrences
+
+   Non-const buffer access.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayCommon.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayHierarchy.cxx, ImportScene/DisplayLight.cxx, ImportScene/DisplayMarker.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayPose.cxx, ImportScene/DisplayUserProperties.cxx,
+          ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, StereoCamera/main.cxx, Transformations/DisplayCommon.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, and ViewScene/SceneContext.cxx.
+
+   const char* Buffer ( ) const
+   Search for all occurrences
+
+   Const buffer access.
+   const FbxString& operator= ( const FbxString &  pString )
+
+   FbxString assignment operator.
+
+   Parameters:
+
+          pString The FbxString to be assigned.
+
+   const FbxString& operator= ( char  pChar )
+
+   Character assignment operator.
+
+   Parameters:
+
+          pChar The character to be assigned.
+
+   const FbxString& operator= ( const char *  pString )
+
+   String assignment operator.
+
+   Parameters:
+
+          pString The string to be assigned.
+
+   const FbxString& operator= ( int  pValue )
+
+   Int assignment operator.
+
+   Parameters:
+
+          pValue The int value to be assigned.
+
+   const FbxString& operator= ( float  pValue )
+
+   Float assignment operator.
+
+   Parameters:
+
+          pValue The float value to be assigned.
+
+   const FbxString& operator= ( double  pValue )
+
+   Double assignment operator.
+
+   Parameters:
+
+          pValue The double value to be assigned.
+
+   const FbxString& operator+= ( const FbxString &  pString )
+
+   FbxString append.
+
+   Parameters:
+
+          pString The FbxString to be appended.
+
+   const FbxString& operator+= ( char  pChar )
+
+   Character append.
+
+   Parameters:
+
+          pChar The character to be appended.
+
+   const FbxString& operator+= ( const char *  pString )
+
+   String append.
+
+   Parameters:
+
+          pString The string to be appended.
+
+   const FbxString& operator+= ( int  pValue )
+
+   Integer append.
+
+   Parameters:
+
+          pValue The int value to be appended.
+
+   const FbxString& operator+= ( float  pValue )
+
+   Float append.
+
+   Parameters:
+
+          pValue The float value to be appended.
+
+   const FbxString& operator+= ( double  pValue )
+
+   Double append.
+
+   Parameters:
+
+          pValue The double value to be appended.
+
+   bool operator== ( const FbxString &  pString ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator!= ( const FbxString &  pString ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator< ( const FbxString &  pString ) const
+
+   Inferior to operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator<= ( const FbxString &  pString ) const
+
+   Inferior or equal to operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator>= ( const FbxString &  pString ) const
+
+   Superior or equal to operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator> ( const FbxString &  pString ) const
+
+   Superior to operator.
+
+   Parameters:
+
+          pString The FbxString to be compared.
+
+   bool operator== ( const char *  pString ) const
+
+   Equality operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   bool operator!= ( const char *  pString ) const
+
+   Inequality operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   bool operator< ( const char *  pString ) const
+
+   Inferior to operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   bool operator<= ( const char *  pString ) const
+
+   Inferior or equal to operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   bool operator>= ( const char *  pString ) const
+
+   Superior or equal to operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   bool operator> ( const char *  pString ) const
+
+   Superior to operator.
+
+   Parameters:
+
+          pString The string to be compared.
+
+   operator const char * ( ) const
+
+   Cast operator.
+   const FbxString& Copy ( const char *  pString,
+                           size_t        pLength
+                         )
+   Search for all occurrences
+
+   String assignment function with maximum length.
+
+   Parameters:
+
+          pString The string to be assigned.
+          pLength The maximum length of string to be assigned.
+
+   const FbxString& Append ( const char *  pString,
+                             size_t        pLength
+                           )
+   Search for all occurrences
+
+   Append as "C" strncat().
+
+   Parameters:
+
+          pString The string to be appended.
+          pLength The length of chars to be appended.
+
+   int Compare ( const char *  pString ) const
+   Search for all occurrences
+
+   Compare as "C" strcmp().
+
+   Parameters:
+
+          pString The string to be compared.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   int CompareNoCase ( const char *  pString ) const
+   Search for all occurrences
+
+   Compare as "C" stricmp().
+
+   Parameters:
+
+          pString The string to be compared.
+
+   void Swap ( FbxString &  pString )
+   Search for all occurrences
+
+   Swap the contents of two strings.
+
+   Parameters:
+
+          pString The FbxString to be swapped.
+
+   FbxString Upper ( ) const
+   Search for all occurrences
+
+   Uppercase conversion.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   FbxString Lower ( ) const
+   Search for all occurrences
+
+   Lowercase conversion.
+   FbxString Mid ( size_t  pFirst,
+                   size_t  pCount
+                 )         const
+   Search for all occurrences
+
+   Extract middle string for a given length.
+
+   Parameters:
+
+          pFirst The start index of FbxString to be extracted.
+          pCount The length of sub-string to be extracted.
+
+   FbxString Mid ( size_t  pFirst ) const
+   Search for all occurrences
+
+   Extract middle string up to the end.
+
+   Parameters:
+
+          pFirst The start index of FbxString to be extracted.
+
+   FbxString Left ( size_t  pCount ) const
+   Search for all occurrences
+
+   Extract left string.
+
+   Parameters:
+
+          pCount The length of sub-string to be extracted.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, and ImportScene/DisplayMesh.cxx.
+
+   FbxString Right ( size_t  pCount ) const
+   Search for all occurrences
+
+   Extract right string.
+
+   Parameters:
+
+          pCount The length of sub-string to be extracted.
+
+   Examples:
+          ViewScene/SceneContext.cxx.
+
+   FbxString Pad ( EPaddingType  pPadding,
+                   size_t        pLen,
+                   char          pCar = ' '
+                 )               const
+   Search for all occurrences
+
+   Add padding characters.
+
+   Parameters:
+
+          pPadding The padding type.
+          pLen     The length limit of FbxString after padding.
+          pCar     The character to be padded.
+
+   FbxString UnPad ( EPaddingType  pPadding ) const
+   Search for all occurrences
+
+   Remove padding characters.
+
+   Parameters:
+
+          pPadding The padding type.
+
+   int Find ( char    pChar,
+              size_t  pStartPosition = 0
+            )         const
+   Search for all occurrences
+
+   Look for a single character match, like "C" strchr().
+
+   Parameters:
+
+          pChar          The character to look for.
+          pStartPosition Start position to look for.
+
+   Returns:
+          Index or -1 if not found.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, UI_Examples/Common/ImportExport.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   int Find ( const char *  pStrSub,
+              size_t        pStartPosition = 0
+            )               const
+   Search for all occurrences
+
+   Look for a substring match, like "C" strstr().
+
+   Parameters:
+
+          pStrSub        The substring to look for.
+          pStartPosition Start position to look for.
+
+   Returns:
+          Starting index or -1 if not found.
+
+   int ReverseFind ( char  pChar ) const
+   Search for all occurrences
+
+   Look for the last occurrence of character in string, like "C" strrchr().
+
+   Parameters:
+
+          pChar The character to look for.
+
+   Returns:
+          Index or -1 if not found.
+
+   int FindOneOf ( const char *  pStrCharSet,
+                   size_t        pStartPosition = 0
+                 )               const
+   Search for all occurrences
+
+   Look for a single character match, like "C" strpbrk().
+
+   Parameters:
+
+          pStrCharSet    The character set.
+          pStartPosition The start position.
+
+   Returns:
+          Index or -1 if not found.
+
+   bool FindAndReplace ( const char *  pFind,
+                         const char *  pReplaceBy,
+                         size_t        pStartPosition = 0
+                       )
+   Search for all occurrences
+
+   Replace a substring.
+
+   Parameters:
+
+          pFind          The substring to look for.
+          pReplaceBy     The string to replace by.
+          pStartPosition The start position.
+
+   Returns:
+          true if substring found and replaced.
+
+   bool ReplaceAll ( const char *  pFind,
+                     const char *  pReplaceBy
+                   )
+   Search for all occurrences
+
+   Replace all occurrence of a substring.
+
+   Parameters:
+
+          pFind      The substring to look for.
+          pReplaceBy The string to replace by.
+
+   Returns:
+          true if something got replaced.
+
+   bool ReplaceAll ( char  pFind,
+                     char  pReplaceBy
+                   )
+   Search for all occurrences
+
+   Replace all occurrence of character to find by replacement character.
+
+   Parameters:
+
+          pFind      The character to look for.
+          pReplaceBy The character to replace by.
+
+   Returns:
+          true if character found and replaced.
+
+   int GetTokenCount ( const char *  pSpans ) const
+   Search for all occurrences
+
+   Get number of tokens.
+
+   Parameters:
+
+          pSpans The span
+
+   Returns:
+          The number of tokens.
+
+   FbxString GetToken ( int           pTokenIndex,
+                        const char *  pSpans
+                      )               const
+   Search for all occurrences
+
+   Get token at given index.
+
+   Parameters:
+
+          pTokenIndex The token index.
+          pSpans      The span
+
+   Examples:
+          MyOwnWriterReader/MyOwnReader.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Friends And Related Function Documentation
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString1,
+                                    const FbxString &  pString2
+                                  )                    [friend]
+
+   FbxString concatenation.
+
+   Parameters:
+
+          pString1 FbxString 1 to be concatenated to FbxString 2.
+          pString2 FbxString 2 to be concatenated to FbxString 1
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString,
+                                    char               pChar
+                                  )                    [friend]
+
+   Character concatenation.
+
+   Parameters:
+
+          pString FbxString to be concatenated to Character.
+          pChar   Character to be concatenated to FbxString
+
+   FBXSDK_DLL FbxString operator+ ( char               pChar,
+                                    const FbxString &  pString
+                                  )                    [friend]
+
+   Character concatenation.
+
+   Parameters:
+
+          pChar   Character to be concatenated to FbxString
+          pString FbxString to be concatenated to Character.
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString1,
+                                    const char *       pString2
+                                  )                    [friend]
+
+   String concatenation.
+
+   Parameters:
+
+          pString1 FbxString to be concatenated to String.
+          pString2 String to be concatenated to FbxString
+
+   FBXSDK_DLL FbxString operator+ ( const char *       pString1,
+                                    const FbxString &  pString2
+                                  )                    [friend]
+
+   String concatenation.
+
+   Parameters:
+
+          pString1 String to be concatenated to FbxString
+          pString2 FbxString to be concatenated to String.
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString,
+                                    int                pValue
+                                  )                    [friend]
+
+   Integer concatenation.
+
+   Parameters:
+
+          pString FbxString to be concatenated to Integer.
+          pValue  Integer to be concatenated to FbxString
+
+   FBXSDK_DLL FbxString operator+ ( int                pValue,
+                                    const FbxString &  pString
+                                  )                    [friend]
+
+   Integer concatenation.
+
+   Parameters:
+
+          pValue  Integer to be concatenated to FbxString
+          pString FbxString to be concatenated to Integer.
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString,
+                                    float              pValue
+                                  )                    [friend]
+
+   Float concatenation.
+
+   Parameters:
+
+          pString FbxString to be concatenated to Float.
+          pValue  Float to be concatenated to FbxString
+
+   FBXSDK_DLL FbxString operator+ ( float              pValue,
+                                    const FbxString &  pString
+                                  )                    [friend]
+
+   Float concatenation.
+
+   Parameters:
+
+          pValue  Float to be concatenated to FbxString
+          pString FbxString to be concatenated to Float.
+
+   FBXSDK_DLL FbxString operator+ ( const FbxString &  pString,
+                                    double             pValue
+                                  )                    [friend]
+
+   Double concatenation.
+
+   Parameters:
+
+          pString FbxString to be concatenated to Double.
+          pValue  Double to be concatenated to FbxString
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxstring.h
+
+   Please send us your comment about this page

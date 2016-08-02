@@ -1,0 +1,89 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObjectMap< Type, Compare > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxObjectMap< Type, Compare > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxmap.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type, class Compare>
+class FbxObjectMap< Type, Compare >
+
+   This class template declare a simple FbxObject map.
+
+   Definition at line 348 of file fbxmap.h.
+   Inheritance diagram for FbxObjectMap< Type, Compare >:
+   [USEMAP:class_fbx_object_map.png]
+
+   List of all members.
+
+Public Member Functions
+
+                FbxObjectMap ()
+                Constructor.
+   FbxObject *  Get (typename FbxSimpleMap< Type, FbxObject *, Compare >::Iterator pIterator)
+                Get the object contained in an element.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxObjectMap ( ) [inline]
+
+   Constructor.
+
+   Definition at line 352 of file fbxmap.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxObject* Get ( typename FbxSimpleMap< Type, FbxObject *, Compare >::Iterator  pIterator ) [inline]
+   Search for all occurrences
+
+   Get the object contained in an element.
+
+   Parameters:
+
+          pIterator The given element.
+
+   Returns:
+          The object.
+
+   Definition at line 358 of file fbxmap.h.
+    {
+        return pIterator ? pIterator->GetValue() : 0;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxmap.h
+
+   Please send us your comment about this page

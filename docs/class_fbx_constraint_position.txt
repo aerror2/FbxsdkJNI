@@ -1,0 +1,219 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraintPosition Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxConstraintPosition Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraintposition.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This constraint class contains methods for accessing the properties of a position constraint.
+
+   A position constraint lets you constrain the position of an object based on the position of one or more sources.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 26 of file fbxconstraintposition.h.
+   Inheritance diagram for FbxConstraintPosition:
+   [USEMAP:class_fbx_constraint_position.png]
+
+   List of all members.
+
+Public Member Functions
+
+                           void  AddConstraintSource (FbxObject *pObject, double pWeight=100)
+                                 Add a source to the constraint.
+                           bool  RemoveConstraintSource (FbxObject *pObject)
+                                 Remove a source from the constraint.
+                            int  GetConstraintSourceCount () const
+                                 Retrieve the constraint source count.
+                    FbxObject *  GetConstraintSource (int pIndex) const
+                                 Retrieve a constraint source object.
+                           void  SetConstrainedObject (FbxObject *pObject)
+                                 Set the constrained object.
+                    FbxObject *  GetConstrainedObject () const
+                                 Retrieve the constrained object.
+
+Properties
+
+        FbxPropertyT< FbxBool >  AffectX
+                                 This property handles whether to affect x axis.
+        FbxPropertyT< FbxBool >  AffectY
+                                 This property handles whether to affect y axis.
+        FbxPropertyT< FbxBool >  AffectZ
+                                 This property handles whether to affect z axis.
+     FbxPropertyT< FbxDouble3 >  Translation
+                                 This property handles translation offset.
+   FbxPropertyT< FbxReference >  ConstraintSources
+                                 This property handles constraint source objects.
+   FbxPropertyT< FbxReference >  ConstrainedObject
+                                 This property handles constraint target objects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void AddConstraintSource ( FbxObject *  pObject,
+                              double       pWeight = 100
+                            )
+   Search for all occurrences
+
+   Add a source to the constraint.
+
+   Parameters:
+
+          pObject New source object.
+          pWeight Weight of the source object.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   bool RemoveConstraintSource ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Remove a source from the constraint.
+
+   Parameters:
+
+          pObject Source object to remove.
+
+   int GetConstraintSourceCount ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constraint source count.
+
+   Returns:
+          Current constraint source count.
+
+   Reimplemented from FbxConstraint.
+   FbxObject* GetConstraintSource ( int  pIndex ) const [virtual]
+   Search for all occurrences
+
+   Retrieve a constraint source object.
+
+   Parameters:
+
+          pIndex Index of the source
+
+   Returns:
+          Current source at the specified index.
+
+   Reimplemented from FbxConstraint.
+   void SetConstrainedObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Set the constrained object.
+
+   Parameters:
+
+          pObject The constrained object.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   FbxObject* GetConstrainedObject ( ) const [virtual]
+   Search for all occurrences
+
+   Retrieve the constrained object.
+
+   Returns:
+          Current constrained object.
+
+   Reimplemented from FbxConstraint.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxBool> AffectX
+   Search for all occurrences
+
+   This property handles whether to affect x axis.
+
+   Default value is true.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 40 of file fbxconstraintposition.h.
+   FbxPropertyT<FbxBool> AffectY
+   Search for all occurrences
+
+   This property handles whether to affect y axis.
+
+   Default value is true.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 46 of file fbxconstraintposition.h.
+   FbxPropertyT<FbxBool> AffectZ
+   Search for all occurrences
+
+   This property handles whether to affect z axis.
+
+   Default value is true.
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 52 of file fbxconstraintposition.h.
+   FbxPropertyT<FbxDouble3> Translation
+   Search for all occurrences
+
+   This property handles translation offset.
+
+   Default value is (0, 0, 0).
+
+   Examples:
+          UserProperties/main.cxx.
+
+   Definition at line 58 of file fbxconstraintposition.h.
+   FbxPropertyT<FbxReference> ConstraintSources
+   Search for all occurrences
+
+   This property handles constraint source objects.
+
+   Definition at line 62 of file fbxconstraintposition.h.
+   FbxPropertyT<FbxReference> ConstrainedObject
+   Search for all occurrences
+
+   This property handles constraint target objects.
+
+   Definition at line 66 of file fbxconstraintposition.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraintposition.h
+
+   Please send us your comment about this page

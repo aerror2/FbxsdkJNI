@@ -1,0 +1,77 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSpinLock Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxSpinLock Class Reference
+   Search for all occurrences
+
+   #include <fbxsync.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A spinlock is the fastest and most simple thread lock mechanism available.
+
+   It is very efficient since it does not use any operating system calls; it is only a test and set on an atomic variable, thus it is the fastest thread lock available. Spinlocks are efficient if threads are only likely to be blocked for a short period of time, as they avoid overhead from operating system process re-scheduling or context switching. However, spinlocks become wasteful if held for longer durations, both preventing other threads from running and requiring re-scheduling.
+
+   Note:
+          Spinlocks does not support recursive locking. A thread attempting to lock the same spinlock twice will wait indefinitely.
+
+   Definition at line 38 of file fbxsync.h.
+
+   List of all members.
+
+Public Member Functions
+
+         FbxSpinLock ()
+   void  Acquire ()
+         Acquire the lock; thread will wait indefinitely until it is available.
+   void  Release ()
+         Release the lock; this will allow other threads to acquire the lock if they are waiting.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSpinLock ( )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Acquire ( )
+   Search for all occurrences
+
+   Acquire the lock; thread will wait indefinitely until it is available.
+   void Release ( )
+   Search for all occurrences
+
+   Release the lock; this will allow other threads to acquire the lock if they are waiting.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxsync.h
+
+   Please send us your comment about this page

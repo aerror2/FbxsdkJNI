@@ -1,0 +1,375 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimCurveDef Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Static Public Attributes
+   FbxAnimCurveDef Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimcurve.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definitions used for the FBX animation curves and keys.
+
+   Definition at line 26 of file fbxanimcurve.h.
+
+   List of all members.
+
+Public Types
+
+   enum   ETangentMode {
+     eTangentAuto = 0x00000100, eTangentTCB = 0x00000200, eTangentUser = 0x00000400, eTangentGenericBreak = 0x00000800,
+     eTangentBreak = eTangentGenericBreak|eTangentUser, eTangentAutoBreak = eTangentGenericBreak|eTangentAuto, eTangentGenericClamp = 0x00001000, eTangentGenericTimeIndependent = 0x00002000,
+     eTangentGenericClampProgressive = 0x00004000|eTangentGenericTimeIndependent
+   }
+     Key tangent mode for cubic interpolation. More...
+   enum   EInterpolationType { eInterpolationConstant = 0x00000002, eInterpolationLinear = 0x00000004, eInterpolationCubic = 0x00000008 }
+     Key interpolation type. More...
+   enum   EWeightedMode { eWeightedNone = 0x00000000, eWeightedRight = 0x01000000, eWeightedNextLeft = 0x02000000, eWeightedAll = eWeightedRight|eWeightedNextLeft }
+     Weighted mode. More...
+   enum   EConstantMode { eConstantStandard = 0x00000000, eConstantNext = 0x00000100 }
+     Key constant mode. More...
+   enum   EVelocityMode { eVelocityNone = 0x00000000, eVelocityRight = 0x10000000, eVelocityNextLeft = 0x20000000, eVelocityAll = eVelocityRight|eVelocityNextLeft }
+     Velocity mode. Velocity settings speed up or slow down animation on either side of a key without changing the trajectory of the animation. Unlike Auto and Weight settings, Velocity changes the animation in time, but not in space. More...
+   enum   ETangentVisibility { eTangentShowNone = 0x00000000, eTangentShowLeft = 0x00100000, eTangentShowRight = 0x00200000, eTangentShowBoth = eTangentShowLeft|eTangentShowRight }
+     Tangent visibility. More...
+   enum   EDataIndex {
+     eRightSlope = 0, eNextLeftSlope = 1, eWeights = 2, eRightWeight = 2,
+     eNextLeftWeight = 3, eVelocity = 4, eRightVelocity = 4, eNextLeftVelocity = 5,
+     eTCBTension = 0, eTCBContinuity = 1, eTCBBias = 2
+   }
+     FbxAnimCurveKey data indices for cubic interpolation tangent information. More...
+
+Static Public Attributes
+
+   static const float  sDEFAULT_WEIGHT
+   static const float  sMIN_WEIGHT
+   static const float  sMAX_WEIGHT
+   static const float  sDEFAULT_VELOCITY
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ETangentMode
+   Search for all occurrences
+
+   Key tangent mode for cubic interpolation.
+
+   Enumerator:
+
+          eTangentAuto
+
+   Auto key (spline cardinal).
+   Search for all occurrences
+          eTangentTCB
+
+   Spline TCB (Tension, Continuity, Bias)
+   Search for all occurrences
+          eTangentUser
+
+   Next slope at the left equal to slope at the right.
+   Search for all occurrences
+          eTangentGenericBreak
+
+   Independent left and right slopes.
+   Search for all occurrences
+          eTangentBreak
+
+   Independent left and right slopes, with next slope at the left equal to slope at the right.
+   Search for all occurrences
+          eTangentAutoBreak
+
+   Independent left and right slopes, with auto key.
+   Search for all occurrences
+          eTangentGenericClamp
+
+   Clamp: key should be flat if next or previous key has the same value (overrides tangent mode).
+   Search for all occurrences
+          eTangentGenericTimeIndependent
+
+   Time independent tangent (overrides tangent mode).
+   Search for all occurrences
+          eTangentGenericClampProgressive
+
+   Clamp progressive: key should be flat if tangent control point is outside [next-previous key] range (overrides tangent mode).
+   Search for all occurrences
+
+   Definition at line 35 of file fbxanimcurve.h.
+        {
+                eTangentAuto = 0x00000100,
+                eTangentTCB = 0x00000200,
+                eTangentUser = 0x00000400,
+                eTangentGenericBreak = 0x00000800,
+                eTangentBreak = eTangentGenericBreak|eTangentUser,
+                eTangentAutoBreak = eTangentGenericBreak|eTangentAuto,
+                eTangentGenericClamp = 0x00001000,
+                eTangentGenericTimeIndependent = 0x00002000,
+                eTangentGenericClampProgressive = 0x00004000|eTangentGenericTimeIndependent
+        };
+
+   enum EInterpolationType
+   Search for all occurrences
+
+   Key interpolation type.
+
+   Enumerator:
+
+          eInterpolationConstant
+
+   Constant value until next key.
+   Search for all occurrences
+          eInterpolationLinear
+
+   Linear progression to next key.
+   Search for all occurrences
+          eInterpolationCubic
+
+   Cubic progression to next key.
+   Search for all occurrences
+
+   Definition at line 49 of file fbxanimcurve.h.
+        {
+                eInterpolationConstant = 0x00000002,
+                eInterpolationLinear = 0x00000004,
+                eInterpolationCubic = 0x00000008
+        };
+
+   enum EWeightedMode
+   Search for all occurrences
+
+   Weighted mode.
+
+   Enumerator:
+
+          eWeightedNone
+
+   Tangent has default weights of 0.333; we define this state as not weighted.
+   Search for all occurrences
+          eWeightedRight
+
+   Right tangent is weighted.
+   Search for all occurrences
+          eWeightedNextLeft
+
+   Left tangent is weighted.
+   Search for all occurrences
+          eWeightedAll
+
+   Both left and right tangents are weighted.
+   Search for all occurrences
+
+   Definition at line 57 of file fbxanimcurve.h.
+        {
+                eWeightedNone = 0x00000000,
+                eWeightedRight = 0x01000000,
+                eWeightedNextLeft = 0x02000000,
+                eWeightedAll = eWeightedRight|eWeightedNextLeft
+        };
+
+   enum EConstantMode
+   Search for all occurrences
+
+   Key constant mode.
+
+   Enumerator:
+
+          eConstantStandard
+
+   Curve value is constant between this key and the next.
+   Search for all occurrences
+          eConstantNext
+
+   Curve value is constant, with next key's value.
+   Search for all occurrences
+
+   Definition at line 66 of file fbxanimcurve.h.
+        {
+                eConstantStandard = 0x00000000,
+                eConstantNext = 0x00000100
+        };
+
+   enum EVelocityMode
+   Search for all occurrences
+
+   Velocity mode. Velocity settings speed up or slow down animation on either side of a key without changing the trajectory of the animation. Unlike Auto and Weight settings, Velocity changes the animation in time, but not in space.
+
+   Enumerator:
+
+          eVelocityNone
+
+   No velocity (default).
+   Search for all occurrences
+          eVelocityRight
+
+   Right tangent has velocity.
+   Search for all occurrences
+          eVelocityNextLeft
+
+   Left tangent has velocity.
+   Search for all occurrences
+          eVelocityAll
+
+   Both left and right tangents have velocity.
+   Search for all occurrences
+
+   Definition at line 73 of file fbxanimcurve.h.
+        {
+                eVelocityNone = 0x00000000,
+                eVelocityRight = 0x10000000,
+                eVelocityNextLeft = 0x20000000,
+                eVelocityAll = eVelocityRight|eVelocityNextLeft
+        };
+
+   enum ETangentVisibility
+   Search for all occurrences
+
+   Tangent visibility.
+
+   Enumerator:
+
+          eTangentShowNone
+
+   No tangent is visible.
+   Search for all occurrences
+          eTangentShowLeft
+
+   Left tangent is visible.
+   Search for all occurrences
+          eTangentShowRight
+
+   Right tangent is visible.
+   Search for all occurrences
+          eTangentShowBoth
+
+   Both left and right tangents are visible.
+   Search for all occurrences
+
+   Definition at line 82 of file fbxanimcurve.h.
+        {
+                eTangentShowNone = 0x00000000,
+                eTangentShowLeft = 0x00100000,
+                eTangentShowRight = 0x00200000,
+                eTangentShowBoth = eTangentShowLeft|eTangentShowRight
+        };
+
+   enum EDataIndex
+   Search for all occurrences
+
+   FbxAnimCurveKey data indices for cubic interpolation tangent information.
+
+   Enumerator:
+
+          eRightSlope
+
+   Index of the right derivative, User and Break tangent mode (data are float).
+   Search for all occurrences
+          eNextLeftSlope
+
+   Index of the left derivative for the next key, User and Break tangent mode.
+   Search for all occurrences
+          eWeights
+
+   Start index of weight values, User and Break tangent break mode (data are FbxInt16 tokens from weight and converted to float).
+   Search for all occurrences
+          eRightWeight
+
+   Index of weight on right tangent, User and Break tangent break mode.
+   Search for all occurrences
+          eNextLeftWeight
+
+   Index of weight on next key's left tangent, User and Break tangent break mode.
+   Search for all occurrences
+          eVelocity
+
+   Start index of velocity values, Velocity mode.
+   Search for all occurrences
+          eRightVelocity
+
+   Index of velocity on right tangent, Velocity mode.
+   Search for all occurrences
+          eNextLeftVelocity
+
+   Index of velocity on next key's left tangent, Velocity mode.
+   Search for all occurrences
+          eTCBTension
+
+   Index of Tension, TCB tangent mode (data are floats).
+   Search for all occurrences
+          eTCBContinuity
+
+   Index of Continuity, TCB tangent mode.
+   Search for all occurrences
+          eTCBBias
+
+   Index of Bias, TCB tangent mode.
+   Search for all occurrences
+
+   Definition at line 91 of file fbxanimcurve.h.
+        {
+                eRightSlope = 0,
+                eNextLeftSlope = 1,
+                eWeights = 2,
+                eRightWeight = 2,
+                eNextLeftWeight = 3,
+                eVelocity = 4,
+                eRightVelocity = 4,
+                eNextLeftVelocity = 5,
+                eTCBTension = 0,
+                eTCBContinuity = 1,
+                eTCBBias = 2
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const float sDEFAULT_WEIGHT [static]
+   Search for all occurrences
+
+   Definition at line 29 of file fbxanimcurve.h.
+   const float sMIN_WEIGHT [static]
+   Search for all occurrences
+
+   Definition at line 30 of file fbxanimcurve.h.
+   const float sMAX_WEIGHT [static]
+   Search for all occurrences
+
+   Definition at line 31 of file fbxanimcurve.h.
+   const float sDEFAULT_VELOCITY [static]
+   Search for all occurrences
+
+   Definition at line 32 of file fbxanimcurve.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimcurve.h
+
+   Please send us your comment about this page

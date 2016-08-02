@@ -1,0 +1,143 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingTableBase Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBindingTableBase Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingtablebase.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A binding table represents a collection of bindings from source types such as FbxObject, or FbxLayerElements to destinations which can be of similar types.
+
+   See also:
+          FbxBindingTableEntry.
+
+   Definition at line 30 of file fbxbindingtablebase.h.
+   Inheritance diagram for FbxBindingTableBase:
+   [USEMAP:class_fbx_binding_table_base.png]
+
+   List of all members.
+
+Public Member Functions
+
+         FbxBindingTableEntry &  AddNewEntry ()
+                                 Adds a new entry to the binding table.
+                         size_t  GetEntryCount () const
+                                 Query the number of table entries.
+   FbxBindingTableEntry const &  GetEntry (size_t pIndex) const
+                                 Access a table entry.
+         FbxBindingTableEntry &  GetEntry (size_t pIndex)
+                                 Access a table entry.
+   const FbxBindingTableEntry *  GetEntryForSource (const char *pSrcName) const
+                                 Retrieve the table entry for the given source value.
+   const FbxBindingTableEntry *  GetEntryForDestination (const char *pDestName) const
+                                 Retrieve the table entry for the given destination value.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxBindingTableEntry& AddNewEntry ( )
+   Search for all occurrences
+
+   Adds a new entry to the binding table.
+
+   Returns:
+          The new entry.
+
+   Examples:
+          ExportShader/main.cxx.
+
+   size_t GetEntryCount ( ) const
+   Search for all occurrences
+
+   Query the number of table entries.
+
+   Returns:
+          The number of entries.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   FbxBindingTableEntry const& GetEntry ( size_t  pIndex ) const
+   Search for all occurrences
+
+   Access a table entry.
+
+   Parameters:
+
+          pIndex Valid range is [0, GetEntryCount()-1].
+
+   Returns:
+          A valid table entry if pIndex is valid. Otherwise the value is undefined.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   FbxBindingTableEntry& GetEntry ( size_t  pIndex )
+   Search for all occurrences
+
+   Access a table entry.
+
+   Parameters:
+
+          pIndex Valid range is [0, GetEntryCount()-1].
+
+   Returns:
+          A valid table entry if pIndex is valid. Otherwise the value is undefined.
+
+   const FbxBindingTableEntry* GetEntryForSource ( const char *  pSrcName ) const
+   Search for all occurrences
+
+   Retrieve the table entry for the given source value.
+
+   Parameters:
+
+          pSrcName The source value to query.
+
+   Returns:
+          The corresponding entry, or NULL if no entry in the table has a source equal in value to pSrcName.
+
+   const FbxBindingTableEntry* GetEntryForDestination ( const char *  pDestName ) const
+   Search for all occurrences
+
+   Retrieve the table entry for the given destination value.
+
+   Parameters:
+
+          pDestName The destination value to query.
+
+   Returns:
+          The corresponding entry, or NULL if no entry in the table has a destination equal in value to pDestName.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingtablebase.h
+
+   Please send us your comment about this page

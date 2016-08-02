@@ -1,0 +1,93 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGlobalLightSettings::ShadowPlane Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxGlobalLightSettings
+     * ShadowPlane
+
+   Public Member Functions | Public Attributes
+   FbxGlobalLightSettings::ShadowPlane Struct Reference
+   Search for all occurrences
+
+   #include <fbxgloballightsettings.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Struct used to define the shadow plane.
+
+   Definition at line 147 of file fbxgloballightsettings.h.
+
+   List of all members.
+
+Public Member Functions
+
+               ShadowPlane ()
+               Default constructor.
+
+Public Attributes
+
+         bool  mEnable
+               Activate flag.
+   FbxVector4  mOrigin
+               Origin point.
+   FbxVector4  mNormal
+               Normal vector.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   ShadowPlane ( )
+
+   Default constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   bool mEnable
+   Search for all occurrences
+
+   Activate flag.
+
+   Definition at line 153 of file fbxgloballightsettings.h.
+   FbxVector4 mOrigin
+   Search for all occurrences
+
+   Origin point.
+
+   Definition at line 156 of file fbxgloballightsettings.h.
+   FbxVector4 mNormal
+   Search for all occurrences
+
+   Normal vector.
+
+   Definition at line 159 of file fbxgloballightsettings.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/fileio/fbxgloballightsettings.h
+
+   Please send us your comment about this page

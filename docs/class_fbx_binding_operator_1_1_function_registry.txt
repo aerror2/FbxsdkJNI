@@ -1,0 +1,113 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingOperator::FunctionRegistry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxBindingOperator
+     * FunctionRegistry
+
+   Static Public Member Functions
+   FbxBindingOperator::FunctionRegistry Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingoperator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This utility class is used to register and unregister the binding function creators.
+
+   Definition at line 259 of file fbxbindingoperator.h.
+
+   List of all members.
+
+Static Public Member Functions
+
+                          static void  RegisterFunctionCreator (FunctionCreatorBase const &pCreator)
+                                       To register the binding function creator.
+                          static void  UnregisterFunctionCreator (FunctionCreatorBase const &pCreator)
+                                       To unregister the binding function creator.
+   static const FunctionCreatorBase *  FindCreator (const char *pName)
+                                       To find the binding function creator by name.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static void RegisterFunctionCreator ( FunctionCreatorBase const &  pCreator ) [inline, static]
+   Search for all occurrences
+
+   To register the binding function creator.
+
+   Parameters:
+
+          pCreator The binding function creator to register.
+
+   Definition at line 265 of file fbxbindingoperator.h.
+        {
+            sRegistry.Insert(pCreator.GetFunctionName(), &pCreator);
+        }
+
+   static void UnregisterFunctionCreator ( FunctionCreatorBase const &  pCreator ) [inline, static]
+   Search for all occurrences
+
+   To unregister the binding function creator.
+
+   Parameters:
+
+          pCreator The binding function creator to unregister.
+
+   Definition at line 273 of file fbxbindingoperator.h.
+        {
+            sRegistry.Remove(pCreator.GetFunctionName());
+        }
+
+   static const FunctionCreatorBase* FindCreator ( const char *  pName ) [inline, static]
+   Search for all occurrences
+
+   To find the binding function creator by name.
+
+   Parameters:
+
+          pName The name of the operation function creator to find.
+
+   Definition at line 281 of file fbxbindingoperator.h.
+        {
+            RegistryType::RecordType* lRecord = sRegistry.Find(pName);
+
+            if (lRecord)
+            {
+                return lRecord->GetValue();
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingoperator.h
+
+   Please send us your comment about this page

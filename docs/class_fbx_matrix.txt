@@ -1,0 +1,566 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxMatrix Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxMatrix Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes, Evaluating the Animation in a Scene.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxmatrix.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX SDK basic 4x4 double matrix class.
+
+   Examples:
+          ExportScene01/main.cxx, ImportScene/DisplayPose.cxx, SwitchBinding/main.cxx, and ViewScene/GetPosition.cxx.
+
+   Definition at line 27 of file fbxmatrix.h.
+   Inheritance diagram for FbxMatrix:
+   [USEMAP:class_fbx_matrix.png]
+
+   List of all members.
+
+Constructors and Destructor
+
+                  FbxMatrix ()
+                  Constructor. Constructs an identity matrix.
+                  FbxMatrix (const FbxMatrix &pM)
+                  Copy constructor.
+                  FbxMatrix (const FbxVector4 &pT, const FbxVector4 &pR, const FbxVector4 &pS)
+                  TRS Constructor.
+                  FbxMatrix (const FbxVector4 &pT, const FbxQuaternion &pQ, const FbxVector4 &pS)
+                  TQS Constructor.
+//                  FbxMatrix (const FbxVector4 &pRow0, const FbxVector4 &pRow1, const FbxVector4 &pRow2, const FbxVector4 &pRow3)
+                  4 vector constructor.
+                  FbxMatrix (const double p00, const double p10, const double p20, const double p30, const double p01, const double p11, const double p21, const double p31, const double p02, const double p12, const double p22, const double p32, const double p03, const double p13, const double p23, const double p33)
+                  16 double constructor.
+                  FbxMatrix (const FbxAMatrix &pM)
+                  Constructor.
+                  ~FbxMatrix ()
+                  Destructor.
+
+Access
+
+          double  Get (int pY, int pX) const
+                  Retrieve matrix element.
+      FbxVector4  GetRow (int pY) const
+                  Extract a row vector.
+      FbxVector4  GetColumn (int pX) const
+                  Extract a column vector.
+            void  Set (int pY, int pX, double pValue)
+                  Set matrix element.
+            void  SetIdentity ()
+                  Set matrix to identity.
+            void  SetTRS (const FbxVector4 &pT, const FbxVector4 &pR, const FbxVector4 &pS)
+                  Set matrix.
+            void  SetTQS (const FbxVector4 &pT, const FbxQuaternion &pQ, const FbxVector4 &pS)
+                  Set matrix.
+            void  SetRow (int pY, const FbxVector4 &pRow)
+                  Set a matrix row.
+            void  SetColumn (int pX, const FbxVector4 &pColumn)
+                  Set a matrix column.
+            void  GetElements (FbxVector4 &pTranslation, FbxQuaternion &pRotation, FbxVector4 &pShearing, FbxVector4 &pScaling, double &pSign) const
+                  Decompose the affine matrix into elements of translation, rotation, shearing, scaling and sign of determinant.
+     FbxMatrix &  operator= (const FbxMatrix &pMatrix)
+                  Assignment operator.
+
+Matrix Operations
+
+       FbxMatrix  operator- () const
+                  Unary minus operator.
+       FbxMatrix  operator+ (const FbxMatrix &pMatrix) const
+                  Add two matrices together.
+       FbxMatrix  operator- (const FbxMatrix &pMatrix) const
+                  Subtract a matrix from another matrix.
+       FbxMatrix  operator* (const FbxMatrix &pMatrix) const
+                  Multiply two matrices.
+     FbxMatrix &  operator+= (const FbxMatrix &pMatrix)
+                  Add two matrices together.
+     FbxMatrix &  operator-= (const FbxMatrix &pMatrix)
+                  Subtract a matrix from another matrix.
+     FbxMatrix &  operator*= (const FbxMatrix &pMatrix)
+                  Multiply two matrices.
+       FbxMatrix  Inverse () const
+                  Calculate the matrix inverse.
+       FbxMatrix  Transpose () const
+                  Calculate the matrix transpose.
+
+Vector Operations
+
+      FbxVector4  MultNormalize (const FbxVector4 &pVector) const
+                  Multiply this matrix by pVector, the w component is normalized to 1.
+
+Boolean Operations
+
+            bool  operator== (const FbxMatrix &pM) const
+                  Equivalence operator.
+            bool  operator== (const FbxAMatrix &pM) const
+                  Equivalence operator.
+            bool  operator!= (const FbxMatrix &pM) const
+                  Non-equivalence operator.
+            bool  operator!= (const FbxAMatrix &pM) const
+                  Non-equivalence operator.
+
+Casting
+
+   typedef const  double (kDouble44)[4][4]
+                  Define 4*4 array as a new type.
+                  operator double * ()
+                  Cast the vector in a double pointer.
+                  operator const double * () const
+                  Cast the vector in a const double pointer.
+     kDouble44 &  Double44 () const
+                  Cast the matrix in a reference to a 4*4 array.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef const double(kDouble44)[4][4]
+   Search for all occurrences
+
+   Define 4*4 array as a new type.
+
+   Definition at line 278 of file fbxmatrix.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxMatrix ( )
+
+   Constructor. Constructs an identity matrix.
+   FbxMatrix ( const FbxMatrix &  pM )
+
+   Copy constructor.
+
+   Parameters:
+
+          pM Another FbxMatrix object copied to this one.
+
+   FbxMatrix ( const FbxVector4 &  pT,
+               const FbxVector4 &  pR,
+               const FbxVector4 &  pS
+             )
+
+   TRS Constructor.
+
+   Parameters:
+
+          pT Translation vector.
+          pR Euler rotation vector.
+          pS Scale vector.
+
+   FbxMatrix ( const FbxVector4 &     pT,
+               const FbxQuaternion &  pQ,
+               const FbxVector4 &     pS
+             )
+
+   TQS Constructor.
+
+   Parameters:
+
+          pT Translation vector.
+          pQ Quaternion.
+          pS Scale vector.
+
+   FbxMatrix ( const FbxVector4 &  pRow0,
+               const FbxVector4 &  pRow1,
+               const FbxVector4 &  pRow2,
+               const FbxVector4 &  pRow3
+             )
+
+   4 vector constructor.
+
+   Parameters:
+
+          pRow0 Values to set in row 0.
+          pRow1 Values to set in row 1.
+          pRow2 Values to set in row 2.
+          pRow3 Values to set in row 3.
+
+   FbxMatrix ( const double  p00,
+               const double  p10,
+               const double  p20,
+               const double  p30,
+               const double  p01,
+               const double  p11,
+               const double  p21,
+               const double  p31,
+               const double  p02,
+               const double  p12,
+               const double  p22,
+               const double  p32,
+               const double  p03,
+               const double  p13,
+               const double  p23,
+               const double  p33
+             )
+
+   16 double constructor.
+
+   Parameters:
+
+          p00 Value at column 0 row 0.
+          p10 Value at column 1 row 0.
+          p20 Value at column 2 row 0.
+          p30 Value at column 3 row 0.
+          p01 Value at column 0 row 1.
+          p11 Value at column 1 row 1.
+          p21 Value at column 2 row 1.
+          p31 Value at column 3 row 1.
+          p02 Value at column 0 row 2.
+          p12 Value at column 1 row 2.
+          p22 Value at column 2 row 2.
+          p32 Value at column 3 row 2.
+          p03 Value at column 0 row 3.
+          p13 Value at column 1 row 3.
+          p23 Value at column 2 row 3.
+          p33 Value at column 3 row 3.
+
+   FbxMatrix ( const FbxAMatrix &  pM )
+
+   Constructor.
+
+   Parameters:
+
+          pM Affine matrix
+
+   ~FbxMatrix ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   double Get ( int  pY,
+                int  pX
+              )      const
+   Search for all occurrences
+
+   Retrieve matrix element.
+
+   Parameters:
+
+          pY Row index.
+          pX Column index.
+
+   Returns:
+          Value at element [ pX, pY ] of the matrix.
+
+   FbxVector4 GetRow ( int  pY ) const
+   Search for all occurrences
+
+   Extract a row vector.
+
+   Parameters:
+
+          pY Row index.
+
+   Returns:
+          The row vector.
+
+   Examples:
+          ImportScene/DisplayPose.cxx.
+
+   FbxVector4 GetColumn ( int  pX ) const
+   Search for all occurrences
+
+   Extract a column vector.
+
+   Parameters:
+
+          pX Column index.
+
+   Returns:
+          The column vector.
+
+   void Set ( int     pY,
+              int     pX,
+              double  pValue
+            )
+   Search for all occurrences
+
+   Set matrix element.
+
+   Parameters:
+
+          pY     Row index.
+          pX     Column index.
+          pValue New component value.
+
+   void SetIdentity ( )
+   Search for all occurrences
+
+   Set matrix to identity.
+   void SetTRS ( const FbxVector4 &  pT,
+                 const FbxVector4 &  pR,
+                 const FbxVector4 &  pS
+               )
+   Search for all occurrences
+
+   Set matrix.
+
+   Parameters:
+
+          pT Translation vector.
+          pR Euler rotation vector.
+          pS Scale vector.
+
+   Examples:
+          ExportScene01/main.cxx.
+
+   void SetTQS ( const FbxVector4 &     pT,
+                 const FbxQuaternion &  pQ,
+                 const FbxVector4 &     pS
+               )
+   Search for all occurrences
+
+   Set matrix.
+
+   Parameters:
+
+          pT Translation vector.
+          pQ Quaternion.
+          pS Scale vector.
+
+   void SetRow ( int                 pY,
+                 const FbxVector4 &  pRow
+               )
+   Search for all occurrences
+
+   Set a matrix row.
+
+   Parameters:
+
+          pY   Row index.
+          pRow Row vector.
+
+   void SetColumn ( int                 pX,
+                    const FbxVector4 &  pColumn
+                  )
+   Search for all occurrences
+
+   Set a matrix column.
+
+   Parameters:
+
+          pX      Column index.
+          pColumn Column vector.
+
+   void GetElements ( FbxVector4 &     pTranslation,
+                      FbxQuaternion &  pRotation,
+                      FbxVector4 &     pShearing,
+                      FbxVector4 &     pScaling,
+                      double &         pSign
+                    )                  const
+   Search for all occurrences
+
+   Decompose the affine matrix into elements of translation, rotation, shearing, scaling and sign of determinant.
+
+   Parameters:
+
+          pTranslation Translation element.
+          pRotation    Rotation element.
+          pShearing    Shearing element.
+          pScaling     Scaling element.
+          pSign        Sign of determinant.
+
+   FbxMatrix& operator= ( const FbxMatrix &  pMatrix )
+
+   Assignment operator.
+
+   Parameters:
+
+          pMatrix Source matrix.
+
+   FbxMatrix operator- ( ) const
+
+   Unary minus operator.
+
+   Returns:
+          A matrix where each element is multiplied by -1.
+
+   FbxMatrix operator+ ( const FbxMatrix &  pMatrix ) const
+
+   Add two matrices together.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix + pMatrix.
+
+   FbxMatrix operator- ( const FbxMatrix &  pMatrix ) const
+
+   Subtract a matrix from another matrix.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix - pMatrix.
+
+   FbxMatrix operator* ( const FbxMatrix &  pMatrix ) const
+
+   Multiply two matrices.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix * pMatrix.
+
+   FbxMatrix& operator+= ( const FbxMatrix &  pMatrix )
+
+   Add two matrices together.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix + pMatrix, replacing this matrix.
+
+   FbxMatrix& operator-= ( const FbxMatrix &  pMatrix )
+
+   Subtract a matrix from another matrix.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix - pMatrix, replacing this matrix.
+
+   FbxMatrix& operator*= ( const FbxMatrix &  pMatrix )
+
+   Multiply two matrices.
+
+   Parameters:
+
+          pMatrix A matrix.
+
+   Returns:
+          The result of this matrix * pMatrix, replacing this matrix.
+
+   FbxMatrix Inverse ( ) const
+   Search for all occurrences
+
+   Calculate the matrix inverse.
+
+   Returns:
+          The inverse matrix.
+
+   FbxMatrix Transpose ( ) const
+   Search for all occurrences
+
+   Calculate the matrix transpose.
+
+   Returns:
+          This matrix transposed.
+
+   FbxVector4 MultNormalize ( const FbxVector4 &  pVector ) const
+   Search for all occurrences
+
+   Multiply this matrix by pVector, the w component is normalized to 1.
+
+   Parameters:
+
+          pVector A vector.
+
+   Returns:
+          The result of this matrix * pVector.
+
+   bool operator== ( const FbxMatrix &  pM ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pM The matrix to be compared against this matrix.
+
+   Returns:
+          true if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance), false otherwise.
+
+   bool operator== ( const FbxAMatrix &  pM ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pM The affine matrix to be compared against this matrix.
+
+   Returns:
+          true if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance), false otherwise.
+
+   bool operator!= ( const FbxMatrix &  pM ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pM The matrix to be compared against this matrix.
+
+   Returns:
+          false if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance), true otherwise.
+
+   bool operator!= ( const FbxAMatrix &  pM ) const
+
+   Non-equivalence operator.
+
+   Parameters:
+
+          pM The affine matrix to be compared against this matrix.
+
+   Returns:
+          false if the two matrices are equal (each element is within a FBXSDK_TOLERANCE tolerance), true otherwise.
+
+   operator double * ( )
+
+   Cast the vector in a double pointer.
+   operator const double * ( ) const
+
+   Cast the vector in a const double pointer.
+   kDouble44& Double44 ( ) const [inline]
+   Search for all occurrences
+
+   Cast the matrix in a reference to a 4*4 array.
+
+   Definition at line 281 of file fbxmatrix.h.
+{ return *((kDouble44 *)&mData); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxmatrix.h
+
+   Please send us your comment about this page

@@ -1,0 +1,65 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxEmbeddedFilesAccumulator::EmbeddedFileInfo Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxEmbeddedFilesAccumulator
+     * EmbeddedFileInfo
+
+   Public Attributes
+   FbxEmbeddedFilesAccumulator::EmbeddedFileInfo Struct Reference
+   Search for all occurrences
+
+   #include <fbxembeddedfilesaccumulator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 85 of file fbxembeddedfilesaccumulator.h.
+
+   List of all members.
+
+Public Attributes
+
+           FbxString  mOriginalPropertyUrl
+   ObjectPropertyMap  mConsumers
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mOriginalPropertyUrl
+   Search for all occurrences
+
+   Definition at line 87 of file fbxembeddedfilesaccumulator.h.
+   ObjectPropertyMap mConsumers
+   Search for all occurrences
+
+   Definition at line 88 of file fbxembeddedfilesaccumulator.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxembeddedfilesaccumulator.h
+
+   Please send us your comment about this page

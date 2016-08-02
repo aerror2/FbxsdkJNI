@@ -1,0 +1,80 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxPoseInfo Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxPoseInfo Struct Reference
+   Search for all occurrences
+
+   #include <fbxpose.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This structure contains the description of a named pose.
+
+   FbxPose contains one FbxPoseInfo array to store all of FBX nodes and their transform matrix info.
+
+   Definition at line 32 of file fbxpose.h.
+
+   List of all members.
+
+Public Attributes
+
+   FbxMatrix  mMatrix
+              Transform matrix of the node.
+        bool  mMatrixIsLocal
+              If true, the transform matrix above is defined in local coordinates.
+   FbxNode *  mNode
+              FBX node, which may be skeleton or geometry (skinned) node.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxMatrix mMatrix
+   Search for all occurrences
+
+   Transform matrix of the node.
+
+   Definition at line 34 of file fbxpose.h.
+   bool mMatrixIsLocal
+   Search for all occurrences
+
+   If true, the transform matrix above is defined in local coordinates.
+
+   Definition at line 35 of file fbxpose.h.
+   FbxNode* mNode
+   Search for all occurrences
+
+   FBX node, which may be skeleton or geometry (skinned) node.
+
+   Definition at line 36 of file fbxpose.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/scene/fbxpose.h
+
+   Please send us your comment about this page

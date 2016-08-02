@@ -1,0 +1,166 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxVectorTemplate3< T > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxVectorTemplate3< T > Class Template Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtypes.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class T>
+class FbxVectorTemplate3< T >
+
+   Examples:
+          Animation/main.cxx, Common/GeometryUtility.cxx, Common/GeometryUtility.h, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportShader/main.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayGenericInfo.cxx, ImportScene/DisplayLight.cxx, ImportScene/DisplayMarker.cxx, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayPivotsAndLimits.cxx, ImportScene/DisplayUserProperties.cxx, Instances/main.cxx, SwitchBinding/main.cxx,
+          UI_Examples/CubeCreator/SDK_Utility.cxx, ViewScene/SceneCache.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 209 of file fbxtypes.h.
+
+   List of all members.
+
+Public Member Functions
+
+                              FbxVectorTemplate3 ()
+                              FbxVectorTemplate3 (T pValue)
+                              FbxVectorTemplate3 (T pData0, T pData1, T pData2)
+                              ~FbxVectorTemplate3 ()
+                         T &  operator[] (int pIndex)
+                   const T &  operator[] (int pIndex) const
+                              operator FbxVectorTemplate2< T > & () const
+   FbxVectorTemplate3< T > &  operator= (T const &pValue)
+   FbxVectorTemplate3< T > &  operator= (const FbxVectorTemplate2< T > &pVector)
+   FbxVectorTemplate3< T > &  operator= (const FbxVectorTemplate3< T > &pVector)
+                        bool  operator== (const FbxVectorTemplate3< T > &pVector) const
+                        bool  operator!= (const FbxVectorTemplate3< T > &pVector) const
+                         T *  Buffer ()
+                   const T *  Buffer () const
+
+Public Attributes
+
+                           T  mData [3]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxVectorTemplate3 ( ) [inline]
+
+   Definition at line 212 of file fbxtypes.h.
+{ *this = T(0); }
+
+   FbxVectorTemplate3 ( T  pValue ) [inline, explicit]
+
+   Definition at line 213 of file fbxtypes.h.
+{ *this = pValue; }
+
+   FbxVectorTemplate3 ( T  pData0,
+                        T  pData1,
+                        T  pData2
+                      )    [inline]
+
+   Definition at line 214 of file fbxtypes.h.
+{ mData[0] = pData0; mData[1] = pData1; mData[2] = pData2; }
+
+   ~FbxVectorTemplate3 ( ) [inline]
+
+   Definition at line 215 of file fbxtypes.h.
+{}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   T& operator[] ( int  pIndex ) [inline]
+
+   Definition at line 216 of file fbxtypes.h.
+{ return mData[pIndex]; }
+
+   const T& operator[] ( int  pIndex ) const [inline]
+
+   Definition at line 217 of file fbxtypes.h.
+{ return mData[pIndex]; }
+
+   operator FbxVectorTemplate2< T > & ( ) const [inline]
+
+   Definition at line 218 of file fbxtypes.h.
+{ return *((FbxVectorTemplate2<T>*)this); }
+
+   FbxVectorTemplate3<T>& operator= ( T const &  pValue ) [inline]
+
+   Definition at line 219 of file fbxtypes.h.
+{ mData[0] = pValue; mData[1] = pValue; mData[2] = pValue; return *this; }
+
+   FbxVectorTemplate3<T>& operator= ( const FbxVectorTemplate2< T > &  pVector ) [inline]
+
+   Definition at line 220 of file fbxtypes.h.
+{ mData[0] = pVector.mData[0]; mData[1] = pVector.mData[1]; return *this; }
+
+   FbxVectorTemplate3<T>& operator= ( const FbxVectorTemplate3< T > &  pVector ) [inline]
+
+   Definition at line 221 of file fbxtypes.h.
+{ mData[0] = pVector.mData[0]; mData[1] = pVector.mData[1]; mData[2] = pVector.mData[2]; return *this; }
+
+   bool operator== ( const FbxVectorTemplate3< T > &  pVector ) const [inline]
+
+   Definition at line 222 of file fbxtypes.h.
+{ return ((mData[0] == pVector.mData[0]) && (mData[1] == pVector.mData[1]) && (mData[2] == pVector.mData[2])); }
+
+   bool operator!= ( const FbxVectorTemplate3< T > &  pVector ) const [inline]
+
+   Definition at line 223 of file fbxtypes.h.
+{ return !operator==(pVector); }
+
+   T* Buffer ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 224 of file fbxtypes.h.
+{ return mData; }
+
+   const T* Buffer ( ) const [inline]
+   Search for all occurrences
+
+   Definition at line 225 of file fbxtypes.h.
+{ return mData; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   T mData[3]
+   Search for all occurrences
+
+   Definition at line 226 of file fbxtypes.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxtypes.h
+
+   Please send us your comment about this page

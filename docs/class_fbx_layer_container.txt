@@ -1,0 +1,254 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerContainer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxLayerContainer Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayercontainer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Contains a collection of FbxLayer objects.
+
+   This class is used for managing layers construction, destruction and access. See FbxLayerElement for more details.
+
+   See also:
+          FbxLayer
+
+   Definition at line 29 of file fbxlayercontainer.h.
+   Inheritance diagram for FbxLayerContainer:
+   [USEMAP:class_fbx_layer_container.png]
+
+   List of all members.
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the type of node attribute.
+                              bool  ConvertDirectToIndexToDirect (int pLayer)
+                                    Converts the reference mode from eDirect to eIndexToDirect.
+
+Layer Management
+
+                               int  CreateLayer ()
+                                    Creates a new layer on top of existing layers.
+                              void  ClearLayers ()
+                                    Deletes all layers.
+                               int  GetLayerCount () const
+                                    Returns the number of layers.
+                               int  GetLayerCount (FbxLayerElement::EType pType, bool pUVCount=false) const
+                                    Returns the number of layers that contain the specified layer element type.
+                        FbxLayer *  GetLayer (int pIndex)
+                                    Returns the layer at the specified index.
+                  const FbxLayer *  GetLayer (int pIndex) const
+                                    Returns the layer at the specified index.
+                        FbxLayer *  GetLayer (int pIndex, FbxLayerElement::EType pType, bool pIsUV=false)
+                                    Returns the n'th layer as specified by pIndex that contains the specified layer element type.
+                  const FbxLayer *  GetLayer (int pIndex, FbxLayerElement::EType pType, bool pIsUV=false) const
+                                    Returns the n'th layer as specified by pIndex that contains the specified layer element type.
+                               int  GetLayerIndex (int pIndex, FbxLayerElement::EType pType, bool pIsUV=false) const
+                                    Returns the global index of the n'th layer as specified by pIndex that contains the specified layer element type.
+                               int  GetLayerTypedIndex (int pGlobalIndex, FbxLayerElement::EType pType, bool pIsUV=false) const
+                                    Converts the layer's global index to a type-specific index.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the type of node attribute.
+
+   Reimplemented from FbxNodeAttribute.
+
+   Reimplemented in FbxGeometry, FbxLine, FbxMesh, FbxNurbs, FbxNurbsCurve, FbxNurbsSurface, FbxPatch, FbxBoundary, and FbxTrimNurbsSurface.
+   int CreateLayer ( )
+   Search for all occurrences
+
+   Creates a new layer on top of existing layers.
+
+   Returns:
+          Index of created layer or -1 if an error occurs.
+
+   Examples:
+          Instances/main.cxx.
+
+   void ClearLayers ( )
+   Search for all occurrences
+
+   Deletes all layers.
+   int GetLayerCount ( ) const
+   Search for all occurrences
+
+   Returns the number of layers.
+
+   Returns:
+          The number of layers.
+
+   int GetLayerCount ( FbxLayerElement::EType  pType,
+                       bool                    pUVCount = false
+                     )                         const
+   Search for all occurrences
+
+   Returns the number of layers that contain the specified layer element type.
+
+   Parameters:
+
+          pType    The specified Layer Element type.
+          pUVCount When true, requests the UV layer element corresponding to the specified texture type.
+
+   Returns:
+          The number of layers containing the specified layer element type.
+
+   FbxLayer* GetLayer ( int  pIndex )
+   Search for all occurrences
+
+   Returns the layer at the specified index.
+
+   Parameters:
+
+          pIndex Layer index.
+
+   Returns:
+          Pointer to the layer, or NULL if pIndex is out of range.
+
+   Examples:
+          ExportScene03/main.cxx, and Instances/main.cxx.
+
+   const FbxLayer* GetLayer ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the layer at the specified index.
+
+   Parameters:
+
+          pIndex Layer index.
+
+   Returns:
+          Pointer to the layer, or NULL if pIndex is out of range.
+
+   FbxLayer* GetLayer ( int                     pIndex,
+                        FbxLayerElement::EType  pType,
+                        bool                    pIsUV = false
+                      )
+   Search for all occurrences
+
+   Returns the n'th layer as specified by pIndex that contains the specified layer element type.
+
+   If the pType is FbxLayerElement::eUV, this method will return the n'th layer as specified by pIndex that contains the diffuse UV. For example, GetLayer(int pIndex, FbxLayerElement::eUV) is same as GetLayer(int pIndex, FbxLayerElement::eTextureDiffuse, true).
+
+   Parameters:
+
+          pIndex Layer index.
+          pType  The specified layer element type.
+          pIsUV  When true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          Pointer to the layer, or NULL if pIndex is out of range.
+
+   const FbxLayer* GetLayer ( int                     pIndex,
+                              FbxLayerElement::EType  pType,
+                              bool                    pIsUV = false
+                            )                         const
+   Search for all occurrences
+
+   Returns the n'th layer as specified by pIndex that contains the specified layer element type.
+
+   If the pType is FbxLayerElement::eUV, this method will return the n'th layer as specified by pIndex that contains the diffuse UV. For example, GetLayer(int pIndex, FbxLayerElement::eUV) is same as GetLayer(int pIndex, FbxLayerElement::eTextureDiffuse, true).
+
+   Parameters:
+
+          pIndex Layer index.
+          pType  The specified layer element type.
+          pIsUV  When true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          Pointer to the layer, or NULL if pIndex is out of range.
+
+   int GetLayerIndex ( int                     pIndex,
+                       FbxLayerElement::EType  pType,
+                       bool                    pIsUV = false
+                     )                         const
+   Search for all occurrences
+
+   Returns the global index of the n'th layer as specified by pIndex that contains the specified layer element type.
+
+   Parameters:
+
+          pIndex Layer index of the specified type.
+          pType  The specified layer element type.
+          pIsUV  When true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          Global index of the n'th layer as specified by pIndex that contains the specified layer element type, or -1 if the layer is not found.
+
+   Remarks:
+          The returned index is the position of the layer in the global array of layers. You can use the returned index to call GetLayer(int pIndex).
+
+   int GetLayerTypedIndex ( int                     pGlobalIndex,
+                            FbxLayerElement::EType  pType,
+                            bool                    pIsUV = false
+                          )                         const
+   Search for all occurrences
+
+   Converts the layer's global index to a type-specific index.
+
+   Parameters:
+
+          pGlobalIndex The index of the layer in the global array of layers.
+          pType        The type upon which the type-specific index will be returned.
+          pIsUV        When true, requests the UV layer element that corresponds with the specified texture type.
+
+   Returns:
+          Layer index of the specified layer element type, or -1 if the layer element type is not found on the layer.
+
+   bool ConvertDirectToIndexToDirect ( int  pLayer )
+   Search for all occurrences
+
+   Converts the reference mode from eDirect to eIndexToDirect.
+
+   Parameters:
+
+          pLayer The Layer to convert.
+
+   Returns:
+          True if conversion is successful, or false otherwise.
+
+   Remarks:
+          For the time being, this method only applies to the LayerLementType eMaterial
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayercontainer.h
+
+   Please send us your comment about this page

@@ -1,0 +1,119 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDeformationsEvaluator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxDeformationsEvaluator Class Reference
+   Search for all occurrences
+
+   #include <fbxdeformationsevaluator.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 30 of file fbxdeformationsevaluator.h.
+
+   List of all members.
+
+Public Member Functions
+
+   bool  Init (const FbxNode *pNode, const FbxMesh *pMesh)
+         Configure this object to process the given mesh.
+   bool  ComputeShapeDeformation (FbxVector4 *pVertexArray, const FbxTime &pTime)
+         If this object is properly configured, evaluates the shape deformation of the mesh at the given time.
+   bool  ComputeSkinDeformation (FbxVector4 *pVertexArray, const FbxTime &pTime, FbxAMatrix *pGX=NULL, const FbxPose *pPose=NULL)
+         If this object is properly configured, evaluates the skin deformation of the received mesh at the given time.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool Init ( const FbxNode *  pNode,
+               const FbxMesh *  pMesh,
+               int              pAnimLayerId = 0
+             )
+   Search for all occurrences
+
+   Configure this object to process the given mesh.
+
+   Parameters:
+
+          pNode        Node object owner of the mesh.
+          pMesh        Processed object.
+          pAnimLayerId Animation layer to be used during the evaluation.
+
+   Returns:
+          true If pMesh is connected to pNode, the specified animation layer can be retrieved and the internal data allocation succeeded.
+
+   Remarks:
+          The function will try to retrieve the animation layer connected to the Animation stack accessed from the current scene animation evaluator.
+
+          FbxAnimStack* lStack = mNode->GetScene()->GetEvaluator()->GetContext();
+
+   bool ComputeShapeDeformation ( FbxVector4 *     pVertexArray,
+                                  const FbxTime &  pTime
+                                )
+   Search for all occurrences
+
+   If this object is properly configured, evaluates the shape deformation of the mesh at the given time.
+
+   Parameters:
+
+          pVertexArray The result of the evaluation.
+          pTime        Current time of the evaluation.
+
+   Returns:
+          true if the function completed successfully and false in case of errors.
+
+   Remarks:
+          pVertexArray must be allocated and be of size: mMesh->GetControlPointCount().
+
+   bool ComputeSkinDeformation ( FbxVector4 *     pVertexArray,
+                                 const FbxTime &  pTime,
+                                 FbxAMatrix *     pGX = NULL,
+                                 const FbxPose *  pPose = NULL
+                               )
+   Search for all occurrences
+
+   If this object is properly configured, evaluates the skin deformation of the received mesh at the given time.
+
+   Parameters:
+
+          pVertexArray The result of the evaluation.
+          pTime        Current time of the evaluation.
+          pGX          Local to World matrix to express the returned vertices in World space.
+          pPose        If defined, use the pose to evaluate the current transform.
+
+   Returns:
+          true if the function completed successfully and false in case of errors.
+
+   Remarks:
+          pVertexArray must be allocated and be of size: mMesh->GetControlPointCount().
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxdeformationsevaluator.h
+
+   Please send us your comment about this page

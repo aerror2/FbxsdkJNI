@@ -1,0 +1,204 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimUtilities Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Static Public Member Functions
+   FbxAnimUtilities Class Reference
+   Search for all occurrences
+
+   #include <fbxanimutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 35 of file fbxanimutilities.h.
+
+   List of all members.
+
+Classes
+
+                   class   CurveIntfce
+                   class   CurveNodeIntfce
+                   class   FbxAnimSplitDef
+
+Static Public Member Functions
+
+              static bool  IsAnimated (FbxObject *pObj)
+                           Inspects all the properties of the given object for animation curves.
+              static bool  IsChannelAnimated (FbxObject *pObj, const char *pPropertyName, const char *pChannelName=NULL)
+                           Inspects the specified property of the given object for animation curves.
+               static int  SplitAnimationIntoMultipleStacks (FbxScene *pScene, const FbxArray< FbxAnimSplitDef * > &pAnimSplitDefinitions, const FbxAnimStack *pSrcAnimStack, FbxArray< FbxAnimStack * > &pDstStacks)
+              static void  ShareAnimCurves (FbxProperty &pDstProperty, FbxProperty &pSrcProperty, FbxScene *pScene)
+              static void  SetTimeWarpSet (FbxSet *pTWset)
+   static CurveNodeIntfce  CreateCurveNode (const char *pName)
+   static CurveNodeIntfce  CreateCurveNode (FbxIO *pFileObject)
+   static CurveNodeIntfce  CreateCurveNode (FbxIO *pFileObject, CurveNodeIntfce &pParent, bool pOnlyDefaults=false)
+   static CurveNodeIntfce  CreateTimeWarpNode (FbxAnimCurve *pAnimCurve, const char *pFalloffName)
+   static CurveNodeIntfce  GrabCurveNode (FbxAnimCurveNode *pCN)
+              static void  RestrieveCurveNode (CurveNodeIntfce &pData, FbxIO *mFileObject)
+              static void  StoreCurveNode (CurveNodeIntfce &pData, FbxIO *mFileObject)
+              static void  ReleaseCurveNode (FbxAnimCurveNode *pCurveNode)
+              static void  DestroyCurveNode (CurveNodeIntfce &pData)
+              static void  DestroyCurve (CurveIntfce &pData)
+              static void  ConnectTimeWarp (FbxAnimCurveNode *pCurveNode, CurveNodeIntfce &pData, FbxSet &pTimeWarpsKFCurveNodes)
+              static void  MergeLayerAndTimeWarp (FbxObject *pObj, FbxAnimLayer *pAnimLayer)
+              static void  CopyFrom (FbxAnimCurve *pAC, CurveIntfce &pFC)
+              static bool  CompareCurves (FbxAnimCurve *pAC1, FbxAnimCurve *pAC2)
+              static void  Resample (FbxAnimCurve &pSourceCurve, FbxAnimCurve &pTargetCurve, FbxTime &pStart, FbxTime &pStop, FbxTime &pPeriod, FbxAnimCurveDef::EInterpolationType pInterpolation, FbxAnimCurveDef::ETangentMode pTangentMode, bool pAddStopKey=false)
+              static void  Resample (FbxAnimCurve &pSourceCurve, FbxAnimCurve &pTargetCurve, FbxTime &pStart, FbxTime &pStop, FbxTime &pPeriod, bool pAddStopKey=false)
+              static void  Resample (FbxAnimCurve &pCurve, FbxTime pPeriod, FbxTime pStart=FBXSDK_TIME_MINUS_INFINITE, FbxTime pStop=FBXSDK_TIME_INFINITE, bool pKeysOnFrame=false)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static bool IsAnimated ( FbxObject *  pObj ) [static]
+   Search for all occurrences
+
+   Inspects all the properties of the given object for animation curves.
+
+   Parameters:
+
+          pObj Pointer to the object to query.
+
+   Returns:
+          true if at least one property is animated and false otherwise.
+
+   Remarks:
+          A property is animated if it contains at least one FbxAnimCurve with keys.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   static bool IsChannelAnimated ( FbxObject *   pObj,
+                                   const char *  pPropertyName,
+                                   const char *  pChannelName = NULL
+                                 )               [static]
+   Search for all occurrences
+
+   Inspects the specified property of the given object for animation curves.
+
+   Parameters:
+
+          pObj          Pointer to the object to query.
+          pPropertyName Name of the inspected property.
+          pChannelName  Name of the specific channel of the inspected property.
+
+   Returns:
+          true if the specified channel is animated and false otherwise.
+
+   Remarks:
+          A property is animated if it contains at least one FbxAnimCurve with keys.
+
+   static int SplitAnimationIntoMultipleStacks ( FbxScene *                             pScene,
+                                                 const FbxArray< FbxAnimSplitDef * > &  pAnimSplitDefinitions,
+                                                 const FbxAnimStack *                   pSrcAnimStack,
+                                                 FbxArray< FbxAnimStack * > &           pDstStacks
+                                               )                                        [static]
+   Search for all occurrences
+   static void ShareAnimCurves ( FbxProperty &  pDstProperty,
+                                 FbxProperty &  pSrcProperty,
+                                 FbxScene *     pScene
+                               )                [static]
+   Search for all occurrences
+   static void SetTimeWarpSet ( FbxSet *  pTWset ) [static]
+   Search for all occurrences
+   static CurveNodeIntfce CreateCurveNode ( const char *  pName ) [static]
+   Search for all occurrences
+   static CurveNodeIntfce CreateCurveNode ( FbxIO *  pFileObject ) [static]
+   Search for all occurrences
+   static CurveNodeIntfce CreateCurveNode ( FbxIO *            pFileObject,
+                                            CurveNodeIntfce &  pParent,
+                                            bool               pOnlyDefaults = false
+                                          )                    [static]
+   Search for all occurrences
+   static CurveNodeIntfce CreateTimeWarpNode ( FbxAnimCurve *  pAnimCurve,
+                                               const char *    pFalloffName
+                                             )                 [static]
+   Search for all occurrences
+   static CurveNodeIntfce GrabCurveNode ( FbxAnimCurveNode *  pCN ) [static]
+   Search for all occurrences
+   static void RestrieveCurveNode ( CurveNodeIntfce &  pData,
+                                    FbxIO *            mFileObject
+                                  )                    [static]
+   Search for all occurrences
+   static void StoreCurveNode ( CurveNodeIntfce &  pData,
+                                FbxIO *            mFileObject
+                              )                    [static]
+   Search for all occurrences
+   static void ReleaseCurveNode ( FbxAnimCurveNode *  pCurveNode ) [static]
+   Search for all occurrences
+   static void DestroyCurveNode ( CurveNodeIntfce &  pData ) [static]
+   Search for all occurrences
+   static void DestroyCurve ( CurveIntfce &  pData ) [static]
+   Search for all occurrences
+   static void ConnectTimeWarp ( FbxAnimCurveNode *  pCurveNode,
+                                 CurveNodeIntfce &   pData,
+                                 FbxSet &            pTimeWarpsKFCurveNodes
+                               )                     [static]
+   Search for all occurrences
+   static void MergeLayerAndTimeWarp ( FbxObject *     pObj,
+                                       FbxAnimLayer *  pAnimLayer
+                                     )                 [static]
+   Search for all occurrences
+   static void CopyFrom ( FbxAnimCurve *  pAC,
+                          CurveIntfce &   pFC
+                        )                 [static]
+   Search for all occurrences
+   static bool CompareCurves ( FbxAnimCurve *  pAC1,
+                               FbxAnimCurve *  pAC2
+                             )                 [static]
+   Search for all occurrences
+   static void Resample ( FbxAnimCurve &                       pSourceCurve,
+                          FbxAnimCurve &                       pTargetCurve,
+                          FbxTime &                            pStart,
+                          FbxTime &                            pStop,
+                          FbxTime &                            pPeriod,
+                          FbxAnimCurveDef::EInterpolationType  pInterpolation,
+                          FbxAnimCurveDef::ETangentMode        pTangentMode,
+                          bool                                 pAddStopKey = false
+                        )                                      [static]
+   Search for all occurrences
+   static void Resample ( FbxAnimCurve &  pSourceCurve,
+                          FbxAnimCurve &  pTargetCurve,
+                          FbxTime &       pStart,
+                          FbxTime &       pStop,
+                          FbxTime &       pPeriod,
+                          bool            pAddStopKey = false
+                        )                 [static]
+   Search for all occurrences
+   static void Resample ( FbxAnimCurve &  pCurve,
+                          FbxTime         pPeriod,
+                          FbxTime         pStart = FBXSDK_TIME_MINUS_INFINITE,
+                          FbxTime         pStop = FBXSDK_TIME_INFINITE,
+                          bool            pKeysOnFrame = false
+                        )                 [static]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimutilities.h
+
+   Please send us your comment about this page

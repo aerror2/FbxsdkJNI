@@ -1,0 +1,83 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxProcessorXRefCopy::AutoRevertPropertyChanges Struct Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxProcessorXRefCopy
+     * AutoRevertPropertyChanges
+
+   Public Member Functions | Public Attributes
+   FbxProcessorXRefCopy::AutoRevertPropertyChanges Struct Reference
+   Search for all occurrences
+
+   #include <fbxprocessorxref.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This is just a safety net to make sure RevertPropertyChanges is called when this goes out of scope.
+
+   Definition at line 111 of file fbxprocessorxref.h.
+
+   List of all members.
+
+Public Member Functions
+
+                           AutoRevertPropertyChanges (FbxProcessorXRefCopy *pCopy)
+                           ~AutoRevertPropertyChanges ()
+
+Public Attributes
+
+   FbxProcessorXRefCopy *  mXRefCopy
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   AutoRevertPropertyChanges ( FbxProcessorXRefCopy *  pCopy ) [inline]
+
+   Definition at line 113 of file fbxprocessorxref.h.
+: mXRefCopy(pCopy) {}
+
+   ~AutoRevertPropertyChanges ( ) [inline]
+
+   Definition at line 114 of file fbxprocessorxref.h.
+        {
+            if( mXRefCopy )
+                mXRefCopy->RevertPropertyChanges();
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxProcessorXRefCopy* mXRefCopy
+   Search for all occurrences
+
+   Definition at line 120 of file fbxprocessorxref.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this struct was generated from the following file:
+     * fbxsdk/utils/fbxprocessorxref.h
+
+   Please send us your comment about this page

@@ -1,0 +1,139 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSubDeformer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxSubDeformer Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxsubdeformer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for cluster sub-deformer( FbxCluster) and blend shape channel sub-deformer( FbxBlendShapeChannel)
+
+   The corresponding sub-deformer types are FbxSubDeformer::eCluster and FbxSubDeformer::eBlendShapeChannel.
+
+   A cluster, or link, is an entity acting on a geometry (FbxGeometry). More precisely, the cluster acts on a subset of the geometry's control points. For each control point that the cluster acts on, the intensity of the cluster's action is modulated by a weight. The link mode (ELinkMode) specifies how the weights are taken into account. The cluster's link node specifies the node (FbxNode) that influences the control points of the cluster. If the node is animated, the control points will move
+   accordingly. A cluster is usually part of a skin (see FbxDeformer, FbxSkin). For example, imagine a mesh representing a humanoid, and imagine a skeleton made of bones. Each bone is represented by a node in FBX. To bind the geometry to the nodes, we create a skin (FbxSkin). The skin has many clusters, each one corresponding to a bone. Each node influences some control points of the mesh. A node has a high influence on some of the points (high weight) and lower influence on some other points (low
+   weight). Some points of the mesh are not affected at all by the bone, so they would not be part of the corresponding cluster.
+
+   A blend shape channel is a sub-deformer to help blend shape deformer to organize the target shapes. One blend shape deformer can have multiple blend shape channels in parallel, and each of them can control one or multiple target shapes. If there are multiple target shapes connected to one channel, and each target shape could have its own full deformation percentage, for example, one channel could have 3 target shapes, whose full deform percentage are 30, to 80 to 100, then when the percent change
+   from 0 to 100, the base geometry will deform from the first target shape to the last one, this is called In-Between blend-shapes. The blend shape channel also control the deform percent of each target shape or In-Between blend shape on it.
+
+   Definition at line 55 of file fbxsubdeformer.h.
+   Inheritance diagram for FbxSubDeformer:
+   [USEMAP:class_fbx_sub_deformer.png]
+
+   List of all members.
+
+Public Types
+
+           enum   EType { eUnknown, eCluster, eBlendShapeChannel }
+                  Sub-deformer type. More...
+
+Public Member Functions
+
+            void  SetMultiLayer (bool pMultiLayer)
+                  Set multi layer state flag.
+            bool  GetMultiLayer () const
+                  Get multilayer state.
+   virtual EType  GetSubDeformerType () const
+                  Get the type of the sub-deformer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Sub-deformer type.
+
+   Enumerator:
+
+          eUnknown
+
+   Untyped sub-deformer.
+   Search for all occurrences
+          eCluster
+
+   Type FbxCluster.
+   Search for all occurrences
+          eBlendShapeChannel
+
+   Type FbxBlendShapeChannel.
+   Search for all occurrences
+
+   Definition at line 73 of file fbxsubdeformer.h.
+        {
+            eUnknown,
+            eCluster,
+            eBlendShapeChannel
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void SetMultiLayer ( bool  pMultiLayer )
+   Search for all occurrences
+
+   Set multi layer state flag.
+
+   Parameters:
+
+          pMultiLayer If true, multi-layering is enabled.
+
+   bool GetMultiLayer ( ) const
+   Search for all occurrences
+
+   Get multilayer state.
+
+   Returns:
+          The state of the multi-layer flag.
+
+   virtual EType GetSubDeformerType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Get the type of the sub-deformer.
+
+   Returns:
+          SubDeformer type identifier.
+
+   Reimplemented in FbxBlendShapeChannel, and FbxCluster.
+
+   Definition at line 83 of file fbxsubdeformer.h.
+{ return eUnknown; }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxsubdeformer.h
+
+   Please send us your comment about this page

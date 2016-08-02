@@ -1,0 +1,88 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxSyncStack Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Member Functions
+   FbxSyncStack Class Reference
+   Search for all occurrences
+
+   #include <fbxsync.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A simple stack of linked items that is multi-thread safe, protected by a spinlock.
+
+   Definition at line 154 of file fbxsync.h.
+
+   List of all members.
+
+Classes
+
+   struct   Item
+            A single link item to be used to construct the stack. More...
+
+Public Member Functions
+
+            FbxSyncStack ()
+            Constructor.
+      void  Push (Item *pItem)
+            Add an item on the top of the stack.
+    Item *  Pop ()
+            Remove the item on the top of the stack.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxSyncStack ( )
+
+   Constructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Push ( Item *  pItem )
+   Search for all occurrences
+
+   Add an item on the top of the stack.
+
+   Parameters:
+
+          pItem The item to add on top of the stack.
+
+   Item* Pop ( )
+   Search for all occurrences
+
+   Remove the item on the top of the stack.
+
+   Returns:
+          Returns the item on top of the stack, otherwise NULL if stack empty.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxsync.h
+
+   Please send us your comment about this page

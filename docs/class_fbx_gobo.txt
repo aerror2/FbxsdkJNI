@@ -1,0 +1,115 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGobo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes
+   FbxGobo Class Reference
+
+   This reference page is linked to from the following overview topics: Supported Scene Elements.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxgobo.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A gobo is a filter placed over a spot light to project light patterns through fog on a surface.
+
+   You can also use an image file as a gobo, which cause the light to project an image, much like a projector.
+
+   Definition at line 26 of file fbxgobo.h.
+
+   List of all members.
+
+Public Member Functions
+
+              FbxGobo (char *pName)
+
+Public Attributes
+
+   FbxString  mName
+              Gobo name.
+   FbxString  mFileName
+              path and file name of the image file.
+        bool  mDrawGroundProjection
+              Flag that if shows the light projected on the ground.
+        bool  mVolumetricLightProjection
+              Flag that lets you create a volumetric lighting effect by making the light stream visible.
+        bool  mFrontVolumetricLightProjection
+              Flag that front facing light occurs when the camera view is looking down or up the light stream of a Spot light, which makes the light stream look three-dimensional.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxGobo ( char *  pName ) [inline]
+
+   Definition at line 29 of file fbxgobo.h.
+                             :
+          mName(pName)
+          {
+          }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   Gobo name.
+
+   Definition at line 35 of file fbxgobo.h.
+   FbxString mFileName
+   Search for all occurrences
+
+   path and file name of the image file.
+
+   Definition at line 37 of file fbxgobo.h.
+   bool mDrawGroundProjection
+   Search for all occurrences
+
+   Flag that if shows the light projected on the ground.
+
+   Definition at line 39 of file fbxgobo.h.
+   bool mVolumetricLightProjection
+   Search for all occurrences
+
+   Flag that lets you create a volumetric lighting effect by making the light stream visible.
+
+   Definition at line 41 of file fbxgobo.h.
+   bool mFrontVolumetricLightProjection
+   Search for all occurrences
+
+   Flag that front facing light occurs when the camera view is looking down or up the light stream of a Spot light, which makes the light stream look three-dimensional.
+
+   Definition at line 43 of file fbxgobo.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbxgobo.h
+
+   Please send us your comment about this page

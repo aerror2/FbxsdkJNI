@@ -1,0 +1,83 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementVertexColor Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Member Functions
+   FbxLayerElementVertexColor Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for mapping Vertex Colors to a geometry.
+
+   Examples:
+          ImportScene/DisplayMesh.cxx, and Layers/main.cxx.
+
+   Definition at line 1459 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementVertexColor:
+   [USEMAP:class_fbx_layer_element_vertex_color.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FBXSDK_LAYER_ELEMENT_CREATE_DECLARE (LayerElementVertexColor)
+     Allocation method.
+
+Protected Member Functions
+
+     FbxLayerElementVertexColor ()
+     ~FbxLayerElementVertexColor ()
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxLayerElementVertexColor ( ) [protected]
+   ~FbxLayerElementVertexColor ( ) [protected]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_LAYER_ELEMENT_CREATE_DECLARE ( LayerElementVertexColor  )
+   Search for all occurrences
+
+   Allocation method.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

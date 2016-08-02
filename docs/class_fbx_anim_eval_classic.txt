@@ -1,0 +1,60 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimEvalClassic Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxAnimEvalClassic Class Reference
+
+   This reference page is linked to from the following overview topics: Writing and Using your Own Evaluator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimevalclassic.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An evaluator implementation that behaves like the original FBX SDK (2010 and previous) evaluation system.
+
+   It works by implementing the abstract class FbxAnimEvaluator, which is used as the main interface for evaluators.
+
+   Note:
+          While this class can be instanced at any time, it is preferable to access the evaluator via the function FbxScene::GetEvaluator(), which will automatically return the default evaluator used in the current FBX SDK. This is very useful because it will allow the user to use the very same evaluator used by the FBX SDK internally.
+
+   See also:
+          FbxAnimEvaluator, FbxScene
+
+   Definition at line 32 of file fbxanimevalclassic.h.
+   Inheritance diagram for FbxAnimEvalClassic:
+   [USEMAP:class_fbx_anim_eval_classic.png]
+
+   List of all members.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimevalclassic.h
+
+   Please send us your comment about this page

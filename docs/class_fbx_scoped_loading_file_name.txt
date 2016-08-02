@@ -1,0 +1,75 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxScopedLoadingFileName Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxScopedLoadingFileName Class Reference
+   Search for all occurrences
+
+   #include <fbxscopedloadingfilename.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A plug-in loading strategy that loads a single DLL by specifying the file name in the constructor, and unloads the DLL in its destructor.
+
+   Definition at line 28 of file fbxscopedloadingfilename.h.
+   Inheritance diagram for FbxScopedLoadingFileName:
+   [USEMAP:class_fbx_scoped_loading_file_name.png]
+
+   List of all members.
+
+Public Member Functions
+
+   Public interface
+            FbxScopedLoadingFileName (const char *pPath)
+            Constructor.
+   virtual  ~FbxScopedLoadingFileName ()
+            Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxScopedLoadingFileName ( const char *  pPath ) [explicit]
+
+   Constructor.
+
+   Load plug-in.
+
+   Parameters:
+
+          pPath The file path.
+
+   virtual ~FbxScopedLoadingFileName ( ) [virtual]
+
+   Destructor.
+
+   Unload plug-in.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxscopedloadingfilename.h
+
+   Please send us your comment about this page

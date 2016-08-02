@@ -1,0 +1,139 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBindingsEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxBindingsEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxbindingsentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxBindingsEntryView represents binding table entry in entry tables.
+
+   The name of the binding table can be used as source or destination for the binding entry.
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Definition at line 26 of file fbxbindingsentryview.h.
+   Inheritance diagram for FbxBindingsEntryView:
+   [USEMAP:class_fbx_bindings_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxBindingsEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                         ~FbxBindingsEntryView ()
+                         Destructor.
+           const char *  GetBindingTableName () const
+                         Get the binding table's name for the binding entry.
+                   void  SetBindingTableName (const char *pName)
+                         Set the binding table's name for binding entry.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxBindingsEntryView ( FbxBindingTableEntry *  pEntry,
+                          bool                    pAsSource,
+                          bool                    pCreate = false
+                        )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   ~FbxBindingsEntryView ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const char* GetBindingTableName ( ) const
+   Search for all occurrences
+
+   Get the binding table's name for the binding entry.
+
+   Returns:
+          The binding table's name.
+
+   void SetBindingTableName ( const char *  pName )
+   Search for all occurrences
+
+   Set the binding table's name for binding entry.
+
+   Parameters:
+
+          pName The binding table's name to set.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxBindingsEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxBindingsEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Definition at line 32 of file fbxbindingsentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxbindingsentryview.h
+
+   Please send us your comment about this page

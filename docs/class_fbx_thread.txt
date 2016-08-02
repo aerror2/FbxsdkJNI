@@ -1,0 +1,233 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxThread Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxThread Class Reference
+   Search for all occurrences
+
+   #include <fbxthread.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class implement a standard way to use threads across platforms.
+
+   Definition at line 29 of file fbxthread.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EState { eUnknown, eRunning, eDead }
+   enum   EPriority {
+     eNone, eIdle, eLowest, eLow,
+     eNormal, eHigh, eHighest, eRealTime
+   }
+
+Public Member Functions
+
+     FbxThread (FbxThreadProc pProc, void *pArg, bool pSuspend=false)
+     Constructor.
+     FbxThread (FbxThreadProc pProc, void *pArg, EPriority pPriority, bool pSuspend=false)
+     Constructor.
+   virtual  ~FbxThread ()
+     Destructor.
+   bool  Suspend ()
+     Suspend the execution of the thread.
+   bool  Resume ()
+     Resume the execution of the thread.
+   bool  Join ()
+     Wait for the thread completion.
+   bool  Kill ()
+     Do not wait for the thread completion and terminate it.
+   EPriority  GetPriority ()
+     Retrieve the priority of the thread.
+   bool  SetPriority (EPriority pPriority)
+     Set the thread priority.
+   EState  GetState ()
+     Retrieve the thread current state.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EState
+   Search for all occurrences
+
+   Enumerator:
+
+          eUnknown
+
+   Search for all occurrences
+          eRunning
+
+   Search for all occurrences
+          eDead
+
+   Search for all occurrences
+
+   Definition at line 32 of file fbxthread.h.
+{eUnknown, eRunning, eDead};
+
+   enum EPriority
+   Search for all occurrences
+
+   Enumerator:
+
+          eNone
+
+   Search for all occurrences
+          eIdle
+
+   Search for all occurrences
+          eLowest
+
+   Search for all occurrences
+          eLow
+
+   Search for all occurrences
+          eNormal
+
+   Search for all occurrences
+          eHigh
+
+   Search for all occurrences
+          eHighest
+
+   Search for all occurrences
+          eRealTime
+
+   Search for all occurrences
+
+   Definition at line 33 of file fbxthread.h.
+{eNone, eIdle, eLowest, eLow, eNormal, eHigh, eHighest, eRealTime};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxThread ( FbxThreadProc  pProc,
+               void *         pArg,
+               bool           pSuspend = false
+             )
+
+   Constructor.
+
+   Parameters:
+
+          pProc    The procedure called upon thread startup.
+          pArg     The arguments passed to the procedure.
+          pSuspend Start the thread suspended.
+
+   FbxThread ( FbxThreadProc  pProc,
+               void *         pArg,
+               EPriority      pPriority,
+               bool           pSuspend = false
+             )
+
+   Constructor.
+
+   Parameters:
+
+          pProc     The procedure called upon thread startup.
+          pArg      The arguments passed to the procedure.
+          pPriority The thread priority to set upon creation.
+          pSuspend  Start the thread suspended.
+
+   virtual ~FbxThread ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool Suspend ( )
+   Search for all occurrences
+
+   Suspend the execution of the thread.
+
+   Returns:
+          Return true if the thread was successfully suspended, otherwise false.
+
+   Remarks:
+          It should be used only if you can control where the thread will be suspended in its procedure, otherwise the state of the thread and its memory is unknown, since the code will stop anywhere.
+
+   bool Resume ( )
+   Search for all occurrences
+
+   Resume the execution of the thread.
+
+   Returns:
+          Return true if the thread was successfully resumed, otherwise false.
+
+   bool Join ( )
+   Search for all occurrences
+
+   Wait for the thread completion.
+
+   Returns:
+          True if the thread successfully returned from its procedure.
+
+   bool Kill ( )
+   Search for all occurrences
+
+   Do not wait for the thread completion and terminate it.
+
+   Returns:
+          True if the thread successfully died.
+
+   EPriority GetPriority ( )
+   Search for all occurrences
+
+   Retrieve the priority of the thread.
+
+   Returns:
+          The thread's priority.
+
+   bool SetPriority ( EPriority  pPriority )
+   Search for all occurrences
+
+   Set the thread priority.
+
+   Parameters:
+
+          pPriority The priority to set to this thread.
+
+   Returns:
+          True if the thread priority was successfully changed.
+
+   EState GetState ( )
+   Search for all occurrences
+
+   Retrieve the thread current state.
+
+   Returns:
+          The state of the thread.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/sync/fbxthread.h
+
+   Please send us your comment about this page

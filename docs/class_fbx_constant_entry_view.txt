@@ -1,0 +1,142 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstantEntryView Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Attributes
+   FbxConstantEntryView Class Reference
+   Search for all occurrences
+
+   #include <fbxconstantentryview.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxConstantEntryView represents constant string entry in entry tables.
+
+   The constant string can be used as source or destination for the binding entry.
+
+   See also:
+          FbxBindingTableEntry and FbxBindingTable.
+
+   Definition at line 28 of file fbxconstantentryview.h.
+   Inheritance diagram for FbxConstantEntryView:
+   [USEMAP:class_fbx_constant_entry_view.png]
+
+   List of all members.
+
+Public Member Functions
+
+                         FbxConstantEntryView (FbxBindingTableEntry *pEntry, bool pAsSource, bool pCreate=false)
+                         Constructor.
+                         ~FbxConstantEntryView ()
+                         Destructor.
+           const char *  GetConstantName () const
+                         Get the constant string for binding entry.
+                   void  SetConstantName (const char *pName)
+                         Set the constant string for binding entry.
+   virtual const char *  EntryType () const
+                         Get the entry type.
+
+Static Public Attributes
+
+    static const char *  sEntryType
+                         Name of the entry type used in the binding entry.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxConstantEntryView ( FbxBindingTableEntry *  pEntry,
+                          bool                    pAsSource,
+                          bool                    pCreate = false
+                        )
+
+   Constructor.
+
+   Parameters:
+
+          pEntry    The binding table entry to create the entry view for.
+          pAsSource true to create the entry view as source, false as destination.
+          pCreate   true to create the entry view, false otherwise.
+
+   ~FbxConstantEntryView ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   const char* GetConstantName ( ) const
+   Search for all occurrences
+
+   Get the constant string for binding entry.
+
+   Returns:
+          The constant string.
+
+   void SetConstantName ( const char *  pName )
+   Search for all occurrences
+
+   Set the constant string for binding entry.
+
+   Parameters:
+
+          pName The constant string to set.
+
+   virtual const char* EntryType ( ) const [virtual]
+   Search for all occurrences
+
+   Get the entry type.
+
+   Returns:
+          Entry type as string "FbxConstantEntry".
+
+   Remarks:
+          Always use EntryType() to get the right entry type.
+
+   Reimplemented from FbxEntryView.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sEntryType [static]
+   Search for all occurrences
+
+   Name of the entry type used in the binding entry.
+
+   It should be "FbxConstantEntry" in this case.
+
+   Reimplemented from FbxEntryView.
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx.
+
+   Definition at line 34 of file fbxconstantentryview.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxconstantentryview.h
+
+   Please send us your comment about this page

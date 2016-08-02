@@ -1,0 +1,120 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayerElementMaterial Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions
+   FbxLayerElementMaterial Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Layer element for mapping materials (FbxSurfaceMaterial) to a geometry.
+
+   FBX SDK 2011 and later connects materials (FbxSurfaceMaterial) to nodes (FbxNode). The direct array of this class is no longer used. The integer "n" in the index array of this class represents the n-th material (zero-based) connected to the node.
+
+   For example:
+
+   Mapping mode eAllSame and index array {0} means the whole geometry is assigned with the 0-th material connected to the node.
+
+   Mapping mode eByPolygon and index array {0, 1} means the first polygon is assigned with the 0-th material and the second polygon is assigned with the 1-th material.
+
+   You can access the materials from a node by using FbxNode::GetMaterialCount() and FbxNode::GetMaterial(int pIndex) or the more generic calls to GetSrcObjectCount<FbxSurfaceMaterial>() and GetSrcObject<FbxSurfaceMaterial>(index)
+
+   For example:
+ FbxNode* node;
+ int nbMat = node->GetMaterialCount();
+ int nbMat1= node->GetSrcObjectCount<FbxSurfaceMaterial>();
+
+ FbxSurfaceMaterial* material;
+ FbxLayerElementMaterial* layerElement;
+ if (layerElement->GetMappingMode() == FbxLayerElement::eAllSame)
+ {
+     int index = layerElement->GetIndexArray()[0];
+     material = node->GetMaterial(index);
+ }
+
+   Remarks:
+          //The DirectArray() methods still exist for legacy reasons but has been made private and should not be used. Therefore, to be correctly saved in FBX file, this type of Layer element should have its reference mode set to eIndexToDirect.
+
+   See also:
+          FbxSurfaceMaterial
+          FbxNode
+
+   Examples:
+          Common/GeometryUtility.cxx, ExportDocument/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayMesh.cxx, Instances/main.cxx, Layers/main.cxx, ProceduralTexture/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   Definition at line 1359 of file fbxlayer.h.
+   Inheritance diagram for FbxLayerElementMaterial:
+   [USEMAP:class_fbx_layer_element_material.png]
+
+   List of all members.
+
+Classes
+
+                                 class   LayerElementArrayProxy
+
+Public Types
+
+   typedef
+   FbxLayerElementTemplate
+   < FbxSurfaceMaterial * >  ParentClass
+
+Public Member Functions
+
+                                         FBXSDK_LAYER_ELEMENT_CREATE_DECLARE (LayerElementMaterial)
+                                        Allocation method.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef FbxLayerElementTemplate<FbxSurfaceMaterial*> ParentClass
+   Search for all occurrences
+
+   Definition at line 1362 of file fbxlayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FBXSDK_LAYER_ELEMENT_CREATE_DECLARE ( LayerElementMaterial  )
+   Search for all occurrences
+
+   Allocation method.
+
+   Returns:
+          A pointer to the layer element or NULL if creation fails.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxlayer.h
+
+   Please send us your comment about this page

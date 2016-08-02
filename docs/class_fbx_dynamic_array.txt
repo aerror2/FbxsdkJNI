@@ -1,0 +1,412 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxDynamicArray< VALUE_TYPE, ALLOCATOR > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxDynamicArray< VALUE_TYPE, ALLOCATOR > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxdynamicarray.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<typename VALUE_TYPE, typename ALLOCATOR = FbxBaseAllocator>
+class FbxDynamicArray< VALUE_TYPE, ALLOCATOR >
+
+   Template class for dynamic array holding objects.
+
+   See also:
+          FbxStaticArray
+
+   Definition at line 26 of file fbxdynamicarray.h.
+
+   List of all members.
+
+Public Types
+
+   typedef VALUE_TYPE  ValueType
+                       Type of the elements in the array.
+    typedef ALLOCATOR  AllocatorType
+                       Type of the class used for allocating memory.
+
+Public Member Functions
+
+                       FbxDynamicArray ()
+                       Default constructor.
+                       FbxDynamicArray (const size_t pInitialSize)
+                       Constructor.
+                       FbxDynamicArray (const FbxDynamicArray &pArray)
+                       Copy constructor.
+                       ~FbxDynamicArray ()
+                       Destructor.
+               size_t  GetCapacity () const
+                       Gets the current capacity of the array.
+               size_t  GetSize () const
+                       Gets the size of the array.
+                 void  Reserve (const size_t pCount)
+                       Assures that sufficient memory is allocated to hold n objects in the array, and increases the capacity if necessary.
+                 void  PushBack (const ValueType &pValue, const size_t pNCopies=1)
+                       Appends n objects at the end of the array.
+                 void  Insert (const size_t pIndex, const ValueType &pValue, const size_t pNCopies=1)
+                       Inserts n objects at the specified position.
+                 void  PopBack (size_t pNElements=1)
+                       Removes n objects at the end.
+                 void  Remove (const size_t pIndex, size_t pNElements=1)
+                       Removes n objects at the specified position.
+          ValueType &  operator[] (const size_t pIndex)
+                       Gets nth object in the array.
+    ValueType const &  operator[] (const size_t pIndex) const
+                       Gets nth object in the array.
+    FbxDynamicArray &  operator= (const FbxDynamicArray &pArray)
+                       Assignment operator.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Typedef Documentation
+
+   typedef VALUE_TYPE ValueType
+   Search for all occurrences
+
+   Type of the elements in the array.
+
+   Definition at line 30 of file fbxdynamicarray.h.
+   typedef ALLOCATOR AllocatorType
+   Search for all occurrences
+
+   Type of the class used for allocating memory.
+
+   Definition at line 32 of file fbxdynamicarray.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxDynamicArray ( ) [inline]
+
+   Default constructor.
+
+   Definition at line 35 of file fbxdynamicarray.h.
+        : mArray(NULL)
+        , mArrayCapacity(0)
+        , mValueCount(0)
+        , mAllocator(sizeof(ValueType))
+    {
+    }
+
+   FbxDynamicArray ( const size_t  pInitialSize ) [inline]
+
+   Constructor.
+
+   Parameters:
+
+          pInitialSize initial capacity of this array
+
+   Definition at line 46 of file fbxdynamicarray.h.
+        : mArray(NULL)
+        , mArrayCapacity(0)
+        , mValueCount(0)
+        , mAllocator(sizeof(ValueType))
+    {
+        Reserve(pInitialSize);
+    }
+
+   FbxDynamicArray ( const FbxDynamicArray< VALUE_TYPE, ALLOCATOR > &  pArray ) [inline]
+
+   Copy constructor.
+
+   Remarks:
+          The copy constructor of VALUE_TYPE will be invoked in order to copy the value of elements to the new array.
+
+   Definition at line 60 of file fbxdynamicarray.h.
+        : mArray(NULL)
+        , mArrayCapacity(0)
+        , mValueCount(0)
+        , mAllocator(sizeof(ValueType))
+    {
+        Reserve(pArray.mArrayCapacity);
+        CopyArray(mArray, pArray.mArray, pArray.mValueCount);
+        mValueCount = pArray.mValueCount;
+    }
+
+   ~FbxDynamicArray ( ) [inline]
+
+   Destructor.
+
+   Definition at line 72 of file fbxdynamicarray.h.
+    {
+        for (size_t i = 0; i < mValueCount; i++)
+        {
+            mArray[i].~VALUE_TYPE();
+        }
+
+        mAllocator.FreeMemory(mArray);
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   size_t GetCapacity ( ) const [inline]
+   Search for all occurrences
+
+   Gets the current capacity of the array.
+
+   Definition at line 83 of file fbxdynamicarray.h.
+    {
+        return mArrayCapacity;
+    }
+
+   size_t GetSize ( ) const [inline]
+   Search for all occurrences
+
+   Gets the size of the array.
+
+   Definition at line 89 of file fbxdynamicarray.h.
+    {
+        return mValueCount;
+    }
+
+   void Reserve ( const size_t  pCount ) [inline]
+   Search for all occurrences
+
+   Assures that sufficient memory is allocated to hold n objects in the array, and increases the capacity if necessary.
+
+   Parameters:
+
+          pCount Number of objects to reserve
+
+   Definition at line 98 of file fbxdynamicarray.h.
+    {
+        if (pCount > mArrayCapacity)
+        {
+            // We don't use mAllocator.PreAllocate, because we want our array
+            // to be continuous in memory.
+            void* lBuffer = mAllocator.AllocateRecords(pCount);
+            ValueType* lNewArray = reinterpret_cast<ValueType*>(lBuffer);
+
+            MoveArray(lNewArray, mArray, mValueCount);
+
+            mAllocator.FreeMemory(mArray);
+            mArray = lNewArray;
+            mArrayCapacity = pCount;
+        }
+    }
+
+   void PushBack ( const ValueType &  pValue,
+                   const size_t       pNCopies = 1
+                 )                    [inline]
+   Search for all occurrences
+
+   Appends n objects at the end of the array.
+
+   Parameters:
+
+          pValue   object to append
+          pNCopies number of copies to append
+
+   Definition at line 119 of file fbxdynamicarray.h.
+    {
+        if (mValueCount + pNCopies > mArrayCapacity)
+        {
+            // grow by 50%
+            size_t lNewSize = mArrayCapacity + mArrayCapacity / 2;
+
+            if (mValueCount + pNCopies > lNewSize)
+            {
+                lNewSize = mValueCount + pNCopies;
+            }
+
+            Reserve(lNewSize);
+        }
+
+        FBX_ASSERT(mValueCount + pNCopies <= mArrayCapacity);
+
+        Fill(mArray + mValueCount, pValue, pNCopies);
+
+        mValueCount += pNCopies;
+    }
+
+   void Insert ( const size_t       pIndex,
+                 const ValueType &  pValue,
+                 const size_t       pNCopies = 1
+               )                    [inline]
+   Search for all occurrences
+
+   Inserts n objects at the specified position.
+
+   Parameters:
+
+          pIndex   position index
+          pValue   object to insert
+          pNCopies number of copies to append
+
+   Definition at line 146 of file fbxdynamicarray.h.
+    {
+        FBX_ASSERT(pIndex >= 0);
+        FBX_ASSERT(pIndex <= mValueCount);
+
+        ValueType lValue = pValue; // in case pValue is in array
+
+        if (pNCopies == 0)
+        {
+        }
+        else if (pIndex >= mValueCount)
+        {
+            PushBack(pValue, pNCopies);
+        }
+        else if (mValueCount + pNCopies > mArrayCapacity)
+        {
+            // not enough room
+            // grow by 50%
+            size_t lNewSize = mArrayCapacity + mArrayCapacity / 2;
+
+            if (mValueCount + pNCopies > lNewSize)
+            {
+                lNewSize = mValueCount + pNCopies;
+            }
+
+            void* lBuffer = mAllocator.AllocateRecords(lNewSize);
+            ValueType* lNewArray = reinterpret_cast<ValueType*>(lBuffer);
+
+            MoveArray(lNewArray, mArray, pIndex); // copy prefix
+            Fill(lNewArray + pIndex, pValue, pNCopies); // copy values
+            MoveArray(lNewArray + pIndex + pNCopies, mArray + pIndex, mValueCount - pIndex); // copy suffix
+
+            mAllocator.FreeMemory(mArray);
+            mArray = lNewArray;
+            mValueCount += pNCopies;
+            mArrayCapacity = lNewSize;
+        }
+        else
+        {
+            // copy suffix backwards
+            MoveArrayBackwards(mArray + pIndex + pNCopies, mArray + pIndex, mValueCount - pIndex);
+            Fill(mArray + pIndex, pValue, pNCopies); // copy values
+            mValueCount += pNCopies;
+        }
+    }
+
+   void PopBack ( size_t  pNElements = 1 ) [inline]
+   Search for all occurrences
+
+   Removes n objects at the end.
+
+   Parameters:
+
+          pNElements number of objects to remove
+
+   Definition at line 195 of file fbxdynamicarray.h.
+    {
+        FBX_ASSERT(pNElements <= mValueCount);
+
+        for (size_t i = mValueCount - pNElements; i < mValueCount; i++)
+        {
+            mArray[i].~VALUE_TYPE();
+        }
+
+        mValueCount -= pNElements;
+    }
+
+   void Remove ( const size_t  pIndex,
+                 size_t        pNElements = 1
+               )               [inline]
+   Search for all occurrences
+
+   Removes n objects at the specified position.
+
+   Parameters:
+
+          pIndex     position index
+          pNElements number of objects to remove
+
+   Definition at line 211 of file fbxdynamicarray.h.
+    {
+        FBX_ASSERT(pIndex >= 0);
+        FBX_ASSERT(pIndex <= mValueCount);
+        FBX_ASSERT(pIndex + pNElements <= mValueCount);
+
+        if (pIndex + pNElements >= mValueCount)
+        {
+            PopBack(pNElements);
+        }
+        else
+        {
+            for (size_t i = pIndex; i < pIndex + pNElements; i++)
+            {
+                mArray[i].~VALUE_TYPE();
+            }
+
+            MoveOverlappingArray(mArray + pIndex, mArray + pIndex + pNElements, mValueCount - pNElements);
+
+            mValueCount -= pNElements;
+        }
+    }
+
+   ValueType& operator[] ( const size_t  pIndex ) [inline]
+
+   Gets nth object in the array.
+
+   Parameters:
+
+          pIndex position index
+
+   Definition at line 237 of file fbxdynamicarray.h.
+    {
+        return *(mArray + pIndex);
+    }
+
+   ValueType const& operator[] ( const size_t  pIndex ) const [inline]
+
+   Gets nth object in the array.
+
+   Parameters:
+
+          pIndex position index
+
+   Definition at line 245 of file fbxdynamicarray.h.
+    {
+        return *(mArray + pIndex);
+    }
+
+   FbxDynamicArray& operator= ( const FbxDynamicArray< VALUE_TYPE, ALLOCATOR > &  pArray ) [inline]
+
+   Assignment operator.
+
+   Remarks:
+          The copy constructor of VALUE_TYPE will be invoked in order to copy the value of elements to the new array.
+
+   Definition at line 255 of file fbxdynamicarray.h.
+    {
+        Reserve(pArray.mArrayCapacity);
+        CopyArray(mArray, pArray.mArray, pArray.mValueCount);
+        mValueCount = pArray.mValueCount;
+
+        return *this;
+    }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxdynamicarray.h
+
+   Please send us your comment about this page

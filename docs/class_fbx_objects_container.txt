@@ -1,0 +1,165 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxObjectsContainer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes | Protected Member Functions | Protected Attributes
+   FbxObjectsContainer Class Reference
+   Search for all occurrences
+
+   #include <fbxobjectscontainer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 27 of file fbxobjectscontainer.h.
+
+   List of all members.
+
+Public Types
+
+                            enum   EDepth { eChildOnly, eChildAndSubChild, eSubChildWithNoScaleInherit }
+
+Public Member Functions
+
+                                   FbxObjectsContainer ()
+                          virtual  ~FbxObjectsContainer ()
+                             void  ExtractSceneObjects (FbxScene *pScene, EDepth pDepth, const FbxAttributeFilters &pFilters)
+                             void  ExtractSceneObjects (FbxNode *pRootNode, EDepth pDepth, const FbxAttributeFilters &pFilters)
+                             void  Clear ()
+
+Public Attributes
+
+   FbxArray< FbxAnimCurveNode * >  mFCurvesT
+   FbxArray< FbxAnimCurveNode * >  mFCurvesR
+   FbxArray< FbxAnimCurveNode * >  mFCurvesS
+            FbxArray< FbxNode * >  mNodes
+
+Protected Member Functions
+
+                             void  ExtractNodesAnimCurveNodes (FbxNode *pNode, EDepth pDepth, const FbxAttributeFilters &pFilters)
+                             void  ExtractAnimCurveNodes (FbxNode *pNode)
+                             bool  InheritsScale (FbxNode *pNode) const
+
+Protected Attributes
+
+                        FbxNode *  mStartNode
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDepth
+   Search for all occurrences
+
+   Enumerator:
+
+          eChildOnly
+
+   Search for all occurrences
+          eChildAndSubChild
+
+   Search for all occurrences
+          eSubChildWithNoScaleInherit
+
+   Search for all occurrences
+
+   Definition at line 30 of file fbxobjectscontainer.h.
+        {
+        eChildOnly,
+        eChildAndSubChild,
+                eSubChildWithNoScaleInherit
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxObjectsContainer ( ) [inline]
+
+   Definition at line 37 of file fbxobjectscontainer.h.
+: mStartNode(NULL) {}
+
+   virtual ~FbxObjectsContainer ( ) [inline, virtual]
+
+   Definition at line 38 of file fbxobjectscontainer.h.
+{ Clear(); }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void ExtractSceneObjects ( FbxScene *                   pScene,
+                              EDepth                       pDepth,
+                              const FbxAttributeFilters &  pFilters
+                            )
+   Search for all occurrences
+   void ExtractSceneObjects ( FbxNode *                    pRootNode,
+                              EDepth                       pDepth,
+                              const FbxAttributeFilters &  pFilters
+                            )
+   Search for all occurrences
+   void Clear ( ) [inline]
+   Search for all occurrences
+
+   Definition at line 53 of file fbxobjectscontainer.h.
+{ mFCurvesT.Clear(); mFCurvesR.Clear(); mFCurvesS.Clear(); mNodes.Clear(); mStartNode = NULL; }
+
+   void ExtractNodesAnimCurveNodes ( FbxNode *                    pNode,
+                                     EDepth                       pDepth,
+                                     const FbxAttributeFilters &  pFilters
+                                   )                              [protected]
+   Search for all occurrences
+   void ExtractAnimCurveNodes ( FbxNode *  pNode ) [protected]
+   Search for all occurrences
+   bool InheritsScale ( FbxNode *  pNode ) const [protected]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxArray<FbxAnimCurveNode*> mFCurvesT
+   Search for all occurrences
+
+   Definition at line 41 of file fbxobjectscontainer.h.
+   FbxArray<FbxAnimCurveNode*> mFCurvesR
+   Search for all occurrences
+
+   Definition at line 42 of file fbxobjectscontainer.h.
+   FbxArray<FbxAnimCurveNode*> mFCurvesS
+   Search for all occurrences
+
+   Definition at line 43 of file fbxobjectscontainer.h.
+   FbxArray<FbxNode*> mNodes
+   Search for all occurrences
+
+   Definition at line 46 of file fbxobjectscontainer.h.
+   FbxNode* mStartNode [protected]
+   Search for all occurrences
+
+   Definition at line 61 of file fbxobjectscontainer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxobjectscontainer.h
+
+   Please send us your comment about this page

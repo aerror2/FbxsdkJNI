@@ -1,0 +1,74 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCollectionExclusive Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxCollectionExclusive Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcollectionexclusive.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for exclusive collections.
+
+   An object (FbxObject) should belong to only one exclusive collection at most.
+
+   Definition at line 25 of file fbxcollectionexclusive.h.
+   Inheritance diagram for FbxCollectionExclusive:
+   [USEMAP:class_fbx_collection_exclusive.png]
+
+   List of all members.
+
+Public Member Functions
+
+   bool  AddMember (FbxObject *pMember)
+         Add a member if it's not a member of any other FbxCollectionExclusive objects.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool AddMember ( FbxObject *  pMember ) [virtual]
+   Search for all occurrences
+
+   Add a member if it's not a member of any other FbxCollectionExclusive objects.
+
+   Parameters:
+
+          pMember Object to be added
+
+   Reimplemented from FbxCollection.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxcollectionexclusive.h
+
+   Please send us your comment about this page

@@ -1,0 +1,529 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxGeometry Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxGeometry Class Reference
+
+   This reference page is linked to from the following overview topics: Geometry, Meshes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxgeometry.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The base class of geometric objects that support control point deformations (e.g.
+
+   FbxMesh, FbxNurbs, and FbxPatch). The FbxGeometry provides support for the following kinds of deformations.
+     * Skin deformation deformers
+     * Vertex cache deformers
+     * Geometry weighted maps
+     * Shapes
+
+   Most of the methods of FbxGeometry are wrappers to simplify the access/manipulation of the connections to the deformers. For example, calling the GetDeformerCount() method is the same thing as calling:
+ geometry.GetSrcObjectCount(FbxDeformer::ClassId)
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayCache.h, ImportScene/DisplayLink.cxx, ImportScene/DisplayLink.h, ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMaterial.h, ImportScene/DisplayShape.cxx, ImportScene/DisplayShape.h, ImportScene/DisplayTexture.cxx, and ImportScene/DisplayTexture.h.
+
+   Definition at line 45 of file fbxgeometry.h.
+   Inheritance diagram for FbxGeometry:
+   [USEMAP:class_fbx_geometry.png]
+
+   List of all members.
+
+Public Types
+
+   enum   ESurfaceMode {
+     eRaw, eLowNoNormals, eLow, eHighNoNormals,
+     eHigh
+   }
+     NURBS and Patches surface modes. More...
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+     Returns the node attribute type.
+   Deformer Management
+   int  AddDeformer (FbxDeformer *pDeformer)
+     Adds a deformer to this geometry (as mentioned in the description of this class, adding a deformer is a synonym for "connect a deformer").
+   FbxDeformer *  RemoveDeformer (int pIndex, FbxStatus *pStatus=NULL)
+     Remove a deformer.
+   int  GetDeformerCount () const
+     Returns the number of deformers.
+   FbxDeformer *  GetDeformer (int pIndex, FbxStatus *pStatus=NULL) const
+     Returns the deformer at the specified index.
+   int  GetDeformerCount (FbxDeformer::EDeformerType pType) const
+     Returns the number of deformers of a specified type.
+   FbxDeformer *  GetDeformer (int pIndex, FbxDeformer::EDeformerType pType, FbxStatus *pStatus=NULL) const
+     Returns the deformer of a specified type at the specified index.
+   Geometry Weighted Maps Management
+   FbxGeometryWeightedMap *  GetSourceGeometryWeightedMap ()
+     Returns the source geometry weighted map that is connected to this geometry.
+   int  GetDestinationGeometryWeightedMapCount () const
+     Returns the number of destination geometry weighted map(s) that are connected to this geometry.
+   FbxGeometryWeightedMap *  GetDestinationGeometryWeightedMap (int pIndex)
+     Returns the destination geometry weighted map at a specified index.
+   Shape Management
+   bool  AddShape (int pBlendShapeIndex, int pBlendShapeChannelIndex, FbxShape *pShape, double pPercent=100, FbxStatus *pStatus=NULL)
+     Add a shape to the specified blend shape deformer and blend shape channel of this geometry.
+   void  ClearShape ()
+     Removes all the shapes without destroying them.
+   int  GetShapeCount () const
+     Returns the number of shapes.
+   int  GetShapeCount (int pBlendShapeIndex, int pBlendShapeChannelIndex, FbxStatus *pStatus=NULL) const
+     Returns the number of shapes.
+   FbxShape *  GetShape (int pBlendShapeIndex, int pBlendShapeChannelIndex, int pShapeIndex, FbxStatus *pStatus=NULL)
+     Returns the shape found at the specified index on a blend shape channel of a blend shape deformer.
+   const FbxShape *  GetShape (int pBlendShapeIndex, int pBlendShapeChannelIndex, int pShapeIndex, FbxStatus *pStatus=NULL) const
+     Returns the shape found at the specified index on a blend shape channel of a blend shape deformer.
+   FbxAnimCurve *  GetShapeChannel (int pBlendShapeIndex, int pBlendShapeChannelIndex, FbxAnimLayer *pLayer, bool pCreateAsNeeded=false, FbxStatus *pStatus=NULL)
+     Get the shape animation curve.
+   Pivot Management
+
+   The geometry pivot is used to specify additional translation, rotation, and scaling information applied to all control points when the model is exported.
+   FbxAMatrix &  GetPivot (FbxAMatrix &pXMatrix) const
+     Returns the pivot matrix.
+   void  SetPivot (FbxAMatrix &pXMatrix)
+     Sets the pivot matrix.
+   void  ApplyPivot ()
+     Applies the pivot matrix to all vertices/normals of the geometry.
+   Default Animation Values
+
+   These functions provides direct access to default animation values that are specific to a geometry.
+
+   These functions only work if the geometry has been associated with a node.
+   void  SetDefaultShape (int pBlendShapeIndex, int pBlendShapeChannelIndex, double pPercent)
+     Sets the default deformation for a specified shape.
+   void  SetDefaultShape (FbxBlendShapeChannel *pBlendShapeChannel, double pPercent)
+     Sets the default deformation for a specified channel.
+   double  GetDefaultShape (int pBlendShapeIndex, int pBlendShapeChannelIndex) const
+     Returns the default deformation value for the specified shape.
+   double  GetDefaultShape (FbxBlendShapeChannel *pBlendShapeChannel) const
+     Returns the default deformation value for the specified channel.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESurfaceMode
+   Search for all occurrences
+
+   NURBS and Patches surface modes.
+
+   This information is never directly used inside the FBX SDK. Applications can use these values if they wish to carry the "rendering" details of the NURBS and Patches. The FBX SDK guarantee that the value (member of the FbxNurbs, FbxNurbsSurface and FbxPatch classes) is stored to FBX files and retrieved from them.
+
+   Remarks:
+          The enum has been defined in this class to avoid symbols duplication.
+
+   Enumerator:
+
+          eRaw
+
+   Search for all occurrences
+          eLowNoNormals
+
+   Raw.
+   Search for all occurrences
+          eLow
+
+   Low and no normals.
+   Search for all occurrences
+          eHighNoNormals
+
+   Low.
+   Search for all occurrences
+   eHigh
+
+   High and no normals.
+   High.
+   Search for all occurrences
+
+   Definition at line 200 of file fbxgeometry.h.
+    {
+        eRaw,
+        eLowNoNormals,
+        eLow,
+                eHighNoNormals,
+        eHigh
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the node attribute type.
+
+   This method is derived in the more high level classes (FbxMesh, FbxNurbs, etc...) and returns the actual type of the geometry object.
+
+   Returns:
+          eUnknown
+
+   Reimplemented from FbxLayerContainer.
+
+   Reimplemented in FbxLine, FbxMesh, FbxNurbs, FbxNurbsCurve, FbxNurbsSurface, FbxPatch, FbxBoundary, and FbxTrimNurbsSurface.
+   int AddDeformer ( FbxDeformer *  pDeformer )
+   Search for all occurrences
+
+   Adds a deformer to this geometry (as mentioned in the description of this class, adding a deformer is a synonym for "connect a deformer").
+
+   Parameters:
+
+          pDeformer Pointer to the deformer to be added.
+
+   Returns:
+          Index of the added deformer.
+
+   Examples:
+          ExportScene01/main.cxx, ExportScene02/main.cxx, and ExportScene03/main.cxx.
+
+   FbxDeformer* RemoveDeformer ( int          pIndex,
+                                 FbxStatus *  pStatus = NULL
+                               )
+   Search for all occurrences
+
+   Remove a deformer.
+
+   Parameters:
+
+          pIndex  Index of deformer to remove.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer to the removed deformer (or NULL if pIndex is out of range).
+
+   Examples:
+          SwitchBinding/main.cxx.
+
+   int GetDeformerCount ( ) const
+   Search for all occurrences
+
+   Returns the number of deformers.
+
+   Returns:
+          The number of deformers that are connected to this geometry.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayLink.cxx, ImportScene/DisplayShape.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   FbxDeformer* GetDeformer ( int          pIndex,
+                              FbxStatus *  pStatus = NULL
+                            )              const
+   Search for all occurrences
+
+   Returns the deformer at the specified index.
+
+   Parameters:
+
+          pIndex  The specified deformer index.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer to the deformer (or NULL if pIndex is out of range).
+
+   Examples:
+          ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCache.cxx, ImportScene/DisplayLink.cxx, ImportScene/DisplayShape.cxx, SwitchBinding/main.cxx, ViewScene/DrawScene.cxx, and ViewScene/SceneContext.cxx.
+
+   int GetDeformerCount ( FbxDeformer::EDeformerType  pType ) const
+   Search for all occurrences
+
+   Returns the number of deformers of a specified type.
+
+   Parameters:
+
+          pType The specified deformer type.
+
+   Returns:
+          The number of deformers of the specified type.
+
+   FbxDeformer* GetDeformer ( int                         pIndex,
+                              FbxDeformer::EDeformerType  pType,
+                              FbxStatus *                 pStatus = NULL
+                            )                             const
+   Search for all occurrences
+
+   Returns the deformer of a specified type at the specified index.
+
+   Parameters:
+
+          pIndex  The specified deformer index.
+          pType   The specified deformer type.
+          pStatus The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer to the deformer (or NULL if pIndex is out of range).
+
+   FbxGeometryWeightedMap* GetSourceGeometryWeightedMap ( )
+   Search for all occurrences
+
+   Returns the source geometry weighted map that is connected to this geometry.
+
+   Returns:
+          Pointer to the source geometry weighted map that is connected to this geometry if any.
+
+   int GetDestinationGeometryWeightedMapCount ( ) const
+   Search for all occurrences
+
+   Returns the number of destination geometry weighted map(s) that are connected to this geometry.
+
+   Returns:
+          The number of destination geometry weighted map(s) that are connected to this geometry.
+
+   FbxGeometryWeightedMap* GetDestinationGeometryWeightedMap ( int  pIndex )
+   Search for all occurrences
+
+   Returns the destination geometry weighted map at a specified index.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          Pointer to the destination geometry weighted map at the specified index (if any).
+
+   bool AddShape ( int          pBlendShapeIndex,
+                   int          pBlendShapeChannelIndex,
+                   FbxShape *   pShape,
+                   double       pPercent = 100,
+                   FbxStatus *  pStatus = NULL
+                 )
+   Search for all occurrences
+
+   Add a shape to the specified blend shape deformer and blend shape channel of this geometry.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pShape                  Pointer to the shape object to be added.
+          pPercent                The full deform percentage of this shape.
+          pStatus                 The FbxStatus object to hold error codes.
+
+   Returns:
+          true if success, false otherwise.
+
+   void ClearShape ( )
+   Search for all occurrences
+
+   Removes all the shapes without destroying them.
+
+   If shapes aren't explicitly destroyed before calling this function, they will be destroyed along with the SDK manager that created them.
+   int GetShapeCount ( ) const
+   Search for all occurrences
+
+   Returns the number of shapes.
+
+   Returns:
+          The number of shapes that have been added to this geometry.
+
+   Examples:
+          ViewScene/DrawScene.cxx.
+
+   int GetShapeCount ( int          pBlendShapeIndex,
+                       int          pBlendShapeChannelIndex,
+                       FbxStatus *  pStatus = NULL
+                     )              const
+   Search for all occurrences
+
+   Returns the number of shapes.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pStatus                 The FbxStatus object to hold error codes.
+
+   Returns:
+          The number of shapes that have been added to this blend shape channel of this blend shape deformer.
+
+   FbxShape* GetShape ( int          pBlendShapeIndex,
+                        int          pBlendShapeChannelIndex,
+                        int          pShapeIndex,
+                        FbxStatus *  pStatus = NULL
+                      )
+   Search for all occurrences
+
+   Returns the shape found at the specified index on a blend shape channel of a blend shape deformer.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pShapeIndex             The specified shape index.
+          pStatus                 The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer to the shape (or NULL if pIndex is out of range).
+
+   const FbxShape* GetShape ( int          pBlendShapeIndex,
+                              int          pBlendShapeChannelIndex,
+                              int          pShapeIndex,
+                              FbxStatus *  pStatus = NULL
+                            )              const
+   Search for all occurrences
+
+   Returns the shape found at the specified index on a blend shape channel of a blend shape deformer.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pShapeIndex             The specified shape index.
+          pStatus                 The FbxStatus object to hold error codes.
+
+   Returns:
+          Pointer to the shape (or NULL if pIndex is out of range).
+
+   FbxAnimCurve* GetShapeChannel ( int             pBlendShapeIndex,
+                                   int             pBlendShapeChannelIndex,
+                                   FbxAnimLayer *  pLayer,
+                                   bool            pCreateAsNeeded = false,
+                                   FbxStatus *     pStatus = NULL
+                                 )
+   Search for all occurrences
+
+   Get the shape animation curve.
+
+   The shape channel is an animatable property with a value range from 0 to 100 (with 100 being full shape deformation). The default value is 0.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pLayer                  The animation layer from which we want to get the requested animation curve.
+          pCreateAsNeeded         If true, creates the animation curve if it is not already present.
+          pStatus                 The FbxStatus object to hold error codes.
+
+   Returns:
+          Animation curve (or NULL if an error occurred).
+
+   Remarks:
+          If pLayer is left at NULL, the method will use the first layer of the Animation stack.
+
+   Examples:
+          ExportScene02/main.cxx, ExportScene03/main.cxx, ImportScene/DisplayAnimation.cxx, and ViewScene/DrawScene.cxx.
+
+   FbxAMatrix& GetPivot ( FbxAMatrix &  pXMatrix ) const
+   Search for all occurrences
+
+   Returns the pivot matrix.
+
+   Parameters:
+
+          pXMatrix Placeholder for the returned matrix.
+
+   Returns:
+          Reference to the passed argument.
+
+   void SetPivot ( FbxAMatrix &  pXMatrix )
+   Search for all occurrences
+
+   Sets the pivot matrix.
+
+   Parameters:
+
+          pXMatrix The transformation matrix that is assigned to the pivot matrix.
+
+   void ApplyPivot ( )
+   Search for all occurrences
+
+   Applies the pivot matrix to all vertices/normals of the geometry.
+   void SetDefaultShape ( int     pBlendShapeIndex,
+                          int     pBlendShapeChannelIndex,
+                          double  pPercent
+                        )
+   Search for all occurrences
+
+   Sets the default deformation for a specified shape.
+
+   The default shape property has a value range from 0 to 100 (with 100 being full shape deformation). The default value is 0.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+          pPercent                Deformation percentage (on a scale ranging from 0 to 100).
+
+   Remarks:
+          This function has no effect if pIndex is out of range.
+
+   void SetDefaultShape ( FbxBlendShapeChannel *  pBlendShapeChannel,
+                          double                  pPercent
+                        )
+   Search for all occurrences
+
+   Sets the default deformation for a specified channel.
+
+   The default shape property has a value range from 0 to 100 (with 100 being full shape deformation). The default value is 0.
+
+   Parameters:
+
+          pBlendShapeChannel The blend shape channel.
+          pPercent           Deformation percentage (on a scale ranging from 0 to 100).
+
+   Remarks:
+          This function has no effect if pShapeName is invalid.
+
+   double GetDefaultShape ( int  pBlendShapeIndex,
+                            int  pBlendShapeChannelIndex
+                          )      const
+   Search for all occurrences
+
+   Returns the default deformation value for the specified shape.
+
+   The default shape property has a value range from 0 to 100 (with 100 being full shape deformation). The default value is 0.
+
+   Parameters:
+
+          pBlendShapeIndex        The blend shape deformer index.
+          pBlendShapeChannelIndex The blend shape channel index.
+
+   Returns:
+          The deformation value for the specified shape, or 0 if pIndex is out of range.
+
+   double GetDefaultShape ( FbxBlendShapeChannel *  pBlendShapeChannel ) const
+   Search for all occurrences
+
+   Returns the default deformation value for the specified channel.
+
+   The default shape property has a value range from 0 to 100 (with 100 being full shape deformation). The default value is 0.
+
+   Parameters:
+
+          pBlendShapeChannel The blend shape channel.
+
+   Returns:
+          The deformation value for the specified shape, or 0 if pShapeName is invalid.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxgeometry.h
+
+   Please send us your comment about this page

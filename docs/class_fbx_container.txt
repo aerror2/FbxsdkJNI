@@ -1,0 +1,128 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxContainer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   FbxContainer Class Reference
+   Search for all occurrences
+
+   #include <fbxcontainer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Generic container for object grouping and encapsulation.
+
+   Definition at line 26 of file fbxcontainer.h.
+   Inheritance diagram for FbxContainer:
+   [USEMAP:class_fbx_container.png]
+
+   List of all members.
+
+Container dynamic attributes
+
+                 FbxProperty  CreateProperty (FbxString pName, FbxDataType &pType, FbxString pLabel)
+                              Create a new property.
+
+Public and fast access Properties
+
+   FbxPropertyT< FbxString >  TemplateName
+                              This property contains the template name information of the container.
+   FbxPropertyT< FbxString >  TemplatePath
+                              This property contains the template path information of the container.
+   FbxPropertyT< FbxString >  TemplateVersion
+                              This property contains the template version information of the container.
+   FbxPropertyT< FbxString >  ViewName
+                              This property contains the view name information of the container.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxProperty CreateProperty ( FbxString      pName,
+                                FbxDataType &  pType,
+                                FbxString      pLabel
+                              )
+   Search for all occurrences
+
+   Create a new property.
+
+   Parameters:
+
+          pName  Name of the property
+          pType  Type of the property
+          pLabel Label of the property
+
+   Returns:
+          the newly created property
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxString> TemplateName
+   Search for all occurrences
+
+   This property contains the template name information of the container.
+
+   To access this property do: TemplateName.Get(). To set this property do: TemplateName.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 55 of file fbxcontainer.h.
+   FbxPropertyT<FbxString> TemplatePath
+   Search for all occurrences
+
+   This property contains the template path information of the container.
+
+   To access this property do: TemplatePath.Get(). To set this property do: TemplatePath.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 64 of file fbxcontainer.h.
+   FbxPropertyT<FbxString> TemplateVersion
+   Search for all occurrences
+
+   This property contains the template version information of the container.
+
+   To access this property do: TemplateVersion.Get(). To set this property do: TemplateVersion.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 73 of file fbxcontainer.h.
+   FbxPropertyT<FbxString> ViewName
+   Search for all occurrences
+
+   This property contains the view name information of the container.
+
+   To access this property do: ViewName.Get(). To set this property do: ViewName.Set(FbxString).
+
+   Default value is "".
+
+   Definition at line 82 of file fbxcontainer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/fbxcontainer.h
+
+   Please send us your comment about this page

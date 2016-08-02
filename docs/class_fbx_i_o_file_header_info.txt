@@ -1,0 +1,153 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxIOFileHeaderInfo Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Attributes
+   FbxIOFileHeaderInfo Class Reference
+   Search for all occurrences
+
+   #include <fbxio.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FBX header information used at beginning of the FBX file to get or set important values like the file format version number (mFileVersion).
+
+   The file version number will be used to select a particular Reader or Writer.
+
+   Definition at line 217 of file fbxio.h.
+
+   List of all members.
+
+Public Attributes
+
+   FbxIODefaultRenderResolution  mDefaultRenderResolution
+                                 FbxIODefaultRenderResolution to handle default resolution values.
+
+Constructors and Destructor
+
+                                 FbxIOFileHeaderInfo ()
+                                 Default constructor.
+                        virtual  ~FbxIOFileHeaderInfo ()
+                                 Destructor.
+
+Public Member
+
+                   virtual void  Reset ()
+                                 Reset values to default.
+                   virtual bool  ReadExtendedHeaderInformation (FbxIO *)
+                                 A derived class can override this function to read additional information from the file header.
+                            int  mFileVersion
+                                 Read only properties (not used for file write)
+                           bool  mCreationTimeStampPresent
+                                 Indicates whether a creation time stamp is preset.
+                   FbxLocalTime  mCreationTimeStamp
+                                 Indicates whether the mCreationTimeStamp member variable contains the actual creation time of the file.
+                      FbxString  mCreator
+                                 Indicates who is the creator of the file Ex: "FBX SDK/FBX Plugins version 2011.2".
+                           bool  mIOPlugin
+                                 Indicates whether the file is created by a genuine Autodesk plug-in or not.
+                           bool  mPLE
+                                 The flag indicates that the header was created by a personal learning edition (PLE) of FBX.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxIOFileHeaderInfo ( )
+
+   Default constructor.
+   virtual ~FbxIOFileHeaderInfo ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual void Reset ( ) [virtual]
+   Search for all occurrences
+
+   Reset values to default.
+   virtual bool ReadExtendedHeaderInformation ( FbxIO *  ) [virtual]
+   Search for all occurrences
+
+   A derived class can override this function to read additional information from the file header.
+
+   Returns:
+          false in case of failure that should stop loading the file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxIODefaultRenderResolution mDefaultRenderResolution
+   Search for all occurrences
+
+   FbxIODefaultRenderResolution to handle default resolution values.
+
+   Definition at line 246 of file fbxio.h.
+   int mFileVersion
+   Search for all occurrences
+
+   Read only properties (not used for file write)
+
+   File version ex; 5000, 6000, 6100, 7000, 7099, 7100 the major part is the first digit, the minor part, 3 other digits ex: 7100 means version 7.1
+
+   Definition at line 255 of file fbxio.h.
+   bool mCreationTimeStampPresent
+   Search for all occurrences
+
+   Indicates whether a creation time stamp is preset.
+
+   Definition at line 258 of file fbxio.h.
+   FbxLocalTime mCreationTimeStamp
+   Search for all occurrences
+
+   Indicates whether the mCreationTimeStamp member variable contains the actual creation time of the file.
+
+   Definition at line 261 of file fbxio.h.
+   FbxString mCreator
+   Search for all occurrences
+
+   Indicates who is the creator of the file Ex: "FBX SDK/FBX Plugins version 2011.2".
+
+   Definition at line 266 of file fbxio.h.
+   bool mIOPlugin
+   Search for all occurrences
+
+   Indicates whether the file is created by a genuine Autodesk plug-in or not.
+
+   Definition at line 269 of file fbxio.h.
+   bool mPLE
+   Search for all occurrences
+
+   The flag indicates that the header was created by a personal learning edition (PLE) of FBX.
+
+   Definition at line 272 of file fbxio.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/fileio/fbx/fbxio.h
+
+   Please send us your comment about this page

@@ -1,0 +1,363 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxLayeredTexture Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxLayeredTexture Class Reference
+
+   This reference page is linked to from the following overview topics: Meshes, Materials and Textures, Layered Textures, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxlayeredtexture.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxLayeredTexture is a combination of multiple textures(FbxTexture) blended sequentially.
+
+   For example, you can access individual texture by:
+ FbxTexture* pIndiTexture = lLayeredTexture->GetSrcObject(FbxTexture::ClassId, pTextureIndex);
+
+   Another example to construct a layered texture with two sub textures.
+ FbxFileTexture *background, *file1;
+ FbxLayeredTexture* layeredTexture;
+
+ // connect two file textures to a layered texture via OO connections
+ layeredTexture->ConnectSrcObject(background);
+ layeredTexture->ConnectSrcObject(file1);
+
+ // set the second file texture's blend mode and alpha.
+ layeredTexture->SetTextureBlendMode(1, FbxLayeredTexture::eOver);
+ layeredTexture->SetTextureAlpha(1, 0.5);
+
+   See also:
+          FbxTexture
+
+   Examples:
+          ImportScene/DisplayMaterial.cxx, ImportScene/DisplayMesh.cxx, ImportScene/DisplayTexture.cxx, and Layers/main.cxx.
+
+   Definition at line 43 of file fbxlayeredtexture.h.
+   Inheritance diagram for FbxLayeredTexture:
+   [USEMAP:class_fbx_layered_texture.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EBlendMode {
+     eTranslucent, eAdditive, eModulate, eModulate2,
+     eOver, eNormal, eDissolve, eDarken,
+     eColorBurn, eLinearBurn, eDarkerColor, eLighten,
+     eScreen, eColorDodge, eLinearDodge, eLighterColor,
+     eSoftLight, eHardLight, eVividLight, eLinearLight,
+     ePinLight, eHardMix, eDifference, eExclusion,
+     eSubtract, eDivide, eHue, eSaturation,
+     eColor, eLuminosity, eOverlay, eBlendModeCount
+   }
+     Blend modes. More...
+
+Public Member Functions
+
+   bool  operator== (const FbxLayeredTexture &pOther) const
+     Equivalence operator.
+   bool  SetTextureBlendMode (int pIndex, EBlendMode pMode)
+     Sets the blending mode of a specified texture.
+   bool  GetTextureBlendMode (int pIndex, EBlendMode &pMode) const
+     Returns the blending mode of a specified texture.
+   bool  SetTextureAlpha (int pIndex, double pAlpha)
+     Sets the alpha of a specified texture.
+   bool  GetTextureAlpha (int pIndex, double &pAlpha) const
+     Returns the alpha of a specified texture.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EBlendMode
+   Search for all occurrences
+
+   Blend modes.
+     * eTranslucent, The new texture layer is transparent (depending on the Alpha value).
+     * eAdditive, Add the color of the new texture to the previous texture.
+     * eModulate, Multiples the color value of the new texture by the color values of all previous layers of texture.
+     * eModulate2, Multiples the color value of the new texture by two and then by the color values of all previous layers of texture.
+     * eOver, Equivalent to eTranslucent. Blends the new texture over top of the old texture, according to the new texture's alpha channel.
+     * eNormal, The colors of the two layers will not interact in any way, and it will display the full value of the colors in layer 1.
+     * eDissolve, Dissolve makes the lower layer take on the colors of the top layer, and how much depends on the opacity of the upper layer.
+     * eDarken, Darken compares each pixel value of the upper layer to its counterpart's pixel value of the lower layer and chooses the darker of the two to display.
+     * eColorBurn, Color Burn burns in the color of the upper layer with the lower layer. No part of the image will get lighter.
+     * eLinearBurn, Linear Burn works like multiply but the results are more intense.
+     * eDarkerColor, This blend mode simply divides pixel values of one layer with the other.
+     * eLighten, Lighten compares the two layers pixel for pixel and uses the lightest pixel value. No part of the image gets darker.
+     * eScreen, Screen brightens by lightning the lower layer based on the lightness of the upper layer
+     * eColorDodge, Color Dodge dodges the lower layer with the upper layer, resulting in a lighter image. No part of the image will be darkened.
+     * eLinearDodge, Linear Dodge works like screen but with more intense results.
+     * eLighterColor, This blend mode has the opposite effect of the Darker Color mode. It compares all the values in both layers, then displays the lightest values.
+     * eSoftLight, Soft Light will multiply the dark tones and screen the light tones.
+     * eHardLight, Hard Light multiplies the dark colors and screens the light colors.
+     * eVividLight, Vivid Light will dodges or burn the lower layer pixels depending on whether the upper layer pixels are brighter or darker than neutral gray. It works on the contrast of the lower layer.
+     * eLinearLight, Linear Light is the same as Vivid light but it works on the brightness of the lower layer.
+     * ePinLight, Pin Light changes the lower layer pixels depending on how bright the pixels are in the upper layer.
+     * eHardMix, Produces either white or black, depending on similarities between A and B.
+     * eDifference, Difference reacts to the differences between the upper and lower layer pixels.
+     * eExclusion, Exclusion uses the darkness of the lower layer to mask the difference between upper and lower layers.
+     * eSubtract, The result color is the foreground color subtracted from the background color. The result color is then applied over the background color using the foreground alpha to define the opacity of the result.
+     * eDivide, This blend mode simply divides pixel values of one layer with the other.
+     * eHue, Hue changes the hue of the lower layer to the hue of the upper layer but leaves brightness and saturation alone.
+     * eSaturation, Saturation changes the saturation of the lower layer to the hue of the upper layer but leaves brightness and hue alone.
+     * eColor, Color changes the hue and saturation of the lower layer to the hue and saturation of the upper layer but leaves luminosity alone.
+     * eLuminosity, Luminosity changes the luminosity of the lower layer to the luminosity of the upper layer while leaving hue and saturation the same.
+     * eOverlay, Multiplies (darkens) when the layer on which the mode is set is dark and screens (brightens) when the layer on which the mode is applied is lighter.
+     * eBlendModeCount, Marks the end of the blend mode enum.
+
+   Enumerator:
+
+          eTranslucent
+
+   Search for all occurrences
+          eAdditive
+
+   The texture is transparent, depending on the Alpha settings.
+   Search for all occurrences
+          eModulate
+
+   The color of the texture is added to the previous texture.
+   Search for all occurrences
+          eModulate2
+
+   The color value of the texture is multiplied by the color values of all previous layers of texture.
+   Search for all occurrences
+   eOver
+
+   The color value of the texture is multiplied by two and then multiplied by the color values of all previous layers of texture.
+   The texture is opaque.
+   Search for all occurrences
+          eNormal
+
+   Search for all occurrences
+          eDissolve
+
+   Search for all occurrences
+          eDarken
+
+   Search for all occurrences
+          eColorBurn
+
+   Search for all occurrences
+          eLinearBurn
+
+   Search for all occurrences
+          eDarkerColor
+
+   Search for all occurrences
+          eLighten
+
+   Search for all occurrences
+          eScreen
+
+   Search for all occurrences
+          eColorDodge
+
+   Search for all occurrences
+          eLinearDodge
+
+   Search for all occurrences
+          eLighterColor
+
+   Search for all occurrences
+          eSoftLight
+
+   Search for all occurrences
+          eHardLight
+
+   Search for all occurrences
+          eVividLight
+
+   Search for all occurrences
+          eLinearLight
+
+   Search for all occurrences
+          ePinLight
+
+   Search for all occurrences
+          eHardMix
+
+   Search for all occurrences
+          eDifference
+
+   Search for all occurrences
+          eExclusion
+
+   Search for all occurrences
+          eSubtract
+
+   Search for all occurrences
+          eDivide
+
+   Search for all occurrences
+          eHue
+
+   Search for all occurrences
+          eSaturation
+
+   Search for all occurrences
+          eColor
+
+   Search for all occurrences
+          eLuminosity
+
+   Search for all occurrences
+          eOverlay
+
+   Search for all occurrences
+          eBlendModeCount
+
+   Search for all occurrences
+
+   Reimplemented from FbxTexture.
+
+   Definition at line 82 of file fbxlayeredtexture.h.
+        {
+                eTranslucent,
+                eAdditive,
+                eModulate,
+                eModulate2,
+        eOver,
+        eNormal,
+        eDissolve,
+        eDarken,
+        eColorBurn,
+        eLinearBurn,
+        eDarkerColor,
+        eLighten,
+        eScreen,
+        eColorDodge,
+        eLinearDodge,
+        eLighterColor,
+        eSoftLight,
+        eHardLight,
+        eVividLight,
+        eLinearLight,
+        ePinLight,
+        eHardMix,
+        eDifference,
+        eExclusion,
+        eSubtract,
+        eDivide,
+        eHue,
+        eSaturation,
+        eColor,
+        eLuminosity,
+        eOverlay,
+        eBlendModeCount
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   bool operator== ( const FbxLayeredTexture &  pOther ) const
+
+   Equivalence operator.
+
+   Parameters:
+
+          pOther The object for comparison.
+
+   Returns:
+          True if pOther is equivalent to this object, returns false otherwise.
+
+   bool SetTextureBlendMode ( int         pIndex,
+                              EBlendMode  pMode
+                            )
+   Search for all occurrences
+
+   Sets the blending mode of a specified texture.
+
+   Parameters:
+
+          pIndex The texture index.
+          pMode  The blend mode to be set.
+
+   Returns:
+          True if successful, returns false otherwise.
+
+   Examples:
+          Layers/main.cxx.
+
+   bool GetTextureBlendMode ( int           pIndex,
+                              EBlendMode &  pMode
+                            )               const
+   Search for all occurrences
+
+   Returns the blending mode of a specified texture.
+
+   Parameters:
+
+          pIndex The texture index.
+          pMode  The parameter that will hold the returned blend mode.
+
+   Returns:
+          True if successful, returns false otherwise.
+
+   Examples:
+          ImportScene/DisplayTexture.cxx.
+
+   bool SetTextureAlpha ( int     pIndex,
+                          double  pAlpha
+                        )
+   Search for all occurrences
+
+   Sets the alpha of a specified texture.
+
+   Parameters:
+
+          pIndex The texture index.
+          pAlpha The alpha to be set.
+
+   Returns:
+          True if successful, returns false otherwise.
+
+   bool GetTextureAlpha ( int       pIndex,
+                          double &  pAlpha
+                        )           const
+   Search for all occurrences
+
+   Returns the alpha of a specified texture.
+
+   Parameters:
+
+          pIndex The texture index.
+          pAlpha The parameter that will hold the returned alpha.
+
+   Returns:
+          True if successful, returns false otherwise.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/shading/fbxlayeredtexture.h
+
+   Please send us your comment about this page

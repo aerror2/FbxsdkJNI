@@ -1,0 +1,412 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxFile Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Protected Attributes
+   FbxFile Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2013.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxfile.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Class for interfacing with files, providing a similar interface for files independant of the OS or filesystem.
+
+   Definition at line 27 of file fbxfile.h.
+
+   List of all members.
+
+Public Types
+
+   enum   EMode {
+     eNone, eReadOnly, eReadWrite, eCreateWriteOnly,
+     eCreateReadWrite, eCreateAppend
+   }
+   enum   ESeekPos { eBegin, eCurrent, eEnd }
+
+Public Member Functions
+
+     FbxFile ()
+   virtual  ~FbxFile ()
+   virtual bool  Open (const char *pFileName_UTF8, const EMode pMode=eCreateReadWrite, const bool pBinary=true)
+     Opens a file on disk using the specified read/write mode.
+   virtual bool  Open (FbxStream *pStream, void *pStreamData, const char *pMode)
+     Opens a file from a data stream using the specified read/write mode.
+   virtual bool  Close ()
+     Closes a file, freeing its handle.
+   virtual void  Seek (const FbxInt64 pOffset, const ESeekPos pSeekPos=eBegin)
+     Seek to a specific position in the file, starting from either beginning, current position or end.
+   virtual FbxInt64  Tell () const
+     Returns the position at which the file cursor currently is.
+   virtual size_t  Read (void *pDstBuf, const size_t pSize)
+     Read a part of the file into a buffer.
+   virtual char *  ReadString (char *pDstBuf, const size_t pDstSize, bool pStopAtFirstWhiteSpace=false)
+     Read a part of the file as a string into a buffer.
+   virtual size_t  Write (const void *pSrcBuf, const size_t pSize)
+     Write a buffer to an opened file.
+   virtual bool  WriteFormat (const char *pFormat,...)
+     Write a formatted string to an opened file.
+   virtual bool  Truncate (const FbxInt64 pSize)
+     Modify the size of a file.
+   virtual bool  EndOfFile () const
+     Checks whether the current file cursor position is at the end of file.
+   virtual FbxInt64  GetSize ()
+     Gets the size of the currently opened file.
+   virtual void  GetMemoryFileInfo (void **pMemPtr, size_t pSize)
+     Unused function in this default implementation.
+   bool  IsOpen () const
+     Checks whether the file is currently opened.
+   bool  IsStream () const
+     Checks whether the file is currently opened with a user-provided streaming interface instead of just the file name.
+   const char *  GetFilePathName () const
+     Returns the full file path name, as provided when opening it.
+   EMode  GetFileMode () const
+     Returns the mode with which the file was opened, when calling the Open() method.
+   int  GetLastError ()
+     Returns last encountered error when performing any operation on the file.
+   void  ClearError ()
+     Resets the current error code and the end of file indicator of the opened file.
+
+Protected Attributes
+
+   FILE *  mFilePtr
+   FbxStream *  mStreamPtr
+   bool  mIsOpen
+   bool  mIsStream
+   EMode  mMode
+   FbxString  mFileName
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EMode
+   Search for all occurrences
+
+   Enumerator:
+
+          eNone
+
+   Search for all occurrences
+          eReadOnly
+
+   Search for all occurrences
+          eReadWrite
+
+   Search for all occurrences
+          eCreateWriteOnly
+
+   Search for all occurrences
+          eCreateReadWrite
+
+   Search for all occurrences
+          eCreateAppend
+
+   Search for all occurrences
+
+   Definition at line 30 of file fbxfile.h.
+{eNone, eReadOnly, eReadWrite, eCreateWriteOnly, eCreateReadWrite, eCreateAppend};
+
+   enum ESeekPos
+   Search for all occurrences
+
+   Enumerator:
+
+          eBegin
+
+   Search for all occurrences
+          eCurrent
+
+   Search for all occurrences
+          eEnd
+
+   Search for all occurrences
+
+   Definition at line 31 of file fbxfile.h.
+{eBegin, eCurrent, eEnd};
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxFile ( )
+   virtual ~FbxFile ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Open ( const char *  pFileName_UTF8,
+                       const EMode   pMode = eCreateReadWrite,
+                       const bool    pBinary = true
+                     )               [virtual]
+   Search for all occurrences
+
+   Opens a file on disk using the specified read/write mode.
+
+   Parameters:
+
+          pFileName_UTF8 Filename in UTF8 (compatible with ASCII)
+          pMode          Mode in which to open the file, e.g. eReadOnly, eCreateReadWrite, etc.
+          pBinary        Whether the file is to be opened in binary or text mode.
+
+   Returns:
+          True if opening is successful.
+
+   virtual bool Open ( FbxStream *   pStream,
+                       void *        pStreamData,
+                       const char *  pMode
+                     )               [virtual]
+   Search for all occurrences
+
+   Opens a file from a data stream using the specified read/write mode.
+
+   Parameters:
+
+          pStream     Stream instance with which the file will be read/written
+          pStreamData User-defined data to pass as a parameter to the stream's Open() method.
+          pMode       Deprecated/Unused.
+
+   Returns:
+          True if opening is successful.
+
+   virtual bool Close ( ) [virtual]
+   Search for all occurrences
+
+   Closes a file, freeing its handle.
+
+   Returns:
+          True if closing is successful.
+
+   virtual void Seek ( const FbxInt64  pOffset,
+                       const ESeekPos  pSeekPos = eBegin
+                     )                 [virtual]
+   Search for all occurrences
+
+   Seek to a specific position in the file, starting from either beginning, current position or end.
+
+   Parameters:
+
+          pOffset  Offset to seek to (advance the file position cursor) starting from pSeekPos
+          pSeekPos Starting position from which to seek to. Beginning, current position or end.
+
+   virtual FbxInt64 Tell ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the position at which the file cursor currently is.
+
+   For example, will be ==0 for beginning and ==FileSize for end.
+
+   Returns:
+          The position at which the file cursor currently is.
+
+   virtual size_t Read ( void *        pDstBuf,
+                         const size_t  pSize
+                       )               [virtual]
+   Search for all occurrences
+
+   Read a part of the file into a buffer.
+
+   Parameters:
+
+          pDstBuf Pre-allocated buffer in which to read data
+          pSize   Size of the data chunk to be read in bytes
+
+   Returns:
+          Number of bytes read.
+
+   virtual char* ReadString ( char *        pDstBuf,
+                              const size_t  pDstSize,
+                              bool          pStopAtFirstWhiteSpace = false
+                            )               [virtual]
+   Search for all occurrences
+
+   Read a part of the file as a string into a buffer.
+
+   Parameters:
+
+   pDstBuf Pre-allocated buffer in which to read the string
+   pDstSize Size of the data chunk to be read in characters
+   pStopAtFirstWhiteSpace If true, will stop reading at first white space, otherwise it will stop at the first line feed (
+   )
+
+   Returns:
+          Pointer on the data read. Equivalent to parameter pDstBuf
+
+   virtual size_t Write ( const void *  pSrcBuf,
+                          const size_t  pSize
+                        )               [virtual]
+   Search for all occurrences
+
+   Write a buffer to an opened file.
+
+   Parameters:
+
+          pSrcBuf Pre-allocated buffer from which to write data
+          pSize   Size of the data chunk to be written in bytes
+
+   Returns:
+          Number of bytes written.
+
+   virtual bool WriteFormat ( const char *  pFormat,
+                                            ...
+                            )               [virtual]
+   Search for all occurrences
+
+   Write a formatted string to an opened file.
+
+   Parameters:
+
+          pFormat Pre-allocated format buffer from which to write data
+          ...     Variable number of arguments describing the values in the previous parameter.
+
+   Returns:
+          True if data was successfully written
+
+   virtual bool Truncate ( const FbxInt64  pSize ) [virtual]
+   Search for all occurrences
+
+   Modify the size of a file.
+
+   Null characters ('\0') are appended if the file is extended. If the file is truncated, all data from the end of the shortened file to the original length of the file is lost. Please note that this function considers the current file cursor as the beginning of the file. It is therefore required to use Seek(0) prior to calling it if we want the size specified by the pSize parameter to be absolute.
+
+   Parameters:
+
+          pSize New desired file size
+
+   Returns:
+          True if file was successfully truncated
+
+   virtual bool EndOfFile ( ) const [virtual]
+   Search for all occurrences
+
+   Checks whether the current file cursor position is at the end of file.
+
+   Returns:
+          True if the cursor is at the end of file, false otherwise.
+
+   virtual FbxInt64 GetSize ( ) [virtual]
+   Search for all occurrences
+
+   Gets the size of the currently opened file.
+
+   Returns:
+          File size
+
+   virtual void GetMemoryFileInfo ( void **  pMemPtr,
+                                    size_t   pSize
+                                  )          [virtual]
+   Search for all occurrences
+
+   Unused function in this default implementation.
+
+   Must be implemented by memory files.
+
+   Parameters:
+
+          pMemPtr Unused
+          pSize   Unused
+
+   bool IsOpen ( ) const
+   Search for all occurrences
+
+   Checks whether the file is currently opened.
+
+   Returns:
+          True if file is opened, false otherwise
+
+   bool IsStream ( ) const
+   Search for all occurrences
+
+   Checks whether the file is currently opened with a user-provided streaming interface instead of just the file name.
+
+   Returns:
+          True if file has been opened with a stream interface, false otherwise
+
+   const char* GetFilePathName ( ) const
+   Search for all occurrences
+
+   Returns the full file path name, as provided when opening it.
+
+   Returns:
+          File full path
+
+   EMode GetFileMode ( ) const
+   Search for all occurrences
+
+   Returns the mode with which the file was opened, when calling the Open() method.
+
+   Returns:
+          Mode with which the file was opened
+
+   int GetLastError ( )
+   Search for all occurrences
+
+   Returns last encountered error when performing any operation on the file.
+
+   Returns:
+          Last error code
+
+   void ClearError ( )
+   Search for all occurrences
+
+   Resets the current error code and the end of file indicator of the opened file.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FILE* mFilePtr [protected]
+   Search for all occurrences
+
+   Definition at line 153 of file fbxfile.h.
+   FbxStream* mStreamPtr [protected]
+   Search for all occurrences
+
+   Definition at line 154 of file fbxfile.h.
+   bool mIsOpen [protected]
+   Search for all occurrences
+
+   Definition at line 155 of file fbxfile.h.
+   bool mIsStream [protected]
+   Search for all occurrences
+
+   Definition at line 156 of file fbxfile.h.
+   EMode mMode [protected]
+   Search for all occurrences
+
+   Definition at line 157 of file fbxfile.h.
+   FbxString mFileName [protected]
+   Search for all occurrences
+
+   Definition at line 158 of file fbxfile.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxfile.h
+
+   Please send us your comment about this page

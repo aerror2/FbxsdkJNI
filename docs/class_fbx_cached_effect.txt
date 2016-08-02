@@ -1,0 +1,147 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCachedEffect Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxCachedEffect Class Reference
+   Search for all occurrences
+
+   #include <fbxcachedeffect.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   A cached effect is a type of node attribute to represent certain type of effect by an cache object.
+
+   Categories are particle cache, fluid cache, hair cache and general cache.
+
+   See also:
+          ECategory for the effect types that are supported.
+
+   Definition at line 28 of file fbxcachedeffect.h.
+   Inheritance diagram for FbxCachedEffect:
+   [USEMAP:class_fbx_cached_effect.png]
+
+   List of all members.
+
+Public Types
+
+                             enum   ECategory { eParticles, eFluids, eHair, eGeneric }
+                                    Effect attribute category. More...
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the FbxNodeAttribute::EType::eCachedEffect attribute type.
+                         ECategory  GetCategory () const
+                                    Return the specialization category of this effect attribute.
+                              void  SetCache (FbxCache *pCache, ECategory pCategory=eGeneric)
+                                    Assign a cache object to be used by this attribute.
+                        FbxCache *  GetCache () const
+                                    Get the cache object used by this node attribute.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ECategory
+   Search for all occurrences
+
+   Effect attribute category.
+
+   This is for identification purpose and has no influence inside the FBX SDK. However, applications may use this to filter FbxCachedEffect objects.
+
+   Remarks:
+          Vertex caches for deforming geometries are not handled by the FbxCachedEffect object. These caches are connected with the FbxVertexCacheDeformer object.
+          If an object of this class is used as the default NodeAttribute for a FbxNode and the scene is saved to an FBX v6 and earlier versions, the CachedEffect attribute is not saved and the FbxNode will be processed as a FbxNull node with default values for the attribute.
+
+   Enumerator:
+
+          eParticles
+
+   This effect handles a particle cache.
+   Search for all occurrences
+          eFluids
+
+   This effect handles a fluid cache.
+   Search for all occurrences
+          eHair
+
+   This effect handles an hair cache.
+   Search for all occurrences
+          eGeneric
+
+   This effect handles a cache other than particles, fluids or hair.
+   Search for all occurrences
+
+   Definition at line 45 of file fbxcachedeffect.h.
+        {
+        eParticles,
+        eFluids,
+        eHair,
+        eGeneric
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the FbxNodeAttribute::EType::eCachedEffect attribute type.
+
+   Reimplemented from FbxNodeAttribute.
+   ECategory GetCategory ( ) const
+   Search for all occurrences
+
+   Return the specialization category of this effect attribute.
+   void SetCache ( FbxCache *  pCache,
+                   ECategory   pCategory = eGeneric
+                 )
+   Search for all occurrences
+
+   Assign a cache object to be used by this attribute.
+
+   Parameters:
+
+          pCache    The cache object.
+          pCategory The type of this cached effect.
+
+   Remarks:
+          The cache referenced by the pCache pointer can be freely shared among multiple FbxCachedEffect (and even the FbxVertexCacheDeformer) therefore pCategory identifier should really only used as a hint of what this FbxCachedEffect represents but it should not be taken for granted that the content of the cache really matches the category. Applications should always check the cache files to ensure that they are manipulating the desired information.
+
+   FbxCache* GetCache ( ) const
+   Search for all occurrences
+
+   Get the cache object used by this node attribute.
+
+   Returns:
+          A pointer to the cache object used by this node attribute, or NULL if no cache object is assigned.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxcachedeffect.h
+
+   Please send us your comment about this page

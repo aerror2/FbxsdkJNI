@@ -1,0 +1,247 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxConstraint Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions
+   FbxConstraint Class Reference
+
+   This reference page is linked to from the following overview topics: FBX SDK 2014, Supported Scene Elements, Transformation Data, List of Python Fbx classes, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxconstraint.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Base class for weighted animation constraints.
+
+   Constraints are primarily used to impose limits on properties of objects (e.g. position, orientation, scale) and to automate animation processes. A constrained object is an object with properties constrained by one or more weighted constraint sources.
+
+   Definition at line 27 of file fbxconstraint.h.
+   Inheritance diagram for FbxConstraint:
+   [USEMAP:class_fbx_constraint.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EType {
+     eUnknown, ePosition, eRotation, eScale,
+     eParent, eSingleChainIK, eAim, eCharacter,
+     eCustom
+   }
+     Constraint attribute types. More...
+
+Public Member Functions
+
+   virtual EType  GetConstraintType () const
+     Access the type of the constraint.
+   virtual FbxObject *  GetConstrainedObject () const
+     Retrieve the constrained object.
+   virtual int  GetConstraintSourceCount () const
+     Retrieve the count of constraint source.
+   virtual FbxObject *  GetConstraintSource (int pIndex) const
+     Retrieve a constraint source with the specified index.
+   double  GetSourceWeight (const FbxObject *pObject) const
+     Get the weight associated with a constraint source.
+
+Properties
+
+   FbxPropertyT< FbxDouble >  Weight
+     This property represents the degree of influence of a constraint from 0.0 (no influence) to 100.0 (full influence).
+   FbxPropertyT< FbxBool >  Active
+     This property controls whether the constraint is applied or not.
+   FbxPropertyT< FbxBool >  Lock
+     This property handles the lock state of the constraint.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EType
+   Search for all occurrences
+
+   Constraint attribute types.
+
+   Enumerator:
+
+          eUnknown
+
+   Search for all occurrences
+          ePosition
+
+   Invalid constraint.
+   Search for all occurrences
+          eRotation
+
+   Position constraint (referred to as a point constraint in Maya).
+   Search for all occurrences
+          eScale
+
+   Rotation constraint (referred to as an orient constraint in Maya).
+   Search for all occurrences
+          eParent
+
+   Scale constraint.
+   Search for all occurrences
+          eSingleChainIK
+
+   Parent constraint.
+   Search for all occurrences
+          eAim
+
+   Single chain IK constraint.
+   Search for all occurrences
+          eCharacter
+
+   Aim constraint.
+   Search for all occurrences
+   eCustom
+
+   Character constraint.
+   User defined constraints.
+   Search for all occurrences
+
+   Definition at line 60 of file fbxconstraint.h.
+    {
+        eUnknown,
+        ePosition,
+        eRotation,
+        eScale,
+        eParent,
+        eSingleChainIK,
+        eAim,
+        eCharacter,
+        eCustom
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual EType GetConstraintType ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Access the type of the constraint.
+
+   Returns:
+          This type of the constraint.
+
+   Definition at line 76 of file fbxconstraint.h.
+{ return eUnknown; }
+
+   virtual FbxObject* GetConstrainedObject ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Retrieve the constrained object.
+
+   Returns:
+          The constrained object.
+
+   Reimplemented in FbxConstraintAim, FbxConstraintParent, FbxConstraintPosition, FbxConstraintRotation, and FbxConstraintScale.
+
+   Definition at line 81 of file fbxconstraint.h.
+{ return NULL; }
+
+   virtual int GetConstraintSourceCount ( ) const [inline, virtual]
+   Search for all occurrences
+
+   Retrieve the count of constraint source.
+
+   Returns:
+          The count of constraint source.
+
+   Reimplemented in FbxConstraintAim, FbxConstraintParent, FbxConstraintPosition, FbxConstraintRotation, and FbxConstraintScale.
+
+   Definition at line 86 of file fbxconstraint.h.
+{ return 0; }
+
+   virtual FbxObject* GetConstraintSource ( int  pIndex ) const [inline, virtual]
+   Search for all occurrences
+
+   Retrieve a constraint source with the specified index.
+
+   Parameters:
+
+          pIndex The specified index.
+
+   Returns:
+          The constraint source at the specified index.
+
+   Reimplemented in FbxConstraintAim, FbxConstraintParent, FbxConstraintPosition, FbxConstraintRotation, and FbxConstraintScale.
+
+   Definition at line 92 of file fbxconstraint.h.
+{ return NULL; }
+
+   double GetSourceWeight ( const FbxObject *  pObject ) const
+   Search for all occurrences
+
+   Get the weight associated with a constraint source.
+
+   Parameters:
+
+          pObject The given constraint source.
+
+   Returns:
+          The weight of the constraint source.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble> Weight
+   Search for all occurrences
+
+   This property represents the degree of influence of a constraint from 0.0 (no influence) to 100.0 (full influence).
+
+   Default value is 100.0.
+
+   Definition at line 40 of file fbxconstraint.h.
+   FbxPropertyT<FbxBool> Active
+   Search for all occurrences
+
+   This property controls whether the constraint is applied or not.
+
+   If the value is false the constraint will have no effect. The default value is true.
+
+   Default value is true.
+
+   Definition at line 47 of file fbxconstraint.h.
+   FbxPropertyT<FbxBool> Lock
+   Search for all occurrences
+
+   This property handles the lock state of the constraint.
+
+   When enabled, the constrained object cannot be moved away from its constrained location when the constraint is active.
+
+   Default value is false.
+
+   Definition at line 55 of file fbxconstraint.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/constraint/fbxconstraint.h
+
+   Please send us your comment about this page

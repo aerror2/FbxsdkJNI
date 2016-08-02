@@ -1,0 +1,141 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBaseAllocator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxBaseAllocator Class Reference
+   Search for all occurrences
+
+   #include <fbxcontainerallocators.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   An allocator class for use as a template parameter to one of the container class (FbxMap, FbxSet2, FbxDynamicArray...) must implement these.
+
+   Definition at line 23 of file fbxcontainerallocators.h.
+
+   List of all members.
+
+Public Member Functions
+
+           FbxBaseAllocator (const size_t pRecordSize)
+           The class constructor.
+     void  Reserve (const size_t pRecordCount)
+           This tells the allocator that we are about to call AllocateRecords one or many times to allocate pRecordCount records.
+   void *  AllocateRecords (const size_t pRecordCount=1)
+           Returns a pointer to a uninitialized continuous block of memory able to hold pRecordCount * pRecordSize bytes.
+     void  FreeMemory (void *pRecord)
+           Frees a block of memory returned by AllocateRecords.
+   size_t  GetRecordSize () const
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxBaseAllocator ( const size_t  pRecordSize ) [inline]
+
+   The class constructor.
+
+   Parameters:
+
+          pRecordSize the size of one record held by the container.
+
+   Remarks:
+          The parameter pRecordSize is not necessarily the same size as of the value type, since the container may wrap the value into a private class.
+
+   Definition at line 32 of file fbxcontainerallocators.h.
+                                                   :
+                mRecordSize(pRecordSize)
+        {
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reserve ( const size_t  pRecordCount ) [inline]
+   Search for all occurrences
+
+   This tells the allocator that we are about to call AllocateRecords one or many times to allocate pRecordCount records.
+
+   Parameters:
+
+          pRecordCount
+
+   Remarks:
+          This gives the allocator a chance to do whatever it deems necessary to optimize subsequent allocations, for example, by preallocating a sufficiently large pool of memory.
+
+   Definition at line 44 of file fbxcontainerallocators.h.
+        {
+                // By default, ignore all preallocating requests.
+        }
+
+   void* AllocateRecords ( const size_t  pRecordCount = 1 ) [inline]
+   Search for all occurrences
+
+   Returns a pointer to a uninitialized continuous block of memory able to hold pRecordCount * pRecordSize bytes.
+
+   Parameters:
+
+          pRecordCount
+
+   Remarks:
+          pRecordSize was defined in the Constructor description, above.
+
+   Definition at line 54 of file fbxcontainerallocators.h.
+        {
+                return FbxMalloc(pRecordCount * mRecordSize);
+        }
+
+   void FreeMemory ( void *  pRecord ) [inline]
+   Search for all occurrences
+
+   Frees a block of memory returned by AllocateRecords.
+
+   Parameters:
+
+          pRecord
+
+   Definition at line 62 of file fbxcontainerallocators.h.
+        {
+                FbxFree(pRecord);
+        }
+
+   size_t GetRecordSize ( ) const [inline]
+   Search for all occurrences
+
+   Returns:
+          the size of each record allocated.
+
+   Definition at line 69 of file fbxcontainerallocators.h.
+        {
+                return mRecordSize;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/base/fbxcontainerallocators.h
+
+   Please send us your comment about this page

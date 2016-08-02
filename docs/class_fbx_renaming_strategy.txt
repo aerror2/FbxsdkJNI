@@ -1,0 +1,363 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRenamingStrategy Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Static Public Member Functions
+   FbxRenamingStrategy Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxrenamingstrategy.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The FbxRenamingStrategy object can be set to rename all the objects in a scene.
+
+   It can remove name clashing, remove illegal characters, manage namespaces and manage backward compatibility. It is better to choose FbxSceneRenamer instead of this class to simplify the usage.
+
+   See also:
+          FbxSceneRenamer
+
+   Definition at line 114 of file fbxrenamingstrategy.h.
+   Inheritance diagram for FbxRenamingStrategy:
+   [USEMAP:class_fbx_renaming_strategy.png]
+
+   List of all members.
+
+Public Types
+
+                                            enum   EDirection { eToFBX, eFromFBX }
+                                                   The mode describing the convention direction, from FBX format or to FBX format. More...
+                                            enum   EClashType { eNameClashAuto, eNameClashType1, eNameClashType2 }
+
+Public Member Functions
+
+                                                   FbxRenamingStrategy (EDirection pMod, bool pOnCreationRun=false)
+                                                   Constructor.
+                                          virtual  ~FbxRenamingStrategy ()
+                                                   Destructor.
+                                     virtual bool  Rename (FbxNameHandler &pName)
+                                                   Rename a name if necessary.
+                                     virtual void  Clear ()
+                                                   Resets internal state regarding assigned names.
+   virtual
+   FbxRenamingStrategyInterface *  Clone ()
+                                                   Create a dynamic renaming strategy instance of the same type as the child class.
+                                             void  SetClashSoverType (EClashType pType)
+                                                   Setup the strategy to perform this algorithm.
+                                   virtual char *  GetNameSpace ()
+                                                   Get the namespace of the last renamed object.
+                                     virtual void  SetInNameSpaceSymbol (FbxString pNameSpaceSymbol)
+                                                   Sets the current scene namespace symbol.
+                                     virtual void  SetOutNameSpaceSymbol (FbxString pNameSpaceSymbol)
+                                                   Sets the wanted scene namespace symbol.
+                                     virtual void  SetCaseSensibility (bool pIsCaseSensitive)
+                                                   Sets case sensitivity for name clashing.
+                                     virtual void  SetReplaceNonAlphaNum (bool pReplaceNonAlphaNum)
+                                                   Sets the flag for character acceptance during renaming.
+                                     virtual void  SetFirstNotNum (bool pFirstNotNum)
+                                                   Sets the flag for first character acceptance during renaming.
+                                     virtual bool  RenameUnparentNameSpace (FbxNode *pNode, bool pIsRoot=false)
+                                                   Recursively renames all the unparented namespaced objects (Prefix mode) starting from this node.
+                                     virtual bool  RemoveImportNameSpaceClash (FbxNode *pNode)
+                                                   Recursively removes all the unparented namespaced "key" starting from this node.
+                                     virtual void  GetParentsNameSpaceList (FbxNode *pNode, FbxArray< FbxString * > &pNameSpaceList)
+                                                   Recursively get all the namespace starting from this node's parent.
+                                     virtual bool  PropagateNameSpaceChange (FbxNode *pNode, FbxString OldNS, FbxString NewNS)
+                                                   Recursively replace the namespace starting from this node to its children.
+
+Static Public Member Functions
+
+                                    static char *  NoPrefixName (const char *pName)
+                                                   Returns a name with its prefix removed.
+                                    static char *  NoPrefixName (FbxString &pName)
+                                                   Returns a name with its prefix removed.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EDirection
+   Search for all occurrences
+
+   The mode describing the convention direction, from FBX format or to FBX format.
+     * eToFBX Convert to FBX format from another format.
+     * eFromFBX Convert from FBX format to another format.
+
+   Enumerator:
+
+          eToFBX
+
+   Search for all occurrences
+          eFromFBX
+
+   Search for all occurrences
+
+   Definition at line 121 of file fbxrenamingstrategy.h.
+    {
+        eToFBX,
+        eFromFBX
+    };
+
+   enum EClashType
+   Search for all occurrences
+     * eNameClashAuto
+     * eNameClashType1
+     * eNameClashType2
+
+   Enumerator:
+
+          eNameClashAuto
+
+   Search for all occurrences
+          eNameClashType1
+
+   Search for all occurrences
+          eNameClashType2
+
+   Search for all occurrences
+
+   Definition at line 155 of file fbxrenamingstrategy.h.
+    {
+        eNameClashAuto,
+        eNameClashType1,
+        eNameClashType2
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxRenamingStrategy ( EDirection  pMod,
+                         bool        pOnCreationRun = false
+                       )
+
+   Constructor.
+
+   Parameters:
+
+          pMod           The mode describing the convention direction, from FBX format or to FBX format.
+          pOnCreationRun
+
+   virtual ~FbxRenamingStrategy ( ) [virtual]
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual bool Rename ( FbxNameHandler &  pName ) [virtual]
+   Search for all occurrences
+
+   Rename a name if necessary.
+
+   Parameters:
+
+          pName The name to be renamed.
+
+   Returns:
+          Return true on success, false otherwise.
+
+   Implements FbxRenamingStrategyInterface.
+   virtual void Clear ( ) [virtual]
+   Search for all occurrences
+
+   Resets internal state regarding assigned names.
+
+   Implements FbxRenamingStrategyInterface.
+   virtual FbxRenamingStrategyInterface* Clone ( ) [virtual]
+   Search for all occurrences
+
+   Create a dynamic renaming strategy instance of the same type as the child class.
+
+   Returns:
+          New instance.
+
+   Implements FbxRenamingStrategyInterface.
+   void SetClashSoverType ( EClashType  pType )
+   Search for all occurrences
+
+   Setup the strategy to perform this algorithm.
+
+   Parameters:
+
+          pType
+
+   static char* NoPrefixName ( const char *  pName ) [static]
+   Search for all occurrences
+
+   Returns a name with its prefix removed.
+
+   Parameters:
+
+          pName A name containing a prefix.
+
+   Returns:
+          The part of pName following the "::"
+
+   static char* NoPrefixName ( FbxString &  pName ) [static]
+   Search for all occurrences
+
+   Returns a name with its prefix removed.
+
+   Parameters:
+
+          pName A name containing a prefix.
+
+   Returns:
+          The part of pName following the "::"
+
+   virtual char* GetNameSpace ( ) [inline, virtual]
+   Search for all occurrences
+
+   Get the namespace of the last renamed object.
+
+   Returns:
+          Char pointer to the namespace.
+
+   Definition at line 182 of file fbxrenamingstrategy.h.
+{ return mNameSpace.Buffer(); }
+
+   virtual void SetInNameSpaceSymbol ( FbxString  pNameSpaceSymbol ) [inline, virtual]
+   Search for all occurrences
+
+   Sets the current scene namespace symbol.
+
+   Parameters:
+
+          pNameSpaceSymbol namespace symbol.
+
+   Definition at line 187 of file fbxrenamingstrategy.h.
+{mInNameSpaceSymbol = pNameSpaceSymbol;}
+
+   virtual void SetOutNameSpaceSymbol ( FbxString  pNameSpaceSymbol ) [inline, virtual]
+   Search for all occurrences
+
+   Sets the wanted scene namespace symbol.
+
+   Parameters:
+
+          pNameSpaceSymbol namespace symbol.
+
+   Definition at line 192 of file fbxrenamingstrategy.h.
+{mOutNameSpaceSymbol = pNameSpaceSymbol;}
+
+   virtual void SetCaseSensibility ( bool  pIsCaseSensitive ) [inline, virtual]
+   Search for all occurrences
+
+   Sets case sensitivity for name clashing.
+
+   Parameters:
+
+          pIsCaseSensitive Set to true to make the name clashing case sensitive.
+
+   Definition at line 197 of file fbxrenamingstrategy.h.
+{mCaseSensitive = pIsCaseSensitive ;}
+
+   virtual void SetReplaceNonAlphaNum ( bool  pReplaceNonAlphaNum ) [inline, virtual]
+   Search for all occurrences
+
+   Sets the flag for character acceptance during renaming.
+
+   Parameters:
+
+          pReplaceNonAlphaNum Set to true to replace illegal characters with an underscore ("_").
+
+   Definition at line 202 of file fbxrenamingstrategy.h.
+{mReplaceNonAlphaNum = pReplaceNonAlphaNum;}
+
+   virtual void SetFirstNotNum ( bool  pFirstNotNum ) [inline, virtual]
+   Search for all occurrences
+
+   Sets the flag for first character acceptance during renaming.
+
+   Parameters:
+
+          pFirstNotNum Set to true to add an underscore to the name if the first character is a number.
+
+   Definition at line 207 of file fbxrenamingstrategy.h.
+{mFirstNotNum = pFirstNotNum;}
+
+   virtual bool RenameUnparentNameSpace ( FbxNode *  pNode,
+                                          bool       pIsRoot = false
+                                        )            [virtual]
+   Search for all occurrences
+
+   Recursively renames all the unparented namespaced objects (Prefix mode) starting from this node.
+
+   Parameters:
+
+          pNode   Parent node.
+          pIsRoot The root node.
+
+   Remarks:
+          This function adds "_NSclash" when it encounters an unparented namespaced object.
+
+   virtual bool RemoveImportNameSpaceClash ( FbxNode *  pNode ) [virtual]
+   Search for all occurrences
+
+   Recursively removes all the unparented namespaced "key" starting from this node.
+
+   Parameters:
+
+          pNode Parent node.
+
+   Remarks:
+          This function removes "_NSclash" when encountered. This is the opposite from RenameUnparentNameSpace.
+
+   virtual void GetParentsNameSpaceList ( FbxNode *                  pNode,
+                                          FbxArray< FbxString * > &  pNameSpaceList
+                                        )                            [virtual]
+   Search for all occurrences
+
+   Recursively get all the namespace starting from this node's parent.
+
+   Parameters:
+
+          pNode          Parent node.
+          pNameSpaceList output the namespace list from pNode's parent to the root node.
+
+   virtual bool PropagateNameSpaceChange ( FbxNode *  pNode,
+                                           FbxString  OldNS,
+                                           FbxString  NewNS
+                                         )            [virtual]
+   Search for all occurrences
+
+   Recursively replace the namespace starting from this node to its children.
+
+   Parameters:
+
+          pNode Current node.
+          OldNS The old namespace to be replaced with the NewNs.
+          NewNS The new namespace to replace OldNs.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxrenamingstrategy.h
+
+   Please send us your comment about this page

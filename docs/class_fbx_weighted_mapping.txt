@@ -1,0 +1,250 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxWeightedMapping Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Classes | Public Types | Public Member Functions
+   FbxWeightedMapping Class Reference
+   Search for all occurrences
+
+   #include <fbxweightedmapping.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Define a weighted bidirectional mapping relation on objects.
+
+   There are two object set. The source object of mapping is in source set. The destination object is in destination set. Each object can have multiple mapping relation with other objects.
+
+   Definition at line 28 of file fbxweightedmapping.h.
+
+   List of all members.
+
+Classes
+
+                struct   Element
+                         Record one mapping from one object. More...
+
+Public Types
+
+                  enum   ESet { eSource, eDestination }
+                         Object set type in the mapping relation. More...
+
+Public Member Functions
+
+                   void  Reset (int pSourceSize, int pDestinationSize)
+                         Remove all weighted relations and give new source and destination sets sizes.
+                   void  Add (int pSourceIndex, int pDestinationIndex, double pWeight)
+                         Add a weighted mapping relation.
+                    int  GetElementCount (ESet pSet) const
+                         Get the number of elements of a set.
+                    int  GetRelationCount (ESet pSet, int pElement) const
+                         Get the number of relations an element of a set is linked to.
+              Element &  GetRelation (ESet pSet, int pElement, int pIndex)
+                         Get one of the relations an element of a set is linked to.
+                    int  GetRelationIndex (ESet pSet, int pElementInSet, int pElementInOtherSet) const
+                         Given the index of an element in the other set, get the index of one of the relations an element of a set is linked to.
+                 double  GetRelationSum (ESet pSet, int pElement, bool pAbsoluteValue) const
+                         Get the sum of the weights from the relations an element of a set is linked to.
+                   void  Normalize (ESet pSet, bool pAbsoluteValue)
+                         Normalize the weights of the relations of all the elements of a set.
+   FbxWeightedMapping &  operator= (const FbxWeightedMapping &pWMap)
+
+Constructor and Destructor
+
+                         FbxWeightedMapping (int pSourceSize, int pDestinationSize)
+                         Constructor.
+                         ~FbxWeightedMapping ()
+                         Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum ESet
+   Search for all occurrences
+
+   Object set type in the mapping relation.
+
+   Enumerator:
+
+          eSource
+
+   Object is as source.
+   Search for all occurrences
+          eDestination
+
+   Object is as destination.
+   Search for all occurrences
+
+   Definition at line 33 of file fbxweightedmapping.h.
+        {
+                eSource,
+                eDestination
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxWeightedMapping ( int  pSourceSize,
+                        int  pDestinationSize
+                      )
+
+   Constructor.
+
+   Initialize the source set and destination set.
+
+   Parameters:
+
+          pSourceSize      Source set size
+          pDestinationSize Destination set size
+
+   ~FbxWeightedMapping ( )
+
+   Destructor.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( int  pSourceSize,
+                int  pDestinationSize
+              )
+   Search for all occurrences
+
+   Remove all weighted relations and give new source and destination sets sizes.
+
+   Parameters:
+
+          pSourceSize      New source set size.
+          pDestinationSize New destination set size.
+
+   void Add ( int     pSourceIndex,
+              int     pDestinationIndex,
+              double  pWeight
+            )
+   Search for all occurrences
+
+   Add a weighted mapping relation.
+
+   Parameters:
+
+          pSourceIndex      Index of the source object.
+          pDestinationIndex Index of the destination object.
+          pWeight           Weight of the mapping.
+
+   int GetElementCount ( ESet  pSet ) const
+   Search for all occurrences
+
+   Get the number of elements of a set.
+
+   Parameters:
+
+          pSet source or destination set.
+
+   int GetRelationCount ( ESet  pSet,
+                          int   pElement
+                        )       const
+   Search for all occurrences
+
+   Get the number of relations an element of a set is linked to.
+
+   For example, for one object (which index is specified by pElement) in source set (specified by pSet), the function return how many objects (as destination) the object (as source) mapping to.
+
+   Parameters:
+
+          pSet     Source or destination set.
+          pElement Object index in the set.
+
+   Element& GetRelation ( ESet  pSet,
+                          int   pElement,
+                          int   pIndex
+                        )
+   Search for all occurrences
+
+   Get one of the relations an element of a set is linked to.
+
+   Parameters:
+
+          pSet     Source or destination set.
+          pElement Object index in the set.
+          pIndex   Relation index of the object linked to.
+
+   Returns:
+          Element gives the index of an element in the other set and the assigned weight.
+
+   int GetRelationIndex ( ESet  pSet,
+                          int   pElementInSet,
+                          int   pElementInOtherSet
+                        )       const
+   Search for all occurrences
+
+   Given the index of an element in the other set, get the index of one of the relations an element of a set is linked to.
+
+   Returns -1 if there is not relation between these elements.
+
+   Parameters:
+
+          pSet               Source or destination set.
+          pElementInSet      Object index in the set.
+          pElementInOtherSet Object index in another set.
+
+   Returns:
+          The index of one of the relations, -1 if there is not relation between these elements.
+
+   double GetRelationSum ( ESet  pSet,
+                           int   pElement,
+                           bool  pAbsoluteValue
+                         )       const
+   Search for all occurrences
+
+   Get the sum of the weights from the relations an element of a set is linked to.
+
+   Parameters:
+
+          pSet           Source or destination set.
+          pElement       Object index in the set.
+          pAbsoluteValue Flag to convert negative value to positive value.
+
+   Returns:
+          The sum of the weights from the relations.
+
+   void Normalize ( ESet  pSet,
+                    bool  pAbsoluteValue
+                  )
+   Search for all occurrences
+
+   Normalize the weights of the relations of all the elements of a set.
+
+   Parameters:
+
+          pSet           Source or destination set.
+          pAbsoluteValue Flag to convert negative value to positive value.
+
+   FbxWeightedMapping& operator= ( const FbxWeightedMapping &  pWMap )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxweightedmapping.h
+
+   Please send us your comment about this page

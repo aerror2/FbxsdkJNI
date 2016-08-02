@@ -1,0 +1,165 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxUserNotificationFilteredIterator Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Protected Member Functions | Protected Attributes
+   FbxUserNotificationFilteredIterator Class Reference
+   Search for all occurrences
+
+   #include <fbxusernotification.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This class iterates through the accumulated messages depending on the configuration flags (filter).
+
+   The iterator keeps a local copy of the data extracted from the accumulator.
+
+   Definition at line 459 of file fbxusernotification.h.
+
+   List of all members.
+
+Public Member Functions
+
+                                       FbxUserNotificationFilteredIterator (FbxUserNotification &pAccumulator, int pFilterClass, FbxUserNotification::EOutputSource pSrc=FbxUserNotification::eSequencedDetails, bool pNoDetail=true)
+                                       Constructor.
+                              virtual  ~FbxUserNotificationFilteredIterator ()
+                                  int  GetNbItems () const
+                                       Returns the number of elements contained in this iterator.
+                                 void  Reset ()
+                                       Put the iterator in its reset state.
+           FbxAccumulatorEntry *const  First ()
+                                       Get this iterator's first item.
+           FbxAccumulatorEntry *const  Previous ()
+                                       Get this iterator's previous item.
+           FbxAccumulatorEntry *const  Next ()
+                                       Get this iterator's next item.
+
+Protected Member Functions
+
+                         virtual void  BuildFilteredList (FbxUserNotification &pAccumulator)
+
+Protected Attributes
+
+                                  int  mIterator
+                                  int  mFilterClass
+                                 bool  mNoDetail
+   FbxUserNotification::EOutputSource  mAccuSrcData
+    FbxArray< FbxAccumulatorEntry * >  mFilteredAE
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxUserNotificationFilteredIterator ( FbxUserNotification &               pAccumulator,
+                                         int                                 pFilterClass,
+                                         FbxUserNotification::EOutputSource  pSrc = FbxUserNotification::eSequencedDetails,
+                                         bool                                pNoDetail = true
+                                       )
+
+   Constructor.
+
+   Parameters:
+
+          pAccumulator This reference is only used during construction for retrieving the data required to fill the iterator.
+          pFilterClass The bitwise combination of the EClass identifiers. An FbxAccumulatorEntry element is copied from the accumulator if its Class matches one of the bits of this flag.
+          pSrc         Specify which data format is extracted from the accumulator.
+          pNoDetail    This parameter is used ONLY if pSrc == eAccumulatorEntry and, if set to false, the details of the FbxAccumulatorEntry are also sent to the output devices. If left to its default value, only the description of the FbxAccumulatorEntry is sent.
+
+   virtual ~FbxUserNotificationFilteredIterator ( ) [virtual]
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int GetNbItems ( ) const
+   Search for all occurrences
+
+   Returns the number of elements contained in this iterator.
+   void Reset ( )
+   Search for all occurrences
+
+   Put the iterator in its reset state.
+   FbxAccumulatorEntry* const First ( )
+   Search for all occurrences
+
+   Get this iterator's first item.
+
+   Returns:
+          NULL if the iterator is empty.
+
+   FbxAccumulatorEntry* const Previous ( )
+   Search for all occurrences
+
+   Get this iterator's previous item.
+
+   Returns:
+          NULL if the iterator reached the beginning (or is empty).
+
+   Remarks:
+          This method will also return NULL if it is called before or immediately after a call to First() and reset the iterator to its reset state (meaning that a call to First() is mandatory to be able to iterate again).
+
+   FbxAccumulatorEntry* const Next ( )
+   Search for all occurrences
+
+   Get this iterator's next item.
+
+   Returns:
+          NULL if the iterator reached the end (or is empty).
+
+   Remarks:
+          This method will also return NULL if it is called while the iterator is in its reset state (called before First() or after a preceding call to Previous() reached beyond the beginning).
+
+   virtual void BuildFilteredList ( FbxUserNotification &  pAccumulator ) [protected, virtual]
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   int mIterator [protected]
+   Search for all occurrences
+
+   Definition at line 514 of file fbxusernotification.h.
+   int mFilterClass [protected]
+   Search for all occurrences
+
+   Definition at line 515 of file fbxusernotification.h.
+   bool mNoDetail [protected]
+   Search for all occurrences
+
+   Definition at line 516 of file fbxusernotification.h.
+   FbxUserNotification::EOutputSource mAccuSrcData [protected]
+   Search for all occurrences
+
+   Definition at line 517 of file fbxusernotification.h.
+   FbxArray<FbxAccumulatorEntry*> mFilteredAE [protected]
+   Search for all occurrences
+
+   Definition at line 518 of file fbxusernotification.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/utils/fbxusernotification.h
+
+   Please send us your comment about this page

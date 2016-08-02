@@ -1,0 +1,3341 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxCamera Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxCamera Class Reference
+
+   This reference page is linked to from the following overview topics: Cameras, FBX SDK 2014, Supported Scene Elements, Nodes and the Scene Graph, Information and Technical Support, List of Python Fbx classes, Evaluating the Animation in a Scene, FBX Node Attributes, Connections, FBX Nodes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxcamera.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   This node attribute contains methods for accessing the properties of a camera.
+
+   A camera can be set to automatically point at and follow another node in the hierarchy. To do this, the focus source must be set to EFocusDistanceSource::eFocusSrcCameraInterest and the followed node associated with function FbxNode::SetTarget().
+
+   See also:
+          FbxCameraStereo and FbxCameraSwitcher.
+
+   Examples:
+          Camera/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, ImportScene/DisplayCamera.h, StereoCamera/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneContext.cxx, ViewScene/SetCamera.cxx, and ViewScene/SetCamera.h.
+
+   Definition at line 34 of file fbxcamera.h.
+   Inheritance diagram for FbxCamera:
+   [USEMAP:class_fbx_camera.png]
+
+   List of all members.
+
+Public Types
+
+   enum   EProjectionType { ePerspective, eOrthogonal }
+     Camera projection types. More...
+
+Public Member Functions
+
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+     Return the type of node attribute which is EType::eCamera.
+   void  Reset ()
+     Reset the camera to default values.
+
+Public Attributes
+
+   FbxPropertyT< FbxDouble3 >  Position
+     This property handles the camera's position (XYZ coordinates).
+   FbxPropertyT< FbxDouble3 >  UpVector
+     This property handles the camera's Up Vector (XYZ coordinates).
+   FbxPropertyT< FbxDouble3 >  InterestPosition
+     This property handles the default point (XYZ coordinates) the camera is looking at.
+   FbxPropertyT< FbxDouble >  Roll
+     This property handles the camera roll angle in degrees.
+   FbxPropertyT< FbxDouble >  OpticalCenterX
+     This property handles the camera optical center X, in pixels.
+   FbxPropertyT< FbxDouble >  OpticalCenterY
+     This property handles the camera optical center Y, in pixels.
+   FbxPropertyT< FbxDouble3 >  BackgroundColor
+     This property handles the RGB values of the camera's background color.
+   FbxPropertyT< FbxDouble >  TurnTable
+     When modeling 3D objects, you often need to review or evaluate your models during the creation process.
+   FbxPropertyT< FbxBool >  DisplayTurnTableIcon
+     This property handles a flag that indicates if the camera displays the Turn Table icon or not.
+   FbxPropertyT< FbxBool >  UseMotionBlur
+     This property handles a flag that indicates if the camera uses motion blur or not.
+   FbxPropertyT< FbxBool >  UseRealTimeMotionBlur
+     This property handles a flag that indicates if the camera uses real time motion blur or not.
+   FbxPropertyT< FbxDouble >  MotionBlurIntensity
+     This property handles the camera's motion blur intensity (in pixels).
+   FbxPropertyT< EAspectRatioMode >  AspectRatioMode
+     This property handles the camera's aspect ratio mode.
+   FbxPropertyT< FbxDouble >  AspectWidth
+     This property handles the camera's aspect width.
+   FbxPropertyT< FbxDouble >  AspectHeight
+     This property handles the camera's aspect height.
+   FbxPropertyT< FbxDouble >  PixelAspectRatio
+     This property handles the pixel aspect ratio.
+   FbxPropertyT< EApertureMode >  ApertureMode
+     This property handles the aperture mode.
+   FbxPropertyT< EGateFit >  GateFit
+     This property handles the gate fit mode.
+   FbxPropertyT< FbxDouble >  FieldOfView
+     This property handles the field of view in degrees.
+   FbxPropertyT< FbxDouble >  FieldOfViewX
+     This property handles the X (horizontal) field of view in degrees.
+   FbxPropertyT< FbxDouble >  FieldOfViewY
+     This property handles the Y (vertical) field of view in degrees.
+   FbxPropertyT< FbxDouble >  FocalLength
+     This property handles the focal length (in millimeters).
+   FbxPropertyT< EFormat >  CameraFormat
+     This property handles the camera's format.
+   FbxPropertyT< FbxBool >  UseFrameColor
+     This property stores a flag that indicates to draw a border with color around the camera's viewable area or not.
+   FbxPropertyT< FbxDouble3 >  FrameColor
+     This property is used to define the color of the border around the camera view.
+   FbxPropertyT< FbxBool >  ShowName
+     This property handles the flag to show the camera's name or not.
+   FbxPropertyT< FbxBool >  ShowInfoOnMoving
+     This property handles the flag to show info on moving or not.
+   FbxPropertyT< FbxBool >  ShowGrid
+     This property handles the flag to draw floor grid or not.
+   FbxPropertyT< FbxBool >  ShowOpticalCenter
+     This property handles the flag to show optical center or not.
+   FbxPropertyT< FbxBool >  ShowAzimut
+     This property handles the flag to show the camera's sight line or not.
+   FbxPropertyT< FbxBool >  ShowTimeCode
+     This property handles the flag to show time code or not.
+   FbxPropertyT< FbxBool >  ShowAudio
+     This property handles the flag to show audio or not.
+   FbxPropertyT< FbxDouble3 >  AudioColor
+     This property handles audio color.
+   FbxPropertyT< FbxDouble >  NearPlane
+     This property handles the near plane distance.
+   FbxPropertyT< FbxDouble >  FarPlane
+     This property handles the far plane distance.
+   FbxPropertyT< FbxBool >  AutoComputeClipPlanes
+     This property indicates that the clip planes should be automatically computed or not.
+   FbxPropertyT< FbxDouble >  FilmWidth
+     This property handles the film aperture width (in inches).
+   FbxPropertyT< FbxDouble >  FilmHeight
+     This property handles the film aperture height (in inches).
+   FbxPropertyT< FbxDouble >  FilmAspectRatio
+     This property handles the film aperture aspect ratio.
+   FbxPropertyT< FbxDouble >  FilmSqueezeRatio
+     This property handles the film aperture squeeze ratio.
+   FbxPropertyT< EApertureFormat >  FilmFormat
+     This property handles the film aperture format.
+   FbxPropertyT< FbxDouble >  FilmOffsetX
+     This property handles the horizontal offset from the center of the film aperture, defined by the film height and film width.
+   FbxPropertyT< FbxDouble >  FilmOffsetY
+     This property handles the vertical offset from the center of the film aperture, defined by the film height and film width.
+   FbxPropertyT< FbxDouble >  PreScale
+     This property handles the pre-scale value.
+   FbxPropertyT< FbxDouble >  FilmTranslateX
+     This property handles the horizontal film horizontal translation.
+   FbxPropertyT< FbxDouble >  FilmTranslateY
+     This property handles the vertical film translation.
+   FbxPropertyT< FbxDouble >  FilmRollPivotX
+     This property handles the horizontal pivot point used for rotating the film back.
+   FbxPropertyT< FbxDouble >  FilmRollPivotY
+     This property handles the vertical pivot point used for rotating the film back.
+   FbxPropertyT< FbxDouble >  FilmRollValue
+     This property handles the amount of rotation around the film back.
+   FbxPropertyT< EFilmRollOrder >  FilmRollOrder
+     This property handles how the roll is applied with respect to the pivot value.
+   FbxPropertyT< FbxBool >  ViewCameraToLookAt
+     This property handles the camera's look-at flag.
+   FbxPropertyT< FbxBool >  ViewFrustumNearFarPlane
+     This property handles to display the near and far plane or not.
+   FbxPropertyT
+   < EFrontBackPlaneDisplayMode >  ViewFrustumBackPlaneMode
+     This property handles the back plane display mode.
+   FbxPropertyT< FbxDouble >  BackPlaneDistance
+     This property handles the back plane distance.
+   FbxPropertyT
+   < EFrontBackPlaneDistanceMode >  BackPlaneDistanceMode
+     This property handles the back plane distance mode.
+   FbxPropertyT
+   < EFrontBackPlaneDisplayMode >  ViewFrustumFrontPlaneMode
+     This property handles the front plane mode.
+   FbxPropertyT< FbxDouble >  FrontPlaneDistance
+     This property handles the front plane distance.
+   FbxPropertyT
+   < EFrontBackPlaneDistanceMode >  FrontPlaneDistanceMode
+     This property handles the front plane distance mode.
+   FbxPropertyT< FbxBool >  LockMode
+     This property handles the flag to lock the camera's navigation.
+   FbxPropertyT< FbxBool >  LockInterestNavigation
+     This property handles the flag to lock the camera interest's navigation.
+   FbxPropertyT< FbxBool >  BackPlateFitImage
+     This property handles the fit image flag of back plane.
+   FbxPropertyT< FbxBool >  BackPlateCrop
+     This property handles the crop flag of back plane.
+   FbxPropertyT< FbxBool >  BackPlateCenter
+     This property handles the center flag of back plane.
+   FbxPropertyT< FbxBool >  BackPlateKeepRatio
+     This property handles the keep ratio flag of back plane.
+   FbxPropertyT< FbxDouble >  BackgroundAlphaTreshold
+     This property handles the background alpha threshold value.
+   FbxPropertyT< FbxDouble >  BackPlaneOffsetX
+     This property handles the back plane offset X.
+   FbxPropertyT< FbxDouble >  BackPlaneOffsetY
+     This property handles the back plane offset Y.
+   FbxPropertyT< FbxDouble >  BackPlaneRotation
+     This property handles the back plane rotation.
+   FbxPropertyT< FbxDouble >  BackPlaneScaleX
+     This property handles the back plane scaling X.
+   FbxPropertyT< FbxDouble >  BackPlaneScaleY
+     This property handles the back plane scaling Y.
+   FbxPropertyT< FbxBool >  ShowBackplate
+     This property handles the flag to show back plane or not.
+   FbxPropertyT< FbxReference >  BackgroundTexture
+     This property has the background texture connected to it.
+   FbxPropertyT< FbxBool >  FrontPlateFitImage
+     This property handles the fit image flag of front plate.
+   FbxPropertyT< FbxBool >  FrontPlateCrop
+     This property handles the crop flag of front plane.
+   FbxPropertyT< FbxBool >  FrontPlateCenter
+     This property handles the center flag of front plane.
+   FbxPropertyT< FbxBool >  FrontPlateKeepRatio
+     This property handles the keep ratio flag of front plane.
+   FbxPropertyT< FbxBool >  ShowFrontplate
+     This property handles the flag to show front plane or not.
+   FbxPropertyT< FbxDouble >  FrontPlaneOffsetX
+     This property handles the front plane offset X.
+   FbxPropertyT< FbxDouble >  FrontPlaneOffsetY
+     This property handles the front plane offset Y.
+   FbxPropertyT< FbxDouble >  FrontPlaneRotation
+     This property handles the front plane rotation.
+   FbxPropertyT< FbxDouble >  FrontPlaneScaleX
+     This property handles the front plane scaling X.
+   FbxPropertyT< FbxDouble >  FrontPlaneScaleY
+     This property handles the front plane scaling Y.
+   FbxPropertyT< FbxReference >  ForegroundTexture
+     This property has the foreground texture connected to it.
+   FbxPropertyT< FbxDouble >  ForegroundOpacity
+     This property handles the foreground image opacity value.
+   FbxPropertyT< FbxBool >  DisplaySafeArea
+     This property handles the flag to display safe area or not.
+   FbxPropertyT< FbxBool >  DisplaySafeAreaOnRender
+     This property handles the flag display safe area on render or not.
+   FbxPropertyT< ESafeAreaStyle >  SafeAreaDisplayStyle
+     This property handles the style to display safe area.
+   FbxPropertyT< FbxDouble >  SafeAreaAspectRatio
+     This property handles the display aspect ratio of safe area.
+   FbxPropertyT< FbxBool >  Use2DMagnifierZoom
+     This property handles the flag to use 2d magnifier zoom or not.
+   FbxPropertyT< FbxDouble >  _2DMagnifierZoom
+     This property handles the 2d magnifier zoom value.
+   FbxPropertyT< FbxDouble >  _2DMagnifierX
+     This property handles the 2d magnifier X value.
+   FbxPropertyT< FbxDouble >  _2DMagnifierY
+     This property handles the 2d magnifier Y value.
+   FbxPropertyT< EProjectionType >  ProjectionType
+     This property handles the projection type.
+   FbxPropertyT< FbxDouble >  OrthoZoom
+     This property handles the orthographic zoom value.
+   FbxPropertyT< FbxBool >  UseRealTimeDOFAndAA
+     This property handles the flag to use real time Depth of Field and Anti-Aliasing or not.
+   FbxPropertyT< FbxBool >  UseDepthOfField
+     This property handles the flag to use depth of field or not.
+   FbxPropertyT
+   < EFocusDistanceSource >  FocusSource
+     This property handles the focus source.
+   FbxPropertyT< FbxDouble >  FocusAngle
+     This property handles the focus angle (in degrees).
+   FbxPropertyT< FbxDouble >  FocusDistance
+     This property handles the focus distance.
+   FbxPropertyT< FbxBool >  UseAntialiasing
+     This property handles the flag to use anti aliasing or not.
+   FbxPropertyT< FbxDouble >  AntialiasingIntensity
+     This property handles the anti aliasing intensity.
+   FbxPropertyT< EAntialiasingMethod >  AntialiasingMethod
+     This property handles the anti aliasing method.
+   FbxPropertyT< FbxBool >  UseAccumulationBuffer
+     This property handles the flag to use accumulation buffer or not.
+   FbxPropertyT< FbxInt >  FrameSamplingCount
+     This property handles the frame sampling count.
+   FbxPropertyT< ESamplingType >  FrameSamplingType
+     This property handles the frame sampling type.
+
+Functions to handle the viewing area.
+
+   enum   EFormat {
+     eCustomFormat, eD1NTSC, eNTSC, ePAL,
+     eD1PAL, eHD, e640x480, e320x200,
+     e320x240, e128x128, eFullscreen
+   }
+     Camera formats identifiers. More...
+   enum   EAspectRatioMode {
+     eWindowSize, eFixedRatio, eFixedResolution, eFixedWidth,
+     eFixedHeight
+   }
+     Camera's aspect ratio modes. More...
+   void  SetFormat (EFormat pFormat)
+     Set the camera format.
+   EFormat  GetFormat () const
+     Get the camera format.
+   void  SetAspect (EAspectRatioMode pRatioMode, double pWidth, double pHeight)
+     Set the camera's aspect ratio mode.
+   EAspectRatioMode  GetAspectRatioMode () const
+     Get the camera aspect ratio mode.
+   void  SetPixelRatio (double pRatio)
+     Set the pixel ratio.
+   double  GetPixelRatio () const
+     Get the pixel ratio.
+   void  SetNearPlane (double pDistance)
+     Set the near plane distance from the camera.
+   double  GetNearPlane () const
+     Get the near plane distance from the camera.
+   void  SetFarPlane (double pDistance)
+     Set the far plane distance from camera.
+   double  GetFarPlane () const
+     Get the far plane distance from camera.
+
+Aperture and Film Functions.
+
+   In photography, the aperture is the size of hole allowing light from the lens to get through to the film.
+
+   The aperture mode determines which values drive the camera aperture. When the aperture mode is eHorizAndVert, eHorizontal or eVertical, the field of view is used. When the aperture mode is eFocalLength, the focal length is used.
+
+   It is possible to convert the aperture mode into field of view or vice versa using functions ComputeFieldOfView and ComputeFocalLength. These functions use the camera aperture width and height for their computation.
+   enum   EApertureFormat {
+     eCustomAperture, e16mmTheatrical, eSuper16mm, e35mmAcademy,
+     e35mmTVProjection, e35mmFullAperture, e35mm185Projection, e35mmAnamorphic,
+     e70mmProjection, eVistaVision, eDynaVision, eIMAX
+   }
+     Camera's aperture formats. More...
+   enum   EApertureMode { eHorizAndVert, eHorizontal, eVertical, eFocalLength }
+     Camera aperture modes. More...
+   enum   EGateFit {
+     eFitNone, eFitVertical, eFitHorizontal, eFitFill,
+     eFitOverscan, eFitStretch
+   }
+     Camera's gate fit modes. More...
+   enum   EFilmRollOrder { eRotateFirst, eTranslateFirst }
+     Specifies how the roll is applied with respect to the pivot value. More...
+   void  SetApertureFormat (EApertureFormat pFormat)
+     Set the camera aperture format.
+   EApertureFormat  GetApertureFormat () const
+     Get the camera aperture format.
+   void  SetApertureMode (EApertureMode pMode)
+     Set the camera aperture mode.
+   EApertureMode  GetApertureMode () const
+     Get the camera aperture mode.
+   void  SetApertureWidth (double pWidth)
+     Set the camera aperture width in inches.
+   double  GetApertureWidth () const
+     Get the camera aperture width in inches.
+   void  SetApertureHeight (double pHeight)
+     Set the camera aperture height in inches.
+   double  GetApertureHeight () const
+     Get the camera aperture height in inches.
+   void  SetSqueezeRatio (double pRatio)
+     Set the squeeze ratio.
+   double  GetSqueezeRatio () const
+     Get the camera squeeze ratio.
+   double  ComputeFieldOfView (double pFocalLength) const
+     Compute the angle of view based on the given focal length, the aperture width, and aperture height.
+   double  ComputeFocalLength (double pAngleOfView) const
+     Compute the focal length based on the given angle of view, the aperture width, and aperture height.
+
+Functions to handle BackPlane/FrontPlane and Plate.
+
+   In the FbxSdk terminology, the Back/Front plane is the support of the plate.
+
+   And the plate is the support of the texture used for backgrounds/foregrounds. Functions and properties identified by the "Plate" name are affecting the display of the texture on the plate. The functions and properties identified with the "Back/FrontPlane" are affecting the plate.
+
+   Typically a client application would place the BackPlate a small distance in front of the FarPlane and the FrontPlate just behind the NearPlane to avoid them to be hidden by the clipping. Unless otherwise noted, there are no restrictions on the values stored by the camera object therefore it is the responsibility of the client application to process the information in a meaningful way and to maintain consistency between the different properties relationships.
+   enum   EPlateDrawingMode { ePlateBackground, ePlateForeground, ePlateBackAndFront }
+     Image plate drawing modes. More...
+   enum   EFrontBackPlaneDistanceMode { eRelativeToInterest, eRelativeToCamera }
+     Front and BackPlane distance modes. More...
+   enum   EFrontBackPlaneDisplayMode { ePlanesDisabled, ePlanesAlways, ePlanesWhenMedia }
+     Front/back plane display modes. More...
+   void  SetBackgroundFileName (const char *pFileName)
+     Set the associated background image file.
+   const char *  GetBackgroundFileName () const
+     Get the background image file name.
+   void  SetBackgroundMediaName (const char *pFileName)
+     Set the media name associated to the background image file.
+   const char *  GetBackgroundMediaName () const
+     Get the media name associated to the background image file.
+   void  SetForegroundFileName (const char *pFileName)
+     Set the associated foreground image file.
+   const char *  GetForegroundFileName () const
+     Get the foreground image file name.
+   void  SetForegroundMediaName (const char *pFileName)
+     Set the media name associated to the foreground image file.
+   const char *  GetForegroundMediaName () const
+     Get the media name associated to the foreground image file.
+   void  SetBackgroundAlphaTreshold (double pThreshold)
+     Set front plate matte threshold.
+   double  GetBackgroundAlphaTreshold () const
+     Get front plate matte threshold.
+   void  SetBackPlateFitImage (bool pFitImage)
+     Change the back plate fit image flag.
+   bool  GetBackPlateFitImage () const
+     Get the current back plate image flag.
+   void  SetBackPlateCrop (bool pCrop)
+     Change the back plate crop flag.
+   bool  GetBackPlateCrop () const
+     Get the current back plate crop flag.
+   void  SetBackPlateCenter (bool pCenter)
+     Change the back plate center flag.
+   bool  GetBackPlateCenter () const
+     Get the current back plate center flag.
+   void  SetBackPlateKeepRatio (bool pKeepRatio)
+     Change the back plate keep ratio flag.
+   bool  GetBackPlateKeepRatio () const
+     Get the current back plate keep ratio flag.
+   void  SetShowFrontPlate (bool pEnable)
+     Enable or disable the display of the texture without the need to disconnect it from its plate.
+   bool  GetShowFrontPlate () const
+     Get the current state of the flag to display the front plate or not.
+   void  SetFrontPlateFitImage (bool pFrontPlateFitImage)
+     Change the front plate fit image flag.
+   bool  GetFrontPlateFitImage () const
+     Get the current front plate fit image flag.
+   void  SetFrontPlateCrop (bool pFrontPlateCrop)
+     Change the front plate crop flag.
+   bool  GetFrontPlateCrop () const
+     Get the current front plate crop flag.
+   void  SetFrontPlateCenter (bool pFrontPlateCenter)
+     Change the front plate center flag.
+   bool  GetFrontPlateCenter () const
+     Get the current front plate center flag.
+   void  SetFrontPlateKeepRatio (bool pFrontPlateKeepRatio)
+     Change the front plate keep ratio flag.
+   bool  GetFrontPlateKeepRatio () const
+     Get the current front plate keep ratio flag.
+   void  SetForegroundOpacity (double pOpacity)
+     Set the front plate opacity value.
+   double  GetForegroundOpacity () const
+     Get the front plate opacity value.
+   void  SetForegroundTexture (FbxTexture *pTexture)
+     Attach the texture to the front plate.
+   FbxTexture *  GetForegroundTexture () const
+     Get the texture connected to the front plate.
+   void  SetBackPlaneDistanceMode (EFrontBackPlaneDistanceMode pMode)
+     Set the back plane distance mode.
+   EFrontBackPlaneDistanceMode  GetBackPlaneDistanceMode () const
+     Get the back plane distance mode.
+   void  SetFrontPlaneDistance (double pDistance)
+     Set the front plane distance from the camera.
+   double  GetFrontPlaneDistance () const
+     Get the front plane distance value.
+   void  SetFrontPlaneDistanceMode (EFrontBackPlaneDistanceMode pMode)
+     Set the front plane distance mode.
+   EFrontBackPlaneDistanceMode  GetFrontPlaneDistanceMode () const
+     Get the front plane distance mode flag.
+   void  SetViewFrustumFrontPlaneMode (EFrontBackPlaneDisplayMode pMode)
+     Set the front plane display mode.
+   EFrontBackPlaneDisplayMode  GetViewFrustumFrontPlaneMode () const
+     Get the front plane display mode.
+   void  SetViewFrustumBackPlaneMode (EFrontBackPlaneDisplayMode pMode)
+     Set the back plane display mode.
+   EFrontBackPlaneDisplayMode  GetViewFrustumBackPlaneMode () const
+     Get the back plane display mode.
+
+Camera View Functions
+
+   It is the responsibility of the client application to perform the required tasks according to the state of the options that are either set or returned by these methods.
+   enum   ESafeAreaStyle { eSafeAreaRound, eSafeAreaSquare }
+     Camera safe area display styles. More...
+   void  SetViewCameraInterest (bool pEnable)
+     Change the camera interest visibility flag.
+   bool  GetViewCameraInterest () const
+     Get current visibility state of the camera interest.
+   void  SetViewNearFarPlanes (bool pEnable)
+     Change the camera near and far planes visibility flag.
+   bool  GetViewNearFarPlanes () const
+     Get current visibility state of the camera near and far planes.
+
+Render Functions
+
+   It is the responsibility of the client application to perform the required tasks according to the state of the options that are either set or returned by these methods.
+   enum   ERenderOptionsUsageTime { eInteractive, eOnDemand }
+     Render options usage time. More...
+   enum   EAntialiasingMethod { eAAOversampling, eAAHardware }
+     Anti-aliasing methods. More...
+   enum   ESamplingType { eSamplingUniform, eSamplingStochastic }
+     Oversampling types for anti-aliasing. More...
+   enum   EFocusDistanceSource { eFocusSrcCameraInterest, eFocusSpecificDistance }
+     Camera focus sources, that is the focal point for the depth of field. More...
+
+Utility Functions.
+
+   FbxVector4  EvaluatePosition (const FbxTime &pTime=FBXSDK_TIME_ZERO) const
+     Evaluate the camera (or eye) position.
+   FbxVector4  EvaluateLookAtPosition (const FbxTime &pTime=FBXSDK_TIME_ZERO) const
+     Evaluate the camera target (or lookat) position.
+   FbxVector4  EvaluateUpDirection (const FbxVector4 &pCameraPosition, const FbxVector4 &pLookAtPosition, const FbxTime &pTime=FBXSDK_TIME_ZERO) const
+     Evaluate the camera up direction, taking target up objects into consideration.
+   FbxMatrix  ComputeProjectionMatrix (const int pWidth, const int pHeight) const
+     Compute the camera projection matrix.
+   FBX_DEPRECATED FbxVector4  ComputeUpVector (const FbxVector4 &pCameraPosition, const FbxVector4 &pLookAtPosition) const
+     Calculate the up vector.
+   FBX_DEPRECATED FbxMatrix  ComputePerspective (int pPixelWidth, int pPixelHeight, bool pIncludePostPerspective) const
+     Compute the perspective matrix for this camera.
+   bool  IsBoundingBoxInView (const FbxMatrix &pWorldToScreen, const FbxMatrix &pWorldToCamera, const FbxVector4 pPoints[8]) const
+     Determine if the given bounding box is in the camera's view.
+   bool  IsPointInView (const FbxMatrix &pWorldToScreen, const FbxMatrix &pWorldToCamera, const FbxVector4 &pPoint) const
+     Determine if the given 3d point is in the camera's view.
+   FbxMatrix  ComputeWorldToScreen (int pPixelWidth, int pPixelHeight, const FbxAMatrix &pWorldToCamera) const
+     Compute world space to screen space transformation matrix.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EProjectionType
+   Search for all occurrences
+
+   Camera projection types.
+
+   Remarks:
+          By default, the camera projection type is set to ePerspective. If the camera projection type is set to eOrthogonal, the following options are not relevant:
+
+          + aperture format
+          + aperture mode
+          + aperture width and height
+          + angle of view/focal length
+          + squeeze ratio
+
+   Enumerator:
+
+          ePerspective
+
+   Perspective projection.
+   Search for all occurrences
+          eOrthogonal
+
+   Orthogonal projection.
+   Search for all occurrences
+
+   Definition at line 55 of file fbxcamera.h.
+    {
+        ePerspective,
+        eOrthogonal
+    };
+
+   enum EFormat
+   Search for all occurrences
+
+   Camera formats identifiers.
+
+   Remarks:
+          This is designed as the same as in MotionBuilder.
+
+   See also:
+          SetFormat, GetFormat and CameraFormat.
+
+   Enumerator:
+
+          eCustomFormat
+
+   The format's width, height, or pixel ratio has been user-specified, and matches none of the other picture formats.
+   Search for all occurrences
+          eD1NTSC
+
+   Standard format for D1 NTSC (720 by 486).
+   Search for all occurrences
+          eNTSC
+
+   NTSC standard for North American television broadcast (640 by 480).
+   Search for all occurrences
+          ePAL
+
+   PAL standard for European television broadcast (570 by 486).
+   Search for all occurrences
+          eD1PAL
+
+   Standard format for D1 PAL (720 by 576).
+   Search for all occurrences
+          eHD
+
+   HD format(1920 by 1080).
+   Search for all occurrences
+          e640x480
+
+   Recommended computer screen format (640 by 480).
+   Search for all occurrences
+          e320x200
+
+   Recommended format for World Wide Web production(320 by 200).
+   Search for all occurrences
+          e320x240
+
+   Alternate World Wide Web format(320 by 240).
+   Search for all occurrences
+          e128x128
+
+   Format(128 by 128)
+   Search for all occurrences
+          eFullscreen
+
+   Full computer screen format (1280 by 1024 pixels).
+   Search for all occurrences
+
+   Definition at line 69 of file fbxcamera.h.
+        {
+            eCustomFormat,
+            eD1NTSC,
+            eNTSC,
+            ePAL,
+            eD1PAL,
+            eHD,
+            e640x480,
+            e320x200,
+            e320x240,
+            e128x128,
+            eFullscreen
+        };
+
+   enum EAspectRatioMode
+   Search for all occurrences
+
+   Camera's aspect ratio modes.
+
+   See also:
+          SetAspect, GetAspectRatioMode, AspectWidth, AspectHeight and AspectRatioMode.
+
+   Enumerator:
+
+          eWindowSize
+
+   Both width and height values aren't relevant.
+   Search for all occurrences
+          eFixedRatio
+
+   The height value is set to 1.0 and the width value is relative to the height value.
+   Search for all occurrences
+          eFixedResolution
+
+   Both width and height values are in pixels.
+   Search for all occurrences
+          eFixedWidth
+
+   The width value is in pixels and the height value is relative to the width value.
+   Search for all occurrences
+          eFixedHeight
+
+   The height value is in pixels and the width value is relative to the height value.
+   Search for all occurrences
+
+   Definition at line 100 of file fbxcamera.h.
+        {
+            eWindowSize,
+            eFixedRatio,
+            eFixedResolution,
+            eFixedWidth,
+            eFixedHeight
+        };
+
+   enum EApertureFormat
+   Search for all occurrences
+
+   Camera's aperture formats.
+
+   Remarks:
+          This is designed as the same as in MotionBuilder.
+
+   See also:
+          SetApertureFormat, GetApertureFormat, FilmFormat, FilmWidth, FilmHeight, FilmSqueezeRatio and FilmAspectRatio.
+
+   Enumerator:
+
+          eCustomAperture
+
+   The film size, squeeze ratio and aspect ratio has been user-specified, and matches none of the other aperture formats.
+   Search for all occurrences
+   e16mmTheatrical
+
+   Film Size: 0.404, 0.295 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.369.
+   Search for all occurrences
+   eSuper16mm
+
+   Film Size: 0.493, 0.292 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.688.
+   Search for all occurrences
+   e35mmAcademy
+
+   Film Size: 0.864, 0.630 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.371.
+   Search for all occurrences
+   e35mmTVProjection
+
+   Film Size: 0.816, 0.612 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.333.
+   Search for all occurrences
+   e35mmFullAperture
+
+   Film Size: 0.980, 0.735 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.333.
+   Search for all occurrences
+   e35mm185Projection
+
+   Film Size: 0.825, 0.446 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.850.
+   Search for all occurrences
+   e35mmAnamorphic
+
+   Film Size: 0.864, 0.732 inches.
+   Film Squeeze Ratio: 2.0. Film Aspect Ratio:1.180.
+   Search for all occurrences
+   e70mmProjection
+
+   Film Size: 2.066, 0.906 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 2.280.
+   Search for all occurrences
+   eVistaVision
+
+   Film Size: 1.485, 0.991 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.498.
+   Search for all occurrences
+   eDynaVision
+
+   Film Size: 2.080, 1.480 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.405.
+   Search for all occurrences
+   eIMAX
+
+   Film Size: 2.772, 2.072 inches.
+   Film Squeeze Ratio: 1.0. Film Aspect Ratio: 1.338.
+   Search for all occurrences
+
+   Definition at line 184 of file fbxcamera.h.
+    {
+                eCustomAperture,
+        e16mmTheatrical,
+        eSuper16mm,
+        e35mmAcademy,
+        e35mmTVProjection,
+        e35mmFullAperture,
+        e35mm185Projection,
+        e35mmAnamorphic,
+        e70mmProjection,
+        eVistaVision,
+        eDynaVision,
+        eIMAX
+    };
+
+   enum EApertureMode
+   Search for all occurrences
+
+   Camera aperture modes.
+
+   The aperture mode determines which values drive the camera aperture. If the aperture mode is eHorizAndVert, eHorizontal, or eVertical, then the field of view is used. If the aperture mode is eFocalLength, then the focal length is used.
+
+   Enumerator:
+
+          eHorizAndVert
+
+   Set the angle values for both the horizontal and vertical settings.
+   Search for all occurrences
+          eHorizontal
+
+   Set only the horizontal angle.
+   Search for all occurrences
+          eVertical
+
+   Set only the vertical angle.
+   Search for all occurrences
+          eFocalLength
+
+   Use focal length directly.
+   Search for all occurrences
+
+   Definition at line 216 of file fbxcamera.h.
+    {
+                eHorizAndVert,
+        eHorizontal,
+        eVertical,
+        eFocalLength
+    };
+
+   enum EGateFit
+   Search for all occurrences
+
+   Camera's gate fit modes.
+
+   There are two gates for a camera, film gate and resolution gate. Film gate is a border indicating the area of the camera's view as a real-world camera records on film. The dimensions of the film gate represent the dimensions of the camera aperture. But the film gate does not represent the render region. It is the resolution gate that represents the rendering resolution. The gate fit mode controls the size of the resolution gate relative to the film gate.
+
+   Enumerator:
+
+          eFitNone
+
+   No resolution gate fit.
+   Search for all occurrences
+          eFitVertical
+
+   Fit the resolution gate vertically within the film gate.
+   Search for all occurrences
+          eFitHorizontal
+
+   Fit the resolution gate horizontally within the film gate.
+   Search for all occurrences
+          eFitFill
+
+   Fit the resolution gate within the film gate.
+   Search for all occurrences
+          eFitOverscan
+
+   Fit the film gate within the resolution gate.
+   Search for all occurrences
+          eFitStretch
+
+   Fit the resolution gate to the film gate.
+   Search for all occurrences
+
+   Definition at line 278 of file fbxcamera.h.
+    {
+        eFitNone,
+        eFitVertical,
+        eFitHorizontal,
+        eFitFill,
+        eFitOverscan,
+        eFitStretch
+    };
+
+   enum EFilmRollOrder
+   Search for all occurrences
+
+   Specifies how the roll is applied with respect to the pivot value.
+
+   Enumerator:
+
+          eRotateFirst
+
+   The film back is first rotated then translated by the pivot point value.
+   Search for all occurrences
+          eTranslateFirst
+
+   The film back is first translated then rotated by the film roll value.
+   Search for all occurrences
+
+   Definition at line 304 of file fbxcamera.h.
+    {
+        eRotateFirst,
+        eTranslateFirst
+    };
+
+   enum EPlateDrawingMode
+   Search for all occurrences
+
+   Image plate drawing modes.
+
+   Enumerator:
+
+          ePlateBackground
+
+   Image is drawn behind models.
+   Search for all occurrences
+          ePlateForeground
+
+   Image is drawn in front of models based on alpha channel.
+   Search for all occurrences
+          ePlateBackAndFront
+
+   Image is drawn behind and in front of models depending on alpha channel.
+   Search for all occurrences
+
+   Definition at line 391 of file fbxcamera.h.
+    {
+        ePlateBackground,
+        ePlateForeground,
+        ePlateBackAndFront
+    };
+
+   enum EFrontBackPlaneDistanceMode
+   Search for all occurrences
+
+   Front and BackPlane distance modes.
+
+   See also:
+          SetBackPlaneDistanceMode and GetBackPlaneDistanceMode.
+
+   Enumerator:
+
+          eRelativeToInterest
+
+   The back plane distance is measured in relation to the camera interest.
+   Search for all occurrences
+          eRelativeToCamera
+
+   The back plane distance is measured in relation to the camera.
+   Search for all occurrences
+
+   Definition at line 551 of file fbxcamera.h.
+    {
+        eRelativeToInterest,
+        eRelativeToCamera
+    };
+
+   enum EFrontBackPlaneDisplayMode
+   Search for all occurrences
+
+   Front/back plane display modes.
+
+   Enumerator:
+
+          ePlanesDisabled
+
+   Disables the front/back plane whether a texture is being projected or not.
+   Search for all occurrences
+          ePlanesAlways
+
+   Always shows the front/back plane, even if no texture has been added.
+   Search for all occurrences
+          ePlanesWhenMedia
+
+   Shows the front/back plane only if a texture has been added.
+   Search for all occurrences
+
+   Definition at line 592 of file fbxcamera.h.
+    {
+        ePlanesDisabled,
+        ePlanesAlways,
+        ePlanesWhenMedia
+    };
+
+   enum ESafeAreaStyle
+   Search for all occurrences
+
+   Camera safe area display styles.
+
+   Enumerator:
+
+          eSafeAreaRound
+
+   Rounded safe area.
+   Search for all occurrences
+          eSafeAreaSquare
+
+   Square safe area.
+   Search for all occurrences
+
+   Definition at line 652 of file fbxcamera.h.
+    {
+                eSafeAreaRound,
+        eSafeAreaSquare
+    };
+
+   enum ERenderOptionsUsageTime
+   Search for all occurrences
+
+   Render options usage time.
+
+   Enumerator:
+
+          eInteractive
+
+   To render in real time.
+   Search for all occurrences
+          eOnDemand
+
+   Only render when it is asked.
+   Search for all occurrences
+
+   Definition at line 669 of file fbxcamera.h.
+    {
+        eInteractive,
+        eOnDemand
+    };
+
+   enum EAntialiasingMethod
+   Search for all occurrences
+
+   Anti-aliasing methods.
+
+   Enumerator:
+
+          eAAOversampling
+
+   To do anti-aliasing by oversampling.
+   Search for all occurrences
+          eAAHardware
+
+   To do anti-aliasing by hardware.
+   Search for all occurrences
+
+   Definition at line 677 of file fbxcamera.h.
+    {
+        eAAOversampling,
+        eAAHardware
+    };
+
+   enum ESamplingType
+   Search for all occurrences
+
+   Oversampling types for anti-aliasing.
+
+   Enumerator:
+
+   eSamplingUniform
+
+   The Uniform method samples each pixel at the same location.
+   The pixel is divided into equal parts, and each part is sampled. The number of samples determines the number of times the pixel is divided.
+   Search for all occurrences
+   eSamplingStochastic
+
+   The Stochastic method randomly samples each pixel.
+   This produces an accurate color using a small number of samples.
+   Search for all occurrences
+
+   Definition at line 685 of file fbxcamera.h.
+    {
+                eSamplingUniform,
+                eSamplingStochastic
+    };
+
+   enum EFocusDistanceSource
+   Search for all occurrences
+
+   Camera focus sources, that is the focal point for the depth of field.
+
+   See also:
+          FocusDistance.
+
+   Enumerator:
+
+   eFocusSrcCameraInterest
+
+   Base the depth of field on the camera interest.
+   Models at the camera interest are in focus. As you move toward or away from the camera interest, models become increasingly blurred.
+   Search for all occurrences
+          eFocusSpecificDistance
+
+   Base the depth of field on a point defined by a specific distance from the camera interest.
+   Search for all occurrences
+
+   Definition at line 697 of file fbxcamera.h.
+    {
+        eFocusSrcCameraInterest,
+        eFocusSpecificDistance
+    };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Return the type of node attribute which is EType::eCamera.
+
+   Reimplemented from FbxNodeAttribute.
+
+   Reimplemented in FbxCameraStereo.
+   void Reset ( )
+   Search for all occurrences
+
+   Reset the camera to default values.
+
+   Reimplemented in FbxCameraStereo.
+   void SetFormat ( EFormat  pFormat )
+   Search for all occurrences
+
+   Set the camera format.
+
+   Parameters:
+
+          pFormat The camera format identifier.
+
+   Remarks:
+          Changing the camera format sets the camera aspect ratio mode to eFixedResolution and modifies the aspect width size, height size, and pixel ratio accordingly.
+
+   Examples:
+          Camera/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   EFormat GetFormat ( ) const
+   Search for all occurrences
+
+   Get the camera format.
+
+   Returns:
+          The current camera format identifier.
+
+   Examples:
+          Camera/main.cxx, and ImportScene/DisplayCamera.cxx.
+
+   void SetAspect ( EAspectRatioMode  pRatioMode,
+                    double            pWidth,
+                    double            pHeight
+                  )
+   Search for all occurrences
+
+   Set the camera's aspect ratio mode.
+
+   Parameters:
+
+          pRatioMode Camera's aspect ratio mode.
+          pWidth     Camera's aspect width, must be a positive value.
+          pHeight    Camera's aspect height, must be a positive value.
+
+   Remarks:
+          Changing the camera aspect sets the camera format to eCustomFormat.
+
+   See also:
+          EAspectRatioMode.
+
+   Examples:
+          Camera/main.cxx.
+
+   EAspectRatioMode GetAspectRatioMode ( ) const
+   Search for all occurrences
+
+   Get the camera aspect ratio mode.
+
+   Returns:
+          The current aspect ratio mode.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetPixelRatio ( double  pRatio )
+   Search for all occurrences
+
+   Set the pixel ratio.
+
+   Parameters:
+
+          pRatio The pixel ratio value.
+
+   Remarks:
+          The value must be a positive number. Comprised between 0.05 and 20.0. Values outside these limits will be clamped. Changing the pixel ratio sets the camera format to eCustomFormat.
+
+   double GetPixelRatio ( ) const
+   Search for all occurrences
+
+   Get the pixel ratio.
+
+   Returns:
+          The current camera's pixel ratio value.
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetNearPlane ( double  pDistance )
+   Search for all occurrences
+
+   Set the near plane distance from the camera.
+
+   The near plane is the minimum distance to render a scene on the camera display. A synonym for the near plane is "front clipping plane".
+
+   Parameters:
+
+          pDistance The near plane distance value.
+
+   Remarks:
+          The near plane value is limited to the range [0.001, 600000.0] and must be inferior to the far plane value.
+
+   double GetNearPlane ( ) const
+   Search for all occurrences
+
+   Get the near plane distance from the camera.
+
+   The near plane is the minimum distance to render a scene on the camera display. A synonym for the near plane is "front clipping plane".
+
+   Returns:
+          The near plane value.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   void SetFarPlane ( double  pDistance )
+   Search for all occurrences
+
+   Set the far plane distance from camera.
+
+   The far plane is the maximum distance to render a scene on the camera display. A synonym for the far plane is "back clipping plane".
+
+   Parameters:
+
+          pDistance The far plane distance value.
+
+   Remarks:
+          The far plane value is limited to the range [0.001, 600000.0] and must be superior to the near plane value.
+
+   double GetFarPlane ( ) const
+   Search for all occurrences
+
+   Get the far plane distance from camera.
+
+   The far plane is the maximum distance to render a scene on the camera display. A synonym for the far plane is "back clipping plane".
+
+   Returns:
+          The far plane value.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   void SetApertureFormat ( EApertureFormat  pFormat )
+   Search for all occurrences
+
+   Set the camera aperture format.
+
+   Parameters:
+
+          pFormat The camera aperture format identifier.
+
+   Remarks:
+          Changing the aperture format modifies the aperture width, height, and squeeze ratio accordingly.
+
+   Examples:
+          Camera/main.cxx.
+
+   EApertureFormat GetApertureFormat ( ) const
+   Search for all occurrences
+
+   Get the camera aperture format.
+
+   Returns:
+          The camera's current aperture format identifier.
+
+   Examples:
+          Camera/main.cxx, and ImportScene/DisplayCamera.cxx.
+
+   void SetApertureMode ( EApertureMode  pMode )
+   Search for all occurrences
+
+   Set the camera aperture mode.
+
+   Parameters:
+
+          pMode The camera aperture mode identifier.
+
+   Examples:
+          Camera/main.cxx, and ExportScene04/main.cxx.
+
+   EApertureMode GetApertureMode ( ) const
+   Search for all occurrences
+
+   Get the camera aperture mode.
+
+   Returns:
+          The camera's current aperture mode identifier.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetApertureWidth ( double  pWidth )
+   Search for all occurrences
+
+   Set the camera aperture width in inches.
+
+   Parameters:
+
+          pWidth The aperture width value.
+
+   Remarks:
+          Must be a positive value. The minimum accepted value is 0.0001. Changing the aperture width sets the camera aperture format to eCustomFormat.
+
+   Examples:
+          ExportScene04/main.cxx, and ViewScene/SetCamera.cxx.
+
+   double GetApertureWidth ( ) const
+   Search for all occurrences
+
+   Get the camera aperture width in inches.
+
+   Returns:
+          The camera's current aperture width value in inches.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetApertureHeight ( double  pHeight )
+   Search for all occurrences
+
+   Set the camera aperture height in inches.
+
+   Parameters:
+
+          pHeight The aperture height value.
+
+   Remarks:
+          Must be a positive value. The minimum accepted value is 0.0001. Changing the aperture height sets the camera aperture format to eCustomFormat.
+
+   Examples:
+          ExportScene04/main.cxx, and ViewScene/SetCamera.cxx.
+
+   double GetApertureHeight ( ) const
+   Search for all occurrences
+
+   Get the camera aperture height in inches.
+
+   Returns:
+          The camera's current aperture height value in inches.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetSqueezeRatio ( double  pRatio )
+   Search for all occurrences
+
+   Set the squeeze ratio.
+
+   Parameters:
+
+          pRatio The squeeze ratio value.
+
+   Remarks:
+          Must be a positive value. The minimum accepted value is 0.0001. Changing the squeeze ratio sets the camera aperture format to eCustomFormat.
+
+   Examples:
+          ExportScene04/main.cxx.
+
+   double GetSqueezeRatio ( ) const
+   Search for all occurrences
+
+   Get the camera squeeze ratio.
+
+   Returns:
+          The camera's current squeeze ratio value.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   double ComputeFieldOfView ( double  pFocalLength ) const
+   Search for all occurrences
+
+   Compute the angle of view based on the given focal length, the aperture width, and aperture height.
+
+   Parameters:
+
+          pFocalLength The focal length in millimeters.
+
+   Returns:
+          The computed angle of view in degrees.
+
+   Remarks:
+          If aperture mode is not vertical, horizontal is assumed.
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   double ComputeFocalLength ( double  pAngleOfView ) const
+   Search for all occurrences
+
+   Compute the focal length based on the given angle of view, the aperture width, and aperture height.
+
+   Parameters:
+
+          pAngleOfView The angle of view in degrees.
+
+   Returns:
+          The computed focal length in millimeters.
+
+   Remarks:
+          If aperture mode is not vertical, horizontal is assumed.
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   void SetBackgroundFileName ( const char *  pFileName )
+   Search for all occurrences
+
+   Set the associated background image file.
+
+   Parameters:
+
+          pFileName The path of the background image file.
+
+   Remarks:
+          The background image file name must be valid.
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   const char* GetBackgroundFileName ( ) const
+   Search for all occurrences
+
+   Get the background image file name.
+
+   Returns:
+          Pointer to the background filename string or NULL if not set.
+
+   Remarks:
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   void SetBackgroundMediaName ( const char *  pFileName )
+   Search for all occurrences
+
+   Set the media name associated to the background image file.
+
+   Parameters:
+
+          pFileName The media name of the background image file.
+
+   Remarks:
+          The media name is a unique name used to identify the background image file.
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   const char* GetBackgroundMediaName ( ) const
+   Search for all occurrences
+
+   Get the media name associated to the background image file.
+
+   Returns:
+          Pointer to the media name string or NULL if not set.
+
+   Remarks:
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   void SetForegroundFileName ( const char *  pFileName )
+   Search for all occurrences
+
+   Set the associated foreground image file.
+
+   Parameters:
+
+          pFileName The path of the foreground image file.
+
+   Remarks:
+          The foreground image file name must be valid.
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   const char* GetForegroundFileName ( ) const
+   Search for all occurrences
+
+   Get the foreground image file name.
+
+   Returns:
+          Pointer to the foreground filename string or NULL if not set.
+
+   Remarks:
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   void SetForegroundMediaName ( const char *  pFileName )
+   Search for all occurrences
+
+   Set the media name associated to the foreground image file.
+
+   Parameters:
+
+          pFileName The media name of the foreground image file.
+
+   Remarks:
+          The media name is a unique name used to identify the foreground image file.
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   const char* GetForegroundMediaName ( ) const
+   Search for all occurrences
+
+   Get the media name associated to the foreground image file.
+
+   Returns:
+          Pointer to the media name string or NULL if not set.
+
+   Remarks:
+          This method is still provided just for legacy files (Fbx version 5.0 and earlier) and must not be used in any other cases.
+
+   void SetBackgroundAlphaTreshold ( double  pThreshold )
+   Search for all occurrences
+
+   Set front plate matte threshold.
+
+   Parameters:
+
+          pThreshold Threshold value on a range from 0.0 to 1.0.
+
+   Remarks:
+          This option is only relevant if the image plate drawing mode is set to ePlateForeground or ePlateBackAndFront.
+
+   double GetBackgroundAlphaTreshold ( ) const
+   Search for all occurrences
+
+   Get front plate matte threshold.
+
+   Returns:
+          Threshold value on a range from 0.0 to 1.0.
+
+   Remarks:
+          This option is only relevant if the image plate drawing mode is set to ePlateForeground or ePlateBackAndFront.
+
+   void SetBackPlateFitImage ( bool  pFitImage )
+   Search for all occurrences
+
+   Change the back plate fit image flag.
+
+   If this flag is on, scale the back plate image to fit on the back plane.
+
+   Parameters:
+
+          pFitImage New value for the BackPlateFitImage property.
+
+   bool GetBackPlateFitImage ( ) const
+   Search for all occurrences
+
+   Get the current back plate image flag.
+
+   If this flag is on, scale the back plate image to fit on the back plane.
+
+   Returns:
+          The value of the BackPlateFitImage property.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   void SetBackPlateCrop ( bool  pCrop )
+   Search for all occurrences
+
+   Change the back plate crop flag.
+
+   If this flag is on, crop the back plate image to fit on the back plane. If the image is smaller than the plane, this flag has no effect.
+
+   Parameters:
+
+          pCrop New value for the BackPlateCrop property.
+
+   bool GetBackPlateCrop ( ) const
+   Search for all occurrences
+
+   Get the current back plate crop flag.
+
+   If this flag is on, crop the back plate image to fit on the back plane. If the image is smaller than the plane, this flag has no effect.
+
+   Returns:
+          The value of the BackPlateCrop property.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   void SetBackPlateCenter ( bool  pCenter )
+   Search for all occurrences
+
+   Change the back plate center flag.
+
+   If this flag is on, center the back plate image on the back plane.
+
+   Parameters:
+
+          pCenter New value for the BackPlateCenter property.
+
+   bool GetBackPlateCenter ( ) const
+   Search for all occurrences
+
+   Get the current back plate center flag.
+
+   If this flag is on, center the back plate image on the back plane.
+
+   Returns:
+          The value of the BackPlateCenter property.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   void SetBackPlateKeepRatio ( bool  pKeepRatio )
+   Search for all occurrences
+
+   Change the back plate keep ratio flag.
+
+   If this flag is on, keep the aspect ratio of the back plate image. Turn on both the keep ration flag and the fit image flag to scale the back plate image proportionately.
+
+   Parameters:
+
+          pKeepRatio New value for the BackPlateKeepRatio property.
+
+   bool GetBackPlateKeepRatio ( ) const
+   Search for all occurrences
+
+   Get the current back plate keep ratio flag.
+
+   If this flag is on, keep the aspect ratio of the back plate image. Turn on both the keep ration flag and the fit image flag to scale the back plate image proportionately.
+
+   Returns:
+          The value of the BackPlateKeepRatio property.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   void SetShowFrontPlate ( bool  pEnable )
+   Search for all occurrences
+
+   Enable or disable the display of the texture without the need to disconnect it from its plate.
+
+   Parameters:
+
+          pEnable If true the texture is displayed, false otherwise.
+
+   Remarks:
+          It is the responsibility of the client application to perform the required tasks according to the state of this flag.
+
+   bool GetShowFrontPlate ( ) const
+   Search for all occurrences
+
+   Get the current state of the flag to display the front plate or not.
+
+   Returns:
+          true if show front plate is enabled, otherwise false.
+
+   Remarks:
+          It is the responsibility of the client application to perform the required tasks according to the state of this flag.
+
+   void SetFrontPlateFitImage ( bool  pFrontPlateFitImage )
+   Search for all occurrences
+
+   Change the front plate fit image flag.
+
+   If this flag is on, scale the front plate image to fit on the front plane.
+
+   Parameters:
+
+          pFrontPlateFitImage New value for the FrontPlateFitImage property.
+
+   bool GetFrontPlateFitImage ( ) const
+   Search for all occurrences
+
+   Get the current front plate fit image flag.
+
+   If this flag is on, scale the front plate image to fit on the front plane.
+
+   Returns:
+          The value of the BackPlateFitImage property.
+
+   void SetFrontPlateCrop ( bool  pFrontPlateCrop )
+   Search for all occurrences
+
+   Change the front plate crop flag.
+
+   If this flag is on, crop the front plate image to fit on the front plane. If the image is smaller than the plane, this flag has no effect.
+
+   Parameters:
+
+          pFrontPlateCrop New value for the FrontPlateCrop property.
+
+   bool GetFrontPlateCrop ( ) const
+   Search for all occurrences
+
+   Get the current front plate crop flag.
+
+   If this flag is on, crop the front plate image to fit on the front plane. If the image is smaller than the plane, this flag has no effect.
+
+   Returns:
+          The value of the FrontPlateCrop property.
+
+   void SetFrontPlateCenter ( bool  pFrontPlateCenter )
+   Search for all occurrences
+
+   Change the front plate center flag.
+
+   If this flag is on, center the front plate image on the front plane.
+
+   Parameters:
+
+          pFrontPlateCenter New value for the FrontPlateCenter property.
+
+   bool GetFrontPlateCenter ( ) const
+   Search for all occurrences
+
+   Get the current front plate center flag.
+
+   If this flag is on, center the front plate image on the front plane.
+
+   Returns:
+          The value of the FrontPlateCenter property.
+
+   void SetFrontPlateKeepRatio ( bool  pFrontPlateKeepRatio )
+   Search for all occurrences
+
+   Change the front plate keep ratio flag.
+
+   If this flag is on, keep the aspect ratio of the front plate image. Turn on both the keep ration flag and the fit image flag to scale the front plate image proportionately.
+
+   Parameters:
+
+          pFrontPlateKeepRatio New value for the FrontPlateKeepRatio property.
+
+   bool GetFrontPlateKeepRatio ( ) const
+   Search for all occurrences
+
+   Get the current front plate keep ratio flag.
+
+   If this flag is on, keep the aspect ratio of the front plate image. Turn on both the keep ration flag and the fit image flag to scale the front plate image proportionately.
+
+   Returns:
+          The value of the FrontPlateKeepRatio property.
+
+   void SetForegroundOpacity ( double  pOpacity )
+   Search for all occurrences
+
+   Set the front plate opacity value.
+
+   Parameters:
+
+          pOpacity New value for the ForegroundOpacity property.
+
+   double GetForegroundOpacity ( ) const
+   Search for all occurrences
+
+   Get the front plate opacity value.
+
+   Returns:
+          The value of the ForegroundOpacity property.
+
+   void SetForegroundTexture ( FbxTexture *  pTexture )
+   Search for all occurrences
+
+   Attach the texture to the front plate.
+
+   Parameters:
+
+          pTexture The pointer to the texture to attach.
+
+   FbxTexture* GetForegroundTexture ( ) const
+   Search for all occurrences
+
+   Get the texture connected to the front plate.
+
+   Returns:
+          A pointer to the texture attached to front plate.
+
+   void SetBackPlaneDistanceMode ( EFrontBackPlaneDistanceMode  pMode )
+   Search for all occurrences
+
+   Set the back plane distance mode.
+
+   Parameters:
+
+          pMode The back plane distance mode to set.
+
+   EFrontBackPlaneDistanceMode GetBackPlaneDistanceMode ( ) const
+   Search for all occurrences
+
+   Get the back plane distance mode.
+
+   Returns:
+          Return the back plane distance mode.
+
+   void SetFrontPlaneDistance ( double  pDistance )
+   Search for all occurrences
+
+   Set the front plane distance from the camera.
+
+   The the absolute position of the plane must be calculated by taking into consideration of the FrontPlaneDistanceMode.
+
+   Parameters:
+
+          pDistance The front plane distance value.
+
+   Remarks:
+          It is the responsibility of the client application to ensure that this plane position is within the frustum boundaries.
+
+   double GetFrontPlaneDistance ( ) const
+   Search for all occurrences
+
+   Get the front plane distance value.
+
+   Returns:
+          double The front plane distance value.
+
+   void SetFrontPlaneDistanceMode ( EFrontBackPlaneDistanceMode  pMode )
+   Search for all occurrences
+
+   Set the front plane distance mode.
+
+   Parameters:
+
+          pMode The front plane distance mode to set.
+
+   EFrontBackPlaneDistanceMode GetFrontPlaneDistanceMode ( ) const
+   Search for all occurrences
+
+   Get the front plane distance mode flag.
+
+   Returns:
+          The front plane distance mode.
+
+   void SetViewFrustumFrontPlaneMode ( EFrontBackPlaneDisplayMode  pMode )
+   Search for all occurrences
+
+   Set the front plane display mode.
+
+   This mode can be used by the client application to decide under which circumstance the front plane should be drawn in the viewport.
+
+   Parameters:
+
+          pMode The front/back plane display mode.
+
+   EFrontBackPlaneDisplayMode GetViewFrustumFrontPlaneMode ( ) const
+   Search for all occurrences
+
+   Get the front plane display mode.
+
+   Returns:
+          The front/back plane display mode.
+
+   void SetViewFrustumBackPlaneMode ( EFrontBackPlaneDisplayMode  pMode )
+   Search for all occurrences
+
+   Set the back plane display mode.
+
+   This mode can be used by the client application to decide under which circumstance the back plane should be drawn in the viewport.
+
+   Parameters:
+
+          pMode The front/back plane display mode.
+
+   EFrontBackPlaneDisplayMode GetViewFrustumBackPlaneMode ( ) const
+   Search for all occurrences
+
+   Get the back plane display mode.
+
+   Returns:
+          The front/back plane display mode.
+
+   void SetViewCameraInterest ( bool  pEnable )
+   Search for all occurrences
+
+   Change the camera interest visibility flag.
+
+   Parameters:
+
+          pEnable Set to true if the camera interest is shown, false otherwise.
+
+   bool GetViewCameraInterest ( ) const
+   Search for all occurrences
+
+   Get current visibility state of the camera interest.
+
+   Returns:
+          true if the camera interest is shown, or false if hidden.
+
+   void SetViewNearFarPlanes ( bool  pEnable )
+   Search for all occurrences
+
+   Change the camera near and far planes visibility flag.
+
+   Parameters:
+
+          pEnable Set to true if the near and far planes are shown, false otherwise.
+
+   bool GetViewNearFarPlanes ( ) const
+   Search for all occurrences
+
+   Get current visibility state of the camera near and far planes.
+
+   Returns:
+          true if the near and far planes are shown, false otherwise.
+
+   FbxVector4 EvaluatePosition ( const FbxTime &  pTime = FBXSDK_TIME_ZERO ) const
+   Search for all occurrences
+
+   Evaluate the camera (or eye) position.
+
+   Parameters:
+
+          pTime The time at which the camera should be evaluated.
+
+   Returns:
+          The camera position evaluated from property value and animation.
+
+   FbxVector4 EvaluateLookAtPosition ( const FbxTime &  pTime = FBXSDK_TIME_ZERO ) const
+   Search for all occurrences
+
+   Evaluate the camera target (or lookat) position.
+
+   Parameters:
+
+          pTime The time at which the camera should be evaluated.
+
+   Returns:
+          The camera target position evaluated from property value and animation.
+
+   FbxVector4 EvaluateUpDirection ( const FbxVector4 &  pCameraPosition,
+                                    const FbxVector4 &  pLookAtPosition,
+                                    const FbxTime &     pTime = FBXSDK_TIME_ZERO
+                                  )                     const
+   Search for all occurrences
+
+   Evaluate the camera up direction, taking target up objects into consideration.
+
+   Parameters:
+
+          pCameraPosition The camera current position. You can retrieve this with FbxCamera::EvaluatePosition().
+          pLookAtPosition The camera target position. you can retrieve this with FbxCamera::EvaluateLookAtPosition().
+          pTime           The time at which the camera should be evaluated.
+
+   Returns:
+          The camera up direction vector based on provided information.
+
+   FbxMatrix ComputeProjectionMatrix ( const int  pWidth,
+                                       const int  pHeight
+                                     )            const
+   Search for all occurrences
+
+   Compute the camera projection matrix.
+
+   Parameters:
+
+          pWidth  The width of the output frame.
+          pHeight The height of the output frame.
+
+   Returns:
+          The camera projection matrix, or the default identity matrix in case of wrong camera parameters.
+
+   FBX_DEPRECATED FbxVector4 ComputeUpVector ( const FbxVector4 &  pCameraPosition,
+                                               const FbxVector4 &  pLookAtPosition
+                                             )                     const
+   Search for all occurrences
+
+   Calculate the up vector.
+
+   (DEPRECATED, please use EvaluateUpDirection instead)
+
+   Parameters:
+
+          pCameraPosition The camera current position. You can retrieve this with FbxCamera::EvaluatePosition().
+          pLookAtPosition The camera target position. you can retrieve this with FbxCamera::EvaluateLookAtPosition().
+
+   Returns:
+          The camera up vector based on provided information.
+
+   Remarks:
+          Deprecated function, please use EvaluateUpDirection instead.
+
+   FBX_DEPRECATED FbxMatrix ComputePerspective ( int   pPixelWidth,
+                                                 int   pPixelHeight,
+                                                 bool  pIncludePostPerspective
+                                               )       const
+   Search for all occurrences
+
+   Compute the perspective matrix for this camera.
+
+   (DEPRECATED, please use ComputeProjectionMatrix instead) Suitable for transforming camera space to normalized device coordinate space. Also suitable for use as an OpenGL projection matrix. Note this fails if the ProjectionType is not ePerspective.
+
+   Parameters:
+
+          pPixelHeight            The pixel height of the output image.
+          pPixelWidth             The pixel width of the output image.
+          pIncludePostPerspective Indicate that post-projection transformations (offset, roll) are included in the output matrix.
+
+   Returns:
+          A perspective matrix, or the identity matrix on error.
+
+   bool IsBoundingBoxInView ( const FbxMatrix &  pWorldToScreen,
+                              const FbxMatrix &  pWorldToCamera,
+                              const FbxVector4   pPoints[8]
+                            )                    const
+   Search for all occurrences
+
+   Determine if the given bounding box is in the camera's view.
+
+   The input points do not need to be ordered in any particular way.
+
+   Parameters:
+
+          pWorldToScreen The world to screen transformation. Please refer to FbxCamera::ComputeWorldToScreen.
+          pWorldToCamera The world to camera transformation. Inverse of the matrix returned from FbxAnimEvaluator::GetNodeGlobalTransform is suitable. Please refer to FbxScene::GetEvaluator and FbxAnimEvaluator::GetNodeGlobalTransform.
+          pPoints        8 corners of the bounding box.
+
+   Returns:
+          true if any of the given points are in the camera's view, false otherwise.
+
+   bool IsPointInView ( const FbxMatrix &   pWorldToScreen,
+                        const FbxMatrix &   pWorldToCamera,
+                        const FbxVector4 &  pPoint
+                      )                     const
+   Search for all occurrences
+
+   Determine if the given 3d point is in the camera's view.
+
+   Parameters:
+
+          pWorldToScreen The world to screen transformation. Please refer to FbxCamera::ComputeWorldToScreen.
+          pWorldToCamera The world to camera transformation. Inverse of the matrix returned from FbxAnimEvaluator::GetNodeGlobalTransform is suitable. Please refer to FbxScene::GetEvaluator and FbxAnimEvaluator::GetNodeGlobalTransform.
+          pPoint         World-space point to test.
+
+   Returns:
+          true if the given point is in the camera's view, false otherwise.
+
+   FbxMatrix ComputeWorldToScreen ( int                 pPixelWidth,
+                                    int                 pPixelHeight,
+                                    const FbxAMatrix &  pWorldToCamera
+                                  )                     const
+   Search for all occurrences
+
+   Compute world space to screen space transformation matrix.
+
+   Parameters:
+
+          pPixelHeight   The pixel height of the output image.
+          pPixelWidth    The pixel height of the output image.
+          pWorldToCamera The world to camera affine transformation matrix.
+
+   Returns:
+          The world to screen space matrix, or the identity matrix on error.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble3> Position
+   Search for all occurrences
+
+   This property handles the camera's position (XYZ coordinates).
+
+   To access this property do: Position.Get(). To set this property do: Position.Set(FbxDouble3).
+
+   Remarks:
+          Default Value is (0.0, 0.0, 0.0).
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, ViewScene/SceneContext.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 800 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble3> UpVector
+   Search for all occurrences
+
+   This property handles the camera's Up Vector (XYZ coordinates).
+
+   To access this property do: UpVector.Get(). To set this property do: UpVector.Set(FbxDouble3).
+
+   Remarks:
+          Default Value is (0.0, 1.0, 0.0).
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 809 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble3> InterestPosition
+   Search for all occurrences
+
+   This property handles the default point (XYZ coordinates) the camera is looking at.
+
+   To access this property do: InterestPosition.Get(). To set this property do: InterestPosition.Set(FbxDouble3).
+
+   Remarks:
+          During the computations of the camera position and orientation, this property is overridden by the position of a valid target in the parent node.
+          Default Value is (0.0, 0.0, 0.0).
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, ViewScene/SceneContext.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 822 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> Roll
+   Search for all occurrences
+
+   This property handles the camera roll angle in degrees.
+
+   To access this property do: Roll.Get(). To set this property do: Roll.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Examples:
+          ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, ViewScene/DrawScene.cxx, ViewScene/SceneContext.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 831 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> OpticalCenterX
+   Search for all occurrences
+
+   This property handles the camera optical center X, in pixels.
+
+   It sets horizontal offset of the optical center. When the camera's aperture mode is set to eVertical, this property has no effect.
+
+   To access this property do: OpticalCenterX.Get(). To set this property do: OpticalCenterX.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayCamera.cxx.
+
+   Definition at line 842 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> OpticalCenterY
+   Search for all occurrences
+
+   This property handles the camera optical center Y, in pixels.
+
+   It sets the vertical offset of the optical center. When the camera's aperture mode is set to eHorizontal, this property has no effect.
+
+   To access this property do: OpticalCenterY.Get(). To set this property do: OpticalCenterY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Examples:
+          ImportScene/DisplayAnimation.cxx, and ImportScene/DisplayCamera.cxx.
+
+   Definition at line 853 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble3> BackgroundColor
+   Search for all occurrences
+
+   This property handles the RGB values of the camera's background color.
+
+   To access this property do: BackgroundColor.Get(). To set this property do: BackgroundColor.Set(FbxDouble3).
+
+   Default value is black (0, 0, 0)
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 862 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> TurnTable
+   Search for all occurrences
+
+   When modeling 3D objects, you often need to review or evaluate your models during the creation process.
+
+   You may create a camera with turn table animation to view your models in 360 or certain degrees. This property handles the camera's turn table angle in degrees.
+
+   To access this property do: TurnTable.Get(). To set this property do: TurnTable.Set(FbxDouble).
+
+   Default value is 0.
+
+   Definition at line 873 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> DisplayTurnTableIcon
+   Search for all occurrences
+
+   This property handles a flag that indicates if the camera displays the Turn Table icon or not.
+
+   To access this property do: DisplayTurnTableIcon.Get(). To set this property do: DisplayTurnTableIcon.Set(FbxBool).
+
+   Default value is false (no display).
+
+   Definition at line 883 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseMotionBlur
+   Search for all occurrences
+
+   This property handles a flag that indicates if the camera uses motion blur or not.
+
+   To access this property do: UseMotionBlur.Get(). To set this property do: UseMotionBlur.Set(FbxBool).
+
+   Default value is false (do not use motion blur).
+
+   Definition at line 897 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseRealTimeMotionBlur
+   Search for all occurrences
+
+   This property handles a flag that indicates if the camera uses real time motion blur or not.
+
+   To access this property do: UseRealTimeMotionBlur.Get(). To set this property do: UseRealTimeMotionBlur.Set(FbxBool).
+
+   Default value is false (use real time motion blur).
+
+   Definition at line 907 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> MotionBlurIntensity
+   Search for all occurrences
+
+   This property handles the camera's motion blur intensity (in pixels).
+
+   To access this property do: MotionBlurIntensity.Get(). To set this property do: MotionBlurIntensity.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Definition at line 916 of file fbxcamera.h.
+   FbxPropertyT<EAspectRatioMode> AspectRatioMode
+   Search for all occurrences
+
+   This property handles the camera's aspect ratio mode.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetAspect() if you want to change its value.
+
+   Default value is eWindowSize.
+
+   Definition at line 930 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> AspectWidth
+   Search for all occurrences
+
+   This property handles the camera's aspect width.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetAspect() if you want to change its value.
+
+   Default value is 320.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 939 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> AspectHeight
+   Search for all occurrences
+
+   This property handles the camera's aspect height.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetAspect() if you want to change its value.
+
+   Default value is 200.
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 948 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> PixelAspectRatio
+   Search for all occurrences
+
+   This property handles the pixel aspect ratio.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetPixelRatio() if you want to change its value.
+
+   Default value is 1.
+
+   Remarks:
+          Value range is [0.050, 20.0].
+
+   Examples:
+          Camera/main.cxx, and ImportScene/DisplayCamera.cxx.
+
+   Definition at line 958 of file fbxcamera.h.
+   FbxPropertyT<EApertureMode> ApertureMode
+   Search for all occurrences
+
+   This property handles the aperture mode.
+
+   To access this property do: ApertureMode.Get(). To set this property do: ApertureMode.Set(EApertureMode).
+
+   Default value is eVertical.
+
+   Definition at line 967 of file fbxcamera.h.
+   FbxPropertyT<EGateFit> GateFit
+   Search for all occurrences
+
+   This property handles the gate fit mode.
+
+   To control the size of the resolution gate relative to the film gate. If the resolution gate and the film gate have the same aspect ratio, then the property has no effect.
+
+   To access this property do: GateFit.Get(). To set this property do: GateFit.Set(EGateFit).
+
+   Default value is eFitNone.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   Definition at line 978 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FieldOfView
+   Search for all occurrences
+
+   This property handles the field of view in degrees.
+
+   To access this property do: FieldOfView.Get(). To set this property do: FieldOfView.Set(FbxDouble).
+
+   Remarks:
+          This property has meaning only when property ApertureMode equals eHorizontal or eVertical.
+          Default value is 40.
+          Value range is [1.0, 179.0].
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 991 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FieldOfViewX
+   Search for all occurrences
+
+   This property handles the X (horizontal) field of view in degrees.
+
+   To access this property do: FieldOfViewX.Get(). To set this property do: FieldOfViewX.Set(FbxDouble).
+
+   Remarks:
+          This property has meaning only when property ApertureMode equals eHorizAndVert.
+
+   Default value is 1.
+
+   Remarks:
+          Value range is [1.0, 179.0].
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1004 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FieldOfViewY
+   Search for all occurrences
+
+   This property handles the Y (vertical) field of view in degrees.
+
+   To access this property do: FieldOfViewY.Get(). To set this property do: FieldOfViewY.Set(FbxDouble).
+
+   Remarks:
+          This property has meaning only when property ApertureMode equals eHorizAndVert.
+          Default value is 1.
+          Value range is [1.0, 179.0].
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayAnimation.cxx, ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1017 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FocalLength
+   Search for all occurrences
+
+   This property handles the focal length (in millimeters).
+
+   To access this property do: FocalLength.Get(). To set this property do: FocalLength.Set(FbxDouble).
+
+   Default value is the result of ComputeFocalLength(40.0).
+
+   Examples:
+          Camera/main.cxx, ImportScene/DisplayCamera.cxx, StereoCamera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1026 of file fbxcamera.h.
+   FbxPropertyT<EFormat> CameraFormat
+   Search for all occurrences
+
+   This property handles the camera's format.
+
+   To access this property do: CameraFormat.Get(). To set this property do: CameraFormat.Set(EFormat).
+
+   Remarks:
+          This property is read-only.
+          Please use function SetFormat() if you want to change its value.
+
+   Default value is eCustomFormat.
+
+   Definition at line 1038 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseFrameColor
+   Search for all occurrences
+
+   This property stores a flag that indicates to draw a border with color around the camera's viewable area or not.
+
+   To access this property do: UseFrameColor.Get(). To set this property do: UseFrameColor.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1050 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble3> FrameColor
+   Search for all occurrences
+
+   This property is used to define the color of the border around the camera view.
+
+   To access this property do: FrameColor.Get(). To set this property do: FrameColor.Set(FbxDouble3).
+
+   Default value is (0.3, 0.3, 0.3).
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1059 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowName
+   Search for all occurrences
+
+   This property handles the flag to show the camera's name or not.
+
+   To access this property do: ShowName.Get(). To set this property do: ShowName.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1072 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowInfoOnMoving
+   Search for all occurrences
+
+   This property handles the flag to show info on moving or not.
+
+   To access this property do: ShowInfoOnMoving.Get(). To set this property do: ShowInfoOnMoving.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1081 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowGrid
+   Search for all occurrences
+
+   This property handles the flag to draw floor grid or not.
+
+   To access this property do: ShowGrid.Get(). To set this property do: ShowGrid.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1090 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowOpticalCenter
+   Search for all occurrences
+
+   This property handles the flag to show optical center or not.
+
+   To access this property do: ShowOpticalCenter.Get(). To set this property do: ShowOpticalCenter.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1099 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowAzimut
+   Search for all occurrences
+
+   This property handles the flag to show the camera's sight line or not.
+
+   When the camera is revolved about the center of interest in the perspective view, the angle of a camera's sight line relative to a plane perpendicular to the ground plane is referred to as its azimuth; and the angle of a camera's sight line relative to the ground plane is referred to as its elevation;
+
+   To access this property do: ShowAzimut.Get(). To set this property do: ShowAzimut.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1111 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowTimeCode
+   Search for all occurrences
+
+   This property handles the flag to show time code or not.
+
+   To access this property do: ShowTimeCode.Get(). To set this property do: ShowTimeCode.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1120 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowAudio
+   Search for all occurrences
+
+   This property handles the flag to show audio or not.
+
+   To access this property do: ShowAudio.Get(). To set this property do: ShowAudio.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1129 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble3> AudioColor
+   Search for all occurrences
+
+   This property handles audio color.
+
+   To access this property do: AudioColor.Get(). To set this property do: AudioColor.Set(FbxDouble3).
+
+   Default value is (0.0, 1.0, 0.0).
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1138 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> NearPlane
+   Search for all occurrences
+
+   This property handles the near plane distance.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetNearPlane() if you want to change its value.
+
+   Default value is 10.
+
+   Remarks:
+          Value range is [0.001, 600000.0].
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1152 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FarPlane
+   Search for all occurrences
+
+   This property handles the far plane distance.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetFarPlane() if you want to change its value.
+
+   Default value is 4000.
+
+   Remarks:
+          Value range is [0.001, 600000.0].
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1162 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> AutoComputeClipPlanes
+   Search for all occurrences
+
+   This property indicates that the clip planes should be automatically computed or not.
+
+   To access this property do: AutoComputeClipPlanes.Get(). To set this property do: AutoComputeClipPlanes.Set(FbxBool).
+
+   When this property is set to true, the NearPlane and FarPlane values are ignored. Note that not all applications support this flag.
+
+   Definition at line 1172 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmWidth
+   Search for all occurrences
+
+   This property handles the film aperture width (in inches).
+
+   Remarks:
+          This property is read-only.
+          Please use function SetApertureWidth() or SetApertureFormat() if you want to change its value.
+
+   Default value is 0.8160.
+
+   Remarks:
+          Value range is [0.0001, +inf).
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1188 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmHeight
+   Search for all occurrences
+
+   This property handles the film aperture height (in inches).
+
+   Remarks:
+          This property is read-only.
+          Please use function SetApertureHeight() or SetApertureFormat() if you want to change its value.
+
+   Default value is 0.6120.
+
+   Remarks:
+          Value range is [0.0001, +inf).
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1199 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmAspectRatio
+   Search for all occurrences
+
+   This property handles the film aperture aspect ratio.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetApertureFormat() if you want to change its value.
+
+   Default value is (FilmWidth / FilmHeight).
+
+   Remarks:
+          Value range is [0.0001, +inf).
+
+   Examples:
+          Camera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1209 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmSqueezeRatio
+   Search for all occurrences
+
+   This property handles the film aperture squeeze ratio.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetSqueezeRatio() or SetApertureFormat() if you want to change its value.
+
+   Default value is 1.0.
+
+   Remarks:
+          Value range is [0.0001, +inf).
+
+   Definition at line 1220 of file fbxcamera.h.
+   FbxPropertyT<EApertureFormat> FilmFormat
+   Search for all occurrences
+
+   This property handles the film aperture format.
+
+   Remarks:
+          This property is read-only.
+          Please use function SetApertureFormat() if you want to change its value.
+
+   Default value is eCustomAperture.
+
+   Definition at line 1230 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmOffsetX
+   Search for all occurrences
+
+   This property handles the horizontal offset from the center of the film aperture, defined by the film height and film width.
+
+   The offset is measured in inches.
+
+   To access this property do: FilmOffsetX.Get(). To set this property do: FilmOffsetX.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Examples:
+          StereoCamera/main.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1240 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmOffsetY
+   Search for all occurrences
+
+   This property handles the vertical offset from the center of the film aperture, defined by the film height and film width.
+
+   The offset is measured in inches.
+
+   To access this property do: FilmOffsetY.Get(). To set this property do: FilmOffsetY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Examples:
+          ViewScene/SetCamera.cxx.
+
+   Definition at line 1251 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> PreScale
+   Search for all occurrences
+
+   This property handles the pre-scale value.
+
+   The value is multiplied against the computed projection matrix. It is applied before the film roll.
+
+   To access this property do: PreScale.Get(). To set this property do: PreScale.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Definition at line 1262 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmTranslateX
+   Search for all occurrences
+
+   This property handles the horizontal film horizontal translation.
+
+   To access this property do: FilmTranslateX.Get(). To set this property do: FilmTranslateX.Set(FbxDouble). Default value is 0.0
+
+   Definition at line 1269 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmTranslateY
+   Search for all occurrences
+
+   This property handles the vertical film translation.
+
+   To access this property do: FilmTranslateY.Get(). To set this property do: FilmTranslateY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1278 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmRollPivotX
+   Search for all occurrences
+
+   This property handles the horizontal pivot point used for rotating the film back.
+
+   To access this property do: FilmRollPivotX.Get(). To set this property do: FilmRollPivotX.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Remarks:
+          FilmRollPivot value is used to compute the film roll matrix, which is a component of the post projection matrix.
+
+   Definition at line 1288 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmRollPivotY
+   Search for all occurrences
+
+   This property handles the vertical pivot point used for rotating the film back.
+
+   To access this property do: FilmRollPivotY.Get(). To set this property do: FilmRollPivotY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Remarks:
+          FilmRollPivot value is used to compute the film roll matrix, which is a component of the post projection matrix.
+
+   Definition at line 1298 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FilmRollValue
+   Search for all occurrences
+
+   This property handles the amount of rotation around the film back.
+
+   The roll value is specified in degrees.
+
+   To access this property do: FilmRollValue.Get(). To set this property do: FilmRollValue.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Remarks:
+          The rotation occurs around the specified pivot point, this value is used to compute a film roll matrix, which is a component of the post-projection matrix.
+
+   Definition at line 1310 of file fbxcamera.h.
+   FbxPropertyT<EFilmRollOrder> FilmRollOrder
+   Search for all occurrences
+
+   This property handles how the roll is applied with respect to the pivot value.
+
+   eRotateFirst The film back is first rotated then translated by the pivot point value. eTranslateFirst The film back is first translated then rotated by the film roll value.
+
+   To access this property do: FilmRollOrder.Get(). To set this property do: FilmRollOrder.Set(EFilmRollOrder).
+
+   Default value is eRotateFirst.
+
+   Definition at line 1321 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ViewCameraToLookAt
+   Search for all occurrences
+
+   This property handles the camera's look-at flag.
+
+   If this flag is on, the camera will look at the camera interest.
+
+   To access this property do: ViewCameraToLookAt.Get(). To set this property do: ViewCameraToLookAt.Set(FbxBool).
+
+   Default value is true.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1335 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ViewFrustumNearFarPlane
+   Search for all occurrences
+
+   This property handles to display the near and far plane or not.
+
+   To access this property do: ViewFrustumNearFarPlane.Get(). To set this property do: ViewFrustumNearFarPlane.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1344 of file fbxcamera.h.
+   FbxPropertyT<EFrontBackPlaneDisplayMode> ViewFrustumBackPlaneMode
+   Search for all occurrences
+
+   This property handles the back plane display mode.
+
+   To access this property do: ViewFrustumBackPlaneMode.Get(). To set this property do: ViewFrustumBackPlaneMode.Set(EFrontBackPlaneDisplayMode).
+
+   Default value is ePlanesWhenMedia.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1353 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneDistance
+   Search for all occurrences
+
+   This property handles the back plane distance.
+
+   To access this property do: BackPlaneDistance.Get(). To set this property do: BackPlaneDistance.Set(FbxDouble).
+
+   Default value is 100.0.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1362 of file fbxcamera.h.
+   FbxPropertyT<EFrontBackPlaneDistanceMode> BackPlaneDistanceMode
+   Search for all occurrences
+
+   This property handles the back plane distance mode.
+
+   To access this property do: BackPlaneDistanceMode.Get(). To set this property do: BackPlaneDistanceMode.Set(EFrontBackPlaneDistanceMode).
+
+   Default value is eRelativeToInterest.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1371 of file fbxcamera.h.
+   FbxPropertyT<EFrontBackPlaneDisplayMode> ViewFrustumFrontPlaneMode
+   Search for all occurrences
+
+   This property handles the front plane mode.
+
+   To access this property do: ViewFrustumFrontPlaneMode.Get(). To set this property do: ViewFrustumFrontPlaneMode.Set(EFrontBackPlaneDisplayMode).
+
+   Default value is ePlanesWhenMedia.
+
+   Definition at line 1380 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneDistance
+   Search for all occurrences
+
+   This property handles the front plane distance.
+
+   To access this property do: FrontPlaneDistance.Get(). To set this property do: FrontPlaneDistance.Set(FbxDouble).
+
+   Default value is 100.0.
+
+   Definition at line 1389 of file fbxcamera.h.
+   FbxPropertyT<EFrontBackPlaneDistanceMode> FrontPlaneDistanceMode
+   Search for all occurrences
+
+   This property handles the front plane distance mode.
+
+   To access this property do: FrontPlaneDistanceMode.Get(). To set this property do: FrontPlaneDistanceMode.Set(EFrontBackPlaneDistanceMode).
+
+   Default value is eRelativeToInterest.
+
+   Definition at line 1398 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> LockMode
+   Search for all occurrences
+
+   This property handles the flag to lock the camera's navigation.
+
+   When this flag is on, the camera's view can not be changed anymore. To access this property do: LockMode.Get(). To set this property do: LockMode.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1411 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> LockInterestNavigation
+   Search for all occurrences
+
+   This property handles the flag to lock the camera interest's navigation.
+
+   When this flag is one, the position of the camera interest is locked. To access this property do: LockInterestNavigation.Get(). To set this property do: LockInterestNavigation.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1420 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> BackPlateFitImage
+   Search for all occurrences
+
+   This property handles the fit image flag of back plane.
+
+   To access this property do: BackPlateFitImage.Get(). To set this property do: BackPlateFitImage.Set(FbxBool).
+
+   Default value is false.
+
+   See also:
+          SetFitImage and GetFitImage.
+
+   Definition at line 1434 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> BackPlateCrop
+   Search for all occurrences
+
+   This property handles the crop flag of back plane.
+
+   To access this property do: BackPlateCrop.Get(). To set this property do: BackPlateCrop.Set(FbxBool).
+
+   Default value is false.
+
+   See also:
+          SetCrop and GetCrop.
+
+   Definition at line 1444 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> BackPlateCenter
+   Search for all occurrences
+
+   This property handles the center flag of back plane.
+
+   To access this property do: BackPlateCenter.Get(). To set this property do: BackPlateCenter.Set(FbxBool).
+
+   Default value is true. see SetCenter and GetCenter.
+
+   Definition at line 1454 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> BackPlateKeepRatio
+   Search for all occurrences
+
+   This property handles the keep ratio flag of back plane.
+
+   To access this property do: BackPlateKeepRatio.Get(). To set this property do: BackPlateKeepRatio.Set(FbxBool).
+
+   Default value is true.
+
+   See also:
+          SetKeepRatio and GetKeepRatio.
+
+   Definition at line 1464 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackgroundAlphaTreshold
+   Search for all occurrences
+
+   This property handles the background alpha threshold value.
+
+   To access this property do: BackgroundAlphaTreshold.Get(). To set this property do: BackgroundAlphaTreshold.Set(FbxDouble).
+
+   Default value is 0.5.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1473 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneOffsetX
+   Search for all occurrences
+
+   This property handles the back plane offset X.
+
+   To access this property do: BackPlaneOffsetX.Get(). To set this property do: BackPlaneOffsetX.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1482 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneOffsetY
+   Search for all occurrences
+
+   This property handles the back plane offset Y.
+
+   To access this property do: BackPlaneOffsetY.Get(). To set this property do: BackPlaneOffsetY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1491 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneRotation
+   Search for all occurrences
+
+   This property handles the back plane rotation.
+
+   To access this property do: BackPlaneRotation.Get(). To set this property do: BackPlaneRotation.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1500 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneScaleX
+   Search for all occurrences
+
+   This property handles the back plane scaling X.
+
+   To access this property do: BackPlaneScaleX.Get(). To set this property do: BackPlaneScaleX.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Remarks:
+          The application manipulating the camera has to take into consideration of the BackPlateKeepRatio value too.
+
+   Definition at line 1511 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> BackPlaneScaleY
+   Search for all occurrences
+
+   This property handles the back plane scaling Y.
+
+   To access this property do: BackPlaneScaleY.Get(). To set this property do: BackPlaneScaleY.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Remarks:
+          The application manipulating the camera has to take into consideration of the BackPlateKeepRatio value too.
+
+   Definition at line 1522 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowBackplate
+   Search for all occurrences
+
+   This property handles the flag to show back plane or not.
+
+   To access this property do: ShowBackPlate.Get(). To set this property do: ShowBackPlate.Set(FbxBool).
+
+   Default value is false.
+
+   Remarks:
+          This replaces ForegroundTransparent.
+
+   Definition at line 1532 of file fbxcamera.h.
+   FbxPropertyT<FbxReference> BackgroundTexture
+   Search for all occurrences
+
+   This property has the background texture connected to it.
+
+   To access this property do: BackgroundTexture.Get(). To set this property do: BackgroundTexture.Set().
+
+   Remarks:
+          The background texture is connected as source object.
+
+   Definition at line 1541 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> FrontPlateFitImage
+   Search for all occurrences
+
+   This property handles the fit image flag of front plate.
+
+   To access this property do: FrontPlateFitImage.Get(). To set this property do: FrontPlateFitImage.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1555 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> FrontPlateCrop
+   Search for all occurrences
+
+   This property handles the crop flag of front plane.
+
+   To access this property do: FrontPlateCrop.Get(). To set this property do: FrontPlateCrop.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1564 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> FrontPlateCenter
+   Search for all occurrences
+
+   This property handles the center flag of front plane.
+
+   To access this property do: FrontPlateCenter.Get(). To set this property do: FrontPlateCenter.Set(FbxBool).
+
+   Default value is true.
+
+   Definition at line 1573 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> FrontPlateKeepRatio
+   Search for all occurrences
+
+   This property handles the keep ratio flag of front plane.
+
+   To access this property do: FrontPlateKeepRatio.Get(). To set this property do: FrontPlateKeepRatio.Set(FbxBool).
+
+   Default value is true.
+
+   Definition at line 1582 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> ShowFrontplate
+   Search for all occurrences
+
+   This property handles the flag to show front plane or not.
+
+   To access this property do: ShowFrontplate.Get(). To set this property do: ShowFrontplate.Set(FbxBool).
+
+   Default value is false.
+
+   Remarks:
+          This replaces ForegroundTransparent.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1593 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneOffsetX
+   Search for all occurrences
+
+   This property handles the front plane offset X.
+
+   To access this property do: FrontPlaneOffsetX.Get(). To set this property do: FrontPlaneOffsetX.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1602 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneOffsetY
+   Search for all occurrences
+
+   This property handles the front plane offset Y.
+
+   To access this property do: FrontPlaneOffsetY.Get(). To set this property do: FrontPlaneOffsetY.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1611 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneRotation
+   Search for all occurrences
+
+   This property handles the front plane rotation.
+
+   To access this property do: FrontPlaneRotation.Get(). To set this property do: FrontPlaneRotation.Set(FbxDouble).
+
+   Default value is 0.0.
+
+   Definition at line 1620 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneScaleX
+   Search for all occurrences
+
+   This property handles the front plane scaling X.
+
+   To access this property do: FrontPlaneScaleX.Get(). To set this property do: FrontPlaneScaleX.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Definition at line 1629 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FrontPlaneScaleY
+   Search for all occurrences
+
+   This property handles the front plane scaling Y.
+
+   To access this property do: FrontPlaneScaleY.Get(). To set this property do: FrontPlaneScaleY.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Definition at line 1638 of file fbxcamera.h.
+   FbxPropertyT<FbxReference> ForegroundTexture
+   Search for all occurrences
+
+   This property has the foreground texture connected to it.
+
+   To access this property do: ForegroundTexture.Get(). To set this property do: ForegroundTexture.Set().
+
+   Remarks:
+          The foreground texture is connected as source object.
+
+   Definition at line 1647 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> ForegroundOpacity
+   Search for all occurrences
+
+   This property handles the foreground image opacity value.
+
+   To access this property do: ForegroundOpacity.Get(). To set this property do: ForegroundOpacity.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1656 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> DisplaySafeArea
+   Search for all occurrences
+
+   This property handles the flag to display safe area or not.
+
+   To access this property do: DisplaySafeArea.Get(). To set this property do: DisplaySafeArea.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1669 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> DisplaySafeAreaOnRender
+   Search for all occurrences
+
+   This property handles the flag display safe area on render or not.
+
+   To access this property do: DisplaySafeAreaOnRender.Get(). To set this property do: DisplaySafeAreaOnRender.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1678 of file fbxcamera.h.
+   FbxPropertyT<ESafeAreaStyle> SafeAreaDisplayStyle
+   Search for all occurrences
+
+   This property handles the style to display safe area.
+
+   To access this property do: SafeAreaDisplayStyle.Get(). To set this property do: SafeAreaDisplayStyle.Set(ESafeAreaStyle).
+
+   Default value is eSafeAreaSquare.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1687 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> SafeAreaAspectRatio
+   Search for all occurrences
+
+   This property handles the display aspect ratio of safe area.
+
+   To access this property do: SafeAreaDisplayStyle.Get(). To set this property do: SafeAreaAspectRatio.Set(FbxDouble).
+
+   Default value is 1.33333333333333.
+
+   Definition at line 1696 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> Use2DMagnifierZoom
+   Search for all occurrences
+
+   This property handles the flag to use 2d magnifier zoom or not.
+
+   The 2D Magnifier lets you perform a 2D enlargement of the scene using the current camera without changing any camera settings.
+
+   To access this property do: Use2DMagnifierZoom.Get(). To set this property do: Use2DMagnifierZoom.Set(FbxBool).
+
+   Default value is false.
+
+   Definition at line 1711 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> _2DMagnifierZoom
+   Search for all occurrences
+
+   This property handles the 2d magnifier zoom value.
+
+   To access this property do: _2DMagnifierZoom.Get(). To set this property do: _2DMagnifierZoom.Set(FbxDouble).
+
+   Default value is 100.0.
+
+   Definition at line 1720 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> _2DMagnifierX
+   Search for all occurrences
+
+   This property handles the 2d magnifier X value.
+
+   To access this property do: _2DMagnifierX.Get(). To set this property do: _2DMagnifierX.Set(FbxDouble).
+
+   Default value is 50.0.
+
+   Definition at line 1729 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> _2DMagnifierY
+   Search for all occurrences
+
+   This property handles the 2d magnifier Y value.
+
+   To access this property do: _2DMagnifierY.Get(). To set this property do: _2DMagnifierY.Set(FbxDouble).
+
+   Default value is 50.0.
+
+   Definition at line 1738 of file fbxcamera.h.
+   FbxPropertyT<EProjectionType> ProjectionType
+   Search for all occurrences
+
+   This property handles the projection type.
+
+   To access this property do: ProjectionType.Get(). To set this property do: ProjectionType.Set(EProjectionType).
+
+   Default value is ePerspective.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx, and ViewScene/SetCamera.cxx.
+
+   Definition at line 1751 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> OrthoZoom
+   Search for all occurrences
+
+   This property handles the orthographic zoom value.
+
+   To access this property do: OrthoZoom.Get(). To set this property do: OrthoZoom.Set(FbxDouble).
+
+   Default value is 1.0.
+
+   Definition at line 1760 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseRealTimeDOFAndAA
+   Search for all occurrences
+
+   This property handles the flag to use real time Depth of Field and Anti-Aliasing or not.
+
+   To access this property do: UseRealTimeDOFAndAA.Get(). To set this property do: UseRealTimeDOFAndAA.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1773 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseDepthOfField
+   Search for all occurrences
+
+   This property handles the flag to use depth of field or not.
+
+   To access this property do: UseDepthOfField.Get(). To set this property do: UseDepthOfField.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1782 of file fbxcamera.h.
+   FbxPropertyT<EFocusDistanceSource> FocusSource
+   Search for all occurrences
+
+   This property handles the focus source.
+
+   To access this property do: FocusSource.Get(). To set this property do: FocusSource.Set(EFocusDistanceSource).
+
+   Default value is eFocusSrcCameraInterest.
+
+   See also:
+          FocusDistance.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1792 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FocusAngle
+   Search for all occurrences
+
+   This property handles the focus angle (in degrees).
+
+   To access this property do: FocusAngle.Get(). To set this property do: FocusAngle.Set(FbxDouble).
+
+   Default value is 3.5.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1801 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> FocusDistance
+   Search for all occurrences
+
+   This property handles the focus distance.
+
+   Focus distance is the distance between the camera and the object on which the camera is focused. There are two possible sources for this distance.
+
+   See also:
+          EFocusDistanceSource
+
+   To access this property do: FocusDistance.Get(). To set this property do: FocusDistance.Set(FbxDouble).
+
+   Default value is 200.0.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1813 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseAntialiasing
+   Search for all occurrences
+
+   This property handles the flag to use anti aliasing or not.
+
+   To access this property do: UseAntialiasing.Get(). To set this property do: UseAntialiasing.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1822 of file fbxcamera.h.
+   FbxPropertyT<FbxDouble> AntialiasingIntensity
+   Search for all occurrences
+
+   This property handles the anti aliasing intensity.
+
+   To access this property do: AntialiasingIntensity.Get(). To set this property do: AntialiasingIntensity.Set(FbxDouble).
+
+   Default value is 0.77777.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1831 of file fbxcamera.h.
+   FbxPropertyT<EAntialiasingMethod> AntialiasingMethod
+   Search for all occurrences
+
+   This property handles the anti aliasing method.
+
+   To access this property do: AntialiasingMethod.Get(). To set this property do: AntialiasingMethod.Set(EAntialiasingMethod).
+
+   Default value is eAAOversampling.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1840 of file fbxcamera.h.
+   FbxPropertyT<FbxBool> UseAccumulationBuffer
+   Search for all occurrences
+
+   This property handles the flag to use accumulation buffer or not.
+
+   To access this property do: UseAccumulationBuffer.Get(). To set this property do: UseAccumulationBuffer.Set(FbxBool).
+
+   Default value is false.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1853 of file fbxcamera.h.
+   FbxPropertyT<FbxInt> FrameSamplingCount
+   Search for all occurrences
+
+   This property handles the frame sampling count.
+
+   To access this property do: FrameSamplingCount.Get(). To set this property do: FrameSamplingCount.Set(FbxInt).
+
+   Default value is 7.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1862 of file fbxcamera.h.
+   FbxPropertyT<ESamplingType> FrameSamplingType
+   Search for all occurrences
+
+   This property handles the frame sampling type.
+
+   To access this property do: FrameSamplingType.Get(). To set this property do: FrameSamplingType.Set(ESamplingType).
+
+   Default value is eSamplingStochastic.
+
+   Examples:
+          ImportScene/DisplayCamera.cxx.
+
+   Definition at line 1871 of file fbxcamera.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxcamera.h
+
+   Please send us your comment about this page

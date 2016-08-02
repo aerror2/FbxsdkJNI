@@ -1,0 +1,14 @@
+
+     * Main Page
+
+   FbxDouble3 Class Reference
+
+                FbxDouble3(double x, double y, double z)
+                ~FbxDouble3()
+          double GetAt(int idx) 
+          void   SetAt(int idx, double v)
+
+Member Enumeration Documentation
+
+   enum EClass
+

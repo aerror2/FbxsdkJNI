@@ -1,0 +1,170 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxBoundary Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Public Attributes | Static Public Attributes
+   FbxBoundary Class Reference
+
+   This reference page is linked to from the following overview topics: List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxtrimnurbssurface.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   FbxBoundary describes a trimming boundary for a trimmed NURBS object.
+
+   Note:Outer boundaries run counter-clockwise in UV space and inner boundaries run clockwise. An outer boundary represents the outer edges of the trimmed surface whereas the inner boundaries define "holes" in the surface.
+
+   Definition at line 30 of file fbxtrimnurbssurface.h.
+   Inheritance diagram for FbxBoundary:
+   [USEMAP:class_fbx_boundary.png]
+
+   List of all members.
+
+Public Member Functions
+
+                              void  AddCurve (FbxNurbsCurve *pCurve)
+                                    Adds an edge to this boundary.
+                               int  GetCurveCount () const
+                                    Returns the number of edges within this boundary.
+                   FbxNurbsCurve *  GetCurve (int pIndex)
+                                    Returns the edge at the specified index.
+             const FbxNurbsCurve *  GetCurve (int pIndex) const
+                                    Returns the edge at the specified index.
+   virtual FbxNodeAttribute::EType  GetAttributeType () const
+                                    Returns the type of node attribute.
+                              bool  IsPointInControlHull (const FbxVector4 &pPoint)
+                                    Detects if the point is in the boundary's control hull.
+                        FbxVector4  ComputePointInBoundary ()
+                                    Computes the origin point in the boundary.
+
+Public Attributes
+
+           FbxPropertyT< FbxBool >  OuterFlag
+                                    This property handles outer flag.
+
+Static Public Attributes
+
+               static const char *  sOuterFlag
+                                    Properties.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void AddCurve ( FbxNurbsCurve *  pCurve )
+   Search for all occurrences
+
+   Adds an edge to this boundary.
+
+   Parameters:
+
+          pCurve The curve to be appended to the end of this boundary
+
+   int GetCurveCount ( ) const
+   Search for all occurrences
+
+   Returns the number of edges within this boundary.
+
+   Returns:
+          The number of edges within this boundary
+
+   FbxNurbsCurve* GetCurve ( int  pIndex )
+   Search for all occurrences
+
+   Returns the edge at the specified index.
+
+   Parameters:
+
+          pIndex The specified index, no bound checking is done.
+
+   Returns:
+          The edge at the specified index if pIndex is in the range [0, GetEdgeCount() ), otherwise the return value is undefined.
+
+   const FbxNurbsCurve* GetCurve ( int  pIndex ) const
+   Search for all occurrences
+
+   Returns the edge at the specified index.
+
+   Parameters:
+
+          pIndex The specified index, no bound checking is done.
+
+   Returns:
+          The edge at the specified index if pIndex is in the range [0, GetEdgeCount() ), otherwise, the return value is undefined.
+
+   virtual FbxNodeAttribute::EType GetAttributeType ( ) const [virtual]
+   Search for all occurrences
+
+   Returns the type of node attribute.
+
+   Reimplemented from FbxGeometry.
+   bool IsPointInControlHull ( const FbxVector4 &  pPoint )
+   Search for all occurrences
+
+   Detects if the point is in the boundary's control hull.
+
+   Parameters:
+
+          pPoint The point to be detected.
+
+   Returns:
+          True if the point is in the boundary's control hull, returns false if it is not in the control hull.
+
+   FbxVector4 ComputePointInBoundary ( )
+   Search for all occurrences
+
+   Computes the origin point in the boundary.
+
+   Returns:
+          The origin point.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   const char* sOuterFlag [static]
+   Search for all occurrences
+
+   Properties.
+
+   Definition at line 37 of file fbxtrimnurbssurface.h.
+   FbxPropertyT<FbxBool> OuterFlag
+   Search for all occurrences
+
+   This property handles outer flag.
+
+   Default value is false.
+
+   Definition at line 43 of file fbxtrimnurbssurface.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/geometry/fbxtrimnurbssurface.h
+
+   Please send us your comment about this page

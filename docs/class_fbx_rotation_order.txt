@@ -1,0 +1,80 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxRotationOrder Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxRotationOrder Class Reference
+   Search for all occurrences
+
+   #include <fbxtransforms.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 185 of file fbxtransforms.h.
+
+   List of all members.
+
+Public Member Functions
+
+         FbxRotationOrder (int pOrder=FbxEuler::eOrderXYZ)
+    int  GetOrder ()
+   void  SetOrder (int pOrder)
+   void  V2M (FbxAMatrix &pRM, const FbxVector4 &pV)
+   void  M2V (FbxVector4 &pV, FbxAMatrix &pRM)
+   bool  V2VRef (FbxVector4 &pVOut, FbxVector4 &pVIn, FbxVector4 &pVRef)
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxRotationOrder ( int  pOrder = FbxEuler::eOrderXYZ )
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   int GetOrder ( )
+   Search for all occurrences
+   void SetOrder ( int  pOrder )
+   Search for all occurrences
+   void V2M ( FbxAMatrix &        pRM,
+              const FbxVector4 &  pV
+            )
+   Search for all occurrences
+   void M2V ( FbxVector4 &  pV,
+              FbxAMatrix &  pRM
+            )
+   Search for all occurrences
+   bool V2VRef ( FbxVector4 &  pVOut,
+                 FbxVector4 &  pVIn,
+                 FbxVector4 &  pVRef
+               )
+   Search for all occurrences
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/math/fbxtransforms.h
+
+   Please send us your comment about this page

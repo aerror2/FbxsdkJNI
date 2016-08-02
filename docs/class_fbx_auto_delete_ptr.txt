@@ -1,0 +1,67 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAutoDeletePtr< Type > Class Template Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions
+   FbxAutoDeletePtr< Type > Class Template Reference
+   Search for all occurrences
+
+   #include <fbxalloc.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+template<class Type>
+class FbxAutoDeletePtr< Type >
+
+   Scoped pointer for FbxNew allocations, which call FbxDelete() to deallocate.
+
+   Definition at line 259 of file fbxalloc.h.
+   Inheritance diagram for FbxAutoDeletePtr< Type >:
+   [USEMAP:class_fbx_auto_delete_ptr.png]
+
+   List of all members.
+
+Public Member Functions
+
+     FbxAutoDeletePtr (Type *pPtr=0)
+     Construct from a pointer.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAutoDeletePtr ( Type *  pPtr = 0 ) [inline, explicit]
+
+   Construct from a pointer.
+
+   Definition at line 263 of file fbxalloc.h.
+: FbxAutoPtr<Type, FbxDeletionPolicyDelete<Type> >(pPtr){}
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/arch/fbxalloc.h
+
+   Please send us your comment about this page

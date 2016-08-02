@@ -1,0 +1,896 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxManager Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Member Functions | Static Public Member Functions
+   FbxManager Class Reference
+
+   This reference page is linked to from the following overview topics: I/O Settings, Your First FBX SDK Program, Importing a Scene, FBX SDK 2014, Exporting a Scene, Customizing the FBX SDK, Customizing File Formats with FBX SDK I/O Plug-ins, FBX SDK 2013, Using Python FBX with Eclipse, FBX Scenes, FBX SDK Object Model, FBX Objects, Managing Memory with the FBX SDK Manager, Merging Two Scenes, List of Python Fbx classes.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxmanager.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   SDK object manager.
+
+   The SDK manager is in charge of:
+     * scene element allocation, for example, FbxScene::Create(pSdkManager, "").
+     * scene element deallocation, call FbxManager::Destroy() to deallocates all object created by the SDK manager.
+     * scene element search and access, please see GlobalObjectManagement section.
+
+   It is possible to override memory allocation functions throughout the FBX SDK by providing system memory allocation functions using the handler set functions below. It must be done before the first FbxManager creation.
+
+   FbxSetMallocHandler(); FbxSetCallocHandler(); FbxSetReallocHandler(); FbxSetFreeHandler();
+
+   Upon destruction, all objects allocated by the SDK manager and not explicitly destroyed are destroyed as well. A derived class can be defined to allocate and deallocate specialized scene elements.
+
+   Remarks:
+          You could create more than one SDK manager. However, it's better to NOT share the same object among different managers.
+
+   Examples:
+          Animation/main.cxx, Camera/main.cxx, Common/Common.cxx, Common/Common.h, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ExportScene05/main.cxx, ExportShader/main.cxx, FileStream/main.cxx, ImportScene/main.cxx, Instances/main.cxx, Layers/main.cxx, MyOwnWriterReader/MyOwnReader.cxx, MyOwnWriterReader/MyOwnReader.h, MyOwnWriterReader/MyOwnWriter.cxx, MyOwnWriterReader/MyOwnWriter.h,
+          MyOwnWriterReader/MyOwnWriterReader.cxx, MyOwnWriterReader/MyOwnWriterReader.h, Normals/main.cxx, Pivot/main.cxx, ProceduralTexture/main.cxx, StereoCamera/main.cxx, SwitchBinding/main.cxx, Transformations/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/Common/ImportExport.h, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/CubeCreator/SDK_Utility.h, UI_Examples/CubeCreator/UI.cxx, UI_Examples/ImportExport/UI.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx,
+          UI_Examples/SceneTreeView/SDK_Utility.h, UI_Examples/SceneTreeView/UI.cxx, UserProperties/main.cxx, UVSample/main.cxx, and ViewScene/SceneContext.h.
+
+   Definition at line 56 of file fbxmanager.h.
+
+   List of all members.
+
+Public Member Functions
+
+                             int  GetDocumentCount ()
+                                  Get the count of document available in this manager.
+                   FbxDocument *  GetDocument (int pIndex)
+                                  Get the document at pIndex in the manager's list.
+
+Static Public Member Functions
+
+                static FbxString  PrefixName (const char *pPrefix, const char *pName)
+                                  Add a prefix to a name.
+
+FBX SDK Manager Creation/Destruction
+
+             static FbxManager *  Create ()
+                                  SDK manager allocation method.
+                    virtual void  Destroy ()
+                                  Destructor.
+
+Versions Queries
+
+             static const char *  GetVersion (bool pFull=true)
+                                  Get FBX SDK version string.
+                     static void  GetFileFormatVersion (int &pMajor, int &pMinor, int &pRevision)
+                                  Get the current default FBX file format version number for this version of the FBX SDK.
+
+Object Registration, Definition and Management
+
+ //  template<typename T1 , typename T2 >
+ //                     FbxClassId  RegisterFbxClass (const char *pName, const T1 *T1, const T2 *T2, const char *pFbxFileTypeName=0, const char *pFbxFileSubTypeName=0)
+ //                                 Class registration.
+ //  template<typename T >
+ //                     FbxClassId  RegisterRuntimeFbxClass (const char *pName, const T *T, const char *pFbxFileTypeName=0, const char *pFbxFileSubTypeName=0)
+ //                                 Runtime class registration.
+ //                           void  UnregisterRuntimeFbxClass (const char *pName)
+ //                                 Runtime class unregistration.
+ //  template<typename T1 , typename T2 >
+ //                     FbxClassId  OverrideFbxClass (const T1 *pFBX_TYPE_Class, const T2 *pFBX_TYPE_OverridenClass)
+                                  Override class.
+                     FbxObject *  CreateNewObjectFromClassId (FbxClassId pClassId, const char *pName, FbxObject *pContainer=NULL, const FbxObject *pCloneFrom=NULL)
+                                  Create a new object of the specified ClassId.
+                      FbxClassId  FindClass (const char *pClassName) const
+                                  Find class by the specified name.
+                      FbxClassId  FindFbxFileClass (const char *pFbxFileTypeName, const char *pFbxFileSubTypeName) const
+                                  Find file class.
+  // template<typename T >
+ //                           void  UnregisterFbxClass (const T *pFBX_TYPE_Class)
+  //                                Class unregistration.
+
+Data Type Management
+
+                     FbxDataType  CreateDataType (const char *pName, const EFbxType pType)
+                                  Register a new data type to the manager.
+                             int  GetDataTypeCount () const
+                                  List the data types.
+                   FbxDataType &  GetDataType (const int pIndex) const
+                                  Find a data types at pIndex.
+                   FbxDataType &  GetDataTypeFromName (const char *pDataType) const
+                                  Find a data type from the type name.
+
+User Notification Object
+
+           FbxUserNotification *  GetUserNotification () const
+                                  Access to the unique UserNotification object.
+                            void  SetUserNotification (FbxUserNotification *pUN)
+                                  Set the user notification.
+
+IOSettings Object
+
+         virtual FbxIOSettings *  GetIOSettings () const
+                                  Access to a IOSettings object.
+                    virtual void  SetIOSettings (FbxIOSettings *pIOSettings)
+                                  Set the IOSettings pointer.
+
+Message Emitter (for Message Logging)
+
+             FbxMessageEmitter &  GetMessageEmitter ()
+                                  Access to the unique FbxMessageEmitter object.
+                            bool  SetMessageEmitter (FbxMessageEmitter *pMessageEmitter)
+                                  Sets to the unique FbxMessageEmitter object.
+
+Localization Hierarchy
+
+                            void  AddLocalization (FbxLocalizationManager *pLocManager)
+                                  Add a localization object to the known localization providers.
+                            void  RemoveLocalization (FbxLocalizationManager *pLocManager)
+                                  Remove a localization object from the known localization providers.
+                            bool  SetLocale (const char *pLocale)
+                                  Select the current locale for localization.
+                    const char *  Localize (const char *pID, const char *pDefault=NULL) const
+                                  Localization helper function.
+
+XRef Manager
+
+                FbxXRefManager &  GetXRefManager ()
+                                  Retrieve the manager responsible for managing object XRef resolution.
+
+Library Management
+
+                    FbxLibrary *  GetRootLibrary () const
+                                  Retrieve the main object Libraries.
+                    FbxLibrary *  GetSystemLibraries () const
+                    FbxLibrary *  GetUserLibraries () const
+
+Plug-in Registry Object
+
+           FbxIOPluginRegistry *  GetIOPluginRegistry () const
+                                  Access to the unique FbxIOPluginRegistry object.
+
+Fbx Generic Plugins Management
+
+                            bool  LoadPluginsDirectory (const char *pFilename, const char *pExtensions=NULL)
+                                  Load plug-ins directory.
+                            bool  LoadPlugin (const char *pFilename)
+                                  Load plug-in.
+                            bool  UnloadPlugins ()
+                                  Unload all plug-ins.
+                            bool  EmitPluginsEvent (const FbxEventBase &pEvent)
+                                  Emit plugins event.
+   FbxArray< const FbxPlugin * >  GetPlugins () const
+                                  Get plugins.
+                             int  GetPluginCount () const
+                                  get plugins count
+                     FbxPlugin *  FindPlugin (const char *pName, const char *pVersion) const
+                                  Find plug in.
+
+IO Settings
+
+                            void  FillIOSettingsForReadersRegistered (FbxIOSettings &pIOS)
+                                  Fill IO Settings for registered readers.
+                            void  FillIOSettingsForWritersRegistered (FbxIOSettings &pIOS)
+                                  Fill IO Settings for registered writers.
+                            void  FillCommonIOSettings (FbxIOSettings &pIOS, bool pImport)
+                                  Fill common IO Settings.
+
+Global Object Management
+
+                            void  RegisterObject (FbxObject *pObject)
+                                  Register object with the manager.
+                            void  UnregisterObject (FbxObject *pObject)
+                                  Unregister object with the manager.
+                            void  RegisterObjects (const FbxArray< FbxObject * > &pArray)
+                                  Register a list of objects with the manager.
+                            void  UnregisterObjects (const FbxArray< FbxObject * > &pArray)
+                                  Unregister a list of objects with the manager.
+                            void  IncreaseDestroyingSceneFlag ()
+                                  Increment the scene destroying counter.
+                            void  DecreaseDestroyingSceneFlag ()
+                                  Shrink the object list and decrements the scene destroying counter.
+
+Reference Management
+
+                             int  GetReferenceCount () const
+                                  Get number of references.
+             FbxSceneReference *  GetReference (int pIndex) const
+                                  Get reference at given index.
+                             int  AddReference (FbxSceneReference *pReference)
+                                  Add a reference.
+                            bool  RemoveReference (FbxSceneReference *pReference)
+                                  Remove the specified reference from reference list.
+                            bool  ClearReference (FbxSceneReference *pReference)
+                                  Clear the specified reference from the SDK manager.
+
+Animation Evaluation
+
+//                           void  SetAnimationEvaluator (FbxAnimEvaluator *pEvaluator)
+//                                 Set the animation evaluator that should be used by the entire FBX SDK animation evaluation engine.
+//             FbxAnimEvaluator *  GetAnimationEvaluator ()
+//                                 Get the current animation evaluator used by the entire FBX SDK animation evaluation engine.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   static FbxManager* Create ( ) [static]
+   Search for all occurrences
+
+   SDK manager allocation method.
+
+   Returns:
+          A pointer to the SDK manager or NULL if this is an evaluation copy of the FBX SDK and it is expired.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   virtual void Destroy ( ) [virtual]
+   Search for all occurrences
+
+   Destructor.
+
+   Deallocates all object previously created by the SDK manager.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   static const char* GetVersion ( bool  pFull = true ) [static]
+   Search for all occurrences
+
+   Get FBX SDK version string.
+
+   Parameters:
+
+          pFull If true, the complete version string including revision number and release date will be returned, otherwise only the version numbering is returned.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, and UI_Examples/CubeCreator/SDK_Utility.cxx.
+
+   static void GetFileFormatVersion ( int &  pMajor,
+                                      int &  pMinor,
+                                      int &  pRevision
+                                    )        [static]
+   Search for all occurrences
+
+   Get the current default FBX file format version number for this version of the FBX SDK.
+
+   Parameters:
+
+          pMajor    Version major number.
+          pMinor    Version minor number.
+          pRevision Version revision number.
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, and UI_Examples/Common/ImportExport.cxx.
+
+   FbxClassId RegisterFbxClass ( const char *  pName,
+                                 const T1 *    T1,
+                                 const T2 *    T2,
+                                 const char *  pFbxFileTypeName = 0,
+                                 const char *  pFbxFileSubTypeName = 0
+                               )               [inline]
+   Search for all occurrences
+
+   Class registration.
+
+   Parameters:
+
+          pName               The class name. For example, "FbxMesh" for FbxMesh class.
+          T1                  FBX type of the specified class.
+          T2                  FBX type of parent class.
+          pFbxFileTypeName    The type name of the class in FBX file.
+          pFbxFileSubTypeName The sub type name of the class in FBX file.
+
+   Returns:
+          The class Id of the newly register class. Such as:
+
+ RegisterFbxClass("FbxCamera", FBX_TYPE(FbxCamera), FBX_TYPE(FbxNodeAttribute));
+
+   Examples:
+          ExportScene03/main.cxx.
+
+   Definition at line 108 of file fbxmanager.h.
+                {
+                        T1::ClassId = Internal_RegisterFbxClass(pName, T2::ClassId, (FbxObjectCreateProc)T1::Allocate, pFbxFileTypeName, pFbxFileSubTypeName);
+                        return T1::ClassId;
+                }
+
+   FbxClassId RegisterRuntimeFbxClass ( const char *  pName,
+                                        const T *     T,
+                                        const char *  pFbxFileTypeName = 0,
+                                        const char *  pFbxFileSubTypeName = 0
+                                      )               [inline]
+   Search for all occurrences
+
+   Runtime class registration.
+
+   Parameters:
+
+          pName               The class name. For example, "FbxUIWidgetBoolean".
+          T                   FBX type of parent class.
+          pFbxFileTypeName    The type name of the class in FBX file.
+          pFbxFileSubTypeName The sub type name of the class in FBX file.
+
+   Returns:
+          The class Id of the newly register class. Such as:
+
+ RegisterRuntimeFbxClass( "FbxUIWidgetBoolean", FBX_TYPE(FbxUIWidgetDefinition), NULL, "FbxUIWidgetBoolean");
+
+   Definition at line 123 of file fbxmanager.h.
+                {
+                        return Internal_RegisterFbxClass(pName, T::ClassId, (FbxObjectCreateProc)T::Allocate, pFbxFileTypeName, pFbxFileSubTypeName);
+                }
+
+   void UnregisterRuntimeFbxClass ( const char *  pName ) [inline]
+   Search for all occurrences
+
+   Runtime class unregistration.
+
+   Parameters:
+
+          pName The class name.
+
+   Definition at line 131 of file fbxmanager.h.
+                {
+                        FbxClassId lClassId = FindClass(pName);
+                        if( !(lClassId == FbxClassId()) )
+                        {
+                                Internal_UnregisterFbxClass(lClassId);
+                        }
+                }
+
+   FbxClassId OverrideFbxClass ( const T1 *  pFBX_TYPE_Class,
+                                 const T2 *  pFBX_TYPE_OverridenClass
+                               )             [inline]
+   Search for all occurrences
+
+   Override class.
+
+   Parameters:
+
+          pFBX_TYPE_Class          FBX type of class.
+          pFBX_TYPE_OverridenClass FBX type of overridden class.
+
+   Returns:
+          The class Id
+
+   Definition at line 145 of file fbxmanager.h.
+                {
+                        T1::ClassId  = Internal_OverrideFbxClass(T2::ClassId,(FbxObjectCreateProc)T1::Allocate );
+                        return T1::ClassId;
+                }
+
+   FbxObject* CreateNewObjectFromClassId ( FbxClassId         pClassId,
+                                           const char *       pName,
+                                           FbxObject *        pContainer = NULL,
+                                           const FbxObject *  pCloneFrom = NULL
+                                         )
+   Search for all occurrences
+
+   Create a new object of the specified ClassId.
+
+   Parameters:
+
+          pClassId   The ClassId of the object to be created.
+          pName      The name given to the newly created object.
+          pContainer An optional parameter to specify which object will "contain" the new object. By contain, we mean the new object will become a source to the container, connection-wise.
+          pCloneFrom A valid object pointer to use as the reference for cloning the object upon construction.
+
+   Returns:
+          If not null, a new instance of the specified class.
+
+   Remarks:
+          This function will return NULL if the ClassId used is invalid. New ClassId can be registered using the function RegisterFbxClass().
+
+   FbxClassId FindClass ( const char *  pClassName ) const
+   Search for all occurrences
+
+   Find class by the specified name.
+
+   Parameters:
+
+          pClassName Class Name to find.
+
+   FbxClassId FindFbxFileClass ( const char *  pFbxFileTypeName,
+                                 const char *  pFbxFileSubTypeName
+                               )               const
+   Search for all occurrences
+
+   Find file class.
+
+   Parameters:
+
+          pFbxFileTypeName    Specify the type name in FBX file to find.
+          pFbxFileSubTypeName Specify by The sub type name in FBX file to find.
+
+   void UnregisterFbxClass ( const T *  pFBX_TYPE_Class ) [inline]
+   Search for all occurrences
+
+   Class unregistration.
+
+   Parameters:
+
+          pFBX_TYPE_Class FBX type of unregistered class.
+
+   Definition at line 177 of file fbxmanager.h.
+                {
+                        Internal_UnregisterFbxClass(T::ClassId);
+                        T::ClassId = FbxClassId();
+                }
+
+   FbxDataType CreateDataType ( const char *    pName,
+                                const EFbxType  pType
+                              )
+   Search for all occurrences
+
+   Register a new data type to the manager.
+
+   Parameters:
+
+          pName The type name.
+          pType The data type.
+
+   Returns:
+          The newly created FbxDataType
+
+   int GetDataTypeCount ( ) const
+   Search for all occurrences
+
+   List the data types.
+
+   Returns:
+          the number of registered datatypes
+
+   FbxDataType& GetDataType ( const int  pIndex ) const
+   Search for all occurrences
+
+   Find a data types at pIndex.
+
+   Parameters:
+
+          pIndex The data type index.
+
+   Returns:
+          the found datatype. return null if not found
+
+   FbxDataType& GetDataTypeFromName ( const char *  pDataType ) const
+   Search for all occurrences
+
+   Find a data type from the type name.
+
+   Parameters:
+
+          pDataType The type name.
+
+   Returns:
+          the found datatype. return null if not found
+
+   FbxUserNotification* GetUserNotification ( ) const
+   Search for all occurrences
+
+   Access to the unique UserNotification object.
+
+   Returns:
+          The pointer to the user notification or NULL if the object has not been allocated.
+
+   void SetUserNotification ( FbxUserNotification *  pUN )
+   Search for all occurrences
+
+   Set the user notification.
+
+   Parameters:
+
+          pUN
+
+   virtual FbxIOSettings* GetIOSettings ( ) const [virtual]
+   Search for all occurrences
+
+   Access to a IOSettings object.
+
+   Returns:
+          The pointer to IOSettings or NULL if the object has not been allocated.
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   virtual void SetIOSettings ( FbxIOSettings *  pIOSettings ) [virtual]
+   Search for all occurrences
+
+   Set the IOSettings pointer.
+
+   Parameters:
+
+          pIOSettings
+
+   Examples:
+          Common/Common.cxx, ExportDocument/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, and UI_Examples/SceneTreeView/SDK_Utility.cxx.
+
+   FbxMessageEmitter& GetMessageEmitter ( )
+   Search for all occurrences
+
+   Access to the unique FbxMessageEmitter object.
+
+   Returns:
+          The pointer to the message emitter.
+
+   bool SetMessageEmitter ( FbxMessageEmitter *  pMessageEmitter )
+   Search for all occurrences
+
+   Sets to the unique FbxMessageEmitter object.
+
+   Parameters:
+
+          pMessageEmitter the emitter to use, passing NULL will reset to the default emitter. The object will be deleted when the SDK manager is destroyed, thus ownership is transfered.
+
+   void AddLocalization ( FbxLocalizationManager *  pLocManager )
+   Search for all occurrences
+
+   Add a localization object to the known localization providers.
+
+   Parameters:
+
+          pLocManager the localization object to register.
+
+   void RemoveLocalization ( FbxLocalizationManager *  pLocManager )
+   Search for all occurrences
+
+   Remove a localization object from the known localization providers.
+
+   Parameters:
+
+          pLocManager the localization object to remove.
+
+   bool SetLocale ( const char *  pLocale )
+   Search for all occurrences
+
+   Select the current locale for localization.
+
+   Parameters:
+
+          pLocale the locale name, for example "fr" or "en-US".
+
+   const char* Localize ( const char *  pID,
+                          const char *  pDefault = NULL
+                        )               const
+   Search for all occurrences
+
+   Localization helper function.
+
+   Calls each registered localization manager until one can localizes the text.
+
+   Parameters:
+
+          pID      the identifier for the text to localize.
+          pDefault the default text. Uses pID if NULL.
+
+   Returns:
+          the potentially localized text. May return the parameter passed in.
+
+   FbxXRefManager& GetXRefManager ( )
+   Search for all occurrences
+
+   Retrieve the manager responsible for managing object XRef resolution.
+
+   Returns:
+          The XRef manager for this SDK manager.
+
+   FbxLibrary* GetRootLibrary ( ) const
+   Search for all occurrences
+
+   Retrieve the main object Libraries.
+
+   Returns:
+          The Root library
+
+   FbxLibrary* GetSystemLibraries ( ) const
+   Search for all occurrences
+   FbxLibrary* GetUserLibraries ( ) const
+   Search for all occurrences
+   FbxIOPluginRegistry* GetIOPluginRegistry ( ) const
+   Search for all occurrences
+
+   Access to the unique FbxIOPluginRegistry object.
+
+   Returns:
+          The pointer to the user FbxIOPluginRegistry
+
+   Examples:
+          Common/Common.cxx, ConvertScene/main.cxx, ExportDocument/main.cxx, ExportScene05/main.cxx, FileStream/main.cxx, UI_Examples/Common/ImportExport.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/SceneTreeView/SDK_Utility.cxx, and UserProperties/main.cxx.
+
+   bool LoadPluginsDirectory ( const char *  pFilename,
+                               const char *  pExtensions = NULL
+                             )
+   Search for all occurrences
+
+   Load plug-ins directory.
+
+   Parameters:
+
+          pFilename   The directory path.
+          pExtensions The plug in extension.
+
+   Returns:
+          True
+
+   Examples:
+          Common/Common.cxx.
+
+   bool LoadPlugin ( const char *  pFilename )
+   Search for all occurrences
+
+   Load plug-in.
+
+   Parameters:
+
+          pFilename The file name
+
+   Returns:
+          True
+
+   bool UnloadPlugins ( )
+   Search for all occurrences
+
+   Unload all plug-ins.
+   bool EmitPluginsEvent ( const FbxEventBase &  pEvent )
+   Search for all occurrences
+
+   Emit plugins event.
+
+   Parameters:
+
+          pEvent The event to be emitted.
+
+   FbxArray<const FbxPlugin*> GetPlugins ( ) const
+   Search for all occurrences
+
+   Get plugins.
+   int GetPluginCount ( ) const
+   Search for all occurrences
+
+   get plugins count
+
+   Returns:
+          The number of plugins.
+
+   FbxPlugin* FindPlugin ( const char *  pName,
+                           const char *  pVersion
+                         )               const
+   Search for all occurrences
+
+   Find plug in.
+
+   Parameters:
+
+          pName    The plug in name.
+          pVersion The plug in version.
+
+   Returns:
+          The plugin, null if not found.
+
+   void FillIOSettingsForReadersRegistered ( FbxIOSettings &  pIOS )
+   Search for all occurrences
+
+   Fill IO Settings for registered readers.
+
+   Parameters:
+
+          pIOS The properties hierarchies to fill.
+
+   void FillIOSettingsForWritersRegistered ( FbxIOSettings &  pIOS )
+   Search for all occurrences
+
+   Fill IO Settings for registered writers.
+
+   Parameters:
+
+          pIOS The properties hierarchies to fill.
+
+   void FillCommonIOSettings ( FbxIOSettings &  pIOS,
+                               bool             pImport
+                             )
+   Search for all occurrences
+
+   Fill common IO Settings.
+
+   Parameters:
+
+          pIOS    The properties hierarchies to fill.
+          pImport If true, import properties are set, otherwise export properties are set.
+
+   void RegisterObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Register object with the manager.
+
+   Parameters:
+
+          pObject The object to be registered.
+
+   void UnregisterObject ( FbxObject *  pObject )
+   Search for all occurrences
+
+   Unregister object with the manager.
+
+   Parameters:
+
+          pObject The object to be unregistered.
+
+   void RegisterObjects ( const FbxArray< FbxObject * > &  pArray )
+   Search for all occurrences
+
+   Register a list of objects with the manager.
+
+   Parameters:
+
+          pArray The list of object to be registered.
+
+   void UnregisterObjects ( const FbxArray< FbxObject * > &  pArray )
+   Search for all occurrences
+
+   Unregister a list of objects with the manager.
+
+   Parameters:
+
+          pArray The list of object to be unregistered.
+
+   void IncreaseDestroyingSceneFlag ( )
+   Search for all occurrences
+
+   Increment the scene destroying counter.
+
+   Remarks:
+          Call this function before the destroying list is changed.
+
+   void DecreaseDestroyingSceneFlag ( )
+   Search for all occurrences
+
+   Shrink the object list and decrements the scene destroying counter.
+
+   Remarks:
+          Call this function after the destroying is changed. Use IncreasDestroyingSceneFlag() and DecreaseDestroyingSceneFlag() in pairs.
+
+   int GetReferenceCount ( ) const
+   Search for all occurrences
+
+   Get number of references.
+
+   Returns:
+          Number of references.
+
+   FbxSceneReference* GetReference ( int  pIndex ) const
+   Search for all occurrences
+
+   Get reference at given index.
+
+   Parameters:
+
+          pIndex Position in the list of references.
+
+   Returns:
+          Pointer to the reference or NULL if index is out of bounds.
+
+   int AddReference ( FbxSceneReference *  pReference )
+   Search for all occurrences
+
+   Add a reference.
+
+   Parameters:
+
+          pReference The reference to be added.
+
+   Returns:
+          If the reference is correctly added to the scene, return true otherwise, if the reference is already there, returns false.
+
+   bool RemoveReference ( FbxSceneReference *  pReference )
+   Search for all occurrences
+
+   Remove the specified reference from reference list.
+
+   Parameters:
+
+          pReference The reference to be removed.
+
+   Returns:
+          If the reference was successfully removed, return true otherwise, if the reference could not be found returns false.
+
+   bool ClearReference ( FbxSceneReference *  pReference )
+   Search for all occurrences
+
+   Clear the specified reference from the SDK manager.
+
+   Parameters:
+
+          pReference The reference to be removed.
+
+   Returns:
+          If the reference was successfully cleared from the SDK manager, return true otherwise, if the reference could not be found returns false.
+
+   void SetAnimationEvaluator ( FbxAnimEvaluator *  pEvaluator )
+   Search for all occurrences
+
+   Set the animation evaluator that should be used by the entire FBX SDK animation evaluation engine.
+
+   Parameters:
+
+          pEvaluator The animation evaluator to use.
+
+   FbxAnimEvaluator* GetAnimationEvaluator ( )
+   Search for all occurrences
+
+   Get the current animation evaluator used by the entire FBX SDK animation evaluation engine.
+
+   Returns:
+          The current animation evaluator.
+
+   Remarks:
+          If none were currently set, the FBX SDK will create a default evaluator so this function should always return an evaluator.
+
+   Examples:
+          Animation/main.cxx.
+
+   static FbxString PrefixName ( const char *  pPrefix,
+                                 const char *  pName
+                               )               [static]
+   Search for all occurrences
+
+   Add a prefix to a name.
+
+   Parameters:
+
+          pPrefix The prefix to be added to the pName. This string must contain the "::" characters in order to be considered as a prefix.
+          pName   The name to be prefix.
+
+   Returns:
+          The prefixed string
+
+   Remarks:
+          If a prefix already exists, it is removed before adding pPrefix.
+
+   int GetDocumentCount ( )
+   Search for all occurrences
+
+   Get the count of document available in this manager.
+
+   Returns:
+          The count of document owned by this manager.
+
+   FbxDocument* GetDocument ( int  pIndex )
+   Search for all occurrences
+
+   Get the document at pIndex in the manager's list.
+
+   Parameters:
+
+          pIndex The index of the document to retrieve.
+
+   Returns:
+          The document at the specified index. Will return NULL if index is invalid.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/core/fbxmanager.h
+
+   Please send us your comment about this page

@@ -1,0 +1,113 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimUtilities::FbxAnimSplitDef Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+     * FbxAnimUtilities
+     * FbxAnimSplitDef
+
+   Public Member Functions | Public Attributes
+   FbxAnimUtilities::FbxAnimSplitDef Class Reference
+   Search for all occurrences
+
+   #include <fbxanimutilities.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   Definition at line 54 of file fbxanimutilities.h.
+
+   List of all members.
+
+Public Member Functions
+
+                      FbxAnimSplitDef ()
+                      FbxAnimSplitDef (const FbxString &pName, FbxTime &pStart, FbxTime &pEnd)
+   FbxAnimSplitDef &  operator= (const FbxAnimSplitDef &pRhs)
+
+Public Attributes
+
+           FbxString  mName
+             FbxTime  mStart
+             FbxTime  mEnd
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Constructor & Destructor Documentation
+
+   FbxAnimSplitDef ( ) [inline]
+
+   Definition at line 61 of file fbxanimutilities.h.
+        {
+            mName = "unnamed";
+            mStart = 0;
+            mEnd = 0;
+        }
+
+   FbxAnimSplitDef ( const FbxString &  pName,
+                     FbxTime &          pStart,
+                     FbxTime &          pEnd
+                   )                    [inline]
+
+   Definition at line 68 of file fbxanimutilities.h.
+        {
+            mName = pName;
+            mStart = pStart;
+            mEnd = pEnd;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   FbxAnimSplitDef& operator= ( const FbxAnimSplitDef &  pRhs ) [inline]
+
+   Definition at line 75 of file fbxanimutilities.h.
+        {
+            mName = pRhs.mName;
+            mStart = pRhs.mStart;
+            mEnd = pRhs.mEnd;
+            return *this;
+        }
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxString mName
+   Search for all occurrences
+
+   Definition at line 57 of file fbxanimutilities.h.
+   FbxTime mStart
+   Search for all occurrences
+
+   Definition at line 58 of file fbxanimutilities.h.
+   FbxTime mEnd
+   Search for all occurrences
+
+   Definition at line 59 of file fbxanimutilities.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimutilities.h
+
+   Please send us your comment about this page

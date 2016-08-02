@@ -1,0 +1,335 @@
+   Toggle the navigation pane
+   [toggle_navigation.gif]
+   Add to Favorites
+   [add_favorite.gif]
+   Home: Autodesk FBX SDK Documentation
+   [nav-home-xp.gif]
+   Share
+   [nav-share.gif]
+   [nav-print.gif]
+
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+   [nav-null-xp.gif]
+
+
+   Translate this page
+   Powered by Microsoft® Translator
+   FbxAnimLayer Class Reference
+
+
+
+
+
+
+
+     * Main Page
+
+   Public Types | Public Member Functions | Public Attributes
+   FbxAnimLayer Class Reference
+
+   This reference page is linked to from the following overview topics: Animating a Node, Animation Classes and their Interrelationships, Migrating to the New Data Structures for Animation, FBX Objects, Using the Blend Modes, Bypassing the Blend Mode for Specific Data Types, List of Python Fbx classes, Extracting the Animation Data from a FBX File, Animation Data Structures.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   Search for all occurrences
+
+   #include <fbxanimlayer.h>
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Class Description
+
+   The animation layer is a collection of animation curve nodes.
+
+   Its purpose is to store a variable number of FbxAnimCurveNode. The class provides different states flags (bool properties), an animatable weight, and the blending mode flag to indicate how the data on this layer is interacting with the data of the other layers during the evaluation.
+
+   Examples:
+          Animation/main.cxx, Common/AnimationUtility.cxx, Common/AnimationUtility.h, ExportScene01/main.cxx, ExportScene02/main.cxx, ExportScene03/main.cxx, ExportScene04/main.cxx, ImportScene/DisplayAnimation.cxx, Instances/main.cxx, Pivot/main.cxx, UI_Examples/CubeCreator/SDK_Utility.cxx, UI_Examples/CubeCreator/SDK_Utility.h, UserProperties/main.cxx, ViewScene/DrawScene.cxx, ViewScene/DrawScene.h, ViewScene/SceneCache.cxx, ViewScene/SceneCache.h, ViewScene/SceneContext.cxx,
+          ViewScene/SceneContext.h, ViewScene/SetCamera.cxx, and ViewScene/SetCamera.h.
+
+   Definition at line 30 of file fbxanimlayer.h.
+   Inheritance diagram for FbxAnimLayer:
+   [USEMAP:class_fbx_anim_layer.png]
+
+   List of all members.
+
+Public Types
+
+                        enum   EBlendMode { eBlendAdditive, eBlendOverride, eBlendOverridePassthrough }
+                               Blend mode type between animation layers. More...
+                        enum   ERotationAccumulationMode { eRotationByLayer, eRotationByChannel }
+                               Rotation accumulation mode of animation layer. More...
+                        enum   EScaleAccumulationMode { eScaleMultiply, eScaleAdditive }
+                               Scale accumulation mode of animation layer. More...
+
+Public Member Functions
+
+                         void  Reset ()
+                               Reset this object properties to their default value.
+
+Public Attributes
+
+    FbxPropertyT< FbxDouble >  Weight
+                               This property stores the weight factor.
+      FbxPropertyT< FbxBool >  Mute
+                               This property stores the mute state.
+      FbxPropertyT< FbxBool >  Solo
+                               This property stores the solo state.
+      FbxPropertyT< FbxBool >  Lock
+                               This property stores the lock state.
+   FbxPropertyT< FbxDouble3 >  Color
+                               This property stores the display color.
+      FbxPropertyT< FbxEnum >  BlendMode
+                               This property stores the blend mode.
+      FbxPropertyT< FbxEnum >  RotationAccumulationMode
+                               This property stores the rotation accumulation mode.
+      FbxPropertyT< FbxEnum >  ScaleAccumulationMode
+                               This property stores the scale accumulation mode.
+
+BlendMode bypass functions
+
+   This section provides methods to bypass the current layer blend mode by data type.
+
+   When the state is true, the evaluators that are processing the layer will need to consider that, for the given data type, the blend mode is forced to be Overwrite. If the state is left to its default false value, then the layer blend mode applies.
+
+   Remarks:
+          This section only supports the basic types defined in the fbxtypes.h header file.
+
+                         void  SetBlendModeBypass (EFbxType pType, bool pState)
+                               Set the bypass flag for the given data type.
+                         bool  GetBlendModeBypass (EFbxType pType)
+                               Get the current state of the bypass flag for the given data type.
+
+CurveNode management
+
+           FbxAnimCurveNode *  CreateCurveNode (FbxProperty &pProperty)
+                               Create a FbxAnimCurveNode based on the property data type.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Enumeration Documentation
+
+   enum EBlendMode
+   Search for all occurrences
+
+   Blend mode type between animation layers.
+
+   Enumerator:
+
+          eBlendAdditive
+
+   Search for all occurrences
+          eBlendOverride
+
+   The layer "adds" its animation to layers that precede it in the stack and affect the same attributes.
+   Search for all occurrences
+   eBlendOverridePassthrough
+
+   The layer "overrides" the animation of any layer that shares the same attributes and precedes it in the stack.
+   This mode is like the eOverride but the Weight value influence how much animation from the preceding layers is allowed to pass-through. When using this mode with a Weight of 100.0, this layer is completely opaque and it masks any animation from the preceding layers for the same attribute. If the Weight is 50.0, half of this layer animation is mixed with half of the animation of the preceding layers for the same attribute.
+   Search for all occurrences
+
+   Definition at line 138 of file fbxanimlayer.h.
+        {
+                eBlendAdditive,
+                eBlendOverride,
+                eBlendOverridePassthrough
+        };
+
+   enum ERotationAccumulationMode
+   Search for all occurrences
+
+   Rotation accumulation mode of animation layer.
+
+   Enumerator:
+
+          eRotationByLayer
+
+   Search for all occurrences
+   eRotationByChannel
+
+   Rotation values are weighted per layer and the result rotation curves are calculated using concatenated quaternion values.
+   Rotation values are weighted per component and the result rotation curves are calculated by adding each independent Euler XYZ value.
+   Search for all occurrences
+
+   Definition at line 153 of file fbxanimlayer.h.
+        {
+                eRotationByLayer,
+                eRotationByChannel
+        };
+
+   enum EScaleAccumulationMode
+   Search for all occurrences
+
+   Scale accumulation mode of animation layer.
+
+   Enumerator:
+
+          eScaleMultiply
+
+   Search for all occurrences
+   eScaleAdditive
+
+   Independent XYZ scale values per layer are calculated using the layer weight value as an exponent, and result scale curves are calculated by multiplying each independent XYZ scale value.
+   Result scale curves are calculated by adding each independent XYZ value.
+   Search for all occurrences
+
+   Definition at line 161 of file fbxanimlayer.h.
+        {
+                eScaleMultiply,
+                eScaleAdditive
+        };
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Function Documentation
+
+   void Reset ( )
+   Search for all occurrences
+
+   Reset this object properties to their default value.
+   void SetBlendModeBypass ( EFbxType  pType,
+                             bool      pState
+                           )
+   Search for all occurrences
+
+   Set the bypass flag for the given data type.
+
+   Parameters:
+
+          pType  The fbxType identifier.
+          pState The new state of the bypass flag.
+
+   Remarks:
+          If pType is eFbxTypeCount, then pState is applied to all the data types.
+
+   Examples:
+          Animation/main.cxx.
+
+   bool GetBlendModeBypass ( EFbxType  pType )
+   Search for all occurrences
+
+   Get the current state of the bypass flag for the given data type.
+
+   Parameters:
+
+          pType The fbxType identifier.
+
+   Returns:
+          The current state of the flag for a valid pType value and false in any other case.
+
+   Examples:
+          Animation/main.cxx.
+
+   FbxAnimCurveNode* CreateCurveNode ( FbxProperty &  pProperty )
+   Search for all occurrences
+
+   Create a FbxAnimCurveNode based on the property data type.
+
+   Parameters:
+
+          pProperty The property that the created FbxAnimCurveNode will be connected to.
+
+   Returns:
+          Pointer to the created FbxAnimCurveNode, or NULL if an error occurred.
+
+   Remarks:
+          This function will fail if the property FbxPropertyFlags::eAnimatable flag is not set.
+          This function sets the eAnimated flag of the property.
+          The newly created FbxAnimCurveNode is automatically connected to both this object and the property.
+
+   Examples:
+          Animation/main.cxx.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Member Data Documentation
+
+   FbxPropertyT<FbxDouble> Weight
+   Search for all occurrences
+
+   This property stores the weight factor.
+
+   The weight factor is the percentage of influence this layer has during the evaluation.
+
+   Default value is 100.0
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 47 of file fbxanimlayer.h.
+   FbxPropertyT<FbxBool> Mute
+   Search for all occurrences
+
+   This property stores the mute state.
+
+   The mute state indicates that this layer should be excluded from the evaluation.
+
+   Default value is false
+
+   Definition at line 54 of file fbxanimlayer.h.
+   FbxPropertyT<FbxBool> Solo
+   Search for all occurrences
+
+   This property stores the solo state.
+
+   The solo state indicates that this layer is the only one that should be processed during the evaluation.
+
+   Default value is false
+
+   Definition at line 62 of file fbxanimlayer.h.
+   FbxPropertyT<FbxBool> Lock
+   Search for all occurrences
+
+   This property stores the lock state.
+
+   The lock state indicates that this layer has been "locked" from editing operations and should no longer receive keyframes.
+
+   Default value is false
+
+   Definition at line 70 of file fbxanimlayer.h.
+   FbxPropertyT<FbxDouble3> Color
+   Search for all occurrences
+
+   This property stores the display color.
+
+   This color can be used by applications if they display a graphical representation of the layer. The FBX SDK does not use it but guarantees that the value is saved to the FBX file and retrieved from it.
+
+   Default value is (0.8, 0.8, 0.8)
+
+   Definition at line 79 of file fbxanimlayer.h.
+   FbxPropertyT<FbxEnum> BlendMode
+   Search for all occurrences
+
+   This property stores the blend mode.
+
+   The blend mode is used to specify how this layer influences the animation evaluation. See the BlendMode enumeration for the description of the modes.
+
+   Default value is eModeAdditive
+
+   Examples:
+          Animation/main.cxx.
+
+   Definition at line 87 of file fbxanimlayer.h.
+   FbxPropertyT<FbxEnum> RotationAccumulationMode
+   Search for all occurrences
+
+   This property stores the rotation accumulation mode.
+
+   This option indicates how the rotation curves on this layer combine with any preceding layers that share the same attributes. See the RotationAccumulationMode enumeration for the description of the modes.
+
+   Default value is eRotationByLayer
+
+   Definition at line 96 of file fbxanimlayer.h.
+   FbxPropertyT<FbxEnum> ScaleAccumulationMode
+   Search for all occurrences
+
+   This property stores the scale accumulation mode.
+
+   This option indicates how the scale curves on this layer combine with any preceding layers that share the same attributes. See the ScaleAccumulationMode enumeration for the description of the modes.
+
+   Default value is eScaleMultiply
+
+   Definition at line 105 of file fbxanimlayer.h.
+     __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+   The documentation for this class was generated from the following file:
+     * fbxsdk/scene/animation/fbxanimlayer.h
+
+   Please send us your comment about this page
