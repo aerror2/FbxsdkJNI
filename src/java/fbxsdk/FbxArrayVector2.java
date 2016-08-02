@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 123 FbxArrayVector2  --------------------
 public class FbxArrayVector2  {

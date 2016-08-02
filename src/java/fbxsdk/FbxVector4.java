@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 158 FbxVector4  --------------------
 public class FbxVector4  {

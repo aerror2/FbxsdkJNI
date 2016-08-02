@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 101 FbxReaderFbx6  --------------------
 public class FbxReaderFbx6  {

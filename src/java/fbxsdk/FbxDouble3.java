@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //2 11 FbxDouble3  --------------------
 public class FbxDouble3  {

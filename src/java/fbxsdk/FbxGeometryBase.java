@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 250 FbxGeometryBase  --------------------
 public class FbxGeometryBase  {

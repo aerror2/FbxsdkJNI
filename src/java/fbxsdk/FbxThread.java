@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 75 FbxThread  --------------------
 public class FbxThread  {

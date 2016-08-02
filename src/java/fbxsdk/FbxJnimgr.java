@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //2 20 FbxJnimgr  --------------------
 public class FbxJnimgr  {

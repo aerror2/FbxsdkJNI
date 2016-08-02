@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 81 FbxReaderFbx5  --------------------
 public class FbxReaderFbx5  {

@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 126 FbxLayerElement  --------------------
 public class FbxLayerElement  {

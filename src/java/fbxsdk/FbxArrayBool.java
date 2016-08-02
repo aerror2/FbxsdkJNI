@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 123 FbxArrayBool  --------------------
 public class FbxArrayBool  {

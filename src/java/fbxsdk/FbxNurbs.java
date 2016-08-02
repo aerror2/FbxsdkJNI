@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 124 FbxNurbs  --------------------
 public class FbxNurbs  {

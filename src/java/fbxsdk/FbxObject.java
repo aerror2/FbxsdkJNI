@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 474 FbxObject  --------------------
 public class FbxObject  {

@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 99 FbxLayerElementArrayTemplateVector4  --------------------
 public class FbxLayerElementArrayTemplateVector4  {

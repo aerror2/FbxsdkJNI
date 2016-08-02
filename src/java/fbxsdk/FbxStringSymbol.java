@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 73 FbxStringSymbol  --------------------
 public class FbxStringSymbol  {

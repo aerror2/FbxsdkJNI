@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 149 FbxDualQuaternion  --------------------
 public class FbxDualQuaternion  {

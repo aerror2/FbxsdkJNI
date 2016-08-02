@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 99 FbxLayerElementArrayTemplateInt  --------------------
 public class FbxLayerElementArrayTemplateInt  {

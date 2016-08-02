@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 73 FbxSubDeformer  --------------------
 public class FbxSubDeformer  {

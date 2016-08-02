@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 92 FbxLayerElementTexture  --------------------
 public class FbxLayerElementTexture  {

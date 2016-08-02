@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 90 FbxDateTime  --------------------
 public class FbxDateTime  {

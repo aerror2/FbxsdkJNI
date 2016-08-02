@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 package fbxsdk;
 //26 122 FbxArrayLong  --------------------
 public class FbxArrayLong  {

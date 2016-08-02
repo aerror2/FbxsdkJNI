@@ -1,3 +1,4 @@
+//copyright by aerror 2016 
 #pragma once
 #include <jni.h>
 #include <string>
