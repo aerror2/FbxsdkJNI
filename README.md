@@ -11,7 +11,13 @@ how to works:
 1. use dumpdoctxtfromhtml.sh which using lynx to dump all documents from http://docs.autodesk.com/FBX/2014/ENU/FBX-SDK-Documentation/cpp_ref/hierarchy.html
 2. use genfromdoc.sh which parse the doc text files, reconize the class and class member, then generate java and cpp codes.
 3. fix some doc, java or cpp error.
-4. use makejniLib.sh  to make
+
+how to make:
+
+cd src/jni
+
+make 
+make install 
 
 scripts only works on macosx
 
