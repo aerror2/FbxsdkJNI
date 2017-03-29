@@ -16,8 +16,7 @@ how to make:
 
 cd src/jni
 
-make 
-make install 
+make && make install 
 
 scripts only works on macosx
 
